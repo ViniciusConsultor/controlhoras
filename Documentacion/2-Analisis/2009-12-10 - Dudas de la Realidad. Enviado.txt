@@ -1,0 +1,18 @@
+
+
+Dudas Conceptuales - Control de Horas - Trust International
+
+09/12/09
+- Servicios: el precio por hora indicado, de que forma se especifica?? Por tipo de Vigilante?? O es un precio por hora hombre unico??
+- Contrato -> Cuadro Resumen: El TOTALES, a totales de que corresponde?  Cantidad de Horas Normales Total y Cantidad de Horas Extras Total?
+
+- Tipos de Servicios: Que tipos de servicios hay? Seguridad Fisica, diferentes servicios. Seguridad Electronica (Alarmas) Servicios?
+- Contrato: Un contrato puede tener costo fijo independientemente de las hs efectuadas en el mes? O sea, que pague al mes X pesos mensuales, sin tener en cuenta las hs realizadas.
+
+
+- Empleado -> El Tipo de Empleado, determina el Tipo de Sueldo (Mensual o Jornalero)?? Por ejemplo, un vigilante armado, puede ser mensual o jornalero o siempre es jornalero?
+- Empleado -> Porta Arma: Definiendo el Empleado con el Tipo de Empleado Vigilante Armado no es suficiente?? Puede ocurrir que un empleado de Tipo Vigilante Armado no porte arma??
+- Empleado - RENAEMSE. Que datos se quieren guardar del RENAEMSE.
+- Empleado - CAJ. Se quiere guardar el N° de CAJ del Empleado??
+- Empleado - BPS. Que datos se quiere guardar en relacion al BPS, solo la Fecha de Alta del Empleado en BPS?
+- Empleado - MTSS. Que datos se quiere guardar, solo N° de Formulario??
