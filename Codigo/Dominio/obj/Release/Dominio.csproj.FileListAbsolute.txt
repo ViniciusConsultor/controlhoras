@@ -1,5 +1,0 @@
-C:\Documents and Settings\Administrador\Escritorio\RepoControlHoras\Dominio\bin\Release\Dominio.dll
-C:\Documents and Settings\Administrador\Escritorio\RepoControlHoras\Dominio\bin\Release\Dominio.pdb
-C:\Documents and Settings\Administrador\Escritorio\RepoControlHoras\Dominio\obj\Release\ResolveAssemblyReference.cache
-C:\Documents and Settings\Administrador\Escritorio\RepoControlHoras\Dominio\obj\Release\Dominio.dll
-C:\Documents and Settings\Administrador\Escritorio\RepoControlHoras\Dominio\obj\Release\Dominio.pdb
