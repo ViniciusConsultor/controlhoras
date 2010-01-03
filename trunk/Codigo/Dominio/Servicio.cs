@@ -8,10 +8,17 @@ namespace Dominio
     public class Servicio
     {
         private int Numero;
-        private int NumeroCliente;
+        private int NumeroCliente; //este campo me parece que no va y si iraía creo ke debería ser una referencia al objeto cliente
         private string Nombre;
-        private string Direccion=null;
+        private string Direccion = null;
+        private string Telefonos = null;
+        private string Contacto = null;
+        private string email = null;
+        private string Celular = null;
+        private string CelularTrust = null;
+        private string TareasAsign = null;
         private bool activo;
+        private Contrato Contrato;
 
         public Servicio(int num, int numCliente, string nombre)
         {
@@ -36,9 +43,50 @@ namespace Dominio
             return Direccion;
         }
 
+        public string getTelefonos()
+        {
+            return Telefonos;
+        }
+
+        public string getContacto()
+        {
+            return Contacto;
+        }
+
+        public string getemail()
+        {
+            return email;
+        }
+
+        public string getCelular()
+        {
+            return Celular;
+        }
+
+        public string getCelularTrust()
+        {
+            return CelularTrust;
+        }
+
+        public string getTareasAsignadas()
+        {
+            return TareasAsign;
+        }
+
         public bool getActivo()
         {
             return activo;
         }
+
+        public Contrato getContrato()
+        {
+            return Contrato;
+        }
+
+        public void setContrato(Contrato con)
+        {
+            Contrato = con;
+        }
+
     }
 }

@@ -9,9 +9,13 @@ namespace Dominio
     {
         private int Numero;
         private string Nombre;
+        private string NombreFant;
         private string RUT = null;
+        private string email = null;
         private string Direccion = null;
-        private string Telefono = null;
+        private string DireccionCobro;
+        private string Telefonos = null;
+        private string Fax = null;
         private bool activo;
         private List<Servicio> Servicios;
 
@@ -33,9 +37,19 @@ namespace Dominio
             return Nombre;
         }
 
+        public string getNombreFant()
+        {
+            return NombreFant;
+        }
+
         public string getRUT()
         {
             return RUT;
+        }
+
+        public string getemail()
+        {
+            return email;
         }
 
         public string getDireccion()
@@ -43,9 +57,19 @@ namespace Dominio
             return Direccion;
         }
 
-        public string getTelefono()
+        public string getDireccionCobro()
         {
-            return Telefono;
+            return DireccionCobro;
+        }
+
+        public string getTelefonos()
+        {
+            return Telefonos;
+        }
+
+        public string getFax()
+        {
+            return Fax;
         }
 
         public bool getActivo()
