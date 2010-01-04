@@ -155,5 +155,11 @@ namespace Dominio
             return Clientes;
         }
 
+        public void addCliente(int numero, string nombre, string nombreFant, string RUT, string email, string dir, string dirCobro, string telefonos, string fax)
+        {
+            Cliente cli = new Cliente(numero, nombre, RUT, telefonos);
+            Clientes.Add(cli);
+        }
+        
     }
 }

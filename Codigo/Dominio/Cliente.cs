@@ -27,6 +27,17 @@ namespace Dominio
             Servicios = new List<Servicio>();
         }
 
+        public Cliente(int num, string nom, string rut, string telefono)
+        {
+            Numero=num;
+            Nombre=nom;
+            RUT=rut;
+            Telefonos=telefono;
+            activo = true;
+            Servicios = new List<Servicio>();
+        }
+
+
         public int getNumero()
         {
             return Numero;
