@@ -51,7 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="ConSeguridadElectro.cs" />
     <Compile Include="ConSeguridadFisica.cs" />

@@ -24,7 +24,7 @@ namespace ControlHoras
         {
             txtNumeroCliente.Text = "";
             txtNombre.Text = "";
-            txtApellido.Text = "";
+            txtRUT.Text = "";
             mtTelefono.Text = "";
         }
 
@@ -36,14 +36,14 @@ namespace ControlHoras
             List<Cliente> clientes = sistema.obtenerListaClientes();
             foreach (Cliente cli in clientes)
             {
-                int n = -10;
+                int n = -1;
                 try
                 {
                     n = dgvClientes.Rows.Add();
                     dgvClientes.Rows[n].Cells["NumCliente"].Value = cli.getNumero();
                     dgvClientes.Rows[n].Cells["Nombre"].Value = cli.getNombre();
-                    dgvClientes.Rows[n].Cells["Apellido"].Value = cli.getDireccion();
-                    dgvClientes.Rows[n].Cells["Telefono"].Value = cli.getTelefono();
+                    dgvClientes.Rows[n].Cells["RUT"].Value = cli.getRUT();
+                    dgvClientes.Rows[n].Cells["Telefono"].Value = cli.getTelefonos();
 
                 }
                 catch (Exception ex)
@@ -64,17 +64,20 @@ namespace ControlHoras
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text != "" && txtNombre.Text != "" && txtApellido.Text != "" && mtTelefono.Text != "")
+            if (txtNombre.Text != "" && txtRUT.Text != "" && mtTelefono.Text != "")
             {
-                int n = -10;
+                int n = -1;
                 try
                 {
                     //txtNumeroCliente.Text = sistema.altaCliente(txtNombre.Text, txtApellido.Text, mtTelefono.Text).ToString();
                     n = dgvClientes.Rows.Add();
                     dgvClientes.Rows[n].Cells["NumCliente"].Value = txtNumeroCliente.Text;
                     dgvClientes.Rows[n].Cells["Nombre"].Value = txtNombre.Text;
-                    dgvClientes.Rows[n].Cells["Apellido"].Value = txtApellido.Text;
+                    dgvClientes.Rows[n].Cells["RUT"].Value = txtRUT.Text;
                     dgvClientes.Rows[n].Cells["Telefono"].Value = mtTelefono.Text;
+
+                    sistema.addCliente(int.Parse(txtNumeroCliente.Text), txtNombre.Text, null, txtRUT.Text, null, null, null, mtTelefono.Text, null);
+
                     limpiarForm();
                 }
                 catch (Exception ex)
@@ -96,7 +99,7 @@ namespace ControlHoras
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text != "" && txtApellido.Text != "" && mtTelefono.Text != "")
+            if (txtNombre.Text != "" && txtRUT.Text != "" && mtTelefono.Text != "")
             {
                 try
                 {
@@ -109,7 +112,7 @@ namespace ControlHoras
                     {
                        // sistema.modificarCliente(int.Parse(txtNumeroCliente.Text), txtNombre.Text, txtApellido.Text, mtTelefono.Text);
                         dgvClientes.Rows[numFila].Cells["Nombre"].Value = txtNombre.Text;
-                        dgvClientes.Rows[numFila].Cells["Apellido"].Value = txtApellido.Text;
+                        dgvClientes.Rows[numFila].Cells["RUT"].Value = txtRUT.Text;
                         dgvClientes.Rows[numFila].Cells["Telefono"].Value = mtTelefono.Text;
                       
                         btnAgregar.Enabled = true;
@@ -144,7 +147,7 @@ namespace ControlHoras
                 }
                 txtNumeroCliente.Text = dgvClientes.Rows[e.RowIndex].Cells["NumCliente"].Value.ToString();
                 txtNombre.Text = dgvClientes.Rows[e.RowIndex].Cells["Nombre"].Value.ToString();
-                txtApellido.Text = dgvClientes.Rows[e.RowIndex].Cells["Apellido"].Value.ToString();
+                txtRUT.Text = dgvClientes.Rows[e.RowIndex].Cells["RUT"].Value.ToString();
                 mtTelefono.Text = dgvClientes.Rows[e.RowIndex].Cells["Telefono"].Value.ToString();
 
                 btnAgregar.Enabled = false;

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FC8B86E8-A818-4987-B135-16FD6B039E53}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -193,6 +193,10 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Prueba.resx">
+      <DependentUpon>Prueba.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReporteClientes.resx">
       <DependentUpon>ReporteClientes.cs</DependentUpon>
     </EmbeddedResource>
@@ -201,6 +205,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Selección de Recurso.resx">
       <DependentUpon>Selección de Recurso.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BúsquedaCliente.resx">
+      <DependentUpon>BúsquedaCliente.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="VentanaPrincipal.resx">
@@ -221,6 +229,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Prueba.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Prueba.Designer.cs">
+      <DependentUpon>Prueba.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReporteClientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -238,6 +252,12 @@
     </Compile>
     <Compile Include="Selección de Recurso.Designer.cs">
       <DependentUpon>Selección de Recurso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BúsquedaCliente.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BúsquedaCliente.Designer.cs">
+      <DependentUpon>BúsquedaCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="VentanaPrincipal.cs">
       <SubType>Form</SubType>
