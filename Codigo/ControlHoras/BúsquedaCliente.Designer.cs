@@ -42,9 +42,9 @@
             this.ClienteMT.Name = "ClienteMT";
             this.ClienteMT.Size = new System.Drawing.Size(57, 25);
             this.ClienteMT.TabIndex = 3;
+            this.ClienteMT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ClienteMT_KeyDown);
             this.ClienteMT.Leave += new System.EventHandler(this.ClienteMT_Leave);
             this.ClienteMT.Enter += new System.EventHandler(this.ClienteMT_Enter);
-            this.ClienteMT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ClienteMT_KeyPress);
             // 
             // ClienteTB
             // 

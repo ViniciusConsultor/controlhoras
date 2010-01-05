@@ -30,21 +30,21 @@ namespace ControlHoras
             ClienteMT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(170)))));
         }
 
-        private void ClienteMT_KeyPress(object sender, KeyPressEventArgs e)
+        private void ClienteMT_KeyDown(object sender, KeyEventArgs e)
         {
-            /*if (e.KeyCode == Keys.Enter && ClienteMT.MaskCompleted)
+            if (e.KeyCode == Keys.Enter && ClienteMT.MaskCompleted)
             {
-                Cliente cli = controller.obtenerCliente(int.Parse(mtCliente.Text));
+                Cliente cli = controller.obtenerCliente(int.Parse(ClienteMT.Text));
                 ClienteTB.Text = cli.getNombre();
                 SendKeys.Send("{TAB}");
-
             }
             if (e.KeyCode == Keys.F2)
             {
                 // Abrir ventana de busqueda de clientes
-            }*/
+            }
         }
         
+
 
     }
 }
