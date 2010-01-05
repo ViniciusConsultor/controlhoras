@@ -14,6 +14,8 @@ namespace ControlHoras
         public Prueba()
         {
             InitializeComponent();
+            bc.Controls["ClienteTB"].Text = "Alamo";
+           
         }
     }
 }

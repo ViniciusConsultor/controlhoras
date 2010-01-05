@@ -28,13 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.bc = new ControlHoras.BúsquedaCliente();
             this.SuspendLayout();
+            // 
+            // bc
+            // 
+            this.bc.Location = new System.Drawing.Point(103, 50);
+            this.bc.Name = "bc";
+            this.bc.Size = new System.Drawing.Size(681, 67);
+            this.bc.TabIndex = 0;
             // 
             // Prueba
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(886, 167);
+            this.Controls.Add(this.bc);
             this.Name = "Prueba";
             this.Text = "Prueba";
             this.ResumeLayout(false);
@@ -42,5 +51,8 @@
         }
 
         #endregion
+
+        private BúsquedaCliente bc;
+
     }
 }
