@@ -8,7 +8,7 @@ namespace Dominio
     public class Servicio
     {
         private int Numero;
-        private int NumeroCliente; //este campo me parece que no va y si iraía creo ke debería ser una referencia al objeto cliente
+        private int NumeroCliente; //este campo me parece que no va y si iría creo ke debería ser una referencia al objeto cliente
         private string Nombre;
         private string Direccion = null;
         private string Telefonos = null;
@@ -25,6 +25,20 @@ namespace Dominio
             Numero = num;
             NumeroCliente = numCliente;
             Nombre = nombre;
+            activo = true;
+        }
+
+        public Servicio(int num, string nombre, string dir, string tel, string con, string mail, string cel ,string celt, string tareas)
+        {
+            Numero = num;            
+            Nombre = nombre;
+            Direccion = dir;
+            Telefonos = tel;
+            Contacto = con;
+            email = mail;
+            Celular = cel;
+            CelularTrust = celt;
+            TareasAsign = tareas;
             activo = true;
         }
 

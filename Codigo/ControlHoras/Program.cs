@@ -18,7 +18,7 @@ namespace ControlHoras
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Controlador controller = Controlador.getControlador();
-            Application.Run(new Prueba());
+            Application.Run(new VentanaPrincipal());
         }
     }
 }

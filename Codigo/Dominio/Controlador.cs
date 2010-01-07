@@ -160,6 +160,13 @@ namespace Dominio
             Cliente cli = new Cliente(numero, nombre, RUT, telefonos);
             Clientes.Add(cli);
         }
-        
+
+        public void addServicio(int numCli, int numSer, string nombre, string dir, string tel, string con, string mail, string cel, string celt, string tareas)
+        {
+            Cliente cli = obtenerCliente(numCli);
+            Servicio ser = new Servicio(numSer, nombre, dir, tel, con, mail, cel, celt, tareas);
+            cli.addServicio(ser);
+        }       
+
     }
 }
