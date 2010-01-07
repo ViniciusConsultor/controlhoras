@@ -78,6 +78,12 @@ namespace ControlHoras
             rpf.Show();
         }
 
+        private void serviciosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ServicioForm ser = new ServicioForm();
+            DialogResult res = ser.ShowDialog(this);
+        }
+
 
     }
 }

@@ -13,6 +13,8 @@ namespace ControlHoras
     public partial class BúsquedaCliente : UserControl
     {
         Controlador controller;
+        public event EventHandler cliPronto;
+ 
 
         public BúsquedaCliente()
         {
@@ -37,6 +39,8 @@ namespace ControlHoras
                 Cliente cli = controller.obtenerCliente(int.Parse(ClienteMT.Text));
                 ClienteTB.Text = cli.getNombre();
                 SendKeys.Send("{TAB}");
+
+                cliPronto(sender, e); //Acá disparamos el evento para que sea atrapado por el WinForm que contiente este CONTROL DE USUARIO
             }
             if (e.KeyCode == Keys.F2)
             {
