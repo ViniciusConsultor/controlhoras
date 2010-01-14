@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Dominio
 {
-    public class LineaHoras
+    public class LineaDeHoras
     {
         private string Puesto;
         private bool Armado;
