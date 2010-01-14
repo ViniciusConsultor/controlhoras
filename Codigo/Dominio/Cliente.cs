@@ -9,21 +9,21 @@ namespace Dominio
     {
         private int Numero;
         private string Nombre;
-        private string NombreFant;
+        private string NombreFantasia;
         private string RUT = null;
-        private string email = null;
+        private string Email = null;
         private string Direccion = null;
         private string DireccionCobro;
         private string Telefonos = null;
         private string Fax = null;
-        private bool activo;
+        private bool Activo;
         private List<Servicio> Servicios;
 
         public Cliente(int num, string nom)
         {
             Nombre = nom;
             Numero = num;
-            activo = true;
+            Activo = true;
             Servicios = new List<Servicio>();
         }
 
@@ -33,7 +33,7 @@ namespace Dominio
             Nombre=nom;
             RUT=rut;
             Telefonos=telefono;
-            activo = true;
+            Activo = true;
             Servicios = new List<Servicio>();
         }
 
@@ -48,9 +48,9 @@ namespace Dominio
             return Nombre;
         }
 
-        public string getNombreFant()
+        public string getNombreFantasia()
         {
-            return NombreFant;
+            return NombreFantasia;
         }
 
         public string getRUT()
@@ -58,9 +58,9 @@ namespace Dominio
             return RUT;
         }
 
-        public string getemail()
+        public string getEmail()
         {
-            return email;
+            return Email;
         }
 
         public string getDireccion()
@@ -85,7 +85,7 @@ namespace Dominio
 
         public bool getActivo()
         {
-            return activo;
+            return Activo;
         }
 
         public void addServicio(Servicio s)

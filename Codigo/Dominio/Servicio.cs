@@ -13,11 +13,11 @@ namespace Dominio
         private string Direccion = null;
         private string Telefonos = null;
         private string Contacto = null;
-        private string email = null;
+        private string Email = null;
         private string Celular = null;
         private string CelularTrust = null;
         private string TareasAsign = null;
-        private bool activo;
+        private bool Activo;
         private Contrato Contrato;
 
         public Servicio(int num, int numCliente, string nombre)
@@ -25,7 +25,7 @@ namespace Dominio
             Numero = num;
             NumeroCliente = numCliente;
             Nombre = nombre;
-            activo = true;
+            Activo = true;
         }
 
         public Servicio(int num, string nombre, string dir, string tel, string con, string mail, string cel ,string celt, string tareas)
@@ -35,11 +35,11 @@ namespace Dominio
             Direccion = dir;
             Telefonos = tel;
             Contacto = con;
-            email = mail;
+            Email = mail;
             Celular = cel;
             CelularTrust = celt;
             TareasAsign = tareas;
-            activo = true;
+            Activo = true;
         }
 
         public int getNumero()
@@ -69,7 +69,7 @@ namespace Dominio
 
         public string getemail()
         {
-            return email;
+            return Email;
         }
 
         public string getCelular()
@@ -89,7 +89,7 @@ namespace Dominio
 
         public bool getActivo()
         {
-            return activo;
+            return Activo;
         }
 
         public Contrato getContrato()
