@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="ORDesigner1DataContext" Provider="ALinq.MySQL.MySqlProvider" ExternalMapping="false" EntityNamespace="Datos" ContextNamespace="Datos" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection ConnectionString="server=localhost;User Id=jgarat;Persist Security Info=True;database=trustdb" Provider="MySql.Data.MySqlClient" />
+  <Table Name="`trustdb`.`servicios`" Member="Servicios">
+    <Type Name="Servicio">
+      <Column AutoSync="Never" CanBeNull="false" DbType="int(11)" IsPrimaryKey="true" Member="NumeroServicio" Name="NumeroServicio" Type="System.Int32" UpdateCheck="Never" />
+      <Column AutoSync="Never" CanBeNull="false" DbType="int(11)" IsPrimaryKey="true" Member="NumeroCliente" Name="NumeroCliente" Type="System.Int32" UpdateCheck="Never" />
+      <Column AutoSync="Never" CanBeNull="false" DbType="varchar(100)" Member="Nombre" Name="Nombre" Type="System.String" UpdateCheck="Never" />
+      <Column AutoSync="Never" CanBeNull="true" DbType="varchar(100)" Member="Direccion" Name="Direccion" Type="System.String" UpdateCheck="Never" />
+      <Column AutoSync="Never" CanBeNull="true" DbType="varchar(50)" Member="Telefonos" Name="Telefonos" Type="System.String" UpdateCheck="Never" />
+      <Column AutoSync="Never" CanBeNull="true" DbType="varchar(50)" Member="PersonaContacto" Name="PersonaContacto" Type="System.String" UpdateCheck="Never" />
+      <Column AutoSync="Never" CanBeNull="true" DbType="varchar(50)" Member="Email" Name="Email" Type="System.String" UpdateCheck="Never" />
+      <Column AutoSync="Never" CanBeNull="true" DbType="varchar(50)" Member="Celular" Name="Celular" Type="System.String" UpdateCheck="Never" />
+      <Column AutoSync="Never" CanBeNull="true" DbType="varchar(255)" Member="TareasAsignadas" Name="TareasAsignadas" Type="System.String" UpdateCheck="Never" />
+      <Column AutoSync="Never" CanBeNull="true" DbType="varchar(50)" Member="CelularTrust" Name="CelularTrust" Type="System.String" UpdateCheck="Never" />
+      <Column AutoSync="Never" CanBeNull="true" DbType="tinyint(1) unsigned" Member="Activo" Name="Activo" Type="System.SByte" UpdateCheck="Never" />
+      <Association Name="cliente_servicio" ThisKey="NumeroCliente" OtherKey="NumeroCliente" Member="cliente" Type="Cliente" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="`trustdb`.`clientes`" Member="Clientes">
+    <Type Name="Cliente">
+      <Column AutoSync="Never" CanBeNull="false" DbType="int(11)" IsPrimaryKey="true" Member="NumeroCliente" Name="NumeroCliente" Type="System.Int32" UpdateCheck="Never" />
+      <Column AutoSync="Never" CanBeNull="false" DbType="varchar(100)" Member="Nombre" Name="Nombre" Type="System.String" UpdateCheck="Never" />
+      <Column AutoSync="Never" CanBeNull="false" DbType="varchar(100)" Member="NombreFantasia" Name="NombreFantasia" Type="System.String" UpdateCheck="Never" />
+      <Column AutoSync="Never" CanBeNull="true" DbType="varchar(12)" Member="RUT" Name="RUT" Type="System.String" UpdateCheck="Never" />
+      <Column AutoSync="Never" CanBeNull="true" DbType="varchar(50)" Member="Email" Name="Email" Type="System.String" UpdateCheck="Never" />
+      <Column AutoSync="Never" CanBeNull="true" DbType="varchar(100)" Member="Direccion" Name="Direccion" Type="System.String" UpdateCheck="Never" />
+      <Column AutoSync="Never" CanBeNull="true" DbType="varchar(100)" Member="DireccionDeCobro" Name="DireccionDeCobro" Type="System.String" UpdateCheck="Never" />
+      <Column AutoSync="Never" CanBeNull="true" DbType="varchar(50)" Member="Telefonos" Name="Telefonos" Type="System.String" UpdateCheck="Never" />
+      <Column AutoSync="Never" CanBeNull="true" DbType="varchar(50)" Member="Fax" Name="Fax" Type="System.String" UpdateCheck="Never" />
+      <Column AutoSync="Never" CanBeNull="true" DbType="tinyint(1) unsigned" Member="Activo" Name="Activo" Type="System.SByte" UpdateCheck="Never" />
+      <Association Name="cliente_servicio" Member="servicios" ThisKey="NumeroCliente" OtherKey="NumeroCliente" Type="Servicio" />
+    </Type>
+  </Table>
+</Database>
