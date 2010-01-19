@@ -54,7 +54,6 @@
             this.mtFunc.Name = "mtFunc";
             this.mtFunc.Size = new System.Drawing.Size(37, 20);
             this.mtFunc.TabIndex = 0;
-            this.mtFunc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtFunc_KeyDown);
             // 
             // txtFunc
             // 

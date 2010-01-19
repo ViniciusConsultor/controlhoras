@@ -143,7 +143,6 @@
             this.btnGenerar.Size = new System.Drawing.Size(50, 33);
             this.btnGenerar.Text = "Generar";
             this.btnGenerar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
             // 
             // btnOculto
             // 
