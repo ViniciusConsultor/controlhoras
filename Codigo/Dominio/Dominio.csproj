@@ -75,6 +75,12 @@
   <ItemGroup>
     <None Include="Properties\DataSources\Cliente.datasource" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\Datos.csproj">
+      <Project>{3BBD3DD3-954B-48C1-93D6-6D32309233E2}</Project>
+      <Name>Datos</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

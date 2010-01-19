@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Datos;
 
 namespace Dominio
 {
@@ -10,16 +11,18 @@ namespace Dominio
         private static Controlador controller = null;
         private List<Cliente> Clientes;
 
-        private List<Funcionario> Funcionarios;
+        private Datos.ControladorDatos datos = ControladorDatos.getInstance();
+
+        //private List<Funcionario> Funcionarios;
 
 
         private Controlador()
         {
             Clientes = new List<Cliente>();
-            Funcionarios = new List<Funcionario>();
+            //Funcionarios = new List<Empleado>();
 
             insertarClientes();
-            insertarFuncionarios();
+            //insertarFuncionarios();
             
         }
 
@@ -30,20 +33,20 @@ namespace Dominio
             return controller;
         }
 
-        public List<Funcionario> obtenerFuncionariosControlDiaClienteServicio(int idCliente, int idServicio, DateTime fecha)
-        {
-            List<Funcionario> listFuncs = new List<Funcionario>();
-            List<DiaPlanificacion> listdp = new List<DiaPlanificacion>();
-            foreach (Funcionario f in obtenerListaFuncionarios())
-            {
-                listdp = f.obtenerPlanificacionFuncionarioServicioDia(idCliente, idServicio, fecha);
-                if (listdp.Count() > 0)
-                    listFuncs.Add(f);
-            }
+        //public List<Funcionario> obtenerFuncionariosControlDiaClienteServicio(int idCliente, int idServicio, DateTime fecha)
+        //{
+        //    List<Funcionario> listFuncs = new List<Funcionario>();
+        //    List<DiaPlanificacion> listdp = new List<DiaPlanificacion>();
+        //    foreach (Funcionario f in obtenerListaFuncionarios())
+        //    {
+        //        listdp = f.obtenerPlanificacionFuncionarioServicioDia(idCliente, idServicio, fecha);
+        //        if (listdp.Count() > 0)
+        //            listFuncs.Add(f);
+        //    }
 
-            return listFuncs;
+        //    return listFuncs;
 
-        }
+        //}
 
         private void insertarClientes()
         {
@@ -69,45 +72,45 @@ namespace Dominio
             nuevo.addServicio(s);
         }
 
-        private void insertarFuncionarios()
-        {
-            Funcionario fun = new Funcionario(0001, "Jose", "Perez", "12345678");
-/*            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now, "08:00", "18:00");
-            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now.AddDays(1), "08:00", "18:00");
-            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now.AddDays(2), "08:00", "18:00");
-            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now.AddDays(3), "08:00", "18:00");
-            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now.AddDays(4), "08:00", "18:00");
-            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now.AddDays(5), "08:00", "18:00");
-  */          Funcionarios.Add(fun);
+//        private void insertarFuncionarios()
+//        {
+//            Funcionario fun = new Funcionario(0001, "Jose", "Perez", "12345678");
+///*            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now, "08:00", "18:00");
+//            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now.AddDays(1), "08:00", "18:00");
+//            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now.AddDays(2), "08:00", "18:00");
+//            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now.AddDays(3), "08:00", "18:00");
+//            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now.AddDays(4), "08:00", "18:00");
+//            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now.AddDays(5), "08:00", "18:00");
+//  */          Funcionarios.Add(fun);
 
-            fun = new Funcionario(0002, "Pedro", "Romani", "12345678");
- /*           fun.agregarDiaPlanificacion(1000, 0, DateTime.Now, "08:00", "12:00");
-            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now.AddDays(1), "08:00", "12:00");
-            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now.AddDays(2), "08:00", "12:00");
-            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now.AddDays(3), "08:00", "12:00");
-            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now.AddDays(4), "08:00", "12:00");
-            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now.AddDays(5), "08:00", "12:00");
-   */         Funcionarios.Add(fun);
+//            fun = new Funcionario(0002, "Pedro", "Romani", "12345678");
+// /*           fun.agregarDiaPlanificacion(1000, 0, DateTime.Now, "08:00", "12:00");
+//            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now.AddDays(1), "08:00", "12:00");
+//            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now.AddDays(2), "08:00", "12:00");
+//            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now.AddDays(3), "08:00", "12:00");
+//            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now.AddDays(4), "08:00", "12:00");
+//            fun.agregarDiaPlanificacion(1000, 0, DateTime.Now.AddDays(5), "08:00", "12:00");
+//   */         Funcionarios.Add(fun);
 
-            fun = new Funcionario(0003, "Juan", "Solari", "12345678");
-            Funcionarios.Add(fun);
+//            fun = new Funcionario(0003, "Juan", "Solari", "12345678");
+//            Funcionarios.Add(fun);
 
-            fun = new Funcionario(0004, "Jorge", "Perrune", "12345678");
-            Funcionarios.Add(fun);
+//            fun = new Funcionario(0004, "Jorge", "Perrune", "12345678");
+//            Funcionarios.Add(fun);
 
-            fun = new Funcionario(0005, "Roberto", "Simpson", "12345678");
-            Funcionarios.Add(fun);
+//            fun = new Funcionario(0005, "Roberto", "Simpson", "12345678");
+//            Funcionarios.Add(fun);
 
-            fun = new Funcionario(0006, "Martin", "Gonzalez", "12345678");
-            Funcionarios.Add(fun);
+//            fun = new Funcionario(0006, "Martin", "Gonzalez", "12345678");
+//            Funcionarios.Add(fun);
 
-            fun = new Funcionario(0007, "Rodrigo", "Fernandez", "12345678");
-            Funcionarios.Add(fun);
+//            fun = new Funcionario(0007, "Rodrigo", "Fernandez", "12345678");
+//            Funcionarios.Add(fun);
 
-            fun = new Funcionario(0008, "Pablo", "Nuñez", "12345678");
-            Funcionarios.Add(fun);
+//            fun = new Funcionario(0008, "Pablo", "Nuñez", "12345678");
+//            Funcionarios.Add(fun);
 
-        }
+//        }
 
         public Cliente obtenerCliente(int numCliente){
             foreach(Cliente c in Clientes)
@@ -135,30 +138,74 @@ namespace Dominio
             return null;
         }
 
-        public Funcionario obtenerFuncionario(int numFun)
-        {
-            foreach (Funcionario f in Funcionarios)
-            {
-                if (f.getNumero() == numFun)
-                    return f;
-            }
-            return null;
-        }
+        //public Funcionario obtenerFuncionario(int numFun)
+        //{
+        //    foreach (Funcionario f in Funcionarios)
+        //    {
+        //        if (f.getNumero() == numFun)
+        //            return f;
+        //    }
+        //    return null;
+        //}
 
-        public List<Funcionario> obtenerListaFuncionarios()
-        {
-            return Funcionarios;
-        }
+        //public List<Funcionario> obtenerListaFuncionarios()
+        //{
+        //    return Funcionarios;
+        //}
 
         public List<Cliente> obtenerListaClientes()
         {
-            return Clientes;
+            List<Cliente> listClientes = new List<Cliente>();
+            try
+            {
+                foreach (Datos.Cliente clidb in datos.obtenerClientes())
+                {
+                    Cliente newcli = new Cliente(clidb.NumeroCliente, clidb.Nombre, clidb.RUT, clidb.Telefonos);
+                    listClientes.Add(newcli);
+                }
+                return listClientes;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void addCliente(int numero, string nombre, string nombreFant, string RUT, string email, string dir, string dirCobro, string telefonos, string fax)
         {
-            Cliente cli = new Cliente(numero, nombre, RUT, telefonos);
-            Clientes.Add(cli);
+            //Cliente cli = new Cliente(numero, nombre, RUT, telefonos);
+            //Clientes.Add(cli);
+            nombreFant = "Fantasia"+nombre;
+            email = "noemail@dominio.com";
+            dir = "nodireccion";
+            dirCobro = "noDirCobro";
+            fax = "00000000";
+            try
+            {
+                datos.addCliente(numero, nombre, nombreFant, RUT, email, dir, dirCobro, telefonos, fax, true);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+        }
+
+        public void modificarCliente(int numero, string nombre, string nombreFant, string RUT, string email, string dir, string dirCobro, string telefonos, string fax)
+        {
+            nombreFant = "FantasiaModif" + nombre;
+            email = "noemail@dominio.com";
+            dir = "nodireccionModif";
+            dirCobro = "noDirCobroModif";
+            fax = "000000001";
+            try
+            {
+                datos.modifyCliente(numero, nombre, nombreFant, RUT, email, dir, dirCobro, telefonos, fax, true);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void addServicio(int numCli, int numSer, string nombre, string dir, string tel, string con, string mail, string cel, string celt, string tareas)
