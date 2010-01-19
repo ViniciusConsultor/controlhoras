@@ -65,7 +65,7 @@
             // 
             this.ClienteGB.AutoSize = true;
             this.ClienteGB.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClienteGB.Controls.Add(this.bcUC);
+//            this.ClienteGB.Controls.Add(this.bcUC);
             this.ClienteGB.Enabled = false;
             this.ClienteGB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ClienteGB.Location = new System.Drawing.Point(12, 44);

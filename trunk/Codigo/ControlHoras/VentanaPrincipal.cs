@@ -22,12 +22,6 @@ namespace ControlHoras
             contrato.ShowDialog(this);
         }
 
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            ControlDiario controldiario = new ControlDiario();
-            controldiario.ShowDialog(this);
-
-        }
 
         private void salirToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -49,34 +43,12 @@ namespace ControlHoras
             categ.ShowDialog(this);
         }
 
-        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ABMUsuarios usu = new ABMUsuarios();
-            usu.ShowDialog(this);
-        }
-
-        private void funcionariosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ABMFuncionarios func = new ABMFuncionarios();
-            func.ShowDialog(this);
-        }
-
+    
         private void VentanaPrincipal_Load(object sender, EventArgs e)
         {
             
         }
 
-        private void clientesToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            ReporteClientes rc = new ReporteClientes();
-            rc.Show();
-        }
-
-        private void planificacionFuncionariosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ReportePlanificacionFuncionario rpf = new ReportePlanificacionFuncionario();
-            rpf.Show();
-        }
 
         private void serviciosToolStripMenuItem_Click(object sender, EventArgs e)
         {

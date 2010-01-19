@@ -73,53 +73,17 @@
     <Compile Include="ABMClientes.designer.cs">
       <DependentUpon>ABMClientes.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABMUsuarios.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABMUsuarios.designer.cs">
-      <DependentUpon>ABMUsuarios.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CambiarFuncionario.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CambiarFuncionario.Designer.cs">
-      <DependentUpon>CambiarFuncionario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CambiarHoraFuncionario.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CambiarHoraFuncionario.Designer.cs">
-      <DependentUpon>CambiarHoraFuncionario.cs</DependentUpon>
-    </Compile>
     <Compile Include="CambiarPasswordUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CambiarPasswordUsuario.designer.cs">
       <DependentUpon>CambiarPasswordUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="ControlDiario.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ControlDiario.Designer.cs">
-      <DependentUpon>ControlDiario.cs</DependentUpon>
-    </Compile>
     <Compile Include="ContratoHoras.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ContratoHoras.Designer.cs">
       <DependentUpon>ContratoHoras.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ABMFuncionarios.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABMFuncionarios.designer.cs">
-      <DependentUpon>ABMFuncionarios.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GenerarDias.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GenerarDias.Designer.cs">
-      <DependentUpon>GenerarDias.cs</DependentUpon>
     </Compile>
     <Compile Include="ListadoClientes.cs">
       <SubType>Form</SubType>
@@ -152,30 +116,11 @@
     <EmbeddedResource Include="ABMClientes.resx">
       <DependentUpon>ABMClientes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABMUsuarios.resx">
-      <DependentUpon>ABMUsuarios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CambiarFuncionario.resx">
-      <DependentUpon>CambiarFuncionario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CambiarHoraFuncionario.resx">
-      <DependentUpon>CambiarHoraFuncionario.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CambiarPasswordUsuario.resx">
       <DependentUpon>CambiarPasswordUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ControlDiario.resx">
-      <DependentUpon>ControlDiario.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ContratoHoras.resx">
       <DependentUpon>ContratoHoras.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ABMFuncionarios.resx">
-      <DependentUpon>ABMFuncionarios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GenerarDias.resx">
-      <DependentUpon>GenerarDias.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ListadoClientes.resx">
@@ -196,12 +141,6 @@
     <EmbeddedResource Include="Prueba.resx">
       <DependentUpon>Prueba.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReporteClientes.resx">
-      <DependentUpon>ReporteClientes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReportePlanificacionFuncionario.resx">
-      <DependentUpon>ReportePlanificacionFuncionario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Selección de Recurso.resx">
       <DependentUpon>Selección de Recurso.cs</DependentUpon>
@@ -236,18 +175,6 @@
     </Compile>
     <Compile Include="Prueba.Designer.cs">
       <DependentUpon>Prueba.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ReporteClientes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ReporteClientes.Designer.cs">
-      <DependentUpon>ReporteClientes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ReportePlanificacionFuncionario.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ReportePlanificacionFuncionario.Designer.cs">
-      <DependentUpon>ReportePlanificacionFuncionario.cs</DependentUpon>
     </Compile>
     <Compile Include="Selección de Recurso.cs">
       <SubType>Form</SubType>

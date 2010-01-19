@@ -24,7 +24,7 @@ namespace ControlHoras
         {
             txtNumeroCliente.Text = "";
             txtNombre.Text = "";
-            txtRUT.Text = "";
+            mtRUT.Text = mtRUT.Mask;
             mtTelefono.Text = "";
         }
 
@@ -39,11 +39,6 @@ namespace ControlHoras
                 int n = -1;
                 try
                 {
-                    n = dgvClientes.Rows.Add();
-                    dgvClientes.Rows[n].Cells["NumCliente"].Value = cli.getNumero();
-                    dgvClientes.Rows[n].Cells["Nombre"].Value = cli.getNombre();
-                    dgvClientes.Rows[n].Cells["RUT"].Value = cli.getRUT();
-                    dgvClientes.Rows[n].Cells["Telefono"].Value = cli.getTelefonos();
 
                 }
                 catch (Exception ex)
@@ -52,7 +47,6 @@ namespace ControlHoras
                     if (n >= 0)
                         try
                         {
-                            dgvClientes.Rows.RemoveAt(n);
                         }
                         catch (Exception ex1)
                         {
@@ -64,18 +58,11 @@ namespace ControlHoras
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text != "" && txtRUT.Text != "" && mtTelefono.Text != "")
+            if (txtNombre.Text != "" && mtRUT.Text != "" && mtTelefono.Text != "")
             {
                 int n = -1;
                 try
                 {
-                    //txtNumeroCliente.Text = sistema.altaCliente(txtNombre.Text, txtApellido.Text, mtTelefono.Text).ToString();
-                    n = dgvClientes.Rows.Add();
-                    dgvClientes.Rows[n].Cells["NumCliente"].Value = txtNumeroCliente.Text;
-                    dgvClientes.Rows[n].Cells["Nombre"].Value = txtNombre.Text;
-                    dgvClientes.Rows[n].Cells["RUT"].Value = txtRUT.Text;
-                    dgvClientes.Rows[n].Cells["Telefono"].Value = mtTelefono.Text;
-
                     sistema.addCliente(int.Parse(txtNumeroCliente.Text), txtNombre.Text, null, txtRUT.Text, null, null, null, mtTelefono.Text, null);
 
                     limpiarForm();
@@ -85,7 +72,7 @@ namespace ControlHoras
                     MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     try
                     {
-                        dgvClientes.Rows.RemoveAt(n);
+                        
                     }
                     catch (Exception ex2)
                     {
@@ -99,26 +86,15 @@ namespace ControlHoras
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text != "" && txtRUT.Text != "" && mtTelefono.Text != "")
+            if (txtNombre.Text != "" && mtRUT.Text != "" && mtTelefono.Text != "")
             {
                 try
-                {
-                    int numFila = 0;
-                    while (dgvClientes.RowCount > numFila && txtNumeroCliente.Text != dgvClientes.Rows[numFila].Cells["NumCliente"].Value.ToString())
-                    {
-                        numFila++;
-                    }
-                    if (numFila != dgvClientes.RowCount)
-                    {
-                       // sistema.modificarCliente(int.Parse(txtNumeroCliente.Text), txtNombre.Text, txtApellido.Text, mtTelefono.Text);
-                        dgvClientes.Rows[numFila].Cells["Nombre"].Value = txtNombre.Text;
-                        dgvClientes.Rows[numFila].Cells["RUT"].Value = txtRUT.Text;
-                        dgvClientes.Rows[numFila].Cells["Telefono"].Value = mtTelefono.Text;
-                      
-                        btnAgregar.Enabled = true;
-                        btnGuardar.Enabled = false;
-                        limpiarForm();
-                    }
+                {                                   
+                    sistema.modificarCliente(int.Parse(txtNumeroCliente.Text), txtNombre.Text, null, mtRUT.Text, null, null, null, mtTelefono.Text, null);                        
+                    btnAgregar.Enabled = true;
+                    btnGuardar.Enabled = false;
+                    limpiarForm();
+                    
                 }
                 catch (Exception ex)
                 {
@@ -137,26 +113,12 @@ namespace ControlHoras
             btnGuardar.Enabled = false;
         }
 
-        private void dgvClientes_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void btnServicios_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (e.RowIndex == -1)
-                {
-                    return;
-                }
-                txtNumeroCliente.Text = dgvClientes.Rows[e.RowIndex].Cells["NumCliente"].Value.ToString();
-                txtNombre.Text = dgvClientes.Rows[e.RowIndex].Cells["Nombre"].Value.ToString();
-                txtRUT.Text = dgvClientes.Rows[e.RowIndex].Cells["RUT"].Value.ToString();
-                mtTelefono.Text = dgvClientes.Rows[e.RowIndex].Cells["Telefono"].Value.ToString();
+            ServicioForm sf = new ServicioForm();
+            sf.ShowDialog(this);
+        }
 
-                btnAgregar.Enabled = false;
-                btnGuardar.Enabled = true;
-            }
-            catch (Exception ex)
-            { }
-        }      
 
-       
     }
 }

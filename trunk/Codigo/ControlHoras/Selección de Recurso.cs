@@ -23,21 +23,7 @@ namespace ControlHoras
             mtFunc.Focus();
         }
 
-        private void mtFunc_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter && mtFunc.MaskCompleted)
-            {
-                Funcionario fun = controller.obtenerFuncionario(int.Parse(mtFunc.Text));
-                NumFunc = mtFunc.Text; 
-                txtFunc.Text = NomFunc = fun.getNombre();
-                SendKeys.Send("{TAB}");
-            }
-            if (e.KeyCode == Keys.F2)
-            {
-                // Abrir ventana de busqueda de clientes
-            }
-        }
-
+  
 
        
     }

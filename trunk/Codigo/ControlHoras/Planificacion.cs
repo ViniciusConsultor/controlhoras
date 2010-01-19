@@ -241,15 +241,7 @@ namespace ControlHoras
             }
         }
 
-        private void btnGenerar_Click(object sender, EventArgs e)
-        {
-            GenerarDias gd = new GenerarDias(int.Parse(mtCliente.Text), int.Parse(mtServicio.Text), dgvPlan);
-            DialogResult result = gd.ShowDialog(this);
-
-            if (result == DialogResult.OK)
-                btnOculto.PerformClick();
-        }
-
+      
 
 
     }
