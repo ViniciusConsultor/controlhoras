@@ -1,0 +1,37 @@
+NumeroCliente -> maskedTextBox. Mascara 9990
+
+BackCOlor para campo en el cual se encuentra parado:
+System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(170)))))
+-----> Configurar el color como parametro de configuracion.
+
+
+Nombres de TextBoxs al costado de los textBoxs
+
+Asteriscos para campos obligatorios.
+
+Un Recurso de Imagenes
+
+Tamanio Letras:  Labels Normal -> (Por Default) 8.25
+		 Textbox Resaltado -> 9.75 Negrita.  (Nombre y Numero de Clientes, Servicios y Empleado).
+
+
+Pendientes Juanchi:
+- BD
+- Framework a utilizar
+- Clientes
+- Empleados
+- ExtrasLiquidacion
+- HistorialDeEventos
+- Tipo Empleado
+- Controladores
+- Recurso con imagenes
+- Enviar Mail de Costo de Equipo para servidor.
+
+Pendientes Juan Pablo:
+- Servicios
+- Contrato
+- ContratoSegFisica
+- LineasHoras
+- HorarioPorDia
+- ControladorClientesServicios
+- 
