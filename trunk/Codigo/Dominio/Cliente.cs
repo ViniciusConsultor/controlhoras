@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Dominio
+namespace Logica
 {
     public class Cliente
     {
@@ -17,24 +17,36 @@ namespace Dominio
         private string Telefonos = null;
         private string Fax = null;
         private bool Activo;
-        private List<Servicio> Servicios;
+        private DateTime FechaAlta;
+        private DateTime FechaBaja;
+        private string MotivoBaja;
+        private List<Servicio> ListaServicios;
 
-        public Cliente(int num, string nom)
+        public Cliente(int num, string nom, string tel)
         {
             Nombre = nom;
             Numero = num;
+            Telefonos = tel;
             Activo = true;
-            Servicios = new List<Servicio>();
+            ListaServicios = new List<Servicio>();
         }
 
-        public Cliente(int num, string nom, string rut, string telefono)
+        public Cliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime fecAlta, DateTime fecBaja, string motivo, List<Servicio> servicios)
         {
             Numero=num;
             Nombre=nom;
+            NombreFantasia = nomFant;
             RUT=rut;
+            Email = email;
+            Direccion = dir;
+            DireccionCobro = dirCobro;
             Telefonos=telefono;
-            Activo = true;
-            Servicios = new List<Servicio>();
+            Fax = fax;
+            Activo = activo;
+            FechaAlta = fecAlta;
+            FechaBaja = fecBaja;
+            MotivoBaja = motivo;
+            ListaServicios = servicios;
         }
 
 
@@ -88,19 +100,39 @@ namespace Dominio
             return Activo;
         }
 
+        public DateTime getFechaAlta()
+        {
+            return FechaAlta;
+        }
+
+        public DateTime getFechaBaja()
+        {
+            return FechaBaja;
+        }
+
+        public string getMotivoBaja()
+        {
+            return MotivoBaja;
+        }
+
         public void addServicio(Servicio s)
         {
-            Servicios.Add(s);
+            ListaServicios.Add(s);
         }
 
         public List<Servicio> getListaServicios()
         {
-            return Servicios;
+            return ListaServicios;
         }
 
         public void deleteServicio(Servicio s)
         {
-            Servicios.Remove(s);
+            ListaServicios.Remove(s);
+        }
+
+        public Servicio obtenerServicio(int numServicio)
+        {
+            return ListaServicios[0];
         }
     }
 }

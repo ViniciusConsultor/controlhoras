@@ -4,24 +4,24 @@ using System.Linq;
 using System.Text;
 using Datos;
 
-namespace Dominio
+namespace Logica
 {
     public class Controlador
     {
         private static Controlador controller = null;
         private List<Cliente> Clientes;
 
-        private Datos.ControladorDatos datos = ControladorDatos.getInstance();
+        private IDatos datos = null;
 
         //private List<Funcionario> Funcionarios;
 
 
         private Controlador()
         {
-            Clientes = new List<Cliente>();
+            //Clientes = new List<Cliente>();
             //Funcionarios = new List<Empleado>();
-
-            insertarClientes();
+            datos = ControladorDatos.getInstance();
+          //  insertarClientes();
             //insertarFuncionarios();
             
         }
@@ -50,26 +50,29 @@ namespace Dominio
 
         private void insertarClientes()
         {
-            Cliente nuevo = new Cliente(1000, "Cliente1");
-            Servicio s = new Servicio(0, 1000, "Servicio1-1");
-            nuevo.addServicio(s);
-            s = new Servicio(1, 1000, "Servicio1-2");
-            nuevo.addServicio(s);
-            Clientes.Add(nuevo);
+            //Cliente nuevo = new Cliente(1000, "Cliente1");
+            //Servicio s = new Servicio(0, 1000, "Servicio1-1");
+            //nuevo.addServicio(s);
+            //s = new Servicio(1, 1000, "Servicio1-2");
+            //nuevo.addServicio(s);
+            //Clientes.Add(nuevo);
 
-            nuevo = new Cliente(1001, "Cliente2");
-            s = new Servicio(0, 1001, "Servicio2-1");
-            nuevo.addServicio(s);
-            s = new Servicio(1, 1002, "Servicio2-2");
-            nuevo.addServicio(s);
-            Clientes.Add(nuevo);
+            //nuevo = new Cliente(1001, "Cliente2");
+            //s = new Servicio(0, 1001, "Servicio2-1");
+            //nuevo.addServicio(s);
+            //s = new Servicio(1, 1002, "Servicio2-2");
+            //nuevo.addServicio(s);
+            //Clientes.Add(nuevo);
 
-            nuevo = new Cliente(1002, "Cliente3");
-            s = new Servicio(0, 1002, "Servicio3-1");
-            nuevo.addServicio(s);
-            s = new Servicio(1, 1002, "Servicio3-2");
-            Clientes.Add(nuevo);
-            nuevo.addServicio(s);
+            //nuevo = new Cliente(1002, "Cliente3");
+            //s = new Servicio(0, 1002, "Servicio3-1");
+            //nuevo.addServicio(s);
+            //s = new Servicio(1, 1002, "Servicio3-2");
+            //Clientes.Add(nuevo);
+            //nuevo.addServicio(s);
+
+            //nuevo = new Cliente(1003, "Cliente4");
+            //Clientes.Add(nuevo);
         }
 
 //        private void insertarFuncionarios()
@@ -153,22 +156,22 @@ namespace Dominio
         //    return Funcionarios;
         //}
 
-        public List<Cliente> obtenerListaClientes()
+        public void obtenerListaClientes()
         {
-            List<Cliente> listClientes = new List<Cliente>();
-            try
-            {
-                foreach (Datos.Cliente clidb in datos.obtenerClientes())
-                {
-                    Cliente newcli = new Cliente(clidb.NumeroCliente, clidb.Nombre, clidb.RUT, clidb.Telefonos);
-                    listClientes.Add(newcli);
-                }
-                return listClientes;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            //List<Cliente> listClientes = new List<Cliente>();
+            //try
+            //{
+            //    foreach (Datos.Cliente clidb in datos.obtenerClientes())
+            //    {
+            //        Cliente newcli = new Cliente(clidb.NumeroCliente, clidb.Nombre, clidb.RUT, clidb.Telefonos);
+            //        listClientes.Add(newcli);
+            //    }
+            //    return listClientes;
+            //}
+            //catch (Exception e)
+            //{
+            //    throw e;
+            //}
         }
 
         public void addCliente(int numero, string nombre, string nombreFant, string RUT, string email, string dir, string dirCobro, string telefonos, string fax)
@@ -176,13 +179,13 @@ namespace Dominio
             //Cliente cli = new Cliente(numero, nombre, RUT, telefonos);
             //Clientes.Add(cli);
             nombreFant = "Fantasia"+nombre;
-            email = "noemail@dominio.com";
+            email = "noemail@Logica.com";
             dir = "nodireccion";
             dirCobro = "noDirCobro";
             fax = "00000000";
             try
             {
-                datos.addCliente(numero, nombre, nombreFant, RUT, email, dir, dirCobro, telefonos, fax, true);
+                //datos.altaCliente(numero, nombre, nombreFant, RUT, email, dir, dirCobro, telefonos, fax, true);
             }
             catch (Exception e)
             {
@@ -194,13 +197,13 @@ namespace Dominio
         public void modificarCliente(int numero, string nombre, string nombreFant, string RUT, string email, string dir, string dirCobro, string telefonos, string fax)
         {
             nombreFant = "FantasiaModif" + nombre;
-            email = "noemail@dominio.com";
+            email = "noemail@Logica.com";
             dir = "nodireccionModif";
             dirCobro = "noDirCobroModif";
             fax = "000000001";
             try
             {
-                datos.modifyCliente(numero, nombre, nombreFant, RUT, email, dir, dirCobro, telefonos, fax, true);
+                //datos.modifyCliente(numero, nombre, nombreFant, RUT, email, dir, dirCobro, telefonos, fax, true);
             }
             catch (Exception e)
             {
@@ -211,8 +214,8 @@ namespace Dominio
         public void addServicio(int numCli, int numSer, string nombre, string dir, string tel, string con, string mail, string cel, string celt, string tareas)
         {
             Cliente cli = obtenerCliente(numCli);
-            Servicio ser = new Servicio(numSer, nombre, dir, tel, con, mail, cel, celt, tareas);
-            cli.addServicio(ser);
+            //Servicio ser = new Servicio(numSer, nombre, dir, tel, con, mail, cel, celt, tareas);
+            //cli.addServicio(ser);
         }       
 
     }

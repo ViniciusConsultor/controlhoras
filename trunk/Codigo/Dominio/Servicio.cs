@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Dominio
+namespace Logica
 {
     public class Servicio
     {
@@ -18,7 +18,11 @@ namespace Dominio
         private string CelularTrust = null;
         private string TareasAsign = null;
         private bool Activo;
-        private Contrato Contrato;
+        //private Contrato Contrato;
+        private DateTime FechaAlta;
+        private DateTime FechaBaja;
+        private string MotivoBaja;
+        
 
         public Servicio(int num, int numCliente, string nombre)
         {
@@ -28,7 +32,7 @@ namespace Dominio
             Activo = true;
         }
 
-        public Servicio(int num, string nombre, string dir, string tel, string con, string mail, string cel ,string celt, string tareas)
+        public Servicio(int num, string nombre, string dir, string tel, string con, string mail, string cel, string celt, string tareas, bool activo, DateTime fechaalta, DateTime fechabaja, string motivobaja)
         {
             Numero = num;            
             Nombre = nombre;
@@ -39,7 +43,11 @@ namespace Dominio
             Celular = cel;
             CelularTrust = celt;
             TareasAsign = tareas;
-            Activo = true;
+            Activo = activo;
+            FechaAlta = fechaalta;
+            FechaBaja = fechabaja;
+            MotivoBaja = motivobaja;
+            
         }
 
         public int getNumero()
@@ -92,15 +100,15 @@ namespace Dominio
             return Activo;
         }
 
-        public Contrato getContrato()
-        {
-            return Contrato;
-        }
+        //public Contrato getContrato()
+        //{
+        //    return new Contrato(DateTime.Now,DateTime.Now,"","",true,0.0);
+        //}
 
-        public void setContrato(Contrato con)
-        {
-            Contrato = con;
-        }
+        //public void setContrato(Contrato con)
+        //{
+        //    Contrato = con;
+        //}
 
     }
 }
