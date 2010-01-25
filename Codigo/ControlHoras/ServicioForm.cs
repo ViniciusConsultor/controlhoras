@@ -6,37 +6,42 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Dominio;
+using Logica;
 
 namespace ControlHoras
 {
     public partial class ServicioForm : Form
     {
-        Controlador sistema = Controlador.getControlador();
-        bool modoVer;
+        IClientesServicios sistema = ControladorClientesServicios.getInstance();
+        bool modoNuevo;
         int ind;
         int cant;
         int[] numerosSer;
+
+        Servicio serActual;
 
         public ServicioForm()
         {
             InitializeComponent();
             bcUC.cliPronto += new EventHandler(bcUC_cliPronto);
 
-            modoVer = false;
+            modoNuevo = false;
             ind = 0;
             cant = 0;
         }
 
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
-            modoVer = false;
-            ModoNuevo();            
+            modoNuevo = true;
+            LimpiarPlanilla();
+
+            GCambiosBTN.Enabled = false;
+            GNuevoBTN.Enabled = true;
         }
 
-        private void ModoNuevo()
+        private void LimpiarPlanilla()
         {
-            ClienteGB.Enabled = true;
+            //ClienteGB.Enabled = true;
             ServicioGB.Enabled = true;
 
             AnteriorBTN.Visible = false;
@@ -60,30 +65,15 @@ namespace ControlHoras
             emailTB.ReadOnly = false;
             CelTB.ReadOnly = false;
             CelTrustTB.ReadOnly = false;
-            TareasTB.ReadOnly = false;
+            TareasTB.ReadOnly = false;           
 
-            GuardarBTN.Visible = true;
+            //bcUC.Controls["ClienteMT"].Focus();
+            NroMTB.Focus();
+        }       
 
-            bcUC.Controls["ClienteMT"].Focus();
-        }
-
-        private void GuardarBTN_Click(object sender, EventArgs e)
+        private void ModoVer() // POR AHORA AL DOPE
         {
-            int numCli = int.Parse(bcUC.Controls["ClienteMT"].Text);
-            int numSer = int.Parse(NroMTB.Text);
-            sistema.addServicio(numCli, numSer, NombreTB.Text, DirTB.Text, TelTB.Text, ContactTB.Text, emailTB.Text, CelTB.Text, CelTrustTB.Text, TareasTB.Text);
-        }
-
-        private void VerBTN_Click(object sender, EventArgs e)
-        {
-            modoVer = true;            
-            ModoVer();           
-        }
-
-        private void ModoVer()
-        {
-            ServicioGB.Enabled = false;
-            GuardarBTN.Visible = false;
+            ServicioGB.Enabled = false;            
             
             ClienteGB.Enabled = true;
 
@@ -102,31 +92,33 @@ namespace ControlHoras
 
         private void bcUC_cliPronto(object sender, EventArgs e)
         {
-            if (modoVer)
+            GCambiosBTN.Enabled = false;
+            int numCli = int.Parse(bcUC.ClienteNRO);
+            Cliente cli = sistema.obtenerCliente(numCli);
+            List<Servicio> servicios = cli.getListaServicios();
+            if (servicios.Count != 0)
             {
-                int numCli = int.Parse(bcUC.Controls["ClienteMT"].Text);
-                Cliente cli = sistema.obtenerCliente(numCli);
-                List<Servicio> servicios = cli.getListaServicios();
-                if (servicios.Count != 0)
+                ServicioGB.Enabled = true;
+                GCambiosBTN.Enabled = true;
+                
+
+                cant = servicios.Count;
+                numerosSer = new int[cant];
+                int i = 0;
+                foreach (Servicio ser in servicios)
                 {
-                    ServicioGB.Enabled = true;
+                    numerosSer[i] = ser.getNumero();
+                    i++;
+                }
 
-                    cant = servicios.Count;
-                    numerosSer = new int[cant];
-                    int i = 0;
-                    foreach (Servicio ser in servicios)
-                    {
-                        numerosSer[i] = ser.getNumero();
-                        i++;
-                    }
+                llenarForm(numCli, numerosSer[ind]);
 
-                    llenarForm(numCli, numerosSer[ind]);
-
-                    if (cant > 1)
-                    {
-                        AnteriorBTN.Visible = true;
-                        PosteriorBTN.Visible = true;
-                    }                    
+                if (cant > 1)
+                {
+                    AnteriorBTN.Visible = true;
+                    PosteriorBTN.Visible = true;
+                    NroMTB.Focus();
+                    NroMTB.SelectAll();
                 }
             }
         }
@@ -134,6 +126,8 @@ namespace ControlHoras
         private void llenarForm(int numCli, int numSer)
         {
             Servicio ser = sistema.obtenerServicioCliente(numCli, numSer);
+            serActual = ser;
+
             NroMTB.Text = ser.getNumero().ToString();
             NombreTB.Text = ser.getNombre();
             DirTB.Text = ser.getDireccion();
@@ -147,7 +141,7 @@ namespace ControlHoras
 
         private void AnteriorBTN_Click(object sender, EventArgs e)
         {
-            int numCli = int.Parse(bcUC.Controls["ClienteMT"].Text);
+            int numCli = int.Parse(bcUC.ClienteNRO);
             if ((ind - 1) < 0)
                 ind = cant - 1;
             else
@@ -158,11 +152,63 @@ namespace ControlHoras
 
         private void PosteriorBTN_Click(object sender, EventArgs e)
         {
-            int numCli = int.Parse(bcUC.Controls["ClienteMT"].Text);
+            int numCli = int.Parse(bcUC.ClienteNRO);
             ind = (ind + 1) % cant;
 
             llenarForm(numCli, numerosSer[ind]);
         }
+
+        private void NroMTB_Enter(object sender, EventArgs e)
+        {
+            NroMTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(170)))));
+        }
+
+        private void NroMTB_Leave(object sender, EventArgs e)
+        {
+            NroMTB.BackColor = Color.White;
+        }
+
+        private void NroMTB_KeyDown(object sender, KeyEventArgs e)
+        {           
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (!modoNuevo)
+                    llenarForm(int.Parse(bcUC.ClienteNRO), int.Parse(NroMTB.Text));
+                else
+                    SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void GNuevoBTN_Click(object sender, EventArgs e)
+        {
+            int numCli = int.Parse(bcUC.ClienteNRO);
+            int numSer = int.Parse(NroMTB.Text);
+            sistema.altaServicioCliente(numCli, numSer, NombreTB.Text, DirTB.Text, TelTB.Text, ContactTB.Text, emailTB.Text, CelTB.Text, CelTrustTB.Text, TareasTB.Text);
+
+            modoNuevo = false;
+            GNuevoBTN.Enabled = false;
+            GCambiosBTN.Enabled = true;
+            
+            bcUC.Controls["ClienteMT"].Focus();
+            SendKeys.Send("{ENTER}");
+
+        }
+
+        private void GCambiosBTN_Click(object sender, EventArgs e)
+        {
+            /*
+            serActual.setNombre(NombreTB.Text);
+            serActual.setDireccion(DirTB.Text);
+            serActual.setTelefonos(TelTB.Text);
+            serActual.setContacto(ContactTB.Text);
+            serActual.setemail(emailTB.Text);
+            serActual.setCelular(CelTB.Text);
+            serActual.setCelularTrust(CelTrustTB.Text);
+            serActual.setTareasAsignadas(TareasTB.Text);*/
+        }
+
+
+       
     }
 
 }

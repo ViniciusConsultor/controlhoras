@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Dominio;
+using Logica;
 
 namespace ControlHoras
 {
@@ -19,7 +19,7 @@ namespace ControlHoras
         {
             InitializeComponent();
             List<Cliente> lst;
-            lst = s.obtenerListaClientes();
+            lst = new List<Cliente>(); //lst = s.obtenerListaClientes();
             foreach (Cliente l in lst)
             {
                 ListViewItem item = lvClientes.Items.Add(l.getNumero().ToString());
