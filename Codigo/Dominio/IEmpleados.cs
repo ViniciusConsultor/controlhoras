@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dominio
+namespace Logica
 {
     interface IEmpleados
     {

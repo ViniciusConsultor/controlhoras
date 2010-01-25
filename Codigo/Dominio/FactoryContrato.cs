@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dominio
+namespace Logica
 {
     static class FactoryContrato
     {
-        static Contrato obtenerContrato(Servicio serv)
+        static Contrato obtenerContrato(int idServicio)
         {
 
             return null;
