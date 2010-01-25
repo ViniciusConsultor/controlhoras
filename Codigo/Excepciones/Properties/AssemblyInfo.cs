@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // La información general sobre un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos atributos para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("ClassLibrary1")]
+[assembly: AssemblyTitle("Excepciones")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Botija S.A.")]
-[assembly: AssemblyProduct("ClassLibrary1")]
+[assembly: AssemblyProduct("Excepciones")]
 [assembly: AssemblyCopyright("Copyright © Botija S.A. 2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // El siguiente GUID sirve como identificador de typelib si este proyecto se expone a COM
-[assembly: Guid("ce5ffb9d-270b-4126-a58b-2a4283a5126c")]
+[assembly: Guid("408c01fa-fe44-45b5-b6ed-019440b618fd")]
 
 // La información de versión de un ensamblado consta de los cuatro valores siguientes:
 //

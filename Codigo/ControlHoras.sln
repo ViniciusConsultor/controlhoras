@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlHoras", "ControlHoras\ControlHoras.csproj", "{FC8B86E8-A818-4987-B135-16FD6B039E53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio", "Dominio\Dominio.csproj", "{AFC517DD-78C0-4139-ADFE-84AFB3320F61}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logica", "Dominio\Logica.csproj", "{AFC517DD-78C0-4139-ADFE-84AFB3320F61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datos", "ClassLibrary1\Datos.csproj", "{3BBD3DD3-954B-48C1-93D6-6D32309233E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datos", "Datos\Datos.csproj", "{3BBD3DD3-954B-48C1-93D6-6D32309233E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Excepciones", "Excepciones\Excepciones.csproj", "{4A1DB0C2-AFDB-44CB-8F7D-03F4CE1C02EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,26 @@ Global
 		{3BBD3DD3-954B-48C1-93D6-6D32309233E2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{3BBD3DD3-954B-48C1-93D6-6D32309233E2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{3BBD3DD3-954B-48C1-93D6-6D32309233E2}.Release|Win32.ActiveCfg = Release|Any CPU
+		{4A1DB0C2-AFDB-44CB-8F7D-03F4CE1C02EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A1DB0C2-AFDB-44CB-8F7D-03F4CE1C02EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A1DB0C2-AFDB-44CB-8F7D-03F4CE1C02EE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4A1DB0C2-AFDB-44CB-8F7D-03F4CE1C02EE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4A1DB0C2-AFDB-44CB-8F7D-03F4CE1C02EE}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{4A1DB0C2-AFDB-44CB-8F7D-03F4CE1C02EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A1DB0C2-AFDB-44CB-8F7D-03F4CE1C02EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A1DB0C2-AFDB-44CB-8F7D-03F4CE1C02EE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4A1DB0C2-AFDB-44CB-8F7D-03F4CE1C02EE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4A1DB0C2-AFDB-44CB-8F7D-03F4CE1C02EE}.Release|Win32.ActiveCfg = Release|Any CPU
+		{E3F39DB3-FCB1-42AA-88E0-F906FDFCE739}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3F39DB3-FCB1-42AA-88E0-F906FDFCE739}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3F39DB3-FCB1-42AA-88E0-F906FDFCE739}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E3F39DB3-FCB1-42AA-88E0-F906FDFCE739}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E3F39DB3-FCB1-42AA-88E0-F906FDFCE739}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{E3F39DB3-FCB1-42AA-88E0-F906FDFCE739}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3F39DB3-FCB1-42AA-88E0-F906FDFCE739}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3F39DB3-FCB1-42AA-88E0-F906FDFCE739}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E3F39DB3-FCB1-42AA-88E0-F906FDFCE739}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E3F39DB3-FCB1-42AA-88E0-F906FDFCE739}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
