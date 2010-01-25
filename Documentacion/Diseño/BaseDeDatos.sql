@@ -6,10 +6,10 @@ Definiciones:
 */
 
 -- Clientes
-CREATE TABLE `clientes` (                                          
+CREATE TABLE `Clientes` (                                          
   `NumeroCliente` mediumint unsigned NOT NULL,                                             
   `Nombre` varchar(100) NOT NULL,                                               
-  `NombreFantasia` varchar(100) NOT NULL,                                       
+  `NombreFantasia` varchar(100) DEFAULT NULL,                                       
   `RUT` varchar(12) DEFAULT NULL,                                               
   `Email` varchar(50) DEFAULT NULL,
   `Direccion` varchar(100) DEFAULT NULL,
@@ -22,13 +22,11 @@ CREATE TABLE `clientes` (
   `Activo` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`NumeroCliente`),
   UNIQUE KEY `Nombre` (`Nombre`),
-  UNIQUE KEY `NombreFantasia` (`NombreFantasia`),
-  UNIQUE KEY `RUT` (`RUT`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
 
 -- Servicios
-CREATE TABLE `servicios` (                                        
+CREATE TABLE `Servicios` (                                        
   `NumeroServicio` mediumint unsigned NOT NULL,                                            
   `NumeroCliente` mediumint unsigned NOT NULL,                                             
   `Nombre` varchar(100) NOT NULL,                                               
@@ -56,12 +54,50 @@ CREATE TABLE TipoEmpleado (
 	NombreTipo varchar(50) NOT NULL,
 	Descripcion	varchar(255),
 	CantidadHsComunes float NOT NULL,
-	Tipo enum(MENSUAL,JORNALERO) NOT NULL default JORNALERO,
+	Tipo enum('MENSUAL','JORNALERO') NOT NULL default 'JORNALERO',
 	Fulltime tinyint(1) default null,  -- Solo para Tipo MENSUAL
 	CobraHsExtras tinyint(1) default null -- Solo para Tipo MENSUAL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
+-- Departamentos
+CREATE TABLE Departamentos (
+	IdDepartamento tinyint(2) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	Nombre varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+-- Barrios
+CREATE TABLE Barrios (
+	IdBarrio smallint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	Nombre varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+-- Bancos
+CREATE TABLE Bancos (
+	IdBanco tinyint(2) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	Nombre varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+-- 
+CREATE TABLE Mutualistas (
+	IdMutualista tinyint(2) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	Nombre varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+CREATE TABLE EmergenciasMedica (
+	IdEmergenciaMedica tinyint(2) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	Nombre varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+CREATE TABLE TiposDocumento (
+	IdTipoDocumento tinyint(1) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	Nombre varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+
+
+
 -- Empleados
+
 CREATE TABLE Empleados (
 	IdEmpleado mediumint unsigned NOT NULL PRIMARY KEY,
 	Nombre varchar (50) NOT NULL,
@@ -69,7 +105,7 @@ CREATE TABLE Empleados (
 	Sexo tinyint(1), -- 0=MASCULINO  - 1=FEMENINO
 	IdTipoDocumento tinyint NOT NULL, -- FOREIGN KEY A CODIGUERA
 	NumeroDocumento varchar(30) NOT NULL,
-	IdDepartamento tinyint NOT NULL DEFAULT 0, -- FOREIGN KEY A CODIGUERA
+	IdDepartamento tinyint(2) NOT NULL DEFAULT 0, -- FOREIGN KEY A CODIGUERA
 	Ciudad varchar(50),
 	IdBarrio smallint unsigned NOT NULL DEFAULT 0, -- FOREIGN KEY A CODIGUERA
 	Direccion varchar(50),
@@ -78,17 +114,17 @@ CREATE TABLE Empleados (
 	Telefonos varchar (50),
 	Celular varchar(50),
 	CelularenConvenio varchar(50),
-	EstadoCivil enum (CASADO,SOLTERO,DIVORCIADO,VIUDO),
+	EstadoCivil enum ('CASADO','SOLTERO','DIVORCIADO','VIUDO'),
 	Email varchar(50),
-	Foto 
+	pathFoto varchar(50),
 	Edad tinyint(2),
 	FechaNacimiento Date,
 	LugarDeNacimiento varchar(50),
 	Nacionalidad varchar(50),
 	FechaIngreso Date,
 	FechaVencimientoCarneDeSalud Date,
-	IdMutualista tinyint unsigned,  -- FOREIGN KEY A CODIGUERA
-	IdEmergenciaMedica tinyint unsigned, -- FOREIGN KEY A CODIGUERA
+	IdMutualista tinyint(2) unsigned,  -- FOREIGN KEY A CODIGUERA
+	IdEmergenciaMedica tinyint(2) unsigned, -- FOREIGN KEY A CODIGUERA
 	CantidadHijos tinyint(2),
 	TalleCamisa float(3,1), -- Si es numerico, puede ser char, S,M,L,XL,etc
 	TallePantalon float(3,1), -- Si es numerico, puede ser char, S,M,L,XL,etc
@@ -119,12 +155,12 @@ CREATE TABLE Empleados (
 	RENAEMSE_FechaIngreso date,
 	RENAEMSE_NumeroAsunto date,
 	UNIQUE (IdTipoDocumento, NumeroDocumento),
-	CONSTRAINT fk_IdDepartamento_Departamentos_IdDepartamento FOREIGN KEY (IdDepartamento) REFERENCES Departamentos(IdDepartamento), 
-	CONSTRAINT fk_IdBarrio_Barrios_IdBarrio FOREIGN KEY (IdBarrio) REFERENCES Barrios(IdBarrios),
-	CONSTRAINT fk_IdBanco_Bancos_IdBanco FOREIGN KEY (IdBanco) REFERENCES Bancos(IdBanco), 
-	CONSTRAINT fk_IdMutualista_Mutualistas_IdMutualista FOREIGN KEY (IdMutualista) REFERENCES Mutualistas(IdMutualista), 
-	CONSTRAINT fk_IdEmergenciaMedica_EmergenciasMedica_IdEmergenciaMedica FOREIGN KEY (IdEmergenciaMedica) REFERENCES EmergenciasMedica(IdEmergenciaMedica),
-	CONSTRAINT fk_IdTipoDocumento_TiposDocumento_IdTipoDocumento FOREIGN KEY (IdTipoDocumento) REFERENCES TiposDocumento(IdTipoDocumento)
+--	CONSTRAINT fk_IdDepartamento_Departamentos_IdDepartamento FOREIGN KEY (IdDepartamento) REFERENCES Departamentos(IdDepartamento), 
+--	CONSTRAINT fk_IdBarrio_Barrios_IdBarrio FOREIGN KEY (IdBarrio) REFERENCES Barrios(IdBarrios),
+--	CONSTRAINT fk_IdBanco_Bancos_IdBanco FOREIGN KEY (IdBanco) REFERENCES Bancos(IdBanco), 
+--	CONSTRAINT fk_IdMutualista_Mutualistas_IdMutualista FOREIGN KEY (IdMutualista) REFERENCES Mutualistas(IdMutualista), 
+--	CONSTRAINT fk_IdEmergenciaMedica_EmergenciasMedica_IdEmergenciaMedica FOREIGN KEY (IdEmergenciaMedica) REFERENCES EmergenciasMedica(IdEmergenciaMedica),
+--	CONSTRAINT fk_IdTipoDocumento_TiposDocumento_IdTipoDocumento FOREIGN KEY (IdTipoDocumento) REFERENCES TiposDocumento(IdTipoDocumento)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
 
@@ -144,12 +180,12 @@ CREATE TABLE ExtrasLiquidacionEmpleado (
 	
 -- EventosHistorialEmpleado
 CREATE TABLE EventosHistorialEmpleado (
-	IdEventoHistorialEmpleado int(11) unsgigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	IdEventoHistorialEmpleado int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	IdEmpleado mediumint unsigned NOT NULL,
 	FechaInicio date NOT NULL,
 	FechaFin date NOT NULL,
 	IdTipoEvento int,
 	Descripcion varchar(255),
-	CONSTRAINT fk_IdEmpleado_Empleados_IdEmpleado FOREIGN KEY (IdEmpleado) REFERENCES Empleados(IdEmpleado),
-	CONSTRAINT fk_IdTipoEvento_TiposEvento_IdTipoEvento FOREIGN KEY (IdTipoEvento) REFERENCES TiposEvento(IdTipoEvento)
+--	CONSTRAINT fk_IdEmpleado_Empleados_IdEmpleado FOREIGN KEY (IdEmpleado) REFERENCES Empleados(IdEmpleado)
+--	CONSTRAINT fk_IdTipoEvento_TiposEvento_IdTipoEvento FOREIGN KEY (IdTipoEvento) REFERENCES TiposEvento(IdTipoEvento)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
