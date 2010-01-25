@@ -6,20 +6,42 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Dominio;
+using Logica;
 
 namespace ControlHoras
 {
     public partial class BúsquedaCliente : UserControl
     {
-        Controlador controller;
+        //Controlador controller;
+        IClientesServicios sistema;// = ControladorClientesServicios.getInstance();
+
+       
+
+
         public event EventHandler cliPronto;
+
+        public string ClienteNRO
+        {
+            get
+            {
+                return ClienteMT.Text;
+            }
+
+            set
+            {
+                ClienteMT.Text = value;
+            }
+        }
+        
+        
+
  
 
         public BúsquedaCliente()
         {
             InitializeComponent();
-            controller = Controlador.getControlador();
+            //controller = Controlador.getControlador();
+            sistema = ControladorClientesServicios.getInstance();
         }
 
         private void ClienteMT_Enter(object sender, EventArgs e)
@@ -29,16 +51,16 @@ namespace ControlHoras
 
         private void ClienteMT_Leave(object sender, EventArgs e)
         {
-            ClienteMT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(170)))));
+            ClienteMT.BackColor = Color.White;
         }
 
         private void ClienteMT_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter && ClienteMT.MaskCompleted)
             {
-                Cliente cli = controller.obtenerCliente(int.Parse(ClienteMT.Text));
+                Cliente cli = sistema.obtenerCliente(int.Parse(ClienteMT.Text));
                 ClienteTB.Text = cli.getNombre();
-                SendKeys.Send("{TAB}");
+                //SendKeys.Send("{TAB}");
 
                 cliPronto(sender, e); //Acá disparamos el evento para que sea atrapado por el WinForm que contiente este CONTROL DE USUARIO
             }

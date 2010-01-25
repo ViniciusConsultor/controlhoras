@@ -38,10 +38,11 @@
             // 
             this.ClienteMT.BackColor = System.Drawing.SystemColors.Window;
             this.ClienteMT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClienteMT.Location = new System.Drawing.Point(5, 19);
+            this.ClienteMT.Location = new System.Drawing.Point(47, 12);
+            this.ClienteMT.Margin = new System.Windows.Forms.Padding(4);
             this.ClienteMT.Mask = "9990";
             this.ClienteMT.Name = "ClienteMT";
-            this.ClienteMT.Size = new System.Drawing.Size(44, 22);
+            this.ClienteMT.Size = new System.Drawing.Size(57, 25);
             this.ClienteMT.TabIndex = 3;
             this.ClienteMT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ClienteMT_KeyDown);
             this.ClienteMT.Leave += new System.EventHandler(this.ClienteMT_Leave);
@@ -51,44 +52,47 @@
             // 
             this.ClienteTB.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClienteTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClienteTB.Location = new System.Drawing.Point(64, 19);
+            this.ClienteTB.Location = new System.Drawing.Point(211, 12);
+            this.ClienteTB.Margin = new System.Windows.Forms.Padding(4);
             this.ClienteTB.Name = "ClienteTB";
             this.ClienteTB.ReadOnly = true;
-            this.ClienteTB.Size = new System.Drawing.Size(362, 22);
+            this.ClienteTB.Size = new System.Drawing.Size(481, 25);
             this.ClienteTB.TabIndex = 11;
             this.ClienteTB.TabStop = false;
             // 
             // NroLBL
             // 
             this.NroLBL.AutoSize = true;
-            this.NroLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NroLBL.Location = new System.Drawing.Point(2, 3);
+            this.NroLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NroLBL.Location = new System.Drawing.Point(4, 17);
+            this.NroLBL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.NroLBL.Name = "NroLBL";
-            this.NroLBL.Size = new System.Drawing.Size(31, 13);
+            this.NroLBL.Size = new System.Drawing.Size(35, 17);
             this.NroLBL.TabIndex = 12;
             this.NroLBL.Text = "Nro:";
             // 
             // NombreLB
             // 
             this.NombreLB.AutoSize = true;
-            this.NombreLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NombreLB.Location = new System.Drawing.Point(61, 3);
+            this.NombreLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NombreLB.Location = new System.Drawing.Point(141, 17);
+            this.NombreLB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.NombreLB.Name = "NombreLB";
-            this.NombreLB.Size = new System.Drawing.Size(54, 13);
+            this.NombreLB.Size = new System.Drawing.Size(62, 17);
             this.NombreLB.TabIndex = 13;
             this.NombreLB.Text = "Nombre:";
             // 
             // BúsquedaCliente
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.NombreLB);
             this.Controls.Add(this.NroLBL);
             this.Controls.Add(this.ClienteTB);
             this.Controls.Add(this.ClienteMT);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "BúsquedaCliente";
-            this.Size = new System.Drawing.Size(430, 45);
+            this.Size = new System.Drawing.Size(700, 50);
             this.ResumeLayout(false);
             this.PerformLayout();
 
