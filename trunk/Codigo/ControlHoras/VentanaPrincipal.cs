@@ -56,6 +56,12 @@ namespace ControlHoras
             DialogResult res = ser.ShowDialog(this);
         }
 
+        private void empleadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ABMEmpleados empls = new ABMEmpleados();
+            empls.ShowDialog(this);
+        }
+
 
     }
 }
