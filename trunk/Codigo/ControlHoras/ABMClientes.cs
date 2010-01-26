@@ -15,7 +15,6 @@ namespace ControlHoras
     {
         IClientesServicios sistema = ControladorClientesServicios.getInstance();
         Cliente cliente;
-
         String LlenarCamposObligatorios = "Debe llenar todos los campos obligatorios.";
 
         public ABMClientes()
@@ -54,15 +53,19 @@ namespace ControlHoras
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             // Chequeo Campos Obligatorios
-            if (mtCliente.MaskCompleted && txtNombre.Text != "" && txtTelefonos.Text != "")
+            if (checkDatosObligatorios())
             {
                 bool checkActivo = true;
+                DateTime dtpBaja = DateTime.MinValue.AddDays(1);
                 if (cbNoActivo.Checked)
-                    checkActivo=false;
+                {
+                    checkActivo = false;
+                    dtpBaja = dtpFechaBaja.Value;
+                }
 
                 try
                 {
-                    sistema.altaCliente(int.Parse(mtCliente.Text), txtNombre.Text, txtNombreFantasia.Text, mtRUT.Text,txtEmail.Text,txtDireccion.Text,txtDireccionCobro.Text,txtTelefonos.Text,txtFax.Text,checkActivo,DateTime.Parse(dtpFechaAlta.Text),DateTime.MinValue.AddDays(1),"");
+                    sistema.altaCliente(int.Parse(mtCliente.Text), txtNombre.Text, txtNombreFantasia.Text, mtRUT.Text,txtEmail.Text,txtDireccion.Text,txtDireccionCobro.Text,txtTelefonos.Text,txtFax.Text,checkActivo, dtpFechaAlta.Value ,dtpBaja, txtMotivoBaja.Text);
                     btnCancelar.PerformClick();
                 }
                 catch (Exception ex)
@@ -76,11 +79,17 @@ namespace ControlHoras
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (mtCliente.MaskCompleted && txtNombre.Text != "" && txtTelefonos.Text != "")
+            if (checkDatosObligatorios())
             {
+                
+                bool checkActivo = true;
+                
+                if (cbNoActivo.Checked)
+                    checkActivo = false;
+                
                 try
-                {                                   
-                  //  sistema.modificarCliente(int.Parse(mtCliente.Text), txtNombre.Text, null, mtRUT.Text, null, null, null, txtTelefonos.Text, null);                        
+                {
+                    sistema.modificarCliente(int.Parse(mtCliente.Text), txtNombre.Text, txtNombreFantasia.Text, mtRUT.Text, txtEmail.Text, txtDireccion.Text, txtDireccionCobro.Text, txtTelefonos.Text, txtFax.Text, checkActivo, dtpFechaAlta.Value, dtpFechaBaja.Value, txtMotivoBaja.Text);
                     btnCancelar.PerformClick();
                     
                 }
@@ -92,6 +101,16 @@ namespace ControlHoras
             else
                 MessageBox.Show(this, LlenarCamposObligatorios, "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
         
+        }
+
+        private bool checkDatosObligatorios()
+        {
+            if (mtCliente.MaskCompleted && txtNombre.Text != "" && txtTelefonos.Text != "")
+            {
+                if (cbNoActivo.Checked && txtMotivoBaja.Text != "")
+                    return true;
+            }
+            return false;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
