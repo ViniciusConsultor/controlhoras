@@ -80,10 +80,17 @@ namespace Datos
         public void altaCliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime fecAlta, DateTime fecBaja, string motivo)
         {
             ClientEs cliente = null;
+            DbLinq.Data.Linq.Table<ClientEs> tablaCliente;
             try
             {
-                DbLinq.Data.Linq.Table<ClientEs> tablaCliente = database.GetTable<ClientEs>();
+                tablaCliente = database.GetTable<ClientEs>();
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
 
+            try
+            {
                 cliente = new ClientEs();
                 cliente.NumeroCliente = (uint)num;
                 cliente.Nombre = nom;
@@ -101,21 +108,14 @@ namespace Datos
                     cliente.Activo = 1;
                 else
                     cliente.Activo = 0;
-                
-                tablaCliente.InsertOnSubmit(cliente);
+
+                tablaCliente.Attach(cliente);
 
                 database.SubmitChanges();
             }
             catch (MySqlException ex)
             {
-                //database.Refresh(System.Data.Linq.RefreshMode.KeepCurrentValues);
-               // database.Connection.Close();
-                if (ex.Number == 1062)
-                {
-                   // int index = database.GetChangeSet().Inserts.IndexOf(cliente);
-                   // database.GetChangeSet().Inserts.RemoveAt(index);
-                    database.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues);
-                }
+                //database.ClientEs.Remove
                 throw ex;
             }
 
@@ -231,6 +231,40 @@ namespace Datos
                 }
                 throw ex;
             }
+        }
+
+        public void modificarCliente(int numeroCliente, string nombre, string nombreFantantasia, string rut, string email, string direccion, string direccionCobro, string telefono, string fax, bool activo, DateTime fechaAlta, DateTime fechaBaja, string motivoBaja)
+        {
+            try
+            {
+
+                Table<ClientEs> tablaCliente = database.GetTable<ClientEs>();
+                ClientEs cli = (from clireg in tablaCliente
+                                where clireg.NumeroCliente == numeroCliente
+                                select clireg).Single<ClientEs>();
+
+                cli.Nombre = nombre;
+                cli.NombreFantasia = nombreFantantasia;
+                cli.Rut = rut;
+                cli.Email = email;
+                cli.Direccion = direccion;
+                cli.DireccionDeCobro = direccionCobro;
+                cli.Telefonos = telefono;
+                cli.Fax = fax;
+                cli.FechaAlta = fechaAlta;
+                cli.FechaBaja = fechaBaja;
+                cli.MotivoBaja = motivoBaja;
+                if (activo)
+                    cli.Activo = 1;
+                else
+                    cli.Activo = 0;
+                database.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+                
         }
     }
 }
