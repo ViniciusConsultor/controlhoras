@@ -52,11 +52,11 @@ namespace ControlHoras
             this.dtpFechaBaja = new System.Windows.Forms.DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtMotivoBaja = new ControlHoras.TextBoxKeyDown();
             this.label12 = new System.Windows.Forms.Label();
             this.txtFax = new ControlHoras.TextBoxKeyDown();
             this.txtTelefonos = new ControlHoras.TextBoxKeyDown();
             this.mtCliente = new ControlHoras.MaskedTextBoxKeyDown();
-            this.txtMotivoBaja = new ControlHoras.TextBoxKeyDown();
             this.txtEmail = new ControlHoras.TextBoxKeyDown();
             this.txtNombre = new ControlHoras.TextBoxKeyDown();
             this.txtDireccionCobro = new ControlHoras.TextBoxKeyDown();
@@ -92,7 +92,7 @@ namespace ControlHoras
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
+            this.btnAgregar.Image = global::ControlHoras.Properties.Resources.document_new;
             this.btnAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(50, 33);
@@ -278,14 +278,22 @@ namespace ControlHoras
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Estado";
             // 
+            // txtMotivoBaja
+            // 
+            this.txtMotivoBaja.Enabled = false;
+            this.txtMotivoBaja.Location = new System.Drawing.Point(52, 48);
+            this.txtMotivoBaja.Name = "txtMotivoBaja";
+            this.txtMotivoBaja.Size = new System.Drawing.Size(288, 20);
+            this.txtMotivoBaja.TabIndex = 2;
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(6, 52);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(39, 13);
+            this.label12.Size = new System.Drawing.Size(46, 13);
             this.label12.TabIndex = 20;
-            this.label12.Text = "Motivo";
+            this.label12.Text = "Motivo *";
             // 
             // txtFax
             // 
@@ -311,14 +319,6 @@ namespace ControlHoras
             this.mtCliente.Size = new System.Drawing.Size(42, 21);
             this.mtCliente.TabIndex = 0;
             this.mtCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtCliente_KeyDown);
-            // 
-            // txtMotivoBaja
-            // 
-            this.txtMotivoBaja.Enabled = false;
-            this.txtMotivoBaja.Location = new System.Drawing.Point(52, 48);
-            this.txtMotivoBaja.Name = "txtMotivoBaja";
-            this.txtMotivoBaja.Size = new System.Drawing.Size(288, 20);
-            this.txtMotivoBaja.TabIndex = 2;
             // 
             // txtEmail
             // 

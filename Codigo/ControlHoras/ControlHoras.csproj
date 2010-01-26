@@ -88,6 +88,12 @@
     <Compile Include="ABMClientes.designer.cs">
       <DependentUpon>ABMClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABMEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMEmpleados.Designer.cs">
+      <DependentUpon>ABMEmpleados.cs</DependentUpon>
+    </Compile>
     <Compile Include="BuscarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,11 @@
     </Compile>
     <Compile Include="ContratoHoras.Designer.cs">
       <DependentUpon>ContratoHoras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImagenesDeGUI.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImagenesDeGUI.resx</DependentUpon>
     </Compile>
     <Compile Include="MaskedTextBoxKeyDown.cs">
       <SubType>Component</SubType>
@@ -161,6 +172,9 @@
     <EmbeddedResource Include="ABMClientes.resx">
       <DependentUpon>ABMClientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABMEmpleados.resx">
+      <DependentUpon>ABMEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BuscarCliente.resx">
       <DependentUpon>BuscarCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -170,6 +184,10 @@
     <EmbeddedResource Include="ContratoHoras.resx">
       <DependentUpon>ContratoHoras.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImagenesDeGUI.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImagenesDeGUI.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ServicioForm.resx">
       <DependentUpon>ServicioForm.cs</DependentUpon>
@@ -207,6 +225,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -273,6 +292,72 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2downarrow16px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2downarrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2uparrow16px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2uparrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1254703516_userconfig.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1254704047_User.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1259423074_emblem-money.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1259646445_reload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1259646560_reload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1259646614_Home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1259646625_Xcode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1259651257_invoice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1259651268_invoice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\client.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filesave.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list_remove_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\preferences_desktop_user_password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_group_new.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />

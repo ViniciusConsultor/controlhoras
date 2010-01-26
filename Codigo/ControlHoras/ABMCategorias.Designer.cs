@@ -146,7 +146,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
+            this.btnAgregar.Image = global::ControlHoras.Properties.Resources.document_new;
             this.btnAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(50, 33);
