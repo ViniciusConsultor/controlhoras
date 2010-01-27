@@ -23,11 +23,15 @@ namespace Logica
         #region Servicios
         //// Servicios
         void altaServicioCliente(int numeroCliente, int numeroServicio, string nombre,string direccion, string telefonos, string personaContacto, string email, string celular, string celularTrust, string tareasAsignadas);//, bool activo);
-        //void bajaServicioCliente(int numCliente, int numServicio);
-        //void modificacionServicioCliente(int numCliente, int numServicio);
         Servicio obtenerServicioCliente(int numeroCliente, int numeroServicio);
-        //List<Servicio> busquedaServicioClientePorNombre(int numCliente, string wildcardNombre);
+        void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas);
+        
+        //void bajaServicioCliente(int numCliente, int numServicio);                
+        //List<Servicio> busquedaServicioClientePorNombre(int numCliente, string wildcardNombre);        
         //List<Servicio> obtenerServiciosCliente(int numCliente); 
+        
         #endregion
+
+        
     }
 }

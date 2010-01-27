@@ -196,6 +196,10 @@ namespace ControlHoras
 
         private void GCambiosBTN_Click(object sender, EventArgs e)
         {
+            int numCli = int.Parse(bcUC.ClienteNRO);
+            int numSer = int.Parse(NroMTB.Text);
+            sistema.modificarServicioCliente(numCli, numSer, NombreTB.Text, DirTB.Text, TelTB.Text, ContactTB.Text, emailTB.Text, CelTB.Text, CelTrustTB.Text, TareasTB.Text);
+
             /*
             serActual.setNombre(NombreTB.Text);
             serActual.setDireccion(DirTB.Text);
