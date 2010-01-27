@@ -58,14 +58,6 @@ namespace Logica
 
         public void modificarCliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime fecAlta, DateTime fecBaja, string motivo)
         {
-            try
-            {
-                datos.modificarCliente(num, nom, nomFant, rut, email, dir, dirCobro, telefono, fax, activo, fecAlta, fecBaja, motivo);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
         }
 
         public void bajaCliente(int idcliente)
@@ -146,7 +138,7 @@ namespace Logica
                         act = true;
                     else
                         act = false;
-                    servicio = new Servicio((int)ser.NumeroServicio, ser.Nombre, ser.Direccion, ser.Telefonos, "", ser.Email, ser.Celular, ser.CelularTrust, ser.TareasAsignadas, act, (DateTime) ser.FechaAlta, (DateTime)ser.FechaBaja, ser.MotivoBaja);
+                    servicio = new Servicio((int)ser.NumeroServicio, ser.Nombre, ser.Direccion, ser.Telefonos, ser.PersonaContacto, ser.Email, ser.Celular, ser.CelularTrust, ser.TareasAsignadas, act, (DateTime) ser.FechaAlta, (DateTime)ser.FechaBaja, ser.MotivoBaja);
                     return servicio;
              }catch(Exception ex)
              {
@@ -166,6 +158,20 @@ namespace Logica
             }
 
         }
+
+
+        public void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas)
+        {
+            try
+            {
+                datos.modificarServicioCliente(numeroCliente, numeroServicio, Nombre, Direccion, Telefonos, Contacto, email, Celular, CelularTrust, Tareas);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         
     }
 }

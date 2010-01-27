@@ -62,8 +62,8 @@ namespace Datos
             {
                 Server = "localhost",
                 Port = 3306,
-                UserID = "jgarat",
-                Password = "jgarat",
+                UserID = "root",
+                Password = "desdere",
                 Database = "trustdb",
                 Pooling = true,
                 MinimumPoolSize = 5,
@@ -266,5 +266,45 @@ namespace Datos
             }
                 
         }
+
+       
+
+        public void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas)
+        {
+            try
+            {
+                Table<SERVicIoS> tablaServicios= database.GetTable<SERVicIoS>();
+
+                var ser = (from s in tablaServicios
+                           where (s.NumeroCliente == numeroCliente
+                           && s.NumeroServicio == numeroServicio)
+                           select s).Single();               
+                                
+                ser.Nombre = Nombre;
+                ser.Email = email;
+                ser.Direccion = Direccion;
+                ser.Telefonos = Telefonos;
+                ser.PersonaContacto = Contacto;
+                ser.Celular = Celular;
+                ser.CelularTrust = CelularTrust;
+                ser.TareasAsignadas = Tareas;
+                
+                database.SubmitChanges();
+            }
+            catch (MySqlException ex)
+            {
+                //database.Refresh(System.Data.Linq.RefreshMode.KeepCurrentValues);
+                // database.Connection.Close();
+                if (ex.Number == 1062)
+                {
+                    // int index = database.GetChangeSet().Inserts.IndexOf(cliente);
+                    // database.GetChangeSet().Inserts.RemoveAt(index);
+                    database.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues);
+                }
+                throw ex;
+            }
+        }
+
+       
     }
 }
