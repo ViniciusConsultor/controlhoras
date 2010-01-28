@@ -47,9 +47,9 @@ namespace ControlHoras
             this.label9 = new System.Windows.Forms.Label();
             this.cbNoActivo = new System.Windows.Forms.CheckBox();
             this.lblEstadoCliente = new System.Windows.Forms.Label();
-            this.dtpFechaAlta = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaAlta = new ControlHoras.DateTimePickerKeyDown();
             this.label10 = new System.Windows.Forms.Label();
-            this.dtpFechaBaja = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaBaja = new ControlHoras.DateTimePickerKeyDown();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtMotivoBaja = new ControlHoras.TextBoxKeyDown();
@@ -437,9 +437,9 @@ namespace ControlHoras
         private ControlHoras.TextBoxKeyDown txtDireccionCobro;
         private ControlHoras.TextBoxKeyDown txtEmail;
         private System.Windows.Forms.Label lblEstadoCliente;
-        private System.Windows.Forms.DateTimePicker dtpFechaAlta;
+        private ControlHoras.DateTimePickerKeyDown dtpFechaAlta;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DateTimePicker dtpFechaBaja;
+        private ControlHoras.DateTimePickerKeyDown dtpFechaBaja;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label12;
