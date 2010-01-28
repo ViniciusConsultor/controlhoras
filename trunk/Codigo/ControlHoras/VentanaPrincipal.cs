@@ -18,7 +18,7 @@ namespace ControlHoras
 
         private void btnContrato_Click(object sender, EventArgs e)
         {
-            ContratoHoras contrato = new ContratoHoras();
+            ContratoForm contrato = new ContratoForm();
             contrato.ShowDialog(this);
         }
 

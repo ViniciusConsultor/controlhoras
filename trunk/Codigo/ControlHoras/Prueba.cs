@@ -15,7 +15,14 @@ namespace ControlHoras
         {
             InitializeComponent();
            // bc.Controls["ClienteTB"].Text = "Alamo";
-           
+
+
+            MaskedTextBoxColumn mtbc = new MaskedTextBoxColumn();
+            mtbc.HeaderText = "Lunes";
+            mtbc.Mask = @"00:00   \a   00:00";
+            mtbc.Width = 120;
+            mtbc.ReadOnly = false;
+            this.dgv.Columns.Add(mtbc);
         }
     }
 }

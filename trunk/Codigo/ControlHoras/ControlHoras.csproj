@@ -112,6 +112,12 @@
     <Compile Include="CambiarPasswordUsuario.designer.cs">
       <DependentUpon>CambiarPasswordUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="ContratoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ContratoForm.Designer.cs">
+      <DependentUpon>ContratoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ContratoHoras.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +189,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CambiarPasswordUsuario.resx">
       <DependentUpon>CambiarPasswordUsuario.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContratoForm.resx">
+      <DependentUpon>ContratoForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ContratoHoras.resx">
