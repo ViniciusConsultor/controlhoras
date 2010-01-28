@@ -184,13 +184,24 @@ namespace ControlHoras
             int numCli = int.Parse(bcUC.ClienteNRO);
             int numSer = int.Parse(NroMTB.Text);
             sistema.altaServicioCliente(numCli, numSer, NombreTB.Text, DirTB.Text, TelTB.Text, ContactTB.Text, emailTB.Text, CelTB.Text, CelTrustTB.Text, TareasTB.Text);
-
+            
             modoNuevo = false;
             GNuevoBTN.Enabled = false;
             GCambiosBTN.Enabled = true;
+
+            DialogResult res = MessageBox.Show(this, "Desea definir el contrato ahora?", "Contrato", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            if (res == DialogResult.OK)
+            {
+                ContratoForm contrato = new ContratoForm();
+                contrato.ShowDialog(this);
+            }
+            else
+            {
+                bcUC.Controls["ClienteMT"].Focus();
+                SendKeys.Send("{ENTER}");
+            }
             
-            bcUC.Controls["ClienteMT"].Focus();
-            SendKeys.Send("{ENTER}");
+           
 
         }
 

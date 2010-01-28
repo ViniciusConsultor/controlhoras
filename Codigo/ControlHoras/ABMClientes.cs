@@ -101,7 +101,7 @@ namespace ControlHoras
             else
                 MessageBox.Show(this, LlenarCamposObligatorios, "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
         
-        }
+       }
 
         private bool checkDatosObligatorios()
         {

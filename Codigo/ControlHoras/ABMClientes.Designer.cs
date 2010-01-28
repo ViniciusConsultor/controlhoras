@@ -92,7 +92,7 @@ namespace ControlHoras
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Image = global::ControlHoras.Properties.Resources.document_new;
+            //this.btnAgregar.Image = global::ControlHoras.Properties.Resources.document_new;
             this.btnAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(50, 33);
@@ -279,12 +279,14 @@ namespace ControlHoras
             this.groupBox1.Text = "Estado";
             // 
             // txtMotivoBaja
-            // 
+            //
+            
             this.txtMotivoBaja.Enabled = false;
             this.txtMotivoBaja.Location = new System.Drawing.Point(52, 48);
             this.txtMotivoBaja.Name = "txtMotivoBaja";
             this.txtMotivoBaja.Size = new System.Drawing.Size(288, 20);
             this.txtMotivoBaja.TabIndex = 2;
+             
             // 
             // label12
             // 
@@ -363,6 +365,7 @@ namespace ControlHoras
             this.mtRUT.Name = "mtRUT";
             this.mtRUT.Size = new System.Drawing.Size(89, 20);
             this.mtRUT.TabIndex = 3;
+             
             // 
             // ABMClientes
             // 
