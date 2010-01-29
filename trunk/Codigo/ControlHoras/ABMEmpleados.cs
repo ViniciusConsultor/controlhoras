@@ -53,7 +53,6 @@ namespace ControlHoras
                     }
                     else if (tipoDelControl == "System.Windows.Forms.ComboBoxKeyDown")
                     {
-                        ((ComboBox)c).Text = "";
                         ((ComboBox) c).SelectedIndex = 0;
                     }
                     
@@ -68,11 +67,11 @@ namespace ControlHoras
             { // traigo el cliente y lleno los datos de los campos.
                 try
                 {
-                    if (sistema.existeCliente(int.Parse(mtCliente.Text)))
-                    {
-                        cliente = sistema.obtenerCliente(int.Parse(mtCliente.Text));
-                        cargarCliente(cliente);
-                    }
+                    //if (sistema.existeCliente(int.Parse(mtCliente.Text)))
+                    //{
+                    //    cliente = sistema.obtenerCliente(int.Parse(mtCliente.Text));
+                    //    cargarCliente(cliente);
+                    //}
                 }
                 catch (Exception ex)
                 {
