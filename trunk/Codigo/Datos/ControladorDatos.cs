@@ -19,7 +19,9 @@ namespace Datos
 
         private ControladorDatos()
         {
-           // MySqlConnection myconn; 
+            database = getConexion();
+           
+            // MySqlConnection myconn; 
            //while (true)
            //{
            // var builder = new MySqlConnectionStringBuilder()
@@ -43,7 +45,7 @@ namespace Datos
            //     System.Console.WriteLine(myex.InnerException.ToString());
            // }
            //}
-            database = getConexion();
+            
             
         }
         
@@ -62,8 +64,8 @@ namespace Datos
             {
                 Server = "localhost",
                 Port = 3306,
-                UserID = "root",
-                Password = "desdere",
+                UserID = "jgarat",
+                Password = "jgarat",
                 Database = "trustdb",
                 Pooling = true,
                 MinimumPoolSize = 5,
@@ -170,6 +172,7 @@ namespace Datos
             catch (Exception ex)
             {
                 throw ex;
+                // MySQLException = Access Denied  Codigo = 1045
             }
         }
 
