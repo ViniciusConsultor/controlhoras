@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FC8B86E8-A818-4987-B135-16FD6B039E53}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -112,17 +112,23 @@
     <Compile Include="CambiarPasswordUsuario.designer.cs">
       <DependentUpon>CambiarPasswordUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="ContratoForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="ComboBoxKeyDown.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ContratoForm.Designer.cs">
-      <DependentUpon>ContratoForm.cs</DependentUpon>
+    <Compile Include="ComboBoxKeyDown.Designer.cs">
+      <DependentUpon>ComboBoxKeyDown.cs</DependentUpon>
     </Compile>
     <Compile Include="ContratoHoras.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ContratoHoras.Designer.cs">
       <DependentUpon>ContratoHoras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DateTimePickerKeyDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DateTimePickerKeyDown.Designer.cs">
+      <DependentUpon>DateTimePickerKeyDown.cs</DependentUpon>
     </Compile>
     <Compile Include="ImagenesDeGUI.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -134,12 +140,6 @@
     </Compile>
     <Compile Include="MaskedTextBoxKeyDown.Designer.cs">
       <DependentUpon>MaskedTextBoxKeyDown.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Search Clientes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Search Clientes.Designer.cs">
-      <DependentUpon>Search Clientes.cs</DependentUpon>
     </Compile>
     <Compile Include="ServicioForm.cs">
       <SubType>Form</SubType>
@@ -180,26 +180,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ABMCategorias.resx">
       <DependentUpon>ABMCategorias.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ABMClientes.resx">
       <DependentUpon>ABMClientes.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ABMEmpleados.resx">
       <DependentUpon>ABMEmpleados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BuscarCliente.resx">
       <DependentUpon>BuscarCliente.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CambiarPasswordUsuario.resx">
       <DependentUpon>CambiarPasswordUsuario.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ContratoForm.resx">
-      <DependentUpon>ContratoForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ContratoHoras.resx">
       <DependentUpon>ContratoHoras.cs</DependentUpon>
@@ -209,25 +201,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ImagenesDeGUI.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Search Clientes.resx">
-      <DependentUpon>Search Clientes.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="ServicioForm.resx">
       <DependentUpon>ServicioForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TextBoxKeyDown.resx">
       <DependentUpon>TextBoxKeyDown.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ListadoClientes.resx">
       <DependentUpon>ListadoClientes.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Planificacion.resx">
       <DependentUpon>Planificacion.cs</DependentUpon>
