@@ -39,72 +39,118 @@
             this.tcEmpleado = new System.Windows.Forms.TabControl();
             this.DatosDelEmpleado = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.mtSueldo = new ControlHoras.MaskedTextBoxKeyDown();
+            this.txtNumeroCuenta = new ControlHoras.TextBoxKeyDown();
+            this.cmbBanco = new ControlHoras.ComboBoxKeyDown();
             this.label33 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.mtCantidadHijos = new ControlHoras.MaskedTextBoxKeyDown();
             this.label24 = new System.Windows.Forms.Label();
+            this.cmbEstadoCivil = new ControlHoras.ComboBoxKeyDown();
             this.label10 = new System.Windows.Forms.Label();
+            this.txtEmail = new ControlHoras.TextBoxKeyDown();
             this.label16 = new System.Windows.Forms.Label();
+            this.txtCelularConvenio = new ControlHoras.TextBoxKeyDown();
             this.label14 = new System.Windows.Forms.Label();
+            this.txtCelular = new ControlHoras.TextBoxKeyDown();
             this.label13 = new System.Windows.Forms.Label();
+            this.txtTelefono = new ControlHoras.TextBoxKeyDown();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker1 = new ControlHoras.DateTimePickerKeyDown();
             this.label45 = new System.Windows.Forms.Label();
+            this.dtpFechaIngreso = new ControlHoras.DateTimePickerKeyDown();
             this.label20 = new System.Windows.Forms.Label();
+            this.dtpFechaNacimiento = new ControlHoras.DateTimePickerKeyDown();
             this.label17 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.txtNacionalidad = new ControlHoras.TextBoxKeyDown();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.txtLugarNacimiento = new ControlHoras.TextBoxKeyDown();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.mtNumeroDocumento = new ControlHoras.MaskedTextBoxKeyDown();
+            this.cmbTipoDocumento = new ControlHoras.ComboBoxKeyDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtApellido = new ControlHoras.TextBoxKeyDown();
+            this.txtNombre = new ControlHoras.TextBoxKeyDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblNumero = new System.Windows.Forms.Label();
+            this.mtNumeroEmpleado = new ControlHoras.MaskedTextBoxKeyDown();
             this.gbEstado = new System.Windows.Forms.GroupBox();
+            this.txtMotivoBaja = new ControlHoras.TextBoxKeyDown();
             this.label30 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
+            this.dtpFechaBaja = new ControlHoras.DateTimePickerKeyDown();
             this.cbNoActivo = new System.Windows.Forms.CheckBox();
             this.btnSeleccionarImagen = new System.Windows.Forms.Button();
             this.pbFoto = new System.Windows.Forms.PictureBox();
             this.OtrosDatosDelEmpleado = new System.Windows.Forms.TabPage();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.cbCombatiente = new System.Windows.Forms.CheckBox();
+            this.txtPolicialSubEscalafon = new ControlHoras.TextBoxKeyDown();
+            this.dtpFechaEgresoPolicialMilitar = new ControlHoras.DateTimePickerKeyDown();
+            this.dtpFechaIngresoPolicialMilitar = new ControlHoras.DateTimePickerKeyDown();
+            this.cmbPolicialMilitar = new ControlHoras.ComboBoxKeyDown();
             this.label44 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.cbAntecedentes = new System.Windows.Forms.CheckBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.mtTalleCampera = new ControlHoras.MaskedTextBoxKeyDown();
+            this.mtTalleZapatos = new ControlHoras.MaskedTextBoxKeyDown();
+            this.mtTallePantalon = new ControlHoras.MaskedTextBoxKeyDown();
+            this.mtTalleCamisa = new ControlHoras.MaskedTextBoxKeyDown();
             this.label28 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.txtPuntoEncuentro = new ControlHoras.TextBoxKeyDown();
+            this.txtEntreCalles = new ControlHoras.TextBoxKeyDown();
+            this.txtBarrio = new ControlHoras.TextBoxKeyDown();
+            this.txtDireccion = new ControlHoras.TextBoxKeyDown();
             this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.txtCiudad = new ControlHoras.TextBoxKeyDown();
+            this.cmbDepartamento = new ControlHoras.ComboBoxKeyDown();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.mtNumAsuntoRenaemse = new ControlHoras.MaskedTextBoxKeyDown();
             this.label41 = new System.Windows.Forms.Label();
+            this.dtpFechaIngresoRenaemse = new ControlHoras.DateTimePickerKeyDown();
             this.label40 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.mtAcumulacionBPS = new ControlHoras.MaskedTextBoxKeyDown();
+            this.dtpFechaAltaBPS = new ControlHoras.DateTimePickerKeyDown();
+            this.dtpFechaBajaBPS = new ControlHoras.DateTimePickerKeyDown();
             this.label39 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.dtpFechaEntregaCAJ = new ControlHoras.DateTimePickerKeyDown();
+            this.dtpFechaEmisionCAJ = new ControlHoras.DateTimePickerKeyDown();
+            this.mtNumeroCAJ = new ControlHoras.MaskedTextBoxKeyDown();
             this.label36 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
+            this.ctpVencimientoCarneSalud = new ControlHoras.DateTimePickerKeyDown();
             this.label23 = new System.Windows.Forms.Label();
+            this.cmbMutualista = new ControlHoras.ComboBoxKeyDown();
+            this.cmbEmergenciaMedica = new ControlHoras.ComboBoxKeyDown();
             this.Historial = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnEliminarHistorial = new System.Windows.Forms.Button();
@@ -114,67 +160,21 @@
             this.label48 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
+            this.txtDescripcionHistorial = new ControlHoras.TextBoxKeyDown();
+            this.cmbTipoEventoHistorial = new ControlHoras.ComboBoxKeyDown();
+            this.dtpFechaFinHistorial = new ControlHoras.DateTimePickerKeyDown();
+            this.dtpFechaInicioHistorial = new ControlHoras.DateTimePickerKeyDown();
             this.dgvHistorialEmpleado = new System.Windows.Forms.DataGridView();
+            this.FechaInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mtSueldo = new ControlHoras.MaskedTextBoxKeyDown();
-            this.txtNumeroCuenta = new ControlHoras.TextBoxKeyDown();
-            this.cmbBanco = new ControlHoras.ComboBoxKeyDown();
-            this.mtCantidadHijos = new ControlHoras.MaskedTextBoxKeyDown();
-            this.cmbEstadoCivil = new ControlHoras.ComboBoxKeyDown();
-            this.txtEmail = new ControlHoras.TextBoxKeyDown();
-            this.txtCelularConvenio = new ControlHoras.TextBoxKeyDown();
-            this.txtCelular = new ControlHoras.TextBoxKeyDown();
-            this.txtTelefono = new ControlHoras.TextBoxKeyDown();
-            this.dateTimePicker1 = new ControlHoras.DateTimePickerKeyDown();
-            this.dtpFechaIngreso = new ControlHoras.DateTimePickerKeyDown();
-            this.dtpFechaNacimiento = new ControlHoras.DateTimePickerKeyDown();
-            this.txtNacionalidad = new ControlHoras.TextBoxKeyDown();
-            this.txtLugarNacimiento = new ControlHoras.TextBoxKeyDown();
-            this.mtNumeroDocumento = new ControlHoras.MaskedTextBoxKeyDown();
-            this.cmbTipoDocumento = new ControlHoras.ComboBoxKeyDown();
-            this.txtApellido = new ControlHoras.TextBoxKeyDown();
-            this.txtNombre = new ControlHoras.TextBoxKeyDown();
-            this.mtNumeroEmpleado = new ControlHoras.MaskedTextBoxKeyDown();
-            this.txtMotivoBaja = new ControlHoras.TextBoxKeyDown();
-            this.dtpFechaBaja = new ControlHoras.DateTimePickerKeyDown();
-            this.txtPolicialSubEscalafon = new ControlHoras.TextBoxKeyDown();
-            this.dtpFechaEgresoPolicialMilitar = new ControlHoras.DateTimePickerKeyDown();
-            this.dtpFechaIngresoPolicialMilitar = new ControlHoras.DateTimePickerKeyDown();
-            this.cmbPolicialMilitar = new ControlHoras.ComboBoxKeyDown();
-            this.mtTalleCampera = new ControlHoras.MaskedTextBoxKeyDown();
-            this.mtTalleZapatos = new ControlHoras.MaskedTextBoxKeyDown();
-            this.mtTallePantalon = new ControlHoras.MaskedTextBoxKeyDown();
-            this.mtTalleCamisa = new ControlHoras.MaskedTextBoxKeyDown();
-            this.txtPuntoEncuentro = new ControlHoras.TextBoxKeyDown();
-            this.txtEntreCalles = new ControlHoras.TextBoxKeyDown();
-            this.txtBarrio = new ControlHoras.TextBoxKeyDown();
-            this.txtDireccion = new ControlHoras.TextBoxKeyDown();
-            this.txtCiudad = new ControlHoras.TextBoxKeyDown();
-            this.cmbDepartamento = new ControlHoras.ComboBoxKeyDown();
-            this.mtNumAsuntoRenaemse = new ControlHoras.MaskedTextBoxKeyDown();
-            this.dtpFechaIngresoRenaemse = new ControlHoras.DateTimePickerKeyDown();
-            this.mtAcumulacionBPS = new ControlHoras.MaskedTextBoxKeyDown();
-            this.dtpFechaAltaBPS = new ControlHoras.DateTimePickerKeyDown();
-            this.dtpFechaBajaBPS = new ControlHoras.DateTimePickerKeyDown();
-            this.dtpFechaEntregaCAJ = new ControlHoras.DateTimePickerKeyDown();
-            this.dtpFechaEmisionCAJ = new ControlHoras.DateTimePickerKeyDown();
-            this.mtNumeroCAJ = new ControlHoras.MaskedTextBoxKeyDown();
-            this.ctpVencimientoCarneSalud = new ControlHoras.DateTimePickerKeyDown();
-            this.cmbMutualista = new ControlHoras.ComboBoxKeyDown();
-            this.cmbEmergenciaMedica = new ControlHoras.ComboBoxKeyDown();
-            this.txtDescripcionHistorial = new ControlHoras.TextBoxKeyDown();
-            this.cmbTipoEventoHistorial = new ControlHoras.ComboBoxKeyDown();
-            this.dtpFechaFinHistorial = new ControlHoras.DateTimePickerKeyDown();
-            this.dtpFechaInicioHistorial = new ControlHoras.DateTimePickerKeyDown();
-            this.FechaInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             this.tcEmpleado.SuspendLayout();
             this.DatosDelEmpleado.SuspendLayout();
@@ -217,7 +217,7 @@
             // 
             // btnCrear
             // 
-            this.btnCrear.Image = global::ControlHoras.Properties.Resources.document_new;
+            this.btnCrear.Image = global::ControlHoras.Imagenes.document_new;
             this.btnCrear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(38, 33);
@@ -226,7 +226,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Image = global::ControlHoras.Properties.Resources.filesave;
+            this.btnGuardar.Image = global::ControlHoras.Imagenes.filesave;
             this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(50, 33);
@@ -236,7 +236,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btnCancelar.Image = global::ControlHoras.Properties.Resources.button_cancel;
+            this.btnCancelar.Image = global::ControlHoras.Imagenes.button_cancel;
             this.btnCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(53, 33);
@@ -311,6 +311,28 @@
             this.groupBox7.TabIndex = 4;
             this.groupBox7.TabStop = false;
             // 
+            // mtSueldo
+            // 
+            this.mtSueldo.Location = new System.Drawing.Point(62, 65);
+            this.mtSueldo.Name = "mtSueldo";
+            this.mtSueldo.Size = new System.Drawing.Size(111, 20);
+            this.mtSueldo.TabIndex = 2;
+            // 
+            // txtNumeroCuenta
+            // 
+            this.txtNumeroCuenta.Location = new System.Drawing.Point(62, 39);
+            this.txtNumeroCuenta.Name = "txtNumeroCuenta";
+            this.txtNumeroCuenta.Size = new System.Drawing.Size(111, 20);
+            this.txtNumeroCuenta.TabIndex = 1;
+            // 
+            // cmbBanco
+            // 
+            this.cmbBanco.FormattingEnabled = true;
+            this.cmbBanco.Location = new System.Drawing.Point(62, 11);
+            this.cmbBanco.Name = "cmbBanco";
+            this.cmbBanco.Size = new System.Drawing.Size(111, 21);
+            this.cmbBanco.TabIndex = 0;
+            // 
             // label33
             // 
             this.label33.AutoSize = true;
@@ -358,6 +380,13 @@
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             // 
+            // mtCantidadHijos
+            // 
+            this.mtCantidadHijos.Location = new System.Drawing.Point(95, 154);
+            this.mtCantidadHijos.Name = "mtCantidadHijos";
+            this.mtCantidadHijos.Size = new System.Drawing.Size(37, 20);
+            this.mtCantidadHijos.TabIndex = 5;
+            // 
             // label24
             // 
             this.label24.AutoSize = true;
@@ -366,6 +395,14 @@
             this.label24.Size = new System.Drawing.Size(75, 13);
             this.label24.TabIndex = 63;
             this.label24.Text = "Cantidad Hijos";
+            // 
+            // cmbEstadoCivil
+            // 
+            this.cmbEstadoCivil.FormattingEnabled = true;
+            this.cmbEstadoCivil.Location = new System.Drawing.Point(95, 126);
+            this.cmbEstadoCivil.Name = "cmbEstadoCivil";
+            this.cmbEstadoCivil.Size = new System.Drawing.Size(105, 21);
+            this.cmbEstadoCivil.TabIndex = 4;
             // 
             // label10
             // 
@@ -376,6 +413,13 @@
             this.label10.TabIndex = 61;
             this.label10.Text = "Estado Civil";
             // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(55, 98);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(145, 20);
+            this.txtEmail.TabIndex = 3;
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -384,6 +428,13 @@
             this.label16.Size = new System.Drawing.Size(32, 13);
             this.label16.TabIndex = 33;
             this.label16.Text = "Email";
+            // 
+            // txtCelularConvenio
+            // 
+            this.txtCelularConvenio.Location = new System.Drawing.Point(95, 70);
+            this.txtCelularConvenio.Name = "txtCelularConvenio";
+            this.txtCelularConvenio.Size = new System.Drawing.Size(105, 20);
+            this.txtCelularConvenio.TabIndex = 2;
             // 
             // label14
             // 
@@ -394,6 +445,13 @@
             this.label14.TabIndex = 26;
             this.label14.Text = "Celular Convenio";
             // 
+            // txtCelular
+            // 
+            this.txtCelular.Location = new System.Drawing.Point(95, 42);
+            this.txtCelular.Name = "txtCelular";
+            this.txtCelular.Size = new System.Drawing.Size(105, 20);
+            this.txtCelular.TabIndex = 1;
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -402,6 +460,13 @@
             this.label13.Size = new System.Drawing.Size(39, 13);
             this.label13.TabIndex = 24;
             this.label13.Text = "Celular";
+            // 
+            // txtTelefono
+            // 
+            this.txtTelefono.Location = new System.Drawing.Point(95, 13);
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(105, 20);
+            this.txtTelefono.TabIndex = 0;
             // 
             // label12
             // 
@@ -435,6 +500,14 @@
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(102, 167);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(96, 20);
+            this.dateTimePicker1.TabIndex = 5;
+            // 
             // label45
             // 
             this.label45.AutoSize = true;
@@ -444,6 +517,14 @@
             this.label45.TabIndex = 108;
             this.label45.Text = "Fecha Psicologico";
             // 
+            // dtpFechaIngreso
+            // 
+            this.dtpFechaIngreso.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaIngreso.Location = new System.Drawing.Point(102, 227);
+            this.dtpFechaIngreso.Name = "dtpFechaIngreso";
+            this.dtpFechaIngreso.Size = new System.Drawing.Size(96, 20);
+            this.dtpFechaIngreso.TabIndex = 7;
+            // 
             // label20
             // 
             this.label20.AutoSize = true;
@@ -452,6 +533,15 @@
             this.label20.Size = new System.Drawing.Size(75, 13);
             this.label20.TabIndex = 107;
             this.label20.Text = "Fecha Ingreso";
+            // 
+            // dtpFechaNacimiento
+            // 
+            this.dtpFechaNacimiento.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dtpFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaNacimiento.Location = new System.Drawing.Point(102, 197);
+            this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
+            this.dtpFechaNacimiento.Size = new System.Drawing.Size(96, 20);
+            this.dtpFechaNacimiento.TabIndex = 6;
             // 
             // label17
             // 
@@ -503,6 +593,13 @@
             this.radioButton1.Text = "Masculino";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
+            // txtNacionalidad
+            // 
+            this.txtNacionalidad.Location = new System.Drawing.Point(98, 98);
+            this.txtNacionalidad.Name = "txtNacionalidad";
+            this.txtNacionalidad.Size = new System.Drawing.Size(115, 20);
+            this.txtNacionalidad.TabIndex = 3;
+            // 
             // label19
             // 
             this.label19.AutoSize = true;
@@ -520,6 +617,13 @@
             this.label18.Size = new System.Drawing.Size(90, 13);
             this.label18.TabIndex = 101;
             this.label18.Text = "Lugar Nacimiento";
+            // 
+            // txtLugarNacimiento
+            // 
+            this.txtLugarNacimiento.Location = new System.Drawing.Point(98, 70);
+            this.txtLugarNacimiento.Name = "txtLugarNacimiento";
+            this.txtLugarNacimiento.Size = new System.Drawing.Size(115, 20);
+            this.txtLugarNacimiento.TabIndex = 2;
             // 
             // label6
             // 
@@ -540,6 +644,22 @@
             this.label5.TabIndex = 13;
             this.label5.Text = "Tipo Documento";
             // 
+            // mtNumeroDocumento
+            // 
+            this.mtNumeroDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mtNumeroDocumento.Location = new System.Drawing.Point(98, 42);
+            this.mtNumeroDocumento.Name = "mtNumeroDocumento";
+            this.mtNumeroDocumento.Size = new System.Drawing.Size(115, 21);
+            this.mtNumeroDocumento.TabIndex = 1;
+            // 
+            // cmbTipoDocumento
+            // 
+            this.cmbTipoDocumento.FormattingEnabled = true;
+            this.cmbTipoDocumento.Location = new System.Drawing.Point(98, 13);
+            this.cmbTipoDocumento.Name = "cmbTipoDocumento";
+            this.cmbTipoDocumento.Size = new System.Drawing.Size(105, 21);
+            this.cmbTipoDocumento.TabIndex = 0;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtApellido);
@@ -553,6 +673,22 @@
             this.groupBox2.Size = new System.Drawing.Size(434, 70);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
+            // 
+            // txtApellido
+            // 
+            this.txtApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtApellido.Location = new System.Drawing.Point(268, 41);
+            this.txtApellido.Name = "txtApellido";
+            this.txtApellido.Size = new System.Drawing.Size(157, 21);
+            this.txtApellido.TabIndex = 13;
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.Location = new System.Drawing.Point(57, 41);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(151, 21);
+            this.txtNombre.TabIndex = 12;
             // 
             // label3
             // 
@@ -584,6 +720,17 @@
             this.lblNumero.TabIndex = 9;
             this.lblNumero.Text = "Numero";
             // 
+            // mtNumeroEmpleado
+            // 
+            this.mtNumeroEmpleado.BackColor = System.Drawing.Color.White;
+            this.mtNumeroEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mtNumeroEmpleado.Location = new System.Drawing.Point(57, 12);
+            this.mtNumeroEmpleado.Mask = "9990";
+            this.mtNumeroEmpleado.Name = "mtNumeroEmpleado";
+            this.mtNumeroEmpleado.Size = new System.Drawing.Size(44, 21);
+            this.mtNumeroEmpleado.TabIndex = 0;
+            this.mtNumeroEmpleado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtNumeroEmpleado_KeyDown);
+            // 
             // gbEstado
             // 
             this.gbEstado.Controls.Add(this.txtMotivoBaja);
@@ -597,6 +744,13 @@
             this.gbEstado.TabIndex = 5;
             this.gbEstado.TabStop = false;
             this.gbEstado.Text = "Estado";
+            // 
+            // txtMotivoBaja
+            // 
+            this.txtMotivoBaja.Location = new System.Drawing.Point(77, 41);
+            this.txtMotivoBaja.Name = "txtMotivoBaja";
+            this.txtMotivoBaja.Size = new System.Drawing.Size(316, 20);
+            this.txtMotivoBaja.TabIndex = 2;
             // 
             // label30
             // 
@@ -615,6 +769,14 @@
             this.label29.Size = new System.Drawing.Size(61, 13);
             this.label29.TabIndex = 2;
             this.label29.Text = "Fecha Baja";
+            // 
+            // dtpFechaBaja
+            // 
+            this.dtpFechaBaja.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaBaja.Location = new System.Drawing.Point(272, 17);
+            this.dtpFechaBaja.Name = "dtpFechaBaja";
+            this.dtpFechaBaja.Size = new System.Drawing.Size(86, 20);
+            this.dtpFechaBaja.TabIndex = 1;
             // 
             // cbNoActivo
             // 
@@ -637,6 +799,7 @@
             // 
             // pbFoto
             // 
+            this.pbFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbFoto.Location = new System.Drawing.Point(465, 11);
             this.pbFoto.Name = "pbFoto";
             this.pbFoto.Size = new System.Drawing.Size(152, 125);
@@ -689,6 +852,41 @@
             this.cbCombatiente.Text = "Combatiente?";
             this.cbCombatiente.UseVisualStyleBackColor = true;
             this.cbCombatiente.Visible = false;
+            // 
+            // txtPolicialSubEscalafon
+            // 
+            this.txtPolicialSubEscalafon.Location = new System.Drawing.Point(90, 105);
+            this.txtPolicialSubEscalafon.Name = "txtPolicialSubEscalafon";
+            this.txtPolicialSubEscalafon.Size = new System.Drawing.Size(134, 20);
+            this.txtPolicialSubEscalafon.TabIndex = 3;
+            this.txtPolicialSubEscalafon.Visible = false;
+            // 
+            // dtpFechaEgresoPolicialMilitar
+            // 
+            this.dtpFechaEgresoPolicialMilitar.Enabled = false;
+            this.dtpFechaEgresoPolicialMilitar.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaEgresoPolicialMilitar.Location = new System.Drawing.Point(90, 76);
+            this.dtpFechaEgresoPolicialMilitar.Name = "dtpFechaEgresoPolicialMilitar";
+            this.dtpFechaEgresoPolicialMilitar.Size = new System.Drawing.Size(90, 20);
+            this.dtpFechaEgresoPolicialMilitar.TabIndex = 2;
+            // 
+            // dtpFechaIngresoPolicialMilitar
+            // 
+            this.dtpFechaIngresoPolicialMilitar.Enabled = false;
+            this.dtpFechaIngresoPolicialMilitar.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaIngresoPolicialMilitar.Location = new System.Drawing.Point(90, 49);
+            this.dtpFechaIngresoPolicialMilitar.Name = "dtpFechaIngresoPolicialMilitar";
+            this.dtpFechaIngresoPolicialMilitar.Size = new System.Drawing.Size(90, 20);
+            this.dtpFechaIngresoPolicialMilitar.TabIndex = 1;
+            // 
+            // cmbPolicialMilitar
+            // 
+            this.cmbPolicialMilitar.Enabled = false;
+            this.cmbPolicialMilitar.FormattingEnabled = true;
+            this.cmbPolicialMilitar.Location = new System.Drawing.Point(118, 19);
+            this.cmbPolicialMilitar.Name = "cmbPolicialMilitar";
+            this.cmbPolicialMilitar.Size = new System.Drawing.Size(106, 21);
+            this.cmbPolicialMilitar.TabIndex = 0;
             // 
             // label44
             // 
@@ -744,6 +942,35 @@
             this.groupBox10.TabIndex = 5;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Talles Uniforme";
+            // 
+            // mtTalleCampera
+            // 
+            this.mtTalleCampera.Location = new System.Drawing.Point(83, 96);
+            this.mtTalleCampera.Name = "mtTalleCampera";
+            this.mtTalleCampera.Size = new System.Drawing.Size(54, 20);
+            this.mtTalleCampera.TabIndex = 3;
+            // 
+            // mtTalleZapatos
+            // 
+            this.mtTalleZapatos.Location = new System.Drawing.Point(83, 71);
+            this.mtTalleZapatos.Name = "mtTalleZapatos";
+            this.mtTalleZapatos.Size = new System.Drawing.Size(54, 20);
+            this.mtTalleZapatos.TabIndex = 2;
+            // 
+            // mtTallePantalon
+            // 
+            this.mtTallePantalon.Location = new System.Drawing.Point(83, 45);
+            this.mtTallePantalon.Name = "mtTallePantalon";
+            this.mtTallePantalon.Size = new System.Drawing.Size(54, 20);
+            this.mtTallePantalon.TabIndex = 1;
+            // 
+            // mtTalleCamisa
+            // 
+            this.mtTalleCamisa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.mtTalleCamisa.Location = new System.Drawing.Point(83, 20);
+            this.mtTalleCamisa.Name = "mtTalleCamisa";
+            this.mtTalleCamisa.Size = new System.Drawing.Size(54, 20);
+            this.mtTalleCamisa.TabIndex = 0;
             // 
             // label28
             // 
@@ -810,6 +1037,34 @@
             this.label15.TabIndex = 116;
             this.label15.Text = "Punto de Encuentro";
             // 
+            // txtPuntoEncuentro
+            // 
+            this.txtPuntoEncuentro.Location = new System.Drawing.Point(109, 145);
+            this.txtPuntoEncuentro.Name = "txtPuntoEncuentro";
+            this.txtPuntoEncuentro.Size = new System.Drawing.Size(173, 20);
+            this.txtPuntoEncuentro.TabIndex = 5;
+            // 
+            // txtEntreCalles
+            // 
+            this.txtEntreCalles.Location = new System.Drawing.Point(109, 120);
+            this.txtEntreCalles.Name = "txtEntreCalles";
+            this.txtEntreCalles.Size = new System.Drawing.Size(173, 20);
+            this.txtEntreCalles.TabIndex = 4;
+            // 
+            // txtBarrio
+            // 
+            this.txtBarrio.Location = new System.Drawing.Point(109, 68);
+            this.txtBarrio.Name = "txtBarrio";
+            this.txtBarrio.Size = new System.Drawing.Size(121, 20);
+            this.txtBarrio.TabIndex = 2;
+            // 
+            // txtDireccion
+            // 
+            this.txtDireccion.Location = new System.Drawing.Point(109, 94);
+            this.txtDireccion.Name = "txtDireccion";
+            this.txtDireccion.Size = new System.Drawing.Size(173, 20);
+            this.txtDireccion.TabIndex = 3;
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -855,6 +1110,21 @@
             this.label7.TabIndex = 107;
             this.label7.Text = "Departamento";
             // 
+            // txtCiudad
+            // 
+            this.txtCiudad.Location = new System.Drawing.Point(109, 42);
+            this.txtCiudad.Name = "txtCiudad";
+            this.txtCiudad.Size = new System.Drawing.Size(121, 20);
+            this.txtCiudad.TabIndex = 1;
+            // 
+            // cmbDepartamento
+            // 
+            this.cmbDepartamento.FormattingEnabled = true;
+            this.cmbDepartamento.Location = new System.Drawing.Point(109, 15);
+            this.cmbDepartamento.Name = "cmbDepartamento";
+            this.cmbDepartamento.Size = new System.Drawing.Size(121, 21);
+            this.cmbDepartamento.TabIndex = 0;
+            // 
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.mtNumAsuntoRenaemse);
@@ -868,6 +1138,13 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "RENAEMSE";
             // 
+            // mtNumAsuntoRenaemse
+            // 
+            this.mtNumAsuntoRenaemse.Location = new System.Drawing.Point(61, 15);
+            this.mtNumAsuntoRenaemse.Name = "mtNumAsuntoRenaemse";
+            this.mtNumAsuntoRenaemse.Size = new System.Drawing.Size(85, 20);
+            this.mtNumAsuntoRenaemse.TabIndex = 0;
+            // 
             // label41
             // 
             this.label41.AutoSize = true;
@@ -876,6 +1153,14 @@
             this.label41.Size = new System.Drawing.Size(55, 13);
             this.label41.TabIndex = 4;
             this.label41.Text = "Nº Asunto";
+            // 
+            // dtpFechaIngresoRenaemse
+            // 
+            this.dtpFechaIngresoRenaemse.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaIngresoRenaemse.Location = new System.Drawing.Point(240, 15);
+            this.dtpFechaIngresoRenaemse.Name = "dtpFechaIngresoRenaemse";
+            this.dtpFechaIngresoRenaemse.Size = new System.Drawing.Size(90, 20);
+            this.dtpFechaIngresoRenaemse.TabIndex = 1;
             // 
             // label40
             // 
@@ -900,6 +1185,29 @@
             this.groupBox6.TabIndex = 2;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "BPS";
+            // 
+            // mtAcumulacionBPS
+            // 
+            this.mtAcumulacionBPS.Location = new System.Drawing.Point(117, 15);
+            this.mtAcumulacionBPS.Name = "mtAcumulacionBPS";
+            this.mtAcumulacionBPS.Size = new System.Drawing.Size(49, 20);
+            this.mtAcumulacionBPS.TabIndex = 0;
+            // 
+            // dtpFechaAltaBPS
+            // 
+            this.dtpFechaAltaBPS.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaAltaBPS.Location = new System.Drawing.Point(239, 14);
+            this.dtpFechaAltaBPS.Name = "dtpFechaAltaBPS";
+            this.dtpFechaAltaBPS.Size = new System.Drawing.Size(92, 20);
+            this.dtpFechaAltaBPS.TabIndex = 1;
+            // 
+            // dtpFechaBajaBPS
+            // 
+            this.dtpFechaBajaBPS.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaBajaBPS.Location = new System.Drawing.Point(239, 41);
+            this.dtpFechaBajaBPS.Name = "dtpFechaBajaBPS";
+            this.dtpFechaBajaBPS.Size = new System.Drawing.Size(92, 20);
+            this.dtpFechaBajaBPS.TabIndex = 2;
             // 
             // label39
             // 
@@ -942,6 +1250,29 @@
             this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "CAJ";
+            // 
+            // dtpFechaEntregaCAJ
+            // 
+            this.dtpFechaEntregaCAJ.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaEntregaCAJ.Location = new System.Drawing.Point(239, 37);
+            this.dtpFechaEntregaCAJ.Name = "dtpFechaEntregaCAJ";
+            this.dtpFechaEntregaCAJ.Size = new System.Drawing.Size(93, 20);
+            this.dtpFechaEntregaCAJ.TabIndex = 2;
+            // 
+            // dtpFechaEmisionCAJ
+            // 
+            this.dtpFechaEmisionCAJ.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaEmisionCAJ.Location = new System.Drawing.Point(239, 11);
+            this.dtpFechaEmisionCAJ.Name = "dtpFechaEmisionCAJ";
+            this.dtpFechaEmisionCAJ.Size = new System.Drawing.Size(92, 20);
+            this.dtpFechaEmisionCAJ.TabIndex = 1;
+            // 
+            // mtNumeroCAJ
+            // 
+            this.mtNumeroCAJ.Location = new System.Drawing.Point(55, 12);
+            this.mtNumeroCAJ.Name = "mtNumeroCAJ";
+            this.mtNumeroCAJ.Size = new System.Drawing.Size(78, 20);
+            this.mtNumeroCAJ.TabIndex = 0;
             // 
             // label36
             // 
@@ -1003,6 +1334,14 @@
             this.label21.TabIndex = 45;
             this.label21.Text = "Vencimiento Carné de Salud";
             // 
+            // ctpVencimientoCarneSalud
+            // 
+            this.ctpVencimientoCarneSalud.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.ctpVencimientoCarneSalud.Location = new System.Drawing.Point(147, 24);
+            this.ctpVencimientoCarneSalud.Name = "ctpVencimientoCarneSalud";
+            this.ctpVencimientoCarneSalud.Size = new System.Drawing.Size(93, 20);
+            this.ctpVencimientoCarneSalud.TabIndex = 0;
+            // 
             // label23
             // 
             this.label23.AutoSize = true;
@@ -1011,6 +1350,22 @@
             this.label23.Size = new System.Drawing.Size(101, 13);
             this.label23.TabIndex = 48;
             this.label23.Text = "Emergencia Médica";
+            // 
+            // cmbMutualista
+            // 
+            this.cmbMutualista.FormattingEnabled = true;
+            this.cmbMutualista.Location = new System.Drawing.Point(111, 50);
+            this.cmbMutualista.Name = "cmbMutualista";
+            this.cmbMutualista.Size = new System.Drawing.Size(129, 21);
+            this.cmbMutualista.TabIndex = 1;
+            // 
+            // cmbEmergenciaMedica
+            // 
+            this.cmbEmergenciaMedica.FormattingEnabled = true;
+            this.cmbEmergenciaMedica.Location = new System.Drawing.Point(111, 77);
+            this.cmbEmergenciaMedica.Name = "cmbEmergenciaMedica";
+            this.cmbEmergenciaMedica.Size = new System.Drawing.Size(129, 21);
+            this.cmbEmergenciaMedica.TabIndex = 2;
             // 
             // Historial
             // 
@@ -1114,6 +1469,38 @@
             this.label46.TabIndex = 4;
             this.label46.Text = "Fecha Inicio";
             // 
+            // txtDescripcionHistorial
+            // 
+            this.txtDescripcionHistorial.Location = new System.Drawing.Point(151, 72);
+            this.txtDescripcionHistorial.Multiline = true;
+            this.txtDescripcionHistorial.Name = "txtDescripcionHistorial";
+            this.txtDescripcionHistorial.Size = new System.Drawing.Size(321, 41);
+            this.txtDescripcionHistorial.TabIndex = 3;
+            // 
+            // cmbTipoEventoHistorial
+            // 
+            this.cmbTipoEventoHistorial.FormattingEnabled = true;
+            this.cmbTipoEventoHistorial.Location = new System.Drawing.Point(151, 45);
+            this.cmbTipoEventoHistorial.Name = "cmbTipoEventoHistorial";
+            this.cmbTipoEventoHistorial.Size = new System.Drawing.Size(321, 21);
+            this.cmbTipoEventoHistorial.TabIndex = 2;
+            // 
+            // dtpFechaFinHistorial
+            // 
+            this.dtpFechaFinHistorial.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaFinHistorial.Location = new System.Drawing.Point(379, 19);
+            this.dtpFechaFinHistorial.Name = "dtpFechaFinHistorial";
+            this.dtpFechaFinHistorial.Size = new System.Drawing.Size(93, 20);
+            this.dtpFechaFinHistorial.TabIndex = 1;
+            // 
+            // dtpFechaInicioHistorial
+            // 
+            this.dtpFechaInicioHistorial.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaInicioHistorial.Location = new System.Drawing.Point(150, 19);
+            this.dtpFechaInicioHistorial.Name = "dtpFechaInicioHistorial";
+            this.dtpFechaInicioHistorial.Size = new System.Drawing.Size(93, 20);
+            this.dtpFechaInicioHistorial.TabIndex = 0;
+            // 
             // dgvHistorialEmpleado
             // 
             this.dgvHistorialEmpleado.AllowUserToAddRows = false;
@@ -1130,6 +1517,30 @@
             this.dgvHistorialEmpleado.ReadOnly = true;
             this.dgvHistorialEmpleado.Size = new System.Drawing.Size(633, 189);
             this.dgvHistorialEmpleado.TabIndex = 0;
+            // 
+            // FechaInicio
+            // 
+            this.FechaInicio.HeaderText = "Fecha Inicio";
+            this.FechaInicio.Name = "FechaInicio";
+            this.FechaInicio.ReadOnly = true;
+            // 
+            // FechaFin
+            // 
+            this.FechaFin.HeaderText = "Fecha Fin";
+            this.FechaFin.Name = "FechaFin";
+            this.FechaFin.ReadOnly = true;
+            // 
+            // TipoEvento
+            // 
+            this.TipoEvento.HeaderText = "Tipo de Evento";
+            this.TipoEvento.Name = "TipoEvento";
+            this.TipoEvento.ReadOnly = true;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.HeaderText = "Descripcón";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
             // 
             // tabPage1
             // 
@@ -1164,416 +1575,6 @@
             // 
             this.dataGridViewTextBoxColumn4.HeaderText = "Descripcón";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // mtSueldo
-            // 
-            this.mtSueldo.Location = new System.Drawing.Point(62, 65);
-            this.mtSueldo.Name = "mtSueldo";
-            this.mtSueldo.Size = new System.Drawing.Size(111, 20);
-            this.mtSueldo.TabIndex = 2;
-            // 
-            // txtNumeroCuenta
-            // 
-            this.txtNumeroCuenta.Location = new System.Drawing.Point(62, 39);
-            this.txtNumeroCuenta.Name = "txtNumeroCuenta";
-            this.txtNumeroCuenta.Size = new System.Drawing.Size(111, 20);
-            this.txtNumeroCuenta.TabIndex = 1;
-            // 
-            // cmbBanco
-            // 
-            this.cmbBanco.FormattingEnabled = true;
-            this.cmbBanco.Location = new System.Drawing.Point(62, 11);
-            this.cmbBanco.Name = "cmbBanco";
-            this.cmbBanco.Size = new System.Drawing.Size(111, 21);
-            this.cmbBanco.TabIndex = 0;
-            // 
-            // mtCantidadHijos
-            // 
-            this.mtCantidadHijos.Location = new System.Drawing.Point(95, 154);
-            this.mtCantidadHijos.Name = "mtCantidadHijos";
-            this.mtCantidadHijos.Size = new System.Drawing.Size(37, 20);
-            this.mtCantidadHijos.TabIndex = 5;
-            // 
-            // cmbEstadoCivil
-            // 
-            this.cmbEstadoCivil.FormattingEnabled = true;
-            this.cmbEstadoCivil.Location = new System.Drawing.Point(95, 126);
-            this.cmbEstadoCivil.Name = "cmbEstadoCivil";
-            this.cmbEstadoCivil.Size = new System.Drawing.Size(105, 21);
-            this.cmbEstadoCivil.TabIndex = 4;
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(55, 98);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(145, 20);
-            this.txtEmail.TabIndex = 3;
-            // 
-            // txtCelularConvenio
-            // 
-            this.txtCelularConvenio.Location = new System.Drawing.Point(95, 70);
-            this.txtCelularConvenio.Name = "txtCelularConvenio";
-            this.txtCelularConvenio.Size = new System.Drawing.Size(105, 20);
-            this.txtCelularConvenio.TabIndex = 2;
-            // 
-            // txtCelular
-            // 
-            this.txtCelular.Location = new System.Drawing.Point(95, 42);
-            this.txtCelular.Name = "txtCelular";
-            this.txtCelular.Size = new System.Drawing.Size(105, 20);
-            this.txtCelular.TabIndex = 1;
-            // 
-            // txtTelefono
-            // 
-            this.txtTelefono.Location = new System.Drawing.Point(95, 13);
-            this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(105, 20);
-            this.txtTelefono.TabIndex = 0;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(102, 167);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(96, 20);
-            this.dateTimePicker1.TabIndex = 5;
-            // 
-            // dtpFechaIngreso
-            // 
-            this.dtpFechaIngreso.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaIngreso.Location = new System.Drawing.Point(102, 227);
-            this.dtpFechaIngreso.Name = "dtpFechaIngreso";
-            this.dtpFechaIngreso.Size = new System.Drawing.Size(96, 20);
-            this.dtpFechaIngreso.TabIndex = 7;
-            // 
-            // dtpFechaNacimiento
-            // 
-            this.dtpFechaNacimiento.Cursor = System.Windows.Forms.Cursors.Default;
-            this.dtpFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaNacimiento.Location = new System.Drawing.Point(102, 197);
-            this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
-            this.dtpFechaNacimiento.Size = new System.Drawing.Size(96, 20);
-            this.dtpFechaNacimiento.TabIndex = 6;
-            // 
-            // txtNacionalidad
-            // 
-            this.txtNacionalidad.Location = new System.Drawing.Point(98, 98);
-            this.txtNacionalidad.Name = "txtNacionalidad";
-            this.txtNacionalidad.Size = new System.Drawing.Size(115, 20);
-            this.txtNacionalidad.TabIndex = 3;
-            // 
-            // txtLugarNacimiento
-            // 
-            this.txtLugarNacimiento.Location = new System.Drawing.Point(98, 70);
-            this.txtLugarNacimiento.Name = "txtLugarNacimiento";
-            this.txtLugarNacimiento.Size = new System.Drawing.Size(115, 20);
-            this.txtLugarNacimiento.TabIndex = 2;
-            // 
-            // mtNumeroDocumento
-            // 
-            this.mtNumeroDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtNumeroDocumento.Location = new System.Drawing.Point(98, 42);
-            this.mtNumeroDocumento.Name = "mtNumeroDocumento";
-            this.mtNumeroDocumento.Size = new System.Drawing.Size(115, 21);
-            this.mtNumeroDocumento.TabIndex = 1;
-            // 
-            // cmbTipoDocumento
-            // 
-            this.cmbTipoDocumento.FormattingEnabled = true;
-            this.cmbTipoDocumento.Location = new System.Drawing.Point(98, 13);
-            this.cmbTipoDocumento.Name = "cmbTipoDocumento";
-            this.cmbTipoDocumento.Size = new System.Drawing.Size(105, 21);
-            this.cmbTipoDocumento.TabIndex = 0;
-            // 
-            // txtApellido
-            // 
-            this.txtApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellido.Location = new System.Drawing.Point(268, 41);
-            this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(157, 21);
-            this.txtApellido.TabIndex = 13;
-            // 
-            // txtNombre
-            // 
-            this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(57, 41);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(151, 21);
-            this.txtNombre.TabIndex = 12;
-            // 
-            // mtNumeroEmpleado
-            // 
-            this.mtNumeroEmpleado.BackColor = System.Drawing.Color.White;
-            this.mtNumeroEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtNumeroEmpleado.Location = new System.Drawing.Point(57, 12);
-            this.mtNumeroEmpleado.Mask = "9990";
-            this.mtNumeroEmpleado.Name = "mtNumeroEmpleado";
-            this.mtNumeroEmpleado.Size = new System.Drawing.Size(44, 21);
-            this.mtNumeroEmpleado.TabIndex = 0;
-            this.mtNumeroEmpleado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtNumeroEmpleado_KeyDown);
-            // 
-            // txtMotivoBaja
-            // 
-            this.txtMotivoBaja.Location = new System.Drawing.Point(77, 41);
-            this.txtMotivoBaja.Name = "txtMotivoBaja";
-            this.txtMotivoBaja.Size = new System.Drawing.Size(316, 20);
-            this.txtMotivoBaja.TabIndex = 2;
-            // 
-            // dtpFechaBaja
-            // 
-            this.dtpFechaBaja.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaBaja.Location = new System.Drawing.Point(272, 17);
-            this.dtpFechaBaja.Name = "dtpFechaBaja";
-            this.dtpFechaBaja.Size = new System.Drawing.Size(86, 20);
-            this.dtpFechaBaja.TabIndex = 1;
-            // 
-            // txtPolicialSubEscalafon
-            // 
-            this.txtPolicialSubEscalafon.Location = new System.Drawing.Point(90, 105);
-            this.txtPolicialSubEscalafon.Name = "txtPolicialSubEscalafon";
-            this.txtPolicialSubEscalafon.Size = new System.Drawing.Size(134, 20);
-            this.txtPolicialSubEscalafon.TabIndex = 3;
-            this.txtPolicialSubEscalafon.Visible = false;
-            // 
-            // dtpFechaEgresoPolicialMilitar
-            // 
-            this.dtpFechaEgresoPolicialMilitar.Enabled = false;
-            this.dtpFechaEgresoPolicialMilitar.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaEgresoPolicialMilitar.Location = new System.Drawing.Point(90, 76);
-            this.dtpFechaEgresoPolicialMilitar.Name = "dtpFechaEgresoPolicialMilitar";
-            this.dtpFechaEgresoPolicialMilitar.Size = new System.Drawing.Size(90, 20);
-            this.dtpFechaEgresoPolicialMilitar.TabIndex = 2;
-            // 
-            // dtpFechaIngresoPolicialMilitar
-            // 
-            this.dtpFechaIngresoPolicialMilitar.Enabled = false;
-            this.dtpFechaIngresoPolicialMilitar.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaIngresoPolicialMilitar.Location = new System.Drawing.Point(90, 49);
-            this.dtpFechaIngresoPolicialMilitar.Name = "dtpFechaIngresoPolicialMilitar";
-            this.dtpFechaIngresoPolicialMilitar.Size = new System.Drawing.Size(90, 20);
-            this.dtpFechaIngresoPolicialMilitar.TabIndex = 1;
-            // 
-            // cmbPolicialMilitar
-            // 
-            this.cmbPolicialMilitar.Enabled = false;
-            this.cmbPolicialMilitar.FormattingEnabled = true;
-            this.cmbPolicialMilitar.Location = new System.Drawing.Point(118, 19);
-            this.cmbPolicialMilitar.Name = "cmbPolicialMilitar";
-            this.cmbPolicialMilitar.Size = new System.Drawing.Size(106, 21);
-            this.cmbPolicialMilitar.TabIndex = 0;
-            // 
-            // mtTalleCampera
-            // 
-            this.mtTalleCampera.Location = new System.Drawing.Point(83, 96);
-            this.mtTalleCampera.Name = "mtTalleCampera";
-            this.mtTalleCampera.Size = new System.Drawing.Size(54, 20);
-            this.mtTalleCampera.TabIndex = 3;
-            // 
-            // mtTalleZapatos
-            // 
-            this.mtTalleZapatos.Location = new System.Drawing.Point(83, 71);
-            this.mtTalleZapatos.Name = "mtTalleZapatos";
-            this.mtTalleZapatos.Size = new System.Drawing.Size(54, 20);
-            this.mtTalleZapatos.TabIndex = 2;
-            // 
-            // mtTallePantalon
-            // 
-            this.mtTallePantalon.Location = new System.Drawing.Point(83, 45);
-            this.mtTallePantalon.Name = "mtTallePantalon";
-            this.mtTallePantalon.Size = new System.Drawing.Size(54, 20);
-            this.mtTallePantalon.TabIndex = 1;
-            // 
-            // mtTalleCamisa
-            // 
-            this.mtTalleCamisa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.mtTalleCamisa.Location = new System.Drawing.Point(83, 20);
-            this.mtTalleCamisa.Name = "mtTalleCamisa";
-            this.mtTalleCamisa.Size = new System.Drawing.Size(54, 20);
-            this.mtTalleCamisa.TabIndex = 0;
-            // 
-            // txtPuntoEncuentro
-            // 
-            this.txtPuntoEncuentro.Location = new System.Drawing.Point(109, 145);
-            this.txtPuntoEncuentro.Name = "txtPuntoEncuentro";
-            this.txtPuntoEncuentro.Size = new System.Drawing.Size(173, 20);
-            this.txtPuntoEncuentro.TabIndex = 5;
-            // 
-            // txtEntreCalles
-            // 
-            this.txtEntreCalles.Location = new System.Drawing.Point(109, 120);
-            this.txtEntreCalles.Name = "txtEntreCalles";
-            this.txtEntreCalles.Size = new System.Drawing.Size(173, 20);
-            this.txtEntreCalles.TabIndex = 4;
-            // 
-            // txtBarrio
-            // 
-            this.txtBarrio.Location = new System.Drawing.Point(109, 68);
-            this.txtBarrio.Name = "txtBarrio";
-            this.txtBarrio.Size = new System.Drawing.Size(121, 20);
-            this.txtBarrio.TabIndex = 2;
-            // 
-            // txtDireccion
-            // 
-            this.txtDireccion.Location = new System.Drawing.Point(109, 94);
-            this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(173, 20);
-            this.txtDireccion.TabIndex = 3;
-            // 
-            // txtCiudad
-            // 
-            this.txtCiudad.Location = new System.Drawing.Point(109, 42);
-            this.txtCiudad.Name = "txtCiudad";
-            this.txtCiudad.Size = new System.Drawing.Size(121, 20);
-            this.txtCiudad.TabIndex = 1;
-            // 
-            // cmbDepartamento
-            // 
-            this.cmbDepartamento.FormattingEnabled = true;
-            this.cmbDepartamento.Location = new System.Drawing.Point(109, 15);
-            this.cmbDepartamento.Name = "cmbDepartamento";
-            this.cmbDepartamento.Size = new System.Drawing.Size(121, 21);
-            this.cmbDepartamento.TabIndex = 0;
-            // 
-            // mtNumAsuntoRenaemse
-            // 
-            this.mtNumAsuntoRenaemse.Location = new System.Drawing.Point(61, 15);
-            this.mtNumAsuntoRenaemse.Name = "mtNumAsuntoRenaemse";
-            this.mtNumAsuntoRenaemse.Size = new System.Drawing.Size(85, 20);
-            this.mtNumAsuntoRenaemse.TabIndex = 0;
-            // 
-            // dtpFechaIngresoRenaemse
-            // 
-            this.dtpFechaIngresoRenaemse.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaIngresoRenaemse.Location = new System.Drawing.Point(240, 15);
-            this.dtpFechaIngresoRenaemse.Name = "dtpFechaIngresoRenaemse";
-            this.dtpFechaIngresoRenaemse.Size = new System.Drawing.Size(90, 20);
-            this.dtpFechaIngresoRenaemse.TabIndex = 1;
-            // 
-            // mtAcumulacionBPS
-            // 
-            this.mtAcumulacionBPS.Location = new System.Drawing.Point(117, 15);
-            this.mtAcumulacionBPS.Name = "mtAcumulacionBPS";
-            this.mtAcumulacionBPS.Size = new System.Drawing.Size(49, 20);
-            this.mtAcumulacionBPS.TabIndex = 0;
-            // 
-            // dtpFechaAltaBPS
-            // 
-            this.dtpFechaAltaBPS.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaAltaBPS.Location = new System.Drawing.Point(239, 14);
-            this.dtpFechaAltaBPS.Name = "dtpFechaAltaBPS";
-            this.dtpFechaAltaBPS.Size = new System.Drawing.Size(92, 20);
-            this.dtpFechaAltaBPS.TabIndex = 1;
-            // 
-            // dtpFechaBajaBPS
-            // 
-            this.dtpFechaBajaBPS.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaBajaBPS.Location = new System.Drawing.Point(239, 41);
-            this.dtpFechaBajaBPS.Name = "dtpFechaBajaBPS";
-            this.dtpFechaBajaBPS.Size = new System.Drawing.Size(92, 20);
-            this.dtpFechaBajaBPS.TabIndex = 2;
-            // 
-            // dtpFechaEntregaCAJ
-            // 
-            this.dtpFechaEntregaCAJ.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaEntregaCAJ.Location = new System.Drawing.Point(239, 37);
-            this.dtpFechaEntregaCAJ.Name = "dtpFechaEntregaCAJ";
-            this.dtpFechaEntregaCAJ.Size = new System.Drawing.Size(93, 20);
-            this.dtpFechaEntregaCAJ.TabIndex = 2;
-            // 
-            // dtpFechaEmisionCAJ
-            // 
-            this.dtpFechaEmisionCAJ.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaEmisionCAJ.Location = new System.Drawing.Point(239, 11);
-            this.dtpFechaEmisionCAJ.Name = "dtpFechaEmisionCAJ";
-            this.dtpFechaEmisionCAJ.Size = new System.Drawing.Size(92, 20);
-            this.dtpFechaEmisionCAJ.TabIndex = 1;
-            // 
-            // mtNumeroCAJ
-            // 
-            this.mtNumeroCAJ.Location = new System.Drawing.Point(55, 12);
-            this.mtNumeroCAJ.Name = "mtNumeroCAJ";
-            this.mtNumeroCAJ.Size = new System.Drawing.Size(78, 20);
-            this.mtNumeroCAJ.TabIndex = 0;
-            // 
-            // ctpVencimientoCarneSalud
-            // 
-            this.ctpVencimientoCarneSalud.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.ctpVencimientoCarneSalud.Location = new System.Drawing.Point(147, 24);
-            this.ctpVencimientoCarneSalud.Name = "ctpVencimientoCarneSalud";
-            this.ctpVencimientoCarneSalud.Size = new System.Drawing.Size(93, 20);
-            this.ctpVencimientoCarneSalud.TabIndex = 0;
-            // 
-            // cmbMutualista
-            // 
-            this.cmbMutualista.FormattingEnabled = true;
-            this.cmbMutualista.Location = new System.Drawing.Point(111, 50);
-            this.cmbMutualista.Name = "cmbMutualista";
-            this.cmbMutualista.Size = new System.Drawing.Size(129, 21);
-            this.cmbMutualista.TabIndex = 1;
-            // 
-            // cmbEmergenciaMedica
-            // 
-            this.cmbEmergenciaMedica.FormattingEnabled = true;
-            this.cmbEmergenciaMedica.Location = new System.Drawing.Point(111, 77);
-            this.cmbEmergenciaMedica.Name = "cmbEmergenciaMedica";
-            this.cmbEmergenciaMedica.Size = new System.Drawing.Size(129, 21);
-            this.cmbEmergenciaMedica.TabIndex = 2;
-            // 
-            // txtDescripcionHistorial
-            // 
-            this.txtDescripcionHistorial.Location = new System.Drawing.Point(151, 72);
-            this.txtDescripcionHistorial.Multiline = true;
-            this.txtDescripcionHistorial.Name = "txtDescripcionHistorial";
-            this.txtDescripcionHistorial.Size = new System.Drawing.Size(321, 41);
-            this.txtDescripcionHistorial.TabIndex = 3;
-            // 
-            // cmbTipoEventoHistorial
-            // 
-            this.cmbTipoEventoHistorial.FormattingEnabled = true;
-            this.cmbTipoEventoHistorial.Location = new System.Drawing.Point(151, 45);
-            this.cmbTipoEventoHistorial.Name = "cmbTipoEventoHistorial";
-            this.cmbTipoEventoHistorial.Size = new System.Drawing.Size(321, 21);
-            this.cmbTipoEventoHistorial.TabIndex = 2;
-            // 
-            // dtpFechaFinHistorial
-            // 
-            this.dtpFechaFinHistorial.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaFinHistorial.Location = new System.Drawing.Point(379, 19);
-            this.dtpFechaFinHistorial.Name = "dtpFechaFinHistorial";
-            this.dtpFechaFinHistorial.Size = new System.Drawing.Size(93, 20);
-            this.dtpFechaFinHistorial.TabIndex = 1;
-            // 
-            // dtpFechaInicioHistorial
-            // 
-            this.dtpFechaInicioHistorial.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaInicioHistorial.Location = new System.Drawing.Point(150, 19);
-            this.dtpFechaInicioHistorial.Name = "dtpFechaInicioHistorial";
-            this.dtpFechaInicioHistorial.Size = new System.Drawing.Size(93, 20);
-            this.dtpFechaInicioHistorial.TabIndex = 0;
-            // 
-            // FechaInicio
-            // 
-            this.FechaInicio.HeaderText = "Fecha Inicio";
-            this.FechaInicio.Name = "FechaInicio";
-            this.FechaInicio.ReadOnly = true;
-            // 
-            // FechaFin
-            // 
-            this.FechaFin.HeaderText = "Fecha Fin";
-            this.FechaFin.Name = "FechaFin";
-            this.FechaFin.ReadOnly = true;
-            // 
-            // TipoEvento
-            // 
-            this.TipoEvento.HeaderText = "Tipo de Evento";
-            this.TipoEvento.Name = "TipoEvento";
-            this.TipoEvento.ReadOnly = true;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripcón";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
             // 
             // ABMEmpleados
             // 
