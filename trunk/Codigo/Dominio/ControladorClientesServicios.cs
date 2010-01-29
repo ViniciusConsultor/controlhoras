@@ -172,6 +172,29 @@ namespace Logica
             }
         }
 
-        
+
+
+        public List<Cliente> buscarCliente(string Nombre)
+        {
+            try
+            {
+                Cliente cli = null;
+                List<Cliente> clientes = new List<Cliente>();
+                List<ClientEs> clies = datos.buscarClientes(Nombre);
+                foreach (ClientEs c in clies)
+                {
+                    cli = convertClienteDatosToClienteLogica(c);
+                    clientes.Add(cli);                        
+                }
+                return clientes;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            
+        }
+
+
     }
 }

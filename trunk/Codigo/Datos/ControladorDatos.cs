@@ -304,7 +304,24 @@ namespace Datos
                 throw ex;
             }
         }
+        
+        public List<ClientEs> buscarClientes(string Nombre)
+        {
+            try
+            {
+                List<ClientEs> clies = (from varcli in database.GetTable<ClientEs>()
+                                        where varcli.Nombre.Contains(Nombre)
+                                        select varcli).ToList<ClientEs>();
+                return clies;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
 
-       
+            }
+ 
+        }
+
+        
     }
 }

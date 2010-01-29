@@ -32,6 +32,8 @@ namespace Logica
         
         #endregion
 
-        
+
+
+        List<Cliente> buscarCliente(string Nombre);
     }
 }

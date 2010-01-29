@@ -39,64 +39,66 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.210526F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(34, 12);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(45, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(164, 13);
+            this.label1.Size = new System.Drawing.Size(210, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Ingrese nro. de funcionario:";
             // 
             // mtFunc
             // 
             this.mtFunc.AllowPromptAsInput = false;
-            this.mtFunc.Location = new System.Drawing.Point(30, 35);
+            this.mtFunc.Location = new System.Drawing.Point(40, 43);
+            this.mtFunc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mtFunc.Mask = "9990";
             this.mtFunc.Name = "mtFunc";
-            this.mtFunc.Size = new System.Drawing.Size(37, 20);
+            this.mtFunc.Size = new System.Drawing.Size(48, 22);
             this.mtFunc.TabIndex = 0;
             // 
             // txtFunc
             // 
             this.txtFunc.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtFunc.Location = new System.Drawing.Point(73, 35);
+            this.txtFunc.Location = new System.Drawing.Point(97, 43);
+            this.txtFunc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtFunc.Name = "txtFunc";
             this.txtFunc.ReadOnly = true;
-            this.txtFunc.Size = new System.Drawing.Size(301, 20);
+            this.txtFunc.Size = new System.Drawing.Size(400, 22);
             this.txtFunc.TabIndex = 13;
             // 
             // OKBTN
             // 
             this.OKBTN.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.OKBTN.Location = new System.Drawing.Point(116, 72);
-            this.OKBTN.Margin = new System.Windows.Forms.Padding(2);
+            this.OKBTN.Location = new System.Drawing.Point(155, 89);
+            this.OKBTN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.OKBTN.Name = "OKBTN";
-            this.OKBTN.Size = new System.Drawing.Size(75, 23);
+            this.OKBTN.Size = new System.Drawing.Size(100, 28);
             this.OKBTN.TabIndex = 1;
             this.OKBTN.Text = "Aceptar";
-            this.OKBTN.UseVisualStyleBackColor = true;
+            this.OKBTN.UseVisualStyleBackColor = true;            
             // 
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(214, 72);
+            this.btnCancelar.Location = new System.Drawing.Point(285, 89);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.Size = new System.Drawing.Size(100, 28);
             this.btnCancelar.TabIndex = 16;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
             // Selección_de_Recurso
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(405, 116);
+            this.ClientSize = new System.Drawing.Size(540, 143);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.OKBTN);
             this.Controls.Add(this.txtFunc);
             this.Controls.Add(this.mtFunc);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Selección_de_Recurso";
             this.Text = "Selección de Recurso";
             this.ResumeLayout(false);
