@@ -21,10 +21,7 @@ namespace ControlHoras
             InitializeComponent();
             controller = Controlador.getControlador();
             mtFunc.Focus();
-        }
-
-  
-
-       
+        }       
     }
 }
+

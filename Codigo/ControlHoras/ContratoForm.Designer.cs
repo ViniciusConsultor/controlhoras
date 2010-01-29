@@ -34,9 +34,6 @@
             this.FfinDTP = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.CargaHorariaDGV = new System.Windows.Forms.DataGridView();
-            this.Puesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Armado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.CostoCB = new System.Windows.Forms.ComboBox();
@@ -49,6 +46,10 @@
             this.AjusteTB = new ControlHoras.TextBoxKeyDown();
             this.textBoxKeyDown2 = new ControlHoras.TextBoxKeyDown();
             this.label7 = new System.Windows.Forms.Label();
+            this.Puesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Armado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioXHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.CargaHorariaDGV)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,33 +101,13 @@
             this.CargaHorariaDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Puesto,
             this.Armado,
-            this.Cantidad});
+            this.Cantidad,
+            this.PrecioXHora});
             this.CargaHorariaDGV.Location = new System.Drawing.Point(15, 103);
             this.CargaHorariaDGV.Name = "CargaHorariaDGV";
             this.CargaHorariaDGV.RowTemplate.Height = 24;
             this.CargaHorariaDGV.Size = new System.Drawing.Size(1067, 194);
             this.CargaHorariaDGV.TabIndex = 8;
-            // 
-            // Puesto
-            // 
-            this.Puesto.HeaderText = "Puesto";
-            this.Puesto.Name = "Puesto";
-            this.Puesto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Armado
-            // 
-            this.Armado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Armado.HeaderText = "Armado";
-            this.Armado.Name = "Armado";
-            this.Armado.Width = 63;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Cantidad.Width = 70;
             // 
             // label2
             // 
@@ -230,6 +211,35 @@
             this.label7.TabIndex = 18;
             this.label7.Text = "Observaciones:";
             // 
+            // Puesto
+            // 
+            this.Puesto.HeaderText = "Puesto";
+            this.Puesto.Name = "Puesto";
+            this.Puesto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Armado
+            // 
+            this.Armado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Armado.HeaderText = "Armado";
+            this.Armado.Name = "Armado";
+            this.Armado.Width = 63;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Cantidad.Width = 70;
+            // 
+            // PrecioXHora
+            // 
+            this.PrecioXHora.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.PrecioXHora.HeaderText = "Precio X Hora";
+            this.PrecioXHora.Name = "PrecioXHora";
+            this.PrecioXHora.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.PrecioXHora.Width = 102;
+            // 
             // ContratoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -268,9 +278,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView CargaHorariaDGV;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Puesto;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Armado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.Label label3;
@@ -282,5 +289,9 @@
         private TextBoxKeyDown AjusteTB;
         private TextBoxKeyDown textBoxKeyDown2;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Puesto;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Armado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioXHora;
     }
 }

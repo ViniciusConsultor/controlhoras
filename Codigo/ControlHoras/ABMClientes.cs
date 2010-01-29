@@ -107,7 +107,7 @@ namespace ControlHoras
         {
             if (mtCliente.MaskCompleted && txtNombre.Text != "" && txtTelefonos.Text != "")
             {
-                if (cbNoActivo.Checked && txtMotivoBaja.Text != "")
+                if (!cbNoActivo.Checked || txtMotivoBaja.Text != "")
                     return true;
             }
             return false;

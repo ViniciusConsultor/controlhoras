@@ -19,5 +19,7 @@ namespace Datos
         List<SERVicIoS> obtenerServiciosCliente(int numCliente);
 
         void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas);
+
+        List<ClientEs> buscarClientes(string Nombre);
     }
 }

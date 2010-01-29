@@ -64,10 +64,19 @@ namespace ControlHoras
 
                 cliPronto(sender, e); //Acá disparamos el evento para que sea atrapado por el WinForm que contiente este CONTROL DE USUARIO
             }
-            if (e.KeyCode == Keys.F2)
-            {
-                // Abrir ventana de busqueda de clientes
-            }
+            else
+                if (e.KeyCode == Keys.F2)
+                {
+                    Search_Clientes sear = new Search_Clientes();
+                    DialogResult res = sear.ShowDialog(this);
+
+                    if (res == DialogResult.OK)
+                    {
+                        ClienteMT.Text = sear.NumCliente;
+                        ClienteMT.Focus();
+                        SendKeys.Send("{ENTER}");
+                    }
+                }
         }
         
 
