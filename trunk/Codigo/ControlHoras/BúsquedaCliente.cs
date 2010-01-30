@@ -14,11 +14,9 @@ namespace ControlHoras
     {
         //Controlador controller;
         IClientesServicios sistema;// = ControladorClientesServicios.getInstance();
-
-       
-
-
+        
         public event EventHandler cliPronto;
+        public bool find;
 
         public string ClienteNRO
         {
@@ -31,17 +29,14 @@ namespace ControlHoras
             {
                 ClienteMT.Text = value;
             }
-        }
-        
-        
-
- 
+        } 
 
         public BúsquedaCliente()
         {
             InitializeComponent();
-            //controller = Controlador.getControlador();
+            
             sistema = ControladorClientesServicios.getInstance();
+            find = false;
         }
 
         private void ClienteMT_Enter(object sender, EventArgs e)
@@ -61,13 +56,21 @@ namespace ControlHoras
                 try
                 {
                     Cliente cli = sistema.obtenerCliente(int.Parse(ClienteMT.Text));
-                    ClienteTB.Text = cli.getNombre();
+                    ClienteTB.Text = cli.getNombre();                    
                     //SendKeys.Send("{TAB}");
-                    cliPronto(sender, e); //Acá disparamos el evento para que sea atrapado por el WinForm que contiente este CONTROL DE USUARIO
+
+                    find = true;
+                    if (cliPronto != null)
+                        cliPronto(sender, e); //Acá disparamos el evento para que sea atrapado por el WinForm que contiente este CONTROL DE USUARIO
                 }
                 catch (Exception ex)
-                {                   
+                {
+                    ClienteTB.Text = "";
                     MessageBox.Show(this, ex.Message, "Error al buscar el cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    find = false;
+                    if (cliPronto != null)
+                        cliPronto(sender, e);
                 }
             }
             else
@@ -84,7 +87,33 @@ namespace ControlHoras
                     }
                 }
         }
-        
+
+        #region Componentes de clipronto
+
+        public class cliprontoEventArgs : EventArgs // Esta clase debe estar accesible al controlador que atienda clipronto
+        {
+            private bool find;
+
+            public bool findCli
+            {
+                get { return this.find; }
+            }
+
+            public cliprontoEventArgs(bool f)
+            {
+                find = f;
+            }
+
+        }
+
+        public delegate void cliprontoEventHandler(object sender, cliprontoEventArgs ev);
+
+           
+
+
+        #endregion
+
+
 
 
     }

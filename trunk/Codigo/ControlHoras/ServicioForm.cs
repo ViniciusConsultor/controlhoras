@@ -59,43 +59,52 @@ namespace ControlHoras
 
         
         private void bcUC_cliPronto(object sender, EventArgs e)
-        {        
+        {
+            AgregarBTN.Enabled = false;
+            GuardarBTN.Enabled = false;
+            ContactTB.Enabled = false;
+
             AnteriorBTN.Visible = false;
             PosteriorBTN.Visible = false;
-            ind = 0;
-            
-            ServicioGB.Enabled = true;
-            NroMTB.Focus();
+            LimpiarPlanilla();
+            ServicioGB.Enabled = false;
 
-            
-            int numCli = int.Parse(bcUC.ClienteNRO);
-            Cliente cli = sistema.obtenerCliente(numCli);
-            List<Servicio> servicios = cli.getListaServicios();
-            if (servicios.Count != 0)
+            ind = 0;             
+
+            if (bcUC.find)
             {
-                cant = servicios.Count;
-                numerosSer = new int[cant];
-                int i = 0;
-                foreach (Servicio ser in servicios)
-                {
-                    numerosSer[i] = ser.getNumero();
-                    i++;
-                }
-
-                llenarForm(numCli, numerosSer[ind]);
-
-                AgregarBTN.Enabled = false;
-                GuardarBTN.Enabled = true;
-
+                ServicioGB.Enabled = true;
                 NroMTB.Focus();
-                NroMTB.SelectAll();
 
-                if (cant > 1)
+                int numCli = int.Parse(bcUC.ClienteNRO);
+                Cliente cli = sistema.obtenerCliente(numCli);
+                List<Servicio> servicios = cli.getListaServicios();
+                if (servicios.Count != 0)
                 {
-                    AnteriorBTN.Visible = true;
-                    PosteriorBTN.Visible = true;                    
+                    cant = servicios.Count;
+                    numerosSer = new int[cant];
+                    int i = 0;
+                    foreach (Servicio ser in servicios)
+                    {
+                        numerosSer[i] = ser.getNumero();
+                        i++;
+                    }
+
+                    llenarForm(numCli, numerosSer[ind]);
+
+                    AgregarBTN.Enabled = false;
+                    GuardarBTN.Enabled = true;
+
+                    NroMTB.Focus();
+                    NroMTB.SelectAll();
+
+                    if (cant > 1)
+                    {
+                        AnteriorBTN.Visible = true;
+                        PosteriorBTN.Visible = true;
+                    }
                 }
-            }
+            }            
         }
 
         private void llenarForm(int numCli, int numSer)
