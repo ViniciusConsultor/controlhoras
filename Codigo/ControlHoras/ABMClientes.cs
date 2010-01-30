@@ -152,8 +152,16 @@ namespace ControlHoras
                     if (sistema.existeCliente(int.Parse(mtCliente.Text)))
                     {
                         cliente = sistema.obtenerCliente(int.Parse(mtCliente.Text));
-                      cargarCliente(cliente);
+                        cargarCliente(cliente);
                     }
+                    else
+                    {
+                        string idcliente = mtCliente.Text;
+                        btnCancelar.PerformClick();
+                        mtCliente.Text = idcliente;
+                        //SendKeys.Send("ENTER");
+                    }
+
                 }
                 catch (Exception ex)
                 {
