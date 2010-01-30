@@ -6,7 +6,7 @@ Definiciones:
 */
 use trustdb;
 
--- Clientes/*
+-- Clientes
 CREATE TABLE `Clientes` (                                          
   `NumeroCliente` mediumint unsigned NOT NULL,                                             
   `Nombre` varchar(100) NOT NULL,                                               
@@ -96,8 +96,7 @@ CREATE TABLE TiposDocumento (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-
-*/
+
 -- Empleados
 
 CREATE TABLE Empleados (
@@ -191,3 +190,83 @@ CREATE TABLE EventosHistorialEmpleado (
 --	CONSTRAINT fk_IdEmpleado_Empleados_IdEmpleado FOREIGN KEY (IdEmpleado) REFERENCES Empleados(IdEmpleado)
 --	CONSTRAINT fk_IdTipoEvento_TiposEvento_IdTipoEvento FOREIGN KEY (IdTipoEvento) REFERENCES TiposEvento(IdTipoEvento)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE  TABLE IF NOT EXISTS `trustdb`.`tipocontratos` (
+  `Id` INT(11) NOT NULL ,
+  `Descripcion` VARCHAR(50) NOT NULL ,
+  PRIMARY KEY (`Id`) ,
+  UNIQUE INDEX `Descripcion_UNIQUE` (`Descripcion` ASC) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+CREATE  TABLE IF NOT EXISTS `trustdb`.`contratos` (
+  `idContratos` MEDIUMINT(8) UNSIGNED NOT NULL ,
+  `FechaIni` DATE NULL DEFAULT NULL ,
+  `FechaFin` DATE NULL DEFAULT NULL ,
+  `Ajuste` VARCHAR(255) NULL DEFAULT NULL ,
+  `Observaciones` VARCHAR(255) NULL DEFAULT NULL ,
+  `Costo_Fijo?` TINYINT(1) NOT NULL ,
+  `Costo` FLOAT NULL DEFAULT NULL ,
+  `TipodeContrato` INT(11) NOT NULL ,
+  `HorasExtras` TINYINT(1) NOT NULL ,
+  `TotHorasNormales` MEDIUMINT(9) NULL DEFAULT NULL ,
+  `TotHorasExtras` MEDIUMINT(9) NULL DEFAULT NULL ,
+  `TotVigilantes` MEDIUMINT(9) NULL DEFAULT NULL ,
+  `Puntual` TINYINT(1) NULL DEFAULT NULL ,
+  `PlanillaTrust` TINYINT(1) NULL DEFAULT NULL ,
+  `DescPerfil` VARCHAR(255) NULL DEFAULT NULL ,
+  PRIMARY KEY (`idContratos`) ,
+  INDEX `Id` (`TipodeContrato` ASC) ,
+  CONSTRAINT `Id`
+    FOREIGN KEY (`TipodeContrato` )
+    REFERENCES `trustdb`.`tipocontratos` (`Id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+CREATE  TABLE IF NOT EXISTS `trustdb`.`lineashoras` (
+  `IdContrato` MEDIUMINT(8) UNSIGNED NOT NULL ,
+  `NroLinea` TINYINT(2) NOT NULL ,
+  `Puesto` VARCHAR(50) NULL DEFAULT NULL ,
+  `Armado?` TINYINT(1) NOT NULL ,
+  `Cantidad` TINYINT(3) NOT NULL ,
+  `CantHsNormales` TINYINT(3) NULL DEFAULT NULL ,
+  `CantHsExtras` TINYINT(3) NULL DEFAULT NULL ,
+  `PrecioXHora` FLOAT NULL DEFAULT NULL ,
+  PRIMARY KEY (`NroLinea`, `IdContrato`) ,
+  INDEX `C_LC` (`IdContrato` ASC) ,
+  CONSTRAINT `C_LC`
+    FOREIGN KEY (`IdContrato` )
+    REFERENCES `trustdb`.`contratos` (`idContratos` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+CREATE  TABLE IF NOT EXISTS `trustdb`.`horariodia` (
+  `IdContrato` MEDIUMINT(8) UNSIGNED NOT NULL ,
+  `NroLinea` TINYINT(2) NOT NULL ,
+  `Dia` VARCHAR(10) NOT NULL ,
+  `HoraIni` VARCHAR(10) NOT NULL ,
+  `HoraFin` VARCHAR(10) NOT NULL ,
+  PRIMARY KEY (`IdContrato`, `NroLinea`, `Dia`) ,
+  INDEX `LineasHoras_HD` (`NroLinea` ASC) ,
+  INDEX `Contrato_HD` (`IdContrato` ASC) ,
+  CONSTRAINT `LineasHoras_HD`
+    FOREIGN KEY (`NroLinea` )
+    REFERENCES `trustdb`.`lineashoras` (`NroLinea` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `Contrato_HD`
+    FOREIGN KEY (`IdContrato` )
+    REFERENCES `trustdb`.`contratos` (`idContratos` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+
