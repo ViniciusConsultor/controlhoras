@@ -58,6 +58,14 @@ namespace Logica
 
         public void modificarCliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime fecAlta, DateTime fecBaja, string motivo)
         {
+            try
+            {
+                datos.modificarCliente(num, nom, nomFant, rut, email, dir, dirCobro, telefono, fax, activo, fecAlta, fecBaja, motivo);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void bajaCliente(int idcliente)

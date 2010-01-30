@@ -168,9 +168,25 @@ namespace ControlHoras
                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else if (mtCliente.Text == "")
-            {    // Obtengo el ultimo numero de cliente + 1;
+            else
+            {
+                if (e.KeyCode == Keys.F2)
+                {
+                    Search_Clientes sear = new Search_Clientes();
+                    DialogResult res = sear.ShowDialog(this);
+
+                    if (res == DialogResult.OK)
+                    {
+                        mtCliente.Text = sear.NumCliente;
+                        mtCliente.Focus();
+                        SendKeys.Send("{ENTER}");
+                    }
+                }
+                else if (mtCliente.Text == "")
+                {    // Obtengo el ultimo numero de cliente + 1;
+                }
             }
+            
         }
 
 
