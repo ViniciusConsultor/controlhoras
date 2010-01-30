@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             this.dgv = new System.Windows.Forms.DataGridView();
+            this.Puesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Armado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBoxKeyDown3 = new ControlHoras.TextBoxKeyDown();
             this.textBoxKeyDown2 = new ControlHoras.TextBoxKeyDown();
             this.textBoxKeyDown1 = new ControlHoras.TextBoxKeyDown();
             this.maskedTextBoxColumn1 = new ControlHoras.MaskedTextBoxColumn();
-            this.Puesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Armado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CB = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,11 +49,32 @@
             this.Puesto,
             this.Armado,
             this.Cantidad});
-            this.dgv.Location = new System.Drawing.Point(27, 43);
+            this.dgv.Location = new System.Drawing.Point(20, 35);
+            this.dgv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgv.Name = "dgv";
             this.dgv.RowTemplate.Height = 24;
-            this.dgv.Size = new System.Drawing.Size(823, 194);
+            this.dgv.Size = new System.Drawing.Size(617, 158);
             this.dgv.TabIndex = 3;
+            // 
+            // Puesto
+            // 
+            this.Puesto.HeaderText = "Puesto";
+            this.Puesto.Name = "Puesto";
+            // 
+            // Armado
+            // 
+            this.Armado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Armado.HeaderText = "Armado";
+            this.Armado.Name = "Armado";
+            this.Armado.Width = 49;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Cantidad.Width = 55;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -65,30 +87,26 @@
             this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn2.Width = 70;
             // 
             // textBoxKeyDown3
             // 
-            this.textBoxKeyDown3.Location = new System.Drawing.Point(180, 408);
-            this.textBoxKeyDown3.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxKeyDown3.Location = new System.Drawing.Point(135, 332);
             this.textBoxKeyDown3.Name = "textBoxKeyDown3";
-            this.textBoxKeyDown3.Size = new System.Drawing.Size(289, 22);
+            this.textBoxKeyDown3.Size = new System.Drawing.Size(218, 20);
             this.textBoxKeyDown3.TabIndex = 2;
             // 
             // textBoxKeyDown2
             // 
-            this.textBoxKeyDown2.Location = new System.Drawing.Point(180, 364);
-            this.textBoxKeyDown2.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxKeyDown2.Location = new System.Drawing.Point(135, 296);
             this.textBoxKeyDown2.Name = "textBoxKeyDown2";
-            this.textBoxKeyDown2.Size = new System.Drawing.Size(289, 22);
+            this.textBoxKeyDown2.Size = new System.Drawing.Size(218, 20);
             this.textBoxKeyDown2.TabIndex = 1;
             // 
             // textBoxKeyDown1
             // 
-            this.textBoxKeyDown1.Location = new System.Drawing.Point(180, 332);
-            this.textBoxKeyDown1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxKeyDown1.Location = new System.Drawing.Point(135, 270);
             this.textBoxKeyDown1.Name = "textBoxKeyDown1";
-            this.textBoxKeyDown1.Size = new System.Drawing.Size(289, 22);
+            this.textBoxKeyDown1.Size = new System.Drawing.Size(218, 20);
             this.textBoxKeyDown1.TabIndex = 0;
             // 
             // maskedTextBoxColumn1
@@ -101,36 +119,25 @@
             this.maskedTextBoxColumn1.PromptChar = '\0';
             this.maskedTextBoxColumn1.ValidatingType = null;
             // 
-            // Puesto
+            // CB
             // 
-            this.Puesto.HeaderText = "Puesto";
-            this.Puesto.Name = "Puesto";
-            // 
-            // Armado
-            // 
-            this.Armado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Armado.HeaderText = "Armado";
-            this.Armado.Name = "Armado";
-            this.Armado.Width = 63;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Cantidad.Width = 70;
+            this.CB.FormattingEnabled = true;
+            this.CB.Location = new System.Drawing.Point(489, 269);
+            this.CB.Name = "CB";
+            this.CB.Size = new System.Drawing.Size(121, 21);
+            this.CB.TabIndex = 4;
             // 
             // Prueba
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(885, 443);
+            this.ClientSize = new System.Drawing.Size(664, 360);
+            this.Controls.Add(this.CB);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.textBoxKeyDown3);
             this.Controls.Add(this.textBoxKeyDown2);
             this.Controls.Add(this.textBoxKeyDown1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Prueba";
             this.Text = "Prueba";
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
@@ -151,6 +158,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Puesto;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Armado;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.ComboBox CB;
 
 
     }
