@@ -35,5 +35,7 @@ namespace Logica
 
 
         List<Cliente> buscarCliente(string Nombre);
+        
+        bool existeClienteServicio(int NumeroCliente, int NumeroServicio);
     }
 }

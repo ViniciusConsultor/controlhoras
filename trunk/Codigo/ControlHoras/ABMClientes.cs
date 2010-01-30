@@ -125,7 +125,7 @@ namespace ControlHoras
 
         private void btnServicios_Click(object sender, EventArgs e)
         {
-            ServicioForm sf = new ServicioForm();
+            ServicioForm sf = new ServicioForm(mtCliente.Text);
             sf.ShowDialog(this);
         }
 

@@ -58,11 +58,17 @@ namespace ControlHoras
         {
             if (e.KeyCode == Keys.Enter && ClienteMT.MaskCompleted)
             {
-                Cliente cli = sistema.obtenerCliente(int.Parse(ClienteMT.Text));
-                ClienteTB.Text = cli.getNombre();
-                //SendKeys.Send("{TAB}");
-
-                cliPronto(sender, e); //Acá disparamos el evento para que sea atrapado por el WinForm que contiente este CONTROL DE USUARIO
+                try
+                {
+                    Cliente cli = sistema.obtenerCliente(int.Parse(ClienteMT.Text));
+                    ClienteTB.Text = cli.getNombre();
+                    //SendKeys.Send("{TAB}");
+                    cliPronto(sender, e); //Acá disparamos el evento para que sea atrapado por el WinForm que contiente este CONTROL DE USUARIO
+                }
+                catch (Exception ex)
+                {                   
+                    MessageBox.Show(this, ex.Message, "Error al buscar el cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
                 if (e.KeyCode == Keys.F2)
