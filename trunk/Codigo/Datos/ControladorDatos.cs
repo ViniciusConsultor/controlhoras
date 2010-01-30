@@ -64,8 +64,8 @@ namespace Datos
             {
                 Server = "localhost",
                 Port = 3306,
-                UserID = "jgarat",
-                Password = "jgarat",
+                UserID = "root",
+                Password = "desdere",
                 Database = "trustdb",
                 Pooling = true,
                 MinimumPoolSize = 5,
@@ -111,7 +111,7 @@ namespace Datos
                 else
                     cliente.Activo = 0;
 
-                tablaCliente.Attach(cliente);
+                tablaCliente.InsertOnSubmit(cliente);
 
                 database.SubmitChanges();
             }
