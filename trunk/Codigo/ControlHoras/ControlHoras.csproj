@@ -118,6 +118,7 @@
     <Compile Include="ComboBoxKeyDown.Designer.cs">
       <DependentUpon>ComboBoxKeyDown.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComboBoxValue.cs" />
     <Compile Include="ContratoForm.cs">
       <SubType>Form</SubType>
     </Compile>
