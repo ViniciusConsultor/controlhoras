@@ -23,6 +23,8 @@ namespace ControlHoras
             mtbc.Width = 120;
             mtbc.ReadOnly = false;
             this.dgv.Columns.Add(mtbc);
+
+                                    
         }
     }
 }

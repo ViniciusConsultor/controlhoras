@@ -15,12 +15,23 @@ namespace ControlHoras
         {
             InitializeComponent();
 
+            InicializarCargaHorariaDGV();
+            
+            CostoCB.SelectedIndex = 0;
+            
+                        
+
+
+        }
+
+        private void InicializarCargaHorariaDGV()
+        {
             MaskedTextBoxColumn mtbc;
 
             mtbc = new MaskedTextBoxColumn();
             mtbc.HeaderText = "Lunes";
             mtbc.Mask = @"00:00   \a   00:00";
-            mtbc.Width = 113;
+            mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             this.CargaHorariaDGV.Columns.Add(mtbc);
@@ -28,7 +39,7 @@ namespace ControlHoras
             mtbc = new MaskedTextBoxColumn();
             mtbc.HeaderText = "Martes";
             mtbc.Mask = @"00:00   \a   00:00";
-            mtbc.Width = 113;
+            mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             this.CargaHorariaDGV.Columns.Add(mtbc);
@@ -36,7 +47,7 @@ namespace ControlHoras
             mtbc = new MaskedTextBoxColumn();
             mtbc.HeaderText = "Miercoles";
             mtbc.Mask = @"00:00   \a   00:00";
-            mtbc.Width = 113;
+            mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             this.CargaHorariaDGV.Columns.Add(mtbc);
@@ -44,7 +55,7 @@ namespace ControlHoras
             mtbc = new MaskedTextBoxColumn();
             mtbc.HeaderText = "Jueves";
             mtbc.Mask = @"00:00   \a   00:00";
-            mtbc.Width = 113;
+            mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             this.CargaHorariaDGV.Columns.Add(mtbc);
@@ -52,7 +63,7 @@ namespace ControlHoras
             mtbc = new MaskedTextBoxColumn();
             mtbc.HeaderText = "Viernes";
             mtbc.Mask = @"00:00   \a   00:00";
-            mtbc.Width = 113;
+            mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             this.CargaHorariaDGV.Columns.Add(mtbc);
@@ -60,7 +71,7 @@ namespace ControlHoras
             mtbc = new MaskedTextBoxColumn();
             mtbc.HeaderText = "Sabado";
             mtbc.Mask = @"00:00   \a   00:00";
-            mtbc.Width = 113;
+            mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             this.CargaHorariaDGV.Columns.Add(mtbc);
@@ -68,14 +79,18 @@ namespace ControlHoras
             mtbc = new MaskedTextBoxColumn();
             mtbc.HeaderText = "Domingo";
             mtbc.Mask = @"00:00   \a   00:00";
-            mtbc.Width = 113;
+            mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             this.CargaHorariaDGV.Columns.Add(mtbc);
+        }
 
-            CostoCB.SelectedIndex = 0;
-
-
+        private void CostoCB_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (CostoCB.SelectedItem.ToString() == "fijo")
+                MontoTB.ReadOnly = false;
+            else
+                MontoTB.ReadOnly = true;
         }
               
     }
