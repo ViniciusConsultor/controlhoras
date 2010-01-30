@@ -325,6 +325,30 @@ namespace Datos
  
         }
 
+
+
+     
+
+        public bool existeClienteServicio(int NumeroCliente, int NumeroServicio)
+        {
+            try
+            {                
+                var ser = (from serreg in database.GetTable<SERVicIoS>()
+                           where serreg.NumeroCliente == NumeroCliente
+                           && serreg.NumeroServicio == NumeroServicio
+                           select serreg);
+                if ( ser.Count<SERVicIoS>() == 0)
+                    return false;               
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                // MySQLException = Access Denied  Codigo = 1045
+            }
+        }
+
         
     }
 }

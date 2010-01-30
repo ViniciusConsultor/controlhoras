@@ -196,5 +196,22 @@ namespace Logica
         }
 
 
+
+        
+
+
+        public bool existeClienteServicio(int NumeroCliente, int NumeroServicio)
+        {
+            try
+            {
+                return datos.existeClienteServicio(NumeroCliente, NumeroServicio);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        
     }
 }
