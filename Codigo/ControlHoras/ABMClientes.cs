@@ -66,7 +66,15 @@ namespace ControlHoras
                 try
                 {
                     sistema.altaCliente(int.Parse(mtCliente.Text), txtNombre.Text, txtNombreFantasia.Text, mtRUT.Text,txtEmail.Text,txtDireccion.Text,txtDireccionCobro.Text,txtTelefonos.Text,txtFax.Text,checkActivo, dtpFechaAlta.Value ,dtpBaja, txtMotivoBaja.Text);
-                    btnCancelar.PerformClick();
+
+                    DialogResult res = MessageBox.Show(this, "Desea agregar servicios ahora?", "Servicios", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                    if (res == DialogResult.OK)
+                    {
+                        ServicioForm ser = new ServicioForm(mtCliente.Text);
+                        ser.ShowDialog(this);
+                    }
+                    else
+                        btnCancelar.PerformClick();
                 }
                 catch (Exception ex)
                 {
