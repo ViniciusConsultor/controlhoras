@@ -20,35 +20,35 @@ namespace Datos
         private ControladorDatos()
         {
             database = getConexion();
-           
+
             // MySqlConnection myconn; 
-           //while (true)
-           //{
-           // var builder = new MySqlConnectionStringBuilder()
-           //  {
-           //      Server = "localhost",
-           //      Port = 3306,
-           //      UserID = "jgarat",
-           //      Password = "jgarat",
-           //      Database = "trustdb"
-           //  };
-           // try
-           // {
-           //     myconn = new MySqlConnection(builder.ConnectionString.ToString());
-           //     myconn.Open();
-           //     System.Console.WriteLine("Se conecto!!!!!");
-           //     myconn.Close();
-           // }
-           // catch (MySqlException myex)
-           // {
-           //     System.Console.WriteLine(myex.Message);
-           //     System.Console.WriteLine(myex.InnerException.ToString());
-           // }
-           //}
-            
-            
+            //while (true)
+            //{
+            // var builder = new MySqlConnectionStringBuilder()
+            //  {
+            //      Server = "localhost",
+            //      Port = 3306,
+            //      UserID = "jgarat",
+            //      Password = "jgarat",
+            //      Database = "trustdb"
+            //  };
+            // try
+            // {
+            //     myconn = new MySqlConnection(builder.ConnectionString.ToString());
+            //     myconn.Open();
+            //     System.Console.WriteLine("Se conecto!!!!!");
+            //     myconn.Close();
+            // }
+            // catch (MySqlException myex)
+            // {
+            //     System.Console.WriteLine(myex.Message);
+            //     System.Console.WriteLine(myex.InnerException.ToString());
+            // }
+            //}
+
+
         }
-        
+
         public static IDatos getInstance()//(string StringConnection)
         {
             if (instance == null)
@@ -74,7 +74,7 @@ namespace Datos
             };
 
             var conn = new MySqlConnection(builder.ToString());
-            TrustDb context = new TrustDb(conn,new DbLinq.MySql.MySqlVendor());
+            TrustDb context = new TrustDb(conn, new DbLinq.MySql.MySqlVendor());
             return context;
         }
 
@@ -86,7 +86,8 @@ namespace Datos
             try
             {
                 tablaCliente = database.GetTable<ClientEs>();
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -122,7 +123,7 @@ namespace Datos
             }
 
 
-            
+
         }
 
 
@@ -134,11 +135,11 @@ namespace Datos
 
                 Table<ClientEs> tablaCliente = database.GetTable<ClientEs>();
                 var cli = (from clireg in tablaCliente
-                                where clireg.NumeroCliente == idcliente
-                                select clireg);
+                           where clireg.NumeroCliente == idcliente
+                           select clireg);
                 if (cli.Count<ClientEs>() == 0)
                     throw new NoExisteException("No existe el cliente con idCliente " + idcliente);
-                
+
                 return cli.Single<ClientEs>();
             }
             catch (ArgumentNullException anex)
@@ -197,7 +198,7 @@ namespace Datos
             SERVicIoS ser = null;
             try
             {
-                DbLinq.Data.Linq.Table<SERVicIoS> tablaServicios= database.GetTable<SERVicIoS>();
+                DbLinq.Data.Linq.Table<SERVicIoS> tablaServicios = database.GetTable<SERVicIoS>();
 
                 ser = new SERVicIoS();
                 ser.NumeroCliente = (uint)numeroCliente;
@@ -211,10 +212,10 @@ namespace Datos
                 ser.CelularTrust = CelularTrust;
                 ser.TareasAsignadas = Tareas;
                 ser.FechaAlta = DateTime.Now;
-                ser.FechaBaja = DateTime.MinValue.AddDays(1) ;
+                ser.FechaBaja = DateTime.MinValue.AddDays(1);
                 ser.MotivoBaja = null;
                 //if (activo)
-                    ser.Activo = 1;
+                ser.Activo = 1;
                 //else
                 //    ser.Activo = 0;
 
@@ -267,22 +268,22 @@ namespace Datos
             {
                 throw e;
             }
-                
+
         }
 
-       
+
 
         public void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas)
         {
             try
             {
-                Table<SERVicIoS> tablaServicios= database.GetTable<SERVicIoS>();
+                Table<SERVicIoS> tablaServicios = database.GetTable<SERVicIoS>();
 
                 var ser = (from s in tablaServicios
                            where (s.NumeroCliente == numeroCliente
                            && s.NumeroServicio == numeroServicio)
-                           select s).Single();               
-                                
+                           select s).Single();
+
                 ser.Nombre = Nombre;
                 ser.Email = email;
                 ser.Direccion = Direccion;
@@ -291,7 +292,7 @@ namespace Datos
                 ser.Celular = Celular;
                 ser.CelularTrust = CelularTrust;
                 ser.TareasAsignadas = Tareas;
-                
+
                 database.SubmitChanges();
             }
             catch (MySqlException ex)
@@ -307,7 +308,7 @@ namespace Datos
                 throw ex;
             }
         }
-        
+
         public List<ClientEs> buscarClientes(string Nombre)
         {
             try
@@ -322,9 +323,96 @@ namespace Datos
                 throw ex;
 
             }
- 
+
         }
 
+        public void altaEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, string nacionalidad, char sexo, DateTime fechaPsicologo, DateTime fechaNacimiento, DateTime fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadHijos, byte[] foto, int idBanco, string numeroCuenta, float sueldo, bool activo, DateTime fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime fechaAltaBPS, DateTime fechaBajaBPS, string numeroCAJ, DateTime fechaEmisionCAJ, DateTime fechaEntregaCAJ, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime fechaIngresoAntecedete, DateTime fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica)
+        {
+            Table<EmPleadOs> tablaEmpleados;
+            try
+            {
+                tablaEmpleados = database.GetTable<EmPleadOs>();
+            
+                EmPleadOs emp = new EmPleadOs();
+
+                emp.IDEmpleado = (uint)idEmpleado;
+                emp.Nombre = nombre;
+                emp.Apellido = apellido;
+                emp.IDTipoDocumento = (sbyte)idTipoDocumento;
+                emp.NumeroDocumento = documento;
+                emp.SexO = sexo.ToString();
+                emp.IDDepartamento = (sbyte) idDepartamento;
+                emp.Ciudad = ciudad;
+                //emp.Barrio = BarrioS;
+                emp.Direccion = direccion;
+                emp.DireccionDeEncuentro = puntoEncuentro;
+                emp.EntreCalles = entreCalles;
+                emp.Telefonos = telefono;
+                emp.Celular = celular;
+                emp.CelularenConvenio = celularConvenio;
+                emp.EstadoCivil = estadoCivil;
+                emp.Email = email;
+                emp.Foto = foto;
+                //emp.Edad = edad;
+                emp.FechaNacimiento = fechaNacimiento;
+                emp.LugarDeNacimiento = lugarNacimiento;
+                emp.Nacionalidad = nacionalidad;
+                emp.FechaIngreso = fechaIngreso;
+                //emp.FechaVencimientoCarneDeSalud = fechaVencimientoCarneDeSalud;
+                emp.IDMutualista = (byte)idMutualista;
+                emp.IDEmergenciaMedica = (byte)idEmergenciaMedica;
+                emp.CantidadHijos = (sbyte) cantidadHijos;
+                emp.TalleCamisa = talleCamisa;
+                emp.TalleZapatos = talleZapatos;
+                emp.TallePantalon = tallePantalon;
+                emp.TalleCampera = talleCampera;
+                emp.FechaBaja = fechaBaja;
+                emp.MotivoBaja = motivoBaja;
+               // emp.CapacitadoPortarArma = capacitadoPorteArma;
+               // emp.EnServicioArmado = enservicioArmado;
+               // emp.Antecedentes = (sbyte)antecedentesPolicialesOMilitares;
+               // emp.ObservacionesAntecedentes = observacionesAntecedentes;
+                emp.SueldoActual = (decimal)sueldo;
+                emp.IDBanco = (byte) idBanco;
+                emp.NumeroCuenta = numeroCuenta;
+               // emp.Observaciones = observaciones;
+                emp.CajnUmero = numeroCAJ;
+                emp.CajfEchaEmision = fechaEmisionCAJ;
+                emp.CajfEchaEntrega = fechaEntregaCAJ;
+                emp.BpsaCumulacionLaboral = (byte) acumulacionLaboralBPS;
+                emp.BpsfEchaAlta = fechaAltaBPS;
+                emp.BpsfEchaBaja = fechaBajaBPS;
+                emp.FechaTestPsicologico = fechaPsicologo;
+                if (antecedentesPolicialesOMilitares)
+                    emp.PolicialesoMilitar = 1;
+                else
+                    emp.PolicialesoMilitar = 0;
+
+                emp.FechaIngresoPolicialoMilitar = fechaIngresoAntecedete;
+                emp.FechaEgresoPolicialoMilitar = fechaEgresoAntecedente;
+                emp.SubEscalafonPolicial = subEscalafon;
+                if (combatiente)
+                    emp.CombatienteMilitar = 1;
+                else
+                    emp.CombatienteMilitar = 0;
+                emp.RenaemsefEchaIngreso = fechaIngresoRENAEMSE;
+                emp.RenaemsenUmeroAsunto = numeroAsuntoRENAEMSE;
+
+
+                
+                
+
+                
+                tablaEmpleados.InsertOnSubmit(emp);
+                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
 
 
      
@@ -350,5 +438,169 @@ namespace Datos
         }
 
         
+
+        public void modificarEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, string nacionalidad, char sexo, DateTime fechaPsicologo, DateTime fechaNacimiento, DateTime fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadHijos, byte[] foto, int idBanco, string numeroCuenta, float sueldo, bool activo, DateTime fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime fechaAltaBPS, DateTime fechaBajaBPS, string numeroCAJ, DateTime fechaEmisionCAJ, DateTime fechaEntregaCAJ, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime fechaIngresoAntecedete, DateTime fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica)
+        {
+        }
+
+        public bool existeEmpleado(int idEmpleado)
+        {
+            Table<EmPleadOs> tabla;
+            try
+            {
+
+                tabla = database.GetTable<EmPleadOs>();
+                var cli = (from clireg in tabla
+                           where clireg.IDEmpleado == idEmpleado
+                           select clireg);
+                if (cli.Count<EmPleadOs>() == 0)
+                    return false;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                // MySQLException = Access Denied  Codigo = 1045
+            }
+        }
+
+
+        public EmPleadOs obtenerEmpleado(int idEmpleado)
+        {
+            try
+            {
+
+                Table<EmPleadOs> tabla = database.GetTable<EmPleadOs>();
+                var cli = (from clireg in tabla
+                           where clireg.IDEmpleado == idEmpleado
+                           select clireg);
+                if (cli.Count<EmPleadOs>() == 0)
+                    throw new NoExisteException("No existe el empleado con IdEmpleado " + idEmpleado);
+
+                return cli.Single<EmPleadOs>();
+            }
+            catch (ArgumentNullException anex)
+            {
+                throw new NoExisteException(anex.Message, anex.InnerException);
+            }
+            catch (InvalidOperationException ioex)
+            {
+                throw ioex;
+            }
+            catch (Exception me)
+            {
+                throw me;
+            }
+        }
+
+
+        #region Codigureas
+        public Dictionary<int, string> obtenerTiposDocumento()
+        {
+            Dictionary<int, string> result;
+            Table<TipOsDocumentO> tabla;
+            try
+            {
+                tabla = database.GetTable<TipOsDocumentO>();
+
+                result = new Dictionary<int, string>();         
+                foreach(var l in tabla.ToList())
+                {
+                    result.Add(l.IDTipoDocumento, l.Nombre);
+                }
+                return result;
+                
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        public Dictionary<int, string> obtenerEmergenciasMedica()
+        {
+            Dictionary<int, string> result;
+            Table<EmergeNcIasMedicA> tabla;
+            try
+            {
+                tabla = database.GetTable<EmergeNcIasMedicA>();
+                result = new Dictionary<int, string>();
+                foreach (var l in tabla.ToList())
+                {
+                    result.Add(l.IDEmergenciaMedica, l.Nombre);
+                }
+                return result;
+               
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Dictionary<int, string> obtenerMutualistas()
+        {
+            Dictionary<int, string> result;
+            Table<MutualIsTAs> tabla;
+            try
+            {
+                tabla = database.GetTable<MutualIsTAs>();
+                result = new Dictionary<int, string>();
+                foreach (var l in tabla.ToList())
+                {
+                    result.Add(l.IDMutualista, l.Nombre);
+                }
+                return result;
+               
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Dictionary<int, string> obtenerBancos()
+        {
+            Dictionary<int, string> result;
+            Table<BanCos> tabla;
+            try
+            {
+                tabla = database.GetTable<BanCos>();
+                result = new Dictionary<int, string>();
+                foreach (var l in tabla.ToList())
+                {
+                    result.Add(l.IDBanco, l.Nombre);
+                }
+                return result;
+               
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Dictionary<int, string> obtenerDepartamentos()
+        {
+            Dictionary<int, string> result;
+            Table<DepartAmenToS> tabla;
+            try
+            {
+                tabla = database.GetTable<DepartAmenToS>();
+                result = new Dictionary<int, string>();
+                foreach (var l in tabla.ToList())
+                {
+                    result.Add(l.IDDepartamento, l.Nombre);
+                }
+                return result;
+               
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
+
     }
+
 }
