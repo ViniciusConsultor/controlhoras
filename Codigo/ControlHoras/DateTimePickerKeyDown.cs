@@ -30,6 +30,7 @@ namespace ControlHoras
             {
                 throw ex;
             }
+            this.Value = this.MinDate.AddDays(1);
         }
 
         protected override void OnPaint(PaintEventArgs pe)
