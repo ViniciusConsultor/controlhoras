@@ -62,7 +62,7 @@ namespace ControlHoras
         {
             AgregarBTN.Enabled = false;
             GuardarBTN.Enabled = false;
-            ContactTB.Enabled = false;
+            ContratoBTN.Enabled = false;
 
             AnteriorBTN.Visible = false;
             PosteriorBTN.Visible = false;
@@ -81,6 +81,8 @@ namespace ControlHoras
                 List<Servicio> servicios = cli.getListaServicios();
                 if (servicios.Count != 0)
                 {
+                    ContratoBTN.Enabled = true;                   
+
                     cant = servicios.Count;
                     numerosSer = new int[cant];
                     int i = 0;
@@ -262,6 +264,12 @@ namespace ControlHoras
             else
                 MessageBox.Show(this, LlenarCamposObligatorios, "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
         
+        }
+
+        private void ContratoBTN_Click(object sender, EventArgs e)
+        {
+            ContratoForm contrato = new ContratoForm(bcUC.ClienteNRO, NroMTB.Text);
+            contrato.ShowDialog(this);
         }
 
        

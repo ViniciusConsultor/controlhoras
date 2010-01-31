@@ -134,6 +134,7 @@
             this.ContratoBTN.Size = new System.Drawing.Size(54, 33);
             this.ContratoBTN.Text = "Contrato";
             this.ContratoBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ContratoBTN.Click += new System.EventHandler(this.ContratoBTN_Click);
             // 
             // CancelarBTN
             // 
