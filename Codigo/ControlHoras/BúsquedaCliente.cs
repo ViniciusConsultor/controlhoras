@@ -88,6 +88,12 @@ namespace ControlHoras
                 }
         }
 
+        public void RaiseClipronto(object sender, EventArgs e)
+        {
+            if (cliPronto != null)
+                cliPronto(sender, e);
+        }
+
         #region Componentes de clipronto
 
         public class cliprontoEventArgs : EventArgs // Esta clase debe estar accesible al controlador que atienda clipronto
