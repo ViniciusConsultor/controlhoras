@@ -1,0 +1,38 @@
+C:\Documents and Settings\Administrador\Mis documentos\Visual Studio 2008\ControlHoras\ControlHoras\bin\Debug\ControlHoras.exe
+C:\Documents and Settings\Administrador\Mis documentos\Visual Studio 2008\ControlHoras\ControlHoras\bin\Debug\ControlHoras.pdb
+C:\Documents and Settings\Administrador\Mis documentos\Visual Studio 2008\ControlHoras\ControlHoras\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrador\Mis documentos\Visual Studio 2008\ControlHoras\ControlHoras\obj\Debug\ControlHoras.Form1.resources
+C:\Documents and Settings\Administrador\Mis documentos\Visual Studio 2008\ControlHoras\ControlHoras\obj\Debug\ControlHoras.Properties.Resources.resources
+C:\Documents and Settings\Administrador\Mis documentos\Visual Studio 2008\ControlHoras\ControlHoras\obj\Debug\ControlHoras.csproj.GenerateResource.Cache
+C:\Documents and Settings\Administrador\Mis documentos\Visual Studio 2008\ControlHoras\ControlHoras\obj\Debug\ControlHoras.exe
+C:\Documents and Settings\Administrador\Mis documentos\Visual Studio 2008\ControlHoras\ControlHoras\obj\Debug\ControlHoras.pdb
+C:\Documents and Settings\Administrador\Mis documentos\Visual Studio 2008\ControlHoras\ControlHoras\obj\Debug\ControlHoras.ContratoFijo.resources
+C:\Documents and Settings\Administrador\Mis documentos\Visual Studio 2008\ControlHoras\ControlHoras\obj\Debug\ControlHoras.Planificacion.resources
+=======
+D:\Código\ControlHoras\obj\Debug\ControlHoras.exe
+D:\Código\ControlHoras\obj\Debug\ControlHoras.pdb
+D:\Código\ControlHoras\bin\Debug\ControlHoras.exe
+D:\Código\ControlHoras\bin\Debug\ControlHoras.pdb
+D:\Código\ControlHoras\bin\Debug\Dominio.dll
+D:\Código\ControlHoras\bin\Debug\Dominio.pdb
+D:\Código\ControlHoras\obj\Debug\ResolveAssemblyReference.cache
+D:\Código\ControlHoras\obj\Debug\ControlHoras.ContratoFijo.resources
+D:\Código\ControlHoras\obj\Debug\ControlHoras.Form1.resources
+D:\Código\ControlHoras\obj\Debug\ControlHoras.Planificacion.resources
+D:\Código\ControlHoras\obj\Debug\ControlHoras.Properties.Resources.resources
+D:\Código\ControlHoras\obj\Debug\ControlHoras.csproj.GenerateResource.Cache
+C:\Documents and Settings\Administrador\Escritorio\RepositorioControlHoras\ControlHoras\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrador\Escritorio\RepositorioControlHoras\ControlHoras\obj\Debug\ControlHoras.CambiarFuncionario.resources
+C:\Documents and Settings\Administrador\Escritorio\RepositorioControlHoras\ControlHoras\obj\Debug\ControlHoras.ContratoFijo.resources
+C:\Documents and Settings\Administrador\Escritorio\RepositorioControlHoras\ControlHoras\obj\Debug\ControlHoras.ControlDiario.resources
+C:\Documents and Settings\Administrador\Escritorio\RepositorioControlHoras\ControlHoras\obj\Debug\ControlHoras.Form1.resources
+C:\Documents and Settings\Administrador\Escritorio\RepositorioControlHoras\ControlHoras\obj\Debug\ControlHoras.Planificacion.resources
+C:\Documents and Settings\Administrador\Escritorio\RepositorioControlHoras\ControlHoras\obj\Debug\ControlHoras.Properties.Resources.resources
+C:\Documents and Settings\Administrador\Escritorio\RepositorioControlHoras\ControlHoras\obj\Debug\ControlHoras.csproj.GenerateResource.Cache
+C:\Documents and Settings\Administrador\Escritorio\RepositorioControlHoras\ControlHoras\bin\Debug\ControlHoras.exe
+C:\Documents and Settings\Administrador\Escritorio\RepositorioControlHoras\ControlHoras\bin\Debug\ControlHoras.pdb
+C:\Documents and Settings\Administrador\Escritorio\RepositorioControlHoras\ControlHoras\bin\Debug\Dominio.dll
+C:\Documents and Settings\Administrador\Escritorio\RepositorioControlHoras\ControlHoras\bin\Debug\Dominio.pdb
+C:\Documents and Settings\Administrador\Escritorio\RepositorioControlHoras\ControlHoras\obj\Debug\ControlHoras.exe
+C:\Documents and Settings\Administrador\Escritorio\RepositorioControlHoras\ControlHoras\obj\Debug\ControlHoras.pdb
+C:\Documents and Settings\Administrador\Escritorio\RepositorioControlHoras\ControlHoras\obj\Debug\ControlHoras.CambiarHoraFuncionario.resources
