@@ -1,22 +1,15 @@
+
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
 CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-CREATE SCHEMA IF NOT EXISTS `trustdb` DEFAULT CHARACTER SET latin1 ;
+
 
 -- -----------------------------------------------------
 -- Table `trustdb`.`bancos`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `trustdb`.`bancos` ;
-
-CREATE  TABLE IF NOT EXISTS `trustdb`.`bancos` (
-  `IdBanco` TINYINT(2) UNSIGNED NOT NULL AUTO_INCREMENT ,
-  `Nombre` VARCHAR(50) NOT NULL ,
-  PRIMARY KEY (`IdBanco`) )
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
 
 -- -----------------------------------------------------
 -- Table `trustdb`.`barrios`
