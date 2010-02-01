@@ -6,13 +6,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Dominio;
+//using Dominio;
 
 namespace ControlHoras
 {
     public partial class ControlDiario : Form
     {
-        Controlador controller;
+        /*Controlador controller;
         Color ColorOriginalFila = Color.White;
         Color ColorEntradaFila = Color.SlateGray;
         Color ColorSalidaFila = Color.Yellow;
@@ -489,6 +489,6 @@ namespace ControlHoras
        
 
 
-       
+    */   
     }
 }

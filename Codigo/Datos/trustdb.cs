@@ -1,4 +1,5 @@
-#region Auto-generated classes for trustdb database on 2010-02-01 03:16:23Z
+#region Auto-generated classes for trustdb database on 2010-01-30 17:56:03Z
+#region Auto-generated classes for trustdb database on 2010-02-01 04:34:25Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +8,8 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2010-02-01 03:16:23Z
+// Auto-generated from trustdb on 2010-01-30 17:56:03Z
+// Auto-generated from trustdb on 2010-02-01 04:34:25Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -796,8 +798,8 @@ namespace Datos
 		partial void OnAjusteChanging(string value);
 		partial void OnCostoChanged();
 		partial void OnCostoChanging(float? value);
-		partial void OnCostoFijo_Changed();
-		partial void OnCostoFijo_Changing(sbyte value);
+		partial void OnCostoFijoChanged();
+		partial void OnCostoFijoChanging(sbyte value);
 		partial void OnDescPerfilChanged();
 		partial void OnDescPerfilChanging(string value);
 		partial void OnFechaFinChanged();
@@ -877,12 +879,12 @@ namespace Datos
 
 		#endregion
 
-		#region sbyte CostoFijo_
+		#region sbyte CostoFijo
 
 		private sbyte _costoFijo;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_costoFijo", Name = "Costo_Fijo?", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
-		public sbyte CostoFijo_
+		[Column(Storage = "_costoFijo", Name = "CostoFijo", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public sbyte CostoFijo
 		{
 			get
 			{
@@ -892,11 +894,11 @@ namespace Datos
 			{
 				if (value != _costoFijo)
 				{
-					OnCostoFijo_Changing(value);
+					OnCostoFijoChanging(value);
 					SendPropertyChanging();
 					_costoFijo = value;
-					SendPropertyChanged("CostoFijo_");
-					OnCostoFijo_Changed();
+					SendPropertyChanged("CostoFijo");
+					OnCostoFijoChanged();
 				}
 			}
 		}
@@ -3959,8 +3961,8 @@ namespace Datos
 		#region Extensibility Method Definitions
 
 		partial void OnCreated();
-		partial void OnArmado_Changed();
-		partial void OnArmado_Changing(sbyte value);
+		partial void OnArmadoChanged();
+		partial void OnArmadoChanging(sbyte value);
 		partial void OnCantHsExtrasChanged();
 		partial void OnCantHsExtrasChanging(sbyte? value);
 		partial void OnCantHsNormalesChanged();
@@ -3978,12 +3980,12 @@ namespace Datos
 
 		#endregion
 
-		#region sbyte Armado_
+		#region sbyte Armado
 
 		private sbyte _armado;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_armado", Name = "Armado?", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
-		public sbyte Armado_
+		[Column(Storage = "_armado", Name = "Armado", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public sbyte Armado
 		{
 			get
 			{
@@ -3993,11 +3995,11 @@ namespace Datos
 			{
 				if (value != _armado)
 				{
-					OnArmado_Changing(value);
+					OnArmadoChanging(value);
 					SendPropertyChanging();
 					_armado = value;
-					SendPropertyChanged("Armado_");
-					OnArmado_Changed();
+					SendPropertyChanged("Armado");
+					OnArmadoChanged();
 				}
 			}
 		}

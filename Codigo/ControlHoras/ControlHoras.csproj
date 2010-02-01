@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FC8B86E8-A818-4987-B135-16FD6B039E53}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -161,6 +161,18 @@
     <Compile Include="ContratoHoras.Designer.cs">
       <DependentUpon>ContratoHoras.cs</DependentUpon>
     </Compile>
+    <Compile Include="ControlDiario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlDiario.Designer.cs">
+      <DependentUpon>ControlDiario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataGridTAB.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataGridTAB.Designer.cs">
+      <DependentUpon>DataGridTAB.cs</DependentUpon>
+    </Compile>
     <Compile Include="DateTimePickerKeyDown.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -256,6 +268,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ContratoHoras.resx">
       <DependentUpon>ContratoHoras.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlDiario.resx">
+      <DependentUpon>ControlDiario.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Imagenes.resx">

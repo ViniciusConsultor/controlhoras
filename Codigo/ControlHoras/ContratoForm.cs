@@ -17,7 +17,10 @@ namespace ControlHoras
         int idser;
         int ind;
         int cant;
-        int[] numerosSer;        
+        int[] numerosSer;
+        String LlenarCamposObligatorios = "Debe llenar todos los campos obligatorios.";
+
+        string stbuffer;        
 
         public ContratoForm()
         {
@@ -26,6 +29,9 @@ namespace ControlHoras
             InicializarCargaHorariaDGV();            
             CostoCB.SelectedIndex = 0;
             bcUC.cliPronto += new EventHandler(bcUC_cliPronto);
+            stbuffer = @"N/T";
+
+            bcUC.Controls["ClienteMT"].Focus();
             idser = -1;
         }
 
@@ -38,6 +44,7 @@ namespace ControlHoras
             ind = 0;
             cant = 0;
             bcUC.cliPronto += new EventHandler(bcUC_cliPronto);
+            stbuffer = @"N/T";
 
             bcUC.ClienteNRO = idCliente;
             idser = int.Parse(idServicio);
@@ -121,25 +128,25 @@ namespace ControlHoras
         }
 
         private void bcUC_cliPronto(object sender, EventArgs e)
-        {            
+        {
+            GuardarBTN.Enabled = false;
             AnteriorBTN.Visible = false;
             PosteriorBTN.Visible = false;
             //LimpiarPlanilla();
+            
             ServicioGB.Enabled = false;
 
             ind = 0;
 
             if (bcUC.find)
             {
-                ServicioGB.Enabled = true;
-                //NroMTB.Focus();
-
                 int numCli = int.Parse(bcUC.ClienteNRO);
                 Cliente cli = sistema.obtenerCliente(numCli);
                 List<Servicio> servicios = cli.getListaServicios();
                 if (servicios.Count != 0)
                 {
-                    //NombreTB.Text = servicios[0].getNombre();
+                    GuardarBTN.Enabled = true;
+                    ServicioGB.Enabled = true;                    
                     
                     cant = servicios.Count;
                     numerosSer = new int[cant];                    
@@ -175,6 +182,7 @@ namespace ControlHoras
 
             NroMTB.Text = ser.getNumero().ToString();
             NombreTB.Text = ser.getNombre();
+            
         }
 
         private void AnteriorBTN_Click(object sender, EventArgs e)
@@ -213,8 +221,82 @@ namespace ControlHoras
                 bcUC.Controls["ClienteMT"].Focus();
                 SendKeys.Send("{ENTER}");
             }
-        }    
-       
+        }
+
+        private void CargaHorariaDGV_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex == -1)
+            {
+                return;
+            }
+            if (e.Button == MouseButtons.Right)
+            {
+                foreach (DataGridViewCell c in CargaHorariaDGV.SelectedCells)
+                    c.Selected = false;
+                
+                CargaHorariaDGV.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = true;
+                CargaHorariaCMS.Show(MousePosition);                
+            }
+        }
+
+        private void copiarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (CargaHorariaDGV.SelectedCells[0].Value != null)
+                stbuffer = CargaHorariaDGV.SelectedCells[0].Value.ToString();
+        }
+
+        private void pegarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewCell c in CargaHorariaDGV.SelectedCells)
+                c.Value = stbuffer;            
+        }
+
+        private void marcarNTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CargaHorariaDGV.SelectedCells[0].Value = @"N/T";
+        }
+
+        private void GuardarBTN_Click(object sender, EventArgs e)
+        {
+            if (checkDatosObligatorios())
+            {
+                try
+                {
+                    int numCli = int.Parse(bcUC.ClienteNRO);
+                    int numSer = int.Parse(NroMTB.Text);
+                    DateTime dt = DateTime.Today;
+                    if (FinCKB.Checked)
+                        dt = FfinDTP.Value;
+                    bool costo = (CostoCB.SelectedItem.ToString() == "fijo");
+                    bool hx = HorasExtrasCHK.Checked;
+                    float monto = 0;
+                    if (MontoTB.Text != "")
+                        monto = int.Parse(MontoTB.Text);
+
+                    //sistema.altaContratoServicioCliente(numCli, numSer, CalcNroContrato(numCli,numSer), FiniDTP.Value , dt, costo,  hx, AjusteTB.Text, ObsTB.Text, monto);
+
+                    //CancelarBTN.PerformClick();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+                MessageBox.Show(this, LlenarCamposObligatorios, "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        
+        }
+
+        private bool checkDatosObligatorios()
+        {
+            return true;
+        }
+
+        public int CalcNroContrato(int nroCli, int nroSer)
+        {
+            return nroCli * 10 + nroSer;
+        }           
               
     }
 }
