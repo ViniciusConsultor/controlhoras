@@ -6,18 +6,80 @@ namespace Logica
 {
     public class Empleado
     {
+       
+        private uint MyNumeroEmpleado;
+        private string MyNombre;
+
+        private string MyApellido;
+
+        private char  MySexo;
+        
+        private Int16 MyTipoDocumento;
+
+        private string MyNumeroDocumento;
+        private Int16 MyDepartamento;
+        private string MyCiudad;
+        private string MyBarrio;
+        private string MyDireccion;
+        private string MyEstadoCivil;
+        private string MyEntreCalles;
+        private string MyTelefonos;
+        private string MyCelular;
+        private string MyCelularEnConvenio;
+        private string MyDireccionDeEncuentro;
+        private string MyEmail;
+        private byte[] MyFoto;
+        private Int16 MyEdad;
+        private DateTime MyFechaNacimiento;
+        private string MyLugarNacimiento;
+        private string MyNacionalidad;
+        private DateTime MyFechaIngreso;
+        private DateTime MyFechaVencimientoCarneSalud;
+        private Int16 MyMutualista;
+        private Int16 MyIdEmergenciaMedica;
+        private Int16 MyCantidadHijos;
+        private string MyTalleCamisa;
+        private string MyTallePantalon;
+        private Int16 MyTalleZapatos;
+        private string MyTalleCampera;
+        private DateTime MyFechaEgreso;
+        private string MyMotivoEgreso;
+        private bool MyCapacitadoPorteArma;
+        private bool MyServicioArmado; // Marca si esta actualmente en un servicio armado.
+        private bool MyAntecedentes; // S/A o C/A
+        private string MyObservacionesAntecedentes;
+        private float MySueldo;
+        private Int16 MyIdBanco;
+        private string MyNumeroCuenta;
+        private string MyObservaciones;
+        private string MyCAJ_Numero;
+        private DateTime MyCAJ_FechaEmision;
+        private DateTime MyCAJ_FechaEntrega;
+        private DateTime MyBPS_FechaAltaEnBPS;
+        private DateTime MyBPS_FechaBaja;
+        private int MyBPS_AcumulacionLaboral;
+        private DateTime MyFechaTestPsicologico;
+        private bool MyAntecedentesPolicialesOMilitares;
+        private DateTime MyFechaIngresoPolicialOMilitar;
+        private DateTime MyFechaEgresoPolicialOMilitar;
+        private string MySubEscalafon; // Si fue Policial
+        private bool MyCombatiente; // Si fue Militar
+        private DateTime MyFechaIngresoMesaRENAEMSE;
+        private string MyNumeroAsuntoRENAEMSE;
+        
+        
         #region Properties
 
         #region NumeroEmpleado
-        public int NumeroEmpleado
+        public uint NumeroEmpleado
         {
             get
             {
-                return NumeroEmpleado;
+                return MyNumeroEmpleado;
             }
             set
             {
-                NumeroEmpleado = value;
+                MyNumeroEmpleado = value;
             }
         } 
         #endregion
@@ -26,11 +88,11 @@ namespace Logica
         {
             get
             {
-                return Nombre;
+                return MyNombre;
             }
             set
             {
-                Nombre = value;
+                MyNombre = value;
             }
         }
 
@@ -38,11 +100,11 @@ namespace Logica
         {
             get
             {
-                return Apellido;
+                return MyApellido;
             }
             set
             {
-                Apellido = value;
+                MyApellido = value;
             }
         }
 
@@ -50,11 +112,11 @@ namespace Logica
         {
             get
             {
-                return Sexo;
+                return MySexo;
             }
             set
             {
-                Sexo = value;
+                MySexo = value;
             }
         }
         
@@ -62,11 +124,11 @@ namespace Logica
         {
             get
             {
-                return TipoDocumento;
+                return MyTipoDocumento;
             }
             set
             {
-                TipoDocumento = value;
+                MyTipoDocumento = value;
             }
         }
 
@@ -74,550 +136,550 @@ namespace Logica
         {
             get
             {
-                return NumeroDocumento;
+                return MyNumeroDocumento;
             }
             set
             {
-                NumeroDocumento = value;
+                MyNumeroDocumento = value;
             }
         }
         public Int16 Departamento
         {
             get
             {
-                return Departamento;
+                return MyDepartamento;
             }
             set
             {
-                Departamento = value;
+                MyDepartamento = value;
             }
         }
         public string Ciudad
         {
             get
             {
-                return Ciudad;
+                return MyCiudad;
             }
             set
             {
-                Ciudad = value;
+                MyCiudad = value;
             }
         }
         public string Barrio
         {
             get
             {
-                return Barrio;
+                return MyBarrio;
             }
             set
             {
-                Barrio = value;
+                MyBarrio = value;
             }
         }
         public string Direccion
         {
             get
             {
-                return Direccion;
+                return MyDireccion;
             }
             set
             {
-                Direccion = value;
+                MyDireccion = value;
             }
         }
         public string EstadoCivil
         {
             get
             {
-                return EstadoCivil;
+                return MyEstadoCivil;
             }
             set
             {
-                EstadoCivil = value;
+                MyEstadoCivil = value;
             }
         }
         public string EntreCalles
         {
             get
             {
-                return EntreCalles;
+                return MyEntreCalles;
             }
             set
             {
-                EntreCalles = value;
+                MyEntreCalles = value;
             }
         }
         public string Telefonos
         {
             get
             {
-                return Telefonos;
+                return MyTelefonos;
             }
             set
             {
-                Telefonos = value;
+                MyTelefonos = value;
             }
         }
         public string Celular
         {
             get
             {
-                return Celular;
+                return MyCelular;
             }
             set
             {
-                Celular = value;
+                MyCelular = value;
             }
         }
         public string CelularEnConvenio
         {
             get
             {
-                return CelularEnConvenio;
+                return MyCelularEnConvenio;
             }
             set
             {
-                CelularEnConvenio = value;
+                MyCelularEnConvenio = value;
             }
         }
         public string DireccionDeEncuentro
         {
             get
             {
-                return DireccionDeEncuentro;
+                return MyDireccionDeEncuentro;
             }
             set
             {
-                DireccionDeEncuentro= value;
+                MyDireccionDeEncuentro= value;
             }
         }
         public string Email
         {
             get
             {
-                return Email;
+                return MyEmail;
             }
             set
             {
-                Email = value;
+                MyEmail = value;
             }
         }
         public byte[] Foto
         {
             get
             {
-                return Foto;
+                return MyFoto;
             }
             set
             {
-                Foto = value;
+                MyFoto = value;
             }
         }
         public Int16 Edad
         {
             get
             {
-                return Edad;
+                return MyEdad;
             }
             set
             {
-                Edad = value;
+                MyEdad = value;
             }
         }
         public DateTime FechaNacimiento
         {
             get
             {
-                return FechaNacimiento;
+                return MyFechaNacimiento;
             }
             set
             {
-                FechaNacimiento = value;
+                MyFechaNacimiento = value;
             }
         }
         public string LugarNacimiento
         {
             get
             {
-                return LugarNacimiento;
+                return MyLugarNacimiento;
             }
             set
             {
-                LugarNacimiento = value;
+                MyLugarNacimiento = value;
             }
         }
         public string Nacionalidad
         {
             get
             {
-                return Nacionalidad;
+                return MyNacionalidad;
             }
             set
             {
-               Nacionalidad  = value;
+               MyNacionalidad = value;
             }
         }
         public DateTime FechaIngreso
         {
             get
             {
-                return FechaIngreso;
+                return MyFechaIngreso;
             }
             set
             {
-                FechaIngreso = value;
+                MyFechaIngreso = value;
             }
         }
         public DateTime FechaVencimientoCarneSalud
         {
             get
             {
-                return FechaVencimientoCarneSalud;
+                return MyFechaVencimientoCarneSalud;
             }
             set
             {
-                FechaVencimientoCarneSalud = value;
+                MyFechaVencimientoCarneSalud = value;
             }
         }
-        public string Mutualista
+        public Int16 Mutualista
         {
             get
             {
-                return Mutualista;
+                return MyMutualista;
             }
             set
             {
-                Mutualista = value;
+                MyMutualista = value;
             }
         }
-        public string EmergenciaMedica
+        public Int16 IdEmergenciaMedica
         {
             get
             {
-                return EmergenciaMedica;
+                return MyIdEmergenciaMedica;
             }
             set
             {
-                EmergenciaMedica = value;
+                MyIdEmergenciaMedica = value;
             }
         }
         public Int16 CantidadHijos
         {
             get
             {
-                return CantidadHijos;
+                return MyCantidadHijos;
             }
             set
             {
-                CantidadHijos = value;
+                MyCantidadHijos = value;
             }
         }
-        public Int16 TalleCamisa
+        public string TalleCamisa
         {
             get
             {
-                return TalleCamisa;
+                return MyTalleCamisa;
             }
             set
             {
-                TalleCamisa = value;
+                MyTalleCamisa = value;
             }
         }
-        public Int16 TallePantalon
+        public string TallePantalon
         {
             get
             {
-                return TallePantalon;
+                return MyTallePantalon;
             }
             set
             {
-                TallePantalon = value;
+                MyTallePantalon = value;
             }
         }
         public Int16 TalleZapatos
         {
             get
             {
-                return TalleZapatos;
+                return MyTalleZapatos;
             }
             set
             {
-                TalleZapatos = value;
+                MyTalleZapatos = value;
             }
         }
-        public Int16 TalleCampera
+        public string TalleCampera
         {
             get
             {
-                return TalleCampera;
+                return MyTalleCampera;
             }
             set
             {
-                TalleCampera = value;
+                MyTalleCampera = value;
             }
         }
         public DateTime FechaEgreso
         {
             get
             {
-                return FechaEgreso;
+                return MyFechaEgreso;
             }
             set
             {
-                FechaEgreso = value;
+                MyFechaEgreso = value;
             }
         }
         public string MotivoEgreso
         {
             get
             {
-                return MotivoEgreso;
+                return MyMotivoEgreso;
             }
             set
             {
-                MotivoEgreso = value;
+                MyMotivoEgreso = value;
             }
         }
         public bool CapacitadoPorteArma
         {
             get
             {
-                return CapacitadoPorteArma;
+                return MyCapacitadoPorteArma;
             }
             set
             {
-                CapacitadoPorteArma = value;
+                MyCapacitadoPorteArma = value;
             }
         }
         public bool ServicioArmado // Marca si esta actualmente en un servicio armado.
         {
             get
             {
-                return ServicioArmado;
+                return MyServicioArmado;
             }
             set
             {
-                ServicioArmado = value;
+                MyServicioArmado = value;
             }
         }
         public bool Antecedentes // S/A o C/A
         {
             get
             {
-                return Antecedentes;
+                return MyAntecedentes;
             }
             set
             {
-                Antecedentes = value;
+                MyAntecedentes = value;
             }
         }
         public string ObservacionesAntecedentes
         {
             get
             {
-                return ObservacionesAntecedentes;
+                return MyObservacionesAntecedentes;
             }
             set
             {
-                ObservacionesAntecedentes = value;
+                MyObservacionesAntecedentes = value;
             }
         }
         public float Sueldo
         {
             get
             {
-                return Sueldo;
+                return MySueldo;
             }
             set
             {
-                Sueldo = value;
+                MySueldo = value;
             }
         }
-        public string Banco
+        public Int16 IdBanco
         {
             get
             {
-                return Banco;
+                return MyIdBanco;
             }
             set
             {
-                Banco = value;
+                MyIdBanco = value;
             }
         }
         public string NumeroCuenta
         {
             get
             {
-                return NumeroCuenta;
+                return MyNumeroCuenta;
             }
             set
             {
-                NumeroCuenta = value;
+                MyNumeroCuenta = value;
             }
         }
         public string Observaciones
         {
             get
             {
-                return Observaciones;
+                return MyObservaciones;
             }
             set
             {
-                Observaciones = value;
+                MyObservaciones = value;
             }
         }
-        public int CAJ_Numero
+        public string CAJ_Numero
         {
             get
             {
-                return CAJ_Numero;
+                return MyCAJ_Numero;
             }
             set
             {
-                CAJ_Numero = value;
+                MyCAJ_Numero = value;
             }
         }
         public DateTime CAJ_FechaEmision
         {
             get
             {
-                return CAJ_FechaEmision;
+                return MyCAJ_FechaEmision;
             }
             set
             {
-                CAJ_FechaEmision = value;
+                MyCAJ_FechaEmision = value;
             }
         }
         public DateTime CAJ_FechaEntrega
         {
             get
             {
-                return CAJ_FechaEntrega;
+                return MyCAJ_FechaEntrega;
             }
             set
             {
-                CAJ_FechaEntrega = value;
+                MyCAJ_FechaEntrega = value;
             }
         }
         public DateTime BPS_FechaAltaEnBPS
         {
             get
             {
-                return BPS_FechaAltaEnBPS;
+                return MyBPS_FechaAltaEnBPS;
             }
             set
             {
-                BPS_FechaAltaEnBPS = value;
+                MyBPS_FechaAltaEnBPS = value;
             }
         }
         public DateTime BPS_FechaBaja
         {
             get
             {
-                return BPS_FechaBaja;
+                return MyBPS_FechaBaja;
             }
             set
             {
-                BPS_FechaBaja = value;
+                MyBPS_FechaBaja = value;
             }
         }
         public int BPS_AcumulacionLaboral
         {
             get
             {
-                return BPS_AcumulacionLaboral;
+                return MyBPS_AcumulacionLaboral;
             }
             set
             {
-                BPS_AcumulacionLaboral = value;
+                MyBPS_AcumulacionLaboral = value;
             }
         }
         public DateTime FechaTestPsicologico
         {
             get
             {
-                return FechaTestPsicologico;
+                return MyFechaTestPsicologico;
             }
             set
             {
-                FechaTestPsicologico = value;
+                MyFechaTestPsicologico = value;
             }
         }
         public bool AntecedentesPolicialesOMilitares
         {
             get
             {
-                return AntecedentesPolicialesOMilitares;
+                return MyAntecedentesPolicialesOMilitares;
             }
             set
             {
-                AntecedentesPolicialesOMilitares = value;
+                MyAntecedentesPolicialesOMilitares = value;
             }
         }
         public DateTime FechaIngresoPolicialOMilitar
         {
             get
             {
-                return FechaIngresoPolicialOMilitar;
+                return MyFechaIngresoPolicialOMilitar;
             }
             set
             {
-                FechaIngresoPolicialOMilitar = value;
+                MyFechaIngresoPolicialOMilitar = value;
             }
         }
         public DateTime FechaEgresoPolicialOMilitar
         {
             get
             {
-                return FechaEgresoPolicialOMilitar;
+                return MyFechaEgresoPolicialOMilitar;
             }
             set
             {
-                FechaEgresoPolicialOMilitar = value;
+                MyFechaEgresoPolicialOMilitar = value;
             }
         }
         public string SubEscalafon // Si fue Policial
         {
             get
             {
-                return SubEscalafon;
+                return MySubEscalafon;
             }
             set
             {
-                SubEscalafon = value;
+                MySubEscalafon = value;
             }
         }
-        public string Combatiente // Si fue Militar
+        public bool Combatiente // Si fue Militar
         {
             get
             {
-                return Combatiente;
+                return MyCombatiente;
             }
             set
             {
-                Combatiente = value;
+                MyCombatiente = value;
             }
         }
         public DateTime FechaIngresoMesaRENAEMSE
 {
             get
             {
-                return FechaIngresoMesaRENAEMSE;
+                return MyFechaIngresoMesaRENAEMSE;
             }
             set
             {
-                FechaIngresoMesaRENAEMSE = value;
+                MyFechaIngresoMesaRENAEMSE = value;
             }
         }
-        public int NumeroAsuntoRENAEMSE
+        public string NumeroAsuntoRENAEMSE
         {
             get
             {
-                return NumeroAsuntoRENAEMSE;
+                return MyNumeroAsuntoRENAEMSE;
             }
             set
             {
-                NumeroAsuntoRENAEMSE = value;
+                MyNumeroAsuntoRENAEMSE = value;
             }
         }
         

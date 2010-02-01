@@ -62,6 +62,37 @@ namespace ControlHoras
             empls.ShowDialog(this);
         }
 
+        private void emergenciasMedicaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ABMEmergenciasMedica eme = new ABMEmergenciasMedica();
+            eme.ShowDialog(this);
+        }
+
+        private void mutualistasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ABMMutualistas mutu = new ABMMutualistas();
+            mutu.ShowDialog(this);
+        }
+
+        private void bancosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ABMBancos banco = new ABMBancos();
+            banco.ShowDialog(this);
+        }
+
+        private void departamentosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ABMDepartamentos depa = new ABMDepartamentos();
+            depa.ShowDialog(this);
+        }
+
+        private void tiposDeDocumentosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ABMTiposDocumento tiposDoc = new ABMTiposDocumento();
+            tiposDoc.ShowDialog(this);
+        }
+
+
 
     }
 }

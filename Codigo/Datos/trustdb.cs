@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2010-01-30 17:56:03Z
+#region Auto-generated classes for trustdb database on 2010-02-01 03:16:23Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2010-01-30 17:56:03Z
+// Auto-generated from trustdb on 2010-02-01 03:16:23Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -662,7 +662,7 @@ namespace Datos
 
 		private string _rut;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_rut", Name = "RUT", DbType = "varchar(12)", AutoSync = AutoSync.Never)]
+		[Column(Storage = "_rut", Name = "RUT", DbType = "char(15)", AutoSync = AutoSync.Never)]
 		public string Rut
 		{
 			get
@@ -1573,27 +1573,15 @@ namespace Datos
 
 		#endregion
 
-		#region Custom type definition for EstadoCivilType
-
-		public enum EstadoCivilType
-		{
-			CASADO,
-			SOLTERO,
-			DIVORCIADO,
-			VIUDO,
-		}
-
-		#endregion
-
 		#region Extensibility Method Definitions
 
 		partial void OnCreated();
 		partial void OnAntecedentesChanged();
 		partial void OnAntecedentesChanging(sbyte? value);
-		partial void OnAntecedentesPolicialesoMilitaresChanged();
-		partial void OnAntecedentesPolicialesoMilitaresChanging(sbyte? value);
 		partial void OnApellidoChanged();
 		partial void OnApellidoChanging(string value);
+		partial void OnBarrioChanged();
+		partial void OnBarrioChanging(string value);
 		partial void OnBpsaCumulacionLaboralChanged();
 		partial void OnBpsaCumulacionLaboralChanging(byte? value);
 		partial void OnBpsfEchaAltaChanged();
@@ -1631,9 +1619,9 @@ namespace Datos
 		partial void OnEntreCallesChanged();
 		partial void OnEntreCallesChanging(string value);
 		partial void OnEstadoCivilChanged();
-		partial void OnEstadoCivilChanging(EstadoCivilType value);
-		partial void OnFechaEgresoChanged();
-		partial void OnFechaEgresoChanging(DateTime? value);
+		partial void OnEstadoCivilChanging(string value);
+		partial void OnFechaBajaChanged();
+		partial void OnFechaBajaChanging(DateTime? value);
 		partial void OnFechaEgresoPolicialoMilitarChanged();
 		partial void OnFechaEgresoPolicialoMilitarChanging(DateTime? value);
 		partial void OnFechaIngresoChanged();
@@ -1646,10 +1634,10 @@ namespace Datos
 		partial void OnFechaTestPsicologicoChanging(DateTime? value);
 		partial void OnFechaVencimientoCarneDeSaludChanged();
 		partial void OnFechaVencimientoCarneDeSaludChanging(DateTime? value);
+		partial void OnFotoChanged();
+		partial void OnFotoChanging(Byte[] value);
 		partial void OnIDBancoChanged();
 		partial void OnIDBancoChanging(byte? value);
-		partial void OnIDBarrioChanged();
-		partial void OnIDBarrioChanging(ushort value);
 		partial void OnIDDepartamentoChanged();
 		partial void OnIDDepartamentoChanging(sbyte value);
 		partial void OnIDEmergenciaMedicaChanged();
@@ -1662,8 +1650,8 @@ namespace Datos
 		partial void OnIDTipoDocumentoChanging(sbyte value);
 		partial void OnLugarDeNacimientoChanged();
 		partial void OnLugarDeNacimientoChanging(string value);
-		partial void OnMotivoEgresoChanged();
-		partial void OnMotivoEgresoChanging(string value);
+		partial void OnMotivoBajaChanged();
+		partial void OnMotivoBajaChanging(string value);
 		partial void OnNacionalidadChanged();
 		partial void OnNacionalidadChanging(string value);
 		partial void OnNombreChanged();
@@ -1676,26 +1664,26 @@ namespace Datos
 		partial void OnObservacionesChanging(string value);
 		partial void OnObservacionesAntecedentesChanged();
 		partial void OnObservacionesAntecedentesChanging(string value);
-		partial void OnPathFotoChanged();
-		partial void OnPathFotoChanging(string value);
+		partial void OnPolicialesoMilitarChanged();
+		partial void OnPolicialesoMilitarChanging(sbyte? value);
 		partial void OnRenaemsefEchaIngresoChanged();
 		partial void OnRenaemsefEchaIngresoChanging(DateTime? value);
 		partial void OnRenaemsenUmeroAsuntoChanged();
-		partial void OnRenaemsenUmeroAsuntoChanging(DateTime? value);
-		partial void OnSexoChanged();
-		partial void OnSexoChanging(sbyte? value);
+		partial void OnRenaemsenUmeroAsuntoChanging(string value);
+		partial void OnSexOChanged();
+		partial void OnSexOChanging(string value);
 		partial void OnSubEscalafonPolicialChanged();
 		partial void OnSubEscalafonPolicialChanging(string value);
 		partial void OnSueldoActualChanged();
-		partial void OnSueldoActualChanging(decimal? value);
+		partial void OnSueldoActualChanging(float? value);
 		partial void OnTalleCamisaChanged();
-		partial void OnTalleCamisaChanging(float? value);
+		partial void OnTalleCamisaChanging(string value);
 		partial void OnTalleCamperaChanged();
-		partial void OnTalleCamperaChanging(float? value);
+		partial void OnTalleCamperaChanging(string value);
 		partial void OnTallePantalonChanged();
-		partial void OnTallePantalonChanging(float? value);
+		partial void OnTallePantalonChanging(string value);
 		partial void OnTalleZapatosChanged();
-		partial void OnTalleZapatosChanging(float? value);
+		partial void OnTalleZapatosChanging(sbyte? value);
 		partial void OnTelefonosChanged();
 		partial void OnTelefonosChanging(string value);
 
@@ -1727,32 +1715,6 @@ namespace Datos
 
 		#endregion
 
-		#region sbyte? AntecedentesPolicialesoMilitares
-
-		private sbyte? _antecedentesPolicialesoMilitares;
-		[DebuggerNonUserCode]
-		[Column(Storage = "_antecedentesPolicialesoMilitares", Name = "AntecedentesPolicialesoMilitares", DbType = "tinyint(1)", AutoSync = AutoSync.Never)]
-		public sbyte? AntecedentesPolicialesoMilitares
-		{
-			get
-			{
-				return _antecedentesPolicialesoMilitares;
-			}
-			set
-			{
-				if (value != _antecedentesPolicialesoMilitares)
-				{
-					OnAntecedentesPolicialesoMilitaresChanging(value);
-					SendPropertyChanging();
-					_antecedentesPolicialesoMilitares = value;
-					SendPropertyChanged("AntecedentesPolicialesoMilitares");
-					OnAntecedentesPolicialesoMilitaresChanged();
-				}
-			}
-		}
-
-		#endregion
-
 		#region string Apellido
 
 		private string _apellido;
@@ -1773,6 +1735,32 @@ namespace Datos
 					_apellido = value;
 					SendPropertyChanged("Apellido");
 					OnApellidoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string Barrio
+
+		private string _barrio;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_barrio", Name = "Barrio", DbType = "varchar(30)", AutoSync = AutoSync.Never)]
+		public string Barrio
+		{
+			get
+			{
+				return _barrio;
+			}
+			set
+			{
+				if (value != _barrio)
+				{
+					OnBarrioChanging(value);
+					SendPropertyChanging();
+					_barrio = value;
+					SendPropertyChanged("Barrio");
+					OnBarrioChanged();
 				}
 			}
 		}
@@ -2247,12 +2235,12 @@ namespace Datos
 
 		#endregion
 
-		#region EstadoCivilType EstadoCivil
+		#region string EstadoCivil
 
-		private EstadoCivilType _estadoCivil;
+		private string _estadoCivil;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_estadoCivil", Name = "EstadoCivil", DbType = "enum('CASADO','SOLTERO','DIVORCIADO','VIUDO')", AutoSync = AutoSync.Never)]
-		public EstadoCivilType EstadoCivil
+		[Column(Storage = "_estadoCivil", Name = "EstadoCivil", DbType = "varchar(11)", AutoSync = AutoSync.Never)]
+		public string EstadoCivil
 		{
 			get
 			{
@@ -2273,26 +2261,26 @@ namespace Datos
 
 		#endregion
 
-		#region DateTime? FechaEgreso
+		#region DateTime? FechaBaja
 
-		private DateTime? _fechaEgreso;
+		private DateTime? _fechaBaja;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_fechaEgreso", Name = "FechaEgreso", DbType = "date", AutoSync = AutoSync.Never)]
-		public DateTime? FechaEgreso
+		[Column(Storage = "_fechaBaja", Name = "FechaBaja", DbType = "date", AutoSync = AutoSync.Never)]
+		public DateTime? FechaBaja
 		{
 			get
 			{
-				return _fechaEgreso;
+				return _fechaBaja;
 			}
 			set
 			{
-				if (value != _fechaEgreso)
+				if (value != _fechaBaja)
 				{
-					OnFechaEgresoChanging(value);
+					OnFechaBajaChanging(value);
 					SendPropertyChanging();
-					_fechaEgreso = value;
-					SendPropertyChanged("FechaEgreso");
-					OnFechaEgresoChanged();
+					_fechaBaja = value;
+					SendPropertyChanged("FechaBaja");
+					OnFechaBajaChanged();
 				}
 			}
 		}
@@ -2455,6 +2443,32 @@ namespace Datos
 
 		#endregion
 
+		#region Byte[] Foto
+
+		private Byte[] _foto;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_foto", Name = "Foto", DbType = "blob", AutoSync = AutoSync.Never)]
+		public Byte[] Foto
+		{
+			get
+			{
+				return _foto;
+			}
+			set
+			{
+				if (value != _foto)
+				{
+					OnFotoChanging(value);
+					SendPropertyChanging();
+					_foto = value;
+					SendPropertyChanged("Foto");
+					OnFotoChanged();
+				}
+			}
+		}
+
+		#endregion
+
 		#region byte? IDBanco
 
 		private byte? _idbAnco;
@@ -2475,32 +2489,6 @@ namespace Datos
 					_idbAnco = value;
 					SendPropertyChanged("IDBanco");
 					OnIDBancoChanged();
-				}
-			}
-		}
-
-		#endregion
-
-		#region ushort IDBarrio
-
-		private ushort _idbArrio;
-		[DebuggerNonUserCode]
-		[Column(Storage = "_idbArrio", Name = "IdBarrio", DbType = "smallint(5) unsigned", AutoSync = AutoSync.Never, CanBeNull = false)]
-		public ushort IDBarrio
-		{
-			get
-			{
-				return _idbArrio;
-			}
-			set
-			{
-				if (value != _idbArrio)
-				{
-					OnIDBarrioChanging(value);
-					SendPropertyChanging();
-					_idbArrio = value;
-					SendPropertyChanged("IDBarrio");
-					OnIDBarrioChanged();
 				}
 			}
 		}
@@ -2663,26 +2651,26 @@ namespace Datos
 
 		#endregion
 
-		#region string MotivoEgreso
+		#region string MotivoBaja
 
-		private string _motivoEgreso;
+		private string _motivoBaja;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_motivoEgreso", Name = "MotivoEgreso", DbType = "varchar(100)", AutoSync = AutoSync.Never)]
-		public string MotivoEgreso
+		[Column(Storage = "_motivoBaja", Name = "MotivoBaja", DbType = "varchar(100)", AutoSync = AutoSync.Never)]
+		public string MotivoBaja
 		{
 			get
 			{
-				return _motivoEgreso;
+				return _motivoBaja;
 			}
 			set
 			{
-				if (value != _motivoEgreso)
+				if (value != _motivoBaja)
 				{
-					OnMotivoEgresoChanging(value);
+					OnMotivoBajaChanging(value);
 					SendPropertyChanging();
-					_motivoEgreso = value;
-					SendPropertyChanged("MotivoEgreso");
-					OnMotivoEgresoChanged();
+					_motivoBaja = value;
+					SendPropertyChanged("MotivoBaja");
+					OnMotivoBajaChanged();
 				}
 			}
 		}
@@ -2845,26 +2833,26 @@ namespace Datos
 
 		#endregion
 
-		#region string PathFoto
+		#region sbyte? PolicialesoMilitar
 
-		private string _pathFoto;
+		private sbyte? _policialesoMilitar;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_pathFoto", Name = "pathFoto", DbType = "varchar(50)", AutoSync = AutoSync.Never)]
-		public string PathFoto
+		[Column(Storage = "_policialesoMilitar", Name = "PolicialesoMilitar", DbType = "tinyint(1)", AutoSync = AutoSync.Never)]
+		public sbyte? PolicialesoMilitar
 		{
 			get
 			{
-				return _pathFoto;
+				return _policialesoMilitar;
 			}
 			set
 			{
-				if (value != _pathFoto)
+				if (value != _policialesoMilitar)
 				{
-					OnPathFotoChanging(value);
+					OnPolicialesoMilitarChanging(value);
 					SendPropertyChanging();
-					_pathFoto = value;
-					SendPropertyChanged("PathFoto");
-					OnPathFotoChanged();
+					_policialesoMilitar = value;
+					SendPropertyChanged("PolicialesoMilitar");
+					OnPolicialesoMilitarChanged();
 				}
 			}
 		}
@@ -2897,12 +2885,12 @@ namespace Datos
 
 		#endregion
 
-		#region DateTime? RenaemsenUmeroAsunto
+		#region string RenaemsenUmeroAsunto
 
-		private DateTime? _renaemsenUmeroAsunto;
+		private string _renaemsenUmeroAsunto;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_renaemsenUmeroAsunto", Name = "RENAEMSE_NumeroAsunto", DbType = "date", AutoSync = AutoSync.Never)]
-		public DateTime? RenaemsenUmeroAsunto
+		[Column(Storage = "_renaemsenUmeroAsunto", Name = "RENAEMSE_NumeroAsunto", DbType = "varchar(20)", AutoSync = AutoSync.Never)]
+		public string RenaemsenUmeroAsunto
 		{
 			get
 			{
@@ -2923,26 +2911,26 @@ namespace Datos
 
 		#endregion
 
-		#region sbyte? Sexo
+		#region string SexO
 
-		private sbyte? _sexo;
+		private string _sexO;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_sexo", Name = "Sexo", DbType = "tinyint(1)", AutoSync = AutoSync.Never)]
-		public sbyte? Sexo
+		[Column(Storage = "_sexO", Name = "sexo", DbType = "char(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string SexO
 		{
 			get
 			{
-				return _sexo;
+				return _sexO;
 			}
 			set
 			{
-				if (value != _sexo)
+				if (value != _sexO)
 				{
-					OnSexoChanging(value);
+					OnSexOChanging(value);
 					SendPropertyChanging();
-					_sexo = value;
-					SendPropertyChanged("Sexo");
-					OnSexoChanged();
+					_sexO = value;
+					SendPropertyChanged("SexO");
+					OnSexOChanged();
 				}
 			}
 		}
@@ -2975,12 +2963,12 @@ namespace Datos
 
 		#endregion
 
-		#region decimal? SueldoActual
+		#region float? SueldoActual
 
-		private decimal? _sueldoActual;
+		private float? _sueldoActual;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_sueldoActual", Name = "SueldoActual", DbType = "decimal(8,2)", AutoSync = AutoSync.Never)]
-		public decimal? SueldoActual
+		[Column(Storage = "_sueldoActual", Name = "SueldoActual", DbType = "float(8,2)", AutoSync = AutoSync.Never)]
+		public float? SueldoActual
 		{
 			get
 			{
@@ -3001,12 +2989,12 @@ namespace Datos
 
 		#endregion
 
-		#region float? TalleCamisa
+		#region string TalleCamisa
 
-		private float? _talleCamisa;
+		private string _talleCamisa;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_talleCamisa", Name = "TalleCamisa", DbType = "float(3,1)", AutoSync = AutoSync.Never)]
-		public float? TalleCamisa
+		[Column(Storage = "_talleCamisa", Name = "TalleCamisa", DbType = "varchar(4)", AutoSync = AutoSync.Never)]
+		public string TalleCamisa
 		{
 			get
 			{
@@ -3027,12 +3015,12 @@ namespace Datos
 
 		#endregion
 
-		#region float? TalleCampera
+		#region string TalleCampera
 
-		private float? _talleCampera;
+		private string _talleCampera;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_talleCampera", Name = "TalleCampera", DbType = "float(3,1)", AutoSync = AutoSync.Never)]
-		public float? TalleCampera
+		[Column(Storage = "_talleCampera", Name = "TalleCampera", DbType = "varchar(4)", AutoSync = AutoSync.Never)]
+		public string TalleCampera
 		{
 			get
 			{
@@ -3053,12 +3041,12 @@ namespace Datos
 
 		#endregion
 
-		#region float? TallePantalon
+		#region string TallePantalon
 
-		private float? _tallePantalon;
+		private string _tallePantalon;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_tallePantalon", Name = "TallePantalon", DbType = "float(3,1)", AutoSync = AutoSync.Never)]
-		public float? TallePantalon
+		[Column(Storage = "_tallePantalon", Name = "TallePantalon", DbType = "varchar(4)", AutoSync = AutoSync.Never)]
+		public string TallePantalon
 		{
 			get
 			{
@@ -3079,12 +3067,12 @@ namespace Datos
 
 		#endregion
 
-		#region float? TalleZapatos
+		#region sbyte? TalleZapatos
 
-		private float? _talleZapatos;
+		private sbyte? _talleZapatos;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_talleZapatos", Name = "TalleZapatos", DbType = "float(3,1)", AutoSync = AutoSync.Never)]
-		public float? TalleZapatos
+		[Column(Storage = "_talleZapatos", Name = "TalleZapatos", DbType = "tinyint(2)", AutoSync = AutoSync.Never)]
+		public sbyte? TalleZapatos
 		{
 			get
 			{
@@ -3131,46 +3119,10 @@ namespace Datos
 
 		#endregion
 
-		#region Children
-
-		private EntitySet<ExtrasLiquidAcIonEmPleadO> _extrasLiquidAcIonEmPleadO;
-		[Association(Storage = "_extrasLiquidAcIonEmPleadO", OtherKey = "IDEmpleado", ThisKey = "IDEmpleado", Name = "fk_IdEmpleado_Empleados_IdEmpleado")]
-		[DebuggerNonUserCode]
-		public EntitySet<ExtrasLiquidAcIonEmPleadO> ExtrasLiquidAcIonEmPleadO
-		{
-			get
-			{
-				return _extrasLiquidAcIonEmPleadO;
-			}
-			set
-			{
-				_extrasLiquidAcIonEmPleadO = value;
-			}
-		}
-
-
-		#endregion
-
-		#region Attachement handlers
-
-		private void ExtrasLiquidAcIonEmPleadO_Attach(ExtrasLiquidAcIonEmPleadO entity)
-		{
-			entity.EmPleadOs = this;
-		}
-
-		private void ExtrasLiquidAcIonEmPleadO_Detach(ExtrasLiquidAcIonEmPleadO entity)
-		{
-			entity.EmPleadOs = null;
-		}
-
-
-		#endregion
-
 		#region ctor
 
 		public EmPleadOs()
 		{
-			_extrasLiquidAcIonEmPleadO = new EntitySet<ExtrasLiquidAcIonEmPleadO>(ExtrasLiquidAcIonEmPleadO_Attach, ExtrasLiquidAcIonEmPleadO_Detach);
 			OnCreated();
 		}
 
@@ -3431,7 +3383,8 @@ namespace Datos
 
 		public enum SignoType
 		{
-			
+			SUMA,
+			RESTA,
 		}
 
 		#endregion
@@ -3646,7 +3599,7 @@ namespace Datos
 
 		private SignoType _signo;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_signo", Name = "Signo", DbType = "enum('+','-')", AutoSync = AutoSync.Never, CanBeNull = false)]
+		[Column(Storage = "_signo", Name = "Signo", DbType = "enum('SUMA','RESTA')", AutoSync = AutoSync.Never, CanBeNull = false)]
 		public SignoType Signo
 		{
 			get
@@ -3672,7 +3625,7 @@ namespace Datos
 
 		private float _valor;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_valor", Name = "Valor", DbType = "float(6,2)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		[Column(Storage = "_valor", Name = "Valor", DbType = "float", AutoSync = AutoSync.Never, CanBeNull = false)]
 		public float Valor
 		{
 			get
@@ -3694,49 +3647,10 @@ namespace Datos
 
 		#endregion
 
-		#region Parents
-
-		private EntityRef<EmPleadOs> _emPleadOs;
-		[Association(Storage = "_emPleadOs", OtherKey = "IDEmpleado", ThisKey = "IDEmpleado", Name = "fk_IdEmpleado_Empleados_IdEmpleado", IsForeignKey = true)]
-		[DebuggerNonUserCode]
-		public EmPleadOs EmPleadOs
-		{
-			get
-			{
-				return _emPleadOs.Entity;
-			}
-			set
-			{
-				if (value != _emPleadOs.Entity)
-				{
-					if (_emPleadOs.Entity != null)
-					{
-						var previousEmPleadOs = _emPleadOs.Entity;
-						_emPleadOs.Entity = null;
-						previousEmPleadOs.ExtrasLiquidAcIonEmPleadO.Remove(this);
-					}
-					_emPleadOs.Entity = value;
-					if (value != null)
-					{
-						value.ExtrasLiquidAcIonEmPleadO.Add(this);
-						_ideMpleado = value.IDEmpleado;
-					}
-					else
-					{
-						_ideMpleado = default(uint);
-					}
-				}
-			}
-		}
-
-
-		#endregion
-
 		#region ctor
 
 		public ExtrasLiquidAcIonEmPleadO()
 		{
-			_emPleadOs = new EntityRef<EmPleadOs>();
 			OnCreated();
 		}
 

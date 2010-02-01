@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Logica
 {
-    interface IABMTipos
+    public interface IABMTipos
     {
 
         #region TipoEmpleado
@@ -15,5 +15,42 @@ namespace Logica
         List<TipoEmpleado> obtenerTiposEmpleado();
 
         #endregion
+
+        #region ABM_Departamentos
+        int altaDepartamento(string nombreDepartamento, bool activo);
+        void modificarDepartamento(int idDepartamento, string nombreDepartamento, bool activo);
+        Dictionary<int, string> obtenerDepartamentos(bool activos);
+        void bajaDepartamento(int idDepartamento);
+
+        #endregion
+        
+        #region ABM_Bancos
+        int altaBanco(string nombreBanco, bool activo);
+        void modificarBanco(int idBanco, string nombreBanco, bool activo);
+        Dictionary<int, string> obtenerBancos(bool activos);
+        void bajaBanco(int idBanco);
+        #endregion
+
+        #region ABM_Mutualistas
+        int altaMutualista(string nombreMutualista, bool activo);
+        void modificarMutualista(int idMutualista, string nombreMutualista, bool activo);
+        Dictionary<int, string> obtenerMutualistas(bool activos);
+        void bajaMutualista(int idMutualista);
+        #endregion
+
+        #region ABM_EmergenciasMedica
+        int altaEmergenciaMedica(string nombreEmergenciaMedica, bool activo);
+        void modificarEmergenciaMedica(int idEmergenciaMedica, string nombreEmergenciaMedica, bool activo);
+        Dictionary<int, string> obtenerEmergenciaMedicas(bool activos);
+        void bajaEmergenciaMedica(int idEmergenciaMedica);
+        #endregion
+
+        #region ABM_TiposDocumentos
+        int altaTipoDocumento(string nombreTipoDocumento, bool activo);
+        void modificarTipoDocumento(int idTipoDocumento, string nombreTipoDocumento, bool activo);
+        Dictionary<int, string> obtenerTipoDocumentos(bool activos);
+        void bajaTipoDocumento(int idTipoDocumento);
+        #endregion
+
     }
 }

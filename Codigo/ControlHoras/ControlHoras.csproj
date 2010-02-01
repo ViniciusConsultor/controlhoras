@@ -76,6 +76,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABMBancos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMBancos.Designer.cs">
+      <DependentUpon>ABMBancos.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABMCategorias.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,11 +94,35 @@
     <Compile Include="ABMClientes.designer.cs">
       <DependentUpon>ABMClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABMDepartamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMDepartamentos.designer.cs">
+      <DependentUpon>ABMDepartamentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMEmergenciasMedica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMEmergenciasMedica.designer.cs">
+      <DependentUpon>ABMEmergenciasMedica.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABMEmpleados.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABMEmpleados.Designer.cs">
+    <Compile Include="ABMEmpleados.designer.cs">
       <DependentUpon>ABMEmpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMMutualistas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMMutualistas.designer.cs">
+      <DependentUpon>ABMMutualistas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMTiposDocumento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMTiposDocumento.designer.cs">
+      <DependentUpon>ABMTiposDocumento.cs</DependentUpon>
     </Compile>
     <Compile Include="BuscarCliente.cs">
       <SubType>Form</SubType>
@@ -191,14 +221,29 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ABMBancos.resx">
+      <DependentUpon>ABMBancos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABMCategorias.resx">
       <DependentUpon>ABMCategorias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABMClientes.resx">
       <DependentUpon>ABMClientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABMDepartamentos.resx">
+      <DependentUpon>ABMDepartamentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMEmergenciasMedica.resx">
+      <DependentUpon>ABMEmergenciasMedica.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABMEmpleados.resx">
       <DependentUpon>ABMEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMMutualistas.resx">
+      <DependentUpon>ABMMutualistas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMTiposDocumento.resx">
+      <DependentUpon>ABMTiposDocumento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BuscarCliente.resx">
       <DependentUpon>BuscarCliente.cs</DependentUpon>
