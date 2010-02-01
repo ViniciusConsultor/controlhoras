@@ -60,9 +60,9 @@
             this.mtServicio.Name = "mtServicio";
             this.mtServicio.Size = new System.Drawing.Size(57, 25);
             this.mtServicio.TabIndex = 2;
-            this.mtServicio.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtServicio_KeyDown);
-            this.mtServicio.Leave += new System.EventHandler(this.mtServicio_Leave);
-            this.mtServicio.Enter += new System.EventHandler(this.mtServicio_Enter);
+            //this.mtServicio.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtServicio_KeyDown);
+            //this.mtServicio.Leave += new System.EventHandler(this.mtServicio_Leave);
+            //this.mtServicio.Enter += new System.EventHandler(this.mtServicio_Enter);
             // 
             // mtCliente
             // 
@@ -75,9 +75,9 @@
             this.mtCliente.Name = "mtCliente";
             this.mtCliente.Size = new System.Drawing.Size(57, 25);
             this.mtCliente.TabIndex = 1;
-            this.mtCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtCliente_KeyDown);            
-            this.mtCliente.Leave += new System.EventHandler(this.mtCliente_Leave);
-            this.mtCliente.Enter += new System.EventHandler(this.mtCliente_Enter);
+            //this.mtCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtCliente_KeyDown);            
+            //this.mtCliente.Leave += new System.EventHandler(this.mtCliente_Leave);
+            //this.mtCliente.Enter += new System.EventHandler(this.mtCliente_Enter);
             // 
             // txtServicio
             // 
@@ -120,8 +120,8 @@
             this.dgvHoras.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvHoras.Size = new System.Drawing.Size(751, 287);
             this.dgvHoras.TabIndex = 6;
-            this.dgvHoras.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvHoras_CellMouseClick);
-            this.dgvHoras.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvHoras_CellMouseDoubleClick);
+            //this.dgvHoras.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvHoras_CellMouseClick);
+            //this.dgvHoras.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvHoras_CellMouseDoubleClick);
             // 
             // menuStripdgvHoras
             // 
@@ -143,7 +143,7 @@
             this.cambiarFuncionario.Name = "cambiarFuncionario";
             this.cambiarFuncionario.Size = new System.Drawing.Size(198, 22);
             this.cambiarFuncionario.Text = "Cambiar Funcionario";
-            this.cambiarFuncionario.Click += new System.EventHandler(this.cambiarFuncionario_Click);
+            //this.cambiarFuncionario.Click += new System.EventHandler(this.cambiarFuncionario_Click);
             // 
             // toolStripSeparator2
             // 
@@ -155,14 +155,14 @@
             this.cambiarHoraIngreso.Name = "cambiarHoraIngreso";
             this.cambiarHoraIngreso.Size = new System.Drawing.Size(198, 22);
             this.cambiarHoraIngreso.Text = "Cambiar Hora Ingreso";
-            this.cambiarHoraIngreso.Click += new System.EventHandler(this.cambiarHoraIngreso_Click);
+            //this.cambiarHoraIngreso.Click += new System.EventHandler(this.cambiarHoraIngreso_Click);
             // 
             // cambiarHoraFin
             // 
             this.cambiarHoraFin.Name = "cambiarHoraFin";
             this.cambiarHoraFin.Size = new System.Drawing.Size(198, 22);
             this.cambiarHoraFin.Text = "Cambiar Hora Fin";
-            this.cambiarHoraFin.Click += new System.EventHandler(this.cambiarHoraFin_Click);
+            //this.cambiarHoraFin.Click += new System.EventHandler(this.cambiarHoraFin_Click);
             // 
             // toolStripSeparator1
             // 
@@ -175,14 +175,14 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(198, 22);
             this.toolStripMenuItem1.Text = "Cancelar Entrada";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            //this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // cancelarSalidaToolStripMenuItem
             // 
             this.cancelarSalidaToolStripMenuItem.Name = "cancelarSalidaToolStripMenuItem";
             this.cancelarSalidaToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.cancelarSalidaToolStripMenuItem.Text = "Cancelar Salida";
-            this.cancelarSalidaToolStripMenuItem.Click += new System.EventHandler(this.cancelarSalidaToolStripMenuItem_Click);
+            //this.cancelarSalidaToolStripMenuItem.Click += new System.EventHandler(this.cancelarSalidaToolStripMenuItem_Click);
             // 
             // mtFecha
             // 
@@ -194,9 +194,9 @@
             this.mtFecha.Size = new System.Drawing.Size(92, 25);
             this.mtFecha.TabIndex = 3;
             this.mtFecha.ValidatingType = typeof(System.DateTime);
-            this.mtFecha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtFecha_KeyDown);
-            this.mtFecha.Leave += new System.EventHandler(this.mtFecha_Leave);
-            this.mtFecha.Enter += new System.EventHandler(this.mtFecha_Enter);
+            //this.mtFecha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtFecha_KeyDown);
+            //this.mtFecha.Leave += new System.EventHandler(this.mtFecha_Leave);
+            //this.mtFecha.Enter += new System.EventHandler(this.mtFecha_Enter);
             // 
             // btnDiaSiguiente
             // 
@@ -207,7 +207,7 @@
             this.btnDiaSiguiente.TabIndex = 5;
             this.btnDiaSiguiente.Text = ">";
             this.btnDiaSiguiente.UseVisualStyleBackColor = true;
-            this.btnDiaSiguiente.Click += new System.EventHandler(this.btnDiaSiguiente_Click);
+            //this.btnDiaSiguiente.Click += new System.EventHandler(this.btnDiaSiguiente_Click);
             // 
             // btnDiaAnterior
             // 
@@ -218,7 +218,7 @@
             this.btnDiaAnterior.TabIndex = 4;
             this.btnDiaAnterior.Text = "<";
             this.btnDiaAnterior.UseVisualStyleBackColor = true;
-            this.btnDiaAnterior.Click += new System.EventHandler(this.btnDiaAnterior_Click);
+            //this.btnDiaAnterior.Click += new System.EventHandler(this.btnDiaAnterior_Click);
             // 
             // toolStrip1
             // 

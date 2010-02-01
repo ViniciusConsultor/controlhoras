@@ -37,5 +37,9 @@ namespace Logica
         List<Cliente> buscarCliente(string Nombre);
         
         bool existeClienteServicio(int NumeroCliente, int NumeroServicio);
+
+        void altaContratoServicioCliente(int NumeroCliente, int NumeroServicio, int NumeroContrato, DateTime FechaInicio, DateTime FechaFin, bool CostoFijo, bool HorasExtras, string Ajuste, string Observaciones, float Monto);
+
+        bool existeContrato(int NumeroContrato);
     }
 }

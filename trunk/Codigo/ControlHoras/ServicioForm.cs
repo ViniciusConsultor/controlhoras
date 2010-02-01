@@ -210,7 +210,7 @@ namespace ControlHoras
                     DialogResult res = MessageBox.Show(this, "Desea definir el contrato ahora?", "Contrato", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                     if (res == DialogResult.OK)
                     {
-                        ContratoForm contrato = new ContratoForm();
+                        ContratoForm contrato = new ContratoForm(bcUC.ClienteNRO, NroMTB.Text);
                         contrato.ShowDialog(this);
                     }
                     else

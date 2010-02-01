@@ -533,6 +533,69 @@ namespace Datos
                 // MySQLException = Access Denied  Codigo = 1045
             }
         }
+        
+        public void altaContratoServicioCliente(int NumeroCliente, int NumeroServicio, int NumeroContrato, DateTime FechaInicio, DateTime FechaFin, bool CostoFijo, bool HorasExtras, string Ajuste, string Observaciones, float Monto)
+        {
+
+            ContraToS con = null;
+           
+            try
+            {
+                con = new ContraToS();
+                
+                con.TipodeContrato=0;
+                con.IDContratos = (uint)NumeroContrato;
+                con.FechaIni = FechaInicio;
+                con.FechaFin = FechaFin;
+                if (CostoFijo)
+                    con.CostoFijo = 1;
+                else
+                    con.CostoFijo = 0;
+                if (HorasExtras)
+                    con.HorasExtras = 1;
+                else
+                    con.HorasExtras = 0;
+                con.Ajuste = Ajuste;
+                con.Observaciones = Observaciones;
+                con.Costo = Monto;
+
+                Table<ContraToS> tablaContratos = database.GetTable<ContraToS>();
+                tablaContratos.InsertOnSubmit(con);
+
+                database.SubmitChanges();
+            }
+            catch (MySqlException ex)
+            {
+                //database.Refresh(System.Data.Linq.RefreshMode.KeepCurrentValues);
+                // database.Connection.Close();
+                if (ex.Number == 1062)
+                {
+                    // int index = database.GetChangeSet().Inserts.IndexOf(cliente);
+                    // database.GetChangeSet().Inserts.RemoveAt(index);
+                    database.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues);
+                }
+                throw ex;
+            }
+        }
+
+        public bool  existeContrato(int NumeroContrato)
+        {
+            try
+            {
+                var cli = (from clireg in database.GetTable<ContraToS>()
+                           where clireg.IDContratos == NumeroContrato
+                           select clireg);
+                if (cli.Count<ContraToS>() == 0)
+                    return false;
+                else
+                    return true;
+             }   
+ 	         catch (Exception ex)
+            {
+                throw ex;
+                // MySQLException = Access Denied  Codigo = 1045
+            }
+        }    
         public EmPleadOs obtenerEmpleado(int idEmpleado)
         {
             try

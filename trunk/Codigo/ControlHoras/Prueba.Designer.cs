@@ -28,18 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgv = new System.Windows.Forms.DataGridView();
-            this.Puesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgv = new ControlHoras.DataGridTAB();
             this.Armado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBoxKeyDown3 = new ControlHoras.TextBoxKeyDown();
-            this.textBoxKeyDown2 = new ControlHoras.TextBoxKeyDown();
-            this.textBoxKeyDown1 = new ControlHoras.TextBoxKeyDown();
+            this.Puesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maskedTextBoxColumn1 = new ControlHoras.MaskedTextBoxColumn();
-            this.CB = new System.Windows.Forms.ComboBox();
+            this.dataGridTAB1 = new ControlHoras.DataGridTAB();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridTAB1)).BeginInit();
             this.SuspendLayout();
             // 
             // dgv
@@ -50,16 +53,11 @@
             this.Armado,
             this.Cantidad});
             this.dgv.Location = new System.Drawing.Point(20, 35);
-            this.dgv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgv.Margin = new System.Windows.Forms.Padding(2);
             this.dgv.Name = "dgv";
             this.dgv.RowTemplate.Height = 24;
             this.dgv.Size = new System.Drawing.Size(617, 158);
             this.dgv.TabIndex = 3;
-            // 
-            // Puesto
-            // 
-            this.Puesto.HeaderText = "Puesto";
-            this.Puesto.Name = "Puesto";
             // 
             // Armado
             // 
@@ -67,14 +65,6 @@
             this.Armado.HeaderText = "Armado";
             this.Armado.Name = "Armado";
             this.Armado.Width = 49;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Cantidad.Width = 55;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -87,27 +77,20 @@
             this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn2.Width = 55;
             // 
-            // textBoxKeyDown3
+            // Puesto
             // 
-            this.textBoxKeyDown3.Location = new System.Drawing.Point(135, 332);
-            this.textBoxKeyDown3.Name = "textBoxKeyDown3";
-            this.textBoxKeyDown3.Size = new System.Drawing.Size(218, 20);
-            this.textBoxKeyDown3.TabIndex = 2;
+            this.Puesto.HeaderText = "Puesto";
+            this.Puesto.Name = "Puesto";
             // 
-            // textBoxKeyDown2
+            // Cantidad
             // 
-            this.textBoxKeyDown2.Location = new System.Drawing.Point(135, 296);
-            this.textBoxKeyDown2.Name = "textBoxKeyDown2";
-            this.textBoxKeyDown2.Size = new System.Drawing.Size(218, 20);
-            this.textBoxKeyDown2.TabIndex = 1;
-            // 
-            // textBoxKeyDown1
-            // 
-            this.textBoxKeyDown1.Location = new System.Drawing.Point(135, 270);
-            this.textBoxKeyDown1.Name = "textBoxKeyDown1";
-            this.textBoxKeyDown1.Size = new System.Drawing.Size(218, 20);
-            this.textBoxKeyDown1.TabIndex = 0;
+            this.Cantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Cantidad.Width = 55;
             // 
             // maskedTextBoxColumn1
             // 
@@ -119,46 +102,76 @@
             this.maskedTextBoxColumn1.PromptChar = '\0';
             this.maskedTextBoxColumn1.ValidatingType = null;
             // 
-            // CB
+            // dataGridTAB1
             // 
-            this.CB.FormattingEnabled = true;
-            this.CB.Location = new System.Drawing.Point(489, 269);
-            this.CB.Name = "CB";
-            this.CB.Size = new System.Drawing.Size(121, 21);
-            this.CB.TabIndex = 4;
+            this.dataGridTAB1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridTAB1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5});
+            this.dataGridTAB1.Location = new System.Drawing.Point(20, 198);
+            this.dataGridTAB1.Name = "dataGridTAB1";
+            this.dataGridTAB1.Size = new System.Drawing.Size(617, 150);
+            this.dataGridTAB1.TabIndex = 4;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Column1";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Column2";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Column3";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Column4";
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Column5";
+            this.Column5.Name = "Column5";
             // 
             // Prueba
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(664, 360);
-            this.Controls.Add(this.CB);
+            this.Controls.Add(this.dataGridTAB1);
             this.Controls.Add(this.dgv);
-            this.Controls.Add(this.textBoxKeyDown3);
-            this.Controls.Add(this.textBoxKeyDown2);
-            this.Controls.Add(this.textBoxKeyDown1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Prueba";
             this.Text = "Prueba";
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridTAB1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private TextBoxKeyDown textBoxKeyDown1;
-        private TextBoxKeyDown textBoxKeyDown2;
-        private TextBoxKeyDown textBoxKeyDown3;
-        private System.Windows.Forms.DataGridView dgv;
+        private ControlHoras.DataGridTAB dgv;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private MaskedTextBoxColumn maskedTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Puesto;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Armado;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.ComboBox CB;
+        private DataGridTAB dataGridTAB1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
 
 
     }
