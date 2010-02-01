@@ -1,0 +1,5 @@
+C:\Documents and Settings\Administrador\Escritorio\RepositorioControlHoras\Dominio\bin\Debug\Dominio.dll
+C:\Documents and Settings\Administrador\Escritorio\RepositorioControlHoras\Dominio\bin\Debug\Dominio.pdb
+C:\Documents and Settings\Administrador\Escritorio\RepositorioControlHoras\Dominio\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrador\Escritorio\RepositorioControlHoras\Dominio\obj\Debug\Dominio.dll
+C:\Documents and Settings\Administrador\Escritorio\RepositorioControlHoras\Dominio\obj\Debug\Dominio.pdb
