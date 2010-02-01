@@ -489,6 +489,8 @@ namespace ControlHoras
                 cmbTipoDocumento.SelectedIndex = empleado.TipoDocumento;
             }
             catch (Exception e) { }
+            lblEdad.Text = calcularEdad(dtpFechaNacimiento.Value).ToString();
+            
         }
 
         private void btnSeleccionarImagen_Click(object sender, EventArgs e)
@@ -719,8 +721,21 @@ namespace ControlHoras
 
         private void dtpFechaNacimiento_ValueChanged(object sender, EventArgs e)
         {
-            lblEdad.Text = (DateTime.Now.Year - dtpFechaNacimiento.Value.Year).ToString();
+            
+            lblEdad.Text = calcularEdad(dtpFechaNacimiento.Value).ToString();
         }
+
+        private int calcularEdad(DateTime fecha)
+        {
+            int anio = (DateTime.Now.Year - dtpFechaNacimiento.Value.Year);
+            if (DateTime.Now.Month < dtpFechaNacimiento.Value.Month)
+                anio = anio - 1;
+            else if (DateTime.Now.Month == dtpFechaNacimiento.Value.Month)
+                if (DateTime.Now.Day < dtpFechaNacimiento.Value.Day)
+                    anio = anio - 1;
+            return anio;
+        }
+
 
 
 
