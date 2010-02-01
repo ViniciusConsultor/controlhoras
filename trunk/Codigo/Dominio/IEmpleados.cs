@@ -16,12 +16,7 @@ namespace Logica
             //List<Empleado> obtenerEmpleados(bool activos);
         #endregion
 
-        Dictionary<int,string> obtenerTiposDocumento();
-        Dictionary<int, string> obtenerEmergenciasMedica();
-        Dictionary<int, string> obtenerMutualistas();
-        Dictionary<int, string> obtenerBancos();
-        Dictionary<int, string> obtenerDepartamentos();
-
+        
 
         //#region ExtraLiquidacion
         //    void ingresarExtraLiquidacionEmpleado();

@@ -42,7 +42,7 @@ namespace Logica
         {
             try
             {
-                //datos.modificarEmpleado(idEmpleado, nombre, apellido, idTipoDocumento, documento, lugarNacimiento, nacionalidad, sexo, fechaPsicologo, fechaNacimiento, fechaIngreso, telefono, celular, celularConvenio, email, estadoCivil, cantidadHijos, foto, idBanco, numeroCuenta, sueldo, activo, fechaBaja, motivoBaja, /* Segundo Tab */ idDepartamento, ciudad, direccion, entreCalles, puntoEncuentro, numeroAsuntoRENAEMSE, fechaIngresoRENAEMSE, acumulacionLaboralBPS, fechaAltaBPS, fechaBajaBPS, numeroCAJ, fechaEmisionCAJ, fechaEntregaCAJ, antecedentesPolicialesOMilitares, PolicialOMilitar, fechaIngresoAntecedete, fechaEgresoAntecedente, subEscalafon, combatiente, talleCamisa, tallePantalon, talleZapatos, talleCampera, vencimientoCarneSalud, idMutualista, idEmergenciaMedica);
+                datos.modificarEmpleado(idEmpleado, nombre, apellido, idTipoDocumento, documento, lugarNacimiento, nacionalidad, sexo, fechaPsicologo, fechaNacimiento, fechaIngreso, telefono, celular, celularConvenio, email, estadoCivil, cantidadHijos, foto, idBanco, numeroCuenta, sueldo, activo, fechaBaja, motivoBaja, /* Segundo Tab */ idDepartamento, ciudad, direccion, entreCalles, puntoEncuentro, numeroAsuntoRENAEMSE, fechaIngresoRENAEMSE, acumulacionLaboralBPS, fechaAltaBPS, fechaBajaBPS, numeroCAJ, fechaEmisionCAJ, fechaEntregaCAJ, antecedentesPolicialesOMilitares, PolicialOMilitar, fechaIngresoAntecedete, fechaEgresoAntecedente, subEscalafon, combatiente, talleCamisa, tallePantalon, talleZapatos, talleCampera, vencimientoCarneSalud, idMutualista, idEmergenciaMedica);
             }
             catch (Exception ex)
             {
@@ -128,77 +128,187 @@ namespace Logica
 
         #endregion
 
-        #region Codigueras
-        public Dictionary<int, string> obtenerTiposDocumento()
-        {
-            try
-            {
-                return datos.obtenerTiposDocumento();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public Dictionary<int, string> obtenerEmergenciasMedica()
-        {
-            try
-            {
-                return datos.obtenerEmergenciasMedica();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        
-        public Dictionary<int, string> obtenerMutualistas()
-        {
-            try
-            {
-                return datos.obtenerMutualistas();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public Dictionary<int, string> obtenerBancos()
-        {
-            try
-            {
-                return datos.obtenerBancos();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        
-        public Dictionary<int, string> obtenerDepartamentos()
-        {
-            try
-            {
-                return datos.obtenerDepartamentos();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        #endregion
+       
 
 
         #region Funciones_Auxiliares_Locales
         private Empleado convertEmpleadoDatosToEmpleadoLogica(EmPleadOs cliEmpleado)
         {
-            bool act;
+           
 
-            Empleado empleado = new Empleado();
-            //
-            return empleado;
+                            Empleado empleado = new Empleado();
+                try{
+                    empleado.Antecedentes = false;
+                }catch(Exception e){}
+                if (cliEmpleado.Antecedentes == 0)
+                    empleado.AntecedentesPolicialesOMilitares = false;
+                else
+                    empleado.AntecedentesPolicialesOMilitares = true;
+                try{
+                    empleado.Apellido = cliEmpleado.Apellido;
+                }catch(Exception e){}
+                try{
+                    empleado.IdBanco = (byte) cliEmpleado.IDBanco;
+                }catch(Exception e){}
+                try{
+                    empleado.Barrio = cliEmpleado.Barrio;
+                }catch(Exception e){}
+                try{
+                    empleado.BPS_AcumulacionLaboral = (byte) cliEmpleado.BpsaCumulacionLaboral;
+                }catch(Exception e){}
+                try{
+                    empleado.BPS_FechaAltaEnBPS = (DateTime) cliEmpleado.BpsfEchaAlta;
+                }catch(Exception e){}
+                try{
+                    empleado.BPS_FechaBaja = (DateTime) cliEmpleado.BpsfEchaBaja;
+                }catch(Exception e){}
+                try{
+                    empleado.CAJ_FechaEmision = (DateTime)cliEmpleado.CajfEchaEmision;
+                }catch(Exception e){}
+                try{
+                    empleado.CAJ_FechaEntrega = (DateTime)cliEmpleado.CajfEchaEntrega;
+                }catch(Exception e){}
+                try{
+                    empleado.CAJ_Numero =  cliEmpleado.CajnUmero;
+                }catch(Exception e){}
+                try{
+                    empleado.CantidadHijos = (sbyte) cliEmpleado.CantidadHijos;
+                }catch(Exception e){}
+                if (cliEmpleado.CapacitadoPortarArma == 0)
+                    empleado.CapacitadoPorteArma = false;
+                else
+                    empleado.CapacitadoPorteArma = true;
+                try{
+                    empleado.Celular = cliEmpleado.Celular;
+                }catch(Exception e){}
+                try{
+                    empleado.CelularEnConvenio = cliEmpleado.CelularenConvenio;
+                }catch(Exception e){}
+                try{
+                    empleado.Ciudad = cliEmpleado.Ciudad;
+                }catch(Exception e){}
+                if (cliEmpleado.CombatienteMilitar == 0)
+                        empleado.Combatiente = false;
+                else
+                        empleado.Combatiente = true;
+                try{
+                    empleado.Departamento = cliEmpleado.IDDepartamento;
+                }catch(Exception e){}
+                try{
+                    empleado.Direccion = cliEmpleado.Direccion;
+                }catch(Exception e){}
+                try{
+                    empleado.DireccionDeEncuentro = cliEmpleado.DireccionDeEncuentro;
+                }catch(Exception e){}
+                try{
+                    empleado.Edad = (sbyte) cliEmpleado.Edad;
+                }catch(Exception e){}
+                try{
+                    empleado.Email = cliEmpleado.Email;
+                }catch(Exception e){}
+                try{
+                    empleado.IdEmergenciaMedica = (byte) cliEmpleado.IDEmergenciaMedica;
+                }catch(Exception e){}
+                try{
+                    empleado.EntreCalles = cliEmpleado.EntreCalles;
+                }catch(Exception e){}
+                try{
+                    empleado.EstadoCivil = cliEmpleado.EstadoCivil;
+                }catch(Exception e){}
+                try{
+                    empleado.FechaEgreso = (DateTime) cliEmpleado.FechaBaja;
+                }catch(Exception e){}
+                try{
+                    empleado.FechaEgresoPolicialOMilitar = (DateTime)cliEmpleado.FechaEgresoPolicialoMilitar;
+                }catch(Exception e){}
+                try{
+                    empleado.FechaIngreso = (DateTime)cliEmpleado.FechaIngreso;
+                }catch(Exception e){}
+                try{
+                    empleado.FechaIngresoMesaRENAEMSE = (DateTime) cliEmpleado.RenaemsefEchaIngreso;
+                }catch(Exception e){}
+                try{
+                    empleado.FechaIngresoPolicialOMilitar = (DateTime)cliEmpleado.FechaIngresoPolicialoMilitar;
+                }catch(Exception e){}
+                try{
+                    empleado.FechaNacimiento = (DateTime) cliEmpleado.FechaNacimiento;
+                }catch(Exception e){}
+                try{
+                    empleado.FechaTestPsicologico = (DateTime) cliEmpleado.FechaTestPsicologico;
+                }catch(Exception e){}
+                try{
+                    empleado.FechaVencimientoCarneSalud = (DateTime)cliEmpleado.FechaVencimientoCarneDeSalud;
+                }catch(Exception e){}
+                try{
+                    empleado.Foto = cliEmpleado.Foto;
+                }catch(Exception e){}
+                try{
+                    empleado.LugarNacimiento = cliEmpleado.LugarDeNacimiento;
+                }catch(Exception e){}
+                try{
+                    empleado.MotivoEgreso = cliEmpleado.MotivoBaja;
+                }catch(Exception e){}
+                try{
+                    empleado.Mutualista = (byte) cliEmpleado.IDMutualista;
+                }catch(Exception e){}
+                try{
+                    empleado.Nacionalidad = cliEmpleado.Nacionalidad;
+                }catch(Exception e){}
+                try{
+                    empleado.Nombre = cliEmpleado.Nombre;
+                }catch(Exception e){}
+                try{
+                    empleado.NumeroAsuntoRENAEMSE = cliEmpleado.RenaemsenUmeroAsunto;
+                }catch(Exception e){}
+                try{
+                    empleado.NumeroCuenta = cliEmpleado.NumeroCuenta;
+                }catch(Exception e){}
+                try{
+                    empleado.NumeroDocumento = cliEmpleado.NumeroDocumento;
+                }catch(Exception e){}
+                try{
+                    empleado.NumeroEmpleado = cliEmpleado.IDEmpleado;
+                }catch(Exception e){}
+                try{
+                    empleado.Observaciones = cliEmpleado.Observaciones;
+                }catch(Exception e){}
+                try{
+                    empleado.ObservacionesAntecedentes = cliEmpleado.ObservacionesAntecedentes;
+                }catch(Exception e){}
+                if (cliEmpleado.EnServicioArmado == 0)
+                        empleado.ServicioArmado = false;
+                else
+                        empleado.ServicioArmado = false;
+                try{
+                    empleado.Sexo = char.Parse(cliEmpleado.SexO);
+                }catch(Exception e){}
+                try{
+                    empleado.SubEscalafon = cliEmpleado.SubEscalafonPolicial;
+                }catch(Exception e){}
+                try{
+                    empleado.Sueldo = (float) cliEmpleado.SueldoActual;
+                }catch(Exception e){}
+                try{
+                    empleado.TalleCamisa = cliEmpleado.TalleCamisa;
+                }catch(Exception e){}
+                try{
+                    empleado.TalleCampera = cliEmpleado.TalleCampera;
+                }catch(Exception e){}
+                try{
+                    empleado.TallePantalon = cliEmpleado.TallePantalon;
+                }catch(Exception e){}
+                try{
+                    empleado.TalleZapatos = (sbyte) cliEmpleado.TalleZapatos;
+                }catch(Exception e){}
+                try{
+                        empleado.Telefonos = cliEmpleado.Telefonos;
+                }catch(Exception e){}
+                try{
+                        empleado.TipoDocumento = cliEmpleado.IDTipoDocumento;
+                }catch(Exception e){}
+                            
+                            
+                return empleado;
         }
         #endregion
     }

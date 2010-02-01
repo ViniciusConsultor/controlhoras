@@ -38,12 +38,16 @@
             this.administracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serviciosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.empleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.categoriasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.codiguerasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.emergenciasMedicaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mutualistasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bancosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.departamentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tiposDeDocumentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.empleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -113,8 +117,7 @@
             this.serviciosToolStripMenuItem,
             this.empleadosToolStripMenuItem,
             this.toolStripSeparator1,
-            this.usuariosToolStripMenuItem,
-            this.categoriasToolStripMenuItem});
+            this.codiguerasToolStripMenuItem});
             this.administracionToolStripMenuItem.Name = "administracionToolStripMenuItem";
             this.administracionToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
             this.administracionToolStripMenuItem.Text = "Mantenimiento";
@@ -133,23 +136,64 @@
             this.serviciosToolStripMenuItem.Text = "Servicios";
             this.serviciosToolStripMenuItem.Click += new System.EventHandler(this.serviciosToolStripMenuItem_Click);
             // 
+            // empleadosToolStripMenuItem
+            // 
+            this.empleadosToolStripMenuItem.Name = "empleadosToolStripMenuItem";
+            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.empleadosToolStripMenuItem.Text = "Empleados";
+            this.empleadosToolStripMenuItem.Click += new System.EventHandler(this.empleadosToolStripMenuItem_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
-            // usuariosToolStripMenuItem
+            // codiguerasToolStripMenuItem
             // 
-            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.usuariosToolStripMenuItem.Text = "Usuarios";
+            this.codiguerasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.emergenciasMedicaToolStripMenuItem,
+            this.mutualistasToolStripMenuItem,
+            this.bancosToolStripMenuItem,
+            this.departamentosToolStripMenuItem,
+            this.tiposDeDocumentosToolStripMenuItem});
+            this.codiguerasToolStripMenuItem.Name = "codiguerasToolStripMenuItem";
+            this.codiguerasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.codiguerasToolStripMenuItem.Text = "Codigueras";
             // 
-            // categoriasToolStripMenuItem
+            // emergenciasMedicaToolStripMenuItem
             // 
-            this.categoriasToolStripMenuItem.Name = "categoriasToolStripMenuItem";
-            this.categoriasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.categoriasToolStripMenuItem.Text = "Categorias";
-            this.categoriasToolStripMenuItem.Click += new System.EventHandler(this.categoriasToolStripMenuItem_Click);
+            this.emergenciasMedicaToolStripMenuItem.Name = "emergenciasMedicaToolStripMenuItem";
+            this.emergenciasMedicaToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.emergenciasMedicaToolStripMenuItem.Text = "Emergencias Medica";
+            this.emergenciasMedicaToolStripMenuItem.Click += new System.EventHandler(this.emergenciasMedicaToolStripMenuItem_Click);
+            // 
+            // mutualistasToolStripMenuItem
+            // 
+            this.mutualistasToolStripMenuItem.Name = "mutualistasToolStripMenuItem";
+            this.mutualistasToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.mutualistasToolStripMenuItem.Text = "Mutualistas";
+            this.mutualistasToolStripMenuItem.Click += new System.EventHandler(this.mutualistasToolStripMenuItem_Click);
+            // 
+            // bancosToolStripMenuItem
+            // 
+            this.bancosToolStripMenuItem.Name = "bancosToolStripMenuItem";
+            this.bancosToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.bancosToolStripMenuItem.Text = "Bancos";
+            this.bancosToolStripMenuItem.Click += new System.EventHandler(this.bancosToolStripMenuItem_Click);
+            // 
+            // departamentosToolStripMenuItem
+            // 
+            this.departamentosToolStripMenuItem.Name = "departamentosToolStripMenuItem";
+            this.departamentosToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.departamentosToolStripMenuItem.Text = "Departamentos";
+            this.departamentosToolStripMenuItem.Click += new System.EventHandler(this.departamentosToolStripMenuItem_Click);
+            // 
+            // tiposDeDocumentosToolStripMenuItem
+            // 
+            this.tiposDeDocumentosToolStripMenuItem.Name = "tiposDeDocumentosToolStripMenuItem";
+            this.tiposDeDocumentosToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.tiposDeDocumentosToolStripMenuItem.Text = "Tipos de Documentos";
+            this.tiposDeDocumentosToolStripMenuItem.Click += new System.EventHandler(this.tiposDeDocumentosToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
@@ -167,13 +211,6 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(385, 17);
             this.toolStripStatusLabel1.Spring = true;
             this.toolStripStatusLabel1.Text = "Trust International";
-            // 
-            // empleadosToolStripMenuItem
-            // 
-            this.empleadosToolStripMenuItem.Name = "empleadosToolStripMenuItem";
-            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.empleadosToolStripMenuItem.Text = "Empleados";
-            this.empleadosToolStripMenuItem.Click += new System.EventHandler(this.empleadosToolStripMenuItem_Click);
             // 
             // VentanaPrincipal
             // 
@@ -211,12 +248,16 @@
         private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem serviciosToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem categoriasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripMenuItem empleadosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem codiguerasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem emergenciasMedicaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mutualistasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bancosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem departamentosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tiposDeDocumentosToolStripMenuItem;
     }
 }
