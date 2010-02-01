@@ -66,6 +66,7 @@ namespace Logica
         private bool MyCombatiente; // Si fue Militar
         private DateTime MyFechaIngresoMesaRENAEMSE;
         private string MyNumeroAsuntoRENAEMSE;
+        private bool MyActivo;
         
         
         #region Properties
@@ -680,6 +681,18 @@ namespace Logica
             set
             {
                 MyNumeroAsuntoRENAEMSE = value;
+            }
+        }
+
+        public bool Activo
+        {
+            get
+            {
+                return MyActivo;
+            }
+            set
+            {
+                MyActivo = value;
             }
         }
         
