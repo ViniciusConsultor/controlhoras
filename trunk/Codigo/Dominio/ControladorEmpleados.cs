@@ -306,7 +306,11 @@ namespace Logica
                 try{
                         empleado.TipoDocumento = cliEmpleado.IDTipoDocumento;
                 }catch(Exception e){}
-                            
+                //try
+                //{
+                //    empleado.Activo = cliEmpleado;
+                //}
+                //catch (Exception e) { }
                             
                 return empleado;
         }
