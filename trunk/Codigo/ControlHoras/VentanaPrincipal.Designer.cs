@@ -74,6 +74,7 @@
             this.toolStripButton1.Size = new System.Drawing.Size(49, 33);
             this.toolStripButton1.Text = "Clientes";
             this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripButton2
             // 
@@ -83,6 +84,7 @@
             this.toolStripButton2.Size = new System.Drawing.Size(62, 33);
             this.toolStripButton2.Text = "Empleados";
             this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // pictureBox1
             // 
@@ -136,14 +138,14 @@
             // 
             this.clientesToolStripMenuItem.Image = global::ControlHoras.Imagenes.client;
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.clientesToolStripMenuItem.Text = "Clientes";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
             // serviciosToolStripMenuItem
             // 
             this.serviciosToolStripMenuItem.Name = "serviciosToolStripMenuItem";
-            this.serviciosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.serviciosToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.serviciosToolStripMenuItem.Text = "Servicios";
             this.serviciosToolStripMenuItem.Click += new System.EventHandler(this.serviciosToolStripMenuItem_Click);
             // 
@@ -151,14 +153,14 @@
             // 
             this.empleadosToolStripMenuItem.Image = global::ControlHoras.Imagenes._1254703516_userconfig;
             this.empleadosToolStripMenuItem.Name = "empleadosToolStripMenuItem";
-            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.empleadosToolStripMenuItem.Text = "Empleados";
             this.empleadosToolStripMenuItem.Click += new System.EventHandler(this.empleadosToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(136, 6);
             // 
             // codiguerasToolStripMenuItem
             // 
@@ -169,7 +171,7 @@
             this.departamentosToolStripMenuItem,
             this.tiposDeDocumentosToolStripMenuItem});
             this.codiguerasToolStripMenuItem.Name = "codiguerasToolStripMenuItem";
-            this.codiguerasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.codiguerasToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.codiguerasToolStripMenuItem.Text = "Codigueras";
             // 
             // emergenciasMedicaToolStripMenuItem

@@ -380,6 +380,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.ClienteGB);
             this.Name = "ServicioForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ServicioForm";
             this.ClienteGB.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
