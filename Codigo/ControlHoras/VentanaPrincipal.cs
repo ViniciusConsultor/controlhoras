@@ -92,6 +92,18 @@ namespace ControlHoras
             tiposDoc.ShowDialog(this);
         }
 
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            ABMEmpleados em = new ABMEmpleados();
+            em.ShowDialog(this);
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            ABMClientes cli = new ABMClientes();
+           cli.ShowDialog(this);
+        }
+
 
 
 
