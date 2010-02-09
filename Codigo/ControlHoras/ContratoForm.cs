@@ -20,6 +20,7 @@ namespace ControlHoras
         int[] numerosSer;
         String LlenarCamposObligatorios = "Debe llenar todos los campos obligatorios.";
 
+        DataGridViewCell celda;
         string stbuffer;        
 
         public ContratoForm()
@@ -30,6 +31,7 @@ namespace ControlHoras
             CostoCB.SelectedIndex = 0;
             bcUC.cliPronto += new EventHandler(bcUC_cliPronto);
             stbuffer = @"N/T";
+            celda = null;
 
             bcUC.Controls["ClienteMT"].Focus();
             idser = -1;
@@ -231,18 +233,21 @@ namespace ControlHoras
             }
             if (e.Button == MouseButtons.Right)
             {
-                foreach (DataGridViewCell c in CargaHorariaDGV.SelectedCells)
+                /*foreach (DataGridViewCell c in CargaHorariaDGV.SelectedCells)
                     c.Selected = false;
                 
-                CargaHorariaDGV.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = true;
+                CargaHorariaDGV.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = true;*/
+
+                celda = CargaHorariaDGV.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 CargaHorariaCMS.Show(MousePosition);                
             }
         }
 
         private void copiarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (CargaHorariaDGV.SelectedCells[0].Value != null)
-                stbuffer = CargaHorariaDGV.SelectedCells[0].Value.ToString();
+            //if (CargaHorariaDGV.SelectedCells[0].Value != null)
+            if (celda != null)
+                stbuffer = celda.Value.ToString();
         }
 
         private void pegarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -253,7 +258,8 @@ namespace ControlHoras
 
         private void marcarNTToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CargaHorariaDGV.SelectedCells[0].Value = @"N/T";
+            foreach (DataGridViewCell c in CargaHorariaDGV.SelectedCells)
+                c.Value = @"N/T";
         }
 
         private void GuardarBTN_Click(object sender, EventArgs e)
