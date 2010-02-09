@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace ControlHoras
 {
@@ -14,17 +15,36 @@ namespace ControlHoras
         public Prueba()
         {
             InitializeComponent();
-           // bc.Controls["ClienteTB"].Text = "Alamo";
-
-
-            MaskedTextBoxColumn mtbc = new MaskedTextBoxColumn();
-            mtbc.HeaderText = "Lunes";
-            mtbc.Mask = @"00:00   \a   00:00";
-            mtbc.Width = 120;
-            mtbc.ReadOnly = false;
-            this.dgv.Columns.Add(mtbc);
+          
 
                                     
         }
+
+        protected void textBox1_Validating(object sender,
+   System.ComponentModel.CancelEventArgs e)
+        {
+            /*try
+            {              
+                int x = Int32.Parse(textBox1.Text);
+                errorProvider1.SetError(textBox1, "");
+            }
+            catch (Exception ex)
+            {               
+                errorProvider1.SetError(textBox1, "Not an integer value.");
+            }*/
+
+            DateTime dt;
+            DateTimeStyles dts = new DateTimeStyles();
+
+            if (DateTime.TryParseExact(textBox1.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo, dts, out dt))
+                errorProvider1.SetError(textBox1, "");
+            else
+                errorProvider1.SetError(textBox1, "No es una fecha");
+
+        }
+
+        
+
+
     }
 }
