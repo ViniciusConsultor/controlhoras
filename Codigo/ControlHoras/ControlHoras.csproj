@@ -85,11 +85,17 @@
     <Compile Include="ABMBancos.Designer.cs">
       <DependentUpon>ABMBancos.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABMCategorias.cs">
+    <Compile Include="ABMTipoEventoHistorial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABMCategorias.designer.cs">
-      <DependentUpon>ABMCategorias.cs</DependentUpon>
+    <Compile Include="ABMTipoEventoHistorial.designer.cs">
+      <DependentUpon>ABMTipoEventoHistorial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMCargos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMCargos.designer.cs">
+      <DependentUpon>ABMCargos.cs</DependentUpon>
     </Compile>
     <Compile Include="ABMClientes.cs">
       <SubType>Form</SubType>
@@ -233,8 +239,11 @@
     <EmbeddedResource Include="ABMBancos.resx">
       <DependentUpon>ABMBancos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABMCategorias.resx">
-      <DependentUpon>ABMCategorias.cs</DependentUpon>
+    <EmbeddedResource Include="ABMTipoEventoHistorial.resx">
+      <DependentUpon>ABMTipoEventoHistorial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMCargos.resx">
+      <DependentUpon>ABMCargos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABMClientes.resx">
       <DependentUpon>ABMClientes.cs</DependentUpon>

@@ -736,7 +736,127 @@ namespace ControlHoras
             return anio;
         }
 
+        private void tcEmpleado_TabIndexChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show(tcEmpleado.TabIndex.ToString() + " - " + tcEmpleado.TabPages[tcEmpleado.TabIndex].Name);
+        }
 
+        private void btnAgregarHistorial_Click(object sender, EventArgs e)
+        {
+            if (dtpFechaInicioHistorial.Value > dtpFechaFinHistorial.Value)
+                MessageBox.Show("La Fecha Fin tiene que ser mayor que la Fecha Inicio."
+            else if (cmbTipoEventoHistorial.SelectedIndex >=0 && txtDescripcionHistorial.Text != "")
+            {
+                //int numEventoNuevo = sistema.agregarEventoHistorialEmpleado(mtNumeroEmpleado.Text,dtpFechaInicioHistorial.Value,dtpFechaFinHistorial.Value,cmbTipoEventoHistorial.SelectedIndex,txtDescripcionHistorial.Text);
+                limpiarTabHistorial();
+            }
+            else 
+                MessageBox.Show("Debe llenar todos los datos.","Faltan Datos",MessageBoxButtons.OK,MessageBoxIcon.Error);
+
+        }
+
+        private void limpiarTabHistorial()
+        {
+            dtpFechaInicioHistorial.Value = DateTime.Today;
+            dtpFechaFinHistorial.Value = DateTime.Today;
+            cmbTipoEventoHistorial.SelectedIndex = 0;
+            txtDescripcionHistorial.Text = "";
+            btnAddTipoEvento.Enabled = true;
+            btnEliminarHistorial.Enabled = false;
+            btnGuardarHistorial.Enabled = false;
+        }
+
+        private void btnGuardarHistorial_Click(object sender, EventArgs e)
+        {
+            if (dtpFechaInicioHistorial.Value > dtpFechaFinHistorial.Value)
+                MessageBox.Show("La Fecha Fin tiene que ser mayor que la Fecha Inicio."
+            else if (cmbTipoEventoHistorial.SelectedIndex >=0 && txtDescripcionHistorial.Text != "")
+            {
+                //sistema.modificarEventoHistorialEmpleado(mtNumeroEmpleado.Text,int.Parse(lblIdTipoEventoHistorial.Text), dtpFechaInicioHistorial.Value,dtpFechaFinHistorial.Value,cmbTipoEventoHistorial.SelectedIndex,txtDescripcionHistorial.Text);
+                limpiarTabHistorial();
+            }
+            else 
+                MessageBox.Show("Debe llenar todos los datos.","Faltan Datos",MessageBoxButtons.OK,MessageBoxIcon.Error);
+        }
+
+        private void btnEliminarHistorial_Click(object sender, EventArgs e)
+        {
+            if (dtpFechaInicioHistorial.Value > dtpFechaFinHistorial.Value)
+                MessageBox.Show("La Fecha Fin tiene que ser mayor que la Fecha Inicio.","Error Fechas",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            else if (cmbTipoEventoHistorial.SelectedIndex >=0 && txtDescripcionHistorial.Text != "")
+            {
+                DialogResult dr = MessageBox.Show("Seguro que desea eliminar el Evento del Empleado?","Confirmación",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                if (dr == DialogResult.Yes)
+                {
+                    //sistema.eliminarEventoHistorialEmpleado(mtNumeroEmpleado.Text,int.Parse(lblIdTipoEventoHistorial.Text);
+                    MessageBox.Show("Evento eliminado correctamente.",,MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    limpiarTabHistorial();
+                }
+            }
+            else 
+                MessageBox.Show("Debe llenar todos los datos.","Faltan Datos",MessageBoxButtons.OK,MessageBoxIcon.Error);
+        }
+
+        private void btnExtrasAgregar_Click(object sender, EventArgs e)
+        {
+            if (txtExtrasDescripcion.Text  != "" && mtExtrasValor.MaskCompleted && cmbExtrasSigno.SelectedIndex >=0 && mtExtrasCantCuotas.MaskCompleted )
+            {
+                char signo = cmbExtrasSigno.Text.ToCharArray()[0];
+                //int numNuevoExtra = sistema.agregarExtraLiquidacionEmpleado(mtNumeroEmpleado.Text,dtpExtrasFecha.Value,txtExtrasDescripcion.Text,signo,float.Parse(mtExtrasValor.Text),int.Parse(mtExtrasCantCuotas.Text));
+                limpiarTabExtrasLiquidacion();
+            }
+            else 
+                MessageBox.Show("Debe llenar todos los datos.","Faltan Datos",MessageBoxButtons.OK,MessageBoxIcon.Error);
+
+        }
+
+
+
+        private void limpiarTabExtrasLiquidacion()
+        {
+            dtpExtrasFecha.Value = DateTime.Today;
+            txtExtrasDescripcion.Text = "";
+            mtExtrasValor.Text = "";
+            mtExtrasCantCuotas.Text = "";
+            cmbExtrasSigno.SelectedIndex = 0;
+            btnExtrasAgregar.Enabled = true;
+            btnExtrasGuardar.Enabled = false;
+            btnExtrasEliminar.Enabled = false;
+        }
+
+        private void btnExtrasGuardar_Click(object sender, EventArgs e)
+        {
+            if (txtExtrasDescripcion.Text != "" && mtExtrasValor.MaskCompleted && cmbExtrasSigno.SelectedIndex >= 0 && mtExtrasCantCuotas.MaskCompleted)
+            {
+                char signo = cmbExtrasSigno.Text.ToCharArray()[0];
+                //sistema.modificarExtraLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text),int.Parse(lblIdExtraLiquidacion.Text), dtpExtrasFecha.Value,txtExtrasDescripcion.Text,signo,float.Parse(mtExtrasValor.Text),int.Parse(mtExtrasCantCuotas.Text));
+                limpiarTabExtrasLiquidacion();
+            }
+            else
+                MessageBox.Show("Debe llenar todos los datos.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btnExtrasEliminar_Click(object sender, EventArgs e)
+        {
+            if (txtExtrasDescripcion.Text != "" && mtExtrasValor.MaskCompleted && cmbExtrasSigno.SelectedIndex >= 0 && mtExtrasCantCuotas.MaskCompleted)
+            {
+                char signo = cmbExtrasSigno.Text.ToCharArray()[0];
+                DialogResult dr = MessageBox.Show("Seguro que desea eliminar el Extra Liquidación?","Confirmación",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                if (dr == DialogResult.Yes)
+                {
+                    //sistema.eliminarExtraLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), int.Parse(lblIdExtraLiquidacion.Text));
+                    limpiarTabExtrasLiquidacion();
+                }
+            }
+            else
+                MessageBox.Show("Debe llenar todos los datos.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void dtpExtrasFecha_ValueChanged(object sender, EventArgs e)
+        {
+            // Actualizo los datos de la grilla.
+
+        }
 
 
     }

@@ -39,7 +39,7 @@ namespace ControlHoras
 
         private void categoriasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMCategorias categ = new ABMCategorias();
+            ABMCargos categ = new ABMCargos();
             categ.ShowDialog(this);
         }
 
