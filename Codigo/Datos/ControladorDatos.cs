@@ -64,9 +64,7 @@ namespace Datos
                 UserID = "jgarat",
                 Password = "jgarat",
                 Database = "trustdb",
-                Pooling = true,
-                MinimumPoolSize = 5,
-                MaximumPoolSize = 20,
+                Pooling = false,
                 ConnectionLifeTime = 0
             };
 
@@ -337,7 +335,7 @@ namespace Datos
         #endregion
 
         #region ABM_Empleados
-        public void altaEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, string nacionalidad, char sexo, DateTime fechaPsicologo, DateTime fechaNacimiento, DateTime fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadHijos, byte[] foto, int idBanco, string numeroCuenta, float sueldo, bool activo, DateTime fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime fechaAltaBPS, DateTime fechaBajaBPS, string numeroCAJ, DateTime fechaEmisionCAJ, DateTime fechaEntregaCAJ, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime fechaIngresoAntecedete, DateTime fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica)
+        public void altaEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, string nacionalidad, char sexo, DateTime fechaPsicologo, DateTime fechaNacimiento, int edad, DateTime fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadMenoresACargo, byte[] foto, int idBanco, string numeroCuenta, float sueldo, bool activo, DateTime fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string barrio, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime fechaAltaBPS, DateTime fechaBajaBPS, string numeroCAJ, DateTime fechaEmisionCAJ, DateTime fechaEntregaCAJ, bool antecedentesEmpleado, string observacionesAntecedentesEmpleado, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime fechaIngresoAntecedete, DateTime fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica, bool capacitadoPorteArma, bool enservicioArmado, string observacionesEmpleado)
         {
             Table<EmPleadOs> tablaEmpleados;
             try
@@ -354,7 +352,7 @@ namespace Datos
                 emp.SexO = sexo.ToString();
                 emp.IDDepartamento = (sbyte)idDepartamento;
                 emp.Ciudad = ciudad;
-                //emp.Barrio = BarrioS;
+                emp.Barrio = barrio;
                 emp.Direccion = direccion;
                 emp.DireccionDeEncuentro = puntoEncuentro;
                 emp.EntreCalles = entreCalles;
@@ -364,15 +362,25 @@ namespace Datos
                 emp.EstadoCivil = estadoCivil;
                 emp.Email = email;
                 emp.Foto = foto;
-                //emp.Edad = edad;
+                emp.Edad = (sbyte)edad;
                 emp.FechaNacimiento = fechaNacimiento;
                 emp.LugarDeNacimiento = lugarNacimiento;
                 emp.Nacionalidad = nacionalidad;
                 emp.FechaIngreso = fechaIngreso;
-                //emp.FechaVencimientoCarneDeSalud = fechaVencimientoCarneDeSalud;
+                if (antecedentesEmpleado)
+                {
+                    emp.Antecedentes = 1;
+                    emp.ObservacionesAntecedentes = observacionesAntecedentesEmpleado;
+                }
+                else
+                {
+                    emp.Antecedentes = 0;
+                    emp.ObservacionesAntecedentes = null;
+                }
+                emp.FechaVencimientoCarneDeSalud = vencimientoCarneSalud;
                 emp.IDMutualista = (byte)idMutualista;
                 emp.IDEmergenciaMedica = (byte)idEmergenciaMedica;
-                emp.CantidadHijos = (sbyte)cantidadHijos;
+                emp.CantidadMenoresAcArgo = (sbyte)cantidadMenoresACargo;
                 emp.TalleCamisa = talleCamisa;
                 if (talleZapatos != "")
                     emp.TalleZapatos = (sbyte)int.Parse(talleZapatos);
@@ -382,14 +390,24 @@ namespace Datos
                 emp.TalleCampera = talleCampera;
                 emp.FechaBaja = fechaBaja;
                 emp.MotivoBaja = motivoBaja;
-                // emp.CapacitadoPortarArma = capacitadoPorteArma;
-                // emp.EnServicioArmado = enservicioArmado;
-                // emp.Antecedentes = (sbyte)antecedentesPolicialesOMilitares;
-                // emp.ObservacionesAntecedentes = observacionesAntecedentes;
+                if (capacitadoPorteArma)
+                    emp.CapacitadoPortarArma = 1;
+                else
+                    emp.CapacitadoPortarArma = 1;
+                if (enservicioArmado)
+                    emp.EnServicioArmado = 1;
+                else
+                    emp.EnServicioArmado = 0;
+                
+                if (antecedentesPolicialesOMilitares)
+                emp.AntecedentesPolicialesOmIlitares = 1;
+                else
+                    emp.AntecedentesPolicialesOmIlitares = 0;
+
                 emp.SueldoActual = sueldo;
                 emp.IDBanco = (byte)idBanco;
                 emp.NumeroCuenta = numeroCuenta;
-                // emp.Observaciones = observaciones;
+                emp.Observaciones = observacionesEmpleado;
                 emp.CajnUmero = numeroCAJ;
                 emp.CajfEchaEmision = fechaEmisionCAJ;
                 emp.CajfEchaEntrega = fechaEntregaCAJ;
@@ -413,10 +431,6 @@ namespace Datos
                 emp.RenaemsenUmeroAsunto = numeroAsuntoRENAEMSE;
 
 
-
-
-
-
                 tablaEmpleados.InsertOnSubmit(emp);
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
             }
@@ -427,7 +441,8 @@ namespace Datos
 
 
         }
-        public void modificarEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, string nacionalidad, char sexo, DateTime fechaPsicologo, DateTime fechaNacimiento, DateTime fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadHijos, byte[] foto, int idBanco, string numeroCuenta, float sueldo, bool activo, DateTime fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime fechaAltaBPS, DateTime fechaBajaBPS, string numeroCAJ, DateTime fechaEmisionCAJ, DateTime fechaEntregaCAJ, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime fechaIngresoAntecedete, DateTime fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica)
+        //public void modificarEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, string nacionalidad, char sexo, DateTime fechaPsicologo, DateTime fechaNacimiento, DateTime fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadHijos, byte[] foto, int idBanco, string numeroCuenta, float sueldo, bool activo, DateTime fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime fechaAltaBPS, DateTime fechaBajaBPS, string numeroCAJ, DateTime fechaEmisionCAJ, DateTime fechaEntregaCAJ, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime fechaIngresoAntecedete, DateTime fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica)
+        public void modificarEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, string nacionalidad, char sexo, DateTime fechaPsicologo, DateTime fechaNacimiento, int edad, DateTime fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadMenoresACargo, byte[] foto, int idBanco, string numeroCuenta, float sueldo, bool activo, DateTime fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string barrio, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime fechaAltaBPS, DateTime fechaBajaBPS, string numeroCAJ, DateTime fechaEmisionCAJ, DateTime fechaEntregaCAJ, bool antecedentesEmpleado, string observacionesAntecedentesEmpleado, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime fechaIngresoAntecedete, DateTime fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica, bool capacitadoPorteArma, bool enservicioArmado, string observacionesEmpleado)
         {
             Table<EmPleadOs> tablaEmpleados;
             try
@@ -446,7 +461,7 @@ namespace Datos
                 emp.SexO = sexo.ToString();
                 emp.IDDepartamento = (sbyte)idDepartamento;
                 emp.Ciudad = ciudad;
-                //emp.Barrio = BarrioS;
+                emp.Barrio = barrio;
                 emp.Direccion = direccion;
                 emp.DireccionDeEncuentro = puntoEncuentro;
                 emp.EntreCalles = entreCalles;
@@ -456,15 +471,25 @@ namespace Datos
                 emp.EstadoCivil = estadoCivil;
                 emp.Email = email;
                 emp.Foto = foto;
-                //emp.Edad = edad;
+                emp.Edad = (sbyte)edad;
                 emp.FechaNacimiento = fechaNacimiento;
                 emp.LugarDeNacimiento = lugarNacimiento;
                 emp.Nacionalidad = nacionalidad;
                 emp.FechaIngreso = fechaIngreso;
-                //emp.FechaVencimientoCarneDeSalud = fechaVencimientoCarneDeSalud;
+                if (antecedentesEmpleado)
+                {
+                    emp.Antecedentes = 1;
+                    emp.ObservacionesAntecedentes = observacionesAntecedentesEmpleado;
+                }
+                else
+                {
+                    emp.Antecedentes = 0;
+                    emp.ObservacionesAntecedentes = null;
+                }
+                emp.FechaVencimientoCarneDeSalud = vencimientoCarneSalud;
                 emp.IDMutualista = (byte)idMutualista;
                 emp.IDEmergenciaMedica = (byte)idEmergenciaMedica;
-                emp.CantidadHijos = (sbyte)cantidadHijos;
+                emp.CantidadMenoresAcArgo = (sbyte)cantidadMenoresACargo;
                 emp.TalleCamisa = talleCamisa;
                 if (talleZapatos != "")
                     emp.TalleZapatos = (sbyte)int.Parse(talleZapatos);
@@ -474,14 +499,24 @@ namespace Datos
                 emp.TalleCampera = talleCampera;
                 emp.FechaBaja = fechaBaja;
                 emp.MotivoBaja = motivoBaja;
-                // emp.CapacitadoPortarArma = capacitadoPorteArma;
-                // emp.EnServicioArmado = enservicioArmado;
-                // emp.Antecedentes = (sbyte)antecedentesPolicialesOMilitares;
-                // emp.ObservacionesAntecedentes = observacionesAntecedentes;
+                if (capacitadoPorteArma)
+                    emp.CapacitadoPortarArma = 1;
+                else
+                    emp.CapacitadoPortarArma = 1;
+                if (enservicioArmado)
+                    emp.EnServicioArmado = 1;
+                else
+                    emp.EnServicioArmado = 0;
+
+                if (antecedentesPolicialesOMilitares)
+                    emp.AntecedentesPolicialesOmIlitares = 1;
+                else
+                    emp.AntecedentesPolicialesOmIlitares = 0;
+
                 emp.SueldoActual = sueldo;
                 emp.IDBanco = (byte)idBanco;
                 emp.NumeroCuenta = numeroCuenta;
-                // emp.Observaciones = observaciones;
+                emp.Observaciones = observacionesEmpleado;
                 emp.CajnUmero = numeroCAJ;
                 emp.CajfEchaEmision = fechaEmisionCAJ;
                 emp.CajfEchaEntrega = fechaEntregaCAJ;
@@ -503,6 +538,7 @@ namespace Datos
                     emp.CombatienteMilitar = 0;
                 emp.RenaemsefEchaIngreso = fechaIngresoRENAEMSE;
                 emp.RenaemsenUmeroAsunto = numeroAsuntoRENAEMSE;
+
 
 
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
