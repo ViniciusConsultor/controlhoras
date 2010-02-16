@@ -8,46 +8,30 @@ using DbLinq.Data.Linq;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using Excepciones;
+using System.Data;
 
 namespace Datos
 {
     public class ControladorDatos : IDatos
     {
-        private TrustDb database = null;
+        private static TrustDb database = null;
         private static IDatos instance = null;
+        private static MySqlConnection conexion = null;
+        
 
 
         private ControladorDatos()
         {
-            database = getConexion();
-
-            // MySqlConnection myconn; 
-            //while (true)
-            //{
-            // var builder = new MySqlConnectionStringBuilder()
-            //  {
-            //      Server = "localhost",
-            //      Port = 3306,
-            //      UserID = "jgarat",
-            //      Password = "jgarat",
-            //      Database = "trustdb"
-            //  };
-            // try
-            // {
-            //     myconn = new MySqlConnection(builder.ConnectionString.ToString());
-            //     myconn.Open();
-            //     System.Console.WriteLine("Se conecto!!!!!");
-            //     myconn.Close();
-            // }
-            // catch (MySqlException myex)
-            // {
-            //     System.Console.WriteLine(myex.Message);
-            //     System.Console.WriteLine(myex.InnerException.ToString());
-            // }
-            //}
-
-
+            database = getContext();
         }
+
+        //internal static TrustDb getContext()
+        //{
+        //  //  if (database == null)
+                
+        //    return database;
+        //}
+
 
         public static IDatos getInstance()//(string StringConnection)
         {
@@ -55,7 +39,7 @@ namespace Datos
                 instance = new ControladorDatos(); //(string StringConnection)
             return instance;
         }
-        public TrustDb getConexion()//(string StringConnection)
+        internal static MySqlConnection createConexion()//(string StringConnection)
         {
             var builder = new MySqlConnectionStringBuilder() //(StringConnection)
             {
@@ -69,9 +53,30 @@ namespace Datos
             };
 
             var conn = new MySqlConnection(builder.ToString());
-            TrustDb context = new TrustDb(conn, new DbLinq.MySql.MySqlVendor());
+            return conn;
+        }
+
+        internal static MySqlConnection getConexion()
+        {
+            if (conexion == null)
+                conexion = createConexion();
+            return conexion;
+        }
+
+        internal static TrustDb createContext()
+        {
+
+            TrustDb context = new TrustDb(getConexion(), new DbLinq.MySql.MySqlVendor());
             return context;
         }
+
+        internal static TrustDb getContext()
+        {
+            if (database == null)
+                database = createContext();
+            return database;    
+        }
+        
 
         #region ABM_Cliente
         public void altaCliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime fecAlta, DateTime fecBaja, string motivo)
@@ -324,6 +329,8 @@ namespace Datos
                 List<SERVicIoS> servsCli = (from servreg in database.GetTable<SERVicIoS>()
                                             where servreg.NumeroCliente == NumeroCliente
                                             select servreg).ToList<SERVicIoS>();
+                
+                
                 return servsCli;
             }
             catch (Exception ex)
@@ -332,6 +339,74 @@ namespace Datos
 
             }
         }
+        #endregion
+
+        #region Contratos
+        public void altaContratoServicioCliente(int NumeroCliente, int NumeroServicio, int NumeroContrato, DateTime FechaInicio, DateTime FechaFin, bool CostoFijo, bool HorasExtras, string Ajuste, string Observaciones, float Monto)
+        {
+
+            ContraToS con = null;
+
+            try
+            {
+                con = new ContraToS();
+
+                con.TipodeContrato = 0;
+                con.IDContratos = (uint)NumeroContrato;
+                con.FechaIni = FechaInicio;
+                con.FechaFin = FechaFin;
+                if (CostoFijo)
+                    con.CostoFijo_ = 1;
+                else
+                    con.CostoFijo_ = 0;
+                if (HorasExtras)
+                    con.HorasExtras = 1;
+                else
+                    con.HorasExtras = 0;
+                con.Ajuste = Ajuste;
+                con.Observaciones = Observaciones;
+                con.Costo = Monto;
+
+                Table<ContraToS> tablaContratos = database.GetTable<ContraToS>();
+                tablaContratos.InsertOnSubmit(con);
+
+                database.SubmitChanges();
+            }
+            catch (MySqlException ex)
+            {
+                //database.Refresh(System.Data.Linq.RefreshMode.KeepCurrentValues);
+                // database.Connection.Close();
+                if (ex.Number == 1062)
+                {
+                    // int index = database.GetChangeSet().Inserts.IndexOf(cliente);
+                    // database.GetChangeSet().Inserts.RemoveAt(index);
+                    database.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues);
+                }
+                throw ex;
+            }
+        }
+
+        public bool existeContrato(int NumeroContrato)
+        {
+            try
+            {
+                var cli = (from clireg in database.GetTable<ContraToS>()
+                           where clireg.IDContratos == NumeroContrato
+                           select clireg);
+                if (cli.Count<ContraToS>() == 0)
+                    return false;
+                else
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                // MySQLException = Access Denied  Codigo = 1045
+            }
+        }    
+
+
+
         #endregion
 
         #region ABM_Empleados
@@ -538,6 +613,10 @@ namespace Datos
                     emp.CombatienteMilitar = 0;
                 emp.RenaemsefEchaIngreso = fechaIngresoRENAEMSE;
                 //emp.RenaemsenUmeroAsunto = numeroAsuntoRENAEMSE;
+                //if (activo)
+                //    emp.Activo = 0;
+                //else
+                //    emp.Activo = 1;
 
 
 
@@ -548,6 +627,7 @@ namespace Datos
                 throw ex;
             }
         }
+
         public bool existeEmpleado(int idEmpleado)
         {
             Table<EmPleadOs> tabla;
@@ -569,7 +649,22 @@ namespace Datos
                 // MySQLException = Access Denied  Codigo = 1045
             }
         }
+
         
+        public int obtenerMaxIdEmpleado()
+        {
+            try
+            {
+                var maxId = (from reg in database.GetTable<EmPleadOs>()
+                             select (int)reg.IDEmpleado).Max<int>();
+
+                return maxId;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
         public void altaContratoServicioCliente(int NumeroCliente, int NumeroServicio, int NumeroContrato, DateTime FechaInicio, DateTime? FechaFin, bool CostoFijo, bool HorasExtras, string Ajuste, string Observaciones, float Monto)
         {
 
@@ -614,24 +709,7 @@ namespace Datos
             }
         }
 
-        public bool  existeContrato(int NumeroContrato)
-        {
-            try
-            {
-                var cli = (from clireg in database.GetTable<ContraToS>()
-                           where clireg.IDContratos == NumeroContrato
-                           select clireg);
-                if (cli.Count<ContraToS>() == 0)
-                    return false;
-                else
-                    return true;
-             }   
- 	         catch (Exception ex)
-            {
-                throw ex;
-                // MySQLException = Access Denied  Codigo = 1045
-            }
-        }    
+        
         public EmPleadOs obtenerEmpleado(int idEmpleado)
         {
             try
@@ -657,6 +735,269 @@ namespace Datos
             catch (Exception me)
             {
                 throw me;
+            }
+        }
+        #endregion
+
+        #region HistorialEmpleado
+        public int agregarEventoHistorialEmpleado(int idEmpleado, DateTime fechaInicioEvento, DateTime fechaFinEvento, int idTipoEventoHistorial, string descripcionEvento)
+        {
+            try
+            {
+                EventOsHistOrIalEmPleadO eventHist = new EventOsHistOrIalEmPleadO();
+                Table<EventOsHistOrIalEmPleadO> tabla = database.GetTable<EventOsHistOrIalEmPleadO>();
+
+                eventHist.FechaInicio = fechaInicioEvento;
+                eventHist.FechaFin = fechaFinEvento;
+                eventHist.IDEmpleado = (uint) idEmpleado;
+                eventHist.IDTipoEvento = idTipoEventoHistorial;
+                eventHist.Descripcion = descripcionEvento;
+
+                tabla.InsertOnSubmit(eventHist);
+
+                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+                return (int) eventHist.IDEventoHistorialEmpleado;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void modificarEventoHistorialEmpleado(int idEventoHistorialEmpleado, int idEmpleado, DateTime fechaInicioEvento,DateTime fechaFinEvento,int idTipoEventoHistorial,string descripcionHistorial)
+        {
+            try
+            {
+                Table<EventOsHistOrIalEmPleadO> tabla = database.GetTable<EventOsHistOrIalEmPleadO>();
+                var eventHist = (from reg in tabla
+                                 where reg.IDEventoHistorialEmpleado == idEventoHistorialEmpleado
+                                 && reg.IDEmpleado == idEmpleado
+                                 select reg).Single<EventOsHistOrIalEmPleadO>();
+
+                if (eventHist == null)
+                    throw new Excepciones.NoExisteException("No existe el Evento en el Historial del Empleado " + idEmpleado.ToString());
+
+                eventHist.FechaInicio = fechaInicioEvento;
+                eventHist.FechaFin = fechaFinEvento;
+                eventHist.IDTipoEvento = idTipoEventoHistorial;
+                eventHist.Descripcion = descripcionHistorial;
+                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void eliminarEventoHistorialEmpleado(int idEventoHistorialEmpleado, int idEmpleado)
+        {
+            try
+            {
+                Table<EventOsHistOrIalEmPleadO> tabla = database.GetTable<EventOsHistOrIalEmPleadO>();
+                var eventHist = (from reg in tabla
+                                 where reg.IDEventoHistorialEmpleado == idEventoHistorialEmpleado
+                                 && reg.IDEmpleado == idEmpleado
+                                 select reg).Single<EventOsHistOrIalEmPleadO>();
+
+                if (eventHist == null)
+                    throw new Excepciones.NoExisteException("No existe el Evento en el Historial del Empleado " + idEmpleado.ToString());
+                eventHist.BoRrAdo = 1;
+                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<EventOsHistOrIalEmPleadO> obtenerEventosHistorialEmpleado(int idEmpleado)
+        {
+            try
+            {
+                Table<EventOsHistOrIalEmPleadO> tabla = database.GetTable<EventOsHistOrIalEmPleadO>();
+                List<EventOsHistOrIalEmPleadO> eventList = (from reg in tabla
+                                 where reg.IDEmpleado == idEmpleado && reg.BoRrAdo == 0
+                                 select reg).ToList<EventOsHistOrIalEmPleadO>();
+
+                return eventList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        #endregion
+
+        #region ExtrasLiquidacionEmpleado
+        public int agregarExtraLiquidacionEmpleado(int idEmpleado, DateTime fecha, string descripcion, bool signoPositivo, float valor, int cantidadCuotas)
+        {
+            ExtrasLiquidAcIonEmPleadO exliq;
+            Table<ExtrasLiquidAcIonEmPleadO> tabla;
+            //try
+            //{
+            //database.Connection.Open();
+            //System.Data.Common.DbTransaction trans = database.Connection.BeginTransaction();
+            //database.Transaction = trans;
+            //}
+            //catch (Exception e)
+            //{
+            //    throw e;
+            //}
+            try
+            {
+                tabla = database.GetTable<ExtrasLiquidAcIonEmPleadO>();
+
+                int cuotaActual = 1;
+                int idExtraARetornar = -1;
+                DateTime mesCorrespondiente = fecha;
+
+                uint proximoIdExtraEmpleado;
+              
+                List<uint> ListExtras = (from reg in tabla
+                           where reg.IDEmpleado == idEmpleado
+                           select reg.IDExtrasLiquidacionEmpleado).ToList<uint>();
+
+                uint extras=0;
+                if (ListExtras.Count > 0)
+                    extras = ListExtras.Max();
+                proximoIdExtraEmpleado = (uint)extras + 1;
+                
+                // Se crea un registro nuevo por cada cuota, aumentando la cuota y el mes
+                while (cuotaActual <= cantidadCuotas)
+                {
+                    exliq = new ExtrasLiquidAcIonEmPleadO();
+
+                    exliq.IDEmpleado = (uint) idEmpleado;
+                    exliq.IDExtrasLiquidacionEmpleado = proximoIdExtraEmpleado;
+                    exliq.Fecha = mesCorrespondiente;
+                    if (signoPositivo)
+                        exliq.Signo = 1;
+                    else
+                        exliq.Signo = -1;
+                    exliq.Valor = valor/cantidadCuotas;
+                    exliq.CantidadCuotas = (sbyte)cantidadCuotas;
+                    exliq.Descripcion = descripcion;
+                    exliq.CuotaActual = (sbyte) cuotaActual;
+                
+                    tabla.InsertOnSubmit(exliq);
+                    
+                    if (cuotaActual == 1)  // Si es la primer cuota, todo el idextra nuevo para retornarlo
+                        idExtraARetornar = (int) exliq.IDExtrasLiquidacionEmpleado;
+                    cuotaActual++; // Aumento en uno la cuota actual
+                    mesCorrespondiente = mesCorrespondiente.AddMonths(1); // Aumento en 1 el mes correspondiente de la cuota.
+                }
+
+                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+                if (idExtraARetornar != -1)
+                {
+                   
+                    return idExtraARetornar;
+                    
+                }
+                else
+                    throw new Exception("Error al crear los Extras para el empleado.");
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void modificarExtraLiquidacionEmpleado(int idEmpleado, int idExtraLiquidacionEmpleado, DateTime fecha, string descripcion, bool  signoPositivo, float valor, int cantidadCuotas)
+        {
+            // Restricciones. Ver como trabajar con los extras que tienen cuotas. En ppio no se puede editar extras con cuotas.
+            // Tratar de hacer alguna logica que permite modificar las cuotas restantes, que no esten liquidadas.
+            try
+            {
+                Table<ExtrasLiquidAcIonEmPleadO> tabla = database.GetTable<ExtrasLiquidAcIonEmPleadO>();
+
+                // Chequeo que no esten editando un extra que ya se ha liquidado alguna cuota anterior.
+                var Cuotas =from reg in tabla
+                                       where reg.IDEmpleado == idEmpleado && reg.IDExtrasLiquidacionEmpleado == idExtraLiquidacionEmpleado
+                                       select (int) reg.CantidadCuotas;
+                if (Cuotas.Count<int>() > 1)
+                    throw new Exception("No se puede editar un extra con cuotas.");
+
+                var extra = (from reg in tabla
+                            where reg.IDEmpleado == idEmpleado && reg.IDExtrasLiquidacionEmpleado == idExtraLiquidacionEmpleado
+                            select reg).Single();
+
+                if (signoPositivo)
+                    extra.Signo = 1;
+                else
+                    extra.Signo = -1;
+                extra.Descripcion = descripcion;
+                extra.CantidadCuotas = (sbyte) cantidadCuotas;
+                extra.Valor = valor / cantidadCuotas;
+                extra.Fecha = fecha;
+
+                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        
+        public void eliminarExtraLiquidacionEmpleado(int idEmpleado, int idExtraLiquidacionEmpleado, DateTime mesSeleccionado)
+        {
+            // REstricciones: - NO se puede eliminar los extras que sean de mas de 1 cuota y tenga alguna cuota liquidada.
+            try
+            {
+                Table<ExtrasLiquidAcIonEmPleadO> tabla = database.GetTable<ExtrasLiquidAcIonEmPleadO>();
+                
+                // Chequeo que no esten editando un extra que ya se ha liquidado alguna cuota anterior.
+                int CantCuotasLiquidadas = (int)(from reg in tabla
+                                       where reg.IDEmpleado == idEmpleado && reg.IDExtrasLiquidacionEmpleado == idExtraLiquidacionEmpleado
+                                       && reg.Liquidado == 1
+                                       select 1).Count();
+                if (CantCuotasLiquidadas >= 1)
+                    throw new Exception("No se puede eliminar un extra con alguna cuota liquidada.");
+
+                var ListExtras = from reg in tabla 
+                                 where reg.IDEmpleado == idEmpleado && reg.IDExtrasLiquidacionEmpleado==idExtraLiquidacionEmpleado
+                                 select reg;
+
+                // Chequeo que solo se pueda eliminar un extra desde el mes correspondiente a la primer cuota.
+                int cuota = (from reg in tabla
+                             where reg.IDEmpleado == idEmpleado && reg.IDExtrasLiquidacionEmpleado == idExtraLiquidacionEmpleado && reg.Fecha.Month == mesSeleccionado.Month && reg.Fecha.Year == mesSeleccionado.Year
+                             select reg.CuotaActual).Single();
+                if (cuota != 1)
+                    throw new Exception("Para eliminar todas las cuotas del extra debe eliminarlo desde el Mes de la Primer Cuota.");
+
+
+                tabla.DeleteAllOnSubmit(ListExtras);
+                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }        
+
+        public List<ExtrasLiquidAcIonEmPleadO> obtenerExtrasLiquidacionEmpleado(int idEmpleado, DateTime mesCorrespondiente)
+        {
+            try
+            {
+                Table<ExtrasLiquidAcIonEmPleadO> tabla = database.GetTable<ExtrasLiquidAcIonEmPleadO>();
+
+                List<ExtrasLiquidAcIonEmPleadO> listaExtras = (from reg in tabla
+                                   where reg.IDEmpleado == idEmpleado && mesCorrespondiente.Month == reg.Fecha.Month && reg.Fecha.Year == mesCorrespondiente.Year
+                                   select reg).ToList<ExtrasLiquidAcIonEmPleadO>();
+
+                return listaExtras;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
         #endregion
@@ -1019,6 +1360,92 @@ namespace Datos
         { }
         #endregion
 
+        #region BD_Schema
+        public List<string> obtenerNombreTablas()
+        {
+            try
+            {
+                List<string> res = new List<string>();
+                database.Connection.Open();
+                var dataTables = database.Mapping;
+                database.Connection.Close();
+                foreach (var tabla in dataTables.GetTables())
+                {
+                    res.Add(tabla.TableName);
+                }
+                
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public DataSet obtenerDataFromTable(string nombreTabla, List<string> listaColumnas)
+        {
+            try
+            {
+                MySqlConnection conexion = (MySqlConnection) database.Connection;
+                string campos = "";
+                if (listaColumnas.Count == 0)
+                    campos = "*";
+                else
+                    foreach (string str in listaColumnas)
+                    {
+                        if (listaColumnas.Last<string>() == str)
+                            campos += str;
+                        else
+                            campos += str + ", ";
+                    }
+
+                string sql = "SELECT " + campos + " FROM " + nombreTabla;
+                                
+                MySqlDataAdapter mysqlAdapter = new MySqlDataAdapter(sql, conexion);
+                DataSet sd = new DataSet();
+                mysqlAdapter.Fill(sd);
+                conexion.Close();
+
+                return sd;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<string> obtenerTableColumnsName(string nombreTabla)
+        {
+            try
+            {
+                List<string> res = new List<string>();
+                database.Connection.Open();
+                var dataTables = database.Mapping;
+                database.Connection.Close();
+                foreach (var tabla in dataTables.GetTables())
+                {
+                    if (tabla.TableName == nombreTabla)
+                    {
+                        foreach (var column in tabla.RowType.DataMembers)
+                        {
+                            res.Add(column.MappedName);
+                        }
+                        break;
+                    }
+                }
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public string obtenerNombreBaseDatos()
+        {
+            return database.Connection.Database;
+        }
+        #endregion
+
         
         public ContraToS obtenerContrato(int NumeroContrato)
         {
@@ -1240,6 +1667,9 @@ namespace Datos
         }
 
         
+    }
+
+}
     }
 
 }
