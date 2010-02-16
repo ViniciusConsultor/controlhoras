@@ -173,9 +173,11 @@ namespace ControlHoras
                         llenarForm(int.Parse(bcUC.ClienteNRO), int.Parse(NroMTB.Text));
                         NroMTB.Focus();
                         NroMTB.SelectAll();
+                        ContratoBTN.Enabled = true;
                     }
                     else
                     {
+                        ContratoBTN.Enabled = false;
                         string idservicio = NroMTB.Text;
                         LimpiarPlanilla();
                         AgregarBTN.Enabled = true;

@@ -6,14 +6,17 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Globalization;
 using Logica;
+using Datos;
+
 
 namespace ControlHoras
 {
     public partial class ContratoForm : Form
     {
         IClientesServicios sistema = ControladorClientesServicios.getInstance();
-
+        private IDatos datos = ControladorDatos.getInstance();
         int idser;
         int ind;
         int cant;
@@ -21,7 +24,9 @@ namespace ControlHoras
         String LlenarCamposObligatorios = "Debe llenar todos los campos obligatorios.";
 
         DataGridViewCell celda;
-        string stbuffer;        
+        string stbuffer;
+        
+        string[] dias = new string[]{"Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"};
 
         public ContratoForm()
         {
@@ -49,15 +54,17 @@ namespace ControlHoras
             stbuffer = @"N/T";
 
             bcUC.ClienteNRO = idCliente;
-            idser = int.Parse(idServicio);
+            idser = int.Parse(idServicio);            
         }
+
 
         private void InicializarCargaHorariaDGV()
         {
             MaskedTextBoxColumn mtbc;
 
             mtbc = new MaskedTextBoxColumn();
-            mtbc.HeaderText = "Lunes";
+            mtbc.Name = "Lunes";
+            mtbc.HeaderText = "Lunes";            
             mtbc.Mask = @"00:00   \a   00:00";
             mtbc.Width = 86;
             //mtbc.ReadOnly = false;
@@ -65,6 +72,7 @@ namespace ControlHoras
             this.CargaHorariaDGV.Columns.Add(mtbc);
 
             mtbc = new MaskedTextBoxColumn();
+            mtbc.Name = "Martes";
             mtbc.HeaderText = "Martes";
             mtbc.Mask = @"00:00   \a   00:00";
             mtbc.Width = 86;
@@ -73,6 +81,7 @@ namespace ControlHoras
             this.CargaHorariaDGV.Columns.Add(mtbc);
 
             mtbc = new MaskedTextBoxColumn();
+            mtbc.Name = "Miercoles";
             mtbc.HeaderText = "Miercoles";
             mtbc.Mask = @"00:00   \a   00:00";
             mtbc.Width = 86;
@@ -81,6 +90,7 @@ namespace ControlHoras
             this.CargaHorariaDGV.Columns.Add(mtbc);
 
             mtbc = new MaskedTextBoxColumn();
+            mtbc.Name = "Jueves";
             mtbc.HeaderText = "Jueves";
             mtbc.Mask = @"00:00   \a   00:00";
             mtbc.Width = 86;
@@ -89,6 +99,7 @@ namespace ControlHoras
             this.CargaHorariaDGV.Columns.Add(mtbc);
 
             mtbc = new MaskedTextBoxColumn();
+            mtbc.Name = "Viernes";
             mtbc.HeaderText = "Viernes";
             mtbc.Mask = @"00:00   \a   00:00";
             mtbc.Width = 86;
@@ -97,6 +108,7 @@ namespace ControlHoras
             this.CargaHorariaDGV.Columns.Add(mtbc);
 
             mtbc = new MaskedTextBoxColumn();
+            mtbc.Name = "Sabado";
             mtbc.HeaderText = "Sabado";
             mtbc.Mask = @"00:00   \a   00:00";
             mtbc.Width = 86;
@@ -105,6 +117,7 @@ namespace ControlHoras
             this.CargaHorariaDGV.Columns.Add(mtbc);
 
             mtbc = new MaskedTextBoxColumn();
+            mtbc.Name = "Domingo";
             mtbc.HeaderText = "Domingo";
             mtbc.Mask = @"00:00   \a   00:00";
             mtbc.Width = 86;
@@ -124,9 +137,9 @@ namespace ControlHoras
         private void FinCKB_CheckedChanged(object sender, EventArgs e)
         {
             if (FinCKB.Checked)
-                FfinDTP.Enabled = true;
+                FFinMTB.Enabled = true;
             else
-                FfinDTP.Enabled = false;
+                FFinMTB.Enabled = false;
         }
 
         private void bcUC_cliPronto(object sender, EventArgs e)
@@ -134,7 +147,7 @@ namespace ControlHoras
             GuardarBTN.Enabled = false;
             AnteriorBTN.Visible = false;
             PosteriorBTN.Visible = false;
-            //LimpiarPlanilla();
+            LimpiarForm();
             
             ServicioGB.Enabled = false;
 
@@ -180,11 +193,35 @@ namespace ControlHoras
 
         private void llenarForm(int numCli, int numSer)
         {
-            Servicio ser = sistema.obtenerServicioCliente(numCli, numSer);
+            Servicio ser = sistema.obtenerServicioCliente(numCli, numSer);            
 
             NroMTB.Text = ser.getNumero().ToString();
             NombreTB.Text = ser.getNombre();
+
             
+            ContraToS con = null;
+            int nroCon = CalcNroContrato(numCli, numSer);
+            if (datos.existeContrato(nroCon))
+            {
+                con = datos.obtenerContrato(CalcNroContrato(numCli, numSer));
+                FIniMTB.Text=con.FechaIni.ToString();
+                if (con.FechaFin != null)
+                {
+                    FinCKB.Checked=true;
+                    FFinMTB.Text=con.FechaFin.ToString();
+                }
+                if (con.CostoFijo == 1)
+                    CostoCB.SelectedIndex = 1;
+                else
+                    CostoCB.SelectedIndex = 0;
+                if (con.HorasExtras==1)
+                    HorasExtrasCHK.Checked=true;
+                AjusteTB.Text=con.Ajuste;
+                ObsTB.Text=con.Observaciones;
+                MontoTB.Text=con.Costo.ToString();
+            }
+            //else
+            //    FIniMTB.Focus();            
         }
 
         private void AnteriorBTN_Click(object sender, EventArgs e)
@@ -195,7 +232,7 @@ namespace ControlHoras
             else
                 ind = ind - 1;
 
-            //NombreTB.Text = nombresSer[ind];
+            LimpiarForm();
             llenarForm(numCli, numerosSer[ind]);
         }
 
@@ -204,7 +241,7 @@ namespace ControlHoras
             int numCli = int.Parse(bcUC.ClienteNRO);
             ind = (ind + 1) % cant;
 
-            //NombreTB.Text = nombresSer[ind];
+            LimpiarForm();
             llenarForm(numCli, numerosSer[ind]);
         }
 
@@ -221,7 +258,7 @@ namespace ControlHoras
             if (bcUC.Controls["ClienteMT"].Text != "")
             {
                 bcUC.Controls["ClienteMT"].Focus();
-                SendKeys.Send("{ENTER}");
+                SendKeys.Send("{ENTER}");                
             }
         }
 
@@ -270,17 +307,52 @@ namespace ControlHoras
                 {
                     int numCli = int.Parse(bcUC.ClienteNRO);
                     int numSer = int.Parse(NroMTB.Text);
-                    DateTime dt = DateTime.Today;
+                    DateTime dti = DateTime.ParseExact(FIniMTB.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+                    DateTime? dtf = null;
                     if (FinCKB.Checked)
-                        dt = FfinDTP.Value;
+                        dtf = DateTime.ParseExact(FFinMTB.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
                     bool costo = (CostoCB.SelectedItem.ToString() == "fijo");
                     bool hx = HorasExtrasCHK.Checked;
                     float monto = 0;
                     if (MontoTB.Text != "")
                         monto = int.Parse(MontoTB.Text);
+                    int nroCon = CalcNroContrato(numCli, numSer);
 
-                    //sistema.altaContratoServicioCliente(numCli, numSer, CalcNroContrato(numCli,numSer), FiniDTP.Value , dt, costo,  hx, AjusteTB.Text, ObsTB.Text, monto);
+                    ConSeguridadFisica con = new ConSeguridadFisica(hx, 0, 0, 0, dti, dtf, AjusteTB.Text, ObsTB.Text, costo, monto);
 
+                    // ACA GUARDO TODOS LOS DATOS DEL DATAGRIDVIEW
+
+                    LineaDeHoras linea = null;
+                    HorarioXDia hor = null;
+                    DataGridViewCell cel = null;
+                    foreach (DataGridViewRow fila in CargaHorariaDGV.Rows)
+                    {
+                        if (fila.Cells[0].RowIndex + 1 < CargaHorariaDGV.RowCount)
+                        {
+                            if (fila.Cells["Armado"].Value == null)
+                                fila.Cells["Armado"].Value = "0";
+                            linea = new LineaDeHoras(fila.Cells["Puesto"].Value.ToString(), (fila.Cells["Armado"].Value.ToString() == "1") ? true : false, float.Parse(fila.Cells["PrecioXHora"].Value.ToString()), int.Parse(fila.Cells["Cantidad"].Value.ToString()), 0, 0);
+                            for (int i = 0; i < 7; i++)
+                            {
+                                cel = fila.Cells[dias[i]];
+                                if (cel.Value.ToString() != @"N/T")
+                                {
+                                    hor = new HorarioXDia(dias[i], obtHIni(cel.Value.ToString()), obtHFin(cel.Value.ToString()));
+                                    linea.addDia(hor);
+                                }
+                            }
+                            con.addLinea(linea);
+                        }   
+                    }
+
+                    sistema.altaContrato(nroCon , con);
+  
+                    /*
+                    if (datos.existeContrato(nroCon))
+                        datos.modificarContrato(nroCon, dti, dtf, costo, hx, AjusteTB.Text, ObsTB.Text, monto);
+                    else
+                        sistema.altaContratoServicioCliente(numCli, numSer, CalcNroContrato(numCli,numSer), dti, dtf, costo,  hx, AjusteTB.Text, ObsTB.Text, monto);
+                    */
                     //CancelarBTN.PerformClick();
 
                 }
@@ -294,6 +366,16 @@ namespace ControlHoras
         
         }
 
+        private string obtHFin(string texto)
+        {
+            return texto.Substring(12, 5);
+        }
+
+        private string obtHIni(string texto)
+        {
+            return texto.Substring(0, 5);
+        }
+
         private bool checkDatosObligatorios()
         {
             return true;
@@ -302,7 +384,57 @@ namespace ControlHoras
         public int CalcNroContrato(int nroCli, int nroSer)
         {
             return nroCli * 10 + nroSer;
+        }
+
+
+        private bool ValidarFecha(string fecha)
+        {
+            DateTime dt;
+            DateTimeStyles dts = new DateTimeStyles();
+
+            return DateTime.TryParseExact(fecha, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo, dts, out dt);
+        }
+
+        private void FIniMTB_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(FIniMTB.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(FIniMTB, "No es una fecha válida");
+            }
         }           
-              
+
+        private void FIniMTB_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(FIniMTB, "");
+        }
+
+        private void FFinMTB_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(FFinMTB.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(FFinMTB, "No es una fecha válida");
+            }
+
+        }
+
+        private void FFinMTB_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(FFinMTB, "");
+        }
+
+        private void LimpiarForm()
+        {            
+            FIniMTB.Text = "";
+            FinCKB.Checked = false;
+            FFinMTB.Text = "";
+            CostoCB.SelectedIndex = 0;
+            HorasExtrasCHK.Checked = false;
+            AjusteTB.Text = "";
+            ObsTB.Text = "";
+            MontoTB.Text = "";
+        }
+    
     }
 }
