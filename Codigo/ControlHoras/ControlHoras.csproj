@@ -182,6 +182,12 @@
     <Compile Include="DateTimePickerKeyDown.Designer.cs">
       <DependentUpon>DateTimePickerKeyDown.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExportToExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportToExcel.Designer.cs">
+      <DependentUpon>ExportToExcel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Imagenes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -277,6 +283,9 @@
       <DependentUpon>ControlDiario.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ExportToExcel.resx">
+      <DependentUpon>ExportToExcel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Imagenes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Imagenes.Designer.cs</LastGenOutput>
@@ -354,6 +363,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Datos\Datos.csproj">
+      <Project>{3BBD3DD3-954B-48C1-93D6-6D32309233E2}</Project>
+      <Name>Datos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dominio\Logica.csproj">
       <Project>{AFC517DD-78C0-4139-ADFE-84AFB3320F61}</Project>
       <Name>Logica</Name>
@@ -453,6 +466,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\user_group_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Forward_Arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Arrow_forward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Arrow_back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imagen-no-disponible.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-vnd.ms-excel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dialog-question.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imagen_no_disponible.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />

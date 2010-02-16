@@ -41,6 +41,7 @@ namespace ControlHoras
         }       
 
         private void ComboBoxKeyDown_KeyDown(object sender, KeyEventArgs e)
+        
         {
             if (e.KeyCode == Keys.Enter)
             {

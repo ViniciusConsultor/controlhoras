@@ -33,14 +33,20 @@ namespace ControlHoras
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMClientes clientes = new ABMClientes();
-            DialogResult res = clientes.ShowDialog(this);
+            ABMClientes clientes = ABMClientes.getVentana();
+            if (clientes.Visible == false)
+                clientes.Show(this);
+            else
+                clientes.Focus();
         }
 
         private void categoriasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMCargos categ = new ABMCargos();
-            categ.ShowDialog(this);
+            ABMCargos categ = ABMCargos.getVentana();
+            if (categ.Visible == false)
+                categ.Show(this);
+            else
+                categ.Focus();
         }
 
     
@@ -58,50 +64,104 @@ namespace ControlHoras
 
         private void empleadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMEmpleados empls = new ABMEmpleados();
-            empls.ShowDialog(this);
+            ABMEmpleados empls = ABMEmpleados.getVentana();
+            if (empls.Visible == false)
+                empls.Show(this);
+            else
+                empls.Focus();
         }
 
         private void emergenciasMedicaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMEmergenciasMedica eme = new ABMEmergenciasMedica();
-            eme.ShowDialog(this);
+            ABMEmergenciasMedica eme = ABMEmergenciasMedica.getVentana();
+            if (eme.Visible == false)
+                eme.Show(this);
+            else
+                eme.Focus();
         }
 
         private void mutualistasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMMutualistas mutu = new ABMMutualistas();
-            mutu.ShowDialog(this);
+            ABMMutualistas mutu = ABMMutualistas.getVentana();
+            if (mutu.Visible == false)
+                mutu.Show(this);
+            else
+                mutu.Focus();
         }
 
         private void bancosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMBancos banco = new ABMBancos();
-            banco.ShowDialog(this);
+            ABMBancos banco = ABMBancos.getVentana();
+            if (banco.Visible == false)
+                banco.Show(this);
+            else
+                banco.Focus();
         }
 
         private void departamentosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMDepartamentos depa = new ABMDepartamentos();
-            depa.ShowDialog(this);
+            ABMDepartamentos depa = ABMDepartamentos.getVentana();
+            if (depa.Visible == false)
+                depa.Show(this);
+            else
+                depa.Focus();
         }
 
         private void tiposDeDocumentosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMTiposDocumento tiposDoc = new ABMTiposDocumento();
-            tiposDoc.ShowDialog(this);
+            ABMTiposDocumento tiposDoc = ABMTiposDocumento.getVentana();
+            if (tiposDoc.Visible == false)
+                tiposDoc.Show(this);
+            else
+                tiposDoc.Focus();
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            ABMEmpleados em = new ABMEmpleados();
-            em.ShowDialog(this);
+            
+            ABMEmpleados em = ABMEmpleados.getVentana();
+            if (em.IsDisposed == false)
+            {
+                em.Show(this);
+            }
+            else
+            {
+   //             em.Activate();
+                em.Show(this);
+            }
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            ABMClientes cli = new ABMClientes();
-           cli.ShowDialog(this);
+           ABMClientes cli = ABMClientes.getVentana();
+           if (cli.Visible == false)
+               cli.Show(this);
+           else
+               cli.Focus();
+        }
+
+        private void tiposDeEventosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ABMTipoEventoHistorial tiposevento = ABMTipoEventoHistorial.getVentana();
+            if (tiposevento.Visible == false)
+                tiposevento.Show(this);
+            else
+                tiposevento.Focus();
+        }
+
+        private void cargosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ABMCargos cargos = ABMCargos.getVentana();
+            if (cargos.Visible == false)
+                cargos.Show(this);
+            else
+                cargos.Focus();
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            ExportToExcel ex = new ExportToExcel();
+            ex.ShowDialog(this);
         }
 
 

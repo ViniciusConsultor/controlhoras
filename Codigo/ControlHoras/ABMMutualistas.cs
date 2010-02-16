@@ -14,8 +14,15 @@ namespace ControlHoras
     {
         IABMTipos tipos = ControladorABMTipos.getInstance();
         String LlenarCamposObligatorios = "Debe llenar todos los datos.";
+        static ABMMutualistas ventana = null;
+        public static ABMMutualistas getVentana()
+        {
+            if (ventana == null)
+                ventana = new ABMMutualistas();
+            return ventana;
+        }
 
-        public ABMMutualistas()
+        private ABMMutualistas()
         {
             InitializeComponent();
 

@@ -13,10 +13,10 @@ namespace ControlHoras
     public partial class ABMBancos : Form
     {
         IABMTipos tipos = ControladorABMTipos.getInstance();
-
+        static ABMBancos ventana = null;
         String LlenarCamposObligatorios = "Debe llenar todos los datos.";
 
-        public ABMBancos()
+        private ABMBancos()
         {
             InitializeComponent();
 
@@ -24,6 +24,15 @@ namespace ControlHoras
             btnGuardar.Enabled = false;
             
         }
+
+        public static ABMBancos getVentana()
+        {
+            if (ventana == null)
+                ventana = new ABMBancos();
+            return ventana;
+        }
+
+
 
         private void limpiarForm()
         {

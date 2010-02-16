@@ -6,28 +6,43 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Logica;
+using Datos;
 
 namespace ControlHoras
 {
     public partial class ABMCargos : Form
     {
-        Controlador sistema = Controlador.getControlador();
+        IDatosABMTipos datos = null;
         String LlenarCamposObligatorios = "Debe llenar todos los datos.";
+        
 
-        public ABMCargos()
+        static ABMCargos ventana = null;
+        public static ABMCargos getVentana()
+        {
+            if (ventana == null)
+                ventana = new ABMCargos();
+            return ventana;
+        }
+
+        private ABMCargos()
         {
             InitializeComponent();
 
             btnAgregar.Enabled = true;
             btnGuardar.Enabled = false;
+            datos = DatosABMTipos.getInstance();
             
         }
 
         private void limpiarForm()
         {
             txtNombre.Text = "";
+            lblIdTipoCargo.Text = "";
+            mtHsComunes.Text = "";
             txtDescripcion.Text = "";
+            cmbTipoFacturacion.SelectedIndex = 0;
+            cbCobraExtras.Checked = false;
+            cbFulltime.Checked = false;
             cbEstado.Checked = false;
 
         }
@@ -37,18 +52,30 @@ namespace ControlHoras
             btnAgregar.Enabled = true;
             btnGuardar.Enabled = false;
 
-            /*List<String[]> Cargos = sistema.traerCargos(false);
-            foreach (String[] cat in Cargos)
+            List<TipOscarGoS> cargos = datos.obtenerTiposCargos(false);
+            foreach (TipOscarGoS cat in cargos)
             {
                 int n = -10;
                 try
                 {
                     n = dgvCargos.Rows.Add();
-                    dgvCargos.Rows[n].Cells["idCategoria"].Value = cat[0];
-                    dgvCargos.Rows[n].Cells["Nombre"].Value = cat[1];
-                    dgvCargos.Rows[n].Cells["Descripción"].Value = cat[2];
-                    dgvCargos.Rows[n].Cells["Activa"].Value = cat[3];
-
+                    dgvCargos.Rows[n].Cells["idTipoCargo"].Value = cat.IDCargo.ToString();
+                    dgvCargos.Rows[n].Cells["Nombre"].Value = cat.Nombre;
+                    dgvCargos.Rows[n].Cells["Descripcion"].Value = cat.Descripcion;
+                    dgvCargos.Rows[n].Cells["HsComunes"].Value = cat.CantidadHsComunes.ToString();
+                    dgvCargos.Rows[n].Cells["TipoFacturacion"].Value = cat.TipoFacturacion;
+                    if (cat.Fulltime == 0)
+                        dgvCargos.Rows[n].Cells["Fulltime"].Value = true;
+                    else
+                        dgvCargos.Rows[n].Cells["Fulltime"].Value = false;
+                    if (cat.CobraHsExtras == 0)
+                        dgvCargos.Rows[n].Cells["CobraHsExtras"].Value = true;
+                    else
+                        dgvCargos.Rows[n].Cells["CobraHsExtras"].Value = false;
+                    if (cat.Activo == 0)
+                        dgvCargos.Rows[n].Cells["Activo"].Value = "SI";
+                    else
+                        dgvCargos.Rows[n].Cells["Activo"].Value = "NO";
                 }
                 catch (Exception ex)
                 {
@@ -63,7 +90,7 @@ namespace ControlHoras
                             MessageBox.Show(this, ex1.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                 }
-            } */
+            } 
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -73,25 +100,32 @@ namespace ControlHoras
                 try
                 {
                     int numFila = 0;
-                    while (dgvCargos.RowCount > numFila && lblidCategoria.Text != dgvCargos.Rows[numFila].Cells["idCategoria"].Value.ToString())
+                    while (dgvCargos.RowCount > numFila && lblIdTipoCargo.Text != dgvCargos.Rows[numFila].Cells["IdTipoCargo"].Value.ToString())
                     {
                         numFila++;
                     }
                     if (numFila != dgvCargos.RowCount)
                     {
-                        char estado = 'S';
-                        if (cbEstado.Checked)
-                        {
-                            estado = 'N';
-                        }
                         
                         // Modifica el valor en la base de datos
-                       // sistema.modificarCategoria(int.Parse(lblidCategoria.Text), txtNombre.Text, txtDescripcion.Text, estado);
-
+                        datos.modificarTipoCargo(int.Parse(lblIdTipoCargo.Text), txtNombre.Text, txtDescripcion.Text,int.Parse(mtHsComunes.Text),cmbTipoFacturacion.SelectedItem.ToString(),cbCobraExtras.Checked,cbFulltime.Checked,cbEstado.Checked);
+                        dgvCargos.Rows[numFila].Cells["idTipoCargo"].Value = lblIdTipoCargo.Text;
                         dgvCargos.Rows[numFila].Cells["Nombre"].Value = txtNombre.Text;
-                        dgvCargos.Rows[numFila].Cells["Descripción"].Value = txtDescripcion.Text;
-                        dgvCargos.Rows[numFila].Cells["Activa"].Value = estado;
-                        
+                        dgvCargos.Rows[numFila].Cells["Descripcion"].Value = txtDescripcion.Text;
+                        dgvCargos.Rows[numFila].Cells["HsComunes"].Value = mtHsComunes.Text;
+                        dgvCargos.Rows[numFila].Cells["TipoFacturacion"].Value = cmbTipoFacturacion.SelectedItem.ToString();
+                        if (cbFulltime.Checked)
+                            dgvCargos.Rows[numFila].Cells["Fulltime"].Value = cbFulltime.Checked;
+                        else
+                            dgvCargos.Rows[numFila].Cells["Fulltime"].Value = cbFulltime.Checked;
+                        if (cbCobraExtras.Checked)
+                            dgvCargos.Rows[numFila].Cells["CobraHsExtras"].Value = cbCobraExtras.Checked;
+                        else
+                            dgvCargos.Rows[numFila].Cells["CobraHsExtras"].Value = cbCobraExtras.Checked;
+                        if (cbEstado.Checked)
+                            dgvCargos.Rows[numFila].Cells["Activo"].Value = cbEstado.Checked;
+                        else
+                            dgvCargos.Rows[numFila].Cells["Activo"].Value = cbEstado.Checked;
                         btnAgregar.Enabled = true;
                         btnGuardar.Enabled = false;
                         limpiarForm();
@@ -110,22 +144,31 @@ namespace ControlHoras
         {
             if (txtNombre.Text != "" && txtDescripcion.Text != "")
             {
-                int n = -10;
+                int numFila = -10;
                 try
                 {
-                    char estado = 'S';
+                                      
+                    // Doy de alta el cargo en la base de datos
+                    int numCargo = datos.altaCargo(txtNombre.Text, txtDescripcion.Text, int.Parse(mtHsComunes.Text), cmbTipoFacturacion.SelectedItem.ToString(), cbCobraExtras.Checked, cbFulltime.Checked, cbEstado.Checked);
+
+                    numFila = dgvCargos.Rows.Add();
+                    dgvCargos.Rows[numFila].Cells["idTipoCargo"].Value = lblIdTipoCargo.Text;
+                    dgvCargos.Rows[numFila].Cells["Nombre"].Value = txtNombre.Text;
+                    dgvCargos.Rows[numFila].Cells["Descripcion"].Value = txtDescripcion.Text;
+                    dgvCargos.Rows[numFila].Cells["HsComunes"].Value = mtHsComunes.Text;
+                    dgvCargos.Rows[numFila].Cells["TipoFacturacion"].Value = cmbTipoFacturacion.SelectedItem.ToString();
+                    if (cbFulltime.Checked)
+                        dgvCargos.Rows[numFila].Cells["Fulltime"].Value = cbFulltime.Checked;
+                    else
+                        dgvCargos.Rows[numFila].Cells["Fulltime"].Value = cbFulltime.Checked;
+                    if (cbCobraExtras.Checked)
+                        dgvCargos.Rows[numFila].Cells["CobraHsExtras"].Value = cbCobraExtras.Checked;
+                    else
+                        dgvCargos.Rows[numFila].Cells["CobraHsExtras"].Value = cbCobraExtras.Checked;
                     if (cbEstado.Checked)
-                        estado = 'N';
-                    
-                    // Doy de alta la categoria en la base de datos
-                 //   lblidCategoria.Text = sistema.altaCategoria(txtNombre.Text, txtDescripcion.Text, estado).ToString();
-
-                    n = dgvCargos.Rows.Add();
-                    dgvCargos.Rows[n].Cells["idCategoria"].Value = lblidCategoria.Text;
-                    dgvCargos.Rows[n].Cells["Nombre"].Value = txtNombre.Text;
-                    dgvCargos.Rows[n].Cells["Descripción"].Value = txtDescripcion.Text;
-                    dgvCargos.Rows[n].Cells["Activa"].Value = estado.ToString();
-
+                        dgvCargos.Rows[numFila].Cells["Activo"].Value = cbEstado.Checked;
+                    else
+                        dgvCargos.Rows[numFila].Cells["Activo"].Value = cbEstado.Checked;
                     limpiarForm();
                 }
                 catch (Exception ex)
@@ -133,7 +176,7 @@ namespace ControlHoras
                     MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     try
                     {
-                        dgvCargos.Rows.RemoveAt(n);
+                        dgvCargos.Rows.RemoveAt(numFila);
                     }
                     catch (Exception ex2)
                     {
@@ -158,13 +201,18 @@ namespace ControlHoras
             {
                 return;
             }
+            lblIdTipoCargo.Text = dgvCargos.Rows[e.RowIndex].Cells["IdTipoCargo"].Value.ToString();
             txtNombre.Text = dgvCargos.Rows[e.RowIndex].Cells["Nombre"].Value.ToString();
-            txtDescripcion.Text = dgvCargos.Rows[e.RowIndex].Cells["Descripción"].Value.ToString();
-            if (dgvCargos.Rows[e.RowIndex].Cells["Activa"].Value.ToString() == "N")
+            txtDescripcion.Text = dgvCargos.Rows[e.RowIndex].Cells["Descripcion"].Value.ToString();
+            mtHsComunes.Text = dgvCargos.Rows[e.RowIndex].Cells["HsComunes"].Value.ToString();
+            cmbTipoFacturacion.SelectedItem = dgvCargos.Rows[e.RowIndex].Cells["TipoFacturacion"].Value;
+            if (dgvCargos.Rows[e.RowIndex].Cells["Activo"].Value.ToString() == "NO")
                 cbEstado.Checked = true;
             else
                 cbEstado.Checked = false;
-            lblidCategoria.Text = dgvCargos.Rows[e.RowIndex].Cells["idCategoria"].Value.ToString();
+            cbFulltime.Checked = (bool)dgvCargos.Rows[e.RowIndex].Cells["Fulltime"].Value;
+            cbCobraExtras.Checked = (bool)dgvCargos.Rows[e.RowIndex].Cells["CobraHsExtras"].Value;
+            
 
             btnAgregar.Enabled = false;
             btnGuardar.Enabled = true;
@@ -172,7 +220,6 @@ namespace ControlHoras
 
 
         }
-
 
         
     }

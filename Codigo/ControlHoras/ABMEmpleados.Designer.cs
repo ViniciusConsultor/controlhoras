@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ABMEmpleados));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnAgregar = new System.Windows.Forms.ToolStripButton();
             this.btnGuardar = new System.Windows.Forms.ToolStripButton();
@@ -69,7 +68,7 @@
             this.label19 = new System.Windows.Forms.Label();
             this.comboBoxKeyDown2 = new ControlHoras.ComboBoxKeyDown();
             this.label55 = new System.Windows.Forms.Label();
-            this.comboBoxKeyDown1 = new ControlHoras.ComboBoxKeyDown();
+            this.cmbTiposCargos = new ControlHoras.ComboBoxKeyDown();
             this.label54 = new System.Windows.Forms.Label();
             this.lblEdad = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
@@ -91,6 +90,23 @@
             this.btnSeleccionarImagen = new System.Windows.Forms.Button();
             this.pbFoto = new System.Windows.Forms.PictureBox();
             this.OtrosDatosDelEmpleado = new System.Windows.Forms.TabPage();
+            this.lblEmpleadoCargado = new System.Windows.Forms.Label();
+            this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.cbEnServicioArmado = new System.Windows.Forms.CheckBox();
+            this.cbCapacitadoPorteArma = new System.Windows.Forms.CheckBox();
+            this.dtpPsicologo = new ControlHoras.DateTimePickerKeyDown();
+            this.label45 = new System.Windows.Forms.Label();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.txtTalleCampera = new ControlHoras.TextBoxKeyDown();
+            this.mtTalleZapatos = new ControlHoras.MaskedTextBoxKeyDown();
+            this.txtTallePantalon = new ControlHoras.TextBoxKeyDown();
+            this.txtTalleCamisa = new ControlHoras.TextBoxKeyDown();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label60 = new System.Windows.Forms.Label();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.txtObservaciones = new ControlHoras.TextBoxKeyDown();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.txtCodigoPostal = new ControlHoras.TextBoxKeyDown();
             this.label56 = new System.Windows.Forms.Label();
@@ -131,9 +147,10 @@
             this.dtpFechaBajaMTSS = new ControlHoras.DateTimePickerKeyDown();
             this.dtpFechaAltaMTSS = new ControlHoras.DateTimePickerKeyDown();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.txtObservacionesAntecedentes = new ControlHoras.TextBoxKeyDown();
             this.label58 = new System.Windows.Forms.Label();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rbAntecedentes_SI = new System.Windows.Forms.RadioButton();
+            this.rbAntecedentes_NO = new System.Windows.Forms.RadioButton();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.txtNumAsuntoRenaemse = new ControlHoras.TextBoxKeyDown();
             this.label41 = new System.Windows.Forms.Label();
@@ -166,7 +183,7 @@
             this.cbAntecedentePolicialoMilitar = new System.Windows.Forms.CheckBox();
             this.Historial = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.lblIdTipoEventoHistorial = new System.Windows.Forms.Label();
+            this.lblIdEventoHistorialEmpleado = new System.Windows.Forms.Label();
             this.btnAddTipoEvento = new System.Windows.Forms.Button();
             this.btnEliminarHistorial = new System.Windows.Forms.Button();
             this.btnGuardarHistorial = new System.Windows.Forms.Button();
@@ -180,9 +197,11 @@
             this.dtpFechaFinHistorial = new ControlHoras.DateTimePickerKeyDown();
             this.dtpFechaInicioHistorial = new ControlHoras.DateTimePickerKeyDown();
             this.dgvHistorialEmpleado = new System.Windows.Forms.DataGridView();
+            this.IdEventoHistorialEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdTipoEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExtrasLiquidacion = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -202,31 +221,27 @@
             this.dgvExtrasLiquidacion = new System.Windows.Forms.DataGridView();
             this.idExtraLiquidacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripción = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescripcionEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Signo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CantidadCuotas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CuotaActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Liquidado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ofdFoto = new System.Windows.Forms.OpenFileDialog();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.txtObservaciones = new ControlHoras.TextBoxKeyDown();
-            this.txtObservacionesAntecedentes = new ControlHoras.TextBoxKeyDown();
-            this.groupBox15 = new System.Windows.Forms.GroupBox();
-            this.txtTalleCampera = new ControlHoras.TextBoxKeyDown();
-            this.mtTalleZapatos = new ControlHoras.MaskedTextBoxKeyDown();
-            this.txtTallePantalon = new ControlHoras.TextBoxKeyDown();
-            this.txtTalleCamisa = new ControlHoras.TextBoxKeyDown();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label57 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.label60 = new System.Windows.Forms.Label();
-            this.groupBox16 = new System.Windows.Forms.GroupBox();
-            this.dtpPsicologo = new ControlHoras.DateTimePickerKeyDown();
-            this.label45 = new System.Windows.Forms.Label();
-            this.lblEmpleadoCargado = new System.Windows.Forms.Label();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             this.tcEmpleado.SuspendLayout();
             this.DatosDelEmpleado.SuspendLayout();
@@ -237,6 +252,9 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.OtrosDatosDelEmpleado.SuspendLayout();
+            this.groupBox16.SuspendLayout();
+            this.groupBox15.SuspendLayout();
+            this.groupBox14.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.AltasYBajas.SuspendLayout();
@@ -258,9 +276,6 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExtrasLiquidacion)).BeginInit();
-            this.groupBox14.SuspendLayout();
-            this.groupBox15.SuspendLayout();
-            this.groupBox16.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -316,7 +331,7 @@
             // 
             // btnAnterior
             // 
-            this.btnAnterior.Image = ((System.Drawing.Image)(resources.GetObject("btnAnterior.Image")));
+            this.btnAnterior.Image = global::ControlHoras.Imagenes.Arrow_back;
             this.btnAnterior.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAnterior.Name = "btnAnterior";
             this.btnAnterior.Size = new System.Drawing.Size(50, 33);
@@ -325,7 +340,7 @@
             // 
             // btnSiguiente
             // 
-            this.btnSiguiente.Image = ((System.Drawing.Image)(resources.GetObject("btnSiguiente.Image")));
+            this.btnSiguiente.Image = global::ControlHoras.Imagenes.Arrow_forward;
             this.btnSiguiente.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Size = new System.Drawing.Size(55, 33);
@@ -379,11 +394,14 @@
             // 
             // mtSueldo
             // 
+            this.mtSueldo.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.mtSueldo.Location = new System.Drawing.Point(62, 65);
-            this.mtSueldo.Mask = "$ 990000.00";
+            this.mtSueldo.Mask = "$ 000099.00";
             this.mtSueldo.Name = "mtSueldo";
             this.mtSueldo.Size = new System.Drawing.Size(81, 20);
             this.mtSueldo.TabIndex = 2;
+            this.mtSueldo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.mtSueldo.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // txtNumeroCuenta
             // 
@@ -621,7 +639,7 @@
             this.groupBox3.Controls.Add(this.label19);
             this.groupBox3.Controls.Add(this.comboBoxKeyDown2);
             this.groupBox3.Controls.Add(this.label55);
-            this.groupBox3.Controls.Add(this.comboBoxKeyDown1);
+            this.groupBox3.Controls.Add(this.cmbTiposCargos);
             this.groupBox3.Controls.Add(this.label54);
             this.groupBox3.Controls.Add(this.lblEdad);
             this.groupBox3.Controls.Add(this.label50);
@@ -676,14 +694,14 @@
             this.label55.TabIndex = 114;
             this.label55.Text = "Tipo Empleado";
             // 
-            // comboBoxKeyDown1
+            // cmbTiposCargos
             // 
-            this.comboBoxKeyDown1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxKeyDown1.FormattingEnabled = true;
-            this.comboBoxKeyDown1.Location = new System.Drawing.Point(103, 79);
-            this.comboBoxKeyDown1.Name = "comboBoxKeyDown1";
-            this.comboBoxKeyDown1.Size = new System.Drawing.Size(115, 21);
-            this.comboBoxKeyDown1.TabIndex = 113;
+            this.cmbTiposCargos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTiposCargos.FormattingEnabled = true;
+            this.cmbTiposCargos.Location = new System.Drawing.Point(103, 79);
+            this.cmbTiposCargos.Name = "cmbTiposCargos";
+            this.cmbTiposCargos.Size = new System.Drawing.Size(115, 21);
+            this.cmbTiposCargos.TabIndex = 113;
             // 
             // label54
             // 
@@ -769,11 +787,13 @@
             // 
             // mtNumeroDocumento
             // 
+            this.mtNumeroDocumento.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.mtNumeroDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mtNumeroDocumento.Location = new System.Drawing.Point(103, 45);
             this.mtNumeroDocumento.Name = "mtNumeroDocumento";
             this.mtNumeroDocumento.Size = new System.Drawing.Size(115, 21);
             this.mtNumeroDocumento.TabIndex = 1;
+            this.mtNumeroDocumento.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // cmbTipoDocumento
             // 
@@ -849,12 +869,16 @@
             // mtNumeroEmpleado
             // 
             this.mtNumeroEmpleado.BackColor = System.Drawing.Color.White;
+            this.mtNumeroEmpleado.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.mtNumeroEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mtNumeroEmpleado.HidePromptOnLeave = true;
             this.mtNumeroEmpleado.Location = new System.Drawing.Point(61, 12);
-            this.mtNumeroEmpleado.Mask = "9990";
+            this.mtNumeroEmpleado.Mask = "0999";
             this.mtNumeroEmpleado.Name = "mtNumeroEmpleado";
             this.mtNumeroEmpleado.Size = new System.Drawing.Size(44, 21);
             this.mtNumeroEmpleado.TabIndex = 0;
+            this.mtNumeroEmpleado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.mtNumeroEmpleado.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.mtNumeroEmpleado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtNumeroEmpleado_KeyDown);
             // 
             // btnSeleccionarImagen
@@ -892,7 +916,170 @@
             this.OtrosDatosDelEmpleado.TabIndex = 2;
             this.OtrosDatosDelEmpleado.Text = "Otros Datos Del Empleado";
             this.OtrosDatosDelEmpleado.UseVisualStyleBackColor = true;
-            this.OtrosDatosDelEmpleado.Click += new System.EventHandler(this.OtrosDatosDelEmpleado_Click);
+            // 
+            // lblEmpleadoCargado
+            // 
+            this.lblEmpleadoCargado.AutoSize = true;
+            this.lblEmpleadoCargado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmpleadoCargado.Location = new System.Drawing.Point(100, 7);
+            this.lblEmpleadoCargado.Name = "lblEmpleadoCargado";
+            this.lblEmpleadoCargado.Size = new System.Drawing.Size(156, 16);
+            this.lblEmpleadoCargado.TabIndex = 116;
+            this.lblEmpleadoCargado.Text = "lblEmpleadoCargado";
+            // 
+            // groupBox16
+            // 
+            this.groupBox16.Controls.Add(this.cbEnServicioArmado);
+            this.groupBox16.Controls.Add(this.cbCapacitadoPorteArma);
+            this.groupBox16.Controls.Add(this.dtpPsicologo);
+            this.groupBox16.Controls.Add(this.label45);
+            this.groupBox16.Location = new System.Drawing.Point(341, 249);
+            this.groupBox16.Name = "groupBox16";
+            this.groupBox16.Size = new System.Drawing.Size(290, 100);
+            this.groupBox16.TabIndex = 115;
+            this.groupBox16.TabStop = false;
+            this.groupBox16.Text = "Otros Datos";
+            // 
+            // cbEnServicioArmado
+            // 
+            this.cbEnServicioArmado.AutoSize = true;
+            this.cbEnServicioArmado.Location = new System.Drawing.Point(68, 73);
+            this.cbEnServicioArmado.Name = "cbEnServicioArmado";
+            this.cbEnServicioArmado.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cbEnServicioArmado.Size = new System.Drawing.Size(125, 17);
+            this.cbEnServicioArmado.TabIndex = 116;
+            this.cbEnServicioArmado.Text = "En Servicio Armado?";
+            this.cbEnServicioArmado.UseVisualStyleBackColor = true;
+            // 
+            // cbCapacitadoPorteArma
+            // 
+            this.cbCapacitadoPorteArma.AutoSize = true;
+            this.cbCapacitadoPorteArma.Location = new System.Drawing.Point(49, 49);
+            this.cbCapacitadoPorteArma.Name = "cbCapacitadoPorteArma";
+            this.cbCapacitadoPorteArma.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cbCapacitadoPorteArma.Size = new System.Drawing.Size(144, 17);
+            this.cbCapacitadoPorteArma.TabIndex = 115;
+            this.cbCapacitadoPorteArma.Text = "Capacitado Portar Arma?";
+            this.cbCapacitadoPorteArma.UseVisualStyleBackColor = true;
+            // 
+            // dtpPsicologo
+            // 
+            this.dtpPsicologo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.dtpPsicologo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpPsicologo.Location = new System.Drawing.Point(151, 18);
+            this.dtpPsicologo.Name = "dtpPsicologo";
+            this.dtpPsicologo.Size = new System.Drawing.Size(96, 20);
+            this.dtpPsicologo.TabIndex = 113;
+            this.dtpPsicologo.Value = new System.DateTime(1753, 1, 2, 0, 0, 0, 0);
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(46, 22);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(94, 13);
+            this.label45.TabIndex = 114;
+            this.label45.Text = "Fecha Psicologico";
+            // 
+            // groupBox15
+            // 
+            this.groupBox15.Controls.Add(this.txtTalleCampera);
+            this.groupBox15.Controls.Add(this.mtTalleZapatos);
+            this.groupBox15.Controls.Add(this.txtTallePantalon);
+            this.groupBox15.Controls.Add(this.txtTalleCamisa);
+            this.groupBox15.Controls.Add(this.label28);
+            this.groupBox15.Controls.Add(this.label57);
+            this.groupBox15.Controls.Add(this.label59);
+            this.groupBox15.Controls.Add(this.label60);
+            this.groupBox15.Location = new System.Drawing.Point(410, 114);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Size = new System.Drawing.Size(147, 129);
+            this.groupBox15.TabIndex = 114;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "Talles Uniforme";
+            // 
+            // txtTalleCampera
+            // 
+            this.txtTalleCampera.Location = new System.Drawing.Point(83, 96);
+            this.txtTalleCampera.Name = "txtTalleCampera";
+            this.txtTalleCampera.Size = new System.Drawing.Size(54, 20);
+            this.txtTalleCampera.TabIndex = 3;
+            // 
+            // mtTalleZapatos
+            // 
+            this.mtTalleZapatos.Location = new System.Drawing.Point(83, 71);
+            this.mtTalleZapatos.Name = "mtTalleZapatos";
+            this.mtTalleZapatos.Size = new System.Drawing.Size(54, 20);
+            this.mtTalleZapatos.TabIndex = 2;
+            // 
+            // txtTallePantalon
+            // 
+            this.txtTallePantalon.Location = new System.Drawing.Point(83, 45);
+            this.txtTallePantalon.Name = "txtTallePantalon";
+            this.txtTallePantalon.Size = new System.Drawing.Size(54, 20);
+            this.txtTallePantalon.TabIndex = 1;
+            // 
+            // txtTalleCamisa
+            // 
+            this.txtTalleCamisa.BackColor = System.Drawing.Color.White;
+            this.txtTalleCamisa.Location = new System.Drawing.Point(83, 20);
+            this.txtTalleCamisa.Name = "txtTalleCamisa";
+            this.txtTalleCamisa.Size = new System.Drawing.Size(54, 20);
+            this.txtTalleCamisa.TabIndex = 0;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(4, 99);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(75, 13);
+            this.label28.TabIndex = 125;
+            this.label28.Text = "Talle Campera";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(4, 74);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(72, 13);
+            this.label57.TabIndex = 124;
+            this.label57.Text = "Talle Zapatos";
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Location = new System.Drawing.Point(4, 49);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(75, 13);
+            this.label59.TabIndex = 123;
+            this.label59.Text = "Talle Pantalón";
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Location = new System.Drawing.Point(4, 24);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(67, 13);
+            this.label60.TabIndex = 122;
+            this.label60.Text = "Talle Camisa";
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.txtObservaciones);
+            this.groupBox14.Location = new System.Drawing.Point(21, 249);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(314, 100);
+            this.groupBox14.TabIndex = 113;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Observaciones Del Funcionario";
+            // 
+            // txtObservaciones
+            // 
+            this.txtObservaciones.Location = new System.Drawing.Point(6, 19);
+            this.txtObservaciones.Multiline = true;
+            this.txtObservaciones.Name = "txtObservaciones";
+            this.txtObservaciones.Size = new System.Drawing.Size(302, 71);
+            this.txtObservaciones.TabIndex = 114;
             // 
             // groupBox9
             // 
@@ -1139,6 +1326,7 @@
             this.cbEgresadoEmpresa.TabIndex = 2;
             this.cbEgresadoEmpresa.Text = "Egresado?";
             this.cbEgresadoEmpresa.UseVisualStyleBackColor = true;
+            this.cbEgresadoEmpresa.CheckedChanged += new System.EventHandler(this.cbEgresadoEmpresa_CheckedChanged);
             // 
             // label27
             // 
@@ -1151,6 +1339,7 @@
             // 
             // dtpFechaEgresoEmpresa
             // 
+            this.dtpFechaEgresoEmpresa.Enabled = false;
             this.dtpFechaEgresoEmpresa.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaEgresoEmpresa.Location = new System.Drawing.Point(225, 24);
             this.dtpFechaEgresoEmpresa.Name = "dtpFechaEgresoEmpresa";
@@ -1218,6 +1407,7 @@
             this.cbNoActivo.TabIndex = 0;
             this.cbNoActivo.Text = "No Activo";
             this.cbNoActivo.UseVisualStyleBackColor = true;
+            this.cbNoActivo.CheckedChanged += new System.EventHandler(this.cbNoActivo_CheckedChanged);
             // 
             // groupBox10
             // 
@@ -1261,9 +1451,11 @@
             this.cbBajadoMTSS.TabIndex = 2;
             this.cbBajadoMTSS.Text = "Bajado de MTSS?";
             this.cbBajadoMTSS.UseVisualStyleBackColor = true;
+            this.cbBajadoMTSS.CheckedChanged += new System.EventHandler(this.cbBajadoMTSS_CheckedChanged);
             // 
             // dtpFechaBajaMTSS
             // 
+            this.dtpFechaBajaMTSS.Enabled = false;
             this.dtpFechaBajaMTSS.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaBajaMTSS.Location = new System.Drawing.Point(227, 38);
             this.dtpFechaBajaMTSS.Name = "dtpFechaBajaMTSS";
@@ -1284,14 +1476,22 @@
             // 
             this.groupBox12.Controls.Add(this.txtObservacionesAntecedentes);
             this.groupBox12.Controls.Add(this.label58);
-            this.groupBox12.Controls.Add(this.radioButton2);
-            this.groupBox12.Controls.Add(this.radioButton1);
+            this.groupBox12.Controls.Add(this.rbAntecedentes_SI);
+            this.groupBox12.Controls.Add(this.rbAntecedentes_NO);
             this.groupBox12.Location = new System.Drawing.Point(24, 10);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.Size = new System.Drawing.Size(240, 113);
             this.groupBox12.TabIndex = 122;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Antecedentes";
+            // 
+            // txtObservacionesAntecedentes
+            // 
+            this.txtObservacionesAntecedentes.Location = new System.Drawing.Point(12, 59);
+            this.txtObservacionesAntecedentes.Multiline = true;
+            this.txtObservacionesAntecedentes.Name = "txtObservacionesAntecedentes";
+            this.txtObservacionesAntecedentes.Size = new System.Drawing.Size(216, 44);
+            this.txtObservacionesAntecedentes.TabIndex = 126;
             // 
             // label58
             // 
@@ -1302,27 +1502,27 @@
             this.label58.TabIndex = 119;
             this.label58.Text = "Observaciones Antecedentes";
             // 
-            // radioButton2
+            // rbAntecedentes_SI
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(108, 18);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(44, 17);
-            this.radioButton2.TabIndex = 117;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "C/A";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbAntecedentes_SI.AutoSize = true;
+            this.rbAntecedentes_SI.Location = new System.Drawing.Point(108, 18);
+            this.rbAntecedentes_SI.Name = "rbAntecedentes_SI";
+            this.rbAntecedentes_SI.Size = new System.Drawing.Size(44, 17);
+            this.rbAntecedentes_SI.TabIndex = 117;
+            this.rbAntecedentes_SI.TabStop = true;
+            this.rbAntecedentes_SI.Text = "C/A";
+            this.rbAntecedentes_SI.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rbAntecedentes_NO
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(40, 18);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(44, 17);
-            this.radioButton1.TabIndex = 116;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "S/A";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbAntecedentes_NO.AutoSize = true;
+            this.rbAntecedentes_NO.Location = new System.Drawing.Point(40, 18);
+            this.rbAntecedentes_NO.Name = "rbAntecedentes_NO";
+            this.rbAntecedentes_NO.Size = new System.Drawing.Size(44, 17);
+            this.rbAntecedentes_NO.TabIndex = 116;
+            this.rbAntecedentes_NO.TabStop = true;
+            this.rbAntecedentes_NO.Text = "S/A";
+            this.rbAntecedentes_NO.UseVisualStyleBackColor = true;
             // 
             // groupBox8
             // 
@@ -1397,6 +1597,7 @@
             this.cbBajadoBPS.TabIndex = 3;
             this.cbBajadoBPS.Text = "Bajado de BPS?";
             this.cbBajadoBPS.UseVisualStyleBackColor = true;
+            this.cbBajadoBPS.CheckedChanged += new System.EventHandler(this.cbBajadoBPS_CheckedChanged);
             // 
             // mtAcumulacionBPS
             // 
@@ -1416,6 +1617,7 @@
             // 
             // dtpFechaBajaBPS
             // 
+            this.dtpFechaBajaBPS.Enabled = false;
             this.dtpFechaBajaBPS.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaBajaBPS.Location = new System.Drawing.Point(230, 42);
             this.dtpFechaBajaBPS.Name = "dtpFechaBajaBPS";
@@ -1545,15 +1747,14 @@
             this.cbCombatiente.TabIndex = 4;
             this.cbCombatiente.Text = "Combatiente?";
             this.cbCombatiente.UseVisualStyleBackColor = true;
-            this.cbCombatiente.Visible = false;
             // 
             // txtPolicialSubEscalafon
             // 
+            this.txtPolicialSubEscalafon.Enabled = false;
             this.txtPolicialSubEscalafon.Location = new System.Drawing.Point(94, 101);
             this.txtPolicialSubEscalafon.Name = "txtPolicialSubEscalafon";
             this.txtPolicialSubEscalafon.Size = new System.Drawing.Size(134, 20);
             this.txtPolicialSubEscalafon.TabIndex = 3;
-            this.txtPolicialSubEscalafon.Visible = false;
             // 
             // dtpFechaEgresoPolicialMilitar
             // 
@@ -1587,6 +1788,7 @@
             this.cmbPolicialMilitar.Name = "cmbPolicialMilitar";
             this.cmbPolicialMilitar.Size = new System.Drawing.Size(106, 21);
             this.cmbPolicialMilitar.TabIndex = 0;
+            this.cmbPolicialMilitar.SelectedValueChanged += new System.EventHandler(this.cmbPolicialMilitar_SelectedValueChanged);
             // 
             // lblSubEscalafon
             // 
@@ -1596,7 +1798,6 @@
             this.lblSubEscalafon.Size = new System.Drawing.Size(73, 13);
             this.lblSubEscalafon.TabIndex = 3;
             this.lblSubEscalafon.Text = "SubEscalafón";
-            this.lblSubEscalafon.Visible = false;
             // 
             // label43
             // 
@@ -1625,6 +1826,7 @@
             this.cbAntecedentePolicialoMilitar.TabIndex = 0;
             this.cbAntecedentePolicialoMilitar.Text = "Antecedentes";
             this.cbAntecedentePolicialoMilitar.UseVisualStyleBackColor = true;
+            this.cbAntecedentePolicialoMilitar.CheckedChanged += new System.EventHandler(this.cbAntecedentePolicialoMilitar_CheckedChanged);
             // 
             // Historial
             // 
@@ -1646,7 +1848,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.lblIdTipoEventoHistorial);
+            this.splitContainer1.Panel1.Controls.Add(this.lblIdEventoHistorialEmpleado);
             this.splitContainer1.Panel1.Controls.Add(this.btnAddTipoEvento);
             this.splitContainer1.Panel1.Controls.Add(this.btnEliminarHistorial);
             this.splitContainer1.Panel1.Controls.Add(this.btnGuardarHistorial);
@@ -1667,13 +1869,13 @@
             this.splitContainer1.SplitterDistance = 132;
             this.splitContainer1.TabIndex = 0;
             // 
-            // lblIdTipoEventoHistorial
+            // lblIdEventoHistorialEmpleado
             // 
-            this.lblIdTipoEventoHistorial.AutoSize = true;
-            this.lblIdTipoEventoHistorial.Location = new System.Drawing.Point(17, 9);
-            this.lblIdTipoEventoHistorial.Name = "lblIdTipoEventoHistorial";
-            this.lblIdTipoEventoHistorial.Size = new System.Drawing.Size(0, 13);
-            this.lblIdTipoEventoHistorial.TabIndex = 12;
+            this.lblIdEventoHistorialEmpleado.AutoSize = true;
+            this.lblIdEventoHistorialEmpleado.Location = new System.Drawing.Point(17, 9);
+            this.lblIdEventoHistorialEmpleado.Name = "lblIdEventoHistorialEmpleado";
+            this.lblIdEventoHistorialEmpleado.Size = new System.Drawing.Size(0, 13);
+            this.lblIdEventoHistorialEmpleado.TabIndex = 12;
             // 
             // btnAddTipoEvento
             // 
@@ -1683,9 +1885,11 @@
             this.btnAddTipoEvento.TabIndex = 11;
             this.btnAddTipoEvento.Text = "+";
             this.btnAddTipoEvento.UseVisualStyleBackColor = true;
+            this.btnAddTipoEvento.Click += new System.EventHandler(this.btnAddTipoEvento_Click);
             // 
             // btnEliminarHistorial
             // 
+            this.btnEliminarHistorial.Enabled = false;
             this.btnEliminarHistorial.Location = new System.Drawing.Point(563, 84);
             this.btnEliminarHistorial.Name = "btnEliminarHistorial";
             this.btnEliminarHistorial.Size = new System.Drawing.Size(54, 23);
@@ -1696,6 +1900,7 @@
             // 
             // btnGuardarHistorial
             // 
+            this.btnGuardarHistorial.Enabled = false;
             this.btnGuardarHistorial.Location = new System.Drawing.Point(563, 55);
             this.btnGuardarHistorial.Name = "btnGuardarHistorial";
             this.btnGuardarHistorial.Size = new System.Drawing.Size(54, 23);
@@ -1706,6 +1911,7 @@
             // 
             // btnAgregarHistorial
             // 
+            this.btnAgregarHistorial.Enabled = false;
             this.btnAgregarHistorial.Location = new System.Drawing.Point(563, 26);
             this.btnAgregarHistorial.Name = "btnAgregarHistorial";
             this.btnAgregarHistorial.Size = new System.Drawing.Size(54, 23);
@@ -1792,9 +1998,11 @@
             this.dgvHistorialEmpleado.AllowUserToOrderColumns = true;
             this.dgvHistorialEmpleado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHistorialEmpleado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdEventoHistorialEmpleado,
             this.FechaInicio,
             this.FechaFin,
             this.TipoEvento,
+            this.IdTipoEvento,
             this.Descripcion});
             this.dgvHistorialEmpleado.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvHistorialEmpleado.Location = new System.Drawing.Point(0, 0);
@@ -1804,6 +2012,14 @@
             this.dgvHistorialEmpleado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvHistorialEmpleado.Size = new System.Drawing.Size(633, 215);
             this.dgvHistorialEmpleado.TabIndex = 0;
+            this.dgvHistorialEmpleado.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHistorialEmpleado_CellDoubleClick);
+            // 
+            // IdEventoHistorialEmpleado
+            // 
+            this.IdEventoHistorialEmpleado.HeaderText = "IdEventoHistorialEmpleado";
+            this.IdEventoHistorialEmpleado.Name = "IdEventoHistorialEmpleado";
+            this.IdEventoHistorialEmpleado.ReadOnly = true;
+            this.IdEventoHistorialEmpleado.Visible = false;
             // 
             // FechaInicio
             // 
@@ -1822,10 +2038,17 @@
             // TipoEvento
             // 
             this.TipoEvento.FillWeight = 65.65144F;
-            this.TipoEvento.HeaderText = "Tipo de Evento";
+            this.TipoEvento.HeaderText = "Tipo De Evento";
             this.TipoEvento.Name = "TipoEvento";
             this.TipoEvento.ReadOnly = true;
             this.TipoEvento.Width = 230;
+            // 
+            // IdTipoEvento
+            // 
+            this.IdTipoEvento.HeaderText = "IdTipoEvento";
+            this.IdTipoEvento.Name = "IdTipoEvento";
+            this.IdTipoEvento.ReadOnly = true;
+            this.IdTipoEvento.Visible = false;
             // 
             // Descripcion
             // 
@@ -1885,6 +2108,7 @@
             // 
             // btnExtrasEliminar
             // 
+            this.btnExtrasEliminar.Enabled = false;
             this.btnExtrasEliminar.Location = new System.Drawing.Point(540, 83);
             this.btnExtrasEliminar.Name = "btnExtrasEliminar";
             this.btnExtrasEliminar.Size = new System.Drawing.Size(54, 23);
@@ -1895,6 +2119,7 @@
             // 
             // btnExtrasGuardar
             // 
+            this.btnExtrasGuardar.Enabled = false;
             this.btnExtrasGuardar.Location = new System.Drawing.Point(540, 54);
             this.btnExtrasGuardar.Name = "btnExtrasGuardar";
             this.btnExtrasGuardar.Size = new System.Drawing.Size(54, 23);
@@ -1905,6 +2130,7 @@
             // 
             // btnExtrasAgregar
             // 
+            this.btnExtrasAgregar.Enabled = false;
             this.btnExtrasAgregar.Location = new System.Drawing.Point(540, 25);
             this.btnExtrasAgregar.Name = "btnExtrasAgregar";
             this.btnExtrasAgregar.Size = new System.Drawing.Size(54, 23);
@@ -1915,19 +2141,29 @@
             // 
             // mtExtrasCantCuotas
             // 
+            this.mtExtrasCantCuotas.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtExtrasCantCuotas.HidePromptOnLeave = true;
             this.mtExtrasCantCuotas.Location = new System.Drawing.Point(467, 79);
-            this.mtExtrasCantCuotas.Mask = "90";
+            this.mtExtrasCantCuotas.Mask = "09";
             this.mtExtrasCantCuotas.Name = "mtExtrasCantCuotas";
+            this.mtExtrasCantCuotas.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.mtExtrasCantCuotas.Size = new System.Drawing.Size(22, 20);
             this.mtExtrasCantCuotas.TabIndex = 8;
+            this.mtExtrasCantCuotas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.mtExtrasCantCuotas.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // mtExtrasValor
             // 
+            this.mtExtrasValor.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtExtrasValor.HidePromptOnLeave = true;
             this.mtExtrasValor.Location = new System.Drawing.Point(278, 79);
-            this.mtExtrasValor.Mask = "$99990";
+            this.mtExtrasValor.Mask = "$00999";
             this.mtExtrasValor.Name = "mtExtrasValor";
+            this.mtExtrasValor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.mtExtrasValor.Size = new System.Drawing.Size(57, 20);
             this.mtExtrasValor.TabIndex = 7;
+            this.mtExtrasValor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.mtExtrasValor.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // cmbExtrasSigno
             // 
@@ -2003,10 +2239,12 @@
             this.dgvExtrasLiquidacion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idExtraLiquidacion,
             this.Fecha,
-            this.Descripción,
+            this.DescripcionEvento,
             this.Signo,
             this.Valor,
-            this.CantidadCuotas});
+            this.CantidadCuotas,
+            this.CuotaActual,
+            this.Liquidado});
             this.dgvExtrasLiquidacion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvExtrasLiquidacion.Location = new System.Drawing.Point(0, 0);
             this.dgvExtrasLiquidacion.MultiSelect = false;
@@ -2016,6 +2254,7 @@
             this.dgvExtrasLiquidacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvExtrasLiquidacion.Size = new System.Drawing.Size(633, 206);
             this.dgvExtrasLiquidacion.TabIndex = 0;
+            this.dgvExtrasLiquidacion.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvExtrasLiquidacion_CellDoubleClick);
             // 
             // idExtraLiquidacion
             // 
@@ -2031,12 +2270,12 @@
             this.Fecha.ReadOnly = true;
             this.Fecha.Width = 120;
             // 
-            // Descripción
+            // DescripcionEvento
             // 
-            this.Descripción.HeaderText = "Descripcion";
-            this.Descripción.Name = "Descripción";
-            this.Descripción.ReadOnly = true;
-            this.Descripción.Width = 260;
+            this.DescripcionEvento.HeaderText = "Descripción";
+            this.DescripcionEvento.Name = "DescripcionEvento";
+            this.DescripcionEvento.ReadOnly = true;
+            this.DescripcionEvento.Width = 260;
             // 
             // Signo
             // 
@@ -2047,7 +2286,7 @@
             // 
             // Valor
             // 
-            this.Valor.HeaderText = "Valor";
+            this.Valor.HeaderText = "Valor Cuota";
             this.Valor.Name = "Valor";
             this.Valor.ReadOnly = true;
             // 
@@ -2058,181 +2297,121 @@
             this.CantidadCuotas.ReadOnly = true;
             this.CantidadCuotas.Width = 90;
             // 
+            // CuotaActual
+            // 
+            this.CuotaActual.HeaderText = "Cuota Actual";
+            this.CuotaActual.Name = "CuotaActual";
+            this.CuotaActual.ReadOnly = true;
+            // 
+            // Liquidado
+            // 
+            this.Liquidado.HeaderText = "Liquidado?";
+            this.Liquidado.Name = "Liquidado";
+            this.Liquidado.ReadOnly = true;
+            // 
             // ofdFoto
             // 
             this.ofdFoto.Filter = "Archivos de Imagenes JPG (*.JPG;*.JPEG)|*.JPG;*.JPEG";
             // 
             // dataGridViewTextBoxColumn1
             // 
+            this.dataGridViewTextBoxColumn1.FillWeight = 60F;
             this.dataGridViewTextBoxColumn1.HeaderText = "Fecha Inicio";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
             // 
             // dataGridViewTextBoxColumn2
             // 
+            this.dataGridViewTextBoxColumn2.FillWeight = 65.65144F;
             this.dataGridViewTextBoxColumn2.HeaderText = "Fecha Fin";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 120;
             // 
             // dataGridViewTextBoxColumn3
             // 
+            this.dataGridViewTextBoxColumn3.FillWeight = 65.65144F;
             this.dataGridViewTextBoxColumn3.HeaderText = "Tipo de Evento";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 230;
             // 
             // dataGridViewTextBoxColumn4
             // 
+            this.dataGridViewTextBoxColumn4.FillWeight = 65.65144F;
             this.dataGridViewTextBoxColumn4.HeaderText = "Descripcón";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 200;
             // 
-            // groupBox14
+            // dataGridViewTextBoxColumn5
             // 
-            this.groupBox14.Controls.Add(this.txtObservaciones);
-            this.groupBox14.Location = new System.Drawing.Point(21, 249);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(314, 100);
-            this.groupBox14.TabIndex = 113;
-            this.groupBox14.TabStop = false;
-            this.groupBox14.Text = "Observaciones";
+            this.dataGridViewTextBoxColumn5.HeaderText = "idExtraLiquidacion";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Visible = false;
             // 
-            // txtObservaciones
+            // dataGridViewTextBoxColumn6
             // 
-            this.txtObservaciones.Location = new System.Drawing.Point(6, 19);
-            this.txtObservaciones.Multiline = true;
-            this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(302, 71);
-            this.txtObservaciones.TabIndex = 114;
+            this.dataGridViewTextBoxColumn6.HeaderText = "Fecha";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 120;
             // 
-            // txtObservacionesAntecedentes
+            // dataGridViewTextBoxColumn7
             // 
-            this.txtObservacionesAntecedentes.Location = new System.Drawing.Point(12, 59);
-            this.txtObservacionesAntecedentes.Multiline = true;
-            this.txtObservacionesAntecedentes.Name = "txtObservacionesAntecedentes";
-            this.txtObservacionesAntecedentes.Size = new System.Drawing.Size(216, 44);
-            this.txtObservacionesAntecedentes.TabIndex = 126;
+            this.dataGridViewTextBoxColumn7.HeaderText = "Descripcion";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Visible = false;
+            this.dataGridViewTextBoxColumn7.Width = 260;
             // 
-            // groupBox15
+            // dataGridViewTextBoxColumn8
             // 
-            this.groupBox15.Controls.Add(this.txtTalleCampera);
-            this.groupBox15.Controls.Add(this.mtTalleZapatos);
-            this.groupBox15.Controls.Add(this.txtTallePantalon);
-            this.groupBox15.Controls.Add(this.txtTalleCamisa);
-            this.groupBox15.Controls.Add(this.label28);
-            this.groupBox15.Controls.Add(this.label57);
-            this.groupBox15.Controls.Add(this.label59);
-            this.groupBox15.Controls.Add(this.label60);
-            this.groupBox15.Location = new System.Drawing.Point(410, 114);
-            this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Size = new System.Drawing.Size(147, 129);
-            this.groupBox15.TabIndex = 114;
-            this.groupBox15.TabStop = false;
-            this.groupBox15.Text = "Talles Uniforme";
+            this.dataGridViewTextBoxColumn8.HeaderText = "Signo";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Width = 60;
             // 
-            // txtTalleCampera
+            // dataGridViewTextBoxColumn9
             // 
-            this.txtTalleCampera.Location = new System.Drawing.Point(83, 96);
-            this.txtTalleCampera.Name = "txtTalleCampera";
-            this.txtTalleCampera.Size = new System.Drawing.Size(54, 20);
-            this.txtTalleCampera.TabIndex = 3;
+            this.dataGridViewTextBoxColumn9.HeaderText = "Valor";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Width = 260;
             // 
-            // mtTalleZapatos
+            // dataGridViewTextBoxColumn10
             // 
-            this.mtTalleZapatos.Location = new System.Drawing.Point(83, 71);
-            this.mtTalleZapatos.Name = "mtTalleZapatos";
-            this.mtTalleZapatos.Size = new System.Drawing.Size(54, 20);
-            this.mtTalleZapatos.TabIndex = 2;
+            this.dataGridViewTextBoxColumn10.HeaderText = "Cant Cuotas";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.Width = 90;
             // 
-            // txtTallePantalon
+            // dataGridViewTextBoxColumn11
             // 
-            this.txtTallePantalon.Location = new System.Drawing.Point(83, 45);
-            this.txtTallePantalon.Name = "txtTallePantalon";
-            this.txtTallePantalon.Size = new System.Drawing.Size(54, 20);
-            this.txtTallePantalon.TabIndex = 1;
+            this.dataGridViewTextBoxColumn11.HeaderText = "Valor Cuota";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
             // 
-            // txtTalleCamisa
+            // dataGridViewTextBoxColumn12
             // 
-            this.txtTalleCamisa.BackColor = System.Drawing.Color.White;
-            this.txtTalleCamisa.Location = new System.Drawing.Point(83, 20);
-            this.txtTalleCamisa.Name = "txtTalleCamisa";
-            this.txtTalleCamisa.Size = new System.Drawing.Size(54, 20);
-            this.txtTalleCamisa.TabIndex = 0;
+            this.dataGridViewTextBoxColumn12.HeaderText = "Cant Cuotas";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.ReadOnly = true;
+            this.dataGridViewTextBoxColumn12.Width = 90;
             // 
-            // label28
+            // dataGridViewTextBoxColumn13
             // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(4, 99);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(75, 13);
-            this.label28.TabIndex = 125;
-            this.label28.Text = "Talle Campera";
+            this.dataGridViewTextBoxColumn13.HeaderText = "Cuota Actual";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
             // 
-            // label57
+            // dataGridViewTextBoxColumn14
             // 
-            this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(4, 74);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(72, 13);
-            this.label57.TabIndex = 124;
-            this.label57.Text = "Talle Zapatos";
-            // 
-            // label59
-            // 
-            this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(4, 49);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(75, 13);
-            this.label59.TabIndex = 123;
-            this.label59.Text = "Talle Pantalón";
-            // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(4, 24);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(67, 13);
-            this.label60.TabIndex = 122;
-            this.label60.Text = "Talle Camisa";
-            // 
-            // groupBox16
-            // 
-            this.groupBox16.Controls.Add(this.dtpPsicologo);
-            this.groupBox16.Controls.Add(this.label45);
-            this.groupBox16.Location = new System.Drawing.Point(341, 249);
-            this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(290, 100);
-            this.groupBox16.TabIndex = 115;
-            this.groupBox16.TabStop = false;
-            this.groupBox16.Text = "Otros Datos";
-            // 
-            // dtpPsicologo
-            // 
-            this.dtpPsicologo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.dtpPsicologo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpPsicologo.Location = new System.Drawing.Point(151, 18);
-            this.dtpPsicologo.Name = "dtpPsicologo";
-            this.dtpPsicologo.Size = new System.Drawing.Size(96, 20);
-            this.dtpPsicologo.TabIndex = 113;
-            this.dtpPsicologo.Value = new System.DateTime(1753, 1, 2, 0, 0, 0, 0);
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(46, 22);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(94, 13);
-            this.label45.TabIndex = 114;
-            this.label45.Text = "Fecha Psicologico";
-            // 
-            // lblEmpleadoCargado
-            // 
-            this.lblEmpleadoCargado.AutoSize = true;
-            this.lblEmpleadoCargado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmpleadoCargado.Location = new System.Drawing.Point(100, 7);
-            this.lblEmpleadoCargado.Name = "lblEmpleadoCargado";
-            this.lblEmpleadoCargado.Size = new System.Drawing.Size(156, 16);
-            this.lblEmpleadoCargado.TabIndex = 116;
-            this.lblEmpleadoCargado.Text = "lblEmpleadoCargado";
+            this.dataGridViewTextBoxColumn14.HeaderText = "Liquidado?";
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.ReadOnly = true;
             // 
             // ABMEmpleados
             // 
@@ -2263,6 +2442,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();
             this.OtrosDatosDelEmpleado.ResumeLayout(false);
             this.OtrosDatosDelEmpleado.PerformLayout();
+            this.groupBox16.ResumeLayout(false);
+            this.groupBox16.PerformLayout();
+            this.groupBox15.ResumeLayout(false);
+            this.groupBox15.PerformLayout();
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -2296,12 +2481,6 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvExtrasLiquidacion)).EndInit();
-            this.groupBox14.ResumeLayout(false);
-            this.groupBox14.PerformLayout();
-            this.groupBox15.ResumeLayout(false);
-            this.groupBox15.PerformLayout();
-            this.groupBox16.ResumeLayout(false);
-            this.groupBox16.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2402,12 +2581,8 @@
         private TextBoxKeyDown txtEntreCalles;
         private TextBoxKeyDown txtPuntoEncuentro;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FechaInicio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FechaFin;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TipoEvento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.Button btnAddTipoEvento;
-        private System.Windows.Forms.Label lblIdTipoEventoHistorial;
+        private System.Windows.Forms.Label lblIdEventoHistorialEmpleado;
         private System.Windows.Forms.TabPage ExtrasLiquidacion;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.DateTimePicker dtpExtrasFecha;
@@ -2424,13 +2599,7 @@
         private System.Windows.Forms.Button btnExtrasAgregar;
         private System.Windows.Forms.DataGridView dgvExtrasLiquidacion;
         private System.Windows.Forms.Label lblIdExtraLiquidacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idExtraLiquidacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descripción;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Signo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadCuotas;
-        private ComboBoxKeyDown comboBoxKeyDown1;
+        private ComboBoxKeyDown cmbTiposCargos;
         private System.Windows.Forms.Label label54;
         private System.Windows.Forms.TabPage AltasYBajas;
         private System.Windows.Forms.Label label55;
@@ -2472,8 +2641,8 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.GroupBox groupBox12;
         private System.Windows.Forms.Label label58;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rbAntecedentes_SI;
+        private System.Windows.Forms.RadioButton rbAntecedentes_NO;
         private System.Windows.Forms.CheckBox cbBajadoBPS;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.Label label26;
@@ -2507,5 +2676,31 @@
         private System.Windows.Forms.Label lblEmpleadoCargado;
         private DateTimePickerKeyDown dtpPsicologo;
         private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.CheckBox cbEnServicioArmado;
+        private System.Windows.Forms.CheckBox cbCapacitadoPorteArma;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdEventoHistorialEmpleado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaInicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaFin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoEvento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdTipoEvento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idExtraLiquidacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescripcionEvento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Signo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadCuotas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CuotaActual;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Liquidado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
     }
 }
