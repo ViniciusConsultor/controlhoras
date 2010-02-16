@@ -75,8 +75,14 @@ namespace Datos
 
         bool existeClienteServicio(int NumeroCliente, int NumeroServicio);
 
-        void altaContratoServicioCliente(int NumeroCliente, int NumeroServicio, int NumeroContrato, DateTime FechaInicio, DateTime FechaFin, bool CostoFijo, bool HorasExtras, string Ajuste, string Observaciones, float Monto);
+        void altaContratoServicioCliente(int NumeroCliente, int NumeroServicio, int NumeroContrato, DateTime FechaInicio, DateTime? FechaFin, bool CostoFijo, bool HorasExtras, string Ajuste, string Observaciones, float Monto);
 
         bool existeContrato(int NumeroContrato);
+
+        ContraToS obtenerContrato(int NumeroContrato);
+
+        void modificarContrato(int numeroContrato, DateTime FechaInicial, DateTime? FechaFinal, bool Costo, bool HorasExtras, string Ajuste, string Observaciones, float Monto);
+
+        void altaContrato(ContraToS Contrato, List<LineAshOrAs> Lineas);
     }
 }

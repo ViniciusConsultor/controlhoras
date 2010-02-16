@@ -61,8 +61,8 @@ namespace Datos
             {
                 Server = "localhost",
                 Port = 3306,
-                UserID = "jgarat",
-                Password = "jgarat",
+                UserID = "root",
+                Password = "desdere",
                 Database = "trustdb",
                 Pooling = false,
                 ConnectionLifeTime = 0
@@ -349,7 +349,7 @@ namespace Datos
                 emp.Apellido = apellido;
                 emp.IDTipoDocumento = (sbyte)idTipoDocumento;
                 emp.NumeroDocumento = documento;
-                emp.SexO = sexo.ToString();
+                //emp.Sexo = sexo.ToString();
                 emp.IDDepartamento = (sbyte)idDepartamento;
                 emp.Ciudad = ciudad;
                 emp.Barrio = barrio;
@@ -359,9 +359,9 @@ namespace Datos
                 emp.Telefonos = telefono;
                 emp.Celular = celular;
                 emp.CelularenConvenio = celularConvenio;
-                emp.EstadoCivil = estadoCivil;
+                //emp.EstadoCivil = estadoCivil;
                 emp.Email = email;
-                emp.Foto = foto;
+                //emp = foto;
                 emp.Edad = (sbyte)edad;
                 emp.FechaNacimiento = fechaNacimiento;
                 emp.LugarDeNacimiento = lugarNacimiento;
@@ -381,15 +381,15 @@ namespace Datos
                 emp.IDMutualista = (byte)idMutualista;
                 emp.IDEmergenciaMedica = (byte)idEmergenciaMedica;
                 emp.CantidadMenoresAcArgo = (sbyte)cantidadMenoresACargo;
-                emp.TalleCamisa = talleCamisa;
+                //emp.TalleCamisa = talleCamisa;
                 if (talleZapatos != "")
                     emp.TalleZapatos = (sbyte)int.Parse(talleZapatos);
                 else
                     emp.TalleZapatos = null;
-                emp.TallePantalon = tallePantalon;
-                emp.TalleCampera = talleCampera;
-                emp.FechaBaja = fechaBaja;
-                emp.MotivoBaja = motivoBaja;
+                //emp.TallePantalon = tallePantalon;
+                //emp.TalleCampera = talleCampera;
+                //emp.FechaBaja = fechaBaja;
+                //emp.MotivoBaja = motivoBaja;
                 if (capacitadoPorteArma)
                     emp.CapacitadoPortarArma = 1;
                 else
@@ -404,7 +404,7 @@ namespace Datos
                 else
                     emp.AntecedentesPolicialesOmIlitares = 0;
 
-                emp.SueldoActual = sueldo;
+                //emp.SueldoActual = sueldo;
                 emp.IDBanco = (byte)idBanco;
                 emp.NumeroCuenta = numeroCuenta;
                 emp.Observaciones = observacionesEmpleado;
@@ -415,10 +415,10 @@ namespace Datos
                 emp.BpsfEchaAlta = fechaAltaBPS;
                 emp.BpsfEchaBaja = fechaBajaBPS;
                 emp.FechaTestPsicologico = fechaPsicologo;
-                if (antecedentesPolicialesOMilitares)
-                    emp.PolicialesoMilitar = 1;
-                else
-                    emp.PolicialesoMilitar = 0;
+                //if (antecedentesPolicialesOMilitares)
+                //    emp.PolicialesoMilitar = 1;
+                //else
+                //    emp.PolicialesoMilitar = 0;
 
                 emp.FechaIngresoPolicialoMilitar = fechaIngresoAntecedete;
                 emp.FechaEgresoPolicialoMilitar = fechaEgresoAntecedente;
@@ -428,7 +428,7 @@ namespace Datos
                 else
                     emp.CombatienteMilitar = 0;
                 emp.RenaemsefEchaIngreso = fechaIngresoRENAEMSE;
-                emp.RenaemsenUmeroAsunto = numeroAsuntoRENAEMSE;
+                //emp.RenaemsenUmeroAsunto = numeroAsuntoRENAEMSE;
 
 
                 tablaEmpleados.InsertOnSubmit(emp);
@@ -458,7 +458,7 @@ namespace Datos
                 emp.Apellido = apellido;
                 emp.IDTipoDocumento = (sbyte)idTipoDocumento;
                 emp.NumeroDocumento = documento;
-                emp.SexO = sexo.ToString();
+                //emp.SexO = sexo.ToString();
                 emp.IDDepartamento = (sbyte)idDepartamento;
                 emp.Ciudad = ciudad;
                 emp.Barrio = barrio;
@@ -468,9 +468,9 @@ namespace Datos
                 emp.Telefonos = telefono;
                 emp.Celular = celular;
                 emp.CelularenConvenio = celularConvenio;
-                emp.EstadoCivil = estadoCivil;
+                //emp.EstadoCivil = estadoCivil;
                 emp.Email = email;
-                emp.Foto = foto;
+                //emp.Foto = foto;
                 emp.Edad = (sbyte)edad;
                 emp.FechaNacimiento = fechaNacimiento;
                 emp.LugarDeNacimiento = lugarNacimiento;
@@ -490,15 +490,15 @@ namespace Datos
                 emp.IDMutualista = (byte)idMutualista;
                 emp.IDEmergenciaMedica = (byte)idEmergenciaMedica;
                 emp.CantidadMenoresAcArgo = (sbyte)cantidadMenoresACargo;
-                emp.TalleCamisa = talleCamisa;
+                //emp.TalleCamisa = talleCamisa;
                 if (talleZapatos != "")
                     emp.TalleZapatos = (sbyte)int.Parse(talleZapatos);
                 else
                     emp.TalleZapatos = null;
-                emp.TallePantalon = tallePantalon;
-                emp.TalleCampera = talleCampera;
-                emp.FechaBaja = fechaBaja;
-                emp.MotivoBaja = motivoBaja;
+                //emp.TallePantalon = tallePantalon;
+                //emp.TalleCampera = talleCampera;
+                //emp.FechaBaja = fechaBaja;
+                //emp.MotivoBaja = motivoBaja;
                 if (capacitadoPorteArma)
                     emp.CapacitadoPortarArma = 1;
                 else
@@ -513,7 +513,7 @@ namespace Datos
                 else
                     emp.AntecedentesPolicialesOmIlitares = 0;
 
-                emp.SueldoActual = sueldo;
+                //emp.SueldoActual = sueldo;
                 emp.IDBanco = (byte)idBanco;
                 emp.NumeroCuenta = numeroCuenta;
                 emp.Observaciones = observacionesEmpleado;
@@ -524,10 +524,10 @@ namespace Datos
                 emp.BpsfEchaAlta = fechaAltaBPS;
                 emp.BpsfEchaBaja = fechaBajaBPS;
                 emp.FechaTestPsicologico = fechaPsicologo;
-                if (antecedentesPolicialesOMilitares)
-                    emp.PolicialesoMilitar = 1;
-                else
-                    emp.PolicialesoMilitar = 0;
+                //if (antecedentesPolicialesOMilitares)
+                //    emp.PolicialesoMilitar = 1;
+                //else
+                //    emp.PolicialesoMilitar = 0;
 
                 emp.FechaIngresoPolicialoMilitar = fechaIngresoAntecedete;
                 emp.FechaEgresoPolicialoMilitar = fechaEgresoAntecedente;
@@ -537,7 +537,7 @@ namespace Datos
                 else
                     emp.CombatienteMilitar = 0;
                 emp.RenaemsefEchaIngreso = fechaIngresoRENAEMSE;
-                emp.RenaemsenUmeroAsunto = numeroAsuntoRENAEMSE;
+                //emp.RenaemsenUmeroAsunto = numeroAsuntoRENAEMSE;
 
 
 
@@ -570,7 +570,7 @@ namespace Datos
             }
         }
         
-        public void altaContratoServicioCliente(int NumeroCliente, int NumeroServicio, int NumeroContrato, DateTime FechaInicio, DateTime FechaFin, bool CostoFijo, bool HorasExtras, string Ajuste, string Observaciones, float Monto)
+        public void altaContratoServicioCliente(int NumeroCliente, int NumeroServicio, int NumeroContrato, DateTime FechaInicio, DateTime? FechaFin, bool CostoFijo, bool HorasExtras, string Ajuste, string Observaciones, float Monto)
         {
 
             ContraToS con = null;
@@ -1019,6 +1019,227 @@ namespace Datos
         { }
         #endregion
 
+        
+        public ContraToS obtenerContrato(int NumeroContrato)
+        {
+            try
+            {
+
+                Table<ContraToS> tablaContrato = database.GetTable<ContraToS>();
+                var con = (from conreg in tablaContrato
+                           where conreg.IDContratos == NumeroContrato
+                           select conreg);
+                if (con.Count<ContraToS>() == 0)
+                    throw new NoExisteException("No existe el contrato con número " + NumeroContrato);
+
+                return con.Single<ContraToS>();
+            }
+            catch (ArgumentNullException anex)
+            {
+                throw new NoExisteException(anex.Message, anex.InnerException);
+            }
+            catch (InvalidOperationException ioex)
+            {
+                throw ioex;
+            }
+            catch (Exception me)
+            {
+                throw me;
+            }
+        }
+        
+        public void modificarContrato(int numeroContrato, DateTime FechaInicial, DateTime? FechaFinal, bool Costo, bool HorasExtras, string Ajuste, string Observaciones, float Monto)
+        {
+            try
+            {   ;
+                ContraToS con = (from conreg in database.GetTable<ContraToS>()
+                                 where conreg.IDContratos == numeroContrato
+                                 select conreg).Single<ContraToS>();
+                con.FechaIni = FechaInicial;
+                con.FechaFin = FechaFinal;
+                if (Costo)
+                    con.CostoFijo = 1;
+                else
+                    con.CostoFijo = 0;
+                if (HorasExtras)
+                    con.HorasExtras = 1;
+                else
+                    con.HorasExtras = 0;
+                con.Ajuste = Ajuste;
+                con.Observaciones = Observaciones;
+                con.Costo = Monto;
+                
+                database.SubmitChanges();
+
+                
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        
+        public List<string> obtenerColumnasDeTabla(string nombreTabla)
+        {
+            try
+            {
+                List<string> res = new List<string>();
+                //database.Connection.Open();
+                var dataTables = database.Mapping;
+                //database.Connection.Close();
+                foreach (var tabla in dataTables.GetTables())
+                {
+                    if (nombreTabla == tabla.TableName)
+                    {
+                        foreach (var column in tabla.RowType.DataMembers)
+                        {
+                            res.Add(column.MappedName);
+                        }
+                        break;
+                    }
+                }
+                return res;
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+                                
+
+
+        }
+
+        public void altaContrato(ContraToS Contrato, List<LineAshOrAs> Lineas)
+        {
+            System.Data.Common.DbConnection conexion = database.Connection;
+            try
+            {
+                //database.ContraToS.InsertOnSubmit(Contrato);
+                //database.GetTable<ContraToS>().InsertOnSubmit(Contrato);
+                //database.SubmitChanges();
+
+                //ContraToS con = database.ContraToS.Single(c => c.IDContratos == Contrato.IDContratos);
+                
+                
+                // Inserción del contrato
+                string nombreTabla = database.Connection.Database + ".contratos";
+                List<string> campos = obtenerColumnasDeTabla(nombreTabla);
+                string st = "INSERT INTO ";
+                st += nombreTabla + " (";
+                foreach (string columna in campos)
+                {
+                    if (campos.Last<string>().Equals(columna))
+                        st += columna + ") ";
+                    else
+                        st += columna + ", ";
+                }
+                st += " VALUES(";
+                st += "'" + Contrato.Ajuste.ToString() + "', ";
+                st += Contrato.Costo.ToString() + ", ";
+                st += Contrato.CostoFijo.ToString() + ", ";
+                st += "NULL, ";
+                if (Contrato.FechaFin==null)
+                    st += "NULL, ";
+                else
+                    st += "'" + Contrato.FechaFin.Value.ToShortDateString() + "', ";
+
+                
+                st += "'" + string.Format("{0:yyyy-MM-dd}", Contrato.FechaIni) + "', ";
+                st += Contrato.HorasExtras.ToString() + ", ";
+                st += Contrato.IDContratos.ToString() + ", ";
+                st += "'" + Contrato.Observaciones.ToString() + "', ";
+                st += "NULL, ";
+                st += "NULL, ";
+                st += Contrato.TipodeContrato.ToString() + ", ";
+                st += "NULL, ";
+                st += "NULL, ";
+                st += "NULL)";
+
+                
+                if (conexion.State != System.Data.ConnectionState.Open)
+                    conexion.Open();
+                System.Data.Common.DbTransaction tran = conexion.BeginTransaction();
+                database.Transaction = tran;
+                database.ExecuteCommand(st, null);
+                
+                nombreTabla = database.Connection.Database + ".lineashoras";
+                string sqlLineasHoras = "INSERT INTO " + nombreTabla +" (";
+                campos = obtenerColumnasDeTabla(nombreTabla);
+                
+                foreach (string columna in campos)
+                {
+                    if (campos.Last<string>().Equals(columna))
+                         sqlLineasHoras += columna + ") ";
+                    else
+                        sqlLineasHoras += columna + ", ";
+                }
+                sqlLineasHoras += " VALUES(";
+                string tempsql;
+                string sqlhorariodia;
+                foreach (LineAshOrAs lh in Lineas)
+                {
+                    tempsql = sqlLineasHoras;
+                    tempsql += lh.Armado.ToString() + ", ";
+                    tempsql += "NULL, ";
+                    tempsql += "NULL, ";                    
+                    tempsql += lh.Cantidad.ToString() + ", ";
+                    tempsql += lh.IDContrato.ToString() + ", ";
+                    tempsql += lh.NroLinea.ToString() + ", ";
+                    tempsql += lh.PrecioXhOra.ToString() + ", ";
+                    tempsql += "'" + lh.Puesto.ToString() + "')";
+                    database.ExecuteCommand(tempsql, null);
+                    nombreTabla = database.Connection.Database + ".horariodia";
+                    campos = obtenerColumnasDeTabla(nombreTabla);
+                    sqlhorariodia = "INSERT INTO " + nombreTabla + "(";
+                    foreach (string columna in campos)
+                    {
+                        if (campos.Last<string>().Equals(columna))
+                            sqlhorariodia += columna + ") ";
+                        else
+                        sqlhorariodia += columna + ", ";
+                    }
+                    sqlhorariodia += " VALUES (";
+                    foreach (HoRaRioDiA dh in lh.HoRaRioDiA)
+                    {
+                        tempsql = sqlhorariodia;
+                        tempsql += "'"+dh.Dia.ToString() + "', ";
+                        tempsql += "'"+dh.HoraFin.ToString() + "', ";
+                        tempsql += "'" + dh.HoraIni.ToString() + "', ";
+                        tempsql += dh.IDContrato.ToString() + ", ";
+                        tempsql += dh.NroLinea.ToString() + ")";
+                        database.ExecuteCommand(tempsql, null);
+                    }
+                    
+                }
+                database.Transaction.Commit();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                //database.SubmitChanges();
+            }
+            catch (MySqlException ex)
+            {
+                //database.Refresh(System.Data.Linq.RefreshMode.KeepCurrentValues);
+                // database.Connection.Close();
+                database.Transaction.Rollback();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                if (ex.Number == 1062)
+                {
+                    // int index = database.GetChangeSet().Inserts.IndexOf(cliente);
+                    // database.GetChangeSet().Inserts.RemoveAt(index);
+                    database.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues);
+                }
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                database.Transaction.Rollback();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                throw ex;
+            } 
+        }
+
+        
     }
 
 }
