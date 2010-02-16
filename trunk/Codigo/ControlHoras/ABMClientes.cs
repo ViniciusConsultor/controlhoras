@@ -16,8 +16,16 @@ namespace ControlHoras
         IClientesServicios sistema = ControladorClientesServicios.getInstance();
         Cliente cliente;
         String LlenarCamposObligatorios = "Debe llenar todos los campos obligatorios.";
+        static ABMClientes ventana = null;
+        public static ABMClientes getVentana()
+        {
+            if (ventana == null)
+                ventana = new ABMClientes();
+            return ventana;
+        }
 
-        public ABMClientes()
+
+        private ABMClientes()
         {
             InitializeComponent();
         }

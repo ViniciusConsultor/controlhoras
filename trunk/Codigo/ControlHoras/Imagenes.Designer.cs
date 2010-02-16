@@ -158,6 +158,27 @@ namespace ControlHoras {
             }
         }
         
+        internal static System.Drawing.Bitmap application_vnd_ms_excel {
+            get {
+                object obj = ResourceManager.GetObject("application_vnd_ms_excel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Arrow_back {
+            get {
+                object obj = ResourceManager.GetObject("Arrow_back", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Arrow_forward {
+            get {
+                object obj = ResourceManager.GetObject("Arrow_forward", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap button_cancel {
             get {
                 object obj = ResourceManager.GetObject("button_cancel", resourceCulture);
@@ -168,6 +189,13 @@ namespace ControlHoras {
         internal static System.Drawing.Bitmap client {
             get {
                 object obj = ResourceManager.GetObject("client", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap dialog_question {
+            get {
+                object obj = ResourceManager.GetObject("dialog_question", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -189,6 +217,20 @@ namespace ControlHoras {
         internal static System.Drawing.Bitmap filesave {
             get {
                 object obj = ResourceManager.GetObject("filesave", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap imagen_no_disponible {
+            get {
+                object obj = ResourceManager.GetObject("imagen_no_disponible", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap imagen_no_disponible1 {
+            get {
+                object obj = ResourceManager.GetObject("imagen_no_disponible1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

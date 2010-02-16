@@ -7,15 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Logica;
+using Datos;
 
 namespace ControlHoras
 {
     public partial class ABMTipoEventoHistorial : Form
     {
         IABMTipos tipos = ControladorABMTipos.getInstance();
+        IDatosABMTipos DatosTipos = DatosABMTipos.getInstance();
         String LlenarCamposObligatorios = "Debe llenar todos los datos.";
+        static ABMTipoEventoHistorial ventana = null;
+        
+        public static ABMTipoEventoHistorial getVentana()
+        {
+            if (ventana == null)
+                ventana = new ABMTipoEventoHistorial();
+            return ventana;
+        }
 
-        public ABMTipoEventoHistorial()
+        private ABMTipoEventoHistorial()
         {
             InitializeComponent();
 
@@ -36,16 +46,20 @@ namespace ControlHoras
             btnAgregar.Enabled = true;
             btnGuardar.Enabled = false;
 
-            Dictionary<int,string> tiposDocumentos = tipos.obtenerTipoDocumentos(false);
-            foreach (int iter in tiposDocumentos.Keys)
+                       
+            List<TipOsEventOHistOrIal> tiposEvento = DatosTipos.obtenerTiposEventoHistorial(false);
+            foreach (TipOsEventOHistOrIal iter in tiposEvento)
             {
                 int n = -10;
                 try
                 {
                     n = dgvCategoria.Rows.Add();
-                    dgvCategoria.Rows[n].Cells["idTipoDocumento"].Value = iter;
-                    dgvCategoria.Rows[n].Cells["Nombre"].Value = tiposDocumentos[iter];
-                    //dgvCategoria.Rows[n].Cells["Activa"].Value = cat[3];
+                    dgvCategoria.Rows[n].Cells["idTipoEventoHistorial"].Value = iter.IDTipoEventoHistorial;
+                    dgvCategoria.Rows[n].Cells["Nombre"].Value = iter.Nombre;
+                    if (iter.Activo == 0)
+                        dgvCategoria.Rows[n].Cells["Activa"].Value = "S";
+                    else
+                        dgvCategoria.Rows[n].Cells["Activa"].Value = "N";
 
                 }
                 catch (Exception ex)
@@ -71,7 +85,7 @@ namespace ControlHoras
                 try
                 {
                     int numFila = 0;
-                    while (dgvCategoria.RowCount > numFila && lblIdTipoEventoHistorial.Text != dgvCategoria.Rows[numFila].Cells["idTipoDocumento"].Value.ToString())
+                    while (dgvCategoria.RowCount > numFila && lblIdTipoEventoHistorial.Text != dgvCategoria.Rows[numFila].Cells["idTipoEventoHistorial"].Value.ToString())
                     {
                         numFila++;
                     }
@@ -84,11 +98,11 @@ namespace ControlHoras
                         }
                         
                         // Modifica el valor en la base de datos
-                        tipos.modificarTipoDocumento(int.Parse(lblIdTipoEventoHistorial.Text), txtNombre.Text, ! cbEstado.Checked);
+                        DatosTipos.modificarTipoEventoHistorial(int.Parse(lblIdTipoEventoHistorial.Text), txtNombre.Text, ! cbEstado.Checked);
 
                         dgvCategoria.Rows[numFila].Cells["Nombre"].Value = txtNombre.Text;
                         dgvCategoria.Rows[numFila].Cells["Activa"].Value = estado;
-                        
+
                         btnAgregar.Enabled = true;
                         btnGuardar.Enabled = false;
                         limpiarForm();
@@ -115,10 +129,10 @@ namespace ControlHoras
                         estado = 'N';
                     
                     // Doy de alta la categoria en la base de datos
-                    lblIdTipoEventoHistorial.Text = tipos.altaTipoDocumento(txtNombre.Text, !cbEstado.Checked).ToString();
+                    lblIdTipoEventoHistorial.Text = DatosTipos.altaTipoEventoHistorial(txtNombre.Text, !cbEstado.Checked).ToString();
 
                     n = dgvCategoria.Rows.Add();
-                    dgvCategoria.Rows[n].Cells["idTipoDocumento"].Value = lblIdTipoEventoHistorial.Text;
+                    dgvCategoria.Rows[n].Cells["idTipoEventoHistorial"].Value = lblIdTipoEventoHistorial.Text;
                     dgvCategoria.Rows[n].Cells["Nombre"].Value = txtNombre.Text;
                     dgvCategoria.Rows[n].Cells["Activa"].Value = estado.ToString();
 
@@ -160,7 +174,7 @@ namespace ControlHoras
                 cbEstado.Checked = true;
             else
                 cbEstado.Checked = false;
-            lblIdTipoEventoHistorial.Text = dgvCategoria.Rows[e.RowIndex].Cells["idTipoDocumento"].Value.ToString();
+            lblIdTipoEventoHistorial.Text = dgvCategoria.Rows[e.RowIndex].Cells["idTipoEventoHistorial"].Value.ToString();
 
             btnAgregar.Enabled = false;
             btnGuardar.Enabled = true;
