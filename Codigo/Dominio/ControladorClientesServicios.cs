@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DbLinq.Data.Linq;
 using System.Text;
 using Datos;
 
@@ -221,7 +222,7 @@ namespace Logica
         }
                    
         
-        public void altaContratoServicioCliente(int NumeroCliente, int NumeroServicio, int NumeroContrato, DateTime FechaInicio, DateTime FechaFin, bool CostoFijo, bool HorasExtras, string Ajuste, string Observaciones, float Monto)
+        public void altaContratoServicioCliente(int NumeroCliente, int NumeroServicio, int NumeroContrato, DateTime FechaInicio, DateTime? FechaFin, bool CostoFijo, bool HorasExtras, string Ajuste, string Observaciones, float Monto)
         {
             try
             {
@@ -246,5 +247,63 @@ namespace Logica
         }
 
 
+        public void altaContrato(int NumeroContrato, ConSeguridadFisica cont)
+        {
+            ContraToS con = null;
+      
+            con = new ContraToS();
+            
+            con.TipodeContrato=0;
+            con.IDContratos = (uint)NumeroContrato;
+            con.FechaIni = cont.getFechaIni();
+            con.FechaFin = cont.getFechaFin();
+            if (cont.GetCostoFijo())
+                con.CostoFijo = 1;
+            else
+                con.CostoFijo = 0;
+            if (cont.getHorasExtras())
+                con.HorasExtras = 1;
+            else
+                con.HorasExtras = 0;
+            con.Ajuste = cont.getAjuste();
+            con.Observaciones = cont.getObservaciones();
+            con.Costo = cont.getMonto();
+
+            List<LineAshOrAs> lhs = new List<LineAshOrAs>();
+            LineAshOrAs lh = null;            
+            int i=0;
+            foreach (LineaDeHoras ldh in cont.getLineas())
+            {
+                lh = new LineAshOrAs();
+                lh.IDContrato = (uint)NumeroContrato;                
+                lh.NroLinea = (sbyte)i;
+                lh.Puesto = ldh.getPuesto();
+                lh.Armado = (ldh.getArmado()) ? (sbyte)1 : (sbyte)0;
+                lh.Cantidad = (sbyte)ldh.getCantEmp();
+                lh.PrecioXhOra = ldh.getCostoH();
+                
+                //pasar los horarios por dia
+                HoRaRioDiA hd = null;
+                foreach (HorarioXDia hpd in ldh.getHorario())
+                {
+                    hd = new HoRaRioDiA();
+                    hd.IDContrato = (uint)NumeroContrato;
+                    hd.NroLinea = (sbyte)i;
+                    hd.Dia = hpd.getDia();
+                    hd.HoraIni = hpd.getHoraIni();
+                    hd.HoraFin = hpd.getHoraFin();
+
+                    lh.HoRaRioDiA.Add(hd);
+                }
+                
+                lhs.Add(lh);
+                //con.LineAshOrAs.Add(lh);
+                i++;
+            }
+
+            datos.altaContrato(con, lhs);
+        }
+
+        
     }
 }

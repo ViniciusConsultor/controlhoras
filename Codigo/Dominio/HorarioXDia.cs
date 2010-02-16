@@ -7,8 +7,31 @@ namespace Logica
 {
     public class HorarioXDia
     {
-        private DayOfWeek Dia;
+        private string Dia;
         private string HoraInicio;
         private string HoraFin;
+
+        public HorarioXDia(string dia, string HInicio, string HFin)
+        {
+
+            Dia = dia;
+            HoraInicio = HInicio;
+            HoraFin = HFin;
+        }
+
+        public string getDia()
+        {
+            return Dia;
+        }
+
+        public string getHoraIni()
+        {
+            return HoraInicio;
+        }
+
+        public string getHoraFin()
+        {
+            return HoraFin;
+        }
     }
 }

@@ -150,9 +150,9 @@ namespace Logica
                 try{
                     empleado.IdBanco = (byte) cliEmpleado.IDBanco;
                 }catch(Exception e){}
-                try{
-                    empleado.Barrio = cliEmpleado.Barrio;
-                }catch(Exception e){}
+                //try{
+                //    empleado.Barrio = cliEmpleado.Barrio;
+                //}catch(Exception e){}
                 try{
                     empleado.BPS_AcumulacionLaboral = (byte) cliEmpleado.BpsaCumulacionLaboral;
                 }catch(Exception e){}
@@ -212,12 +212,12 @@ namespace Logica
                 try{
                     empleado.EntreCalles = cliEmpleado.EntreCalles;
                 }catch(Exception e){}
-                try{
-                    empleado.EstadoCivil = cliEmpleado.EstadoCivil;
-                }catch(Exception e){}
-                try{
-                    empleado.FechaEgreso = (DateTime) cliEmpleado.FechaBaja;
-                }catch(Exception e){}
+                //try{
+                //    empleado.EstadoCivil = cliEmpleado.EstadoCivil;
+                //}catch(Exception e){}
+                //try{
+                //    empleado.FechaEgreso = (DateTime) cliEmpleado.FechaBaja;
+                //}catch(Exception e){}
                 try{
                     empleado.FechaEgresoPolicialOMilitar = (DateTime)cliEmpleado.FechaEgresoPolicialoMilitar;
                 }catch(Exception e){}
@@ -239,15 +239,15 @@ namespace Logica
                 try{
                     empleado.FechaVencimientoCarneSalud = (DateTime)cliEmpleado.FechaVencimientoCarneDeSalud;
                 }catch(Exception e){}
-                try{
-                    empleado.Foto = cliEmpleado.Foto;
-                }catch(Exception e){}
+                //try{
+                //    empleado.Foto = cliEmpleado.Foto;
+                //}catch(Exception e){}
                 try{
                     empleado.LugarNacimiento = cliEmpleado.LugarDeNacimiento;
                 }catch(Exception e){}
-                try{
-                    empleado.MotivoEgreso = cliEmpleado.MotivoBaja;
-                }catch(Exception e){}
+                //try{
+                //    empleado.MotivoEgreso = cliEmpleado.MotivoBaja;
+                //}catch(Exception e){}
                 try{
                     empleado.Mutualista = (byte) cliEmpleado.IDMutualista;
                 }catch(Exception e){}
@@ -257,9 +257,9 @@ namespace Logica
                 try{
                     empleado.Nombre = cliEmpleado.Nombre;
                 }catch(Exception e){}
-                try{
-                    empleado.NumeroAsuntoRENAEMSE = cliEmpleado.RenaemsenUmeroAsunto;
-                }catch(Exception e){}
+                //try{
+                //    empleado.NumeroAsuntoRENAEMSE = cliEmpleado.RenaemsenUmeroAsunto;
+                //}catch(Exception e){}
                 try{
                     empleado.NumeroCuenta = cliEmpleado.NumeroCuenta;
                 }catch(Exception e){}
@@ -279,24 +279,24 @@ namespace Logica
                         empleado.ServicioArmado = false;
                 else
                         empleado.ServicioArmado = false;
-                try{
-                    empleado.Sexo = char.Parse(cliEmpleado.SexO);
-                }catch(Exception e){}
+                //try{
+                //    empleado.Sexo = char.Parse(cliEmpleado.SexO);
+                //}catch(Exception e){}
                 try{
                     empleado.SubEscalafon = cliEmpleado.SubEscalafonPolicial;
                 }catch(Exception e){}
                 try{
                     empleado.Sueldo = (float) cliEmpleado.SueldoActual;
                 }catch(Exception e){}
-                try{
-                    empleado.TalleCamisa = cliEmpleado.TalleCamisa;
-                }catch(Exception e){}
-                try{
-                    empleado.TalleCampera = cliEmpleado.TalleCampera;
-                }catch(Exception e){}
-                try{
-                    empleado.TallePantalon = cliEmpleado.TallePantalon;
-                }catch(Exception e){}
+                //try{
+                //    empleado.TalleCamisa = cliEmpleado.TalleCamisa;
+                //}catch(Exception e){}
+                //try{
+                //    empleado.TalleCampera = cliEmpleado.TalleCampera;
+                //}catch(Exception e){}
+                //try{
+                //    empleado.TallePantalon = cliEmpleado.TallePantalon;
+                //}catch(Exception e){}
                 try{
                     empleado.TalleZapatos = (sbyte) cliEmpleado.TalleZapatos;
                 }catch(Exception e){}
