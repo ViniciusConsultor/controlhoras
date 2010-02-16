@@ -20,8 +20,7 @@ namespace ControlHoras
                                     
         }
 
-        protected void textBox1_Validating(object sender,
-   System.ComponentModel.CancelEventArgs e)
+        protected void textBox1_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             /*try
             {              
@@ -33,14 +32,32 @@ namespace ControlHoras
                 errorProvider1.SetError(textBox1, "Not an integer value.");
             }*/
 
+
+
+            if (!ValidarTB(textBox1.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(textBox1, "No es una fecha válida");
+            }            
+        }
+
+        private bool ValidarTB(string fecha)
+        {
             DateTime dt;
             DateTimeStyles dts = new DateTimeStyles();
 
-            if (DateTime.TryParseExact(textBox1.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo, dts, out dt))
-                errorProvider1.SetError(textBox1, "");
-            else
-                errorProvider1.SetError(textBox1, "No es una fecha");
+            return DateTime.TryParseExact(fecha, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo, dts, out dt);
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Prueba p = new Prueba();
+            p.Show();
+        }
+
+        private void textBox1_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(textBox1, "");
         }
 
         
