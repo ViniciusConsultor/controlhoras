@@ -38,8 +38,10 @@ namespace Logica
         
         bool existeClienteServicio(int NumeroCliente, int NumeroServicio);
 
-        void altaContratoServicioCliente(int NumeroCliente, int NumeroServicio, int NumeroContrato, DateTime FechaInicio, DateTime FechaFin, bool CostoFijo, bool HorasExtras, string Ajuste, string Observaciones, float Monto);
+        void altaContratoServicioCliente(int NumeroCliente, int NumeroServicio, int NumeroContrato, DateTime FechaInicio, DateTime? FechaFin, bool CostoFijo, bool HorasExtras, string Ajuste, string Observaciones, float Monto);
 
         bool existeContrato(int NumeroContrato);
+
+        void altaContrato(int NumeroContrato, ConSeguridadFisica contrato);
     }
 }
