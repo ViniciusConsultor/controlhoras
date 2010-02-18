@@ -226,7 +226,8 @@ namespace Logica
         {
             try
             {
-                datos.altaContratoServicioCliente(NumeroCliente, NumeroServicio, NumeroContrato, FechaInicio, FechaFin, CostoFijo, HorasExtras, Ajuste, Observaciones, Monto);
+               // datos.altaContratoServicioCliente(NumeroCliente, NumeroServicio, NumeroContrato, FechaInicio, FechaFin, CostoFijo, HorasExtras, Ajuste, Observaciones, Monto);
+                throw new NotImplementedException();
             }
             catch (Exception ex)
             {
