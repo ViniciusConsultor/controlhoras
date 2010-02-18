@@ -45,8 +45,8 @@ namespace Datos
             {
                 Server = "localhost",
                 Port = 3306,
-                UserID = "root",
-                Password = "desdere",
+                UserID = "jgarat",
+                Password = "jgarat",
                 Database = "trustdb",
                 Pooling = false,
                 ConnectionLifeTime = 0
@@ -356,9 +356,9 @@ namespace Datos
                 con.FechaIni = FechaInicio;
                 con.FechaFin = FechaFin;
                 if (CostoFijo)
-                    con.CostoFijo_ = 1;
+                    con.CostoFijo = 1;
                 else
-                    con.CostoFijo_ = 0;
+                    con.CostoFijo = 0;
                 if (HorasExtras)
                     con.HorasExtras = 1;
                 else
@@ -1667,9 +1667,6 @@ namespace Datos
         }
 
         
-    }
-
-}
     }
 
 }
