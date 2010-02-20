@@ -17,9 +17,7 @@ namespace ControlHoras
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Controlador controller = Controlador.getControlador();
-            Application.Run(new VentanaPrincipal());
-            //Application.Run(new ExportToExcel());
+            Application.Run(new VentanaPrincipal());   
         }
     }
 }
