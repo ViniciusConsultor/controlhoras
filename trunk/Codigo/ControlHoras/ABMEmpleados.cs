@@ -24,6 +24,7 @@ namespace ControlHoras
         private IABMTipos tipos;
 
         private List<TipOsEventOHistOrIal> listaTiposEventos;
+        private List<TipOscarGoS> cargos;
 
         private string LlenarCamposObligatorios = "Debe llenar todos los campos obligatorios.";
 
@@ -167,7 +168,7 @@ namespace ControlHoras
             // Cargar TiposCargos
             try
             {
-                List<TipOscarGoS> cargos = datosTipos.obtenerTiposCargos(true);
+                cargos = datosTipos.obtenerTiposCargos(true);
                 cmbTiposCargos.ValueMember = "Value";
                 cmbTiposCargos.DisplayMember = "Display";
                 cmbTiposCargos.BeginUpdate();
@@ -522,7 +523,7 @@ namespace ControlHoras
             catch (Exception e) { }
             try
             {
-                mtSueldo.Text = empleado.SueldoActual.ToString();
+                txtSueldo.Text = empleado.SueldoActual.ToString();
             }
             catch (Exception e) { }
             try
@@ -708,8 +709,8 @@ namespace ControlHoras
                 string estadoCivil = cmbEstadoCivil.Text;
                 int acumulacionLaboral = 0;
                 float sueldo = 0;
-                if (mtSueldo.Text != "")
-                    sueldo = float.Parse(mtSueldo.Text);
+                if (txtSueldo.Text != "")
+                    sueldo = float.Parse(txtSueldo.Text);
                 if (mtAcumulacionBPS.Text != "")
                     acumulacionLaboral = int.Parse(mtAcumulacionBPS.Text);
                 int cantMenoresACargo = 0;
@@ -849,7 +850,7 @@ namespace ControlHoras
         {
             dtpFechaInicioHistorial.Value = DateTime.Today;
             dtpFechaFinHistorial.Value = DateTime.Today;
-            cmbTipoEventoHistorial.SelectedIndex = 0;
+            //cmbTipoEventoHistorial.SelectedIndex = 0;
             txtDescripcionHistorial.Text = "";
             btnAddTipoEvento.Enabled = true;
             btnEliminarHistorial.Enabled = false;
@@ -1247,8 +1248,73 @@ namespace ControlHoras
             abmtiposeventos.ShowDialog(this);
         }
 
+        private void cmbTiposCargos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           int idtipocargo;
+            try
+           {
+               if (cmbTiposCargos.SelectedItem != null)
+               {
+                   idtipocargo = ((ComboBoxValue)cmbTiposCargos.SelectedItem).Value;
+                   foreach(TipOscarGoS cargo in cargos)
+                   {
+                       if (cargo.IDCargo == idtipocargo)
+                           lblTipoFacturacion.Text = cargo.TipoFacturacion.ToString();
+                   }
+               }
+            }catch(Exception ex)
+            {
+                 MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (mtNumeroEmpleado.Text != "")
+                {
+                    int? numemp = datos.obtenerProximoIdEmpleadoActivo(int.Parse(mtNumeroEmpleado.Text));
+                    if (numemp != null)
+                    {
+                        mtNumeroEmpleado.Text = numemp.ToString();
+                        mtNumeroEmpleado.Focus();
+
+                        SendKeys.Send("{ENTER}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (mtNumeroEmpleado.Text != "")
+                {
+                    int? numemp = datos.obtenerPrevioIdEmpleadoActivo(int.Parse(mtNumeroEmpleado.Text));
+                    if (numemp != null)
+                    {
+                        mtNumeroEmpleado.Text = numemp.ToString();
+                        mtNumeroEmpleado.Focus();
+                       
+                        SendKeys.Send("{ENTER}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
 
     }
 }
+
+
+      
