@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Datos;
+using Utilidades;
+
 
 namespace ControlHoras
 {
@@ -142,10 +144,9 @@ namespace ControlHoras
             cbPorTablasInactivos.Visible = false;
             listBoxCampos.Items.Clear();
             dgvResultados.DataSource = null;
-            //dgvResultados.Rows.Clear();
-            //dgvResultados.Columns.Clear();
             lblOrdenResultado.Text = "";
             columnasSeleccionadas.Clear();
+            btnExportToExcel.Enabled = false;
 
         }
 
@@ -206,6 +207,26 @@ namespace ControlHoras
                 columnasSeleccionadas.Remove(listBoxCampos.Items[e.Index].ToString());
             }
 
+        }
+
+        private void btnExportToExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult result = saveExcelFileDialog.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    if (ControladorUtilidades.exportToExcel(dgvResultados, saveExcelFileDialog.FileName))
+                        MessageBox.Show("Archivo Exportado correctamente.", "Exportacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show("Error al exportar el archivo.", "Exportacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exportacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
     }
