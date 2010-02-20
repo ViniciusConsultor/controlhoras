@@ -34,6 +34,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tcConsultas = new System.Windows.Forms.TabControl();
             this.tbPorTablas = new System.Windows.Forms.TabPage();
+            this.lblOrdenResultado = new System.Windows.Forms.Label();
             this.gbPorTablasFiltros = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -54,7 +55,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dgvResultados = new System.Windows.Forms.DataGridView();
-            this.lblOrdenResultado = new System.Windows.Forms.Label();
+            this.saveExcelFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.maskedTextBoxKeyDown5 = new ControlHoras.MaskedTextBoxKeyDown();
             this.maskedTextBoxKeyDown4 = new ControlHoras.MaskedTextBoxKeyDown();
             this.cmbTablas = new ControlHoras.ComboBoxKeyDown();
@@ -98,6 +99,7 @@
             this.btnExportToExcel.Size = new System.Drawing.Size(81, 33);
             this.btnExportToExcel.Text = "Exportar Excel";
             this.btnExportToExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnExportToExcel.Click += new System.EventHandler(this.btnExportToExcel_Click);
             // 
             // btnCancelar
             // 
@@ -156,6 +158,14 @@
             this.tbPorTablas.TabIndex = 0;
             this.tbPorTablas.Text = "Por Tablas";
             this.tbPorTablas.UseVisualStyleBackColor = true;
+            // 
+            // lblOrdenResultado
+            // 
+            this.lblOrdenResultado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblOrdenResultado.Location = new System.Drawing.Point(8, 129);
+            this.lblOrdenResultado.Name = "lblOrdenResultado";
+            this.lblOrdenResultado.Size = new System.Drawing.Size(538, 18);
+            this.lblOrdenResultado.TabIndex = 12;
             // 
             // gbPorTablasFiltros
             // 
@@ -374,13 +384,10 @@
             this.dgvResultados.Size = new System.Drawing.Size(655, 211);
             this.dgvResultados.TabIndex = 1;
             // 
-            // lblOrdenResultado
+            // saveExcelFileDialog
             // 
-            this.lblOrdenResultado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblOrdenResultado.Location = new System.Drawing.Point(8, 129);
-            this.lblOrdenResultado.Name = "lblOrdenResultado";
-            this.lblOrdenResultado.Size = new System.Drawing.Size(538, 18);
-            this.lblOrdenResultado.TabIndex = 12;
+            this.saveExcelFileDialog.DefaultExt = "xls";
+            this.saveExcelFileDialog.Filter = "Archivos de Microsoft Office Excel|*.xls";
             // 
             // maskedTextBoxKeyDown5
             // 
@@ -539,5 +546,6 @@
         private System.Windows.Forms.Label lblPorTablaNombre;
         private System.Windows.Forms.CheckBox cbPorTablasInactivos;
         private System.Windows.Forms.Label lblOrdenResultado;
+        private System.Windows.Forms.SaveFileDialog saveExcelFileDialog;
     }
 }
