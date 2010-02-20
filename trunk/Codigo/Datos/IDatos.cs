@@ -123,6 +123,21 @@ namespace Datos
         /// <param name="mesCorrespondiente">Mes para el cual se quiere obtener los extras.</param>
         /// <returns></returns>
         List<ExtrasLiquidAcIonEmPleadO> obtenerExtrasLiquidacionEmpleado(int idEmpleado, DateTime mesCorrespondiente);
+
+        /// <summary>
+        /// Devuelve el identificador del empleado activo, siguiente al pasado por parametro.
+        /// </summary>
+        /// <param name="idEmpleado">Identificador del empleado activo anterior al solicitado</param>
+        /// <returns>Retorna el identificador del proximo empleado activo al idEmpleado. Si no hay proximo retorna null</returns>
+        int? obtenerProximoIdEmpleadoActivo(int idEmpleado);
+
+
+        /// <summary>
+        /// Devuelve el identificador del empleado activo, previo al pasado por parametro.
+        /// </summary>
+        /// <param name="idEmpleado">Identificador del empleado activo posterior al solicitado</param>
+        /// <returns>Retorna el identificador del empleado activo previo al idEmpleado. Si no hay previo retorna null</returns>
+        int? obtenerPrevioIdEmpleadoActivo(int idEmpleado);
         #endregion
 
 

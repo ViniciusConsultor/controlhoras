@@ -737,6 +737,42 @@ namespace Datos
                 throw me;
             }
         }
+
+        public int? obtenerProximoIdEmpleadoActivo(int idEmpleado)
+        {
+
+            try
+            {
+                var idemp = (from reg in database.GetTable<EmPleadOs>()
+                             where reg.IDEmpleado > idEmpleado && reg.Activo == 0
+                             select (int)reg.IDEmpleado).Min<int>();
+                return idemp;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+        public int? obtenerPrevioIdEmpleadoActivo(int idEmpleado)
+        {
+
+            try
+            {
+                int? idemp = null;
+                idemp = (from reg in database.GetTable<EmPleadOs>()
+                             where reg.IDEmpleado < idEmpleado && reg.Activo == 0
+                             select (int)reg.IDEmpleado).Max<int>();
+                return idemp;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
         #endregion
 
         #region HistorialEmpleado
