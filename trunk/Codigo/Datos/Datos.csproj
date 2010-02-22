@@ -55,23 +55,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControladorDatos.cs" />
+    <Compile Include="DatosABMTipos.cs" />
     <Compile Include="IDatos.cs" />
+    <Compile Include="IDatosABMTipos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="trustdb.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="trustdb.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="trustdb.dbml.layout">
-      <DependentUpon>trustdb.dbml</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Excepciones\Excepciones.csproj">
