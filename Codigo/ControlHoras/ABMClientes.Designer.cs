@@ -222,11 +222,11 @@ namespace ControlHoras
             // lblEstadoCliente
             // 
             this.lblEstadoCliente.AutoSize = true;
-            this.lblEstadoCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstadoCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEstadoCliente.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblEstadoCliente.Location = new System.Drawing.Point(169, 50);
+            this.lblEstadoCliente.Location = new System.Drawing.Point(169, 49);
             this.lblEstadoCliente.Name = "lblEstadoCliente";
-            this.lblEstadoCliente.Size = new System.Drawing.Size(130, 18);
+            this.lblEstadoCliente.Size = new System.Drawing.Size(140, 20);
             this.lblEstadoCliente.TabIndex = 15;
             this.lblEstadoCliente.Text = "lblEstadoCliente";
             // 

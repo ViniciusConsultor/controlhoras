@@ -8,6 +8,7 @@ namespace Datos
 {
     public interface IDatos
     {
+        #region Database_Metadata
         List<string> obtenerNombreTablas();
         /// <summary>
         /// Devuelve los datos correspondientes a un select de las columnas sobre la tabla.
@@ -18,7 +19,8 @@ namespace Datos
         DataSet obtenerDataFromTable(string nombreTabla, List<string> listaColumnas);
         List<string> obtenerTableColumnsName(string nombreTabla);
         string obtenerNombreBaseDatos();
-        
+        #endregion
+
         #region Operaciones_De_Clientes
         void altaCliente(int numeroCliente, string nombre, string nombreFantantasia, string rut, string email, string direccion, string direccionCobro, string telefono, string fax, bool activo, DateTime fechaAlta, DateTime fechaBaja, string motivoBaja);
         void modificarCliente(int numeroCliente, string nombre, string nombreFantantasia, string rut, string email, string direccion, string direccionCobro, string telefono, string fax, bool activo, DateTime fechaAlta, DateTime fechaBaja, string motivoBaja);
@@ -138,6 +140,14 @@ namespace Datos
         /// <param name="idEmpleado">Identificador del empleado activo posterior al solicitado</param>
         /// <returns>Retorna el identificador del empleado activo previo al idEmpleado. Si no hay previo retorna null</returns>
         int? obtenerPrevioIdEmpleadoActivo(int idEmpleado);
+
+        /// <summary>
+        /// Busca todos los empleados que cumplan con el patronBusqueda en el dato CampoBusqueda
+        /// </summary>
+        /// <param name="CampoBusqueda">Define el atributo del Empleado por el cual buscar. Valores Posibles: Nombre, Apellido, Documento, Telefono y Direccion</param>
+        /// <param name="patronBusqueda">Define el patron de busqueda</param>
+        /// <returns>Devuelve una lista de los empleados que matchean con el patron en el campo especificado.</returns>
+        List<EmPleadOs> buscarEmpleaos(string CampoBusqueda, string patronBusqueda);
         #endregion
 
 

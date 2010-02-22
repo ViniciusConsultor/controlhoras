@@ -5,6 +5,7 @@ using System.Text;
 using Yogesh.ExcelXml;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing;
 
 namespace Utilidades
 {
@@ -104,6 +105,39 @@ namespace Utilidades
             retval = libro.Export(sw);
             sw.Close();
             return retval;
+        }
+
+
+        public static byte[] convertImagenToByte(Image img)
+        {
+            byte[] byteArray;
+            try
+            {
+                MemoryStream ms = new MemoryStream();
+                Image img2 = (Image)img.Clone();
+                img2.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                img2.Dispose();
+                byteArray = ms.ToArray();
+                ms.Close();
+                ms.Dispose();
+                return byteArray;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static Image convertByteArrayToImage(byte[] byteArray)
+        {
+            if (byteArray != null)
+            {
+                MemoryStream ms = new MemoryStream(byteArray, 0,
+                byteArray.Length);
+                ms.Write(byteArray, 0, byteArray.Length);
+                return Image.FromStream(ms, true);
+            }
+            return null;
         }
 
     }

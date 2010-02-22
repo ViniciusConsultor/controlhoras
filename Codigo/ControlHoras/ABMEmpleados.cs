@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Logica;
-//using System.Drawing.Imaging;
+using System.Drawing;
 using System.IO;
+using Utilidades;
 using Datos;
 
 
@@ -22,7 +23,9 @@ namespace ControlHoras
         private IDatos datos;
         private IDatosABMTipos datosTipos;
         private IABMTipos tipos;
+        
 
+        // Lista de datos que se mantienen para su posterior consulta
         private List<TipOsEventOHistOrIal> listaTiposEventos;
         private List<TipOscarGoS> cargos;
 
@@ -45,6 +48,7 @@ namespace ControlHoras
             datos = ControladorDatos.getInstance();
             datosTipos = DatosABMTipos.getInstance();
             tipos = ControladorABMTipos.getInstance();
+            
         }
 
         private void ABMEmpleados_Load(object sender, EventArgs e)
@@ -271,9 +275,15 @@ namespace ControlHoras
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            else if (e.KeyCode == Keys.F2)
+            {
+                // abro la ventana de busqueda de empleados.
+                btnBuscarEmpleado.PerformClick();
+
+            }
             else if (mtNumeroEmpleado.Text == "" && e.KeyCode == Keys.Enter)
             {
-                mtNumeroEmpleado.Text = (datos.obtenerMaxIdEmpleado()+1).ToString();
+                mtNumeroEmpleado.Text = (datos.obtenerMaxIdEmpleado() + 1).ToString();
             }
         }
 
@@ -444,7 +454,7 @@ namespace ControlHoras
             catch (Exception e) { }
             try
             {
-                Image img = ConvertByteArrayToImage(empleado.Foto);
+                Image img = ControladorUtilidades.convertByteArrayToImage(empleado.Foto);
                 if (img != null)
                     pbFoto.Image = img;
             }
@@ -616,39 +626,6 @@ namespace ControlHoras
 
         }
 
-        public static Image ConvertByteArrayToImage(byte[] byteArray)
-        {
-            if (byteArray != null)
-            {
-                MemoryStream ms = new MemoryStream(byteArray, 0,
-                byteArray.Length);
-                ms.Write(byteArray, 0, byteArray.Length);
-                return Image.FromStream(ms, true);
-            }
-            return null;
-        }
-        
-        
-        private byte[] imagenToByte(Image img)
-        {
-            byte[] byteArray;
-            try
-            {
-                MemoryStream ms = new MemoryStream();
-                Image img2 = (Image)img.Clone();
-                img2.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                img2.Dispose();
-                byteArray = ms.ToArray();
-                ms.Close();
-                ms.Dispose();
-                return byteArray;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (checkDatosObligatorios())
@@ -683,7 +660,7 @@ namespace ControlHoras
             {
                 byte[] foto = null;
                 if (pbFoto.Image != null)
-                    foto = imagenToByte(pbFoto.Image);
+                    foto = ControladorUtilidades.convertImagenToByte(pbFoto.Image);
 
                 char sexo = 'F';
                 if (rbMasculino.Checked)
@@ -1321,10 +1298,27 @@ namespace ControlHoras
             ventana = null;
         }
 
-        private void mtNumeroEmpleado_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
 
+
+        private void btnBuscarEmpleado_Click(object sender, EventArgs e)
+        {
+            BuscarEmpleados busquedaEmps = new BuscarEmpleados();
+            DialogResult res = busquedaEmps.ShowDialog(this);
+            if (res == DialogResult.OK)
+            {
+                try
+                {
+                    mtNumeroEmpleado.Text = busquedaEmps.idEmpleadoSeleccionado.ToString();
+                    mtNumeroEmpleado.Focus();
+                    SendKeys.Send("{ENTER}");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
+
 
     }
 }

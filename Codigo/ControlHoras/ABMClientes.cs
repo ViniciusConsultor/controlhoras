@@ -150,6 +150,7 @@ namespace ControlHoras
             if (cbNoActivo.Checked)
             {
                 dtpFechaBaja.Enabled = true;
+                dtpFechaBaja.Value = DateTime.Today;
                 txtMotivoBaja.Enabled = true;
             }
             else
