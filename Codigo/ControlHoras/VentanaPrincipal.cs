@@ -120,9 +120,9 @@ namespace ControlHoras
         {
             
             ABMEmpleados em = ABMEmpleados.getVentana();
-            if (em.IsDisposed == false)
+            if (em.Visible == true)
             {
-                em.Show(this);
+                em.Focus();
             }
             else
             {
@@ -160,8 +160,12 @@ namespace ControlHoras
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            ExportToExcel ex = new ExportToExcel();
-            ex.ShowDialog(this);
+            ExportToExcel ex = ExportToExcel.getInstance();
+            if (ex.Visible == false)
+                ex.Show(this);
+            else
+                ex.Focus();
+            
         }
 
 

@@ -29,9 +29,16 @@
         private void InitializeComponent()
         {
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnAgregar = new System.Windows.Forms.ToolStripButton();
+            this.btnGuardar = new System.Windows.Forms.ToolStripButton();
+            this.btnCancelar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnAnterior = new System.Windows.Forms.ToolStripButton();
+            this.btnSiguiente = new System.Windows.Forms.ToolStripButton();
             this.tcEmpleado = new System.Windows.Forms.TabControl();
             this.DatosDelEmpleado = new System.Windows.Forms.TabPage();
+            this.lblServicioActual = new System.Windows.Forms.Label();
+            this.label61 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.txtSueldo = new ControlHoras.MaskedTextBoxKeyDown();
             this.txtNumeroCuenta = new ControlHoras.TextBoxKeyDown();
@@ -59,6 +66,7 @@
             this.txtTelefono = new ControlHoras.TextBoxKeyDown();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lblTipoFacturacion = new System.Windows.Forms.Label();
             this.txtNacionalidad = new ControlHoras.TextBoxKeyDown();
             this.label19 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
@@ -82,6 +90,7 @@
             this.lblNumero = new System.Windows.Forms.Label();
             this.mtNumeroEmpleado = new ControlHoras.MaskedTextBoxKeyDown();
             this.btnSeleccionarImagen = new System.Windows.Forms.Button();
+            this.pbFoto = new System.Windows.Forms.PictureBox();
             this.OtrosDatosDelEmpleado = new System.Windows.Forms.TabPage();
             this.lblEmpleadoCargado = new System.Windows.Forms.Label();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
@@ -235,15 +244,6 @@
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblTipoFacturacion = new System.Windows.Forms.Label();
-            this.pbFoto = new System.Windows.Forms.PictureBox();
-            this.btnAgregar = new System.Windows.Forms.ToolStripButton();
-            this.btnGuardar = new System.Windows.Forms.ToolStripButton();
-            this.btnCancelar = new System.Windows.Forms.ToolStripButton();
-            this.btnAnterior = new System.Windows.Forms.ToolStripButton();
-            this.btnSiguiente = new System.Windows.Forms.ToolStripButton();
-            this.label61 = new System.Windows.Forms.Label();
-            this.lblServicioActual = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.tcEmpleado.SuspendLayout();
             this.DatosDelEmpleado.SuspendLayout();
@@ -252,6 +252,7 @@
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.OtrosDatosDelEmpleado.SuspendLayout();
             this.groupBox16.SuspendLayout();
             this.groupBox15.SuspendLayout();
@@ -277,7 +278,6 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExtrasLiquidacion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -295,10 +295,61 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Image = global::ControlHoras.Imagenes.document_new;
+            this.btnAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(50, 33);
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Image = global::ControlHoras.Imagenes.filesave;
+            this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(50, 33);
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnCancelar.Image = global::ControlHoras.Imagenes.button_cancel;
+            this.btnCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(53, 33);
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 36);
+            // 
+            // btnAnterior
+            // 
+            this.btnAnterior.Image = global::ControlHoras.Imagenes.Arrow_back;
+            this.btnAnterior.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAnterior.Name = "btnAnterior";
+            this.btnAnterior.Size = new System.Drawing.Size(50, 33);
+            this.btnAnterior.Text = "Anterior";
+            this.btnAnterior.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
+            // 
+            // btnSiguiente
+            // 
+            this.btnSiguiente.Image = global::ControlHoras.Imagenes.Arrow_forward;
+            this.btnSiguiente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSiguiente.Name = "btnSiguiente";
+            this.btnSiguiente.Size = new System.Drawing.Size(55, 33);
+            this.btnSiguiente.Text = "Siguiente";
+            this.btnSiguiente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
             // 
             // tcEmpleado
             // 
@@ -332,6 +383,25 @@
             this.DatosDelEmpleado.TabIndex = 0;
             this.DatosDelEmpleado.Text = "Datos del Empleado";
             this.DatosDelEmpleado.UseVisualStyleBackColor = true;
+            // 
+            // lblServicioActual
+            // 
+            this.lblServicioActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblServicioActual.Location = new System.Drawing.Point(449, 320);
+            this.lblServicioActual.Name = "lblServicioActual";
+            this.lblServicioActual.Size = new System.Drawing.Size(182, 34);
+            this.lblServicioActual.TabIndex = 37;
+            this.lblServicioActual.Text = "lblServicioActual";
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label61.Location = new System.Drawing.Point(457, 296);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(101, 15);
+            this.label61.TabIndex = 36;
+            this.label61.Text = "Servicio Actual";
             // 
             // groupBox7
             // 
@@ -611,8 +681,19 @@
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             // 
+            // lblTipoFacturacion
+            // 
+            this.lblTipoFacturacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTipoFacturacion.Location = new System.Drawing.Point(103, 112);
+            this.lblTipoFacturacion.Name = "lblTipoFacturacion";
+            this.lblTipoFacturacion.Size = new System.Drawing.Size(115, 23);
+            this.lblTipoFacturacion.TabIndex = 118;
+            this.lblTipoFacturacion.Text = "JORNALERO";
+            this.lblTipoFacturacion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // txtNacionalidad
             // 
+            this.txtNacionalidad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNacionalidad.Location = new System.Drawing.Point(103, 146);
             this.txtNacionalidad.Name = "txtNacionalidad";
             this.txtNacionalidad.Size = new System.Drawing.Size(115, 20);
@@ -704,6 +785,7 @@
             // 
             // txtLugarNacimiento
             // 
+            this.txtLugarNacimiento.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtLugarNacimiento.Location = new System.Drawing.Point(103, 179);
             this.txtLugarNacimiento.Name = "txtLugarNacimiento";
             this.txtLugarNacimiento.Size = new System.Drawing.Size(115, 20);
@@ -833,6 +915,18 @@
             this.btnSeleccionarImagen.Text = "Seleccionar Imagen";
             this.btnSeleccionarImagen.UseVisualStyleBackColor = true;
             this.btnSeleccionarImagen.Click += new System.EventHandler(this.btnSeleccionarImagen_Click);
+            // 
+            // pbFoto
+            // 
+            this.pbFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbFoto.ErrorImage = global::ControlHoras.Imagenes.imagen_no_disponible1;
+            this.pbFoto.InitialImage = global::ControlHoras.Imagenes.imagen_no_disponible1;
+            this.pbFoto.Location = new System.Drawing.Point(452, 11);
+            this.pbFoto.Name = "pbFoto";
+            this.pbFoto.Size = new System.Drawing.Size(179, 153);
+            this.pbFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbFoto.TabIndex = 35;
+            this.pbFoto.TabStop = false;
             // 
             // OtrosDatosDelEmpleado
             // 
@@ -1077,6 +1171,7 @@
             // 
             // txtBarrio
             // 
+            this.txtBarrio.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtBarrio.Location = new System.Drawing.Point(110, 68);
             this.txtBarrio.Name = "txtBarrio";
             this.txtBarrio.Size = new System.Drawing.Size(121, 20);
@@ -1136,6 +1231,7 @@
             // 
             // txtCiudad
             // 
+            this.txtCiudad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCiudad.Location = new System.Drawing.Point(110, 40);
             this.txtCiudad.Name = "txtCiudad";
             this.txtCiudad.Size = new System.Drawing.Size(121, 20);
@@ -2347,98 +2443,6 @@
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             this.dataGridViewTextBoxColumn14.ReadOnly = true;
             // 
-            // lblTipoFacturacion
-            // 
-            this.lblTipoFacturacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTipoFacturacion.Location = new System.Drawing.Point(103, 112);
-            this.lblTipoFacturacion.Name = "lblTipoFacturacion";
-            this.lblTipoFacturacion.Size = new System.Drawing.Size(115, 23);
-            this.lblTipoFacturacion.TabIndex = 118;
-            this.lblTipoFacturacion.Text = "JORNALERO";
-            this.lblTipoFacturacion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pbFoto
-            // 
-            this.pbFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbFoto.ErrorImage = global::ControlHoras.Imagenes.imagen_no_disponible1;
-            this.pbFoto.InitialImage = global::ControlHoras.Imagenes.imagen_no_disponible1;
-            this.pbFoto.Location = new System.Drawing.Point(452, 11);
-            this.pbFoto.Name = "pbFoto";
-            this.pbFoto.Size = new System.Drawing.Size(179, 153);
-            this.pbFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbFoto.TabIndex = 35;
-            this.pbFoto.TabStop = false;
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Image = global::ControlHoras.Imagenes.document_new;
-            this.btnAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(50, 33);
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Image = global::ControlHoras.Imagenes.filesave;
-            this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(50, 33);
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btnCancelar.Image = global::ControlHoras.Imagenes.button_cancel;
-            this.btnCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(53, 33);
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnAnterior
-            // 
-            this.btnAnterior.Image = global::ControlHoras.Imagenes.Arrow_back;
-            this.btnAnterior.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAnterior.Name = "btnAnterior";
-            this.btnAnterior.Size = new System.Drawing.Size(50, 33);
-            this.btnAnterior.Text = "Anterior";
-            this.btnAnterior.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
-            // 
-            // btnSiguiente
-            // 
-            this.btnSiguiente.Image = global::ControlHoras.Imagenes.Arrow_forward;
-            this.btnSiguiente.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSiguiente.Name = "btnSiguiente";
-            this.btnSiguiente.Size = new System.Drawing.Size(55, 33);
-            this.btnSiguiente.Text = "Siguiente";
-            this.btnSiguiente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
-            // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label61.Location = new System.Drawing.Point(457, 296);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(101, 15);
-            this.label61.TabIndex = 36;
-            this.label61.Text = "Servicio Actual";
-            // 
-            // lblServicioActual
-            // 
-            this.lblServicioActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblServicioActual.Location = new System.Drawing.Point(449, 320);
-            this.lblServicioActual.Name = "lblServicioActual";
-            this.lblServicioActual.Size = new System.Drawing.Size(182, 34);
-            this.lblServicioActual.TabIndex = 37;
-            this.lblServicioActual.Text = "lblServicioActual";
-            // 
             // ABMEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2451,6 +2455,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ABMEmpleados";
             this.Load += new System.EventHandler(this.ABMEmpleados_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ABMEmpleados_FormClosed);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.tcEmpleado.ResumeLayout(false);
@@ -2466,6 +2471,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();
             this.OtrosDatosDelEmpleado.ResumeLayout(false);
             this.OtrosDatosDelEmpleado.PerformLayout();
             this.groupBox16.ResumeLayout(false);
@@ -2507,7 +2513,6 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvExtrasLiquidacion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

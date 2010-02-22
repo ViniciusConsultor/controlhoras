@@ -177,6 +177,11 @@ namespace ControlHoras
 
         }
 
+        private void ABMTiposDocumento_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ventana = null;
+        }
+
         
     }
 }

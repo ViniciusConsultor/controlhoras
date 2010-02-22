@@ -32,6 +32,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.dgvCategoria = new System.Windows.Forms.DataGridView();
+            this.idTipoEventoHistorial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Activa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnAgregar = new System.Windows.Forms.ToolStripButton();
             this.btnGuardar = new System.Windows.Forms.ToolStripButton();
@@ -43,9 +46,6 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idTipoEventoHistorial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Activa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategoria)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -88,6 +88,26 @@
             this.dgvCategoria.Size = new System.Drawing.Size(343, 201);
             this.dgvCategoria.TabIndex = 4;
             this.dgvCategoria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCategoria_CellContentDoubleClick);
+            // 
+            // idTipoEventoHistorial
+            // 
+            this.idTipoEventoHistorial.HeaderText = "idTipoEventoHistorial";
+            this.idTipoEventoHistorial.Name = "idTipoEventoHistorial";
+            this.idTipoEventoHistorial.ReadOnly = true;
+            this.idTipoEventoHistorial.Visible = false;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // Activa
+            // 
+            this.Activa.FillWeight = 40F;
+            this.Activa.HeaderText = "Activa";
+            this.Activa.Name = "Activa";
+            this.Activa.ReadOnly = true;
             // 
             // toolStrip1
             // 
@@ -195,26 +215,6 @@
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
             this.dataGridViewTextBoxColumn3.Width = 74;
             // 
-            // idTipoEventoHistorial
-            // 
-            this.idTipoEventoHistorial.HeaderText = "idTipoEventoHistorial";
-            this.idTipoEventoHistorial.Name = "idTipoEventoHistorial";
-            this.idTipoEventoHistorial.ReadOnly = true;
-            this.idTipoEventoHistorial.Visible = false;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            // 
-            // Activa
-            // 
-            this.Activa.FillWeight = 40F;
-            this.Activa.HeaderText = "Activa";
-            this.Activa.Name = "Activa";
-            this.Activa.ReadOnly = true;
-            // 
             // ABMTipoEventoHistorial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -228,6 +228,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ABMTipoEventoHistorial";
             this.Load += new System.EventHandler(this.ABMCategoria_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ABMTipoEventoHistorial_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategoria)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

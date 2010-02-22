@@ -50,12 +50,12 @@ namespace ControlHoras
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtMotivoBaja = new ControlHoras.TextBoxKeyDown();
             this.label12 = new System.Windows.Forms.Label();
+            this.dtpFechaBaja = new ControlHoras.DateTimePickerKeyDown();
             this.txtFax = new ControlHoras.TextBoxKeyDown();
             this.txtTelefonos = new ControlHoras.TextBoxKeyDown();
             this.mtCliente = new ControlHoras.MaskedTextBoxKeyDown();
-            this.txtMotivoBaja = new ControlHoras.TextBoxKeyDown();
-            this.dtpFechaBaja = new ControlHoras.DateTimePickerKeyDown();
             this.dtpFechaAlta = new ControlHoras.DateTimePickerKeyDown();
             this.txtEmail = new ControlHoras.TextBoxKeyDown();
             this.txtNombre = new ControlHoras.TextBoxKeyDown();
@@ -262,6 +262,14 @@ namespace ControlHoras
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Estado";
             // 
+            // txtMotivoBaja
+            // 
+            this.txtMotivoBaja.Enabled = false;
+            this.txtMotivoBaja.Location = new System.Drawing.Point(52, 48);
+            this.txtMotivoBaja.Name = "txtMotivoBaja";
+            this.txtMotivoBaja.Size = new System.Drawing.Size(288, 20);
+            this.txtMotivoBaja.TabIndex = 2;
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -270,6 +278,16 @@ namespace ControlHoras
             this.label12.Size = new System.Drawing.Size(46, 13);
             this.label12.TabIndex = 20;
             this.label12.Text = "Motivo *";
+            // 
+            // dtpFechaBaja
+            // 
+            this.dtpFechaBaja.Enabled = false;
+            this.dtpFechaBaja.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaBaja.Location = new System.Drawing.Point(190, 19);
+            this.dtpFechaBaja.Name = "dtpFechaBaja";
+            this.dtpFechaBaja.Size = new System.Drawing.Size(97, 20);
+            this.dtpFechaBaja.TabIndex = 1;
+            this.dtpFechaBaja.Value = new System.DateTime(1753, 1, 2, 0, 0, 0, 0);
             // 
             // txtFax
             // 
@@ -295,24 +313,6 @@ namespace ControlHoras
             this.mtCliente.Size = new System.Drawing.Size(42, 21);
             this.mtCliente.TabIndex = 0;
             this.mtCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtCliente_KeyDown);
-            // 
-            // txtMotivoBaja
-            // 
-            this.txtMotivoBaja.Enabled = false;
-            this.txtMotivoBaja.Location = new System.Drawing.Point(52, 48);
-            this.txtMotivoBaja.Name = "txtMotivoBaja";
-            this.txtMotivoBaja.Size = new System.Drawing.Size(288, 20);
-            this.txtMotivoBaja.TabIndex = 2;
-            // 
-            // dtpFechaBaja
-            // 
-            this.dtpFechaBaja.Enabled = false;
-            this.dtpFechaBaja.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaBaja.Location = new System.Drawing.Point(190, 19);
-            this.dtpFechaBaja.Name = "dtpFechaBaja";
-            this.dtpFechaBaja.Size = new System.Drawing.Size(97, 20);
-            this.dtpFechaBaja.TabIndex = 1;
-            this.dtpFechaBaja.Value = new System.DateTime(1753, 1, 2, 0, 0, 0, 0);
             // 
             // dtpFechaAlta
             // 
@@ -402,6 +402,7 @@ namespace ControlHoras
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ABMClientes";
             this.Load += new System.EventHandler(this.ABMClientes_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ABMClientes_FormClosed);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
