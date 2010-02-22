@@ -743,9 +743,9 @@ namespace Datos
 
             try
             {
-                var idemp = (from reg in database.GetTable<EmPleadOs>()
+                int? idemp = (from reg in database.GetTable<EmPleadOs>()
                              where reg.IDEmpleado > idEmpleado && reg.Activo == 0
-                             select (int)reg.IDEmpleado).Min<int>();
+                             select (int?)reg.IDEmpleado).Min<int?>();
                 return idemp;
             }
             catch (Exception ex)
@@ -764,7 +764,7 @@ namespace Datos
                 int? idemp = null;
                 idemp = (from reg in database.GetTable<EmPleadOs>()
                              where reg.IDEmpleado < idEmpleado && reg.Activo == 0
-                             select (int)reg.IDEmpleado).Max<int>();
+                             select (int?)reg.IDEmpleado).Max<int?>();
                 return idemp;
             }
             catch (Exception ex)
