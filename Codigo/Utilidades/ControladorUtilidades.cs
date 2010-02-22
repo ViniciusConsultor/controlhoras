@@ -100,8 +100,10 @@ namespace Utilidades
             // no extension is added if not present
 
             Stream sw = new FileStream(fileName,FileMode.Create);
-            return libro.Export(sw);
-            
+            bool retval;
+            retval = libro.Export(sw);
+            sw.Close();
+            return retval;
         }
 
     }
