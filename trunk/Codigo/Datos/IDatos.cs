@@ -201,5 +201,9 @@ namespace Datos
         void modificarContrato(int numeroContrato, DateTime FechaInicial, DateTime? FechaFinal, bool Costo, bool HorasExtras, string Ajuste, string Observaciones, float Monto);
 
         void altaContrato(ContraToS Contrato, List<LineAshOrAs> Lineas);
+
+        void eliminarLineasContrato(int NumeroContrato);
+
+        void guardarLineasContrato(List<LineAshOrAs> Lineas);
     }
 }
