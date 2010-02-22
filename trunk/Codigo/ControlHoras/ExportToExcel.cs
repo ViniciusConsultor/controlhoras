@@ -16,12 +16,20 @@ namespace ControlHoras
     {
         private IDatos datos;
         private List<string> columnasSeleccionadas = null;
+        private static ExportToExcel ventana = null;
 
-        public ExportToExcel()
+        private ExportToExcel()
         {
             datos = ControladorDatos.getInstance();
             columnasSeleccionadas = new List<string>();
             InitializeComponent();
+        }
+
+        public static ExportToExcel getInstance()
+        {
+            if (ventana == null)
+                ventana = new ExportToExcel();
+            return ventana;
         }
 
         private void ExportToExcel_Load(object sender, EventArgs e)
@@ -217,7 +225,19 @@ namespace ControlHoras
                 if (result == DialogResult.OK)
                 {
                     if (ControladorUtilidades.exportToExcel(dgvResultados, saveExcelFileDialog.FileName))
-                        MessageBox.Show("Archivo Exportado correctamente.", "Exportacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    {
+                        DialogResult res = MessageBox.Show("Archivo Exportado correctamente. Desea abrir ahora el archivo exportado?", "Exportacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (res == DialogResult.Yes)
+                        {
+                            // try forcing the window to be full-screen maximized
+                            System.Diagnostics.ProcessStartInfo defapp = new System.Diagnostics.ProcessStartInfo();
+
+                            defapp.FileName = @saveExcelFileDialog.FileName;
+                            defapp.WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized;
+                            System.Diagnostics.Process.Start(defapp);
+                        }
+
+                    }
                     else
                         MessageBox.Show("Error al exportar el archivo.", "Exportacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -227,6 +247,11 @@ namespace ControlHoras
             {
                 MessageBox.Show(ex.Message, "Exportacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void ExportToExcel_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ventana = null;
         }
 
     }

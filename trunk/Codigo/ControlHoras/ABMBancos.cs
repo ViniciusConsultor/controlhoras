@@ -179,6 +179,11 @@ namespace ControlHoras
 
         }
 
+        private void ABMBancos_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ventana = null;
+        }
+
         
     }
 }

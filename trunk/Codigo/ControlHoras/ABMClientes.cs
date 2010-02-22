@@ -245,5 +245,10 @@ namespace ControlHoras
 
         }
 
+        private void ABMClientes_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ventana = null;
+        }
+
     }
 }

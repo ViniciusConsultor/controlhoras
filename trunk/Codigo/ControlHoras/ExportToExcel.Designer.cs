@@ -36,6 +36,8 @@
             this.tbPorTablas = new System.Windows.Forms.TabPage();
             this.lblOrdenResultado = new System.Windows.Forms.Label();
             this.gbPorTablasFiltros = new System.Windows.Forms.GroupBox();
+            this.maskedTextBoxKeyDown5 = new ControlHoras.MaskedTextBoxKeyDown();
+            this.maskedTextBoxKeyDown4 = new ControlHoras.MaskedTextBoxKeyDown();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lblPorTablaNombre = new System.Windows.Forms.Label();
@@ -44,29 +46,27 @@
             this.btnSeleccionarTodos = new System.Windows.Forms.Button();
             this.listBoxCampos = new System.Windows.Forms.CheckedListBox();
             this.btnCargar = new System.Windows.Forms.Button();
+            this.cmbTablas = new ControlHoras.ComboBoxKeyDown();
             this.tbEmpleados = new System.Windows.Forms.TabPage();
+            this.maskedTextBoxKeyDown1 = new ControlHoras.MaskedTextBoxKeyDown();
             this.btnEmpleadosConsultar = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtEmpleadosDescripcionConsulta = new ControlHoras.TextBoxKeyDown();
+            this.cmbEmpleadosConsultas = new ControlHoras.ComboBoxKeyDown();
+            this.mtEmpleadosDesde = new ControlHoras.MaskedTextBoxKeyDown();
             this.tbClientes = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.dgvResultados = new System.Windows.Forms.DataGridView();
-            this.saveExcelFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.maskedTextBoxKeyDown5 = new ControlHoras.MaskedTextBoxKeyDown();
-            this.maskedTextBoxKeyDown4 = new ControlHoras.MaskedTextBoxKeyDown();
-            this.cmbTablas = new ControlHoras.ComboBoxKeyDown();
-            this.maskedTextBoxKeyDown1 = new ControlHoras.MaskedTextBoxKeyDown();
-            this.txtEmpleadosDescripcionConsulta = new ControlHoras.TextBoxKeyDown();
-            this.cmbEmpleadosConsultas = new ControlHoras.ComboBoxKeyDown();
-            this.mtEmpleadosDesde = new ControlHoras.MaskedTextBoxKeyDown();
             this.maskedTextBoxKeyDown3 = new ControlHoras.MaskedTextBoxKeyDown();
             this.maskedTextBoxKeyDown2 = new ControlHoras.MaskedTextBoxKeyDown();
             this.txtClientesDescripcionConsulta = new ControlHoras.TextBoxKeyDown();
             this.cmbClientesConsultas = new ControlHoras.ComboBoxKeyDown();
+            this.dgvResultados = new System.Windows.Forms.DataGridView();
+            this.saveExcelFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -182,6 +182,20 @@
             this.gbPorTablasFiltros.TabStop = false;
             this.gbPorTablasFiltros.Visible = false;
             // 
+            // maskedTextBoxKeyDown5
+            // 
+            this.maskedTextBoxKeyDown5.Location = new System.Drawing.Point(314, 12);
+            this.maskedTextBoxKeyDown5.Name = "maskedTextBoxKeyDown5";
+            this.maskedTextBoxKeyDown5.Size = new System.Drawing.Size(61, 20);
+            this.maskedTextBoxKeyDown5.TabIndex = 22;
+            // 
+            // maskedTextBoxKeyDown4
+            // 
+            this.maskedTextBoxKeyDown4.Location = new System.Drawing.Point(198, 12);
+            this.maskedTextBoxKeyDown4.Name = "maskedTextBoxKeyDown4";
+            this.maskedTextBoxKeyDown4.Size = new System.Drawing.Size(62, 20);
+            this.maskedTextBoxKeyDown4.TabIndex = 21;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -262,6 +276,16 @@
             this.btnCargar.UseVisualStyleBackColor = true;
             this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
             // 
+            // cmbTablas
+            // 
+            this.cmbTablas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.cmbTablas.FormattingEnabled = true;
+            this.cmbTablas.Location = new System.Drawing.Point(235, 4);
+            this.cmbTablas.Name = "cmbTablas";
+            this.cmbTablas.Size = new System.Drawing.Size(174, 21);
+            this.cmbTablas.TabIndex = 6;
+            this.cmbTablas.SelectedIndexChanged += new System.EventHandler(this.cmbTablas_SelectedIndexChanged);
+            // 
             // tbEmpleados
             // 
             this.tbEmpleados.Controls.Add(this.maskedTextBoxKeyDown1);
@@ -280,6 +304,13 @@
             this.tbEmpleados.TabIndex = 1;
             this.tbEmpleados.Text = "Empleados";
             this.tbEmpleados.UseVisualStyleBackColor = true;
+            // 
+            // maskedTextBoxKeyDown1
+            // 
+            this.maskedTextBoxKeyDown1.Location = new System.Drawing.Point(492, 66);
+            this.maskedTextBoxKeyDown1.Name = "maskedTextBoxKeyDown1";
+            this.maskedTextBoxKeyDown1.Size = new System.Drawing.Size(63, 20);
+            this.maskedTextBoxKeyDown1.TabIndex = 9;
             // 
             // btnEmpleadosConsultar
             // 
@@ -328,6 +359,31 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Numero Empleado    Desde";
             // 
+            // txtEmpleadosDescripcionConsulta
+            // 
+            this.txtEmpleadosDescripcionConsulta.Location = new System.Drawing.Point(206, 11);
+            this.txtEmpleadosDescripcionConsulta.Multiline = true;
+            this.txtEmpleadosDescripcionConsulta.Name = "txtEmpleadosDescripcionConsulta";
+            this.txtEmpleadosDescripcionConsulta.Size = new System.Drawing.Size(430, 36);
+            this.txtEmpleadosDescripcionConsulta.TabIndex = 6;
+            // 
+            // cmbEmpleadosConsultas
+            // 
+            this.cmbEmpleadosConsultas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEmpleadosConsultas.FormattingEnabled = true;
+            this.cmbEmpleadosConsultas.Location = new System.Drawing.Point(22, 27);
+            this.cmbEmpleadosConsultas.Name = "cmbEmpleadosConsultas";
+            this.cmbEmpleadosConsultas.Size = new System.Drawing.Size(156, 21);
+            this.cmbEmpleadosConsultas.TabIndex = 4;
+            // 
+            // mtEmpleadosDesde
+            // 
+            this.mtEmpleadosDesde.BackColor = System.Drawing.Color.White;
+            this.mtEmpleadosDesde.Location = new System.Drawing.Point(364, 66);
+            this.mtEmpleadosDesde.Name = "mtEmpleadosDesde";
+            this.mtEmpleadosDesde.Size = new System.Drawing.Size(63, 20);
+            this.mtEmpleadosDesde.TabIndex = 2;
+            // 
             // tbClientes
             // 
             this.tbClientes.Controls.Add(this.label6);
@@ -372,79 +428,6 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "Consultas";
             // 
-            // dgvResultados
-            // 
-            this.dgvResultados.AllowUserToAddRows = false;
-            this.dgvResultados.AllowUserToDeleteRows = false;
-            this.dgvResultados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvResultados.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvResultados.Location = new System.Drawing.Point(0, 0);
-            this.dgvResultados.Name = "dgvResultados";
-            this.dgvResultados.ReadOnly = true;
-            this.dgvResultados.Size = new System.Drawing.Size(655, 211);
-            this.dgvResultados.TabIndex = 1;
-            // 
-            // saveExcelFileDialog
-            // 
-            this.saveExcelFileDialog.DefaultExt = "xls";
-            this.saveExcelFileDialog.Filter = "Archivos de Microsoft Office Excel|*.xls";
-            // 
-            // maskedTextBoxKeyDown5
-            // 
-            this.maskedTextBoxKeyDown5.Location = new System.Drawing.Point(314, 12);
-            this.maskedTextBoxKeyDown5.Name = "maskedTextBoxKeyDown5";
-            this.maskedTextBoxKeyDown5.Size = new System.Drawing.Size(61, 20);
-            this.maskedTextBoxKeyDown5.TabIndex = 22;
-            // 
-            // maskedTextBoxKeyDown4
-            // 
-            this.maskedTextBoxKeyDown4.Location = new System.Drawing.Point(198, 12);
-            this.maskedTextBoxKeyDown4.Name = "maskedTextBoxKeyDown4";
-            this.maskedTextBoxKeyDown4.Size = new System.Drawing.Size(62, 20);
-            this.maskedTextBoxKeyDown4.TabIndex = 21;
-            // 
-            // cmbTablas
-            // 
-            this.cmbTablas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.cmbTablas.FormattingEnabled = true;
-            this.cmbTablas.Location = new System.Drawing.Point(235, 4);
-            this.cmbTablas.Name = "cmbTablas";
-            this.cmbTablas.Size = new System.Drawing.Size(174, 21);
-            this.cmbTablas.TabIndex = 6;
-            this.cmbTablas.SelectedIndexChanged += new System.EventHandler(this.cmbTablas_SelectedIndexChanged);
-            // 
-            // maskedTextBoxKeyDown1
-            // 
-            this.maskedTextBoxKeyDown1.Location = new System.Drawing.Point(492, 66);
-            this.maskedTextBoxKeyDown1.Name = "maskedTextBoxKeyDown1";
-            this.maskedTextBoxKeyDown1.Size = new System.Drawing.Size(63, 20);
-            this.maskedTextBoxKeyDown1.TabIndex = 9;
-            // 
-            // txtEmpleadosDescripcionConsulta
-            // 
-            this.txtEmpleadosDescripcionConsulta.Location = new System.Drawing.Point(206, 11);
-            this.txtEmpleadosDescripcionConsulta.Multiline = true;
-            this.txtEmpleadosDescripcionConsulta.Name = "txtEmpleadosDescripcionConsulta";
-            this.txtEmpleadosDescripcionConsulta.Size = new System.Drawing.Size(430, 36);
-            this.txtEmpleadosDescripcionConsulta.TabIndex = 6;
-            // 
-            // cmbEmpleadosConsultas
-            // 
-            this.cmbEmpleadosConsultas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEmpleadosConsultas.FormattingEnabled = true;
-            this.cmbEmpleadosConsultas.Location = new System.Drawing.Point(22, 27);
-            this.cmbEmpleadosConsultas.Name = "cmbEmpleadosConsultas";
-            this.cmbEmpleadosConsultas.Size = new System.Drawing.Size(156, 21);
-            this.cmbEmpleadosConsultas.TabIndex = 4;
-            // 
-            // mtEmpleadosDesde
-            // 
-            this.mtEmpleadosDesde.BackColor = System.Drawing.Color.White;
-            this.mtEmpleadosDesde.Location = new System.Drawing.Point(364, 66);
-            this.mtEmpleadosDesde.Name = "mtEmpleadosDesde";
-            this.mtEmpleadosDesde.Size = new System.Drawing.Size(63, 20);
-            this.mtEmpleadosDesde.TabIndex = 2;
-            // 
             // maskedTextBoxKeyDown3
             // 
             this.maskedTextBoxKeyDown3.Location = new System.Drawing.Point(497, 65);
@@ -477,6 +460,23 @@
             this.cmbClientesConsultas.Size = new System.Drawing.Size(157, 21);
             this.cmbClientesConsultas.TabIndex = 0;
             // 
+            // dgvResultados
+            // 
+            this.dgvResultados.AllowUserToAddRows = false;
+            this.dgvResultados.AllowUserToDeleteRows = false;
+            this.dgvResultados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvResultados.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvResultados.Location = new System.Drawing.Point(0, 0);
+            this.dgvResultados.Name = "dgvResultados";
+            this.dgvResultados.ReadOnly = true;
+            this.dgvResultados.Size = new System.Drawing.Size(655, 211);
+            this.dgvResultados.TabIndex = 1;
+            // 
+            // saveExcelFileDialog
+            // 
+            this.saveExcelFileDialog.DefaultExt = "xls";
+            this.saveExcelFileDialog.Filter = "Archivos de Microsoft Office Excel|*.xls";
+            // 
             // ExportToExcel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -487,6 +487,7 @@
             this.Name = "ExportToExcel";
             this.Text = "ExportToExcel";
             this.Load += new System.EventHandler(this.ExportToExcel_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ExportToExcel_FormClosed);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);

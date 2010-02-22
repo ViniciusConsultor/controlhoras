@@ -1282,6 +1282,8 @@ namespace ControlHoras
 
                         SendKeys.Send("{ENTER}");
                     }
+                    else
+                        MessageBox.Show("No existe un empleado activo anterior a este.", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -1301,9 +1303,11 @@ namespace ControlHoras
                     {
                         mtNumeroEmpleado.Text = numemp.ToString();
                         mtNumeroEmpleado.Focus();
-                       
-                        SendKeys.Send("{ENTER}");
+
+                        SendKeys.Send("{ENTER}");                        
                     }
+                    else
+                        MessageBox.Show("No existe un empleado activo anterior a este.", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -1312,6 +1316,15 @@ namespace ControlHoras
             }
         }
 
+        private void ABMEmpleados_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ventana = null;
+        }
+
+        private void mtNumeroEmpleado_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
 
     }
 }

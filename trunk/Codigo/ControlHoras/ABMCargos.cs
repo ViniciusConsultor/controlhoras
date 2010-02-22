@@ -221,6 +221,11 @@ namespace ControlHoras
 
         }
 
+        private void ABMCargos_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ventana = null;
+        }
+
         
     }
 }

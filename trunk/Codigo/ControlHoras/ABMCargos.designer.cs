@@ -31,9 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ABMCargos));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtNombre = new ControlHoras.TextBoxKeyDown();
-            this.txtDescripcion = new ControlHoras.TextBoxKeyDown();
             this.dgvCargos = new System.Windows.Forms.DataGridView();
+            this.FullTime = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.CobraHsExtras = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnAgregar = new System.Windows.Forms.ToolStripButton();
             this.btnGuardar = new System.Windows.Forms.ToolStripButton();
@@ -44,18 +44,24 @@
             this.cbCobraExtras = new System.Windows.Forms.CheckBox();
             this.cbFulltime = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.cmbTipoFacturacion = new ControlHoras.ComboBoxKeyDown();
-            this.mtHsComunes = new ControlHoras.MaskedTextBoxKeyDown();
             this.label4 = new System.Windows.Forms.Label();
             this.lblIdTipoCargo = new System.Windows.Forms.Label();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdTipoCargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HsComunes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoFacturacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FullTime = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.CobraHsExtras = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Activo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmbTipoFacturacion = new ControlHoras.ComboBoxKeyDown();
+            this.mtHsComunes = new ControlHoras.MaskedTextBoxKeyDown();
+            this.txtNombre = new ControlHoras.TextBoxKeyDown();
+            this.txtDescripcion = new ControlHoras.TextBoxKeyDown();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCargos)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -78,22 +84,6 @@
             this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Descripción";
-            // 
-            // txtNombre
-            // 
-            this.txtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNombre.Location = new System.Drawing.Point(77, 12);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(177, 20);
-            this.txtNombre.TabIndex = 2;
-            // 
-            // txtDescripcion
-            // 
-            this.txtDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtDescripcion.Location = new System.Drawing.Point(77, 38);
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(276, 20);
-            this.txtDescripcion.TabIndex = 3;
             // 
             // dgvCargos
             // 
@@ -120,6 +110,20 @@
             this.dgvCargos.Size = new System.Drawing.Size(456, 224);
             this.dgvCargos.TabIndex = 4;
             this.dgvCargos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCargos_CellContentDoubleClick);
+            // 
+            // FullTime
+            // 
+            this.FullTime.HeaderText = "FullTime";
+            this.FullTime.Name = "FullTime";
+            this.FullTime.ReadOnly = true;
+            this.FullTime.Width = 52;
+            // 
+            // CobraHsExtras
+            // 
+            this.CobraHsExtras.HeaderText = "Cobra Extras";
+            this.CobraHsExtras.Name = "CobraHsExtras";
+            this.CobraHsExtras.ReadOnly = true;
+            this.CobraHsExtras.Width = 66;
             // 
             // toolStrip1
             // 
@@ -231,25 +235,6 @@
             this.label5.TabIndex = 11;
             this.label5.Text = "Tipo";
             // 
-            // cmbTipoFacturacion
-            // 
-            this.cmbTipoFacturacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTipoFacturacion.FormattingEnabled = true;
-            this.cmbTipoFacturacion.Items.AddRange(new object[] {
-            "JORNALERO",
-            "MENSUAL"});
-            this.cmbTipoFacturacion.Location = new System.Drawing.Point(76, 95);
-            this.cmbTipoFacturacion.Name = "cmbTipoFacturacion";
-            this.cmbTipoFacturacion.Size = new System.Drawing.Size(121, 21);
-            this.cmbTipoFacturacion.TabIndex = 10;
-            // 
-            // mtHsComunes
-            // 
-            this.mtHsComunes.Location = new System.Drawing.Point(107, 65);
-            this.mtHsComunes.Name = "mtHsComunes";
-            this.mtHsComunes.Size = new System.Drawing.Size(29, 20);
-            this.mtHsComunes.TabIndex = 9;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -267,6 +252,49 @@
             this.lblIdTipoCargo.Size = new System.Drawing.Size(0, 13);
             this.lblIdTipoCargo.TabIndex = 0;
             this.lblIdTipoCargo.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "IdTipoCargo";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            this.dataGridViewTextBoxColumn1.Width = 71;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Nombre";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 69;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Descripción";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 88;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Hs Comunes";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 85;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Tipo Facturación";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 103;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Activo";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 62;
             // 
             // IdTipoCargo
             // 
@@ -295,7 +323,7 @@
             this.HsComunes.HeaderText = "Hs Comunes";
             this.HsComunes.Name = "HsComunes";
             this.HsComunes.ReadOnly = true;
-            this.HsComunes.Width = 85;
+            this.HsComunes.Width = 92;
             // 
             // TipoFacturacion
             // 
@@ -304,26 +332,47 @@
             this.TipoFacturacion.ReadOnly = true;
             this.TipoFacturacion.Width = 103;
             // 
-            // FullTime
-            // 
-            this.FullTime.HeaderText = "FullTime";
-            this.FullTime.Name = "FullTime";
-            this.FullTime.ReadOnly = true;
-            this.FullTime.Width = 52;
-            // 
-            // CobraHsExtras
-            // 
-            this.CobraHsExtras.HeaderText = "Cobra Extras";
-            this.CobraHsExtras.Name = "CobraHsExtras";
-            this.CobraHsExtras.ReadOnly = true;
-            this.CobraHsExtras.Width = 66;
-            // 
             // Activo
             // 
             this.Activo.HeaderText = "Activo";
             this.Activo.Name = "Activo";
             this.Activo.ReadOnly = true;
             this.Activo.Width = 62;
+            // 
+            // cmbTipoFacturacion
+            // 
+            this.cmbTipoFacturacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoFacturacion.FormattingEnabled = true;
+            this.cmbTipoFacturacion.Items.AddRange(new object[] {
+            "JORNALERO",
+            "MENSUAL"});
+            this.cmbTipoFacturacion.Location = new System.Drawing.Point(76, 95);
+            this.cmbTipoFacturacion.Name = "cmbTipoFacturacion";
+            this.cmbTipoFacturacion.Size = new System.Drawing.Size(121, 21);
+            this.cmbTipoFacturacion.TabIndex = 10;
+            // 
+            // mtHsComunes
+            // 
+            this.mtHsComunes.Location = new System.Drawing.Point(107, 65);
+            this.mtHsComunes.Name = "mtHsComunes";
+            this.mtHsComunes.Size = new System.Drawing.Size(29, 20);
+            this.mtHsComunes.TabIndex = 9;
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNombre.Location = new System.Drawing.Point(77, 12);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(177, 20);
+            this.txtNombre.TabIndex = 2;
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtDescripcion.Location = new System.Drawing.Point(77, 38);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(276, 20);
+            this.txtDescripcion.TabIndex = 3;
             // 
             // ABMCargos
             // 
@@ -339,6 +388,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ABMCargos";
             this.Load += new System.EventHandler(this.ABMCargos_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ABMCargos_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCargos)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -378,5 +428,11 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn FullTime;
         private System.Windows.Forms.DataGridViewCheckBoxColumn CobraHsExtras;
         private System.Windows.Forms.DataGridViewTextBoxColumn Activo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
     }
 }

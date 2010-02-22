@@ -175,6 +175,11 @@ namespace ControlHoras
 
         }
 
+        private void ABMMutualistas_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ventana = null;
+        }
+
         
     }
 }
