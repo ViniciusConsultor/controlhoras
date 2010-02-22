@@ -773,6 +773,51 @@ namespace Datos
             }
 
         }
+
+
+        public List<EmPleadOs> buscarEmpleaos(string CampoBusqueda, string patronBusqueda)
+        {
+            try
+            {
+                List<EmPleadOs> emps;
+
+                switch (CampoBusqueda)
+                {
+                    case "Nombre":
+                        emps = (from varemp in database.GetTable<EmPleadOs>()
+                                where varemp.Nombre.Contains(patronBusqueda)
+                                select varemp).ToList<EmPleadOs>();
+                        break;
+                    case "Apellido":
+                        emps = (from varemp in database.GetTable<EmPleadOs>()
+                                where varemp.Apellido.Contains(patronBusqueda)
+                                select varemp).ToList<EmPleadOs>();
+                        break;
+                    case "Direccion":
+                        emps = (from varemp in database.GetTable<EmPleadOs>()
+                                where varemp.Direccion.Contains(patronBusqueda)
+                                select varemp).ToList<EmPleadOs>();
+                        break;
+                    case "Telefono":
+                        emps = (from varemp in database.GetTable<EmPleadOs>()
+                                where varemp.Telefonos.Contains(patronBusqueda)
+                                select varemp).ToList<EmPleadOs>();
+                        break;
+                    case "Documento":
+                        emps = (from varemp in database.GetTable<EmPleadOs>()
+                                where varemp.NumeroDocumento.Contains(patronBusqueda)
+                                select varemp).ToList<EmPleadOs>();
+                        break;
+                    default:
+                        throw new NoExisteException("No existe el Campo de Busqueda " + CampoBusqueda);
+                }
+                return emps;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         #endregion
 
         #region HistorialEmpleado
@@ -1480,6 +1525,37 @@ namespace Datos
         {
             return database.Connection.Database;
         }
+
+        public List<string> obtenerColumnasDeTabla(string nombreTabla)
+        {
+            try
+            {
+                List<string> res = new List<string>();
+                //database.Connection.Open();
+                var dataTables = database.Mapping;
+                //database.Connection.Close();
+                foreach (var tabla in dataTables.GetTables())
+                {
+                    if (nombreTabla == tabla.TableName)
+                    {
+                        foreach (var column in tabla.RowType.DataMembers)
+                        {
+                            res.Add(column.MappedName);
+                        }
+                        break;
+                    }
+                }
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+
+        }
+
         #endregion
 
         
@@ -1542,34 +1618,6 @@ namespace Datos
             }
         }
         
-        public List<string> obtenerColumnasDeTabla(string nombreTabla)
-        {
-            try
-            {
-                List<string> res = new List<string>();
-                //database.Connection.Open();
-                var dataTables = database.Mapping;
-                //database.Connection.Close();
-                foreach (var tabla in dataTables.GetTables())
-                {
-                    if (nombreTabla == tabla.TableName)
-                    {
-                        foreach (var column in tabla.RowType.DataMembers)
-                        {
-                            res.Add(column.MappedName);
-                        }
-                        break;
-                    }
-                }
-                return res;
-            }catch(Exception ex)
-            {
-                throw ex;
-            }
-                                
-
-
-        }
 
         public void altaContrato(ContraToS Contrato, List<LineAshOrAs> Lineas)
         {

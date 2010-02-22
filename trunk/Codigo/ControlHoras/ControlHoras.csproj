@@ -28,6 +28,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -55,6 +57,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -68,7 +71,6 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -126,6 +128,12 @@
     </Compile>
     <Compile Include="ABMTiposDocumento.designer.cs">
       <DependentUpon>ABMTiposDocumento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BuscarEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuscarEmpleados.Designer.cs">
+      <DependentUpon>BuscarEmpleados.cs</DependentUpon>
     </Compile>
     <Compile Include="BúsquedaCliente.cs">
       <SubType>UserControl</SubType>
@@ -262,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABMTiposDocumento.resx">
       <DependentUpon>ABMTiposDocumento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuscarEmpleados.resx">
+      <DependentUpon>BuscarEmpleados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CambiarPasswordUsuario.resx">
       <DependentUpon>CambiarPasswordUsuario.cs</DependentUpon>
@@ -484,6 +495,7 @@
     <None Include="Resources\dialog-question.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Resources\imagen_no_disponible.jpg" />
   </ItemGroup>
   <ItemGroup>

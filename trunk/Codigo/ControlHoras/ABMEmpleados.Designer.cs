@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ABMEmpleados));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnAgregar = new System.Windows.Forms.ToolStripButton();
             this.btnGuardar = new System.Windows.Forms.ToolStripButton();
@@ -35,6 +36,8 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAnterior = new System.Windows.Forms.ToolStripButton();
             this.btnSiguiente = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnBuscarEmpleado = new System.Windows.Forms.ToolStripButton();
             this.tcEmpleado = new System.Windows.Forms.TabControl();
             this.DatosDelEmpleado = new System.Windows.Forms.TabPage();
             this.lblServicioActual = new System.Windows.Forms.Label();
@@ -288,7 +291,9 @@
             this.btnCancelar,
             this.toolStripSeparator1,
             this.btnAnterior,
-            this.btnSiguiente});
+            this.btnSiguiente,
+            this.toolStripSeparator2,
+            this.btnBuscarEmpleado});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(647, 36);
@@ -351,6 +356,22 @@
             this.btnSiguiente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 36);
+            // 
+            // btnBuscarEmpleado
+            // 
+            this.btnBuscarEmpleado.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarEmpleado.Image")));
+            this.btnBuscarEmpleado.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnBuscarEmpleado.Name = "btnBuscarEmpleado";
+            this.btnBuscarEmpleado.Size = new System.Drawing.Size(43, 33);
+            this.btnBuscarEmpleado.Text = "Buscar";
+            this.btnBuscarEmpleado.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnBuscarEmpleado.ToolTipText = "Buscar Empleado";
+            this.btnBuscarEmpleado.Click += new System.EventHandler(this.btnBuscarEmpleado_Click);
+            // 
             // tcEmpleado
             // 
             this.tcEmpleado.Controls.Add(this.DatosDelEmpleado);
@@ -392,6 +413,7 @@
             this.lblServicioActual.Size = new System.Drawing.Size(182, 34);
             this.lblServicioActual.TabIndex = 37;
             this.lblServicioActual.Text = "lblServicioActual";
+            this.lblServicioActual.Visible = false;
             // 
             // label61
             // 
@@ -683,6 +705,8 @@
             // 
             // lblTipoFacturacion
             // 
+            this.lblTipoFacturacion.BackColor = System.Drawing.Color.White;
+            this.lblTipoFacturacion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblTipoFacturacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTipoFacturacion.Location = new System.Drawing.Point(103, 112);
             this.lblTipoFacturacion.Name = "lblTipoFacturacion";
@@ -920,6 +944,7 @@
             // 
             this.pbFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbFoto.ErrorImage = global::ControlHoras.Imagenes.imagen_no_disponible1;
+            this.pbFoto.Image = global::ControlHoras.Imagenes.imagen_no_disponible1;
             this.pbFoto.InitialImage = global::ControlHoras.Imagenes.imagen_no_disponible1;
             this.pbFoto.Location = new System.Drawing.Point(452, 11);
             this.pbFoto.Name = "pbFoto";
@@ -2736,5 +2761,7 @@
         private System.Windows.Forms.Label lblTipoFacturacion;
         private System.Windows.Forms.Label lblServicioActual;
         private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton btnBuscarEmpleado;
     }
 }

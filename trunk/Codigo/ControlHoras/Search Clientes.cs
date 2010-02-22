@@ -45,6 +45,7 @@ namespace ControlHoras
             NomCliente = ClientesDGV.Rows[e.RowIndex].Cells["Nombre"].Value.ToString();
             NumCliente = ClientesDGV.Rows[e.RowIndex].Cells["Nro"].Value.ToString();
         }
+
         
     }
 }

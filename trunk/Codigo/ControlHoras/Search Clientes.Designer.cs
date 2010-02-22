@@ -53,7 +53,7 @@
             // NombreTB
             // 
             this.NombreTB.Location = new System.Drawing.Point(157, 10);
-            this.NombreTB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.NombreTB.Margin = new System.Windows.Forms.Padding(2);
             this.NombreTB.Name = "NombreTB";
             this.NombreTB.Size = new System.Drawing.Size(136, 20);
             this.NombreTB.TabIndex = 0;
@@ -69,7 +69,7 @@
             this.Nombre,
             this.Nro});
             this.ClientesDGV.Location = new System.Drawing.Point(8, 44);
-            this.ClientesDGV.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ClientesDGV.Margin = new System.Windows.Forms.Padding(2);
             this.ClientesDGV.MultiSelect = false;
             this.ClientesDGV.Name = "ClientesDGV";
             this.ClientesDGV.ReadOnly = true;
@@ -100,7 +100,7 @@
             this.OKBTN.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.OKBTN.Enabled = false;
             this.OKBTN.Location = new System.Drawing.Point(236, 216);
-            this.OKBTN.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.OKBTN.Margin = new System.Windows.Forms.Padding(2);
             this.OKBTN.Name = "OKBTN";
             this.OKBTN.Size = new System.Drawing.Size(56, 19);
             this.OKBTN.TabIndex = 22;
@@ -111,7 +111,7 @@
             // 
             this.CancelBTN.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.CancelBTN.Location = new System.Drawing.Point(9, 216);
-            this.CancelBTN.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CancelBTN.Margin = new System.Windows.Forms.Padding(2);
             this.CancelBTN.Name = "CancelBTN";
             this.CancelBTN.Size = new System.Drawing.Size(56, 19);
             this.CancelBTN.TabIndex = 23;
@@ -143,7 +143,7 @@
             this.Controls.Add(this.NombreTB);
             this.Controls.Add(this.label7);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Search_Clientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Búsqueda de Clientes";
