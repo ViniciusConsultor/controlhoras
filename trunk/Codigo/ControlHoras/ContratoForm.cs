@@ -62,10 +62,12 @@ namespace ControlHoras
         {
             MaskedTextBoxColumn mtbc;
 
+            
+            
             mtbc = new MaskedTextBoxColumn();
             mtbc.Name = "Lunes";
             mtbc.HeaderText = "Lunes";            
-            mtbc.Mask = @"00:00   \a   00:00";
+            mtbc.Mask = @"00:00 \a 00:00";
             mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -74,7 +76,7 @@ namespace ControlHoras
             mtbc = new MaskedTextBoxColumn();
             mtbc.Name = "Martes";
             mtbc.HeaderText = "Martes";
-            mtbc.Mask = @"00:00   \a   00:00";
+            mtbc.Mask = @"00:00 \a 00:00";
             mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -83,7 +85,7 @@ namespace ControlHoras
             mtbc = new MaskedTextBoxColumn();
             mtbc.Name = "Miercoles";
             mtbc.HeaderText = "Miercoles";
-            mtbc.Mask = @"00:00   \a   00:00";
+            mtbc.Mask = @"00:00 \a 00:00";
             mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -92,7 +94,7 @@ namespace ControlHoras
             mtbc = new MaskedTextBoxColumn();
             mtbc.Name = "Jueves";
             mtbc.HeaderText = "Jueves";
-            mtbc.Mask = @"00:00   \a   00:00";
+            mtbc.Mask = @"00:00 \a 00:00";
             mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -101,7 +103,7 @@ namespace ControlHoras
             mtbc = new MaskedTextBoxColumn();
             mtbc.Name = "Viernes";
             mtbc.HeaderText = "Viernes";
-            mtbc.Mask = @"00:00   \a   00:00";
+            mtbc.Mask = @"00:00 \a 00:00";
             mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -110,7 +112,7 @@ namespace ControlHoras
             mtbc = new MaskedTextBoxColumn();
             mtbc.Name = "Sabado";
             mtbc.HeaderText = "Sabado";
-            mtbc.Mask = @"00:00   \a   00:00";
+            mtbc.Mask = @"00:00 \a 00:00";
             mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -119,7 +121,7 @@ namespace ControlHoras
             mtbc = new MaskedTextBoxColumn();
             mtbc.Name = "Domingo";
             mtbc.HeaderText = "Domingo";
-            mtbc.Mask = @"00:00   \a   00:00";
+            mtbc.Mask = @"00:00 \a 00:00";
             mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -174,7 +176,7 @@ namespace ControlHoras
 
                         i++;
                     }
-                                        
+                                      
                     
                     llenarForm(numCli, numerosSer[ind]);
 
@@ -199,10 +201,56 @@ namespace ControlHoras
             NombreTB.Text = ser.getNombre();
 
             
-            ContraToS con = null;
+            ConSeguridadFisica con = null;
             int nroCon = CalcNroContrato(numCli, numSer);
             if (datos.existeContrato(nroCon))
             {
+                con = sistema.getContrato(CalcNroContrato(numCli, numSer));
+
+                FIniMTB.Text = con.getFechaIni().ToString();
+                if (con.getFechaFin() != null)
+                {
+                    FinCKB.Checked = true;
+                    FFinMTB.Text = con.getFechaFin().ToString();
+                }
+                if(con.GetCostoFijo())
+                    CostoCB.SelectedIndex = 1;
+                else
+                    CostoCB.SelectedIndex = 0;
+                if (con.getHorasExtras())
+                    HorasExtrasCHK.Checked = true;
+                AjusteTB.Text = con.getAjuste();
+                ObsTB.Text = con.getObservaciones();
+                MontoTB.Text = con.getMonto().ToString();
+
+                int i = 0;
+                DataGridViewRow insr = null;
+                foreach (LineaDeHoras l in con.getLineas())
+                {
+                    insr = new DataGridViewRow();
+                    object[] param = { l.getPuesto(), (l.getArmado())? "1":"0", l.getCantEmp().ToString(), l.getCostoH().ToString()};
+                    
+                    insr.CreateCells( CargaHorariaDGV, param);
+
+                    CargaHorariaDGV.Rows.Add(insr);
+
+                    foreach (HorarioXDia h in l.getHorario())
+                    {
+                        CargaHorariaDGV.Rows[i].Cells[h.getDia()].Value = h.getHoraIni() + " a " + h.getHoraFin();
+                        //insr.Cells[h.getDia()].Value = h.getHoraIni() + " a " + h.getHoraFin();
+                    }
+                    
+                    // Carga los N/T
+                    for (int j=0; j < 11; j++)
+                    {
+                        if (CargaHorariaDGV.Rows[i].Cells[j].Value == null)
+                            CargaHorariaDGV.Rows[i].Cells[j].Value = @"N/T";
+                    }
+                                        
+                    i++;                  
+                    
+                }
+                /*
                 con = datos.obtenerContrato(CalcNroContrato(numCli, numSer));
                 FIniMTB.Text=con.FechaIni.ToString();
                 if (con.FechaFin != null)
@@ -219,6 +267,7 @@ namespace ControlHoras
                 AjusteTB.Text=con.Ajuste;
                 ObsTB.Text=con.Observaciones;
                 MontoTB.Text=con.Costo.ToString();
+                */
             }
             //else
             //    FIniMTB.Focus();            
@@ -304,7 +353,7 @@ namespace ControlHoras
             if (checkDatosObligatorios())
             {
                 try
-                {
+                {                    
                     int numCli = int.Parse(bcUC.ClienteNRO);
                     int numSer = int.Parse(NroMTB.Text);
                     DateTime dti = DateTime.ParseExact(FIniMTB.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
@@ -345,7 +394,10 @@ namespace ControlHoras
                         }   
                     }
 
-                    sistema.altaContrato(nroCon , con);
+                    if (datos.existeContrato(nroCon))
+                        sistema.modificarContrato(nroCon, con);
+                    else
+                        sistema.altaContrato(nroCon , con);
   
                     /*
                     if (datos.existeContrato(nroCon))
@@ -368,7 +420,7 @@ namespace ControlHoras
 
         private string obtHFin(string texto)
         {
-            return texto.Substring(12, 5);
+            return texto.Substring(8, 5);
         }
 
         private string obtHIni(string texto)
@@ -378,7 +430,11 @@ namespace ControlHoras
 
         private bool checkDatosObligatorios()
         {
-            return true;
+            bool valFIni = (FIniMTB.Text.IndexOfAny(new Char[]{'1','2','3','4','5','6','7','8','9','0'}) != -1);
+            if (valFIni)
+                return true;
+            else
+                return false;
         }
 
         public int CalcNroContrato(int nroCli, int nroSer)
@@ -434,6 +490,8 @@ namespace ControlHoras
             AjusteTB.Text = "";
             ObsTB.Text = "";
             MontoTB.Text = "";
+
+            CargaHorariaDGV.Rows.Clear();
         }
     
     }

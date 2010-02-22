@@ -272,6 +272,7 @@ namespace ControlHoras
         {
             ContratoForm contrato = new ContratoForm(bcUC.ClienteNRO, NroMTB.Text);
             contrato.ShowDialog(this);
+        
         }
 
        
