@@ -80,7 +80,6 @@
     <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Properties\DataSources\Cliente.datasource" />
   </ItemGroup>
   <ItemGroup>
