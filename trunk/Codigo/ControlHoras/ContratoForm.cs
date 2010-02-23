@@ -21,7 +21,7 @@ namespace ControlHoras
         int ind;
         int cant;
         int[] numerosSer;
-        String LlenarCamposObligatorios = "Debe llenar todos los campos obligatorios.";
+        String msgError; //"Debe llenar todos los campos obligatorios.";
 
         DataGridViewCell celda;
         string stbuffer;
@@ -241,7 +241,7 @@ namespace ControlHoras
                     }
                     
                     // Carga los N/T
-                    for (int j=0; j < 11; j++)
+                    for (int j=4; j < 11; j++)
                     {
                         if (CargaHorariaDGV.Rows[i].Cells[j].Value == null)
                             CargaHorariaDGV.Rows[i].Cells[j].Value = @"N/T";
@@ -350,10 +350,11 @@ namespace ControlHoras
 
         private void GuardarBTN_Click(object sender, EventArgs e)
         {
-            if (checkDatosObligatorios())
+            try
             {
-                try
-                {                    
+                bcUC.Focus();
+                if (checkDatosObligatorios())
+                {                  
                     int numCli = int.Parse(bcUC.ClienteNRO);
                     int numSer = int.Parse(NroMTB.Text);
                     DateTime dti = DateTime.ParseExact(FIniMTB.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
@@ -408,15 +409,15 @@ namespace ControlHoras
                     //CancelarBTN.PerformClick();
 
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                else
+                    MessageBox.Show(this, msgError, "Contrato no válido", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
-                MessageBox.Show(this, LlenarCamposObligatorios, "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }        
         }
+
 
         private string obtHFin(string texto)
         {
@@ -430,11 +431,133 @@ namespace ControlHoras
 
         private bool checkDatosObligatorios()
         {
-            bool valFIni = (FIniMTB.Text.IndexOfAny(new Char[]{'1','2','3','4','5','6','7','8','9','0'}) != -1);
-            if (valFIni)
+
+            try
+            {
+                if (FIniMTB.Text.IndexOfAny(new Char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }) == -1)
+                {
+                    msgError = "Debe ingresar una fecha de inicio";
+                    return false;
+                }
+                if (FinCKB.Checked)
+                {
+                    if (FFinMTB.Text.IndexOfAny(new Char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }) == -1)
+                    {
+                        msgError = "Fecha de fin NO válida";
+                        return false;
+                    }
+                    if (!esMayorOIgual(FFinMTB.Text, FIniMTB.Text))
+                    {
+                        msgError = "Fecha Fin debe ser mayor que Fecha Inicio";
+                        return false;
+                    }
+                }
+                if (!ValidarCargaHoraria())
+                {
+                    msgError = "Exite un error en la Carga Horaria";
+                    return false;
+                }
+
                 return true;
-            else
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private bool ValidarCargaHoraria()
+        {            
+            foreach (DataGridViewCell c in CargaHorariaDGV.SelectedCells)
+                c.Selected = false;
+            
+            int cf = (CargaHorariaDGV.RowCount-1);            
+            DataGridViewRow f;
+            
+            for (int i = 0; i < cf; i++)
+            {
+                f = CargaHorariaDGV.Rows[i];
+
+                //Validar Puesto
+                if (f.Cells[0].Value == null)
+                {
+                    CargaHorariaDGV.Focus();                        
+                    f.Cells[0].Selected = true;
+                    return false;
+                }
+
+                //Validar Cantidad
+                if (f.Cells[2].Value == null || !esEntero(f.Cells[2].Value.ToString()))
+                {
+                    CargaHorariaDGV.Focus();                        
+                    f.Cells[2].Selected = true;
+                    return false;
+                }
+
+                //Validar Precio
+                if (f.Cells[3].Value == null || !esFloat(f.Cells[3].Value.ToString()))
+                {
+                    CargaHorariaDGV.Focus();
+                    f.Cells[3].Selected = true;
+                    return false;                    
+                }
+
+                //Validar Horarios
+                for (int j = 4; j < 11; j++)
+                {
+                    if (f.Cells[j].Value == null || !ValidarHorario(f.Cells[j].Value.ToString()))
+                    {
+                        CargaHorariaDGV.Focus();                        
+                        f.Cells[j].Selected = true;
+                        return false;
+                    }                        
+                }
+            }
+
+            return true;
+        }
+
+        private bool ValidarHorario(string hor)
+        {
+            if (hor == @"N/T")
+                return true;
+            if (hor.IndexOfAny(new Char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }) == -1)
                 return false;
+            if (hor.Length != 13)
+                return false;
+            string hini = obtHIni(hor);
+            string hfin = obtHFin(hor);
+            DateTimeStyles dts = new DateTimeStyles();
+            DateTime dti;
+            DateTime dtf;            
+
+            if (!DateTime.TryParseExact(hini, @"HH:mm", DateTimeFormatInfo.InvariantInfo, dts, out dti))
+                return false;
+            if (!DateTime.TryParseExact(hfin, @"HH:mm", DateTimeFormatInfo.InvariantInfo, dts, out dtf))
+                return false;
+            if (dti > dtf)
+                return false;
+            return true;
+        }
+       
+        private bool esEntero(string p)
+        {
+            int aux;
+            return int.TryParse(p, out aux);
+        }
+
+        private bool esFloat(string p)
+        {
+            float aux;
+            return float.TryParse(p, out aux);
+        }
+
+        private bool esMayorOIgual(string ffin, string fini)
+        {
+            DateTime dti = DateTime.ParseExact(fini, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+            DateTime dtf = DateTime.ParseExact(ffin, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);            
+            return (dtf >= dti);
         }
 
         public int CalcNroContrato(int nroCli, int nroSer)
