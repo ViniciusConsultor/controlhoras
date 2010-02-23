@@ -12,12 +12,11 @@ namespace ControlHoras
 {
     public partial class Prueba : Form
     {
+        TimeSpan hora;
         public Prueba()
         {
             InitializeComponent();
-          
-
-                                    
+            //hora = new TimeSpan();                                    
         }
 
         protected void textBox1_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -60,7 +59,28 @@ namespace ControlHoras
             errorProvider1.SetError(textBox1, "");
         }
 
-        
+        private void maskedTextBoxKeyDown1_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarHTB(HoraTB.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(HoraTB, "No es una hora válida");
+            }            
+        }
+
+        private bool ValidarHTB(string h)
+        {
+            DateTime dt;
+            DateTimeStyles dts = new DateTimeStyles();
+            return DateTime.TryParseExact(h, @"HH:mm", DateTimeFormatInfo.InvariantInfo, dts, out dt);            
+        }
+
+        private void HoraTB_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(HoraTB, "");
+            hora = TimeSpan.Parse(HoraTB.Text);
+            HTB.Text = hora.ToString().Substring(0,5);
+        }      
 
 
     }
