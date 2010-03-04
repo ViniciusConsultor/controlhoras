@@ -305,6 +305,74 @@ namespace Logica
             datos.altaContrato(con, lhs);
         }
 
+        public ConSeguridadFisica getContrato(int NumeroContrato)
+        {
+            ContraToS con = datos.obtenerContrato(NumeroContrato);
+
+            ConSeguridadFisica aux = new ConSeguridadFisica((con.HorasExtras == (sbyte)1) ? true : false, 0, 0, 0, con.FechaIni.Value, con.FechaFin, con.Ajuste, con.Observaciones, (con.CostoFijo == (sbyte)1) ? true : false, con.Costo.Value);
+
+            LineaDeHoras lhs = null;
+            HorarioXDia hor = null;
+
+            foreach (LineAshOrAs lh in con.LineAshOrAs)
+            {
+                lhs = new LineaDeHoras(lh.Puesto, (lh.Armado == (sbyte)1) ? true : false, lh.PrecioXhOra.Value, (int)(lh.Cantidad), 0, 0);
+
+                foreach (HoRaRioDiA h in lh.HoRaRioDiA)
+                {
+                    if (h.IDContrato == lh.IDContrato && h.NroLinea == lh.NroLinea)
+                    {
+                        hor = new HorarioXDia(h.Dia, h.HoraIni, h.HoraFin);
+                        lhs.addDia(hor);
+                    }
+                }
+                aux.addLinea(lhs);
+            }
+
+            return aux;
+        }
+
+        public void modificarContrato(int NumeroContrato, ConSeguridadFisica Contrato)
+        {
+            datos.modificarContrato(NumeroContrato, Contrato.getFechaIni(), Contrato.getFechaFin(), Contrato.GetCostoFijo(), Contrato.getHorasExtras(), Contrato.getAjuste(), Contrato.getObservaciones(), Contrato.getMonto());
+
+            datos.eliminarLineasContrato(NumeroContrato);
+
+            List<LineAshOrAs> lhs = new List<LineAshOrAs>();
+            LineAshOrAs lh = null;
+            int i = 0;
+            foreach (LineaDeHoras ldh in Contrato.getLineas())
+            {
+                lh = new LineAshOrAs();
+                lh.IDContrato = (uint)NumeroContrato;
+                lh.NroLinea = (sbyte)i;
+                lh.Puesto = ldh.getPuesto();
+                lh.Armado = (ldh.getArmado()) ? (sbyte)1 : (sbyte)0;
+                lh.Cantidad = (sbyte)ldh.getCantEmp();
+                lh.PrecioXhOra = ldh.getCostoH();
+
+                //pasar los horarios por dia
+                HoRaRioDiA hd = null;
+                foreach (HorarioXDia hpd in ldh.getHorario())
+                {
+                    hd = new HoRaRioDiA();
+                    hd.IDContrato = (uint)NumeroContrato;
+                    hd.NroLinea = (sbyte)i;
+                    hd.Dia = hpd.getDia();
+                    hd.HoraIni = hpd.getHoraIni();
+                    hd.HoraFin = hpd.getHoraFin();
+
+                    lh.HoRaRioDiA.Add(hd);
+                }
+
+                lhs.Add(lh);
+                //con.LineAshOrAs.Add(lh);
+                i++;
+            }
+
+            datos.guardarLineasContrato(lhs);
+        }
         
+
     }
 }
