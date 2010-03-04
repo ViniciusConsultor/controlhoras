@@ -43,5 +43,9 @@ namespace Logica
         bool existeContrato(int NumeroContrato);
 
         void altaContrato(int NumeroContrato, ConSeguridadFisica contrato);
+
+        ConSeguridadFisica getContrato(int NumeroContrato);
+
+        void modificarContrato(int NumeroContrato, ConSeguridadFisica Contrato);
     }
 }
