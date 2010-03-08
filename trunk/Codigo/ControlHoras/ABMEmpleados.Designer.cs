@@ -878,12 +878,12 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(61, 41);
+            this.txtNombre.Location = new System.Drawing.Point(63, 41);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(147, 21);
             this.txtNombre.TabIndex = 12;
+            this.txtNombre.Leave += new System.EventHandler(this.txtNombre_Leave);
             // 
             // label3
             // 
@@ -891,9 +891,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(217, 45);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 13);
+            this.label3.Size = new System.Drawing.Size(63, 13);
             this.label3.TabIndex = 11;
-            this.label3.Text = "Apellido *";
+            this.label3.Text = "Apellidos*";
             // 
             // label2
             // 
@@ -901,9 +901,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(2, 45);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 13);
+            this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Nombre *";
+            this.label2.Text = "Nombres*";
             // 
             // lblNumero
             // 
@@ -921,7 +921,7 @@
             this.mtNumeroEmpleado.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.mtNumeroEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mtNumeroEmpleado.HidePromptOnLeave = true;
-            this.mtNumeroEmpleado.Location = new System.Drawing.Point(61, 12);
+            this.mtNumeroEmpleado.Location = new System.Drawing.Point(63, 12);
             this.mtNumeroEmpleado.Mask = "0999";
             this.mtNumeroEmpleado.Name = "mtNumeroEmpleado";
             this.mtNumeroEmpleado.Size = new System.Drawing.Size(44, 21);
