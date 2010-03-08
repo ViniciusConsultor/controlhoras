@@ -647,7 +647,10 @@ namespace ControlHoras
 
         private bool checkDatosObligatorios()
         {
-            return (mtNumeroEmpleado.Text != "" && txtNombre.Text != "" && txtApellido.Text != "" && cmbTipoDocumento.SelectedIndex > -1 && mtNumeroDocumento.Text != "");
+            bool aux = true;
+            if (cmbTipoDocumento.Text == "C.I.")
+                aux = mtNumeroDocumento.MaskCompleted;
+            return (mtNumeroEmpleado.Text != "" && txtNombre.Text != "" && txtApellido.Text != "" && cmbTipoDocumento.SelectedIndex > -1 && mtNumeroDocumento.Text != "" && aux);
 
         }
 
@@ -1326,13 +1329,28 @@ namespace ControlHoras
 
         private string TranfaTitulo(string ori)
         {
-            string dest = ori.Trim();
-            int esp = dest.LastIndexOf(" ");
-            string aux = (esp+2 < dest.Length)? dest.Substring(esp + 2).ToLower():"?";
-            if (esp == -1)
-                return dest.Substring(0, 1).ToUpper() + dest.Substring(1).ToLower();
+            if (ori.Length > 1)
+            {
+                string dest = ori.Trim();
+                int esp = dest.LastIndexOf(" ");
+                string aux = (esp + 2 < dest.Length) ? dest.Substring(esp + 2).ToLower() : "?";
+                if (esp == -1)
+                    return dest.Substring(0, 1).ToUpper() + dest.Substring(1).ToLower();
+                else
+                    return dest.Substring(0, 1).ToUpper() + dest.Substring(1, esp).ToLower() + dest.Substring(esp + 1, 1).ToUpper() + aux;
+            }
             else
-                return dest.Substring(0, 1).ToUpper() + dest.Substring(1, esp).ToLower() + dest.Substring(esp + 1, 1).ToUpper() + aux;
+                return ori;
+        }
+
+        private void cmbTipoDocumento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbTipoDocumento.Text == "C.I.")
+                mtNumeroDocumento.Mask = "00000000";
+            else
+                mtNumeroDocumento.Mask = null;
+
+            //mtNumeroDocumento.Refresh();
         }
 
     }

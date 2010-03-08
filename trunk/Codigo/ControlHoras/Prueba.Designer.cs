@@ -38,6 +38,7 @@
             this.maskedTextBoxColumn1 = new ControlHoras.MaskedTextBoxColumn();
             this.HoraTB = new ControlHoras.MaskedTextBoxKeyDown();
             this.HTB = new System.Windows.Forms.TextBox();
+            this.mtbkd = new ControlHoras.MaskedTextBoxKeyDown();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,7 +58,7 @@
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 22);
-            this.textBox2.TabIndex = 2;
+            this.textBox2.TabIndex = 5;
             // 
             // errorProvider1
             // 
@@ -102,7 +103,7 @@
             this.HoraTB.Mask = "00:00";
             this.HoraTB.Name = "HoraTB";
             this.HoraTB.Size = new System.Drawing.Size(100, 22);
-            this.HoraTB.TabIndex = 0;
+            this.HoraTB.TabIndex = 1;
             this.HoraTB.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBoxKeyDown1_Validating);
             this.HoraTB.Validated += new System.EventHandler(this.HoraTB_Validated);
             // 
@@ -111,13 +112,21 @@
             this.HTB.Location = new System.Drawing.Point(325, 153);
             this.HTB.Name = "HTB";
             this.HTB.Size = new System.Drawing.Size(100, 22);
-            this.HTB.TabIndex = 1;
+            this.HTB.TabIndex = 2;
+            // 
+            // mtbkd
+            // 
+            this.mtbkd.Location = new System.Drawing.Point(55, 12);
+            this.mtbkd.Name = "mtbkd";
+            this.mtbkd.Size = new System.Drawing.Size(100, 22);
+            this.mtbkd.TabIndex = 0;
             // 
             // Prueba
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(885, 443);
+            this.Controls.Add(this.mtbkd);
             this.Controls.Add(this.HTB);
             this.Controls.Add(this.HoraTB);
             this.Controls.Add(this.button1);
@@ -143,6 +152,7 @@
         private System.Windows.Forms.Button button1;
         private MaskedTextBoxKeyDown HoraTB;
         private System.Windows.Forms.TextBox HTB;
+        private MaskedTextBoxKeyDown mtbkd;
 
 
     }
