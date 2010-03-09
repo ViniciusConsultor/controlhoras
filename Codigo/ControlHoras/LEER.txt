@@ -1,0 +1,23 @@
+Agregar los siguientes SETTINGS en el archivo:
+
+ControlHoras.exe.config
+
+que se encuentra en:
+
+..\Codigo\ControlHoras\bin\Debug\
+
+
+
+SETTINGS
+
+<configSections>
+</configSections>
+	<appSettings>
+		<add key="Servidor" value ="localhost"/>
+		<add key="Puerto" value ="3306"/>
+		<add key="Usuario" value ="root"/>
+		<add key="Password" value ="desdere"/>
+		<add key ="Base" value ="trustdb"/>
+	</appSettings>
+
+
