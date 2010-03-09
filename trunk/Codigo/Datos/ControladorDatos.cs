@@ -9,6 +9,7 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using Excepciones;
 using System.Data;
+using System.Configuration;
 
 namespace Datos
 {
@@ -41,13 +42,38 @@ namespace Datos
         }
         internal static MySqlConnection createConexion()//(string StringConnection)
         {
+            //System.Configuration.Configuration config =
+            // ConfigurationManager.OpenExeConfiguration(
+            // ConfigurationUserLevel.None);
+            //int appStgCnt =
+            //    ConfigurationManager.AppSettings.Count;
+            //string newKey = "Servidor";
+
+            //string newValue = "localhost";
+
+            //config.AppSettings.Settings.Add(newKey, newValue);
+
+            //// Save the configuration file.
+            //config.Save(ConfigurationSaveMode.Modified);
+
+            //// Force a reload of the changed section.
+            //ConfigurationManager.RefreshSection("appSettings");
+
+
+
+            string pru = ConfigurationManager.AppSettings["Servidor"].ToString();
             var builder = new MySqlConnectionStringBuilder() //(StringConnection)
             {
-                Server = "localhost",
-                Port = 3306,
-                UserID = "root",
-                Password = "desdere",
-                Database = "trustdb",
+                //Server = "localhost",
+                Server = ConfigurationManager.AppSettings["Servidor"].ToString(),
+                //Port = 3306,
+                Port = uint.Parse(ConfigurationManager.AppSettings["Puerto"].ToString()),
+                //UserID = "root",
+                UserID = ConfigurationManager.AppSettings["Usuario"].ToString(),
+                //Password = "desdere",
+                Password = ConfigurationManager.AppSettings["Password"].ToString(),
+                //Database = "trustdb",
+                Database = ConfigurationManager.AppSettings["Base"].ToString(),
                 Pooling = false,
                 ConnectionLifeTime = 0
             };
