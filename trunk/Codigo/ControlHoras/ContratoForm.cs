@@ -571,7 +571,10 @@ namespace ControlHoras
             DateTime dt;
             DateTimeStyles dts = new DateTimeStyles();
 
-            return DateTime.TryParseExact(fecha, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo, dts, out dt);
+            if (fecha == @"  /  /")
+                return true;
+            else
+                return DateTime.TryParseExact(fecha, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo, dts, out dt);
         }
 
         private void FIniMTB_Validating(object sender, CancelEventArgs e)
@@ -616,6 +619,7 @@ namespace ControlHoras
 
             CargaHorariaDGV.Rows.Clear();
         }
+        
     
     }
 }

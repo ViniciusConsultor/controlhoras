@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Logica;
 using System.Drawing;
 using System.IO;
+using System.Globalization;
 using Utilidades;
 using Datos;
 
@@ -181,7 +182,7 @@ namespace ControlHoras
                     ComboBoxValue cbval = new ComboBoxValue(tipo.Nombre, (int)tipo.IDCargo);
                     cmbTiposCargos.Items.Add(cbval);
                 }
-                cmbTiposCargos.EndUpdate();                
+                cmbTiposCargos.EndUpdate();
             }
             catch (Exception ex)
             {
@@ -209,7 +210,7 @@ namespace ControlHoras
             btnExtrasAgregar.Enabled = false;
             btnExtrasEliminar.Enabled = false;
             btnExtrasGuardar.Enabled = false;
-            dtpFechaIngreso.Value = DateTime.Now;
+            dtpFechaIngreso.Text = DateTime.Now.ToString();
             mtNumeroEmpleado.Focus();
 
         }
@@ -321,22 +322,22 @@ namespace ControlHoras
             catch (Exception e) { }
             try
             {
-                dtpFechaAltaBPS.Value = empleado.BpsfEchaAlta.Value;
+                dtpFechaAltaBPS.Text = empleado.BpsfEchaAlta.Value.ToString();
             }
             catch (Exception e) { }
             try
             {
-                dtpFechaBajaBPS.Value = empleado.BpsfEchaBaja.Value;
+                dtpFechaBajaBPS.Text = empleado.BpsfEchaBaja.Value.ToString();
             }
             catch (Exception e) { }
             try
             {
-                dtpFechaEmisionCAJ.Value = empleado.CajfEchaEmision.Value;
+                dtpFechaEmisionCAJ.Text = empleado.CajfEchaEmision.Value.ToString();
             }
             catch (Exception e) { }
             try
             {
-                dtpFechaEntregaCAJ.Value = empleado.CajfEchaEntrega.Value;
+                dtpFechaEntregaCAJ.Text = empleado.CajfEchaEntrega.Value.ToString();
             }
             catch (Exception e) { }
             try
@@ -414,42 +415,42 @@ namespace ControlHoras
             catch (Exception e) { }
             try
             {
-                dtpFechaBaja.Value = empleado.FechaBaja.Value;
+                dtpFechaBaja.Text = empleado.FechaBaja.Value.ToString();
             }
             catch (Exception e) { }
             try
             {
-                dtpFechaEgresoPolicialMilitar.Value = empleado.FechaEgresoPolicialoMilitar.Value;
+                dtpFechaEgresoPolicialMilitar.Text = empleado.FechaEgresoPolicialoMilitar.Value.ToString();
             }
             catch (Exception e) { }
             try
             {
-                dtpFechaIngreso.Value = empleado.FechaIngreso.Value;
+                dtpFechaIngreso.Text = empleado.FechaIngreso.Value.ToString();
             }
             catch (Exception e) { }
             try
             {
-                dtpFechaIngresoRenaemse.Value = empleado.RenaemsefEchaIngreso.Value;
+                dtpFechaIngresoRenaemse.Text = empleado.RenaemsefEchaIngreso.Value.ToString();
             }
             catch (Exception e) { }
             try
             {
-                dtpFechaIngresoPolicialMilitar.Value = empleado.FechaIngresoPolicialoMilitar.Value ;
+                dtpFechaIngresoPolicialMilitar.Text = empleado.FechaIngresoPolicialoMilitar.Value.ToString();
             }
             catch (Exception e) { }
             try
             {
-                dtpFechaNacimiento.Value = empleado.FechaNacimiento.Value;
+                dtpFechaNacimiento.Text = empleado.FechaNacimiento.Value.ToString();
             }
             catch (Exception e) { }
             try
             {
-                dtpPsicologo.Value = empleado.FechaTestPsicologico.Value;
+                dtpPsicologo.Text = empleado.FechaTestPsicologico.Value.ToString();
             }
             catch (Exception e) { }
             try
             {
-                dtpFechaVencimientoCarneSalud.Value =  empleado.FechaVencimientoCarneDeSalud.Value;
+                dtpFechaVencimientoCarneSalud.Text = empleado.FechaVencimientoCarneDeSalud.Value.ToString();
             }
             catch (Exception e) { }
             try
@@ -567,7 +568,7 @@ namespace ControlHoras
                 cmbTipoDocumento.SelectedIndex = empleado.IDTipoDocumento;
             }
             catch (Exception e) { }
-            lblEdad.Text = calcularEdad(dtpFechaNacimiento.Value).ToString();
+            lblEdad.Text = calcularEdad(DateTime.ParseExact(dtpFechaNacimiento.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo)).ToString();
 
             cargarHistorialEmpleado((int)empleado.IDEmpleado);
             dtpExtrasFecha.Value = DateTime.Today;
@@ -671,7 +672,7 @@ namespace ControlHoras
                 bool activo = !cbNoActivo.Checked;
                 if (cbNoActivo.Checked)
                 {
-                    dtpBaja = dtpFechaBaja.Value;
+                    dtpBaja = DateTime.ParseExact(dtpFechaBaja.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
                 }
                 bool combatiente = cbCombatiente.Enabled;
                 bool antecedentesPolicialesOMilitares = cbAntecedentePolicialoMilitar.Enabled;
@@ -707,10 +708,10 @@ namespace ControlHoras
                 if (agregar)
                      
                     //sistema.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), txtNombre.Text, txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, txtNacionalidad.Text, sexo, dtpPsicologo.Value, dtpFechaNacimiento.Value, dtpFechaIngreso.Value, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantHijos, foto, idbanco, txtNumeroCuenta.Text, sueldo, activo, dtpFechaBaja.Value, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngresoRenaemse.Value, acumulacionLaboral, dtpFechaAltaBPS.Value, dtpFechaBajaBPS.Value, txtNumeroCAJ.Text, dtpFechaEmisionCAJ.Value, dtpFechaEntregaCAJ.Value, antecedentes, cmbPolicialMilitar.Text, dtpFechaIngresoPolicialMilitar.Value, dtpFechaEgresoPolicialMilitar.Value, txtPolicialSubEscalafon.Text, combatiente, txtTalleCamisa.Text, txtTallePantalon.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVencimientoCarneSalud.Value, idmutualista, idemergenciamovil);
-                    datos.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, txtNacionalidad.Text, sexo, dtpPsicologo.Value, dtpFechaNacimiento.Value, edad, dtpFechaIngreso.Value, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, idbanco, txtNumeroCuenta.Text, sueldo, activo, dtpFechaBaja.Value, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtBarrio.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngresoRenaemse.Value, acumulacionLaboral, dtpFechaAltaBPS.Value, dtpFechaBajaBPS.Value, txtNumeroCAJ.Text, dtpFechaEmisionCAJ.Value, dtpFechaEntregaCAJ.Value, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngresoPolicialMilitar.Value, dtpFechaEgresoPolicialMilitar.Value, txtPolicialSubEscalafon.Text, combatiente, txtTalleCamisa.Text, txtTallePantalon.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVencimientoCarneSalud.Value, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text);
+                    datos.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, txtNacionalidad.Text, sexo, DateTime.ParseExact(dtpPsicologo.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), DateTime.ParseExact(dtpFechaNacimiento.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), edad, DateTime.ParseExact(dtpFechaIngreso.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, idbanco, txtNumeroCuenta.Text, sueldo, activo, DateTime.ParseExact(dtpFechaBaja.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtBarrio.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, DateTime.ParseExact(dtpFechaIngresoRenaemse.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), acumulacionLaboral, DateTime.ParseExact(dtpFechaAltaBPS.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), DateTime.ParseExact(dtpFechaBajaBPS.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), txtNumeroCAJ.Text, DateTime.ParseExact(dtpFechaEmisionCAJ.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), DateTime.ParseExact(dtpFechaEntregaCAJ.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, DateTime.ParseExact(dtpFechaIngresoPolicialMilitar.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), DateTime.ParseExact(dtpFechaEgresoPolicialMilitar.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), txtPolicialSubEscalafon.Text, combatiente, txtTalleCamisa.Text, txtTallePantalon.Text, mtTalleZapatos.Text, txtTalleCampera.Text, DateTime.ParseExact(dtpFechaVencimientoCarneSalud.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text);
                     //datos.modificarEmpleado(idEmpleado, nombre,                         apellido, idTipoDocumento, documento, lugarNacimiento, nacionalidad, sexo, fechaPsicologo, fechaNacimiento, edad, fechaIngreso, telefono, celular, celularConvenio, email, estadoCivil, cantidadHijos, foto, idBanco, numeroCuenta, sueldo, activo, fechaBaja, motivoBaja, idDepartamento, ciudad, barrio, direccion, entreCalles, puntoEncuentro, numeroAsuntoRENAEMSE, fechaIngresoRENAEMSE, acumulacionLaboralBPS, fechaAltaBPS, fechaBajaBPS, numeroCAJ, fechaEmisionCAJ, fechaEntregaCAJ, antecedentesEmpleado, observacionesAntecedentesEmpleado, antecedentesPolicialesOMilitares, PolicialOMilitar, fechaIngresoAntecedete, fechaEgresoAntecedente, subEscalafon, combatiente, talleCamisa, tallePantalon, talleZapatos, talleCampera, vencimientoCarneSalud, idMutualista, idEmergenciaMedica,capacitadoPorteArma,enServicioArmado,observacionesEmpleado);
                 else
-                    datos.modificarEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, txtNacionalidad.Text, sexo, dtpPsicologo.Value, dtpFechaNacimiento.Value, edad, dtpFechaIngreso.Value, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, idbanco, txtNumeroCuenta.Text, sueldo, activo, dtpFechaBaja.Value, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtBarrio.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngresoRenaemse.Value, acumulacionLaboral, dtpFechaAltaBPS.Value, dtpFechaBajaBPS.Value, txtNumeroCAJ.Text, dtpFechaEmisionCAJ.Value, dtpFechaEntregaCAJ.Value, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngresoPolicialMilitar.Value, dtpFechaEgresoPolicialMilitar.Value, txtPolicialSubEscalafon.Text, combatiente, txtTalleCamisa.Text, txtTallePantalon.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVencimientoCarneSalud.Value, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text);
+                    datos.modificarEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, txtNacionalidad.Text, sexo, DateTime.ParseExact(dtpPsicologo.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), DateTime.ParseExact(dtpFechaNacimiento.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), edad, DateTime.ParseExact(dtpFechaIngreso.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, idbanco, txtNumeroCuenta.Text, sueldo, activo, DateTime.ParseExact(dtpFechaBaja.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtBarrio.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, DateTime.ParseExact(dtpFechaIngresoRenaemse.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), acumulacionLaboral, DateTime.ParseExact(dtpFechaAltaBPS.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), DateTime.ParseExact(dtpFechaBajaBPS.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), txtNumeroCAJ.Text, DateTime.ParseExact(dtpFechaEmisionCAJ.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), DateTime.ParseExact(dtpFechaEntregaCAJ.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, DateTime.ParseExact(dtpFechaIngresoPolicialMilitar.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), DateTime.ParseExact(dtpFechaEgresoPolicialMilitar.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), txtPolicialSubEscalafon.Text, combatiente, txtTalleCamisa.Text, txtTallePantalon.Text, mtTalleZapatos.Text, txtTalleCampera.Text, DateTime.ParseExact(dtpFechaVencimientoCarneSalud.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo), idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text);
                 btnCancelar.PerformClick();
             }
             catch (Exception ex)
@@ -737,7 +738,7 @@ namespace ControlHoras
             {
                 dtpFechaBaja.Enabled = true;
                 txtMotivoBaja.Enabled = true;
-                dtpFechaBaja.Value = DateTime.Today;
+                dtpFechaBaja.Text = DateTime.Today.ToString();
             }
             else
             {
@@ -769,17 +770,18 @@ namespace ControlHoras
 
         private void dtpFechaNacimiento_ValueChanged(object sender, EventArgs e)
         {
-            
-            lblEdad.Text = calcularEdad(dtpFechaNacimiento.Value).ToString();
+
+            lblEdad.Text = calcularEdad(DateTime.ParseExact(dtpFechaNacimiento.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo)).ToString();
         }
 
         private int calcularEdad(DateTime fecha)
         {
-            int anio = (DateTime.Now.Year - dtpFechaNacimiento.Value.Year);
-            if (DateTime.Now.Month < dtpFechaNacimiento.Value.Month)
+            DateTime FechaNac = DateTime.ParseExact(dtpFechaNacimiento.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+            int anio = (DateTime.Now.Year - FechaNac.Year);
+            if (DateTime.Now.Month < FechaNac.Month)
                 anio = anio - 1;
-            else if (DateTime.Now.Month == dtpFechaNacimiento.Value.Month)
-                if (DateTime.Now.Day < dtpFechaNacimiento.Value.Day)
+            else if (DateTime.Now.Month == FechaNac.Month)
+                if (DateTime.Now.Day < FechaNac.Day)
                     anio = anio - 1;
             return anio;
         }
@@ -794,7 +796,10 @@ namespace ControlHoras
 
         private void btnAgregarHistorial_Click(object sender, EventArgs e)
         {
-            if (dtpFechaInicioHistorial.Value > dtpFechaFinHistorial.Value)
+            DateTime FechaIni = DateTime.ParseExact(dtpFechaInicioHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+            DateTime FechaFin = DateTime.ParseExact(dtpFechaFinHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+
+            if (FechaIni > FechaFin)
                 MessageBox.Show("La Fecha Fin tiene que ser mayor que la Fecha Inicio.");
             else if (cmbTipoEventoHistorial.SelectedIndex >=0 && txtDescripcionHistorial.Text != "")
             {
@@ -803,12 +808,12 @@ namespace ControlHoras
                 {
                  
                     int idTipoEventoSelected = ((ComboBoxValue) cmbTipoEventoHistorial.Items[cmbTipoEventoHistorial.SelectedIndex]).Value;
-                    int numEventoNuevo = datos.agregarEventoHistorialEmpleado(int.Parse(mtNumeroEmpleado.Text), dtpFechaInicioHistorial.Value, dtpFechaFinHistorial.Value, idTipoEventoSelected , txtDescripcionHistorial.Text);
+                    int numEventoNuevo = datos.agregarEventoHistorialEmpleado(int.Parse(mtNumeroEmpleado.Text), FechaIni, FechaFin, idTipoEventoSelected , txtDescripcionHistorial.Text);
                     // Una vez agregado el registro, insertamos una nueva fila en el datagrid
                     n = dgvHistorialEmpleado.Rows.Add();
                     dgvHistorialEmpleado.Rows[n].Cells["IdEventoHistorialEmpleado"].Value = numEventoNuevo.ToString();
-                    dgvHistorialEmpleado.Rows[n].Cells["FechaInicio"].Value = dtpFechaInicioHistorial.Value.ToShortDateString();
-                    dgvHistorialEmpleado.Rows[n].Cells["FechaFin"].Value = dtpFechaFinHistorial.Value.ToShortDateString();
+                    dgvHistorialEmpleado.Rows[n].Cells["FechaInicio"].Value = FechaIni.ToShortDateString();
+                    dgvHistorialEmpleado.Rows[n].Cells["FechaFin"].Value = FechaFin.ToShortDateString();
 
                     dgvHistorialEmpleado.Rows[n].Cells["Descripcion"].Value = txtDescripcionHistorial.Text ;
                     dgvHistorialEmpleado.Rows[n].Cells["IdTipoEvento"].Value = idTipoEventoSelected;
@@ -828,8 +833,8 @@ namespace ControlHoras
 
         private void limpiarTabHistorial()
         {
-            dtpFechaInicioHistorial.Value = DateTime.Today;
-            dtpFechaFinHistorial.Value = DateTime.Today;
+            dtpFechaInicioHistorial.Text = DateTime.Today.ToString();
+            dtpFechaFinHistorial.Text = DateTime.Today.ToString();
             //cmbTipoEventoHistorial.SelectedIndex = 0;
             txtDescripcionHistorial.Text = "";
             btnAddTipoEvento.Enabled = true;
@@ -839,6 +844,9 @@ namespace ControlHoras
 
         private void btnGuardarHistorial_Click(object sender, EventArgs e)
         {
+            DateTime FechaIni = DateTime.ParseExact(dtpFechaInicioHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+            DateTime FechaFin = DateTime.ParseExact(dtpFechaFinHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+
             int numFila = 0;
             while (dgvHistorialEmpleado.RowCount > numFila && lblIdEventoHistorialEmpleado.Text != dgvHistorialEmpleado.Rows[numFila].Cells["IdEventoHistorialEmpleado"].Value.ToString())
             {
@@ -847,15 +855,15 @@ namespace ControlHoras
             if (numFila != dgvHistorialEmpleado.RowCount)
             {
 
-                if (dtpFechaInicioHistorial.Value > dtpFechaFinHistorial.Value)
+                if (FechaIni > FechaFin)
                     MessageBox.Show("La Fecha Fin tiene que ser mayor que la Fecha Inicio.");
                 else if (cmbTipoEventoHistorial.SelectedIndex >= 0 && txtDescripcionHistorial.Text != "")
                 {
                     int idEvento = ((ComboBoxValue) cmbTipoEventoHistorial.SelectedItem).Value;
-                    datos.modificarEventoHistorialEmpleado(int.Parse(lblIdEventoHistorialEmpleado.Text), int.Parse(mtNumeroEmpleado.Text), dtpFechaInicioHistorial.Value, dtpFechaFinHistorial.Value, idEvento, txtDescripcionHistorial.Text);
+                    datos.modificarEventoHistorialEmpleado(int.Parse(lblIdEventoHistorialEmpleado.Text), int.Parse(mtNumeroEmpleado.Text), FechaIni, FechaFin, idEvento, txtDescripcionHistorial.Text);
                     dgvHistorialEmpleado.Rows[numFila].Cells["IdEventoHistorialEmpleado"].Value = lblIdEventoHistorialEmpleado.Text;
-                    dgvHistorialEmpleado.Rows[numFila].Cells["FechaInicio"].Value = dtpFechaInicioHistorial.Value.ToShortDateString();
-                    dgvHistorialEmpleado.Rows[numFila].Cells["FechaFin"].Value = dtpFechaFinHistorial.Value.ToShortDateString();
+                    dgvHistorialEmpleado.Rows[numFila].Cells["FechaInicio"].Value = FechaIni.ToShortDateString();
+                    dgvHistorialEmpleado.Rows[numFila].Cells["FechaFin"].Value = FechaFin.ToShortDateString();
 
                     dgvHistorialEmpleado.Rows[numFila].Cells["Descripcion"].Value = txtDescripcionHistorial.Text;
                     dgvHistorialEmpleado.Rows[numFila].Cells["IdTipoEvento"].Value = idEvento;
@@ -872,7 +880,10 @@ namespace ControlHoras
 
         private void btnEliminarHistorial_Click(object sender, EventArgs e)
         {
-            if (dtpFechaInicioHistorial.Value > dtpFechaFinHistorial.Value)
+            DateTime FechaIni = DateTime.ParseExact(dtpFechaInicioHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+            DateTime FechaFin = DateTime.ParseExact(dtpFechaFinHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+
+            if (FechaIni > FechaFin)
                 MessageBox.Show("La Fecha Fin tiene que ser mayor que la Fecha Inicio.","Error Fechas",MessageBoxButtons.OK,MessageBoxIcon.Information);
             else if (cmbTipoEventoHistorial.SelectedIndex >=0 && txtDescripcionHistorial.Text != "")
             {
@@ -959,6 +970,9 @@ namespace ControlHoras
 
         private void dgvHistorialEmpleado_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            DateTime FechaIni = DateTime.ParseExact(dtpFechaInicioHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+            DateTime FechaFin = DateTime.ParseExact(dtpFechaFinHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+
             if (e.RowIndex == -1)
             {
                 return;
@@ -966,8 +980,8 @@ namespace ControlHoras
             try
             {
                 lblIdEventoHistorialEmpleado.Text = dgvHistorialEmpleado.Rows[e.RowIndex].Cells["IdEventoHistorialEmpleado"].Value.ToString();
-                dtpFechaInicioHistorial.Value = DateTime.Parse(dgvHistorialEmpleado.Rows[e.RowIndex].Cells["FechaInicio"].Value.ToString());
-                dtpFechaFinHistorial.Value = DateTime.Parse(dgvHistorialEmpleado.Rows[e.RowIndex].Cells["FechaFin"].Value.ToString());
+                dtpFechaInicioHistorial.Text = dgvHistorialEmpleado.Rows[e.RowIndex].Cells["FechaInicio"].Value.ToString();
+                dtpFechaFinHistorial.Text = dgvHistorialEmpleado.Rows[e.RowIndex].Cells["FechaFin"].Value.ToString();
                 txtDescripcionHistorial.Text = dgvHistorialEmpleado.Rows[e.RowIndex].Cells["Descripcion"].Value.ToString();
                 int numIndice = 0;
                 foreach (ComboBoxValue v in cmbTipoEventoHistorial.Items)
@@ -1184,19 +1198,19 @@ namespace ControlHoras
         private void cbBajadoBPS_CheckedChanged(object sender, EventArgs e)
         {
             dtpFechaBajaBPS.Enabled = cbBajadoBPS.Checked;
-            dtpFechaBajaBPS.Value = DateTime.Today;
+            dtpFechaBajaBPS.Text = DateTime.Today.ToString();
         }
 
         private void cbBajadoMTSS_CheckedChanged(object sender, EventArgs e)
         {
             dtpFechaBajaMTSS.Enabled = cbBajadoMTSS.Checked;
-            dtpFechaBajaMTSS.Value = DateTime.Today;
+            dtpFechaBajaMTSS.Text = DateTime.Today.ToString();
         }
 
         private void cbEgresadoEmpresa_CheckedChanged(object sender, EventArgs e)
         {
             dtpFechaEgresoEmpresa.Enabled = cbEgresadoEmpresa.Checked;
-            dtpFechaEgresoEmpresa.Value = DateTime.Today;
+            dtpFechaEgresoEmpresa.Text = DateTime.Today.ToString();
         }
 
         private void cmbPolicialMilitar_SelectedValueChanged(object sender, EventArgs e)
@@ -1353,6 +1367,268 @@ namespace ControlHoras
             //mtNumeroDocumento.Refresh();
         }
 
+
+        #region **** VALIDAR FECHAS ****
+
+        private bool ValidarFecha(string fecha)
+        {
+            DateTime dt;
+            DateTimeStyles dts = new DateTimeStyles();
+
+            if (fecha == @"  /  /")
+                return true;
+            else
+                return DateTime.TryParseExact(fecha, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo, dts, out dt);
+        }
+
+        
+        private void dtpFechaNacimiento_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(dtpFechaNacimiento.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(dtpFechaNacimiento, "No es una fecha válida");
+            }
+        }
+
+        private void dtpFechaIngreso_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(dtpFechaIngreso.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(dtpFechaIngreso, "No es una fecha válida");
+            }
+        }
+
+        private void dtpFechaVencimientoCarneSalud_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(dtpFechaVencimientoCarneSalud.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(dtpFechaVencimientoCarneSalud, "No es una fecha válida");
+            }
+        }
+
+        private void dtpPsicologo_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(dtpPsicologo.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(dtpPsicologo, "No es una fecha válida");
+            }
+        }
+
+        private void dtpFechaIngresoRenaemse_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(dtpFechaIngresoRenaemse.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(dtpFechaIngresoRenaemse, "No es una fecha válida");
+            }
+        }
+
+        private void dtpFechaAltaBPS_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(dtpFechaAltaBPS.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(dtpFechaAltaBPS, "No es una fecha válida");
+            }
+        }
+
+        private void dtpFechaBajaBPS_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(dtpFechaBajaBPS.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(dtpFechaBajaBPS, "No es una fecha válida");
+            }
+        }
+
+        private void dtpFechaEmisionCAJ_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(dtpFechaEmisionCAJ.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(dtpFechaEmisionCAJ, "No es una fecha válida");
+            }
+        }
+
+        private void dtpFechaEntregaCAJ_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(dtpFechaEntregaCAJ.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(dtpFechaEntregaCAJ, "No es una fecha válida");
+            }
+        }
+
+        private void dtpFechaAltaMTSS_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(dtpFechaAltaMTSS.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(dtpFechaAltaMTSS, "No es una fecha válida");
+            }
+        }
+
+        private void dtpFechaBajaMTSS_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(dtpFechaBajaMTSS.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(dtpFechaBajaMTSS, "No es una fecha válida");
+            }
+        }
+
+        private void dtpFechaEgresoEmpresa_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(dtpFechaEgresoEmpresa.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(dtpFechaEgresoEmpresa, "No es una fecha válida");
+            }
+        }
+
+        private void dtpFechaIngresoPolicialMilitar_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(dtpFechaIngresoPolicialMilitar.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(dtpFechaIngresoPolicialMilitar, "No es una fecha válida");
+            }
+        }
+
+        private void dtpFechaEgresoPolicialMilitar_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(dtpFechaEgresoPolicialMilitar.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(dtpFechaEgresoPolicialMilitar, "No es una fecha válida");
+            }
+        }
+
+        private void dtpFechaBaja_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(dtpFechaBaja.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(dtpFechaBaja, "No es una fecha válida");
+            }
+        }
+
+        private void dtpFechaInicioHistorial_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(dtpFechaInicioHistorial.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(dtpFechaInicioHistorial, "No es una fecha válida");
+            }
+        }
+
+        private void dtpFechaFinHistorial_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(dtpFechaFinHistorial.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(dtpFechaFinHistorial, "No es una fecha válida");
+            }
+        }
+
+        private void dtpFechaFinHistorial_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(dtpFechaFinHistorial, "");
+        }
+
+        private void dtpFechaInicioHistorial_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(dtpFechaInicioHistorial, "");
+        }
+
+        private void dtpFechaIngresoRenaemse_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(dtpFechaIngresoRenaemse, "");
+        }
+
+        private void dtpFechaAltaBPS_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(dtpFechaAltaBPS, "");
+        }
+
+        private void dtpFechaBajaBPS_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(dtpFechaBajaBPS, "");
+        }
+
+        private void dtpFechaEmisionCAJ_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(dtpFechaEmisionCAJ, "");
+        }
+
+        private void dtpFechaEntregaCAJ_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(dtpFechaEntregaCAJ, "");
+        }
+
+        private void dtpFechaAltaMTSS_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(dtpFechaAltaMTSS, "");
+        }
+
+        private void dtpFechaBajaMTSS_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(dtpFechaBajaMTSS, "");
+        }
+
+        private void dtpFechaEgresoEmpresa_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(dtpFechaEgresoEmpresa, "");
+        }
+
+        private void dtpFechaBaja_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(dtpFechaBaja, "");
+        }
+
+        private void dtpFechaEgresoPolicialMilitar_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(dtpFechaEgresoPolicialMilitar, "");
+        }
+
+        private void dtpFechaIngresoPolicialMilitar_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(dtpFechaIngresoPolicialMilitar, "");
+        }
+
+        private void dtpFechaVencimientoCarneSalud_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(dtpFechaVencimientoCarneSalud, "");
+        }
+
+        private void dtpPsicologo_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(dtpPsicologo, "");
+        }
+
+        private void dtpFechaNacimiento_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(dtpFechaNacimiento, "");
+        }
+
+        private void dtpFechaIngreso_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(dtpFechaIngreso, "");
+        }
+
+        #endregion
+
+        private void ABMEmpleados_Shown(object sender, EventArgs e)
+        {
+            mtNumeroEmpleado.Focus();
+        }
+
+
+        
     }
 }
 
