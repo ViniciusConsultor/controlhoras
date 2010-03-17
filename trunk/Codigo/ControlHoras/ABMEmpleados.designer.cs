@@ -44,98 +44,153 @@
             this.lblServicioActual = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.txtSueldo = new ControlHoras.MaskedTextBoxKeyDown();
+            this.txtNumeroCuenta = new ControlHoras.TextBoxKeyDown();
+            this.cmbBanco = new ControlHoras.ComboBoxKeyDown();
             this.label33 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.dtpFechaIngreso = new ControlHoras.MaskedTextBoxKeyDown();
+            this.mtCantidadHijos = new ControlHoras.MaskedTextBoxKeyDown();
             this.label24 = new System.Windows.Forms.Label();
+            this.cmbEstadoCivil = new ControlHoras.ComboBoxKeyDown();
             this.label10 = new System.Windows.Forms.Label();
+            this.txtEmail = new ControlHoras.TextBoxKeyDown();
             this.label16 = new System.Windows.Forms.Label();
+            this.txtCelularConvenio = new ControlHoras.MaskedTextBoxKeyDown();
             this.label14 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.rbFemenino = new System.Windows.Forms.RadioButton();
             this.rbMasculino = new System.Windows.Forms.RadioButton();
+            this.txtCelular = new ControlHoras.MaskedTextBoxKeyDown();
             this.label13 = new System.Windows.Forms.Label();
+            this.txtTelefono = new ControlHoras.MaskedTextBoxKeyDown();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dtpFechaNacimiento = new ControlHoras.MaskedTextBoxKeyDown();
             this.lblTipoFacturacion = new System.Windows.Forms.Label();
+            this.txtNacionalidad = new ControlHoras.TextBoxKeyDown();
             this.label19 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
+            this.cmbTiposCargos = new ControlHoras.ComboBoxKeyDown();
             this.label54 = new System.Windows.Forms.Label();
             this.lblEdad = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.txtLugarNacimiento = new ControlHoras.TextBoxKeyDown();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.mtNumeroDocumento = new ControlHoras.MaskedTextBoxKeyDown();
+            this.cmbTipoDocumento = new ControlHoras.ComboBoxKeyDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtApellido = new ControlHoras.TextBoxKeyDown();
+            this.txtNombre = new ControlHoras.TextBoxKeyDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblNumero = new System.Windows.Forms.Label();
+            this.mtNumeroEmpleado = new ControlHoras.MaskedTextBoxKeyDown();
             this.btnSeleccionarImagen = new System.Windows.Forms.Button();
             this.pbFoto = new System.Windows.Forms.PictureBox();
             this.OtrosDatosDelEmpleado = new System.Windows.Forms.TabPage();
             this.lblEmpleadoCargado = new System.Windows.Forms.Label();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.dtpPsicologo = new ControlHoras.MaskedTextBoxKeyDown();
             this.cbEnServicioArmado = new System.Windows.Forms.CheckBox();
             this.cbCapacitadoPorteArma = new System.Windows.Forms.CheckBox();
             this.label45 = new System.Windows.Forms.Label();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.txtTalleCampera = new ControlHoras.TextBoxKeyDown();
+            this.mtTalleZapatos = new ControlHoras.MaskedTextBoxKeyDown();
+            this.txtTallePantalon = new ControlHoras.TextBoxKeyDown();
+            this.txtTalleCamisa = new ControlHoras.TextBoxKeyDown();
             this.label28 = new System.Windows.Forms.Label();
             this.label57 = new System.Windows.Forms.Label();
             this.label59 = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.txtObservaciones = new ControlHoras.TextBoxKeyDown();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.txtCodigoPostal = new ControlHoras.TextBoxKeyDown();
             this.label56 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.txtPuntoEncuentro = new ControlHoras.TextBoxKeyDown();
+            this.txtEntreCalles = new ControlHoras.TextBoxKeyDown();
+            this.txtBarrio = new ControlHoras.TextBoxKeyDown();
+            this.txtDireccion = new ControlHoras.TextBoxKeyDown();
             this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.txtCiudad = new ControlHoras.TextBoxKeyDown();
+            this.cmbDepartamento = new ControlHoras.ComboBoxKeyDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtpFechaVencimientoCarneSalud = new ControlHoras.MaskedTextBoxKeyDown();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
+            this.cmbMutualista = new ControlHoras.ComboBoxKeyDown();
+            this.cmbEmergenciaMedica = new ControlHoras.ComboBoxKeyDown();
             this.AltasYBajas = new System.Windows.Forms.TabPage();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.dtpFechaEgresoEmpresa = new ControlHoras.MaskedTextBoxKeyDown();
             this.cbEgresadoEmpresa = new System.Windows.Forms.CheckBox();
             this.label27 = new System.Windows.Forms.Label();
             this.gbEstado = new System.Windows.Forms.GroupBox();
+            this.dtpFechaBaja = new ControlHoras.MaskedTextBoxKeyDown();
+            this.txtMotivoBaja = new ControlHoras.TextBoxKeyDown();
             this.label30 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.cbNoActivo = new System.Windows.Forms.CheckBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.dtpFechaBajaMTSS = new ControlHoras.MaskedTextBoxKeyDown();
+            this.dtpFechaAltaMTSS = new ControlHoras.MaskedTextBoxKeyDown();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.cbBajadoMTSS = new System.Windows.Forms.CheckBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.txtObservacionesAntecedentes = new ControlHoras.TextBoxKeyDown();
             this.label58 = new System.Windows.Forms.Label();
             this.rbAntecedentes_SI = new System.Windows.Forms.RadioButton();
             this.rbAntecedentes_NO = new System.Windows.Forms.RadioButton();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.dtpFechaIngresoRenaemse = new ControlHoras.MaskedTextBoxKeyDown();
+            this.txtNumAsuntoRenaemse = new ControlHoras.TextBoxKeyDown();
             this.label41 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.dtpFechaBajaBPS = new ControlHoras.MaskedTextBoxKeyDown();
+            this.dtpFechaAltaBPS = new ControlHoras.MaskedTextBoxKeyDown();
             this.cbBajadoBPS = new System.Windows.Forms.CheckBox();
+            this.mtAcumulacionBPS = new ControlHoras.MaskedTextBoxKeyDown();
             this.label39 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.dtpFechaEntregaCAJ = new ControlHoras.MaskedTextBoxKeyDown();
+            this.dtpFechaEmisionCAJ = new ControlHoras.MaskedTextBoxKeyDown();
+            this.txtNumeroCAJ = new ControlHoras.TextBoxKeyDown();
             this.label36 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.dtpFechaEgresoPolicialMilitar = new ControlHoras.MaskedTextBoxKeyDown();
+            this.dtpFechaIngresoPolicialMilitar = new ControlHoras.MaskedTextBoxKeyDown();
             this.cbCombatiente = new System.Windows.Forms.CheckBox();
+            this.txtPolicialSubEscalafon = new ControlHoras.TextBoxKeyDown();
+            this.cmbPolicialMilitar = new ControlHoras.ComboBoxKeyDown();
             this.lblSubEscalafon = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.cbAntecedentePolicialoMilitar = new System.Windows.Forms.CheckBox();
             this.Historial = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.dtpFechaFinHistorial = new ControlHoras.MaskedTextBoxKeyDown();
+            this.dtpFechaInicioHistorial = new ControlHoras.MaskedTextBoxKeyDown();
             this.lblIdEventoHistorialEmpleado = new System.Windows.Forms.Label();
             this.btnAddTipoEvento = new System.Windows.Forms.Button();
             this.btnEliminarHistorial = new System.Windows.Forms.Button();
@@ -145,19 +200,39 @@
             this.label48 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
+            this.txtDescripcionHistorial = new ControlHoras.TextBoxKeyDown();
+            this.cmbTipoEventoHistorial = new ControlHoras.ComboBoxKeyDown();
             this.dgvHistorialEmpleado = new System.Windows.Forms.DataGridView();
+            this.IdEventoHistorialEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdTipoEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExtrasLiquidacion = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.lblIdExtraLiquidacion = new System.Windows.Forms.Label();
             this.btnExtrasEliminar = new System.Windows.Forms.Button();
             this.btnExtrasGuardar = new System.Windows.Forms.Button();
             this.btnExtrasAgregar = new System.Windows.Forms.Button();
+            this.mtExtrasCantCuotas = new ControlHoras.MaskedTextBoxKeyDown();
+            this.mtExtrasValor = new ControlHoras.MaskedTextBoxKeyDown();
+            this.cmbExtrasSigno = new ControlHoras.ComboBoxKeyDown();
             this.label53 = new System.Windows.Forms.Label();
             this.label52 = new System.Windows.Forms.Label();
             this.label51 = new System.Windows.Forms.Label();
+            this.txtExtrasDescripcion = new ControlHoras.TextBoxKeyDown();
             this.label44 = new System.Windows.Forms.Label();
             this.dtpExtrasFecha = new System.Windows.Forms.DateTimePicker();
             this.dgvExtrasLiquidacion = new System.Windows.Forms.DataGridView();
+            this.idExtraLiquidacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescripcionEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Signo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantidadCuotas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CuotaActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Liquidado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ofdFoto = new System.Windows.Forms.OpenFileDialog();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -174,81 +249,6 @@
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtSueldo = new ControlHoras.MaskedTextBoxKeyDown();
-            this.txtNumeroCuenta = new ControlHoras.TextBoxKeyDown();
-            this.cmbBanco = new ControlHoras.ComboBoxKeyDown();
-            this.dtpFechaIngreso = new ControlHoras.MaskedTextBoxKeyDown();
-            this.mtCantidadHijos = new ControlHoras.MaskedTextBoxKeyDown();
-            this.cmbEstadoCivil = new ControlHoras.ComboBoxKeyDown();
-            this.txtEmail = new ControlHoras.TextBoxKeyDown();
-            this.txtCelularConvenio = new ControlHoras.MaskedTextBoxKeyDown();
-            this.txtCelular = new ControlHoras.MaskedTextBoxKeyDown();
-            this.txtTelefono = new ControlHoras.MaskedTextBoxKeyDown();
-            this.dtpFechaNacimiento = new ControlHoras.MaskedTextBoxKeyDown();
-            this.txtNacionalidad = new ControlHoras.TextBoxKeyDown();
-            this.cmbTiposCargos = new ControlHoras.ComboBoxKeyDown();
-            this.txtLugarNacimiento = new ControlHoras.TextBoxKeyDown();
-            this.mtNumeroDocumento = new ControlHoras.MaskedTextBoxKeyDown();
-            this.cmbTipoDocumento = new ControlHoras.ComboBoxKeyDown();
-            this.txtApellido = new ControlHoras.TextBoxKeyDown();
-            this.txtNombre = new ControlHoras.TextBoxKeyDown();
-            this.mtNumeroEmpleado = new ControlHoras.MaskedTextBoxKeyDown();
-            this.dtpPsicologo = new ControlHoras.MaskedTextBoxKeyDown();
-            this.txtTalleCampera = new ControlHoras.TextBoxKeyDown();
-            this.mtTalleZapatos = new ControlHoras.MaskedTextBoxKeyDown();
-            this.txtTallePantalon = new ControlHoras.TextBoxKeyDown();
-            this.txtTalleCamisa = new ControlHoras.TextBoxKeyDown();
-            this.txtObservaciones = new ControlHoras.TextBoxKeyDown();
-            this.txtCodigoPostal = new ControlHoras.TextBoxKeyDown();
-            this.txtPuntoEncuentro = new ControlHoras.TextBoxKeyDown();
-            this.txtEntreCalles = new ControlHoras.TextBoxKeyDown();
-            this.txtBarrio = new ControlHoras.TextBoxKeyDown();
-            this.txtDireccion = new ControlHoras.TextBoxKeyDown();
-            this.txtCiudad = new ControlHoras.TextBoxKeyDown();
-            this.cmbDepartamento = new ControlHoras.ComboBoxKeyDown();
-            this.dtpFechaVencimientoCarneSalud = new ControlHoras.MaskedTextBoxKeyDown();
-            this.cmbMutualista = new ControlHoras.ComboBoxKeyDown();
-            this.cmbEmergenciaMedica = new ControlHoras.ComboBoxKeyDown();
-            this.dtpFechaEgresoEmpresa = new ControlHoras.MaskedTextBoxKeyDown();
-            this.dtpFechaBaja = new ControlHoras.MaskedTextBoxKeyDown();
-            this.txtMotivoBaja = new ControlHoras.TextBoxKeyDown();
-            this.dtpFechaBajaMTSS = new ControlHoras.MaskedTextBoxKeyDown();
-            this.dtpFechaAltaMTSS = new ControlHoras.MaskedTextBoxKeyDown();
-            this.txtObservacionesAntecedentes = new ControlHoras.TextBoxKeyDown();
-            this.dtpFechaIngresoRenaemse = new ControlHoras.MaskedTextBoxKeyDown();
-            this.txtNumAsuntoRenaemse = new ControlHoras.TextBoxKeyDown();
-            this.dtpFechaBajaBPS = new ControlHoras.MaskedTextBoxKeyDown();
-            this.dtpFechaAltaBPS = new ControlHoras.MaskedTextBoxKeyDown();
-            this.mtAcumulacionBPS = new ControlHoras.MaskedTextBoxKeyDown();
-            this.dtpFechaEntregaCAJ = new ControlHoras.MaskedTextBoxKeyDown();
-            this.dtpFechaEmisionCAJ = new ControlHoras.MaskedTextBoxKeyDown();
-            this.txtNumeroCAJ = new ControlHoras.TextBoxKeyDown();
-            this.dtpFechaEgresoPolicialMilitar = new ControlHoras.MaskedTextBoxKeyDown();
-            this.dtpFechaIngresoPolicialMilitar = new ControlHoras.MaskedTextBoxKeyDown();
-            this.txtPolicialSubEscalafon = new ControlHoras.TextBoxKeyDown();
-            this.cmbPolicialMilitar = new ControlHoras.ComboBoxKeyDown();
-            this.dtpFechaFinHistorial = new ControlHoras.MaskedTextBoxKeyDown();
-            this.dtpFechaInicioHistorial = new ControlHoras.MaskedTextBoxKeyDown();
-            this.txtDescripcionHistorial = new ControlHoras.TextBoxKeyDown();
-            this.cmbTipoEventoHistorial = new ControlHoras.ComboBoxKeyDown();
-            this.IdEventoHistorialEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdTipoEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mtExtrasCantCuotas = new ControlHoras.MaskedTextBoxKeyDown();
-            this.mtExtrasValor = new ControlHoras.MaskedTextBoxKeyDown();
-            this.cmbExtrasSigno = new ControlHoras.ComboBoxKeyDown();
-            this.txtExtrasDescripcion = new ControlHoras.TextBoxKeyDown();
-            this.idExtraLiquidacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DescripcionEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Signo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantidadCuotas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CuotaActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Liquidado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             this.tcEmpleado.SuspendLayout();
             this.DatosDelEmpleado.SuspendLayout();
@@ -448,6 +448,35 @@
             this.groupBox7.TabIndex = 4;
             this.groupBox7.TabStop = false;
             // 
+            // txtSueldo
+            // 
+            this.txtSueldo.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.txtSueldo.Location = new System.Drawing.Point(83, 80);
+            this.txtSueldo.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSueldo.Name = "txtSueldo";
+            this.txtSueldo.Size = new System.Drawing.Size(107, 22);
+            this.txtSueldo.TabIndex = 2;
+            this.txtSueldo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSueldo.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
+            // txtNumeroCuenta
+            // 
+            this.txtNumeroCuenta.Location = new System.Drawing.Point(83, 48);
+            this.txtNumeroCuenta.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNumeroCuenta.Name = "txtNumeroCuenta";
+            this.txtNumeroCuenta.Size = new System.Drawing.Size(147, 22);
+            this.txtNumeroCuenta.TabIndex = 1;
+            // 
+            // cmbBanco
+            // 
+            this.cmbBanco.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBanco.FormattingEnabled = true;
+            this.cmbBanco.Location = new System.Drawing.Point(83, 14);
+            this.cmbBanco.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbBanco.Name = "cmbBanco";
+            this.cmbBanco.Size = new System.Drawing.Size(147, 24);
+            this.cmbBanco.TabIndex = 0;
+            // 
             // label33
             // 
             this.label33.AutoSize = true;
@@ -503,6 +532,25 @@
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             // 
+            // dtpFechaIngreso
+            // 
+            this.dtpFechaIngreso.Location = new System.Drawing.Point(166, 261);
+            this.dtpFechaIngreso.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpFechaIngreso.Mask = "00/00/0000";
+            this.dtpFechaIngreso.Name = "dtpFechaIngreso";
+            this.dtpFechaIngreso.Size = new System.Drawing.Size(100, 22);
+            this.dtpFechaIngreso.TabIndex = 6;
+            this.dtpFechaIngreso.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaIngreso_Validating);
+            this.dtpFechaIngreso.Validated += new System.EventHandler(this.dtpFechaIngreso_Validated);
+            // 
+            // mtCantidadHijos
+            // 
+            this.mtCantidadHijos.Location = new System.Drawing.Point(217, 220);
+            this.mtCantidadHijos.Margin = new System.Windows.Forms.Padding(4);
+            this.mtCantidadHijos.Name = "mtCantidadHijos";
+            this.mtCantidadHijos.Size = new System.Drawing.Size(48, 22);
+            this.mtCantidadHijos.TabIndex = 5;
+            // 
             // label24
             // 
             this.label24.AutoSize = true;
@@ -512,6 +560,22 @@
             this.label24.Size = new System.Drawing.Size(177, 17);
             this.label24.TabIndex = 63;
             this.label24.Text = "Cantidad Menores a Cargo";
+            // 
+            // cmbEstadoCivil
+            // 
+            this.cmbEstadoCivil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEstadoCivil.FormattingEnabled = true;
+            this.cmbEstadoCivil.Items.AddRange(new object[] {
+            "CASADO",
+            "CONCUVINATO",
+            "DIVORCIADO",
+            "SOLTERO",
+            "VIUDO"});
+            this.cmbEstadoCivil.Location = new System.Drawing.Point(127, 180);
+            this.cmbEstadoCivil.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbEstadoCivil.Name = "cmbEstadoCivil";
+            this.cmbEstadoCivil.Size = new System.Drawing.Size(139, 24);
+            this.cmbEstadoCivil.TabIndex = 4;
             // 
             // label10
             // 
@@ -523,6 +587,15 @@
             this.label10.TabIndex = 61;
             this.label10.Text = "Estado Civil";
             // 
+            // txtEmail
+            // 
+            this.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txtEmail.Location = new System.Drawing.Point(73, 139);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(192, 22);
+            this.txtEmail.TabIndex = 3;
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -532,6 +605,15 @@
             this.label16.Size = new System.Drawing.Size(42, 17);
             this.label16.TabIndex = 33;
             this.label16.Text = "Email";
+            // 
+            // txtCelularConvenio
+            // 
+            this.txtCelularConvenio.Location = new System.Drawing.Point(127, 97);
+            this.txtCelularConvenio.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCelularConvenio.Mask = "000-000-000";
+            this.txtCelularConvenio.Name = "txtCelularConvenio";
+            this.txtCelularConvenio.Size = new System.Drawing.Size(139, 22);
+            this.txtCelularConvenio.TabIndex = 2;
             // 
             // label14
             // 
@@ -598,6 +680,15 @@
             this.rbMasculino.Text = "Masculino";
             this.rbMasculino.UseVisualStyleBackColor = true;
             // 
+            // txtCelular
+            // 
+            this.txtCelular.Location = new System.Drawing.Point(81, 55);
+            this.txtCelular.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCelular.Mask = "000-000-000";
+            this.txtCelular.Name = "txtCelular";
+            this.txtCelular.Size = new System.Drawing.Size(184, 22);
+            this.txtCelular.TabIndex = 1;
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -607,6 +698,15 @@
             this.label13.Size = new System.Drawing.Size(52, 17);
             this.label13.TabIndex = 24;
             this.label13.Text = "Celular";
+            // 
+            // txtTelefono
+            // 
+            this.txtTelefono.Location = new System.Drawing.Point(81, 14);
+            this.txtTelefono.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTelefono.Mask = "000-0000";
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(184, 22);
+            this.txtTelefono.TabIndex = 0;
             // 
             // label12
             // 
@@ -644,6 +744,17 @@
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             // 
+            // dtpFechaNacimiento
+            // 
+            this.dtpFechaNacimiento.Location = new System.Drawing.Point(137, 263);
+            this.dtpFechaNacimiento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpFechaNacimiento.Mask = "00/00/0000";
+            this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
+            this.dtpFechaNacimiento.Size = new System.Drawing.Size(100, 22);
+            this.dtpFechaNacimiento.TabIndex = 5;
+            this.dtpFechaNacimiento.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaNacimiento_Validating);
+            this.dtpFechaNacimiento.Validated += new System.EventHandler(this.dtpFechaNacimiento_Validated);            
+            // 
             // lblTipoFacturacion
             // 
             this.lblTipoFacturacion.BackColor = System.Drawing.Color.White;
@@ -656,6 +767,15 @@
             this.lblTipoFacturacion.TabIndex = 118;
             this.lblTipoFacturacion.Text = "JORNALERO";
             this.lblTipoFacturacion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtNacionalidad
+            // 
+            this.txtNacionalidad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNacionalidad.Location = new System.Drawing.Point(137, 180);
+            this.txtNacionalidad.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNacionalidad.Name = "txtNacionalidad";
+            this.txtNacionalidad.Size = new System.Drawing.Size(152, 22);
+            this.txtNacionalidad.TabIndex = 3;
             // 
             // label19
             // 
@@ -676,6 +796,17 @@
             this.label55.Size = new System.Drawing.Size(114, 17);
             this.label55.TabIndex = 114;
             this.label55.Text = "Tipo Facturacion";
+            // 
+            // cmbTiposCargos
+            // 
+            this.cmbTiposCargos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTiposCargos.FormattingEnabled = true;
+            this.cmbTiposCargos.Location = new System.Drawing.Point(137, 97);
+            this.cmbTiposCargos.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbTiposCargos.Name = "cmbTiposCargos";
+            this.cmbTiposCargos.Size = new System.Drawing.Size(152, 24);
+            this.cmbTiposCargos.TabIndex = 2;
+            this.cmbTiposCargos.SelectedIndexChanged += new System.EventHandler(this.cmbTiposCargos_SelectedIndexChanged);
             // 
             // label54
             // 
@@ -727,6 +858,15 @@
             this.label18.TabIndex = 101;
             this.label18.Text = "Lugar Nacimiento";
             // 
+            // txtLugarNacimiento
+            // 
+            this.txtLugarNacimiento.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtLugarNacimiento.Location = new System.Drawing.Point(137, 220);
+            this.txtLugarNacimiento.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLugarNacimiento.Name = "txtLugarNacimiento";
+            this.txtLugarNacimiento.Size = new System.Drawing.Size(152, 22);
+            this.txtLugarNacimiento.TabIndex = 4;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -748,6 +888,28 @@
             this.label5.TabIndex = 13;
             this.label5.Text = "Tipo Documento *";
             // 
+            // mtNumeroDocumento
+            // 
+            this.mtNumeroDocumento.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtNumeroDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mtNumeroDocumento.Location = new System.Drawing.Point(137, 55);
+            this.mtNumeroDocumento.Margin = new System.Windows.Forms.Padding(4);
+            this.mtNumeroDocumento.Name = "mtNumeroDocumento";
+            this.mtNumeroDocumento.Size = new System.Drawing.Size(152, 24);
+            this.mtNumeroDocumento.TabIndex = 1;
+            this.mtNumeroDocumento.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
+            // cmbTipoDocumento
+            // 
+            this.cmbTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoDocumento.FormattingEnabled = true;
+            this.cmbTipoDocumento.Location = new System.Drawing.Point(137, 14);
+            this.cmbTipoDocumento.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbTipoDocumento.Name = "cmbTipoDocumento";
+            this.cmbTipoDocumento.Size = new System.Drawing.Size(139, 24);
+            this.cmbTipoDocumento.TabIndex = 0;
+            this.cmbTipoDocumento.SelectedIndexChanged += new System.EventHandler(this.cmbTipoDocumento_SelectedIndexChanged);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtApellido);
@@ -763,6 +925,26 @@
             this.groupBox2.Size = new System.Drawing.Size(583, 86);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
+            // 
+            // txtApellido
+            // 
+            this.txtApellido.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtApellido.Location = new System.Drawing.Point(373, 50);
+            this.txtApellido.Margin = new System.Windows.Forms.Padding(4);
+            this.txtApellido.Name = "txtApellido";
+            this.txtApellido.Size = new System.Drawing.Size(192, 24);
+            this.txtApellido.TabIndex = 2;
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.Location = new System.Drawing.Point(84, 50);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(195, 24);
+            this.txtNombre.TabIndex = 1;
+            this.txtNombre.Leave += new System.EventHandler(this.txtNombre_Leave);
             // 
             // label3
             // 
@@ -796,6 +978,22 @@
             this.lblNumero.Size = new System.Drawing.Size(75, 17);
             this.lblNumero.TabIndex = 9;
             this.lblNumero.Text = "Numero *";
+            // 
+            // mtNumeroEmpleado
+            // 
+            this.mtNumeroEmpleado.BackColor = System.Drawing.Color.White;
+            this.mtNumeroEmpleado.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtNumeroEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mtNumeroEmpleado.HidePromptOnLeave = true;
+            this.mtNumeroEmpleado.Location = new System.Drawing.Point(84, 15);
+            this.mtNumeroEmpleado.Margin = new System.Windows.Forms.Padding(4);
+            this.mtNumeroEmpleado.Mask = "0999";
+            this.mtNumeroEmpleado.Name = "mtNumeroEmpleado";
+            this.mtNumeroEmpleado.Size = new System.Drawing.Size(57, 24);
+            this.mtNumeroEmpleado.TabIndex = 0;
+            this.mtNumeroEmpleado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.mtNumeroEmpleado.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtNumeroEmpleado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtNumeroEmpleado_KeyDown);
             // 
             // btnSeleccionarImagen
             // 
@@ -865,6 +1063,17 @@
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "Otros Datos";
             // 
+            // dtpPsicologo
+            // 
+            this.dtpPsicologo.Location = new System.Drawing.Point(203, 23);
+            this.dtpPsicologo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpPsicologo.Mask = "00/00/0000";
+            this.dtpPsicologo.Name = "dtpPsicologo";
+            this.dtpPsicologo.Size = new System.Drawing.Size(100, 22);
+            this.dtpPsicologo.TabIndex = 0;
+            this.dtpPsicologo.Validating += new System.ComponentModel.CancelEventHandler(this.dtpPsicologo_Validating);
+            this.dtpPsicologo.Validated += new System.EventHandler(this.dtpPsicologo_Validated);
+            // 
             // cbEnServicioArmado
             // 
             this.cbEnServicioArmado.AutoSize = true;
@@ -918,6 +1127,39 @@
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "Talles Uniforme";
             // 
+            // txtTalleCampera
+            // 
+            this.txtTalleCampera.Location = new System.Drawing.Point(111, 118);
+            this.txtTalleCampera.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTalleCampera.Name = "txtTalleCampera";
+            this.txtTalleCampera.Size = new System.Drawing.Size(71, 22);
+            this.txtTalleCampera.TabIndex = 3;
+            // 
+            // mtTalleZapatos
+            // 
+            this.mtTalleZapatos.Location = new System.Drawing.Point(111, 87);
+            this.mtTalleZapatos.Margin = new System.Windows.Forms.Padding(4);
+            this.mtTalleZapatos.Name = "mtTalleZapatos";
+            this.mtTalleZapatos.Size = new System.Drawing.Size(71, 22);
+            this.mtTalleZapatos.TabIndex = 2;
+            // 
+            // txtTallePantalon
+            // 
+            this.txtTallePantalon.Location = new System.Drawing.Point(111, 55);
+            this.txtTallePantalon.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTallePantalon.Name = "txtTallePantalon";
+            this.txtTallePantalon.Size = new System.Drawing.Size(71, 22);
+            this.txtTallePantalon.TabIndex = 1;
+            // 
+            // txtTalleCamisa
+            // 
+            this.txtTalleCamisa.BackColor = System.Drawing.Color.White;
+            this.txtTalleCamisa.Location = new System.Drawing.Point(111, 25);
+            this.txtTalleCamisa.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTalleCamisa.Name = "txtTalleCamisa";
+            this.txtTalleCamisa.Size = new System.Drawing.Size(71, 22);
+            this.txtTalleCamisa.TabIndex = 0;
+            // 
             // label28
             // 
             this.label28.AutoSize = true;
@@ -970,6 +1212,15 @@
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "Observaciones Del Funcionario";
             // 
+            // txtObservaciones
+            // 
+            this.txtObservaciones.Location = new System.Drawing.Point(8, 23);
+            this.txtObservaciones.Margin = new System.Windows.Forms.Padding(4);
+            this.txtObservaciones.Multiline = true;
+            this.txtObservaciones.Name = "txtObservaciones";
+            this.txtObservaciones.Size = new System.Drawing.Size(401, 86);
+            this.txtObservaciones.TabIndex = 0;
+            // 
             // groupBox9
             // 
             this.groupBox9.Controls.Add(this.txtCodigoPostal);
@@ -994,6 +1245,14 @@
             this.groupBox9.TabIndex = 0;
             this.groupBox9.TabStop = false;
             // 
+            // txtCodigoPostal
+            // 
+            this.txtCodigoPostal.Location = new System.Drawing.Point(145, 118);
+            this.txtCodigoPostal.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCodigoPostal.Name = "txtCodigoPostal";
+            this.txtCodigoPostal.Size = new System.Drawing.Size(80, 22);
+            this.txtCodigoPostal.TabIndex = 3;
+            // 
             // label56
             // 
             this.label56.AutoSize = true;
@@ -1013,6 +1272,39 @@
             this.label15.Size = new System.Drawing.Size(134, 17);
             this.label15.TabIndex = 116;
             this.label15.Text = "Punto de Encuentro";
+            // 
+            // txtPuntoEncuentro
+            // 
+            this.txtPuntoEncuentro.Location = new System.Drawing.Point(147, 222);
+            this.txtPuntoEncuentro.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPuntoEncuentro.Name = "txtPuntoEncuentro";
+            this.txtPuntoEncuentro.Size = new System.Drawing.Size(264, 22);
+            this.txtPuntoEncuentro.TabIndex = 6;
+            // 
+            // txtEntreCalles
+            // 
+            this.txtEntreCalles.Location = new System.Drawing.Point(147, 187);
+            this.txtEntreCalles.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEntreCalles.Name = "txtEntreCalles";
+            this.txtEntreCalles.Size = new System.Drawing.Size(264, 22);
+            this.txtEntreCalles.TabIndex = 5;
+            // 
+            // txtBarrio
+            // 
+            this.txtBarrio.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtBarrio.Location = new System.Drawing.Point(147, 84);
+            this.txtBarrio.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBarrio.Name = "txtBarrio";
+            this.txtBarrio.Size = new System.Drawing.Size(160, 22);
+            this.txtBarrio.TabIndex = 2;
+            // 
+            // txtDireccion
+            // 
+            this.txtDireccion.Location = new System.Drawing.Point(147, 153);
+            this.txtDireccion.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDireccion.Name = "txtDireccion";
+            this.txtDireccion.Size = new System.Drawing.Size(264, 22);
+            this.txtDireccion.TabIndex = 4;
             // 
             // label11
             // 
@@ -1064,6 +1356,25 @@
             this.label7.TabIndex = 107;
             this.label7.Text = "Departamento";
             // 
+            // txtCiudad
+            // 
+            this.txtCiudad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCiudad.Location = new System.Drawing.Point(147, 49);
+            this.txtCiudad.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCiudad.Name = "txtCiudad";
+            this.txtCiudad.Size = new System.Drawing.Size(160, 22);
+            this.txtCiudad.TabIndex = 1;
+            // 
+            // cmbDepartamento
+            // 
+            this.cmbDepartamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDepartamento.FormattingEnabled = true;
+            this.cmbDepartamento.Location = new System.Drawing.Point(147, 14);
+            this.cmbDepartamento.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbDepartamento.Name = "cmbDepartamento";
+            this.cmbDepartamento.Size = new System.Drawing.Size(160, 24);
+            this.cmbDepartamento.TabIndex = 0;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dtpFechaVencimientoCarneSalud);
@@ -1080,6 +1391,17 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Salud";
+            // 
+            // dtpFechaVencimientoCarneSalud
+            // 
+            this.dtpFechaVencimientoCarneSalud.Location = new System.Drawing.Point(264, 18);
+            this.dtpFechaVencimientoCarneSalud.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpFechaVencimientoCarneSalud.Mask = "00/00/0000";
+            this.dtpFechaVencimientoCarneSalud.Name = "dtpFechaVencimientoCarneSalud";
+            this.dtpFechaVencimientoCarneSalud.Size = new System.Drawing.Size(100, 22);
+            this.dtpFechaVencimientoCarneSalud.TabIndex = 0;
+            this.dtpFechaVencimientoCarneSalud.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaVencimientoCarneSalud_Validating);
+            this.dtpFechaVencimientoCarneSalud.Validated += new System.EventHandler(this.dtpFechaVencimientoCarneSalud_Validated);
             // 
             // label22
             // 
@@ -1110,6 +1432,26 @@
             this.label23.Size = new System.Drawing.Size(132, 17);
             this.label23.TabIndex = 48;
             this.label23.Text = "Emergencia Médica";
+            // 
+            // cmbMutualista
+            // 
+            this.cmbMutualista.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMutualista.FormattingEnabled = true;
+            this.cmbMutualista.Location = new System.Drawing.Point(177, 48);
+            this.cmbMutualista.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbMutualista.Name = "cmbMutualista";
+            this.cmbMutualista.Size = new System.Drawing.Size(187, 24);
+            this.cmbMutualista.TabIndex = 1;
+            // 
+            // cmbEmergenciaMedica
+            // 
+            this.cmbEmergenciaMedica.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEmergenciaMedica.FormattingEnabled = true;
+            this.cmbEmergenciaMedica.Location = new System.Drawing.Point(177, 84);
+            this.cmbEmergenciaMedica.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbEmergenciaMedica.Name = "cmbEmergenciaMedica";
+            this.cmbEmergenciaMedica.Size = new System.Drawing.Size(187, 24);
+            this.cmbEmergenciaMedica.TabIndex = 2;
             // 
             // AltasYBajas
             // 
@@ -1143,6 +1485,17 @@
             this.groupBox13.TabIndex = 7;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Egreso de la Empresa";
+            // 
+            // dtpFechaEgresoEmpresa
+            // 
+            this.dtpFechaEgresoEmpresa.Location = new System.Drawing.Point(303, 30);
+            this.dtpFechaEgresoEmpresa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpFechaEgresoEmpresa.Mask = "00/00/0000";
+            this.dtpFechaEgresoEmpresa.Name = "dtpFechaEgresoEmpresa";
+            this.dtpFechaEgresoEmpresa.Size = new System.Drawing.Size(100, 22);
+            this.dtpFechaEgresoEmpresa.TabIndex = 1;
+            this.dtpFechaEgresoEmpresa.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaEgresoEmpresa_Validating);
+            this.dtpFechaEgresoEmpresa.Validated += new System.EventHandler(this.dtpFechaEgresoEmpresa_Validated);
             // 
             // cbEgresadoEmpresa
             // 
@@ -1182,6 +1535,27 @@
             this.gbEstado.TabIndex = 2;
             this.gbEstado.TabStop = false;
             this.gbEstado.Text = "Estado Para Servicios";
+            // 
+            // dtpFechaBaja
+            // 
+            this.dtpFechaBaja.Location = new System.Drawing.Point(245, 23);
+            this.dtpFechaBaja.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpFechaBaja.Mask = "00/00/0000";
+            this.dtpFechaBaja.Name = "dtpFechaBaja";
+            this.dtpFechaBaja.Size = new System.Drawing.Size(100, 22);
+            this.dtpFechaBaja.TabIndex = 1;
+            this.dtpFechaBaja.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaBaja_Validating);
+            this.dtpFechaBaja.Validated += new System.EventHandler(this.dtpFechaBaja_Validated);
+            // 
+            // txtMotivoBaja
+            // 
+            this.txtMotivoBaja.Enabled = false;
+            this.txtMotivoBaja.Location = new System.Drawing.Point(103, 50);
+            this.txtMotivoBaja.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMotivoBaja.Multiline = true;
+            this.txtMotivoBaja.Name = "txtMotivoBaja";
+            this.txtMotivoBaja.Size = new System.Drawing.Size(259, 43);
+            this.txtMotivoBaja.TabIndex = 2;
             // 
             // label30
             // 
@@ -1231,6 +1605,28 @@
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "MTSS";
             // 
+            // dtpFechaBajaMTSS
+            // 
+            this.dtpFechaBajaMTSS.Location = new System.Drawing.Point(303, 49);
+            this.dtpFechaBajaMTSS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpFechaBajaMTSS.Mask = "00/00/0000";
+            this.dtpFechaBajaMTSS.Name = "dtpFechaBajaMTSS";
+            this.dtpFechaBajaMTSS.Size = new System.Drawing.Size(100, 22);
+            this.dtpFechaBajaMTSS.TabIndex = 2;
+            this.dtpFechaBajaMTSS.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaBajaMTSS_Validating);
+            this.dtpFechaBajaMTSS.Validated += new System.EventHandler(this.dtpFechaBajaMTSS_Validated);
+            // 
+            // dtpFechaAltaMTSS
+            // 
+            this.dtpFechaAltaMTSS.Location = new System.Drawing.Point(303, 17);
+            this.dtpFechaAltaMTSS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpFechaAltaMTSS.Mask = "00/00/0000";
+            this.dtpFechaAltaMTSS.Name = "dtpFechaAltaMTSS";
+            this.dtpFechaAltaMTSS.Size = new System.Drawing.Size(100, 22);
+            this.dtpFechaAltaMTSS.TabIndex = 0;
+            this.dtpFechaAltaMTSS.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaAltaMTSS_Validating);
+            this.dtpFechaAltaMTSS.Validated += new System.EventHandler(this.dtpFechaAltaMTSS_Validated);
+            // 
             // label26
             // 
             this.label26.AutoSize = true;
@@ -1278,6 +1674,15 @@
             this.groupBox12.TabIndex = 0;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Antecedentes";
+            // 
+            // txtObservacionesAntecedentes
+            // 
+            this.txtObservacionesAntecedentes.Location = new System.Drawing.Point(16, 73);
+            this.txtObservacionesAntecedentes.Margin = new System.Windows.Forms.Padding(4);
+            this.txtObservacionesAntecedentes.Multiline = true;
+            this.txtObservacionesAntecedentes.Name = "txtObservacionesAntecedentes";
+            this.txtObservacionesAntecedentes.Size = new System.Drawing.Size(287, 53);
+            this.txtObservacionesAntecedentes.TabIndex = 2;
             // 
             // label58
             // 
@@ -1329,6 +1734,25 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "RENAEMSE";
             // 
+            // dtpFechaIngresoRenaemse
+            // 
+            this.dtpFechaIngresoRenaemse.Location = new System.Drawing.Point(312, 15);
+            this.dtpFechaIngresoRenaemse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpFechaIngresoRenaemse.Mask = "00/00/0000";
+            this.dtpFechaIngresoRenaemse.Name = "dtpFechaIngresoRenaemse";
+            this.dtpFechaIngresoRenaemse.Size = new System.Drawing.Size(100, 22);
+            this.dtpFechaIngresoRenaemse.TabIndex = 1;
+            this.dtpFechaIngresoRenaemse.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaIngresoRenaemse_Validating);
+            this.dtpFechaIngresoRenaemse.Validated += new System.EventHandler(this.dtpFechaIngresoRenaemse_Validated);
+            // 
+            // txtNumAsuntoRenaemse
+            // 
+            this.txtNumAsuntoRenaemse.Location = new System.Drawing.Point(103, 15);
+            this.txtNumAsuntoRenaemse.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNumAsuntoRenaemse.Name = "txtNumAsuntoRenaemse";
+            this.txtNumAsuntoRenaemse.Size = new System.Drawing.Size(97, 22);
+            this.txtNumAsuntoRenaemse.TabIndex = 0;
+            // 
             // label41
             // 
             this.label41.AutoSize = true;
@@ -1367,6 +1791,28 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "BPS";
             // 
+            // dtpFechaBajaBPS
+            // 
+            this.dtpFechaBajaBPS.Location = new System.Drawing.Point(307, 53);
+            this.dtpFechaBajaBPS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpFechaBajaBPS.Mask = "00/00/0000";
+            this.dtpFechaBajaBPS.Name = "dtpFechaBajaBPS";
+            this.dtpFechaBajaBPS.Size = new System.Drawing.Size(100, 22);
+            this.dtpFechaBajaBPS.TabIndex = 3;
+            this.dtpFechaBajaBPS.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaBajaBPS_Validating);
+            this.dtpFechaBajaBPS.Validated += new System.EventHandler(this.dtpFechaBajaBPS_Validated);
+            // 
+            // dtpFechaAltaBPS
+            // 
+            this.dtpFechaAltaBPS.Location = new System.Drawing.Point(307, 20);
+            this.dtpFechaAltaBPS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpFechaAltaBPS.Mask = "00/00/0000";
+            this.dtpFechaAltaBPS.Name = "dtpFechaAltaBPS";
+            this.dtpFechaAltaBPS.Size = new System.Drawing.Size(100, 22);
+            this.dtpFechaAltaBPS.TabIndex = 1;
+            this.dtpFechaAltaBPS.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaAltaBPS_Validating);
+            this.dtpFechaAltaBPS.Validated += new System.EventHandler(this.dtpFechaAltaBPS_Validated);
+            // 
             // cbBajadoBPS
             // 
             this.cbBajadoBPS.AutoSize = true;
@@ -1379,6 +1825,14 @@
             this.cbBajadoBPS.Text = "Bajado de BPS?";
             this.cbBajadoBPS.UseVisualStyleBackColor = true;
             this.cbBajadoBPS.CheckedChanged += new System.EventHandler(this.cbBajadoBPS_CheckedChanged);
+            // 
+            // mtAcumulacionBPS
+            // 
+            this.mtAcumulacionBPS.Location = new System.Drawing.Point(161, 22);
+            this.mtAcumulacionBPS.Margin = new System.Windows.Forms.Padding(4);
+            this.mtAcumulacionBPS.Name = "mtAcumulacionBPS";
+            this.mtAcumulacionBPS.Size = new System.Drawing.Size(41, 22);
+            this.mtAcumulacionBPS.TabIndex = 0;
             // 
             // label39
             // 
@@ -1426,6 +1880,36 @@
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "CAJ";
+            // 
+            // dtpFechaEntregaCAJ
+            // 
+            this.dtpFechaEntregaCAJ.Location = new System.Drawing.Point(307, 51);
+            this.dtpFechaEntregaCAJ.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpFechaEntregaCAJ.Mask = "00/00/0000";
+            this.dtpFechaEntregaCAJ.Name = "dtpFechaEntregaCAJ";
+            this.dtpFechaEntregaCAJ.Size = new System.Drawing.Size(100, 22);
+            this.dtpFechaEntregaCAJ.TabIndex = 2;
+            this.dtpFechaEntregaCAJ.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaEntregaCAJ_Validating);
+            this.dtpFechaEntregaCAJ.Validated += new System.EventHandler(this.dtpFechaEntregaCAJ_Validated);
+            // 
+            // dtpFechaEmisionCAJ
+            // 
+            this.dtpFechaEmisionCAJ.Location = new System.Drawing.Point(307, 19);
+            this.dtpFechaEmisionCAJ.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpFechaEmisionCAJ.Mask = "00/00/0000";
+            this.dtpFechaEmisionCAJ.Name = "dtpFechaEmisionCAJ";
+            this.dtpFechaEmisionCAJ.Size = new System.Drawing.Size(100, 22);
+            this.dtpFechaEmisionCAJ.TabIndex = 1;
+            this.dtpFechaEmisionCAJ.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaEmisionCAJ_Validating);
+            this.dtpFechaEmisionCAJ.Validated += new System.EventHandler(this.dtpFechaEmisionCAJ_Validated);
+            // 
+            // txtNumeroCAJ
+            // 
+            this.txtNumeroCAJ.Location = new System.Drawing.Point(80, 16);
+            this.txtNumeroCAJ.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNumeroCAJ.Name = "txtNumeroCAJ";
+            this.txtNumeroCAJ.Size = new System.Drawing.Size(99, 22);
+            this.txtNumeroCAJ.TabIndex = 0;
             // 
             // label36
             // 
@@ -1477,6 +1961,28 @@
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Antecedentes Policiales o Militares";
             // 
+            // dtpFechaEgresoPolicialMilitar
+            // 
+            this.dtpFechaEgresoPolicialMilitar.Location = new System.Drawing.Point(125, 91);
+            this.dtpFechaEgresoPolicialMilitar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpFechaEgresoPolicialMilitar.Mask = "00/00/0000";
+            this.dtpFechaEgresoPolicialMilitar.Name = "dtpFechaEgresoPolicialMilitar";
+            this.dtpFechaEgresoPolicialMilitar.Size = new System.Drawing.Size(100, 22);
+            this.dtpFechaEgresoPolicialMilitar.TabIndex = 2;
+            this.dtpFechaEgresoPolicialMilitar.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaEgresoPolicialMilitar_Validating);
+            this.dtpFechaEgresoPolicialMilitar.Validated += new System.EventHandler(this.dtpFechaEgresoPolicialMilitar_Validated);
+            // 
+            // dtpFechaIngresoPolicialMilitar
+            // 
+            this.dtpFechaIngresoPolicialMilitar.Location = new System.Drawing.Point(125, 57);
+            this.dtpFechaIngresoPolicialMilitar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpFechaIngresoPolicialMilitar.Mask = "00/00/0000";
+            this.dtpFechaIngresoPolicialMilitar.Name = "dtpFechaIngresoPolicialMilitar";
+            this.dtpFechaIngresoPolicialMilitar.Size = new System.Drawing.Size(100, 22);
+            this.dtpFechaIngresoPolicialMilitar.TabIndex = 1;
+            this.dtpFechaIngresoPolicialMilitar.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaIngresoPolicialMilitar_Validating);
+            this.dtpFechaIngresoPolicialMilitar.Validated += new System.EventHandler(this.dtpFechaIngresoPolicialMilitar_Validated);
+            // 
             // cbCombatiente
             // 
             this.cbCombatiente.AutoSize = true;
@@ -1488,6 +1994,30 @@
             this.cbCombatiente.TabIndex = 4;
             this.cbCombatiente.Text = "Combatiente?";
             this.cbCombatiente.UseVisualStyleBackColor = true;
+            // 
+            // txtPolicialSubEscalafon
+            // 
+            this.txtPolicialSubEscalafon.Enabled = false;
+            this.txtPolicialSubEscalafon.Location = new System.Drawing.Point(125, 124);
+            this.txtPolicialSubEscalafon.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPolicialSubEscalafon.Name = "txtPolicialSubEscalafon";
+            this.txtPolicialSubEscalafon.Size = new System.Drawing.Size(177, 22);
+            this.txtPolicialSubEscalafon.TabIndex = 3;
+            // 
+            // cmbPolicialMilitar
+            // 
+            this.cmbPolicialMilitar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPolicialMilitar.Enabled = false;
+            this.cmbPolicialMilitar.FormattingEnabled = true;
+            this.cmbPolicialMilitar.Items.AddRange(new object[] {
+            "Policia",
+            "Militar"});
+            this.cmbPolicialMilitar.Location = new System.Drawing.Point(163, 18);
+            this.cmbPolicialMilitar.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbPolicialMilitar.Name = "cmbPolicialMilitar";
+            this.cmbPolicialMilitar.Size = new System.Drawing.Size(140, 24);
+            this.cmbPolicialMilitar.TabIndex = 0;
+            this.cmbPolicialMilitar.SelectedValueChanged += new System.EventHandler(this.cmbPolicialMilitar_SelectedValueChanged);
             // 
             // lblSubEscalafon
             // 
@@ -1574,6 +2104,28 @@
             this.splitContainer1.SplitterDistance = 165;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // dtpFechaFinHistorial
+            // 
+            this.dtpFechaFinHistorial.Location = new System.Drawing.Point(528, 25);
+            this.dtpFechaFinHistorial.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpFechaFinHistorial.Mask = "00/00/0000";
+            this.dtpFechaFinHistorial.Name = "dtpFechaFinHistorial";
+            this.dtpFechaFinHistorial.Size = new System.Drawing.Size(100, 22);
+            this.dtpFechaFinHistorial.TabIndex = 1;
+            this.dtpFechaFinHistorial.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaFinHistorial_Validating);
+            this.dtpFechaFinHistorial.Validated += new System.EventHandler(this.dtpFechaFinHistorial_Validated);
+            // 
+            // dtpFechaInicioHistorial
+            // 
+            this.dtpFechaInicioHistorial.Location = new System.Drawing.Point(201, 25);
+            this.dtpFechaInicioHistorial.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpFechaInicioHistorial.Mask = "00/00/0000";
+            this.dtpFechaInicioHistorial.Name = "dtpFechaInicioHistorial";
+            this.dtpFechaInicioHistorial.Size = new System.Drawing.Size(100, 22);
+            this.dtpFechaInicioHistorial.TabIndex = 0;
+            this.dtpFechaInicioHistorial.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaInicioHistorial_Validating);
+            this.dtpFechaInicioHistorial.Validated += new System.EventHandler(this.dtpFechaInicioHistorial_Validated);
             // 
             // lblIdEventoHistorialEmpleado
             // 
@@ -1671,6 +2223,25 @@
             this.label46.TabIndex = 4;
             this.label46.Text = "Fecha Inicio";
             // 
+            // txtDescripcionHistorial
+            // 
+            this.txtDescripcionHistorial.Location = new System.Drawing.Point(201, 89);
+            this.txtDescripcionHistorial.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDescripcionHistorial.Multiline = true;
+            this.txtDescripcionHistorial.Name = "txtDescripcionHistorial";
+            this.txtDescripcionHistorial.Size = new System.Drawing.Size(427, 50);
+            this.txtDescripcionHistorial.TabIndex = 4;
+            // 
+            // cmbTipoEventoHistorial
+            // 
+            this.cmbTipoEventoHistorial.BackColor = System.Drawing.Color.White;
+            this.cmbTipoEventoHistorial.FormattingEnabled = true;
+            this.cmbTipoEventoHistorial.Location = new System.Drawing.Point(201, 55);
+            this.cmbTipoEventoHistorial.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbTipoEventoHistorial.Name = "cmbTipoEventoHistorial";
+            this.cmbTipoEventoHistorial.Size = new System.Drawing.Size(427, 24);
+            this.cmbTipoEventoHistorial.TabIndex = 2;
+            // 
             // dgvHistorialEmpleado
             // 
             this.dgvHistorialEmpleado.AllowUserToAddRows = false;
@@ -1695,6 +2266,49 @@
             this.dgvHistorialEmpleado.Size = new System.Drawing.Size(847, 269);
             this.dgvHistorialEmpleado.TabIndex = 0;
             this.dgvHistorialEmpleado.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHistorialEmpleado_CellDoubleClick);
+            // 
+            // IdEventoHistorialEmpleado
+            // 
+            this.IdEventoHistorialEmpleado.HeaderText = "IdEventoHistorialEmpleado";
+            this.IdEventoHistorialEmpleado.Name = "IdEventoHistorialEmpleado";
+            this.IdEventoHistorialEmpleado.ReadOnly = true;
+            this.IdEventoHistorialEmpleado.Visible = false;
+            // 
+            // FechaInicio
+            // 
+            this.FechaInicio.FillWeight = 60F;
+            this.FechaInicio.HeaderText = "Fecha Inicio";
+            this.FechaInicio.Name = "FechaInicio";
+            this.FechaInicio.ReadOnly = true;
+            // 
+            // FechaFin
+            // 
+            this.FechaFin.FillWeight = 65.65144F;
+            this.FechaFin.HeaderText = "Fecha Fin";
+            this.FechaFin.Name = "FechaFin";
+            this.FechaFin.ReadOnly = true;
+            // 
+            // TipoEvento
+            // 
+            this.TipoEvento.FillWeight = 65.65144F;
+            this.TipoEvento.HeaderText = "Tipo De Evento";
+            this.TipoEvento.Name = "TipoEvento";
+            this.TipoEvento.ReadOnly = true;
+            this.TipoEvento.Width = 230;
+            // 
+            // IdTipoEvento
+            // 
+            this.IdTipoEvento.HeaderText = "IdTipoEvento";
+            this.IdTipoEvento.Name = "IdTipoEvento";
+            this.IdTipoEvento.ReadOnly = true;
+            this.IdTipoEvento.Visible = false;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.HeaderText = "Descripción";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            this.Descripcion.Width = 200;
             // 
             // ExtrasLiquidacion
             // 
@@ -1785,6 +2399,47 @@
             this.btnExtrasAgregar.UseVisualStyleBackColor = true;
             this.btnExtrasAgregar.Click += new System.EventHandler(this.btnExtrasAgregar_Click);
             // 
+            // mtExtrasCantCuotas
+            // 
+            this.mtExtrasCantCuotas.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtExtrasCantCuotas.HidePromptOnLeave = true;
+            this.mtExtrasCantCuotas.Location = new System.Drawing.Point(623, 97);
+            this.mtExtrasCantCuotas.Margin = new System.Windows.Forms.Padding(4);
+            this.mtExtrasCantCuotas.Mask = "09";
+            this.mtExtrasCantCuotas.Name = "mtExtrasCantCuotas";
+            this.mtExtrasCantCuotas.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.mtExtrasCantCuotas.Size = new System.Drawing.Size(28, 22);
+            this.mtExtrasCantCuotas.TabIndex = 4;
+            this.mtExtrasCantCuotas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.mtExtrasCantCuotas.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
+            // mtExtrasValor
+            // 
+            this.mtExtrasValor.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtExtrasValor.HidePromptOnLeave = true;
+            this.mtExtrasValor.Location = new System.Drawing.Point(371, 97);
+            this.mtExtrasValor.Margin = new System.Windows.Forms.Padding(4);
+            this.mtExtrasValor.Mask = "$00999";
+            this.mtExtrasValor.Name = "mtExtrasValor";
+            this.mtExtrasValor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.mtExtrasValor.Size = new System.Drawing.Size(75, 22);
+            this.mtExtrasValor.TabIndex = 3;
+            this.mtExtrasValor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.mtExtrasValor.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
+            // cmbExtrasSigno
+            // 
+            this.cmbExtrasSigno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbExtrasSigno.FormattingEnabled = true;
+            this.cmbExtrasSigno.Items.AddRange(new object[] {
+            "+",
+            "-"});
+            this.cmbExtrasSigno.Location = new System.Drawing.Point(201, 97);
+            this.cmbExtrasSigno.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbExtrasSigno.Name = "cmbExtrasSigno";
+            this.cmbExtrasSigno.Size = new System.Drawing.Size(63, 24);
+            this.cmbExtrasSigno.TabIndex = 2;
+            // 
             // label53
             // 
             this.label53.AutoSize = true;
@@ -1814,6 +2469,14 @@
             this.label51.Size = new System.Drawing.Size(41, 17);
             this.label51.TabIndex = 3;
             this.label51.Text = "Valor";
+            // 
+            // txtExtrasDescripcion
+            // 
+            this.txtExtrasDescripcion.Location = new System.Drawing.Point(201, 62);
+            this.txtExtrasDescripcion.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExtrasDescripcion.Name = "txtExtrasDescripcion";
+            this.txtExtrasDescripcion.Size = new System.Drawing.Size(451, 22);
+            this.txtExtrasDescripcion.TabIndex = 1;
             // 
             // label44
             // 
@@ -1863,6 +2526,59 @@
             this.dgvExtrasLiquidacion.Size = new System.Drawing.Size(847, 258);
             this.dgvExtrasLiquidacion.TabIndex = 0;
             this.dgvExtrasLiquidacion.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvExtrasLiquidacion_CellDoubleClick);
+            // 
+            // idExtraLiquidacion
+            // 
+            this.idExtraLiquidacion.HeaderText = "idExtraLiquidacion";
+            this.idExtraLiquidacion.Name = "idExtraLiquidacion";
+            this.idExtraLiquidacion.ReadOnly = true;
+            this.idExtraLiquidacion.Visible = false;
+            // 
+            // Fecha
+            // 
+            this.Fecha.HeaderText = "Fecha";
+            this.Fecha.Name = "Fecha";
+            this.Fecha.ReadOnly = true;
+            this.Fecha.Width = 120;
+            // 
+            // DescripcionEvento
+            // 
+            this.DescripcionEvento.HeaderText = "Descripción";
+            this.DescripcionEvento.Name = "DescripcionEvento";
+            this.DescripcionEvento.ReadOnly = true;
+            this.DescripcionEvento.Width = 260;
+            // 
+            // Signo
+            // 
+            this.Signo.HeaderText = "Signo";
+            this.Signo.Name = "Signo";
+            this.Signo.ReadOnly = true;
+            this.Signo.Width = 60;
+            // 
+            // Valor
+            // 
+            this.Valor.HeaderText = "Valor Cuota";
+            this.Valor.Name = "Valor";
+            this.Valor.ReadOnly = true;
+            // 
+            // CantidadCuotas
+            // 
+            this.CantidadCuotas.HeaderText = "Cant Cuotas";
+            this.CantidadCuotas.Name = "CantidadCuotas";
+            this.CantidadCuotas.ReadOnly = true;
+            this.CantidadCuotas.Width = 90;
+            // 
+            // CuotaActual
+            // 
+            this.CuotaActual.HeaderText = "Cuota Actual";
+            this.CuotaActual.Name = "CuotaActual";
+            this.CuotaActual.ReadOnly = true;
+            // 
+            // Liquidado
+            // 
+            this.Liquidado.HeaderText = "Liquidado?";
+            this.Liquidado.Name = "Liquidado";
+            this.Liquidado.ReadOnly = true;
             // 
             // ofdFoto
             // 
@@ -1971,722 +2687,6 @@
             this.dataGridViewTextBoxColumn14.HeaderText = "Liquidado?";
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             this.dataGridViewTextBoxColumn14.ReadOnly = true;
-            // 
-            // txtSueldo
-            // 
-            this.txtSueldo.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.txtSueldo.Location = new System.Drawing.Point(83, 80);
-            this.txtSueldo.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSueldo.Name = "txtSueldo";
-            this.txtSueldo.Size = new System.Drawing.Size(107, 22);
-            this.txtSueldo.TabIndex = 2;
-            this.txtSueldo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtSueldo.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            // 
-            // txtNumeroCuenta
-            // 
-            this.txtNumeroCuenta.Location = new System.Drawing.Point(83, 48);
-            this.txtNumeroCuenta.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNumeroCuenta.Name = "txtNumeroCuenta";
-            this.txtNumeroCuenta.Size = new System.Drawing.Size(147, 22);
-            this.txtNumeroCuenta.TabIndex = 1;
-            // 
-            // cmbBanco
-            // 
-            this.cmbBanco.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbBanco.FormattingEnabled = true;
-            this.cmbBanco.Location = new System.Drawing.Point(83, 14);
-            this.cmbBanco.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbBanco.Name = "cmbBanco";
-            this.cmbBanco.Size = new System.Drawing.Size(147, 24);
-            this.cmbBanco.TabIndex = 0;
-            // 
-            // dtpFechaIngreso
-            // 
-            this.dtpFechaIngreso.Location = new System.Drawing.Point(166, 261);
-            this.dtpFechaIngreso.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpFechaIngreso.Mask = "00/00/0000";
-            this.dtpFechaIngreso.Name = "dtpFechaIngreso";
-            this.dtpFechaIngreso.Size = new System.Drawing.Size(100, 22);
-            this.dtpFechaIngreso.TabIndex = 6;
-            this.dtpFechaIngreso.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaIngreso_Validating);
-            this.dtpFechaIngreso.Validated += new System.EventHandler(this.dtpFechaIngreso_Validated);
-            // 
-            // mtCantidadHijos
-            // 
-            this.mtCantidadHijos.Location = new System.Drawing.Point(217, 220);
-            this.mtCantidadHijos.Margin = new System.Windows.Forms.Padding(4);
-            this.mtCantidadHijos.Name = "mtCantidadHijos";
-            this.mtCantidadHijos.Size = new System.Drawing.Size(48, 22);
-            this.mtCantidadHijos.TabIndex = 5;
-            // 
-            // cmbEstadoCivil
-            // 
-            this.cmbEstadoCivil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEstadoCivil.FormattingEnabled = true;
-            this.cmbEstadoCivil.Items.AddRange(new object[] {
-            "CASADO",
-            "CONCUVINATO",
-            "DIVORCIADO",
-            "SOLTERO",
-            "VIUDO"});
-            this.cmbEstadoCivil.Location = new System.Drawing.Point(127, 180);
-            this.cmbEstadoCivil.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbEstadoCivil.Name = "cmbEstadoCivil";
-            this.cmbEstadoCivil.Size = new System.Drawing.Size(139, 24);
-            this.cmbEstadoCivil.TabIndex = 4;
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.txtEmail.Location = new System.Drawing.Point(73, 139);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(192, 22);
-            this.txtEmail.TabIndex = 3;
-            // 
-            // txtCelularConvenio
-            // 
-            this.txtCelularConvenio.Location = new System.Drawing.Point(127, 97);
-            this.txtCelularConvenio.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCelularConvenio.Mask = "000-000-000";
-            this.txtCelularConvenio.Name = "txtCelularConvenio";
-            this.txtCelularConvenio.Size = new System.Drawing.Size(139, 22);
-            this.txtCelularConvenio.TabIndex = 2;
-            // 
-            // txtCelular
-            // 
-            this.txtCelular.Location = new System.Drawing.Point(81, 55);
-            this.txtCelular.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCelular.Mask = "000-000-000";
-            this.txtCelular.Name = "txtCelular";
-            this.txtCelular.Size = new System.Drawing.Size(184, 22);
-            this.txtCelular.TabIndex = 1;
-            // 
-            // txtTelefono
-            // 
-            this.txtTelefono.Location = new System.Drawing.Point(81, 14);
-            this.txtTelefono.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTelefono.Mask = "000-0000";
-            this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(184, 22);
-            this.txtTelefono.TabIndex = 0;
-            // 
-            // dtpFechaNacimiento
-            // 
-            this.dtpFechaNacimiento.Location = new System.Drawing.Point(137, 263);
-            this.dtpFechaNacimiento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpFechaNacimiento.Mask = "00/00/0000";
-            this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
-            this.dtpFechaNacimiento.Size = new System.Drawing.Size(100, 22);
-            this.dtpFechaNacimiento.TabIndex = 5;
-            this.dtpFechaNacimiento.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaNacimiento_Validating);
-            this.dtpFechaNacimiento.Validated += new System.EventHandler(this.dtpFechaNacimiento_Validated);
-            // 
-            // txtNacionalidad
-            // 
-            this.txtNacionalidad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNacionalidad.Location = new System.Drawing.Point(137, 180);
-            this.txtNacionalidad.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNacionalidad.Name = "txtNacionalidad";
-            this.txtNacionalidad.Size = new System.Drawing.Size(152, 22);
-            this.txtNacionalidad.TabIndex = 3;
-            // 
-            // cmbTiposCargos
-            // 
-            this.cmbTiposCargos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTiposCargos.FormattingEnabled = true;
-            this.cmbTiposCargos.Location = new System.Drawing.Point(137, 97);
-            this.cmbTiposCargos.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbTiposCargos.Name = "cmbTiposCargos";
-            this.cmbTiposCargos.Size = new System.Drawing.Size(152, 24);
-            this.cmbTiposCargos.TabIndex = 2;
-            this.cmbTiposCargos.SelectedIndexChanged += new System.EventHandler(this.cmbTiposCargos_SelectedIndexChanged);
-            // 
-            // txtLugarNacimiento
-            // 
-            this.txtLugarNacimiento.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtLugarNacimiento.Location = new System.Drawing.Point(137, 220);
-            this.txtLugarNacimiento.Margin = new System.Windows.Forms.Padding(4);
-            this.txtLugarNacimiento.Name = "txtLugarNacimiento";
-            this.txtLugarNacimiento.Size = new System.Drawing.Size(152, 22);
-            this.txtLugarNacimiento.TabIndex = 4;
-            // 
-            // mtNumeroDocumento
-            // 
-            this.mtNumeroDocumento.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.mtNumeroDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtNumeroDocumento.Location = new System.Drawing.Point(137, 55);
-            this.mtNumeroDocumento.Margin = new System.Windows.Forms.Padding(4);
-            this.mtNumeroDocumento.Name = "mtNumeroDocumento";
-            this.mtNumeroDocumento.Size = new System.Drawing.Size(152, 24);
-            this.mtNumeroDocumento.TabIndex = 1;
-            this.mtNumeroDocumento.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            // 
-            // cmbTipoDocumento
-            // 
-            this.cmbTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTipoDocumento.FormattingEnabled = true;
-            this.cmbTipoDocumento.Location = new System.Drawing.Point(137, 14);
-            this.cmbTipoDocumento.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbTipoDocumento.Name = "cmbTipoDocumento";
-            this.cmbTipoDocumento.Size = new System.Drawing.Size(139, 24);
-            this.cmbTipoDocumento.TabIndex = 0;
-            this.cmbTipoDocumento.SelectedIndexChanged += new System.EventHandler(this.cmbTipoDocumento_SelectedIndexChanged);
-            // 
-            // txtApellido
-            // 
-            this.txtApellido.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellido.Location = new System.Drawing.Point(373, 50);
-            this.txtApellido.Margin = new System.Windows.Forms.Padding(4);
-            this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(192, 24);
-            this.txtApellido.TabIndex = 2;
-            // 
-            // txtNombre
-            // 
-            this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(84, 50);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(195, 24);
-            this.txtNombre.TabIndex = 1;
-            this.txtNombre.Leave += new System.EventHandler(this.txtNombre_Leave);
-            // 
-            // mtNumeroEmpleado
-            // 
-            this.mtNumeroEmpleado.BackColor = System.Drawing.Color.White;
-            this.mtNumeroEmpleado.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.mtNumeroEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtNumeroEmpleado.HidePromptOnLeave = true;
-            this.mtNumeroEmpleado.Location = new System.Drawing.Point(84, 15);
-            this.mtNumeroEmpleado.Margin = new System.Windows.Forms.Padding(4);
-            this.mtNumeroEmpleado.Mask = "0999";
-            this.mtNumeroEmpleado.Name = "mtNumeroEmpleado";
-            this.mtNumeroEmpleado.Size = new System.Drawing.Size(57, 24);
-            this.mtNumeroEmpleado.TabIndex = 0;
-            this.mtNumeroEmpleado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.mtNumeroEmpleado.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.mtNumeroEmpleado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtNumeroEmpleado_KeyDown);
-            // 
-            // dtpPsicologo
-            // 
-            this.dtpPsicologo.Location = new System.Drawing.Point(203, 23);
-            this.dtpPsicologo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpPsicologo.Mask = "00/00/0000";
-            this.dtpPsicologo.Name = "dtpPsicologo";
-            this.dtpPsicologo.Size = new System.Drawing.Size(100, 22);
-            this.dtpPsicologo.TabIndex = 0;
-            this.dtpPsicologo.Validating += new System.ComponentModel.CancelEventHandler(this.dtpPsicologo_Validating);
-            this.dtpPsicologo.Validated += new System.EventHandler(this.dtpPsicologo_Validated);
-            // 
-            // txtTalleCampera
-            // 
-            this.txtTalleCampera.Location = new System.Drawing.Point(111, 118);
-            this.txtTalleCampera.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTalleCampera.Name = "txtTalleCampera";
-            this.txtTalleCampera.Size = new System.Drawing.Size(71, 22);
-            this.txtTalleCampera.TabIndex = 3;
-            // 
-            // mtTalleZapatos
-            // 
-            this.mtTalleZapatos.Location = new System.Drawing.Point(111, 87);
-            this.mtTalleZapatos.Margin = new System.Windows.Forms.Padding(4);
-            this.mtTalleZapatos.Name = "mtTalleZapatos";
-            this.mtTalleZapatos.Size = new System.Drawing.Size(71, 22);
-            this.mtTalleZapatos.TabIndex = 2;
-            // 
-            // txtTallePantalon
-            // 
-            this.txtTallePantalon.Location = new System.Drawing.Point(111, 55);
-            this.txtTallePantalon.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTallePantalon.Name = "txtTallePantalon";
-            this.txtTallePantalon.Size = new System.Drawing.Size(71, 22);
-            this.txtTallePantalon.TabIndex = 1;
-            // 
-            // txtTalleCamisa
-            // 
-            this.txtTalleCamisa.BackColor = System.Drawing.Color.White;
-            this.txtTalleCamisa.Location = new System.Drawing.Point(111, 25);
-            this.txtTalleCamisa.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTalleCamisa.Name = "txtTalleCamisa";
-            this.txtTalleCamisa.Size = new System.Drawing.Size(71, 22);
-            this.txtTalleCamisa.TabIndex = 0;
-            // 
-            // txtObservaciones
-            // 
-            this.txtObservaciones.Location = new System.Drawing.Point(8, 23);
-            this.txtObservaciones.Margin = new System.Windows.Forms.Padding(4);
-            this.txtObservaciones.Multiline = true;
-            this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(401, 86);
-            this.txtObservaciones.TabIndex = 0;
-            // 
-            // txtCodigoPostal
-            // 
-            this.txtCodigoPostal.Location = new System.Drawing.Point(145, 118);
-            this.txtCodigoPostal.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCodigoPostal.Name = "txtCodigoPostal";
-            this.txtCodigoPostal.Size = new System.Drawing.Size(80, 22);
-            this.txtCodigoPostal.TabIndex = 3;
-            // 
-            // txtPuntoEncuentro
-            // 
-            this.txtPuntoEncuentro.Location = new System.Drawing.Point(147, 222);
-            this.txtPuntoEncuentro.Margin = new System.Windows.Forms.Padding(4);
-            this.txtPuntoEncuentro.Name = "txtPuntoEncuentro";
-            this.txtPuntoEncuentro.Size = new System.Drawing.Size(264, 22);
-            this.txtPuntoEncuentro.TabIndex = 6;
-            // 
-            // txtEntreCalles
-            // 
-            this.txtEntreCalles.Location = new System.Drawing.Point(147, 187);
-            this.txtEntreCalles.Margin = new System.Windows.Forms.Padding(4);
-            this.txtEntreCalles.Name = "txtEntreCalles";
-            this.txtEntreCalles.Size = new System.Drawing.Size(264, 22);
-            this.txtEntreCalles.TabIndex = 5;
-            // 
-            // txtBarrio
-            // 
-            this.txtBarrio.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBarrio.Location = new System.Drawing.Point(147, 84);
-            this.txtBarrio.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBarrio.Name = "txtBarrio";
-            this.txtBarrio.Size = new System.Drawing.Size(160, 22);
-            this.txtBarrio.TabIndex = 2;
-            // 
-            // txtDireccion
-            // 
-            this.txtDireccion.Location = new System.Drawing.Point(147, 153);
-            this.txtDireccion.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(264, 22);
-            this.txtDireccion.TabIndex = 4;
-            // 
-            // txtCiudad
-            // 
-            this.txtCiudad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtCiudad.Location = new System.Drawing.Point(147, 49);
-            this.txtCiudad.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCiudad.Name = "txtCiudad";
-            this.txtCiudad.Size = new System.Drawing.Size(160, 22);
-            this.txtCiudad.TabIndex = 1;
-            // 
-            // cmbDepartamento
-            // 
-            this.cmbDepartamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDepartamento.FormattingEnabled = true;
-            this.cmbDepartamento.Location = new System.Drawing.Point(147, 14);
-            this.cmbDepartamento.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbDepartamento.Name = "cmbDepartamento";
-            this.cmbDepartamento.Size = new System.Drawing.Size(160, 24);
-            this.cmbDepartamento.TabIndex = 0;
-            // 
-            // dtpFechaVencimientoCarneSalud
-            // 
-            this.dtpFechaVencimientoCarneSalud.Location = new System.Drawing.Point(264, 18);
-            this.dtpFechaVencimientoCarneSalud.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpFechaVencimientoCarneSalud.Mask = "00/00/0000";
-            this.dtpFechaVencimientoCarneSalud.Name = "dtpFechaVencimientoCarneSalud";
-            this.dtpFechaVencimientoCarneSalud.Size = new System.Drawing.Size(100, 22);
-            this.dtpFechaVencimientoCarneSalud.TabIndex = 0;
-            this.dtpFechaVencimientoCarneSalud.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaVencimientoCarneSalud_Validating);
-            this.dtpFechaVencimientoCarneSalud.Validated += new System.EventHandler(this.dtpFechaVencimientoCarneSalud_Validated);
-            // 
-            // cmbMutualista
-            // 
-            this.cmbMutualista.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbMutualista.FormattingEnabled = true;
-            this.cmbMutualista.Location = new System.Drawing.Point(177, 48);
-            this.cmbMutualista.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbMutualista.Name = "cmbMutualista";
-            this.cmbMutualista.Size = new System.Drawing.Size(187, 24);
-            this.cmbMutualista.TabIndex = 1;
-            // 
-            // cmbEmergenciaMedica
-            // 
-            this.cmbEmergenciaMedica.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEmergenciaMedica.FormattingEnabled = true;
-            this.cmbEmergenciaMedica.Location = new System.Drawing.Point(177, 84);
-            this.cmbEmergenciaMedica.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbEmergenciaMedica.Name = "cmbEmergenciaMedica";
-            this.cmbEmergenciaMedica.Size = new System.Drawing.Size(187, 24);
-            this.cmbEmergenciaMedica.TabIndex = 2;
-            // 
-            // dtpFechaEgresoEmpresa
-            // 
-            this.dtpFechaEgresoEmpresa.Location = new System.Drawing.Point(303, 30);
-            this.dtpFechaEgresoEmpresa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpFechaEgresoEmpresa.Mask = "00/00/0000";
-            this.dtpFechaEgresoEmpresa.Name = "dtpFechaEgresoEmpresa";
-            this.dtpFechaEgresoEmpresa.Size = new System.Drawing.Size(100, 22);
-            this.dtpFechaEgresoEmpresa.TabIndex = 1;
-            this.dtpFechaEgresoEmpresa.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaEgresoEmpresa_Validating);
-            this.dtpFechaEgresoEmpresa.Validated += new System.EventHandler(this.dtpFechaEgresoEmpresa_Validated);
-            // 
-            // dtpFechaBaja
-            // 
-            this.dtpFechaBaja.Location = new System.Drawing.Point(245, 23);
-            this.dtpFechaBaja.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpFechaBaja.Mask = "00/00/0000";
-            this.dtpFechaBaja.Name = "dtpFechaBaja";
-            this.dtpFechaBaja.Size = new System.Drawing.Size(100, 22);
-            this.dtpFechaBaja.TabIndex = 1;
-            this.dtpFechaBaja.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaBaja_Validating);
-            this.dtpFechaBaja.Validated += new System.EventHandler(this.dtpFechaBaja_Validated);
-            // 
-            // txtMotivoBaja
-            // 
-            this.txtMotivoBaja.Enabled = false;
-            this.txtMotivoBaja.Location = new System.Drawing.Point(103, 50);
-            this.txtMotivoBaja.Margin = new System.Windows.Forms.Padding(4);
-            this.txtMotivoBaja.Multiline = true;
-            this.txtMotivoBaja.Name = "txtMotivoBaja";
-            this.txtMotivoBaja.Size = new System.Drawing.Size(259, 43);
-            this.txtMotivoBaja.TabIndex = 2;
-            // 
-            // dtpFechaBajaMTSS
-            // 
-            this.dtpFechaBajaMTSS.Location = new System.Drawing.Point(303, 49);
-            this.dtpFechaBajaMTSS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpFechaBajaMTSS.Mask = "00/00/0000";
-            this.dtpFechaBajaMTSS.Name = "dtpFechaBajaMTSS";
-            this.dtpFechaBajaMTSS.Size = new System.Drawing.Size(100, 22);
-            this.dtpFechaBajaMTSS.TabIndex = 2;
-            this.dtpFechaBajaMTSS.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaBajaMTSS_Validating);
-            this.dtpFechaBajaMTSS.Validated += new System.EventHandler(this.dtpFechaBajaMTSS_Validated);
-            // 
-            // dtpFechaAltaMTSS
-            // 
-            this.dtpFechaAltaMTSS.Location = new System.Drawing.Point(303, 17);
-            this.dtpFechaAltaMTSS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpFechaAltaMTSS.Mask = "00/00/0000";
-            this.dtpFechaAltaMTSS.Name = "dtpFechaAltaMTSS";
-            this.dtpFechaAltaMTSS.Size = new System.Drawing.Size(100, 22);
-            this.dtpFechaAltaMTSS.TabIndex = 0;
-            this.dtpFechaAltaMTSS.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaAltaMTSS_Validating);
-            this.dtpFechaAltaMTSS.Validated += new System.EventHandler(this.dtpFechaAltaMTSS_Validated);
-            // 
-            // txtObservacionesAntecedentes
-            // 
-            this.txtObservacionesAntecedentes.Location = new System.Drawing.Point(16, 73);
-            this.txtObservacionesAntecedentes.Margin = new System.Windows.Forms.Padding(4);
-            this.txtObservacionesAntecedentes.Multiline = true;
-            this.txtObservacionesAntecedentes.Name = "txtObservacionesAntecedentes";
-            this.txtObservacionesAntecedentes.Size = new System.Drawing.Size(287, 53);
-            this.txtObservacionesAntecedentes.TabIndex = 2;
-            // 
-            // dtpFechaIngresoRenaemse
-            // 
-            this.dtpFechaIngresoRenaemse.Location = new System.Drawing.Point(312, 15);
-            this.dtpFechaIngresoRenaemse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpFechaIngresoRenaemse.Mask = "00/00/0000";
-            this.dtpFechaIngresoRenaemse.Name = "dtpFechaIngresoRenaemse";
-            this.dtpFechaIngresoRenaemse.Size = new System.Drawing.Size(100, 22);
-            this.dtpFechaIngresoRenaemse.TabIndex = 1;
-            this.dtpFechaIngresoRenaemse.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaIngresoRenaemse_Validating);
-            this.dtpFechaIngresoRenaemse.Validated += new System.EventHandler(this.dtpFechaIngresoRenaemse_Validated);
-            // 
-            // txtNumAsuntoRenaemse
-            // 
-            this.txtNumAsuntoRenaemse.Location = new System.Drawing.Point(103, 15);
-            this.txtNumAsuntoRenaemse.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNumAsuntoRenaemse.Name = "txtNumAsuntoRenaemse";
-            this.txtNumAsuntoRenaemse.Size = new System.Drawing.Size(97, 22);
-            this.txtNumAsuntoRenaemse.TabIndex = 0;
-            // 
-            // dtpFechaBajaBPS
-            // 
-            this.dtpFechaBajaBPS.Location = new System.Drawing.Point(307, 53);
-            this.dtpFechaBajaBPS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpFechaBajaBPS.Mask = "00/00/0000";
-            this.dtpFechaBajaBPS.Name = "dtpFechaBajaBPS";
-            this.dtpFechaBajaBPS.Size = new System.Drawing.Size(100, 22);
-            this.dtpFechaBajaBPS.TabIndex = 3;
-            this.dtpFechaBajaBPS.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaBajaBPS_Validating);
-            this.dtpFechaBajaBPS.Validated += new System.EventHandler(this.dtpFechaBajaBPS_Validated);
-            // 
-            // dtpFechaAltaBPS
-            // 
-            this.dtpFechaAltaBPS.Location = new System.Drawing.Point(307, 20);
-            this.dtpFechaAltaBPS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpFechaAltaBPS.Mask = "00/00/0000";
-            this.dtpFechaAltaBPS.Name = "dtpFechaAltaBPS";
-            this.dtpFechaAltaBPS.Size = new System.Drawing.Size(100, 22);
-            this.dtpFechaAltaBPS.TabIndex = 1;
-            this.dtpFechaAltaBPS.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaAltaBPS_Validating);
-            this.dtpFechaAltaBPS.Validated += new System.EventHandler(this.dtpFechaAltaBPS_Validated);
-            // 
-            // mtAcumulacionBPS
-            // 
-            this.mtAcumulacionBPS.Location = new System.Drawing.Point(161, 22);
-            this.mtAcumulacionBPS.Margin = new System.Windows.Forms.Padding(4);
-            this.mtAcumulacionBPS.Name = "mtAcumulacionBPS";
-            this.mtAcumulacionBPS.Size = new System.Drawing.Size(41, 22);
-            this.mtAcumulacionBPS.TabIndex = 0;
-            // 
-            // dtpFechaEntregaCAJ
-            // 
-            this.dtpFechaEntregaCAJ.Location = new System.Drawing.Point(307, 51);
-            this.dtpFechaEntregaCAJ.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpFechaEntregaCAJ.Mask = "00/00/0000";
-            this.dtpFechaEntregaCAJ.Name = "dtpFechaEntregaCAJ";
-            this.dtpFechaEntregaCAJ.Size = new System.Drawing.Size(100, 22);
-            this.dtpFechaEntregaCAJ.TabIndex = 2;
-            this.dtpFechaEntregaCAJ.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaEntregaCAJ_Validating);
-            this.dtpFechaEntregaCAJ.Validated += new System.EventHandler(this.dtpFechaEntregaCAJ_Validated);
-            // 
-            // dtpFechaEmisionCAJ
-            // 
-            this.dtpFechaEmisionCAJ.Location = new System.Drawing.Point(307, 19);
-            this.dtpFechaEmisionCAJ.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpFechaEmisionCAJ.Mask = "00/00/0000";
-            this.dtpFechaEmisionCAJ.Name = "dtpFechaEmisionCAJ";
-            this.dtpFechaEmisionCAJ.Size = new System.Drawing.Size(100, 22);
-            this.dtpFechaEmisionCAJ.TabIndex = 1;
-            this.dtpFechaEmisionCAJ.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaEmisionCAJ_Validating);
-            this.dtpFechaEmisionCAJ.Validated += new System.EventHandler(this.dtpFechaEmisionCAJ_Validated);
-            // 
-            // txtNumeroCAJ
-            // 
-            this.txtNumeroCAJ.Location = new System.Drawing.Point(80, 16);
-            this.txtNumeroCAJ.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNumeroCAJ.Name = "txtNumeroCAJ";
-            this.txtNumeroCAJ.Size = new System.Drawing.Size(99, 22);
-            this.txtNumeroCAJ.TabIndex = 0;
-            // 
-            // dtpFechaEgresoPolicialMilitar
-            // 
-            this.dtpFechaEgresoPolicialMilitar.Location = new System.Drawing.Point(125, 91);
-            this.dtpFechaEgresoPolicialMilitar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpFechaEgresoPolicialMilitar.Mask = "00/00/0000";
-            this.dtpFechaEgresoPolicialMilitar.Name = "dtpFechaEgresoPolicialMilitar";
-            this.dtpFechaEgresoPolicialMilitar.Size = new System.Drawing.Size(100, 22);
-            this.dtpFechaEgresoPolicialMilitar.TabIndex = 2;
-            this.dtpFechaEgresoPolicialMilitar.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaEgresoPolicialMilitar_Validating);
-            this.dtpFechaEgresoPolicialMilitar.Validated += new System.EventHandler(this.dtpFechaEgresoPolicialMilitar_Validated);
-            // 
-            // dtpFechaIngresoPolicialMilitar
-            // 
-            this.dtpFechaIngresoPolicialMilitar.Location = new System.Drawing.Point(125, 57);
-            this.dtpFechaIngresoPolicialMilitar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpFechaIngresoPolicialMilitar.Mask = "00/00/0000";
-            this.dtpFechaIngresoPolicialMilitar.Name = "dtpFechaIngresoPolicialMilitar";
-            this.dtpFechaIngresoPolicialMilitar.Size = new System.Drawing.Size(100, 22);
-            this.dtpFechaIngresoPolicialMilitar.TabIndex = 1;
-            this.dtpFechaIngresoPolicialMilitar.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaIngresoPolicialMilitar_Validating);
-            this.dtpFechaIngresoPolicialMilitar.Validated += new System.EventHandler(this.dtpFechaIngresoPolicialMilitar_Validated);
-            // 
-            // txtPolicialSubEscalafon
-            // 
-            this.txtPolicialSubEscalafon.Enabled = false;
-            this.txtPolicialSubEscalafon.Location = new System.Drawing.Point(125, 124);
-            this.txtPolicialSubEscalafon.Margin = new System.Windows.Forms.Padding(4);
-            this.txtPolicialSubEscalafon.Name = "txtPolicialSubEscalafon";
-            this.txtPolicialSubEscalafon.Size = new System.Drawing.Size(177, 22);
-            this.txtPolicialSubEscalafon.TabIndex = 3;
-            // 
-            // cmbPolicialMilitar
-            // 
-            this.cmbPolicialMilitar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPolicialMilitar.Enabled = false;
-            this.cmbPolicialMilitar.FormattingEnabled = true;
-            this.cmbPolicialMilitar.Items.AddRange(new object[] {
-            "Policia",
-            "Militar"});
-            this.cmbPolicialMilitar.Location = new System.Drawing.Point(163, 18);
-            this.cmbPolicialMilitar.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbPolicialMilitar.Name = "cmbPolicialMilitar";
-            this.cmbPolicialMilitar.Size = new System.Drawing.Size(140, 24);
-            this.cmbPolicialMilitar.TabIndex = 0;
-            this.cmbPolicialMilitar.SelectedValueChanged += new System.EventHandler(this.cmbPolicialMilitar_SelectedValueChanged);
-            // 
-            // dtpFechaFinHistorial
-            // 
-            this.dtpFechaFinHistorial.Location = new System.Drawing.Point(528, 25);
-            this.dtpFechaFinHistorial.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpFechaFinHistorial.Mask = "00/00/0000";
-            this.dtpFechaFinHistorial.Name = "dtpFechaFinHistorial";
-            this.dtpFechaFinHistorial.Size = new System.Drawing.Size(100, 22);
-            this.dtpFechaFinHistorial.TabIndex = 1;
-            this.dtpFechaFinHistorial.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaFinHistorial_Validating);
-            this.dtpFechaFinHistorial.Validated += new System.EventHandler(this.dtpFechaFinHistorial_Validated);
-            // 
-            // dtpFechaInicioHistorial
-            // 
-            this.dtpFechaInicioHistorial.Location = new System.Drawing.Point(201, 25);
-            this.dtpFechaInicioHistorial.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpFechaInicioHistorial.Mask = "00/00/0000";
-            this.dtpFechaInicioHistorial.Name = "dtpFechaInicioHistorial";
-            this.dtpFechaInicioHistorial.Size = new System.Drawing.Size(100, 22);
-            this.dtpFechaInicioHistorial.TabIndex = 0;
-            this.dtpFechaInicioHistorial.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaInicioHistorial_Validating);
-            this.dtpFechaInicioHistorial.Validated += new System.EventHandler(this.dtpFechaInicioHistorial_Validated);
-            // 
-            // txtDescripcionHistorial
-            // 
-            this.txtDescripcionHistorial.Location = new System.Drawing.Point(201, 89);
-            this.txtDescripcionHistorial.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDescripcionHistorial.Multiline = true;
-            this.txtDescripcionHistorial.Name = "txtDescripcionHistorial";
-            this.txtDescripcionHistorial.Size = new System.Drawing.Size(427, 50);
-            this.txtDescripcionHistorial.TabIndex = 4;
-            // 
-            // cmbTipoEventoHistorial
-            // 
-            this.cmbTipoEventoHistorial.BackColor = System.Drawing.Color.White;
-            this.cmbTipoEventoHistorial.FormattingEnabled = true;
-            this.cmbTipoEventoHistorial.Location = new System.Drawing.Point(201, 55);
-            this.cmbTipoEventoHistorial.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbTipoEventoHistorial.Name = "cmbTipoEventoHistorial";
-            this.cmbTipoEventoHistorial.Size = new System.Drawing.Size(427, 24);
-            this.cmbTipoEventoHistorial.TabIndex = 2;
-            // 
-            // IdEventoHistorialEmpleado
-            // 
-            this.IdEventoHistorialEmpleado.HeaderText = "IdEventoHistorialEmpleado";
-            this.IdEventoHistorialEmpleado.Name = "IdEventoHistorialEmpleado";
-            this.IdEventoHistorialEmpleado.ReadOnly = true;
-            this.IdEventoHistorialEmpleado.Visible = false;
-            // 
-            // FechaInicio
-            // 
-            this.FechaInicio.FillWeight = 60F;
-            this.FechaInicio.HeaderText = "Fecha Inicio";
-            this.FechaInicio.Name = "FechaInicio";
-            this.FechaInicio.ReadOnly = true;
-            // 
-            // FechaFin
-            // 
-            this.FechaFin.FillWeight = 65.65144F;
-            this.FechaFin.HeaderText = "Fecha Fin";
-            this.FechaFin.Name = "FechaFin";
-            this.FechaFin.ReadOnly = true;
-            // 
-            // TipoEvento
-            // 
-            this.TipoEvento.FillWeight = 65.65144F;
-            this.TipoEvento.HeaderText = "Tipo De Evento";
-            this.TipoEvento.Name = "TipoEvento";
-            this.TipoEvento.ReadOnly = true;
-            this.TipoEvento.Width = 230;
-            // 
-            // IdTipoEvento
-            // 
-            this.IdTipoEvento.HeaderText = "IdTipoEvento";
-            this.IdTipoEvento.Name = "IdTipoEvento";
-            this.IdTipoEvento.ReadOnly = true;
-            this.IdTipoEvento.Visible = false;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripción";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            this.Descripcion.Width = 200;
-            // 
-            // mtExtrasCantCuotas
-            // 
-            this.mtExtrasCantCuotas.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.mtExtrasCantCuotas.HidePromptOnLeave = true;
-            this.mtExtrasCantCuotas.Location = new System.Drawing.Point(623, 97);
-            this.mtExtrasCantCuotas.Margin = new System.Windows.Forms.Padding(4);
-            this.mtExtrasCantCuotas.Mask = "09";
-            this.mtExtrasCantCuotas.Name = "mtExtrasCantCuotas";
-            this.mtExtrasCantCuotas.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.mtExtrasCantCuotas.Size = new System.Drawing.Size(28, 22);
-            this.mtExtrasCantCuotas.TabIndex = 4;
-            this.mtExtrasCantCuotas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.mtExtrasCantCuotas.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            // 
-            // mtExtrasValor
-            // 
-            this.mtExtrasValor.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.mtExtrasValor.HidePromptOnLeave = true;
-            this.mtExtrasValor.Location = new System.Drawing.Point(371, 97);
-            this.mtExtrasValor.Margin = new System.Windows.Forms.Padding(4);
-            this.mtExtrasValor.Mask = "$00999";
-            this.mtExtrasValor.Name = "mtExtrasValor";
-            this.mtExtrasValor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.mtExtrasValor.Size = new System.Drawing.Size(75, 22);
-            this.mtExtrasValor.TabIndex = 3;
-            this.mtExtrasValor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.mtExtrasValor.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            // 
-            // cmbExtrasSigno
-            // 
-            this.cmbExtrasSigno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbExtrasSigno.FormattingEnabled = true;
-            this.cmbExtrasSigno.Items.AddRange(new object[] {
-            "+",
-            "-"});
-            this.cmbExtrasSigno.Location = new System.Drawing.Point(201, 97);
-            this.cmbExtrasSigno.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbExtrasSigno.Name = "cmbExtrasSigno";
-            this.cmbExtrasSigno.Size = new System.Drawing.Size(63, 24);
-            this.cmbExtrasSigno.TabIndex = 2;
-            // 
-            // txtExtrasDescripcion
-            // 
-            this.txtExtrasDescripcion.Location = new System.Drawing.Point(201, 62);
-            this.txtExtrasDescripcion.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExtrasDescripcion.Name = "txtExtrasDescripcion";
-            this.txtExtrasDescripcion.Size = new System.Drawing.Size(451, 22);
-            this.txtExtrasDescripcion.TabIndex = 1;
-            // 
-            // idExtraLiquidacion
-            // 
-            this.idExtraLiquidacion.HeaderText = "idExtraLiquidacion";
-            this.idExtraLiquidacion.Name = "idExtraLiquidacion";
-            this.idExtraLiquidacion.ReadOnly = true;
-            this.idExtraLiquidacion.Visible = false;
-            // 
-            // Fecha
-            // 
-            this.Fecha.HeaderText = "Fecha";
-            this.Fecha.Name = "Fecha";
-            this.Fecha.ReadOnly = true;
-            this.Fecha.Width = 120;
-            // 
-            // DescripcionEvento
-            // 
-            this.DescripcionEvento.HeaderText = "Descripción";
-            this.DescripcionEvento.Name = "DescripcionEvento";
-            this.DescripcionEvento.ReadOnly = true;
-            this.DescripcionEvento.Width = 260;
-            // 
-            // Signo
-            // 
-            this.Signo.HeaderText = "Signo";
-            this.Signo.Name = "Signo";
-            this.Signo.ReadOnly = true;
-            this.Signo.Width = 60;
-            // 
-            // Valor
-            // 
-            this.Valor.HeaderText = "Valor Cuota";
-            this.Valor.Name = "Valor";
-            this.Valor.ReadOnly = true;
-            // 
-            // CantidadCuotas
-            // 
-            this.CantidadCuotas.HeaderText = "Cant Cuotas";
-            this.CantidadCuotas.Name = "CantidadCuotas";
-            this.CantidadCuotas.ReadOnly = true;
-            this.CantidadCuotas.Width = 90;
-            // 
-            // CuotaActual
-            // 
-            this.CuotaActual.HeaderText = "Cuota Actual";
-            this.CuotaActual.Name = "CuotaActual";
-            this.CuotaActual.ReadOnly = true;
-            // 
-            // Liquidado
-            // 
-            this.Liquidado.HeaderText = "Liquidado?";
-            this.Liquidado.Name = "Liquidado";
-            this.Liquidado.ReadOnly = true;
             // 
             // ABMEmpleados
             // 
