@@ -34,6 +34,14 @@ namespace ControlHoras
         private string LlenarCamposObligatorios = "Debe llenar todos los campos obligatorios.";
         private string fechaMask = @"  /  /";
 
+        // Para impresiones
+        private object missing = null;//System.Reflection.Missing.Value;
+        private string exefile = null;//Application.ExecutablePath;
+        private FileInfo Info = null;//new FileInfo(exefile);
+        private string dirbase = null;//Info.Directory.Parent.Parent.FullName;
+
+
+
         static ABMEmpleados ventana = null;
         public static ABMEmpleados getVentana()
         {
@@ -51,6 +59,11 @@ namespace ControlHoras
             datos = ControladorDatos.getInstance();
             datosTipos = DatosABMTipos.getInstance();
             tipos = ControladorABMTipos.getInstance();
+
+            missing = System.Reflection.Missing.Value;
+            exefile = Application.ExecutablePath;
+            Info = new FileInfo(exefile);
+            dirbase = Info.Directory.Parent.Parent.FullName;
             
         }
 
@@ -1766,11 +1779,7 @@ namespace ControlHoras
         }
 
         private void contratoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            object missing = System.Reflection.Missing.Value;
-            string exefile = Application.ExecutablePath;
-            FileInfo Info = new FileInfo(exefile);
-            string dirbase = Info.Directory.Parent.Parent.FullName;
+        {            
             object fileName = Path.Combine(dirbase, @"Docs\Contrato.doc");// @"C:\Documents and Settings\jcopello\Mis documentos\JPC\TrustSoftware\Codigo\ControlHoras\Docs\Contrato.doc";
             object mark;
             object readOnly = false;
@@ -1790,7 +1799,6 @@ namespace ControlHoras
 
             mark = "mesHoy";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-
             wrdRng.Text = DateTime.Today.ToString("MMMM");
 
             mark = "anoHoy";
@@ -1803,7 +1811,7 @@ namespace ControlHoras
 
             mark = "estadocivil";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = cmbEstadoCivil.DisplayMember;
+            wrdRng.Text = cmbEstadoCivil.Text;
 
             mark = "ci";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
@@ -1814,9 +1822,93 @@ namespace ControlHoras
             wrdRng.Text = txtDireccion.Text;
         }
 
-        
+        private void movistarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            object fileName = Path.Combine(dirbase, @"Docs\Movistar.doc");// @"C:\Documents and Settings\jcopello\Mis documentos\JPC\TrustSoftware\Codigo\ControlHoras\Docs\Contrato.doc";
+            object mark;
+            object readOnly = false;
 
-       
+            Word._Application oWord;
+            Word._Document oDoc;
+            oWord = new Word.Application();
+            oWord.Visible = true;
+            oDoc = oWord.Documents.Open(ref fileName,
+                        ref missing, ref readOnly, ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing, ref missing, ref missing);
+
+            mark = "diaHoy";
+            Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = DateTime.Today.Day.ToString();
+
+            mark = "mesHoy";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = DateTime.Today.ToString("MMMM");
+
+            mark = "anoHoy";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = DateTime.Today.Year.ToString();
+
+            mark = "nombre";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = txtNombre.Text + " " + txtApellido.Text;
+            
+            mark = "ci";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = mtNumeroDocumento.Text;
+
+            mark = "domicilio";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = txtDireccion.Text;
+                        
+            mark = "dHoy";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = DateTime.Today.Day.ToString();
+
+            mark = "mHoy";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = DateTime.Today.ToString("MMMM");
+
+            mark = "aHoy";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = DateTime.Today.Year.ToString();
+        }
+
+        private void diplomaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            object fileName = Path.Combine(dirbase, @"Docs\Diploma.doc");// @"C:\Documents and Settings\jcopello\Mis documentos\JPC\TrustSoftware\Codigo\ControlHoras\Docs\Contrato.doc";
+            object mark;
+            object readOnly = false;
+
+            Word._Application oWord;
+            Word._Document oDoc;
+            oWord = new Word.Application();
+            oWord.Visible = true;
+            oDoc = oWord.Documents.Open(ref fileName,
+                        ref missing, ref readOnly, ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing, ref missing, ref missing);
+
+            mark = "nombre";
+            Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = TranfaTitulo(txtNombre.Text + " " + txtApellido.Text);
+
+            mark = "fechaIni";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = DateTime.Today.AddDays(-2).Day.ToString();
+
+            mark = "fechaFin";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = DateTime.Today.AddDays(-1).Day.ToString();
+
+            mark = "mes";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = DateTime.Today.ToString("MMMM");
+
+            mark = "ano";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = DateTime.Today.Year.ToString();
+        }     
 
         
     }

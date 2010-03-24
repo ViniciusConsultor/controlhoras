@@ -517,6 +517,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Docs\Contrato.doc" />
+    <None Include="Docs\Movistar.doc" />
     <None Include="Resources\imagen_no_disponible.jpg" />
   </ItemGroup>
   <ItemGroup>
