@@ -164,6 +164,8 @@
             this.ofdFoto = new System.Windows.Forms.OpenFileDialog();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.movistarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.diplomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.renaemseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -253,7 +255,6 @@
             this.CantidadCuotas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CuotaActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Liquidado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.diplomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.tcEmpleado.SuspendLayout();
             this.DatosDelEmpleado.SuspendLayout();
@@ -376,7 +377,8 @@
             this.ImprimirTSB.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.contratoToolStripMenuItem,
             this.movistarToolStripMenuItem,
-            this.diplomaToolStripMenuItem});
+            this.diplomaToolStripMenuItem,
+            this.renaemseToolStripMenuItem});
             this.ImprimirTSB.Image = ((System.Drawing.Image)(resources.GetObject("ImprimirTSB.Image")));
             this.ImprimirTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ImprimirTSB.Name = "ImprimirTSB";
@@ -388,7 +390,7 @@
             // contratoToolStripMenuItem
             // 
             this.contratoToolStripMenuItem.Name = "contratoToolStripMenuItem";
-            this.contratoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.contratoToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.contratoToolStripMenuItem.Text = "Contrato";
             this.contratoToolStripMenuItem.Click += new System.EventHandler(this.contratoToolStripMenuItem_Click);
             // 
@@ -1908,9 +1910,23 @@
             // movistarToolStripMenuItem
             // 
             this.movistarToolStripMenuItem.Name = "movistarToolStripMenuItem";
-            this.movistarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.movistarToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.movistarToolStripMenuItem.Text = "Movistar";
             this.movistarToolStripMenuItem.Click += new System.EventHandler(this.movistarToolStripMenuItem_Click);
+            // 
+            // diplomaToolStripMenuItem
+            // 
+            this.diplomaToolStripMenuItem.Name = "diplomaToolStripMenuItem";
+            this.diplomaToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.diplomaToolStripMenuItem.Text = "Diploma";
+            this.diplomaToolStripMenuItem.Click += new System.EventHandler(this.diplomaToolStripMenuItem_Click);
+            // 
+            // renaemseToolStripMenuItem
+            // 
+            this.renaemseToolStripMenuItem.Name = "renaemseToolStripMenuItem";
+            this.renaemseToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.renaemseToolStripMenuItem.Text = "Renaemse";
+            this.renaemseToolStripMenuItem.Click += new System.EventHandler(this.renaemseToolStripMenuItem_Click);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -2728,13 +2744,6 @@
             this.Liquidado.Name = "Liquidado";
             this.Liquidado.ReadOnly = true;
             // 
-            // diplomaToolStripMenuItem
-            // 
-            this.diplomaToolStripMenuItem.Name = "diplomaToolStripMenuItem";
-            this.diplomaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.diplomaToolStripMenuItem.Text = "Diploma";
-            this.diplomaToolStripMenuItem.Click += new System.EventHandler(this.diplomaToolStripMenuItem_Click);
-            // 
             // ABMEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -3039,5 +3048,6 @@
         private System.Windows.Forms.ToolStripMenuItem contratoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem movistarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem diplomaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem renaemseToolStripMenuItem;
     }
 }
