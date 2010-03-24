@@ -12,6 +12,7 @@ using System.Globalization;
 using Utilidades;
 using Datos;
 using Word = Microsoft.Office.Interop.Word;
+using Excel = Microsoft.Office.Interop.Excel;
 using System.Reflection;
 
 
@@ -1891,7 +1892,7 @@ namespace ControlHoras
 
             mark = "nombre";
             Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = TranfaTitulo(txtNombre.Text + " " + txtApellido.Text);
+            wrdRng.Text = txtNombre.Text + " " + TranfaTitulo(txtApellido.Text);
 
             mark = "fechaIni";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
@@ -1908,6 +1909,65 @@ namespace ControlHoras
             mark = "ano";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
             wrdRng.Text = DateTime.Today.Year.ToString();
+        }
+
+        private void renaemseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string fileName = Path.Combine(dirbase, @"Docs\Renaemse.xls");// @"C:\Documents and Settings\jcopello\Mis documentos\JPC\TrustSoftware\Codigo\ControlHoras\Docs\Contrato.doc";
+            object readOnly = false;
+
+            Excel.Application ExApp; 
+            Excel._Workbook oWBook; 
+            Excel._Worksheet oSheet;
+            //Excel.Range oRng;
+            try
+            {
+                //Start Excel and get Application object.
+                ExApp = new Excel.Application();
+                ExApp.Visible = true;
+                //Get a new workbook.
+                //oWB = (Excel._Workbook)(oXL.Workbooks.Add(Missing.Value));
+                oWBook = ExApp.Workbooks.Open(fileName, missing, readOnly, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing);
+                oSheet = (Excel._Worksheet)oWBook.ActiveSheet;
+
+                // Nombre
+                oSheet.Cells[16, 2] = txtApellido.Text + " " + txtNombre.Text;
+
+                // C.I.
+                oSheet.Cells[18, 2] = "C.I. " + mtNumeroDocumento.Text;
+
+                // Estado Civil
+                oSheet.Cells[18, 9] = cmbEstadoCivil.Text;
+
+                // Fecha de Nacimiento
+                oSheet.Cells[20, 4] = dtpFechaNacimiento.Text;
+
+                // Edad
+                oSheet.Cells[20, 9] = lblEdad.Text;
+
+                // Dirección
+                oSheet.Cells[23, 2] = txtDireccion.Text;                
+
+                // Nro CAJ
+                oSheet.Cells[34, 6] = txtNumeroCAJ.Text;
+
+                // Fecha Emision CAJ
+                oSheet.Cells[35, 3] = dtpFechaEmisionCAJ.Text;
+
+                // Fecha Entrega CAJ
+                oSheet.Cells[35, 7] = dtpFechaEntregaCAJ.Text;
+               
+            }
+            catch (Exception theException)
+            {
+                String errorMessage;
+                errorMessage = "Error: ";
+                errorMessage = String.Concat(errorMessage, theException.Message);
+                errorMessage = String.Concat(errorMessage, " Line: ");
+                errorMessage = String.Concat(errorMessage, theException.Source);
+                MessageBox.Show(errorMessage, "Error");
+            }
+
         }     
 
         
