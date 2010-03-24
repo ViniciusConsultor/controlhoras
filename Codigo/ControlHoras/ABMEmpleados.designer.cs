@@ -38,6 +38,9 @@
             this.btnAnterior = new System.Windows.Forms.ToolStripButton();
             this.btnSiguiente = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.ImprimirTSB = new System.Windows.Forms.ToolStripSplitButton();
+            this.contratoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.btnBuscarEmpleado = new System.Windows.Forms.ToolStripButton();
             this.tcEmpleado = new System.Windows.Forms.TabControl();
             this.DatosDelEmpleado = new System.Windows.Forms.TabPage();
@@ -160,9 +163,7 @@
             this.dgvExtrasLiquidacion = new System.Windows.Forms.DataGridView();
             this.ofdFoto = new System.Windows.Forms.OpenFileDialog();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ImprimirTSB = new System.Windows.Forms.ToolStripSplitButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.contratoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.movistarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -252,6 +253,7 @@
             this.CantidadCuotas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CuotaActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Liquidado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diplomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.tcEmpleado.SuspendLayout();
             this.DatosDelEmpleado.SuspendLayout();
@@ -368,6 +370,32 @@
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 40);
+            // 
+            // ImprimirTSB
+            // 
+            this.ImprimirTSB.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contratoToolStripMenuItem,
+            this.movistarToolStripMenuItem,
+            this.diplomaToolStripMenuItem});
+            this.ImprimirTSB.Image = ((System.Drawing.Image)(resources.GetObject("ImprimirTSB.Image")));
+            this.ImprimirTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ImprimirTSB.Name = "ImprimirTSB";
+            this.ImprimirTSB.Size = new System.Drawing.Size(74, 37);
+            this.ImprimirTSB.Text = "Imprimir";
+            this.ImprimirTSB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ImprimirTSB.ButtonClick += new System.EventHandler(this.ImprimirTSB_ButtonClick);
+            // 
+            // contratoToolStripMenuItem
+            // 
+            this.contratoToolStripMenuItem.Name = "contratoToolStripMenuItem";
+            this.contratoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.contratoToolStripMenuItem.Text = "Contrato";
+            this.contratoToolStripMenuItem.Click += new System.EventHandler(this.contratoToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 40);
             // 
             // btnBuscarEmpleado
             // 
@@ -1877,29 +1905,12 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // ImprimirTSB
+            // movistarToolStripMenuItem
             // 
-            this.ImprimirTSB.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.contratoToolStripMenuItem});
-            this.ImprimirTSB.Image = ((System.Drawing.Image)(resources.GetObject("ImprimirTSB.Image")));
-            this.ImprimirTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ImprimirTSB.Name = "ImprimirTSB";
-            this.ImprimirTSB.Size = new System.Drawing.Size(74, 37);
-            this.ImprimirTSB.Text = "Imprimir";
-            this.ImprimirTSB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.ImprimirTSB.ButtonClick += new System.EventHandler(this.ImprimirTSB_ButtonClick);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 40);
-            // 
-            // contratoToolStripMenuItem
-            // 
-            this.contratoToolStripMenuItem.Name = "contratoToolStripMenuItem";
-            this.contratoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.contratoToolStripMenuItem.Text = "Contrato";
-            this.contratoToolStripMenuItem.Click += new System.EventHandler(this.contratoToolStripMenuItem_Click);
+            this.movistarToolStripMenuItem.Name = "movistarToolStripMenuItem";
+            this.movistarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.movistarToolStripMenuItem.Text = "Movistar";
+            this.movistarToolStripMenuItem.Click += new System.EventHandler(this.movistarToolStripMenuItem_Click);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -2717,6 +2728,13 @@
             this.Liquidado.Name = "Liquidado";
             this.Liquidado.ReadOnly = true;
             // 
+            // diplomaToolStripMenuItem
+            // 
+            this.diplomaToolStripMenuItem.Name = "diplomaToolStripMenuItem";
+            this.diplomaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.diplomaToolStripMenuItem.Text = "Diploma";
+            this.diplomaToolStripMenuItem.Click += new System.EventHandler(this.diplomaToolStripMenuItem_Click);
+            // 
             // ABMEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -3019,5 +3037,7 @@
         private System.Windows.Forms.ToolStripSplitButton ImprimirTSB;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem contratoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem movistarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem diplomaToolStripMenuItem;
     }
 }
