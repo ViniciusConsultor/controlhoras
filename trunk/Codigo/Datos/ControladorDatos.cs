@@ -559,7 +559,7 @@ namespace Datos
                 emp.Apellido = apellido;
                 emp.IDTipoDocumento = (sbyte)idTipoDocumento;
                 emp.NumeroDocumento = documento;
-                //emp.SexO = sexo.ToString();
+                emp.SexO = sexo.ToString();
                 emp.IDDepartamento = (sbyte)idDepartamento;
                 emp.Ciudad = ciudad;
                 //emp.Barrio = barrio;
@@ -569,7 +569,7 @@ namespace Datos
                 emp.Telefonos = telefono;
                 emp.Celular = celular;
                 emp.CelularenConvenio = celularConvenio;
-                //emp.EstadoCivil = estadoCivil;
+                emp.EstadoCivil = estadoCivil;
                 emp.Email = email;
                 //emp.Foto = foto;
                 emp.Edad = (sbyte)edad;
