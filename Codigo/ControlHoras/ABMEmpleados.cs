@@ -71,20 +71,15 @@ namespace ControlHoras
         private void ABMEmpleados_Load(object sender, EventArgs e)
         {
             #region CargaCombos
+
+            
             
             // Combo TiposDocumentos
             try
             {
-                Dictionary<int, string> docs = tipos.obtenerTipoDocumentos(false);
-                cmbTipoDocumento.ValueMember = "Value";
-                cmbTipoDocumento.DisplayMember = "Display";
-                cmbTipoDocumento.BeginUpdate();
-                foreach (int key in docs.Keys)
-                {
-                    ComboBoxValue cbval = new ComboBoxValue(docs[key], key);
-                    cmbTipoDocumento.Items.Add(cbval);
-                }
-                cmbTipoDocumento.EndUpdate();
+                Dictionary<int, string> docs = tipos.obtenerTipoDocumentos(false);                
+                CargarCombo(cmbTipoDocumento, docs);
+
             }catch(Exception ex){
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -94,15 +89,8 @@ namespace ControlHoras
             try
             {
                 Dictionary<int, string> docs = tipos.obtenerBancos(false);
-                cmbBanco.ValueMember = "Value";
-                cmbBanco.DisplayMember = "Display";
-                cmbBanco.BeginUpdate();
-                foreach (int key in docs.Keys)
-                {
-                    ComboBoxValue cbval = new ComboBoxValue(docs[key], key);
-                    cmbBanco.Items.Add(cbval);
-                }
-                cmbBanco.EndUpdate();
+                CargarCombo(cmbBanco, docs);
+                
             }
             catch (Exception ex)
             {
@@ -113,15 +101,7 @@ namespace ControlHoras
             try
             {
                 Dictionary<int, string> docs = tipos.obtenerDepartamentos(false);
-                cmbDepartamento.ValueMember = "Value";
-                cmbDepartamento.DisplayMember = "Display";
-                cmbDepartamento.BeginUpdate();
-                foreach (int key in docs.Keys)
-                {
-                    ComboBoxValue cbval = new ComboBoxValue(docs[key], key);
-                    cmbDepartamento.Items.Add(cbval);
-                }
-                cmbDepartamento.EndUpdate();
+                CargarCombo(cmbDepartamento, docs);
             }
             catch (Exception ex)
             {
@@ -132,15 +112,15 @@ namespace ControlHoras
             try
             {
                 Dictionary<int, string> docs = tipos.obtenerEmergenciaMedicas(false);
-                cmbEmergenciaMedica.ValueMember = "Value";
-                cmbEmergenciaMedica.DisplayMember = "Display";
-                cmbEmergenciaMedica.BeginUpdate();
-                foreach (int key in docs.Keys)
-                {
-                    ComboBoxValue cbval = new ComboBoxValue(docs[key], key);
-                    cmbEmergenciaMedica.Items.Add(cbval);
-                }
-                cmbEmergenciaMedica.EndUpdate();
+                CargarCombo(cmbEmergenciaMedica, docs);
+                
+                //cmbEmergenciaMedica.BeginUpdate();                
+                //foreach (int key in docs.Keys)
+                //{
+                //    ComboBoxValue cbval = new ComboBoxValue(docs[key], key);
+                //    cmbEmergenciaMedica.Items.Add(cbval);
+                //}
+                //cmbEmergenciaMedica.EndUpdate();
             }
             catch (Exception ex)
             {
@@ -151,15 +131,16 @@ namespace ControlHoras
             try
             {
                 Dictionary<int, string> docs = tipos.obtenerMutualistas(false);
-                cmbMutualista.ValueMember = "Value";
-                cmbMutualista.DisplayMember = "Display";
-                cmbMutualista.BeginUpdate();
-                foreach (int key in docs.Keys)
-                {
-                    ComboBoxValue cbval = new ComboBoxValue(docs[key], key);
-                    cmbMutualista.Items.Add(cbval);
-                }
-                cmbMutualista.EndUpdate();
+                CargarCombo(cmbMutualista, docs);
+                //cmbMutualista.ValueMember = "Value";
+                //cmbMutualista.DisplayMember = "Display";
+                //cmbMutualista.BeginUpdate();
+                //foreach (int key in docs.Keys)
+                //{
+                //    ComboBoxValue cbval = new ComboBoxValue(docs[key], key);
+                //    cmbMutualista.Items.Add(cbval);
+                //}
+                //cmbMutualista.EndUpdate();
             }
             catch (Exception ex)
             {
@@ -211,6 +192,15 @@ namespace ControlHoras
             mtNumeroEmpleado.Focus();
         }
 
+        private void CargarCombo(ComboBox cmb, Dictionary<int, string> docs)
+        {
+            BindingSource bs = new BindingSource();
+            bs.DataSource = docs;
+            cmb.DataSource = bs;
+            cmb.ValueMember = "Key";
+            cmb.DisplayMember = "Value";
+        }
+
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             limpiarForm();
@@ -218,7 +208,7 @@ namespace ControlHoras
             limpiarTabExtrasLiquidacion();
             dgvHistorialEmpleado.Rows.Clear();
             limpiarTabHistorial();
-            btnAgregar.Enabled = true;
+            btnAgregar.Enabled = false;
             btnGuardar.Enabled = false;
             btnAgregarHistorial.Enabled = false;
             btnGuardarHistorial.Enabled = false;
@@ -227,6 +217,8 @@ namespace ControlHoras
             btnExtrasEliminar.Enabled = false;
             btnExtrasGuardar.Enabled = false;
             dtpFechaIngreso.Text = DateTime.Now.ToString();
+            tcEmpleado.SelectedIndex = 0;
+
             mtNumeroEmpleado.Focus();
 
         }
@@ -330,7 +322,13 @@ namespace ControlHoras
                         btnAgregarHistorial.Enabled = true;
                     }
                     else
+                    {
                         limpiarForm2();
+                        btnAgregar.Enabled = true;
+                        btnGuardar.Enabled = false;
+                        btnExtrasAgregar.Enabled = false;
+                        btnAgregarHistorial.Enabled = false;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -440,7 +438,7 @@ namespace ControlHoras
                 cbCombatiente.Checked = false;
             try
             {
-                cmbDepartamento.SelectedIndex = (int)empleado.IDDepartamento;
+                cmbDepartamento.SelectedValue = (int)empleado.IDDepartamento;
             }
             catch (Exception e) { }
             try
@@ -465,7 +463,9 @@ namespace ControlHoras
             catch (Exception e) { }
             try
             {
-                cmbEmergenciaMedica.SelectedIndex = (int) empleado.IDEmergenciaMedica;
+                cmbEmergenciaMedica.SelectedValue = (int)empleado.IDEmergenciaMedica;
+                //cmbEmergenciaMedica.SelectedIndex = cmbEmergenciaMedica.Items.IndexOf((int)empleado.IDEmergenciaMedica);
+
             }
             catch (Exception e) { }
             try
@@ -475,7 +475,7 @@ namespace ControlHoras
             catch (Exception e) { }
             try
             {
-                cmbEstadoCivil.SelectedText = empleado.EstadoCivil;
+                cmbEstadoCivil.SelectedItem = empleado.EstadoCivil;
             }
             catch (Exception e) { }
             try
@@ -545,7 +545,7 @@ namespace ControlHoras
             catch (Exception e) { }
             try
             {
-                cmbMutualista.SelectedIndex = (int) empleado.IDMutualista;
+                cmbMutualista.SelectedValue = (int) empleado.IDMutualista;
             }
             catch (Exception e) { }
             try
@@ -638,7 +638,7 @@ namespace ControlHoras
             try
             {
                 // Chequear porque el Selected index no deberia ser igual al IdTipoDocumento.
-                cmbTipoDocumento.SelectedIndex = empleado.IDTipoDocumento;
+                cmbTipoDocumento.SelectedValue = (int)empleado.IDTipoDocumento;
             }
             catch (Exception e) { }
             if (empleado.FechaNacimiento != null)
@@ -764,17 +764,17 @@ namespace ControlHoras
                 }
                 bool combatiente = cbCombatiente.Enabled;
                 bool antecedentesPolicialesOMilitares = cbAntecedentePolicialoMilitar.Enabled;
-                int iddepartamento = ((ComboBoxValue)cmbDepartamento.SelectedItem).Value;
-                int idtipodocumento = ((ComboBoxValue)cmbTipoDocumento.SelectedItem).Value;
+                int iddepartamento = (int)cmbDepartamento.SelectedValue;
+                int idtipodocumento = (int)cmbTipoDocumento.SelectedValue;
                 int idmutualista = -1;
                 if (cmbMutualista.SelectedItem != null)
-                    idmutualista = ((ComboBoxValue)cmbMutualista.SelectedItem).Value;
+                    idmutualista = (int)cmbMutualista.SelectedValue;
                 int idbanco = -1;
                 if (cmbBanco.SelectedItem != null)
-                    idbanco = ((ComboBoxValue)cmbBanco.SelectedItem).Value;
+                    idbanco = (int)cmbBanco.SelectedValue;
                 int idemergenciamovil = -1;
                 if (cmbEmergenciaMedica.SelectedItem != null)
-                    idemergenciamovil = ((ComboBoxValue)cmbEmergenciaMedica.SelectedItem).Value;
+                    idemergenciamovil = (int)cmbEmergenciaMedica.SelectedValue;
                 string estadoCivil = cmbEstadoCivil.Text;
                 int acumulacionLaboral = 0;
                 float sueldo = 0;
