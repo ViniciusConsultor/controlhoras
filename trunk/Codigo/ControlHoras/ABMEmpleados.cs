@@ -218,7 +218,6 @@ namespace ControlHoras
             btnExtrasGuardar.Enabled = false;
             dtpFechaIngreso.Text = DateTime.Now.ToString();
             tcEmpleado.SelectedIndex = 0;
-
             mtNumeroEmpleado.Focus();
 
         }
@@ -1502,6 +1501,19 @@ namespace ControlHoras
                 return ori;
         }
 
+        private string TranfCI(string ori)
+        {
+            if (ori.Length == 8)
+            {
+                string aux = ori.Insert(1, ".");
+                aux = aux.Insert(5, ".");
+                aux = aux.Insert(9, "-");
+                return aux;
+            }
+            else
+                return ori;
+        }
+
         private void cmbTipoDocumento_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbTipoDocumento.Text == "C.I.")
@@ -1783,7 +1795,7 @@ namespace ControlHoras
         {            
             object fileName = Path.Combine(dirbase, @"Docs\Contrato.doc");// @"C:\Documents and Settings\jcopello\Mis documentos\JPC\TrustSoftware\Codigo\ControlHoras\Docs\Contrato.doc";
             object mark;
-            object readOnly = false;
+            object readOnly = true;
 
             Word._Application oWord;
             Word._Document oDoc;
@@ -1816,7 +1828,7 @@ namespace ControlHoras
 
             mark = "ci";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = mtNumeroDocumento.Text;
+            wrdRng.Text = TranfCI(mtNumeroDocumento.Text);
 
             mark = "domicilio";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
@@ -1827,7 +1839,7 @@ namespace ControlHoras
         {
             object fileName = Path.Combine(dirbase, @"Docs\Movistar.doc");// @"C:\Documents and Settings\jcopello\Mis documentos\JPC\TrustSoftware\Codigo\ControlHoras\Docs\Contrato.doc";
             object mark;
-            object readOnly = false;
+            object readOnly = true;
 
             Word._Application oWord;
             Word._Document oDoc;
@@ -1856,7 +1868,7 @@ namespace ControlHoras
             
             mark = "ci";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = mtNumeroDocumento.Text;
+            wrdRng.Text = TranfCI(mtNumeroDocumento.Text);
 
             mark = "domicilio";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
@@ -1879,7 +1891,7 @@ namespace ControlHoras
         {
             object fileName = Path.Combine(dirbase, @"Docs\Diploma.doc");// @"C:\Documents and Settings\jcopello\Mis documentos\JPC\TrustSoftware\Codigo\ControlHoras\Docs\Contrato.doc";
             object mark;
-            object readOnly = false;
+            object readOnly = true;
 
             Word._Application oWord;
             Word._Document oDoc;
@@ -1891,8 +1903,12 @@ namespace ControlHoras
                         ref missing, ref missing, ref missing, ref missing, ref missing);
 
             mark = "nombre";
-            Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;            
             wrdRng.Text = txtNombre.Text + " " + TranfaTitulo(txtApellido.Text);
+
+            mark = "ci";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = TranfCI(mtNumeroDocumento.Text);
 
             mark = "fechaIni";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
@@ -1914,7 +1930,7 @@ namespace ControlHoras
         private void renaemseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string fileName = Path.Combine(dirbase, @"Docs\Renaemse.xls");// @"C:\Documents and Settings\jcopello\Mis documentos\JPC\TrustSoftware\Codigo\ControlHoras\Docs\Contrato.doc";
-            object readOnly = false;
+            object readOnly = true;
 
             Excel.Application ExApp; 
             Excel._Workbook oWBook; 
@@ -1934,7 +1950,7 @@ namespace ControlHoras
                 oSheet.Cells[16, 2] = txtApellido.Text + " " + txtNombre.Text;
 
                 // C.I.
-                oSheet.Cells[18, 2] = "C.I. " + mtNumeroDocumento.Text;
+                oSheet.Cells[18, 2] = "C.I. " + TranfCI(mtNumeroDocumento.Text);
 
                 // Estado Civil
                 oSheet.Cells[18, 9] = cmbEstadoCivil.Text;
@@ -1951,12 +1967,18 @@ namespace ControlHoras
                 // Nro CAJ
                 oSheet.Cells[34, 6] = txtNumeroCAJ.Text;
 
-                // Fecha Emision CAJ
+                // Fecha Emisión CAJ
                 oSheet.Cells[35, 3] = dtpFechaEmisionCAJ.Text;
 
                 // Fecha Entrega CAJ
                 oSheet.Cells[35, 7] = dtpFechaEntregaCAJ.Text;
-               
+
+                // Fecha Prueba de Capacitación
+                if (dtpFechaIngreso.Text != fechaMask)
+                {
+                    DateTime aux = DateTime.ParseExact(dtpFechaIngreso.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+                    oSheet.Cells[37, 6] = aux.AddDays(-2).ToString();
+                }
             }
             catch (Exception theException)
             {
