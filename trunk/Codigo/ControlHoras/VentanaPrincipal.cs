@@ -126,7 +126,6 @@ namespace ControlHoras
             }
             else
             {
-   //             em.Activate();
                 em.Show(this);
             }
         }
