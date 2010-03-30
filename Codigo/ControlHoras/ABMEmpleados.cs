@@ -13,8 +13,10 @@ using Utilidades;
 using Datos;
 using Word = Microsoft.Office.Interop.Word;
 using Excel = Microsoft.Office.Interop.Excel;
+using Microsoft.Office.Tools.Word;
 using System.Reflection;
-
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 
 
 namespace ControlHoras
@@ -527,7 +529,7 @@ namespace ControlHoras
             catch (Exception e) { }
             try
             {
-                Image img = ControladorUtilidades.convertByteArrayToImage(empleado.Foto);
+                System.Drawing.Image img = ControladorUtilidades.convertByteArrayToImage(empleado.Foto);
                 if (img != null)
                     pbFoto.Image = img;
             }
@@ -661,9 +663,9 @@ namespace ControlHoras
                 DialogResult res = ofdFoto.ShowDialog(this);
                 if (res == DialogResult.OK)
                 {
-                    Image img = devolverImagen(ofdFoto.FileName.ToString());
+                    System.Drawing.Image img = devolverImagen(ofdFoto.FileName.ToString());
                     Bitmap imgAchicada = new Bitmap(img, pbFoto.Width, pbFoto.Height);
-                    pbFoto.Image = (Image)imgAchicada;
+                    pbFoto.Image = (System.Drawing.Image)imgAchicada;
                 }
                 
             }
@@ -675,9 +677,9 @@ namespace ControlHoras
         }
 
 
-        private Image devolverImagen(string fileName)
+        private System.Drawing.Image devolverImagen(string fileName)
         {
-            Image result;
+            System.Drawing.Image result;
     	 
 	        long size = (new FileInfo(fileName)).Length;
 	        FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
@@ -852,10 +854,10 @@ namespace ControlHoras
                 if (agregar)
                      
                     //sistema.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), txtNombre.Text, txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, txtNacionalidad.Text, sexo, dtpPsicologo.Value, dtpFechaNacimiento.Value, dtpFechaIngreso.Value, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantHijos, foto, idbanco, txtNumeroCuenta.Text, sueldo, activo, dtpFechaBaja.Value, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngresoRenaemse.Value, acumulacionLaboral, dtpFechaAltaBPS.Value, dtpFechaBajaBPS.Value, txtNumeroCAJ.Text, dtpFechaEmisionCAJ.Value, dtpFechaEntregaCAJ.Value, antecedentes, cmbPolicialMilitar.Text, dtpFechaIngresoPolicialMilitar.Value, dtpFechaEgresoPolicialMilitar.Value, txtPolicialSubEscalafon.Text, combatiente, txtTalleCamisa.Text, txtTallePantalon.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVencimientoCarneSalud.Value, idmutualista, idemergenciamovil);
-                    datos.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, txtNacionalidad.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, idbanco, txtNumeroCuenta.Text, sueldo, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtBarrio.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTalleCamisa.Text, txtTallePantalon.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text);
+                    datos.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, txtNacionalidad.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, idbanco, txtNumeroCuenta.Text, sueldo, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtBarrio.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTalleCamisa.Text, txtTallePantalon.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, cmbNivelEducativo.SelectedItem.ToString());
                     //datos.modificarEmpleado(idEmpleado, nombre,                         apellido, idTipoDocumento, documento, lugarNacimiento, nacionalidad, sexo, fechaPsicologo, fechaNacimiento, edad, fechaIngreso, telefono, celular, celularConvenio, email, estadoCivil, cantidadHijos, foto, idBanco, numeroCuenta, sueldo, activo, fechaBaja, motivoBaja, idDepartamento, ciudad, barrio, direccion, entreCalles, puntoEncuentro, numeroAsuntoRENAEMSE, fechaIngresoRENAEMSE, acumulacionLaboralBPS, fechaAltaBPS, fechaBajaBPS, numeroCAJ, fechaEmisionCAJ, fechaEntregaCAJ, antecedentesEmpleado, observacionesAntecedentesEmpleado, antecedentesPolicialesOMilitares, PolicialOMilitar, fechaIngresoAntecedete, fechaEgresoAntecedente, subEscalafon, combatiente, talleCamisa, tallePantalon, talleZapatos, talleCampera, vencimientoCarneSalud, idMutualista, idEmergenciaMedica,capacitadoPorteArma,enServicioArmado,observacionesEmpleado);
                 else
-                    datos.modificarEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, txtNacionalidad.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, idbanco, txtNumeroCuenta.Text, sueldo, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtBarrio.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTalleCamisa.Text, txtTallePantalon.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text);
+                    datos.modificarEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, txtNacionalidad.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, idbanco, txtNumeroCuenta.Text, sueldo, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtBarrio.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTalleCamisa.Text, txtTallePantalon.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, cmbNivelEducativo.SelectedItem.ToString());
                 btnCancelar.PerformClick();
             }
             catch (Exception ex)
@@ -1410,19 +1412,22 @@ namespace ControlHoras
         {
             try
             {
+                int? numemp;
                 if (mtNumeroEmpleado.Text != "")
+                    numemp = datos.obtenerProximoIdEmpleadoActivo(int.Parse(mtNumeroEmpleado.Text));
+                else
+                    numemp = datos.obtenerProximoIdEmpleadoActivo(-1);
+            
+                if (numemp != null)
                 {
-                    int? numemp = datos.obtenerProximoIdEmpleadoActivo(int.Parse(mtNumeroEmpleado.Text));
-                    if (numemp != null)
-                    {
-                        mtNumeroEmpleado.Text = numemp.ToString();
-                        mtNumeroEmpleado.Focus();
+                    mtNumeroEmpleado.Text = numemp.ToString();
+                    mtNumeroEmpleado.Focus();
 
-                        SendKeys.Send("{ENTER}");
-                    }
-                    else
-                        MessageBox.Show("No existe un empleado activo anterior a este.", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SendKeys.Send("{ENTER}");
                 }
+                else
+                    MessageBox.Show("No existe un empleado activo anterior a este.", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
             catch (Exception ex)
             {
@@ -1792,20 +1797,31 @@ namespace ControlHoras
         }
 
         private void contratoToolStripMenuItem_Click(object sender, EventArgs e)
-        {            
+        {
+            
+            
             object fileName = Path.Combine(dirbase, @"Docs\Contrato.doc");// @"C:\Documents and Settings\jcopello\Mis documentos\JPC\TrustSoftware\Codigo\ControlHoras\Docs\Contrato.doc";
             object mark;
             object readOnly = true;
 
-            Word._Application oWord;
+                       
+            
+            Word._Application oWord = new Word.Application();
             Word._Document oDoc;
-            oWord = new Word.Application();
-            oWord.Visible = true;
+            
+            oWord.Options.SavePropertiesPrompt = false;
+            oWord.Options.SaveNormalPrompt = false;
+            oWord.DisplayAlerts = Microsoft.Office.Interop.Word.WdAlertLevel.wdAlertsNone;
+
+            //oWord.Visible = true;
             oDoc = oWord.Documents.Open(ref fileName,
                         ref missing, ref readOnly, ref missing, ref missing, ref missing,
                         ref missing, ref missing, ref missing, ref missing, ref missing,
                         ref missing, ref missing, ref missing, ref missing, ref missing);
 
+            //oWord.Documents.get_Item(ref fileName).CommandBars("Menu Bar").Controls("&File").Controls("Save &As...").enabled = false;
+                
+            //oDoc = oWord.Documents.Add(ref fileName, ref missing, ref missing, ref missing);
             mark = "diaHoy";
             Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
             wrdRng.Text = DateTime.Today.Day.ToString();
@@ -1833,6 +1849,62 @@ namespace ControlHoras
             mark = "domicilio";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
             wrdRng.Text = txtDireccion.Text;
+            //string fileNameSave;
+            
+            saveFileEmpleados.Filter = "Microsoft Office Word Document (*.doc)|*.doc";
+            DialogResult res = saveFileEmpleados.ShowDialog(this);
+            if (res == DialogResult.OK)
+            {
+                //fileNameSave = txtNombre.Text + " " + txtApellido.Text + "-" + mtNumeroDocumento.Text + "-Contrato.doc";
+                object FileName = saveFileEmpleados.FileName;
+                object FileFormat = Word.WdSaveFormat.wdFormatDocument;
+                object LockComments = false;
+                object AddToRecentFiles = true;
+                object ReadOnlyRecommended = false;
+                object EmbedTrueTypeFonts = false;
+                object SaveNativePictureFormat = true;
+                object SaveFormsData = true;
+                object SaveAsAOCELetter = false;
+                object Encoding = missing;
+                object InsertLineBreaks = false;
+                object AllowSubstitutions = false;
+                object LineEnding = Word.WdLineEndingType.wdCRLF;
+                object AddBiDiMarks = false;
+                try
+                {
+                   // oDoc.Save();
+
+
+                    oDoc.SaveAs(ref FileName, ref FileFormat, ref LockComments,
+                        ref missing, ref AddToRecentFiles, ref missing,
+                        ref ReadOnlyRecommended, ref EmbedTrueTypeFonts,
+                        ref SaveNativePictureFormat, ref SaveFormsData,
+                        ref SaveAsAOCELetter, ref Encoding, ref InsertLineBreaks,
+                        ref AllowSubstitutions, ref LineEnding, ref AddBiDiMarks);
+
+
+
+
+
+
+                }
+                catch (Exception ioe)
+                {
+                    MessageBox.Show(this, ioe.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    object saveOptions = Microsoft.Office.Interop.Word.WdSaveOptions.wdSaveChanges;
+                    //object routeDocument = Microsoft.Office.Interop.Word.WdRoutingSlipDelivery.wdAllAtOnce;
+                    //oWord.Quit(ref saveOptions, ref FileFormat, ref missing);
+                    object routing = false;
+                    object saveFormat = Microsoft.Office.Interop.Word.WdOriginalFormat.wdWordDocument;
+                    
+                    oDoc.Close(ref saveOptions, ref saveFormat ,ref routing);
+
+                }
+            }
+
         }
 
         private void movistarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1990,7 +2062,58 @@ namespace ControlHoras
                 MessageBox.Show(errorMessage, "Error");
             }
 
-        }     
+        }
+
+        private void formularioDGIToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string pdftemplate = Path.Combine(dirbase, @"Docs\formulario 3100 DGI.pdf");
+            
+            PdfReader pdfReader = new PdfReader(pdftemplate);
+
+            saveFileEmpleados.Filter = "Acrobat Reader (*.pdf)|*.pdf";
+            saveFileEmpleados.FileName = mtNumeroEmpleado.Text + "-" + txtNombre.Text + " " + txtApellido.Text + "-FormularioDGI.pdf";
+            DialogResult OKSave =  saveFileEmpleados.ShowDialog(this);
+            if (OKSave == DialogResult.OK)
+            {
+                string newFile = saveFileEmpleados.FileName;
+                PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileStream(newFile, FileMode.Create));
+                AcroFields pdfFormFields = pdfStamper.AcroFields;
+
+
+                //R1.1Ap - Primer Apellido
+                //R1.2Ap - Segundo Apellido
+                //R1.1Nom - Primer Nombre
+                //R1.2Nom - Segundo Nombre
+                //R1.NDoc - Numero Documento
+                //R1.Año - 
+                //R1.Mes - 
+                //R1.Nom - Nombre o Denominacion
+                //R1.TDoc.0 - NroDocumento en la primera Parte
+                //R1.Pais - Pais del Documento
+
+
+
+                pdfFormFields.SetField("R1.1Ap", txtApellido.Text.Split(' ').ElementAt(0));
+                pdfFormFields.SetField("R1.2Ap", txtApellido.Text.Split(' ').ElementAt(1));
+                pdfFormFields.SetField("R1.1Nom", txtNombre.Text.Split(' ').ElementAt(0));
+                pdfFormFields.SetField("R1.2Nom", txtNombre.Text.Split(' ').ElementAt(1));
+                pdfFormFields.SetField("R1.TDoc.0", "C.I");
+                pdfFormFields.SetField("R1.Pais", "Uruguay");
+                pdfFormFields.SetField("R1.NDoc", mtNumeroDocumento.Text);
+ 
+                pdfStamper.Close();
+                DialogResult okOpen = MessageBox.Show("Documento creado correctamente. Desea abrirlo ahora?", "Abrir Formulario DGI 3100...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (okOpen == DialogResult.Yes)
+                {
+                    // try forcing the window to be full-screen maximized
+                    System.Diagnostics.ProcessStartInfo defapp = new System.Diagnostics.ProcessStartInfo();
+
+                    defapp.FileName = newFile;
+                    defapp.WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized;
+                    System.Diagnostics.Process.Start(defapp);
+                }
+            }
+         }
 
         
     }
