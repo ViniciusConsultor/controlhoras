@@ -103,6 +103,9 @@
             this.btnSeleccionarImagen = new System.Windows.Forms.Button();
             this.pbFoto = new System.Windows.Forms.PictureBox();
             this.OtrosDatosDelEmpleado = new System.Windows.Forms.TabPage();
+            this.groupBox17 = new System.Windows.Forms.GroupBox();
+            this.cmbNivelEducativo = new System.Windows.Forms.ComboBox();
+            this.label62 = new System.Windows.Forms.Label();
             this.lblEmpleadoCargado = new System.Windows.Forms.Label();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
             this.dtpPsicologo = new ControlHoras.MaskedTextBoxKeyDown();
@@ -257,9 +260,6 @@
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saveFileEmpleados = new System.Windows.Forms.SaveFileDialog();
-            this.groupBox17 = new System.Windows.Forms.GroupBox();
-            this.label62 = new System.Windows.Forms.Label();
-            this.cmbNivelEducativo = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             this.tcEmpleado.SuspendLayout();
             this.DatosDelEmpleado.SuspendLayout();
@@ -270,6 +270,7 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.OtrosDatosDelEmpleado.SuspendLayout();
+            this.groupBox17.SuspendLayout();
             this.groupBox16.SuspendLayout();
             this.groupBox15.SuspendLayout();
             this.groupBox14.SuspendLayout();
@@ -295,7 +296,6 @@
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExtrasLiquidacion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.groupBox17.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -388,6 +388,7 @@
             this.diplomaToolStripMenuItem,
             this.renaemseToolStripMenuItem,
             this.formularioDGIToolStripMenuItem});
+            this.ImprimirTSB.Enabled = false;
             this.ImprimirTSB.Image = ((System.Drawing.Image)(resources.GetObject("ImprimirTSB.Image")));
             this.ImprimirTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ImprimirTSB.Name = "ImprimirTSB";
@@ -1050,6 +1051,39 @@
             this.OtrosDatosDelEmpleado.TabIndex = 2;
             this.OtrosDatosDelEmpleado.Text = "Otros Datos Del Empleado";
             this.OtrosDatosDelEmpleado.UseVisualStyleBackColor = true;
+            // 
+            // groupBox17
+            // 
+            this.groupBox17.Controls.Add(this.cmbNivelEducativo);
+            this.groupBox17.Controls.Add(this.label62);
+            this.groupBox17.Location = new System.Drawing.Point(341, 198);
+            this.groupBox17.Name = "groupBox17";
+            this.groupBox17.Size = new System.Drawing.Size(290, 52);
+            this.groupBox17.TabIndex = 117;
+            this.groupBox17.TabStop = false;
+            this.groupBox17.Text = "Educación";
+            // 
+            // cmbNivelEducativo
+            // 
+            this.cmbNivelEducativo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbNivelEducativo.FormattingEnabled = true;
+            this.cmbNivelEducativo.Items.AddRange(new object[] {
+            "PRIMARIO",
+            "SECUNDARIO",
+            "TERCIARIO"});
+            this.cmbNivelEducativo.Location = new System.Drawing.Point(152, 20);
+            this.cmbNivelEducativo.Name = "cmbNivelEducativo";
+            this.cmbNivelEducativo.Size = new System.Drawing.Size(121, 21);
+            this.cmbNivelEducativo.TabIndex = 1;
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Location = new System.Drawing.Point(6, 24);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(135, 13);
+            this.label62.TabIndex = 0;
+            this.label62.Text = "Nivel Educativo Alcanzado";
             // 
             // lblEmpleadoCargado
             // 
@@ -2584,39 +2618,6 @@
             this.saveFileEmpleados.Filter = "\"Microsoft Office Word | *.doc|Microsoft Office Excel|*.xls\"";
             this.saveFileEmpleados.Title = "Guardar archivo...";
             // 
-            // groupBox17
-            // 
-            this.groupBox17.Controls.Add(this.cmbNivelEducativo);
-            this.groupBox17.Controls.Add(this.label62);
-            this.groupBox17.Location = new System.Drawing.Point(341, 198);
-            this.groupBox17.Name = "groupBox17";
-            this.groupBox17.Size = new System.Drawing.Size(290, 52);
-            this.groupBox17.TabIndex = 117;
-            this.groupBox17.TabStop = false;
-            this.groupBox17.Text = "Educación";
-            // 
-            // label62
-            // 
-            this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(6, 24);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(135, 13);
-            this.label62.TabIndex = 0;
-            this.label62.Text = "Nivel Educativo Alcanzado";
-            // 
-            // cmbNivelEducativo
-            // 
-            this.cmbNivelEducativo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbNivelEducativo.FormattingEnabled = true;
-            this.cmbNivelEducativo.Items.AddRange(new object[] {
-            "PRIMARIO",
-            "SECUNDARIO",
-            "TERCIARIO"});
-            this.cmbNivelEducativo.Location = new System.Drawing.Point(152, 20);
-            this.cmbNivelEducativo.Name = "cmbNivelEducativo";
-            this.cmbNivelEducativo.Size = new System.Drawing.Size(121, 21);
-            this.cmbNivelEducativo.TabIndex = 1;
-            // 
             // ABMEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2649,6 +2650,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();
             this.OtrosDatosDelEmpleado.ResumeLayout(false);
             this.OtrosDatosDelEmpleado.PerformLayout();
+            this.groupBox17.ResumeLayout(false);
+            this.groupBox17.PerformLayout();
             this.groupBox16.ResumeLayout(false);
             this.groupBox16.PerformLayout();
             this.groupBox15.ResumeLayout(false);
@@ -2689,8 +2692,6 @@
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvExtrasLiquidacion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            this.groupBox17.ResumeLayout(false);
-            this.groupBox17.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
