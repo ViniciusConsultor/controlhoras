@@ -18,6 +18,7 @@ SETTINGS
 		<add key="Usuario" value ="root"/>
 		<add key="Password" value ="desdere"/>
 		<add key ="Base" value ="trustdb"/>
+		<add key="DocsPath" value ="D:\ControlHoras\Codigo\ControlHoras\"/>
 	</appSettings>
 
 
