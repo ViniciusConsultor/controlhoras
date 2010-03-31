@@ -13,7 +13,6 @@ using Utilidades;
 using Datos;
 using Word = Microsoft.Office.Interop.Word;
 using Excel = Microsoft.Office.Interop.Excel;
-using Microsoft.Office.Tools.Word;
 using System.Reflection;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
@@ -218,6 +217,7 @@ namespace ControlHoras
             btnExtrasAgregar.Enabled = false;
             btnExtrasEliminar.Enabled = false;
             btnExtrasGuardar.Enabled = false;
+            ImprimirTSB.Enabled = false;
             dtpFechaIngreso.Text = DateTime.Now.ToString();
             tcEmpleado.SelectedIndex = 0;
             mtNumeroEmpleado.Focus();
@@ -321,6 +321,7 @@ namespace ControlHoras
                         btnGuardar.Enabled = true;
                         btnExtrasAgregar.Enabled = true;
                         btnAgregarHistorial.Enabled = true;
+                        ImprimirTSB.Enabled = true;
                     }
                     else
                     {
@@ -1805,21 +1806,21 @@ namespace ControlHoras
             object readOnly = true;
 
                        
-            
-            Word._Application oWord = new Word.Application();
+            Word._Application oWord;
+            oWord = new Word.ApplicationClass();
             Word._Document oDoc;
-            
-            oWord.Options.SavePropertiesPrompt = false;
-            oWord.Options.SaveNormalPrompt = false;
-            oWord.DisplayAlerts = Microsoft.Office.Interop.Word.WdAlertLevel.wdAlertsNone;
-
-            //oWord.Visible = true;
+           // oWord.DocumentBeforeSave += new Microsoft.Office.Interop.Word.ApplicationEvents4_DocumentBeforeSaveEventHandler(oWord_DocumentBeforeSave);
+           // oWord.DocumentBeforeClose += new Microsoft.Office.Interop.Word.ApplicationEvents4_DocumentBeforeCloseEventHandler(oWord_DocumentBeforeClose);
+           // oWord.Options.SavePropertiesPrompt = false;
+          //  oWord.Options.SaveNormalPrompt = false;
+          //  oWord.DisplayAlerts = Microsoft.Office.Interop.Word.WdAlertLevel.wdAlertsNone;
+          //  oWord.ScreenUpdating = false;
+            oWord.Visible = true;
             oDoc = oWord.Documents.Open(ref fileName,
-                        ref missing, ref readOnly, ref missing, ref missing, ref missing,
-                        ref missing, ref missing, ref missing, ref missing, ref missing,
-                        ref missing, ref missing, ref missing, ref missing, ref missing);
+                                    ref missing, ref readOnly, ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing, ref missing);
 
-            //oWord.Documents.get_Item(ref fileName).CommandBars("Menu Bar").Controls("&File").Controls("Save &As...").enabled = false;
                 
             //oDoc = oWord.Documents.Add(ref fileName, ref missing, ref missing, ref missing);
             mark = "diaHoy";
@@ -1850,7 +1851,7 @@ namespace ControlHoras
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
             wrdRng.Text = txtDireccion.Text;
             //string fileNameSave;
-            
+            /*
             saveFileEmpleados.Filter = "Microsoft Office Word Document (*.doc)|*.doc";
             DialogResult res = saveFileEmpleados.ShowDialog(this);
             if (res == DialogResult.OK)
@@ -1873,39 +1874,41 @@ namespace ControlHoras
                 try
                 {
                    // oDoc.Save();
-
-
-                    oDoc.SaveAs(ref FileName, ref FileFormat, ref LockComments,
-                        ref missing, ref AddToRecentFiles, ref missing,
-                        ref ReadOnlyRecommended, ref EmbedTrueTypeFonts,
-                        ref SaveNativePictureFormat, ref SaveFormsData,
-                        ref SaveAsAOCELetter, ref Encoding, ref InsertLineBreaks,
-                        ref AllowSubstitutions, ref LineEnding, ref AddBiDiMarks);
-
-
-
-
-
-
+                  //  oDoc.SaveAs(ref FileName, ref FileFormat, ref LockComments,
+                  //      ref missing, ref AddToRecentFiles, ref missing,
+                  //      ref ReadOnlyRecommended, ref EmbedTrueTypeFonts,
+                  //      ref SaveNativePictureFormat, ref SaveFormsData,
+                  //      ref SaveAsAOCELetter, ref Encoding, ref InsertLineBreaks,
+                  //      ref AllowSubstitutions, ref LineEnding, ref AddBiDiMarks);
+                    Object saveChanges = Type.Missing;
+                    Object originalFormat = Type.Missing;
+                    Object routeDocument = Type.Missing;
+                    
+                    oWord.Documents.Close(ref saveChanges, ref originalFormat, ref routeDocument);
                 }
                 catch (Exception ioe)
                 {
                     MessageBox.Show(this, ioe.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                finally
-                {
-                    object saveOptions = Microsoft.Office.Interop.Word.WdSaveOptions.wdSaveChanges;
-                    //object routeDocument = Microsoft.Office.Interop.Word.WdRoutingSlipDelivery.wdAllAtOnce;
-                    //oWord.Quit(ref saveOptions, ref FileFormat, ref missing);
-                    object routing = false;
-                    object saveFormat = Microsoft.Office.Interop.Word.WdOriginalFormat.wdWordDocument;
-                    
-                    oDoc.Close(ref saveOptions, ref saveFormat ,ref routing);
+                //finally
+                //{
+                //    //object saveOptions = Microsoft.Office.Interop.Word.WdSaveOptions.wdSaveChanges;
+                //    ////object routeDocument = Microsoft.Office.Interop.Word.WdRoutingSlipDelivery.wdAllAtOnce;
+                //    ////oWord.Quit(ref saveOptions, ref FileFormat, ref missing);
+                //    //object routing = false;
+                //    //object saveFormat = Microsoft.Office.Interop.Word.WdOriginalFormat.wdWordDocument;
+                //    Object saveChanges = Type.Missing;
+                //    Object originalFormat = Type.Missing;
+                //    Object routeDocument = Type.Missing;
 
-                }
+                //    oWord.Documents.Close(ref saveChanges, ref originalFormat, ref routeDocument);
+                //    //oDoc.Close(ref saveOptions, ref saveFormat ,ref routing);
+
+                //}
             }
-
+            */
         }
+
 
         private void movistarToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -2094,9 +2097,11 @@ namespace ControlHoras
 
 
                 pdfFormFields.SetField("R1.1Ap", txtApellido.Text.Split(' ').ElementAt(0));
-                pdfFormFields.SetField("R1.2Ap", txtApellido.Text.Split(' ').ElementAt(1));
+                if (txtApellido.Text.Split(' ').Count() > 1)
+                    pdfFormFields.SetField("R1.2Ap", txtApellido.Text.Split(' ').ElementAt(1));
                 pdfFormFields.SetField("R1.1Nom", txtNombre.Text.Split(' ').ElementAt(0));
-                pdfFormFields.SetField("R1.2Nom", txtNombre.Text.Split(' ').ElementAt(1));
+                if (txtNombre.Text.Split(' ').Count() > 1)
+                    pdfFormFields.SetField("R1.2Nom", txtNombre.Text.Split(' ').ElementAt(1));
                 pdfFormFields.SetField("R1.TDoc.0", "C.I");
                 pdfFormFields.SetField("R1.Pais", "Uruguay");
                 pdfFormFields.SetField("R1.NDoc", mtNumeroDocumento.Text);
