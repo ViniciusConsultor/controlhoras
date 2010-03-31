@@ -16,6 +16,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Reflection;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
+using System.Configuration;
 
 
 namespace ControlHoras
@@ -65,7 +66,8 @@ namespace ControlHoras
             missing = System.Reflection.Missing.Value;
             exefile = Application.ExecutablePath;
             Info = new FileInfo(exefile);
-            dirbase = Info.Directory.Parent.Parent.FullName;
+            //dirbase = Info.Directory.Parent.Parent.FullName;
+            dirbase = ConfigurationManager.AppSettings["DocsPath"].ToString();
             
         }
 
@@ -217,7 +219,7 @@ namespace ControlHoras
             btnExtrasAgregar.Enabled = false;
             btnExtrasEliminar.Enabled = false;
             btnExtrasGuardar.Enabled = false;
-            ImprimirTSB.Enabled = false;
+            //ImprimirTSB.Enabled = false;
             dtpFechaIngreso.Text = DateTime.Now.ToString();
             tcEmpleado.SelectedIndex = 0;
             mtNumeroEmpleado.Focus();
@@ -929,6 +931,17 @@ namespace ControlHoras
                 anio = anio - 1;
             else if (DateTime.Now.Month == FechaNac.Month)
                 if (DateTime.Now.Day < FechaNac.Day)
+                    anio = anio - 1;
+            return anio;
+        }
+
+        private int calcularAnos(DateTime fi, DateTime ff)
+        {            
+            int anio = (ff.Year - fi.Year);
+            if (ff.Month < fi.Month)
+                anio = anio - 1;
+            else if (ff.Month == fi.Month)
+                if (ff.Day < fi.Day)
                     anio = anio - 1;
             return anio;
         }
@@ -2039,6 +2052,22 @@ namespace ControlHoras
                 // Dirección
                 oSheet.Cells[23, 2] = txtDireccion.Text;                
 
+                // Antecedentes Policiales o Militares
+                if (cbAntecedentePolicialoMilitar.Checked)
+                {
+                    int fila;
+                    if (cmbPolicialMilitar.Text == "Policia")
+                        fila = 31;
+                    else
+                        fila = 32;
+                    oSheet.Cells[fila, 6] = dtpFechaIngresoPolicialMilitar.Text;
+                    oSheet.Cells[fila, 8] = dtpFechaEgresoPolicialMilitar.Text;
+                    
+                    DateTime fi = DateTime.ParseExact(dtpFechaIngresoPolicialMilitar.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+                    DateTime ff = DateTime.ParseExact(dtpFechaEgresoPolicialMilitar.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+                    oSheet.Cells[fila, 3] = calcularAnos(fi, ff).ToString();                    
+                }
+
                 // Nro CAJ
                 oSheet.Cells[34, 6] = txtNumeroCAJ.Text;
 
@@ -2054,6 +2083,17 @@ namespace ControlHoras
                     DateTime aux = DateTime.ParseExact(dtpFechaIngreso.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
                     oSheet.Cells[37, 6] = aux.AddDays(-2).ToString();
                 }
+
+                // Con o Sin Arma
+                int col;
+                if (cbEnServicioArmado.Checked)
+                    col = 3;
+                else
+                    col = 7;
+                oSheet.Cells[39, col] = "X";
+
+                // Fecha Test Sicológico
+                oSheet.Cells[40, 6] = dtpPsicologo.Text;
             }
             catch (Exception theException)
             {
