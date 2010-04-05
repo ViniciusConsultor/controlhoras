@@ -229,6 +229,8 @@ namespace ControlHoras
 
         private void limpiarForm()
         {
+            cmbNivelEducativo.SelectedIndex = 0;
+
             foreach (TabPage tp in tcEmpleado.TabPages)
             {
                 foreach (Control c in tp.Controls)
@@ -265,6 +267,8 @@ namespace ControlHoras
 
         private void limpiarForm2()
         {
+            cmbNivelEducativo.SelectedIndex = 0;
+
             foreach (TabPage tp in tcEmpleado.TabPages)
             {
                 foreach (Control c in tp.Controls)
