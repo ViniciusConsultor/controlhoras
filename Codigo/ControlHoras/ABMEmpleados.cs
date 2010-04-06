@@ -1535,7 +1535,7 @@ namespace ControlHoras
             }
             else
                 return ori;
-        }
+        }       
 
         private void cmbTipoDocumento_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -2114,6 +2114,7 @@ namespace ControlHoras
         private void formularioDGIToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string pdftemplate = Path.Combine(dirbase, @"Docs\formulario 3100 DGI.pdf");
+            string nomEmpresa = "Trust";
             
             PdfReader pdfReader = new PdfReader(pdftemplate);
 
@@ -2139,6 +2140,7 @@ namespace ControlHoras
                 //R1.Pais - Pais del Documento
 
 
+                DateTime hoy = DateTime.Today;
 
                 pdfFormFields.SetField("R1.1Ap", txtApellido.Text.Split(' ').ElementAt(0));
                 if (txtApellido.Text.Split(' ').Count() > 1)
@@ -2149,6 +2151,17 @@ namespace ControlHoras
                 pdfFormFields.SetField("R1.TDoc.0", "C.I");
                 pdfFormFields.SetField("R1.Pais", "Uruguay");
                 pdfFormFields.SetField("R1.NDoc", mtNumeroDocumento.Text);
+                pdfFormFields.SetField("R1.Mes", hoy.Month.ToString());
+                pdfFormFields.SetField("R1.Año", hoy.Year.ToString());
+                pdfFormFields.SetField("R1.Nom", nomEmpresa);
+
+                pdfFormFields.SetField("R6.Suscr", txtNombre.Text.Split(' ').ElementAt(0) + " " + TranfaTitulo(txtApellido.Text.Split(' ').ElementAt(0)));
+                pdfFormFields.SetField("R6.Calidad", "titular");
+                pdfFormFields.SetField("R6.CI", mtNumeroDocumento.Text);
+
+
+
+
  
                 pdfStamper.Close();
                 DialogResult okOpen = MessageBox.Show("Documento creado correctamente. Desea abrirlo ahora?", "Abrir Formulario DGI 3100...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -2163,6 +2176,43 @@ namespace ControlHoras
                 }
             }
          }
+
+        private void PruebaBtn_Click(object sender, EventArgs e)
+        {
+            string pdftemplate = Path.Combine(dirbase, @"Docs\formulario 3100 DGI.pdf");
+            PdfReader pdfReader = new PdfReader(pdftemplate);
+            string newFile = mtNumeroEmpleado.Text + "-" + txtNombre.Text + " " + txtApellido.Text + "-FormularioDGI.pdf";
+            PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileStream(newFile, FileMode.Create));
+            AcroFields pdfFormFields = pdfStamper.AcroFields;
+
+            object oEndOfDoc = "\\endofdoc"; /* \endofdoc is a predefined bookmark */
+
+            //Start Word and create a new document.
+            Word._Application oWord;
+            Word._Document oDoc;
+            oWord = new Word.Application();
+            oWord.Visible = true;
+            oDoc = oWord.Documents.Add(ref missing, ref missing,
+                ref missing, ref missing);
+                        
+
+            //Insert a paragraph at the end of the document.
+            Word.Paragraph oPara2;
+            object oRng = null;
+            
+            System.Collections.Hashtable h = pdfFormFields.Fields;
+
+            foreach (System.Collections.DictionaryEntry d in h)
+            {
+                oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+                oPara2 = oDoc.Content.Paragraphs.Add(ref oRng);
+                oPara2.Range.Text = d.Key.ToString();
+                oPara2.Format.SpaceAfter = 6;
+                oPara2.Range.InsertParagraphAfter();
+            }
+
+            pdfStamper.Close();
+        }
 
         
     }
