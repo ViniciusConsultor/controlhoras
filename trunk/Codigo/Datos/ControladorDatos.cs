@@ -538,6 +538,7 @@ namespace Datos
                     emp.CombatienteMilitar = 0;
                 emp.RenaemsefEchaIngreso = fechaIngresoRENAEMSE;
                 //emp.RenaemsenUmeroAsunto = numeroAsuntoRENAEMSE;
+                emp.NivelEducativo = nivelEducativo;
 
 
                 tablaEmpleados.InsertOnSubmit(emp);
@@ -646,6 +647,7 @@ namespace Datos
                 else
                     emp.CombatienteMilitar = 0;
                 emp.RenaemsefEchaIngreso = fechaIngresoRENAEMSE;
+                emp.NivelEducativo = nivelEducativo;
                 //emp.RenaemsenUmeroAsunto = numeroAsuntoRENAEMSE;
                 //if (activo)
                 //    emp.Activo = 0;
