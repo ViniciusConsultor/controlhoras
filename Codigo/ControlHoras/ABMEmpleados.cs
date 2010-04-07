@@ -667,6 +667,16 @@ namespace ControlHoras
             catch (Exception e) { }
             try
             {
+                txtObservaciones.Text = empleado.Observaciones;
+            }
+            catch (Exception e) { }
+            try
+            {
+                txtObservacionesAntecedentes.Text = empleado.ObservacionesAntecedentes;
+            }
+            catch (Exception e) { }
+            try
+            {
                 // Chequear porque el Selected index no deberia ser igual al IdTipoDocumento.
                 cmbTipoDocumento.SelectedValue = (int)empleado.IDTipoDocumento;
             }
@@ -2094,7 +2104,16 @@ namespace ControlHoras
                 oSheet.Cells[20, 9] = lblEdad.Text;
 
                 // Dirección
-                oSheet.Cells[23, 2] = txtDireccion.Text;                
+                oSheet.Cells[23, 2] = txtDireccion.Text;
+                
+                // Nivel Educacional
+                if (cmbNivelEducativo.Text == "PRIMARIO")
+                    oSheet.Cells[26, 3] = "X";
+                else if (cmbNivelEducativo.Text == "SECUNDARIO")
+                    oSheet.Cells[26, 5] = "X";
+                else
+                    oSheet.Cells[26, 7] = "X";
+
 
                 // Antecedentes Policiales o Militares
                 if (cbAntecedentePolicialoMilitar.Checked)
