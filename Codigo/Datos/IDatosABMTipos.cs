@@ -37,7 +37,8 @@ namespace Datos
         
         
         //void bajaTipoEmpleado();
-        List<TipOscarGoS> obtenerTiposCargos(bool soloactivos);
+        Dictionary<int, string> obtenerTiposCargos(bool soloactivos);
+        List<TipOscarGoS> obtenerTiposCargosList(bool soloactivos);
 
         #endregion
 
