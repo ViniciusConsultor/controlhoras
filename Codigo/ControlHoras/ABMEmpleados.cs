@@ -57,18 +57,29 @@ namespace ControlHoras
         {
             InitializeComponent();
          //   this.Disposed += new EventHandler(Disposed);
-
-            sistema = ControladorEmpleados.getInstance();
-            datos = ControladorDatos.getInstance();
-            datosTipos = DatosABMTipos.getInstance();
-            tipos = ControladorABMTipos.getInstance();
-
+            try
+            {
+                sistema = ControladorEmpleados.getInstance();
+                datos = ControladorDatos.getInstance();
+                datosTipos = DatosABMTipos.getInstance();
+                tipos = ControladorABMTipos.getInstance();
+            }
+            catch (Exception ex1)
+            {
+                throw ex1;
+            }     
+            try
+            {
             missing = System.Reflection.Missing.Value;
             exefile = Application.ExecutablePath;
             Info = new FileInfo(exefile);
             //dirbase = Info.Directory.Parent.Parent.FullName;
             dirbase = ConfigurationManager.AppSettings["DocsPath"].ToString();
-            
+            }
+            catch (Exception ex2)
+            {
+                throw ex2;
+            }     
         }
 
         private void ABMEmpleados_Load(object sender, EventArgs e)
@@ -352,6 +363,10 @@ namespace ControlHoras
             else if (mtNumeroEmpleado.Text == "" && e.KeyCode == Keys.Enter)
             {
                 mtNumeroEmpleado.Text = (datos.obtenerMaxIdEmpleado() + 1).ToString();
+                btnAgregar.Enabled = true;
+                btnGuardar.Enabled = false;
+                btnExtrasAgregar.Enabled = false;
+                btnAgregarHistorial.Enabled = false;
             }
         }
 
@@ -649,6 +664,12 @@ namespace ControlHoras
                 cmbTipoDocumento.SelectedValue = (int)empleado.IDTipoDocumento;
             }
             catch (Exception e) { }
+            try
+            {
+                // Chequear porque el Selected index no deberia ser igual al IdTipoDocumento.
+                cmbNivelEducativo.Text = empleado.NivelEducativo;
+            }
+            catch (Exception e) { }
             if (empleado.FechaNacimiento != null)
                 lblEdad.Text = calcularEdad(DateTime.ParseExact(dtpFechaNacimiento.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo)).ToString();
 
@@ -869,7 +890,7 @@ namespace ControlHoras
             }
             catch (Exception ex)
             {
-                throw ex;
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
