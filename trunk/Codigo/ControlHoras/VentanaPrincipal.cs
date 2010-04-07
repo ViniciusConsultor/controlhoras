@@ -18,8 +18,15 @@ namespace ControlHoras
 
         private void btnContrato_Click(object sender, EventArgs e)
         {
-            ContratoForm contrato = new ContratoForm();
-            contrato.ShowDialog(this);
+            try
+            {
+                ContratoForm contrato = new ContratoForm();
+                contrato.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 
@@ -33,20 +40,34 @@ namespace ControlHoras
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMClientes clientes = ABMClientes.getVentana();
-            if (clientes.Visible == false)
-                clientes.Show(this);
-            else
-                clientes.Focus();
+            try
+            {
+                ABMClientes clientes = ABMClientes.getVentana();
+                if (clientes.Visible == false)
+                    clientes.Show(this);
+                else
+                    clientes.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void categoriasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMCargos categ = ABMCargos.getVentana();
-            if (categ.Visible == false)
-                categ.Show(this);
-            else
-                categ.Focus();
+            try
+            {
+                ABMCargos categ = ABMCargos.getVentana();
+                if (categ.Visible == false)
+                    categ.Show(this);
+                else
+                    categ.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
     
@@ -64,111 +85,184 @@ namespace ControlHoras
 
         private void empleadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMEmpleados empls = ABMEmpleados.getVentana();
-            if (empls.Visible == false)
-                empls.Show(this);
-            else
-                empls.Focus();
+            try
+            {
+                ABMEmpleados empls = ABMEmpleados.getVentana();
+                if (empls.Visible == false)
+                    empls.Show(this);
+                else
+                    empls.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void emergenciasMedicaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMEmergenciasMedica eme = ABMEmergenciasMedica.getVentana();
-            if (eme.Visible == false)
-                eme.Show(this);
-            else
-                eme.Focus();
+            try
+            {
+                ABMEmergenciasMedica eme = ABMEmergenciasMedica.getVentana();
+                if (eme.Visible == false)
+                    eme.Show(this);
+                else
+                    eme.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void mutualistasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMMutualistas mutu = ABMMutualistas.getVentana();
-            if (mutu.Visible == false)
-                mutu.Show(this);
-            else
-                mutu.Focus();
+            try
+            {
+                ABMMutualistas mutu = ABMMutualistas.getVentana();
+                if (mutu.Visible == false)
+                    mutu.Show(this);
+                else
+                    mutu.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void bancosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMBancos banco = ABMBancos.getVentana();
-            if (banco.Visible == false)
-                banco.Show(this);
-            else
-                banco.Focus();
+            try
+            {
+                ABMBancos banco = ABMBancos.getVentana();
+                if (banco.Visible == false)
+                    banco.Show(this);
+                else
+                    banco.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void departamentosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMDepartamentos depa = ABMDepartamentos.getVentana();
-            if (depa.Visible == false)
-                depa.Show(this);
-            else
-                depa.Focus();
+            try
+            {
+                ABMDepartamentos depa = ABMDepartamentos.getVentana();
+                if (depa.Visible == false)
+                    depa.Show(this);
+                else
+                    depa.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void tiposDeDocumentosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMTiposDocumento tiposDoc = ABMTiposDocumento.getVentana();
-            if (tiposDoc.Visible == false)
-                tiposDoc.Show(this);
-            else
-                tiposDoc.Focus();
+            try
+            {
+                ABMTiposDocumento tiposDoc = ABMTiposDocumento.getVentana();
+                if (tiposDoc.Visible == false)
+                    tiposDoc.Show(this);
+                else
+                    tiposDoc.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            
-            ABMEmpleados em = ABMEmpleados.getVentana();
-            if (em.Visible == true)
+            try
             {
-                em.Focus();
+                ABMEmpleados em = ABMEmpleados.getVentana();
+                if (em.Visible == true)
+                {
+                    em.Focus();
+                }
+                else
+                {
+                    em.Show(this);
+                }
+                
             }
-            else
+            catch (Exception ex)
             {
-                em.Show(this);
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-           ABMClientes cli = ABMClientes.getVentana();
-           if (cli.Visible == false)
-               cli.Show(this);
-           else
-               cli.Focus();
+            try
+            {
+               ABMClientes cli = ABMClientes.getVentana();
+               if (cli.Visible == false)
+                   cli.Show(this);
+               else
+                   cli.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void tiposDeEventosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMTipoEventoHistorial tiposevento = ABMTipoEventoHistorial.getVentana();
-            if (tiposevento.Visible == false)
-                tiposevento.Show(this);
-            else
-                tiposevento.Focus();
+           try
+           {
+                ABMTipoEventoHistorial tiposevento = ABMTipoEventoHistorial.getVentana();
+                if (tiposevento.Visible == false)
+                    tiposevento.Show(this);
+                else
+                    tiposevento.Focus();
+           }
+           catch (Exception ex)
+           {
+               MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+           }
         }
 
         private void cargosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ABMCargos cargos = ABMCargos.getVentana();
-            if (cargos.Visible == false)
-                cargos.Show(this);
-            else
-                cargos.Focus();
+            try
+            {
+                ABMCargos cargos = ABMCargos.getVentana();
+                if (cargos.Visible == false)
+                    cargos.Show(this);
+                else
+                    cargos.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            ExportToExcel ex = ExportToExcel.getInstance();
-            if (ex.Visible == false)
-                ex.Show(this);
-            else
-                ex.Focus();
+            try
+            {
+                ExportToExcel ex = ExportToExcel.getInstance();
+                if (ex.Visible == false)
+                    ex.Show(this);
+                else
+                    ex.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             
         }
-
-
-
-
     }
 }
