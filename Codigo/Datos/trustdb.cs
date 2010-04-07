@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2010-02-18 20:13:47Z
+#region Auto-generated classes for trustdb database on 2010-04-06 23:51:58Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2010-02-18 20:13:47Z
+// Auto-generated from trustdb on 2010-04-06 23:51:58Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -1676,6 +1676,8 @@ namespace Datos
 		partial void OnMtssfEchaBajaChanging(DateTime? value);
 		partial void OnNacionalidadChanged();
 		partial void OnNacionalidadChanging(string value);
+		partial void OnNivelEducativoChanged();
+		partial void OnNivelEducativoChanging(string value);
 		partial void OnNoHabilitadoParaServicioChanged();
 		partial void OnNoHabilitadoParaServicioChanging(sbyte value);
 		partial void OnNombreChanged();
@@ -2981,6 +2983,32 @@ namespace Datos
 					_nacionalidad = value;
 					SendPropertyChanged("Nacionalidad");
 					OnNacionalidadChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string NivelEducativo
+
+		private string _nivelEducativo;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_nivelEducativo", Name = "NivelEducativo", DbType = "varchar(10)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string NivelEducativo
+		{
+			get
+			{
+				return _nivelEducativo;
+			}
+			set
+			{
+				if (value != _nivelEducativo)
+				{
+					OnNivelEducativoChanging(value);
+					SendPropertyChanging();
+					_nivelEducativo = value;
+					SendPropertyChanged("NivelEducativo");
+					OnNivelEducativoChanged();
 				}
 			}
 		}
