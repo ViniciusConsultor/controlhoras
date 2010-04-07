@@ -458,19 +458,19 @@ namespace Datos
                 emp.Apellido = apellido;
                 emp.IDTipoDocumento = (sbyte)idTipoDocumento;
                 emp.NumeroDocumento = documento;
-                //emp.Sexo = sexo.ToString();
+                emp.SexO = sexo.ToString();
                 emp.IDDepartamento = (sbyte)idDepartamento;
                 emp.Ciudad = ciudad;
-                //emp.Barrio = barrio;
+                emp.Barrio = barrio;
                 emp.Direccion = direccion;
                 emp.DireccionDeEncuentro = puntoEncuentro;
                 emp.EntreCalles = entreCalles;
                 emp.Telefonos = telefono;
                 emp.Celular = celular;
                 emp.CelularenConvenio = celularConvenio;
-                //emp.EstadoCivil = estadoCivil;
+                emp.EstadoCivil = estadoCivil;
                 emp.Email = email;
-                //emp = foto;
+                emp.Foto = foto;
                 emp.Edad = (sbyte)edad;
                 emp.FechaNacimiento = fechaNacimiento;
                 emp.LugarDeNacimiento = lugarNacimiento;
@@ -489,16 +489,16 @@ namespace Datos
                 emp.FechaVencimientoCarneDeSalud = vencimientoCarneSalud;
                 emp.IDMutualista = (byte)idMutualista;
                 emp.IDEmergenciaMedica = (byte)idEmergenciaMedica;
-                //emp.CantidadMenoresAcArgo = (sbyte)cantidadMenoresACargo;
-                //emp.TalleCamisa = talleCamisa;
+                emp.CantidadMenoresAcArgo = (sbyte)cantidadMenoresACargo;
+                emp.TalleCamisa = talleCamisa;
                 if (talleZapatos != "")
                     emp.TalleZapatos = (sbyte)int.Parse(talleZapatos);
                 else
                     emp.TalleZapatos = null;
-                //emp.TallePantalon = tallePantalon;
-                //emp.TalleCampera = talleCampera;
-                //emp.FechaBaja = fechaBaja;
-                //emp.MotivoBaja = motivoBaja;
+                emp.TallePantalon = tallePantalon;
+                emp.TalleCampera = talleCampera;
+                emp.FechaBaja = fechaBaja;
+                emp.MotivoBaja = motivoBaja;
                 if (capacitadoPorteArma)
                     emp.CapacitadoPortarArma = 1;
                 else
@@ -507,13 +507,21 @@ namespace Datos
                     emp.EnServicioArmado = 1;
                 else
                     emp.EnServicioArmado = 0;
-                
-                if (antecedentesPolicialesOMilitares)
-                //emp.AntecedentesPolicialesOmIlitares = 1;
-                //else
-                //    emp.AntecedentesPolicialesOmIlitares = 0;
 
-                //emp.SueldoActual = sueldo;
+                if (antecedentesPolicialesOMilitares)
+                {
+                    emp.AntecedentesPolicialesOmIlitares = 1;
+                    if (PolicialOMilitar == "Policia")
+                        emp.PolicialesoMilitar = 1;
+                    else
+                        emp.PolicialesoMilitar = 0;
+                    emp.FechaIngresoPolicialoMilitar = fechaIngresoAntecedete;
+                    emp.FechaEgresoPolicialoMilitar = fechaEgresoAntecedente;
+                }
+                else
+                    emp.AntecedentesPolicialesOmIlitares = 0;
+
+                emp.SueldoActual = sueldo;
                 emp.IDBanco = (byte)idBanco;
                 emp.NumeroCuenta = numeroCuenta;
                 emp.Observaciones = observacionesEmpleado;
@@ -524,20 +532,15 @@ namespace Datos
                 emp.BpsfEchaAlta = fechaAltaBPS;
                 emp.BpsfEchaBaja = fechaBajaBPS;
                 emp.FechaTestPsicologico = fechaPsicologo;
-                //if (antecedentesPolicialesOMilitares)
-                //    emp.PolicialesoMilitar = 1;
-                //else
-                //    emp.PolicialesoMilitar = 0;
-
-                emp.FechaIngresoPolicialoMilitar = fechaIngresoAntecedete;
-                emp.FechaEgresoPolicialoMilitar = fechaEgresoAntecedente;
+                
+                
                 emp.SubEscalafonPolicial = subEscalafon;
                 if (combatiente)
                     emp.CombatienteMilitar = 1;
                 else
                     emp.CombatienteMilitar = 0;
                 emp.RenaemsefEchaIngreso = fechaIngresoRENAEMSE;
-                //emp.RenaemsenUmeroAsunto = numeroAsuntoRENAEMSE;
+                emp.RenaemsenUmeroAsunto = numeroAsuntoRENAEMSE;
                 emp.NivelEducativo = nivelEducativo;
                 emp.IDCargo = (short)idCargo;
 
@@ -571,7 +574,7 @@ namespace Datos
                 emp.SexO = sexo.ToString();
                 emp.IDDepartamento = (sbyte)idDepartamento;
                 emp.Ciudad = ciudad;
-                //emp.Barrio = barrio;
+                emp.Barrio = barrio;
                 emp.Direccion = direccion;
                 emp.DireccionDeEncuentro = puntoEncuentro;
                 emp.EntreCalles = entreCalles;
@@ -580,7 +583,7 @@ namespace Datos
                 emp.CelularenConvenio = celularConvenio;
                 emp.EstadoCivil = estadoCivil;
                 emp.Email = email;
-                //emp.Foto = foto;
+                emp.Foto = foto;
                 emp.Edad = (sbyte)edad;
                 emp.FechaNacimiento = fechaNacimiento;
                 emp.LugarDeNacimiento = lugarNacimiento;
@@ -599,16 +602,16 @@ namespace Datos
                 emp.FechaVencimientoCarneDeSalud = vencimientoCarneSalud;
                 emp.IDMutualista = (byte)idMutualista;
                 emp.IDEmergenciaMedica = (byte)idEmergenciaMedica;
-                //emp.CantidadMenoresAcArgo = (sbyte)cantidadMenoresACargo;
-                //emp.TalleCamisa = talleCamisa;
+                emp.CantidadMenoresAcArgo = (sbyte)cantidadMenoresACargo;
+                emp.TalleCamisa = talleCamisa;
                 if (talleZapatos != "")
                     emp.TalleZapatos = (sbyte)int.Parse(talleZapatos);
                 else
                     emp.TalleZapatos = null;
-                //emp.TallePantalon = tallePantalon;
-                //emp.TalleCampera = talleCampera;
-                //emp.FechaBaja = fechaBaja;
-                //emp.MotivoBaja = motivoBaja;
+                emp.TallePantalon = tallePantalon;
+                emp.TalleCampera = talleCampera;
+                emp.FechaBaja = fechaBaja;
+                emp.MotivoBaja = motivoBaja;
                 if (capacitadoPorteArma)
                     emp.CapacitadoPortarArma = 1;
                 else
@@ -618,12 +621,21 @@ namespace Datos
                 else
                     emp.EnServicioArmado = 0;
 
-                //if (antecedentesPolicialesOMilitares)
-                //    emp.AntecedentesPolicialesOmIlitares = 1;
-                //else
-                //    emp.AntecedentesPolicialesOmIlitares = 0;
+                if (antecedentesPolicialesOMilitares)
+                {
+                    emp.AntecedentesPolicialesOmIlitares = 1;
+                    if (PolicialOMilitar == "Policia")
+                        emp.PolicialesoMilitar = 1;
+                    else
+                        emp.PolicialesoMilitar = 0;
+                    emp.FechaIngresoPolicialoMilitar = fechaIngresoAntecedete;
+                    emp.FechaEgresoPolicialoMilitar = fechaEgresoAntecedente;
+                }
+                else
+                    emp.AntecedentesPolicialesOmIlitares = 0;
 
-                //emp.SueldoActual = sueldo;
+
+                emp.SueldoActual = sueldo;
                 emp.IDBanco = (byte)idBanco;
                 emp.NumeroCuenta = numeroCuenta;
                 emp.Observaciones = observacionesEmpleado;
@@ -634,13 +646,7 @@ namespace Datos
                 emp.BpsfEchaAlta = fechaAltaBPS;
                 emp.BpsfEchaBaja = fechaBajaBPS;
                 emp.FechaTestPsicologico = fechaPsicologo;
-                //if (antecedentesPolicialesOMilitares)
-                //    emp.PolicialesoMilitar = 1;
-                //else
-                //    emp.PolicialesoMilitar = 0;
-
-                emp.FechaIngresoPolicialoMilitar = fechaIngresoAntecedete;
-                emp.FechaEgresoPolicialoMilitar = fechaEgresoAntecedente;
+                
                 emp.SubEscalafonPolicial = subEscalafon;
                 if (combatiente)
                     emp.CombatienteMilitar = 1;
@@ -648,11 +654,11 @@ namespace Datos
                     emp.CombatienteMilitar = 0;
                 emp.RenaemsefEchaIngreso = fechaIngresoRENAEMSE;
                 emp.NivelEducativo = nivelEducativo;
-                //emp.RenaemsenUmeroAsunto = numeroAsuntoRENAEMSE;
-                //if (activo)
-                //    emp.Activo = 0;
-                //else
-                //    emp.Activo = 1;
+                emp.RenaemsenUmeroAsunto = numeroAsuntoRENAEMSE;
+                if (activo)
+                    emp.Activo = 0;
+                else
+                    emp.Activo = 1;
 
                 emp.IDCargo = (short)idCargo;
 
