@@ -2064,7 +2064,7 @@
             this.cmbTiposCargos.Name = "cmbTiposCargos";
             this.cmbTiposCargos.Size = new System.Drawing.Size(115, 21);
             this.cmbTiposCargos.TabIndex = 2;
-            this.cmbTiposCargos.SelectedIndexChanged += new System.EventHandler(this.cmbTiposCargos_SelectedIndexChanged);
+            //this.cmbTiposCargos.SelectedIndexChanged += new System.EventHandler(this.cmbTiposCargos_SelectedIndexChanged);
             // 
             // txtLugarNacimiento
             // 

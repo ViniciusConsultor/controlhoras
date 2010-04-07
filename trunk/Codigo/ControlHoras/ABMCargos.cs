@@ -52,7 +52,7 @@ namespace ControlHoras
             btnAgregar.Enabled = true;
             btnGuardar.Enabled = false;
 
-            List<TipOscarGoS> cargos = datos.obtenerTiposCargos(false);
+            List<TipOscarGoS> cargos = datos.obtenerTiposCargosList(false);
             foreach (TipOscarGoS cat in cargos)
             {
                 int n = -10;

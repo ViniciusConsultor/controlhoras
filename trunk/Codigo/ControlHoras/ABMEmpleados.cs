@@ -184,8 +184,15 @@ namespace ControlHoras
             // Cargar TiposCargos
             try
             {
-                cargos = datosTipos.obtenerTiposCargos(true);
-                cmbTiposCargos.ValueMember = "Value";
+                cargos = datosTipos.obtenerTiposCargosList(true);
+                Dictionary<int, string> cargosDic = datosTipos.obtenerTiposCargos(true);
+
+                CargarCombo(cmbTiposCargos, cargosDic);
+                cmbTiposCargos.SelectedIndexChanged += new System.EventHandler(this.cmbTiposCargos_SelectedIndexChanged);
+
+               
+                
+                /*cmbTiposCargos.ValueMember = "Value";
                 cmbTiposCargos.DisplayMember = "Display";
                 cmbTiposCargos.BeginUpdate();
                 foreach (TipOscarGoS tipo in cargos)
@@ -193,7 +200,7 @@ namespace ControlHoras
                     ComboBoxValue cbval = new ComboBoxValue(tipo.Nombre, (int)tipo.IDCargo);
                     cmbTiposCargos.Items.Add(cbval);
                 }
-                cmbTiposCargos.EndUpdate();
+                cmbTiposCargos.EndUpdate();*/
             }
             catch (Exception ex)
             {
@@ -793,6 +800,7 @@ namespace ControlHoras
                 }
                 bool combatiente = cbCombatiente.Enabled;
                 bool antecedentesPolicialesOMilitares = cbAntecedentePolicialoMilitar.Enabled;
+                int idcargo = (int)cmbTiposCargos.SelectedValue;
                 int iddepartamento = (int)cmbDepartamento.SelectedValue;
                 int idtipodocumento = (int)cmbTipoDocumento.SelectedValue;
                 int idmutualista = -1;
@@ -1434,7 +1442,7 @@ namespace ControlHoras
            {
                if (cmbTiposCargos.SelectedItem != null)
                {
-                   idtipocargo = ((ComboBoxValue)cmbTiposCargos.SelectedItem).Value;
+                   idtipocargo = (int)cmbTiposCargos.SelectedValue;// ((ComboBoxValue)cmbTiposCargos.SelectedItem).Value;
                    foreach(TipOscarGoS cargo in cargos)
                    {
                        if (cargo.IDCargo == idtipocargo)

@@ -101,12 +101,46 @@ namespace Datos
             }
         }
 
-        public List<TipOscarGoS> obtenerTiposCargos(bool soloactivos)
+        public Dictionary<int, string> obtenerTiposCargos(bool soloactivos)
         {
+            Dictionary<int, string> result;
+
             try
             {
                 Table<TipOscarGoS> tabla = database.GetTable<TipOscarGoS>();
                 List<TipOscarGoS> listaCargos;
+
+                result = new Dictionary<int, string>();
+
+                if (soloactivos)
+                    listaCargos = tabla.ToList<TipOscarGoS>();
+
+                    //listaCargos = (from reg in tabla
+                    //               where reg.Activo == 0
+                    //               select reg).ToList<TipOscarGoS>();
+                else
+                    listaCargos = tabla.ToList<TipOscarGoS>();
+
+                foreach (TipOscarGoS l in listaCargos)
+                {
+                    result.Add((byte)l.IDCargo, l.Nombre);
+                }
+
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public List<TipOscarGoS> obtenerTiposCargosList(bool soloactivos)
+        {            
+            try
+            {
+                Table<TipOscarGoS> tabla = database.GetTable<TipOscarGoS>();
+                List<TipOscarGoS> listaCargos;
+                
                 if (soloactivos)
                     listaCargos = (from reg in tabla
                                    where reg.Activo == 0
