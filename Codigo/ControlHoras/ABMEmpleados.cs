@@ -2273,6 +2273,38 @@ namespace ControlHoras
             pdfStamper.Close();
         }
 
+        private void carnetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            object fileName = Path.Combine(dirbase, @"Docs\Carnet.doc");// @"C:\Documents and Settings\jcopello\Mis documentos\JPC\TrustSoftware\Codigo\ControlHoras\Docs\Contrato.doc";
+            object mark;
+            object readOnly = true;
+
+            Word._Application oWord;
+            Word._Document oDoc;
+            oWord = new Word.Application();
+            oWord.Visible = true;
+            oDoc = oWord.Documents.Open(ref fileName,
+                        ref missing, ref readOnly, ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing, ref missing, ref missing);
+
+            mark = "Apellido";
+            Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = txtApellido.Text.Split(' ').ElementAt(1);
+            
+            mark = "Nombre";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = txtNombre.Text.Split(' ').ElementAt(0).ToUpper();
+
+            mark = "CI";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = TranfCI(mtNumeroDocumento.Text);
+
+            mark = "NroFunc";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = mtNumeroEmpleado.Text;                        
+        }
+
         
     }
 }
