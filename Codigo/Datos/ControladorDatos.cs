@@ -444,7 +444,7 @@ namespace Datos
         #endregion
 
         #region ABM_Empleados
-        public void altaEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, string nacionalidad, char sexo, DateTime? fechaPsicologo, DateTime? fechaNacimiento, int edad, DateTime? fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadMenoresACargo, byte[] foto, int idBanco, string numeroCuenta, float sueldo, bool activo, DateTime? fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string barrio, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime? fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime? fechaAltaBPS, DateTime? fechaBajaBPS, string numeroCAJ, DateTime? fechaEmisionCAJ, DateTime? fechaEntregaCAJ, bool antecedentesEmpleado, string observacionesAntecedentesEmpleado, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime? fechaIngresoAntecedete, DateTime? fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime? vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica, bool capacitadoPorteArma, bool enservicioArmado, string observacionesEmpleado, string nivelEducativo, int idCargo)
+        public void altaEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, string nacionalidad, char sexo, DateTime? fechaPsicologo, DateTime? fechaNacimiento, int edad, DateTime? fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadMenoresACargo, byte[] foto, int idBanco, string numeroCuenta, float sueldo, bool activo, DateTime? fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string barrio, string codigoPostal, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime? fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime? fechaAltaBPS, bool bajaBPS, DateTime? fechaBajaBPS, string numeroCAJ, DateTime? fechaEmisionCAJ, DateTime? fechaEntregaCAJ, bool antecedentesEmpleado, string observacionesAntecedentesEmpleado, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime? fechaIngresoAntecedete, DateTime? fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime? vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica, bool capacitadoPorteArma, bool enservicioArmado, string observacionesEmpleado, string nivelEducativo, int idCargo, DateTime? fechaAltaMTSS, bool bajaMTSS, DateTime? fechaBajaMTSS)
         {
             Table<EmPleadOs> tablaEmpleados;
             try
@@ -462,6 +462,7 @@ namespace Datos
                 emp.IDDepartamento = (sbyte)idDepartamento;
                 emp.Ciudad = ciudad;
                 emp.Barrio = barrio;
+                emp.CodigoPostal = codigoPostal;
                 emp.Direccion = direccion;
                 emp.DireccionDeEncuentro = puntoEncuentro;
                 emp.EntreCalles = entreCalles;
@@ -502,7 +503,7 @@ namespace Datos
                 if (capacitadoPorteArma)
                     emp.CapacitadoPortarArma = 1;
                 else
-                    emp.CapacitadoPortarArma = 1;
+                    emp.CapacitadoPortarArma = 0;
                 if (enservicioArmado)
                     emp.EnServicioArmado = 1;
                 else
@@ -512,9 +513,9 @@ namespace Datos
                 {
                     emp.AntecedentesPolicialesOmIlitares = 1;
                     if (PolicialOMilitar == "Policia")
-                        emp.PolicialesoMilitar = 1;
-                    else
                         emp.PolicialesoMilitar = 0;
+                    else
+                        emp.PolicialesoMilitar = 1;
                     emp.FechaIngresoPolicialoMilitar = fechaIngresoAntecedete;
                     emp.FechaEgresoPolicialoMilitar = fechaEgresoAntecedente;
                 }
@@ -530,10 +531,20 @@ namespace Datos
                 emp.CajfEchaEntrega = fechaEntregaCAJ;
                 emp.BpsaCumulacionLaboral = (byte)acumulacionLaboralBPS;
                 emp.BpsfEchaAlta = fechaAltaBPS;
+                if (bajaBPS)
+                    emp.BpseSBaja = 1;
+                else
+                    emp.BpseSBaja = 0;
                 emp.BpsfEchaBaja = fechaBajaBPS;
                 emp.FechaTestPsicologico = fechaPsicologo;
-                
-                
+
+                emp.MtssfEchaAlta = fechaAltaMTSS;
+                if (bajaMTSS)
+                    emp.MtsseSBaja = 1;
+                else
+                    emp.MtsseSBaja = 0;
+                emp.MtssfEchaBaja = fechaBajaMTSS;
+
                 emp.SubEscalafonPolicial = subEscalafon;
                 if (combatiente)
                     emp.CombatienteMilitar = 1;
@@ -555,7 +566,7 @@ namespace Datos
 
         }
         //public void modificarEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, string nacionalidad, char sexo, DateTime fechaPsicologo, DateTime fechaNacimiento, DateTime fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadHijos, byte[] foto, int idBanco, string numeroCuenta, float sueldo, bool activo, DateTime fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime fechaAltaBPS, DateTime fechaBajaBPS, string numeroCAJ, DateTime fechaEmisionCAJ, DateTime fechaEntregaCAJ, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime fechaIngresoAntecedete, DateTime fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica)
-        public void modificarEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, string nacionalidad, char sexo, DateTime? fechaPsicologo, DateTime? fechaNacimiento, int edad, DateTime? fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadMenoresACargo, byte[] foto, int idBanco, string numeroCuenta, float sueldo, bool activo, DateTime? fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string barrio, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime? fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime? fechaAltaBPS, DateTime? fechaBajaBPS, string numeroCAJ, DateTime? fechaEmisionCAJ, DateTime? fechaEntregaCAJ, bool antecedentesEmpleado, string observacionesAntecedentesEmpleado, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime? fechaIngresoAntecedete, DateTime? fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime? vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica, bool capacitadoPorteArma, bool enservicioArmado, string observacionesEmpleado, string nivelEducativo, int idCargo)
+        public void modificarEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, string nacionalidad, char sexo, DateTime? fechaPsicologo, DateTime? fechaNacimiento, int edad, DateTime? fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadMenoresACargo, byte[] foto, int idBanco, string numeroCuenta, float sueldo, bool activo, DateTime? fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string barrio, string codigoPostal, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime? fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime? fechaAltaBPS, bool bajaBPS, DateTime? fechaBajaBPS, string numeroCAJ, DateTime? fechaEmisionCAJ, DateTime? fechaEntregaCAJ, bool antecedentesEmpleado, string observacionesAntecedentesEmpleado, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime? fechaIngresoAntecedete, DateTime? fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime? vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica, bool capacitadoPorteArma, bool enservicioArmado, string observacionesEmpleado, string nivelEducativo, int idCargo, DateTime? fechaAltaMTSS, bool bajaMTSS, DateTime? fechaBajaMTSS)
         {
             Table<EmPleadOs> tablaEmpleados;
             try
@@ -575,6 +586,7 @@ namespace Datos
                 emp.IDDepartamento = (sbyte)idDepartamento;
                 emp.Ciudad = ciudad;
                 emp.Barrio = barrio;
+                emp.CodigoPostal = codigoPostal;
                 emp.Direccion = direccion;
                 emp.DireccionDeEncuentro = puntoEncuentro;
                 emp.EntreCalles = entreCalles;
@@ -615,7 +627,7 @@ namespace Datos
                 if (capacitadoPorteArma)
                     emp.CapacitadoPortarArma = 1;
                 else
-                    emp.CapacitadoPortarArma = 1;
+                    emp.CapacitadoPortarArma = 0;
                 if (enservicioArmado)
                     emp.EnServicioArmado = 1;
                 else
@@ -625,9 +637,9 @@ namespace Datos
                 {
                     emp.AntecedentesPolicialesOmIlitares = 1;
                     if (PolicialOMilitar == "Policia")
-                        emp.PolicialesoMilitar = 1;
-                    else
                         emp.PolicialesoMilitar = 0;
+                    else
+                        emp.PolicialesoMilitar = 1;
                     emp.FechaIngresoPolicialoMilitar = fechaIngresoAntecedete;
                     emp.FechaEgresoPolicialoMilitar = fechaEgresoAntecedente;
                 }
@@ -644,8 +656,19 @@ namespace Datos
                 emp.CajfEchaEntrega = fechaEntregaCAJ;
                 emp.BpsaCumulacionLaboral = (byte)acumulacionLaboralBPS;
                 emp.BpsfEchaAlta = fechaAltaBPS;
+                if (bajaBPS)
+                    emp.BpseSBaja = 1;
+                else
+                    emp.BpseSBaja = 0;
                 emp.BpsfEchaBaja = fechaBajaBPS;
                 emp.FechaTestPsicologico = fechaPsicologo;
+
+                emp.MtssfEchaAlta = fechaAltaMTSS;
+                if (bajaMTSS)
+                    emp.MtsseSBaja = 1;
+                else
+                    emp.MtsseSBaja = 0;
+                emp.MtssfEchaBaja = fechaBajaMTSS;
                 
                 emp.SubEscalafonPolicial = subEscalafon;
                 if (combatiente)
