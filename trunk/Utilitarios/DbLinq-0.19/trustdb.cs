@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2010-03-04 12:36:51Z
+#region Auto-generated classes for trustdb database on 2010-04-06 23:51:58Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2010-03-04 12:36:51Z
+// Auto-generated from trustdb on 2010-04-06 23:51:58Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -883,7 +883,7 @@ namespace Datos
 
 		private sbyte _costoFijo;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_costoFijo", Name = "CostoFijo", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		[Column(Storage = "_costoFijo", Name = "Costo_Fijo", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
 		public sbyte CostoFijo
 		{
 			get
@@ -1223,6 +1223,21 @@ namespace Datos
 
 		#region Children
 
+		private EntitySet<HoRaRioDiA> _hoRaRioDiA;
+		[Association(Storage = "_hoRaRioDiA", OtherKey = "IDContrato", ThisKey = "IDContratos", Name = "Contrato_HD")]
+		[DebuggerNonUserCode]
+		public EntitySet<HoRaRioDiA> HoRaRioDiA
+		{
+			get
+			{
+				return _hoRaRioDiA;
+			}
+			set
+			{
+				_hoRaRioDiA = value;
+			}
+		}
+
 		private EntitySet<LineAshOrAs> _lineAshOrAs;
 		[Association(Storage = "_lineAshOrAs", OtherKey = "IDContrato", ThisKey = "IDContratos", Name = "FK_Contratos")]
 		[DebuggerNonUserCode]
@@ -1281,6 +1296,16 @@ namespace Datos
 
 		#region Attachement handlers
 
+		private void HoRaRioDiA_Attach(HoRaRioDiA entity)
+		{
+			entity.ContraToS = this;
+		}
+
+		private void HoRaRioDiA_Detach(HoRaRioDiA entity)
+		{
+			entity.ContraToS = null;
+		}
+
 		private void LineAshOrAs_Attach(LineAshOrAs entity)
 		{
 			entity.ContraToS = this;
@@ -1298,6 +1323,7 @@ namespace Datos
 
 		public ContraToS()
 		{
+			_hoRaRioDiA = new EntitySet<HoRaRioDiA>(HoRaRioDiA_Attach, HoRaRioDiA_Detach);
 			_lineAshOrAs = new EntitySet<LineAshOrAs>(LineAshOrAs_Attach, LineAshOrAs_Detach);
 			_tipOcOntraToS = new EntityRef<TipOContraToS>();
 			OnCreated();
@@ -1650,6 +1676,8 @@ namespace Datos
 		partial void OnMtssfEchaBajaChanging(DateTime? value);
 		partial void OnNacionalidadChanged();
 		partial void OnNacionalidadChanging(string value);
+		partial void OnNivelEducativoChanged();
+		partial void OnNivelEducativoChanging(string value);
 		partial void OnNoHabilitadoParaServicioChanged();
 		partial void OnNoHabilitadoParaServicioChanging(sbyte value);
 		partial void OnNombreChanged();
@@ -2961,6 +2989,32 @@ namespace Datos
 
 		#endregion
 
+		#region string NivelEducativo
+
+		private string _nivelEducativo;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_nivelEducativo", Name = "NivelEducativo", DbType = "varchar(10)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string NivelEducativo
+		{
+			get
+			{
+				return _nivelEducativo;
+			}
+			set
+			{
+				if (value != _nivelEducativo)
+				{
+					OnNivelEducativoChanging(value);
+					SendPropertyChanging();
+					_nivelEducativo = value;
+					SendPropertyChanged("NivelEducativo");
+					OnNivelEducativoChanged();
+				}
+			}
+		}
+
+		#endregion
+
 		#region sbyte NoHabilitadoParaServicio
 
 		private sbyte _noHabilitadoParaServicio;
@@ -4127,6 +4181,10 @@ namespace Datos
 			{
 				if (value != _nroLinea)
 				{
+					if (_lineAshOrAs.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					OnNroLineaChanging(value);
 					SendPropertyChanging();
 					_nroLinea = value;
@@ -4140,8 +4198,41 @@ namespace Datos
 
 		#region Parents
 
+		private EntityRef<ContraToS> _contraToS;
+		[Association(Storage = "_contraToS", OtherKey = "IDContratos", ThisKey = "IDContrato", Name = "Contrato_HD", IsForeignKey = true)]
+		[DebuggerNonUserCode]
+		public ContraToS ContraToS
+		{
+			get
+			{
+				return _contraToS.Entity;
+			}
+			set
+			{
+				if (value != _contraToS.Entity)
+				{
+					if (_contraToS.Entity != null)
+					{
+						var previousContraToS = _contraToS.Entity;
+						_contraToS.Entity = null;
+						previousContraToS.HoRaRioDiA.Remove(this);
+					}
+					_contraToS.Entity = value;
+					if (value != null)
+					{
+						value.HoRaRioDiA.Add(this);
+						_idcOntrato = value.IDContratos;
+					}
+					else
+					{
+						_idcOntrato = default(uint);
+					}
+				}
+			}
+		}
+
 		private EntityRef<LineAshOrAs> _lineAshOrAs;
-		[Association(Storage = "_lineAshOrAs", OtherKey = "IDContrato", ThisKey = "IDContrato", Name = "`FK IdContrato HD`", IsForeignKey = true)]
+		[Association(Storage = "_lineAshOrAs", OtherKey = "NroLinea", ThisKey = "NroLinea", Name = "LineasHoras_HD", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public LineAshOrAs LineAshOrAs
 		{
@@ -4163,11 +4254,11 @@ namespace Datos
 					if (value != null)
 					{
 						value.HoRaRioDiA.Add(this);
-						_idcOntrato = value.IDContrato;
+						_nroLinea = value.NroLinea;
 					}
 					else
 					{
-						_idcOntrato = default(uint);
+						_nroLinea = default(sbyte);
 					}
 				}
 			}
@@ -4180,6 +4271,7 @@ namespace Datos
 
 		public HoRaRioDiA()
 		{
+			_contraToS = new EntityRef<ContraToS>();
 			_lineAshOrAs = new EntityRef<LineAshOrAs>();
 			OnCreated();
 		}
@@ -4453,7 +4545,7 @@ namespace Datos
 		#region Children
 
 		private EntitySet<HoRaRioDiA> _hoRaRioDiA;
-		[Association(Storage = "_hoRaRioDiA", OtherKey = "IDContrato", ThisKey = "IDContrato", Name = "`FK IdContrato HD`")]
+		[Association(Storage = "_hoRaRioDiA", OtherKey = "NroLinea", ThisKey = "NroLinea", Name = "LineasHoras_HD")]
 		[DebuggerNonUserCode]
 		public EntitySet<HoRaRioDiA> HoRaRioDiA
 		{
