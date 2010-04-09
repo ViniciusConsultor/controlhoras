@@ -248,6 +248,7 @@ namespace ControlHoras
         private void limpiarForm()
         {
             cmbNivelEducativo.SelectedIndex = 0;
+            rbAntecedentes_NO.Checked = true;
             
 
             foreach (TabPage tp in tcEmpleado.TabPages)
@@ -291,6 +292,7 @@ namespace ControlHoras
         private void limpiarForm2()
         {
             cmbNivelEducativo.SelectedIndex = 0;
+            rbAntecedentes_NO.Checked = true;
 
             foreach (TabPage tp in tcEmpleado.TabPages)
             {
@@ -667,11 +669,7 @@ namespace ControlHoras
                 empleado.Observaciones = empleado.Observaciones;
             }
             catch (Exception e) { }
-            try
-            {
-                empleado.ObservacionesAntecedentes = empleado.ObservacionesAntecedentes;
-            }
-            catch (Exception e) { }
+           
             if (empleado.EnServicioArmado == 0)
                 cbEnServicioArmado.Checked = false;
             else
@@ -726,7 +724,11 @@ namespace ControlHoras
             catch (Exception e) { }
             try
             {
-                txtObservacionesAntecedentes.Text = empleado.ObservacionesAntecedentes;
+                if (empleado.ObservacionesAntecedentes != null)
+                {
+                    rbAntecedentes_SI.Checked = true;
+                    txtObservacionesAntecedentes.Text = empleado.ObservacionesAntecedentes;
+                }
             }
             catch (Exception e) { }
             try
@@ -747,8 +749,19 @@ namespace ControlHoras
                 cmbTiposCargos.SelectedValue = (int)empleado.IDCargo;
             }
             catch (Exception e) { }
+            
             if (empleado.FechaNacimiento != null)
                 lblEdad.Text = calcularEdad(DateTime.ParseExact(dtpFechaNacimiento.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo)).ToString();
+
+            try
+            {
+                if (empleado.FechaPagoFinal != null)
+                {
+                    cbEgresadoEmpresa.Checked = true;
+                    dtpFechaEgresoEmpresa.Text = empleado.FechaPagoFinal.Value.ToString();
+                }
+            }
+            catch (Exception e) { }
 
             cargarHistorialEmpleado((int)empleado.IDEmpleado);
             dtpExtrasFecha.Value = DateTime.Today;
@@ -851,6 +864,7 @@ namespace ControlHoras
             DateTime? dtpFechaIngPolMil;
             DateTime? dtpFechaEgrPolMil;
             DateTime? dtpFechaVenCarSal;
+            DateTime? dtpFechaEgreso;
             
 
             try
@@ -871,7 +885,7 @@ namespace ControlHoras
                         dtpBaja = DateTime.ParseExact(dtpFechaBaja.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
                 }
                 bool combatiente = cbCombatiente.Checked;
-                bool antecedentesPolicialesOMilitares = cbAntecedentePolicialoMilitar.Enabled;
+                bool antecedentesPolicialesOMilitares = cbAntecedentePolicialoMilitar.Checked;
                 int idcargo = (int)cmbTiposCargos.SelectedValue;
                 int iddepartamento = (int)cmbDepartamento.SelectedValue;
                 int idtipodocumento = (int)cmbTipoDocumento.SelectedValue;
@@ -969,17 +983,21 @@ namespace ControlHoras
                 else
                     dtpFechaVenCarSal = DateTime.ParseExact(dtpFechaVencimientoCarneSalud.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
 
+                if (dtpFechaEgresoEmpresa.Text == fechaMask)
+                    dtpFechaEgreso = null;
+                else
+                    dtpFechaEgreso = DateTime.ParseExact(dtpFechaEgresoEmpresa.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
 
                 if (agregar)                    
                 //sistema.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), txtNombre.Text, txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, txtNacionalidad.Text, sexo, dtpPsicologo.Value, dtpFechaNacimiento.Value, dtpFechaIngreso.Value, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantHijos, foto, idbanco, txtNumeroCuenta.Text, sueldo, activo, dtpFechaBaja.Value, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngresoRenaemse.Value, acumulacionLaboral, dtpFechaAltaBPS.Value, dtpFechaBajaBPS.Value, txtNumeroCAJ.Text, dtpFechaEmisionCAJ.Value, dtpFechaEntregaCAJ.Value, antecedentes, cmbPolicialMilitar.Text, dtpFechaIngresoPolicialMilitar.Value, dtpFechaEgresoPolicialMilitar.Value, txtPolicialSubEscalafon.Text, combatiente, txtTalleCamisa.Text, txtTallePantalon.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVencimientoCarneSalud.Value, idmutualista, idemergenciamovil);
-                    datos.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, txtNacionalidad.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, idbanco, txtNumeroCuenta.Text, sueldo, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtBarrio.Text, txtCodigoPostal.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, cbBajadoBPS.Checked, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTalleCamisa.Text, txtTallePantalon.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, cmbNivelEducativo.SelectedItem.ToString(), idcargo, dtpFechaAlMTSS, cbBajadoMTSS.Checked, dtpFechaBaMTSS);
+                    datos.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, txtNacionalidad.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, idbanco, txtNumeroCuenta.Text, sueldo, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtBarrio.Text, txtCodigoPostal.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, cbBajadoBPS.Checked, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTalleCamisa.Text, txtTallePantalon.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, cmbNivelEducativo.SelectedItem.ToString(), idcargo, dtpFechaAlMTSS, cbBajadoMTSS.Checked, dtpFechaBaMTSS, dtpFechaEgreso);
                 //datos.modificarEmpleado(idEmpleado, nombre,                         apellido, idTipoDocumento, documento, lugarNacimiento, nacionalidad, sexo, fechaPsicologo, fechaNacimiento, edad, fechaIngreso, telefono, celular, celularConvenio, email, estadoCivil, cantidadHijos, foto, idBanco, numeroCuenta, sueldo, activo, fechaBaja, motivoBaja, idDepartamento, ciudad, barrio, direccion, entreCalles, puntoEncuentro, numeroAsuntoRENAEMSE, fechaIngresoRENAEMSE, acumulacionLaboralBPS, fechaAltaBPS, fechaBajaBPS, numeroCAJ, fechaEmisionCAJ, fechaEntregaCAJ, antecedentesEmpleado, observacionesAntecedentesEmpleado, antecedentesPolicialesOMilitares, PolicialOMilitar, fechaIngresoAntecedete, fechaEgresoAntecedente, subEscalafon, combatiente, talleCamisa, tallePantalon, talleZapatos, talleCampera, vencimientoCarneSalud, idMutualista, idEmergenciaMedica,capacitadoPorteArma,enServicioArmado,observacionesEmpleado);
                 else
                 {
                     string nivEdu = "";
                     if (cmbNivelEducativo.SelectedItem != null)
                         nivEdu = cmbNivelEducativo.SelectedItem.ToString();
-                    datos.modificarEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, txtNacionalidad.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, idbanco, txtNumeroCuenta.Text, sueldo, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtBarrio.Text, txtCodigoPostal.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, cbBajadoBPS.Checked, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTalleCamisa.Text, txtTallePantalon.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, nivEdu, idcargo, dtpFechaAlMTSS, cbBajadoMTSS.Checked, dtpFechaBaMTSS);
+                    datos.modificarEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, txtNacionalidad.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, idbanco, txtNumeroCuenta.Text, sueldo, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtBarrio.Text, txtCodigoPostal.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, cbBajadoBPS.Checked, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTalleCamisa.Text, txtTallePantalon.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, nivEdu, idcargo, dtpFechaAlMTSS, cbBajadoMTSS.Checked, dtpFechaBaMTSS, dtpFechaEgreso);
                 }
                 btnCancelar.PerformClick();
             }
@@ -1493,7 +1511,7 @@ namespace ControlHoras
         private void cbEgresadoEmpresa_CheckedChanged(object sender, EventArgs e)
         {
             dtpFechaEgresoEmpresa.Enabled = cbEgresadoEmpresa.Checked;
-            dtpFechaEgresoEmpresa.Text = DateTime.Today.ToString();
+            //dtpFechaEgresoEmpresa.Text = DateTime.Today.ToString();
         }
 
         private void cmbPolicialMilitar_SelectedValueChanged(object sender, EventArgs e)
