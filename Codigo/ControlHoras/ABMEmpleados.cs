@@ -2004,6 +2004,12 @@ namespace ControlHoras
             mark = "domicilio";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
             wrdRng.Text = txtDireccion.Text;
+
+            mark = "cargo";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = cmbTiposCargos.Text;
+
+            #region imprimir
             //string fileNameSave;
             /*
             saveFileEmpleados.Filter = "Microsoft Office Word Document (*.doc)|*.doc";
@@ -2061,6 +2067,7 @@ namespace ControlHoras
                 //}
             }
             */
+            #endregion
         }
 
 
@@ -2139,6 +2146,13 @@ namespace ControlHoras
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
             wrdRng.Text = TranfCI(mtNumeroDocumento.Text);
 
+            mark = "arma";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            if (cbCapacitadoPorteArma.Checked)
+                wrdRng.Text = "con";
+            else
+                wrdRng.Text = "sin";
+
             if (dtpFechaIngreso.Text != fechaMask)
             {
                 DateTime FI = DateTime.ParseExact(dtpFechaIngreso.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
@@ -2198,6 +2212,9 @@ namespace ControlHoras
 
                 // Dirección
                 oSheet.Cells[23, 2] = txtDireccion.Text;
+
+                //Intersección
+                oSheet.Cells[23, 7] = txtEntreCalles.Text;
                 
                 // Nivel Educacional
                 if (cmbNivelEducativo.Text == "PRIMARIO")
@@ -2213,9 +2230,17 @@ namespace ControlHoras
                 {
                     int fila;
                     if (cmbPolicialMilitar.Text == "Policia")
+                    {
                         fila = 31;
+                        oSheet.Cells[fila, 10] = txtPolicialSubEscalafon.Text;
+                    }
                     else
+                    {
                         fila = 32;
+                        if (cbCombatiente.Checked)
+                            oSheet.Cells[fila, 9] = "Combatiente:               X";
+                    }
+
                     oSheet.Cells[fila, 6] = dtpFechaIngresoPolicialMilitar.Text;
                     oSheet.Cells[fila, 8] = dtpFechaEgresoPolicialMilitar.Text;
                     
@@ -2266,7 +2291,7 @@ namespace ControlHoras
         private void formularioDGIToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string pdftemplate = Path.Combine(dirbase, @"Docs\formulario 3100 DGI.pdf");
-            string nomEmpresa = "Trust";
+            //string nomEmpresa = "Trust";
             
             PdfReader pdfReader = new PdfReader(pdftemplate);
 
