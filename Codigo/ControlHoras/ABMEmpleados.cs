@@ -399,8 +399,8 @@ namespace ControlHoras
                 cbAntecedentePolicialoMilitar.Checked = true;
             else
                 cbAntecedentePolicialoMilitar.Checked = false;
-
-            cmbPolicialMilitar.SelectedIndex = (int)empleado.PolicialesoMilitar;
+            if (empleado.PolicialesoMilitar != null) 
+                cmbPolicialMilitar.SelectedIndex = (int)empleado.PolicialesoMilitar;
 
             try
             {
@@ -1973,7 +1973,7 @@ namespace ControlHoras
             oDoc = oWord.Documents.Open(ref fileName,
                                     ref missing, ref readOnly, ref missing, ref missing, ref missing,
                                     ref missing, ref missing, ref missing, ref missing, ref missing,
-                                    ref missing, ref missing, ref missing, ref missing, ref missing);
+                                    ref missing, ref missing, ref missing, ref missing);//, ref missing);
 
                 
             //oDoc = oWord.Documents.Add(ref fileName, ref missing, ref missing, ref missing);
@@ -2077,7 +2077,7 @@ namespace ControlHoras
             oDoc = oWord.Documents.Open(ref fileName,
                         ref missing, ref readOnly, ref missing, ref missing, ref missing,
                         ref missing, ref missing, ref missing, ref missing, ref missing,
-                        ref missing, ref missing, ref missing, ref missing, ref missing);
+                        ref missing, ref missing, ref missing, ref missing);//, ref missing);
 
             mark = "diaHoy";
             Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
@@ -2129,7 +2129,7 @@ namespace ControlHoras
             oDoc = oWord.Documents.Open(ref fileName,
                         ref missing, ref readOnly, ref missing, ref missing, ref missing,
                         ref missing, ref missing, ref missing, ref missing, ref missing,
-                        ref missing, ref missing, ref missing, ref missing, ref missing);
+                        ref missing, ref missing, ref missing, ref missing);//, ref missing);
 
             mark = "nombre";
             Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;            
@@ -2139,21 +2139,27 @@ namespace ControlHoras
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
             wrdRng.Text = TranfCI(mtNumeroDocumento.Text);
 
-            mark = "fechaIni";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = DateTime.Today.AddDays(-2).Day.ToString();
+            if (dtpFechaIngreso.Text != fechaMask)
+            {
+                DateTime FI = DateTime.ParseExact(dtpFechaIngreso.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
 
-            mark = "fechaFin";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = DateTime.Today.AddDays(-1).Day.ToString();
+                mark = "fechaIni";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = FI.AddDays(-2).Day.ToString();
 
-            mark = "mes";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = DateTime.Today.ToString("MMMM");
+                mark = "fechaFin";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = FI.AddDays(-1).Day.ToString();
 
-            mark = "ano";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = DateTime.Today.Year.ToString();
+
+                mark = "mes";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = FI.ToString("MMMM");
+
+                mark = "ano";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = FI.Year.ToString();
+            }
         }
 
         private void renaemseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2264,12 +2270,12 @@ namespace ControlHoras
             
             PdfReader pdfReader = new PdfReader(pdftemplate);
 
-            saveFileEmpleados.Filter = "Acrobat Reader (*.pdf)|*.pdf";
-            saveFileEmpleados.FileName = mtNumeroEmpleado.Text + "-" + txtNombre.Text + " " + txtApellido.Text + "-FormularioDGI.pdf";
-            DialogResult OKSave =  saveFileEmpleados.ShowDialog(this);
-            if (OKSave == DialogResult.OK)
-            {
-                string newFile = saveFileEmpleados.FileName;
+            //saveFileEmpleados.Filter = "Acrobat Reader (*.pdf)|*.pdf";
+            //saveFileEmpleados.FileName = 
+            //DialogResult OKSave =  saveFileEmpleados.ShowDialog(this);
+            //if (OKSave == DialogResult.OK)
+            //{
+                string newFile = mtNumeroEmpleado.Text + "-" + txtNombre.Text + " " + txtApellido.Text + "-FormularioDGI.pdf";
                 PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileStream(newFile, FileMode.Create));
                 AcroFields pdfFormFields = pdfStamper.AcroFields;
 
@@ -2297,12 +2303,12 @@ namespace ControlHoras
                 pdfFormFields.SetField("R1.TDoc.0", "C.I");
                 pdfFormFields.SetField("R1.Pais", "Uruguay");
                 pdfFormFields.SetField("R1.NDoc", mtNumeroDocumento.Text);
-                pdfFormFields.SetField("R1.Mes", hoy.Month.ToString());
-                pdfFormFields.SetField("R1.Año", hoy.Year.ToString());
-                pdfFormFields.SetField("R1.Nom", nomEmpresa);
+                //pdfFormFields.SetField("R1.Mes", hoy.Month.ToString());
+                //pdfFormFields.SetField("R1.Año", hoy.Year.ToString());
+                //pdfFormFields.SetField("R1.Nom", nomEmpresa);
 
                 pdfFormFields.SetField("R6.Suscr", txtNombre.Text.Split(' ').ElementAt(0) + " " + TranfaTitulo(txtApellido.Text.Split(' ').ElementAt(0)));
-                pdfFormFields.SetField("R6.Calidad", "titular");
+                pdfFormFields.SetField("R6.Calidad", "empleado");
                 pdfFormFields.SetField("R6.CI", mtNumeroDocumento.Text);
 
 
@@ -2310,17 +2316,17 @@ namespace ControlHoras
 
  
                 pdfStamper.Close();
-                DialogResult okOpen = MessageBox.Show("Documento creado correctamente. Desea abrirlo ahora?", "Abrir Formulario DGI 3100...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (okOpen == DialogResult.Yes)
-                {
+                //DialogResult okOpen = MessageBox.Show("Documento creado correctamente. Desea abrirlo ahora?", "Abrir Formulario DGI 3100...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //if (okOpen == DialogResult.Yes)
+                //{
                     // try forcing the window to be full-screen maximized
                     System.Diagnostics.ProcessStartInfo defapp = new System.Diagnostics.ProcessStartInfo();
 
                     defapp.FileName = newFile;
                     defapp.WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized;
                     System.Diagnostics.Process.Start(defapp);
-                }
-            }
+                //}
+           // }
          }
 
         private void PruebaBtn_Click(object sender, EventArgs e)
@@ -2373,7 +2379,7 @@ namespace ControlHoras
             oDoc = oWord.Documents.Open(ref fileName,
                         ref missing, ref readOnly, ref missing, ref missing, ref missing,
                         ref missing, ref missing, ref missing, ref missing, ref missing,
-                        ref missing, ref missing, ref missing, ref missing, ref missing);
+                        ref missing, ref missing, ref missing, ref missing);//, ref missing);
 
             mark = "Apellido";
             Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
