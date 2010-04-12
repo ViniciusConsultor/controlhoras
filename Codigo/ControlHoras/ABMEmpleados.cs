@@ -2420,7 +2420,27 @@ namespace ControlHoras
 
             mark = "NroFunc";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = mtNumeroEmpleado.Text;                        
+            wrdRng.Text = mtNumeroEmpleado.Text;
+
+            #region foto
+
+            //Object myFalse = false;
+            //Object myTrue = true;
+            //Object myEndOfDoc = "\\endofdoc";
+
+            //// Set the position where the image will be placed
+            //wrdRng = oDoc.Bookmarks.get_Item(ref myEndOfDoc).Range;
+            //Object myImageRange = oDoc.Bookmarks.get_Item(ref myEndOfDoc).Range;
+
+            //// Set the file of the picture
+            //string imagePath = @"C:\Documents and Settings\jcopello\Mis documentos\Mis imágenes\14c.jpg";
+
+            //// Add the picture to the document
+
+            ////myRange.InlineShapes.AddPicture(imagePath, ref myFalse, ref myTrue, ref myImageRange);
+            //wrdRng.InlineShapes.AddPicture(imagePath, ref myFalse, ref myTrue, ref myImageRange);          
+
+            #endregion
         }
 
         private void rbAntecedentes_SI_CheckedChanged(object sender, EventArgs e)
