@@ -573,9 +573,9 @@
             this.label31.AutoSize = true;
             this.label31.Location = new System.Drawing.Point(5, 69);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(40, 13);
+            this.label31.Size = new System.Drawing.Size(55, 13);
             this.label31.TabIndex = 102;
-            this.label31.Text = "Sueldo";
+            this.label31.Text = "$ por hora";
             // 
             // groupBox4
             // 

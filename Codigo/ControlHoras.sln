@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Excepciones", "Excepciones\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilidades", "Utilidades\Utilidades.csproj", "{74EBE032-537C-43B3-AF31-07C5174CB3E2}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup1\Setup1.vdproj", "{3C40CC04-01AD-4CDC-A173-946472826995}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Instalador", "Setup1\Setup1.vdproj", "{3C40CC04-01AD-4CDC-A173-946472826995}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
