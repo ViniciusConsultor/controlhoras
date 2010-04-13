@@ -1905,6 +1905,8 @@ namespace ControlHoras
         private void dtpFechaBaja_Validated(object sender, EventArgs e)
         {
             errorProvider1.SetError(dtpFechaBaja, "");
+            cbBajadoBPS.Checked = cbBajadoMTSS.Checked = true;
+            dtpFechaBajaBPS.Text = dtpFechaBajaMTSS.Text = dtpFechaBaja.Text;
         }
 
         private void dtpFechaEgresoPolicialMilitar_Validated(object sender, EventArgs e)
@@ -1937,6 +1939,7 @@ namespace ControlHoras
         private void dtpFechaIngreso_Validated(object sender, EventArgs e)
         {
             errorProvider1.SetError(dtpFechaIngreso, "");
+            dtpFechaAltaBPS.Text = dtpFechaAltaMTSS.Text = dtpFechaIngreso.Text; 
         }
 
         #endregion
@@ -2008,6 +2011,22 @@ namespace ControlHoras
             mark = "cargo";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
             wrdRng.Text = cmbTiposCargos.Text;
+
+            mark = "dia";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = DateTime.Today.Day.ToString();
+
+            mark = "mes";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = DateTime.Today.ToString("MMMM");
+
+            mark = "ano";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = DateTime.Today.Year.ToString();
+
+            mark = "sueldo";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = txtSueldo.Text;            
 
             #region imprimir
             //string fileNameSave;
@@ -2121,6 +2140,10 @@ namespace ControlHoras
             mark = "aHoy";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
             wrdRng.Text = DateTime.Today.Year.ToString();
+
+            mark = "numCel";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Text = txtCelularConvenio.Text;
         }
 
         private void diplomaToolStripMenuItem_Click(object sender, EventArgs e)
