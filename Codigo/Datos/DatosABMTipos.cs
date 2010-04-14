@@ -43,17 +43,17 @@ namespace Datos
                 cargo.CantidadHsComunes = (sbyte) cantidadHsComunes;
                 cargo.TipoFacturacion = tipoFacturacion;
                 if (cobraExtras)
-                    cargo.CobraHsExtras = 0;
-                else
                     cargo.CobraHsExtras = 1;
+                else
+                    cargo.CobraHsExtras = 0;
                 if (fulltime)
-                    cargo.Fulltime = 0;
-                else
                     cargo.Fulltime = 1;
-                if (inactivo)
-                    cargo.Activo = 1;
                 else
+                    cargo.Fulltime = 0;
+                if (inactivo)
                     cargo.Activo = 0;
+                else
+                    cargo.Activo = 1;
 
                 tabla.InsertOnSubmit(cargo);
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
@@ -80,17 +80,17 @@ namespace Datos
                 cargo.CantidadHsComunes = (sbyte) cantidadHsComunes;
                 cargo.TipoFacturacion = tipoFacturacion;
                 if (cobraExtras)
-                    cargo.CobraHsExtras = 0;
-                else
                     cargo.CobraHsExtras = 1;
+                else
+                    cargo.CobraHsExtras = 0;
                 if (fulltime)
-                    cargo.Fulltime = 0;
-                else
                     cargo.Fulltime = 1;
-                if (inactivo)
-                    cargo.Activo = 1;
                 else
+                    cargo.Fulltime = 0;
+                if (inactivo)
                     cargo.Activo = 0;
+                else
+                    cargo.Activo = 1;
 
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
 
@@ -113,11 +113,11 @@ namespace Datos
                 result = new Dictionary<int, string>();
 
                 if (soloactivos)
-                    listaCargos = tabla.ToList<TipOscarGoS>();
+                    //listaCargos = tabla.ToList<TipOscarGoS>();
 
-                    //listaCargos = (from reg in tabla
-                    //               where reg.Activo == 0
-                    //               select reg).ToList<TipOscarGoS>();
+                    listaCargos = (from reg in tabla
+                                   where reg.Activo == 1
+                                   select reg).ToList<TipOscarGoS>();
                 else
                     listaCargos = tabla.ToList<TipOscarGoS>();
 
@@ -143,7 +143,7 @@ namespace Datos
                 
                 if (soloactivos)
                     listaCargos = (from reg in tabla
-                                   where reg.Activo == 0
+                                   where reg.Activo == 1
                                    select reg).ToList<TipOscarGoS>();
                 else
                     listaCargos = tabla.ToList<TipOscarGoS>();
@@ -272,9 +272,9 @@ namespace Datos
 
                 tipoEvento.Nombre = descripcion;
                 if (activo)
-                    tipoEvento.Activo = 0;
-                else
                     tipoEvento.Activo = 1;
+                else
+                    tipoEvento.Activo = 0;
 
                 tabla.InsertOnSubmit(tipoEvento);
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
@@ -301,9 +301,9 @@ namespace Datos
                                                    select reg).Single<TipOsEventOHistOrIal>();
                 tipoEvento.Nombre = descripcion;
                 if (activo)
-                    tipoEvento.Activo = 0;
-                else
                     tipoEvento.Activo = 1;
+                else
+                    tipoEvento.Activo = 0;
 
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
 
@@ -324,7 +324,7 @@ namespace Datos
                 List<TipOsEventOHistOrIal> tipoEvento;
                 if (soloactivos)
                     tipoEvento = (from reg in tabla
-                                  where reg.Activo == 0
+                                  where reg.Activo == 1
                                   select reg).ToList<TipOsEventOHistOrIal>();
                 else
                     tipoEvento = (from reg in tabla

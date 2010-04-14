@@ -680,9 +680,9 @@ namespace Datos
                 emp.NivelEducativo = nivelEducativo;
                 emp.RenaemsenUmeroAsunto = numeroAsuntoRENAEMSE;
                 if (activo)
-                    emp.Activo = 0;
-                else
                     emp.Activo = 1;
+                else
+                    emp.Activo = 0;
 
                 emp.IDCargo = (short)idCargo;
                 emp.FechaPagoFinal = fechaEgreso;
