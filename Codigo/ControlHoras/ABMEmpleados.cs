@@ -249,8 +249,8 @@ namespace ControlHoras
         {
             cmbNivelEducativo.SelectedIndex = 0;
             rbAntecedentes_NO.Checked = true;
+            lblEstadoEmpleado.Visible = false;
             
-
             foreach (TabPage tp in tcEmpleado.TabPages)
             {
                 foreach (Control c in tp.Controls)
@@ -293,6 +293,7 @@ namespace ControlHoras
         {
             cmbNivelEducativo.SelectedIndex = 0;
             rbAntecedentes_NO.Checked = true;
+            lblEstadoEmpleado.Visible = false;
 
             foreach (TabPage tp in tcEmpleado.TabPages)
             {
@@ -339,23 +340,24 @@ namespace ControlHoras
 
         private void mtNumeroEmpleado_KeyDown(object sender, KeyEventArgs e)
         {
-            if (mtNumeroEmpleado.Text != "" && e.KeyCode == Keys.Enter)
+            if (mtNumeroEmpleado.Text != "" && (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab))
             { 
                 // traigo el empleado y lleno los datos de los campos.
                 EmPleadOs empleado;
                 try
                 {
                     if (sistema.existeEmpleado(int.Parse(mtNumeroEmpleado.Text)))
-                    {
+                    {                        
                         empleado = datos.obtenerEmpleado(int.Parse(mtNumeroEmpleado.Text));
                         limpiarForm();
+                        lblEstadoEmpleado.Visible = true;
                         cargarEmpleado(empleado);
                         lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
                         btnAgregar.Enabled = false;
                         btnGuardar.Enabled = true;
                         btnExtrasAgregar.Enabled = true;
                         btnAgregarHistorial.Enabled = true;
-                        ImprimirTSB.Enabled = true;
+                        ImprimirTSB.Enabled = true;                        
                     }
                     else
                     {
@@ -559,8 +561,17 @@ namespace ControlHoras
 
             try
             {
-                cbNoActivo.Checked = (empleado.Activo == 1);
-
+                if (empleado.Activo == 1)
+                {
+                    lblEstadoEmpleado.Text = "Activo";
+                    lblEstadoEmpleado.ForeColor = Color.LimeGreen;
+                }
+                else
+                {
+                    cbNoActivo.Checked = true;
+                    lblEstadoEmpleado.Text = "Inactivo";
+                    lblEstadoEmpleado.ForeColor = Color.Red;
+                }
             }
             catch (Exception e) { }
             
