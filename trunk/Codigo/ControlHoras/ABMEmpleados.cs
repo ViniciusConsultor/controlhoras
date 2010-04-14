@@ -2446,6 +2446,23 @@ namespace ControlHoras
             wrdRng.Text = mtNumeroEmpleado.Text;
 
             #region foto
+            mark = "Imagen";
+            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            wrdRng.Select();
+            oWord.Selection.TypeParagraph();
+
+            if (pbFoto.Image != null)
+            {
+                System.Drawing.Image bi = pbFoto.Image;
+                
+                
+                Clipboard.SetDataObject(bi);
+                wrdRng.Paste();
+
+                wrdRng.Select();
+
+                oWord.Selection.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            }
 
             //Object myFalse = false;
             //Object myTrue = true;
