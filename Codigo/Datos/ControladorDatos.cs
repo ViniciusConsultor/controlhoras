@@ -555,6 +555,7 @@ namespace Datos
                 emp.NivelEducativo = nivelEducativo;
                 emp.IDCargo = (short)idCargo;
                 emp.FechaPagoFinal = fechaEgreso;
+                emp.Activo = 1;
 
                 tablaEmpleados.InsertOnSubmit(emp);
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
