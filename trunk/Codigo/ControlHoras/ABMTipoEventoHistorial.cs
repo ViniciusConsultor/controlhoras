@@ -56,7 +56,7 @@ namespace ControlHoras
                     n = dgvCategoria.Rows.Add();
                     dgvCategoria.Rows[n].Cells["idTipoEventoHistorial"].Value = iter.IDTipoEventoHistorial;
                     dgvCategoria.Rows[n].Cells["Nombre"].Value = iter.Nombre;
-                    if (iter.Activo == 0)
+                    if (iter.Activo == 1)
                         dgvCategoria.Rows[n].Cells["Activa"].Value = "S";
                     else
                         dgvCategoria.Rows[n].Cells["Activa"].Value = "N";
@@ -98,7 +98,7 @@ namespace ControlHoras
                         }
                         
                         // Modifica el valor en la base de datos
-                        DatosTipos.modificarTipoEventoHistorial(int.Parse(lblIdTipoEventoHistorial.Text), txtNombre.Text, ! cbEstado.Checked);
+                        DatosTipos.modificarTipoEventoHistorial(int.Parse(lblIdTipoEventoHistorial.Text), txtNombre.Text, !cbEstado.Checked);
 
                         dgvCategoria.Rows[numFila].Cells["Nombre"].Value = txtNombre.Text;
                         dgvCategoria.Rows[numFila].Cells["Activa"].Value = estado;

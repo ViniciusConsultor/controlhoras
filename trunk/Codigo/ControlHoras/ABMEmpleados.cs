@@ -1592,7 +1592,7 @@ namespace ControlHoras
                     SendKeys.Send("{ENTER}");
                 }
                 else
-                    MessageBox.Show("No existe un empleado activo anterior a este.", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No existe un empleado posterior a este.", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             catch (Exception ex)
@@ -1616,7 +1616,7 @@ namespace ControlHoras
                         SendKeys.Send("{ENTER}");                        
                     }
                     else
-                        MessageBox.Show("No existe un empleado activo anterior a este.", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("No existe un empleado anterior a este.", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -2301,7 +2301,7 @@ namespace ControlHoras
 
                 // Con o Sin Arma
                 int col;
-                if (cbEnServicioArmado.Checked)
+                if (cbCapacitadoPorteArma.Checked)
                     col = 3;
                 else
                     col = 7;

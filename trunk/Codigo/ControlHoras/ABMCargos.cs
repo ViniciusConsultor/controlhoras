@@ -72,7 +72,7 @@ namespace ControlHoras
                         dgvCargos.Rows[n].Cells["CobraHsExtras"].Value = true;
                     else
                         dgvCargos.Rows[n].Cells["CobraHsExtras"].Value = false;
-                    if (cat.Activo == 0)
+                    if (cat.Activo == 1)
                         dgvCargos.Rows[n].Cells["Activo"].Value = "SI";
                     else
                         dgvCargos.Rows[n].Cells["Activo"].Value = "NO";
@@ -166,9 +166,9 @@ namespace ControlHoras
                     else
                         dgvCargos.Rows[numFila].Cells["CobraHsExtras"].Value = cbCobraExtras.Checked;
                     if (cbEstado.Checked)
-                        dgvCargos.Rows[numFila].Cells["Activo"].Value = cbEstado.Checked;
+                        dgvCargos.Rows[numFila].Cells["Activo"].Value = "NO";
                     else
-                        dgvCargos.Rows[numFila].Cells["Activo"].Value = cbEstado.Checked;
+                        dgvCargos.Rows[numFila].Cells["Activo"].Value = "SI";
                     limpiarForm();
                 }
                 catch (Exception ex)
