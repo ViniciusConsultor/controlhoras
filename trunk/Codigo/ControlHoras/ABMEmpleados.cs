@@ -2466,11 +2466,11 @@ namespace ControlHoras
             {
                 System.Drawing.Image bi = pbFoto.Image;
                 
-                
                 Clipboard.SetDataObject(bi);
                 wrdRng.Paste();
 
                 wrdRng.Select();
+                
 
                 oWord.Selection.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
             }
@@ -2517,6 +2517,20 @@ namespace ControlHoras
                 cbCombatiente.Visible = true;
             }
 
+        }
+
+        private void tcEmpleado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tcEmpleado.SelectedIndex == 0)
+            {
+                btnAnterior.Enabled = true;
+                btnSiguiente.Enabled = true;
+            }
+            else
+            {
+                btnAnterior.Enabled = false;
+                btnSiguiente.Enabled = false;
+            }
         }
 
         
