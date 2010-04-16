@@ -2275,12 +2275,22 @@ namespace ControlHoras
                             oSheet.Cells[fila, 9] = "Combatiente:               X";
                     }
 
-                    oSheet.Cells[fila, 6] = dtpFechaIngresoPolicialMilitar.Text;
-                    oSheet.Cells[fila, 8] = dtpFechaEgresoPolicialMilitar.Text;
+                    if (dtpFechaIngresoPolicialMilitar.Text != fechaMask)
+                        oSheet.Cells[fila, 6] = dtpFechaIngresoPolicialMilitar.Text;
                     
-                    DateTime fi = DateTime.ParseExact(dtpFechaIngresoPolicialMilitar.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-                    DateTime ff = DateTime.ParseExact(dtpFechaEgresoPolicialMilitar.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-                    oSheet.Cells[fila, 3] = calcularAnos(fi, ff).ToString();                    
+                    if (dtpFechaEgresoPolicialMilitar.Text != fechaMask)
+                        oSheet.Cells[fila, 8] = dtpFechaEgresoPolicialMilitar.Text;
+
+                    try
+                    {
+                        if ((dtpFechaIngresoPolicialMilitar.Text != fechaMask) && (dtpFechaEgresoPolicialMilitar.Text != fechaMask))
+                        {
+                            DateTime fi = DateTime.ParseExact(dtpFechaIngresoPolicialMilitar.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+                            DateTime ff = DateTime.ParseExact(dtpFechaEgresoPolicialMilitar.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+                            oSheet.Cells[fila, 3] = calcularAnos(fi, ff).ToString();
+                        }
+                    }
+                    catch (Exception ex) {}
                 }
 
                 // Nro CAJ
@@ -2457,24 +2467,29 @@ namespace ControlHoras
             wrdRng.Text = mtNumeroEmpleado.Text;
 
             #region foto
-            mark = "Imagen";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Select();
-            oWord.Selection.TypeParagraph();
 
-            if (pbFoto.Image != null)
-            {
-                System.Drawing.Image bi = pbFoto.Image;
+//*************   JUANCHI   *******************            
+            //mark = "Imagen";
+            //wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+            //wrdRng.Select();
+            //oWord.Selection.TypeParagraph();
+
+            //if (pbFoto.Image != null)
+            //{
+            //    System.Drawing.Image bi = pbFoto.Image;
                 
-                Clipboard.SetDataObject(bi);
-                wrdRng.Paste();
+            //    Clipboard.SetDataObject(bi);
+            //    wrdRng.Paste();
 
-                wrdRng.Select();
+            //    wrdRng.Select();
                 
 
-                oWord.Selection.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
-            }
+            //    oWord.Selection.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            //}
 
+
+
+//*************   JUAN PABLO *******************
             //Object myFalse = false;
             //Object myTrue = true;
             //Object myEndOfDoc = "\\endofdoc";
