@@ -687,10 +687,10 @@ namespace ControlHoras
                 cbEnServicioArmado.Checked = true;
             try
             {
-                if (empleado.SexO == "M")
-                    rbMasculino.Checked = true;
-                else
+                if (empleado.SexO == "F")
                     rbFemenino.Checked = true;
+                else
+                    rbMasculino.Checked = true;
             }
             catch (Exception e) { }
             try

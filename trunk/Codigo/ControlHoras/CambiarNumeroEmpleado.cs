@@ -46,6 +46,7 @@ namespace ControlHoras
                     }
                     else
                     {
+                        txtEmpleado.Text = "";
                         MessageBox.Show("No existe un empleado con el Número: " + mtNumeroEmpleadoActual.Text, "No Existe Empleado", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
@@ -65,11 +66,11 @@ namespace ControlHoras
 
         private void btnCambiar_Click(object sender, EventArgs e)
         {
-            DialogResult res = MessageBox.Show("Seguro que quiere cambiar el NumeroEmpleado del Empleado " + txtEmpleado.Text + " de " + mtNumeroEmpleadoActual.Text + " a " + mtNumeroEmpleadoNuevo.Text + "?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (res == DialogResult.Yes)
+            if (mtNumeroEmpleadoActual.Text != "" && txtEmpleado.Text != "" && mtNumeroEmpleadoNuevo.Text != "")
             {
-                if (mtNumeroEmpleadoActual.Text != "" && txtEmpleado.Text != "" && mtNumeroEmpleadoNuevo.Text != "")
-                {
+                DialogResult res = MessageBox.Show("Seguro que quiere cambiar el NumeroEmpleado del Empleado " + txtEmpleado.Text + " de " + mtNumeroEmpleadoActual.Text + " a " + mtNumeroEmpleadoNuevo.Text + "?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (res == DialogResult.Yes)
+                {                
                     try
                     {
                         datos.cambiarNumeroEmpleado(int.Parse(mtNumeroEmpleadoActual.Text), int.Parse(mtNumeroEmpleadoNuevo.Text));
@@ -80,12 +81,13 @@ namespace ControlHoras
                         MessageBox.Show(ex.Message, "Error el cambiar el NumeroEmpleado", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Debe ingresar el Número Actual del empleado al que desea cambiarle el número y el Número Nuevo", "Error de Datos Ingresados", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Debe ingresar el Número Actual del empleado al que desea cambiarle el número y el Número Nuevo", "Error de Datos Ingresados", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+     
 
         private void btnBuscarEmpleado_Click(object sender, EventArgs e)
         {

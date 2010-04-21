@@ -54,7 +54,7 @@ namespace ControlHoras
                     dgvDepartamentos.Rows[n].Cells["idDepartamento"].Value = iter;
                     dgvDepartamentos.Rows[n].Cells["Nombre"].Value = dptos[iter];
                     //dgvDepartamentos.Rows[n].Cells["Activa"].Value = cat[3];
-
+                    dgvDepartamentos.Rows[n].Cells["Activa"].Value = "S";
                 }
                 catch (Exception ex)
                 {
