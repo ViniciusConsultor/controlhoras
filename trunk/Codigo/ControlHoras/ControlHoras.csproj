@@ -153,6 +153,12 @@
     <Compile Include="BúsquedaCliente.Designer.cs">
       <DependentUpon>BúsquedaCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="CambiarNumeroEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CambiarNumeroEmpleado.Designer.cs">
+      <DependentUpon>CambiarNumeroEmpleado.cs</DependentUpon>
+    </Compile>
     <Compile Include="CambiarPasswordUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -295,6 +301,9 @@
     <EmbeddedResource Include="BuscarEmpleados.resx">
       <DependentUpon>BuscarEmpleados.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CambiarNumeroEmpleado.resx">
+      <DependentUpon>CambiarNumeroEmpleado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CambiarPasswordUsuario.resx">
       <DependentUpon>CambiarPasswordUsuario.cs</DependentUpon>
@@ -541,6 +550,9 @@
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Search_Icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />

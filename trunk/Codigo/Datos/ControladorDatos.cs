@@ -696,7 +696,6 @@ namespace Datos
                 throw ex;
             }
         }
-
         public bool existeEmpleado(int idEmpleado)
         {
             Table<EmPleadOs> tabla;
@@ -718,8 +717,6 @@ namespace Datos
                 // MySQLException = Access Denied  Codigo = 1045
             }
         }
-
-        
         public int obtenerMaxIdEmpleado()
         {
             try
@@ -734,51 +731,6 @@ namespace Datos
                 throw e;
             }
         }
-        public void altaContratoServicioCliente(int NumeroCliente, int NumeroServicio, int NumeroContrato, DateTime FechaInicio, DateTime? FechaFin, bool CostoFijo, bool HorasExtras, string Ajuste, string Observaciones, float Monto)
-        {
-
-            ContraToS con = null;
-           
-            try
-            {
-                con = new ContraToS();
-                
-                con.TipodeContrato=0;
-                con.IDContratos = (uint)NumeroContrato;
-                con.FechaIni = FechaInicio;
-                con.FechaFin = FechaFin;
-                if (CostoFijo)
-                    con.CostoFijo = 1;
-                else
-                    con.CostoFijo = 0;
-                if (HorasExtras)
-                    con.HorasExtras = 1;
-                else
-                    con.HorasExtras = 0;
-                con.Ajuste = Ajuste;
-                con.Observaciones = Observaciones;
-                con.Costo = Monto;
-
-                Table<ContraToS> tablaContratos = database.GetTable<ContraToS>();
-                tablaContratos.InsertOnSubmit(con);
-
-                database.SubmitChanges();
-            }
-            catch (MySqlException ex)
-            {
-                //database.Refresh(System.Data.Linq.RefreshMode.KeepCurrentValues);
-                // database.Connection.Close();
-                if (ex.Number == 1062)
-                {
-                    // int index = database.GetChangeSet().Inserts.IndexOf(cliente);
-                    // database.GetChangeSet().Inserts.RemoveAt(index);
-                    database.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues);
-                }
-                throw ex;
-            }
-        }
-
-        
         public EmPleadOs obtenerEmpleado(int idEmpleado)
         {
             try
@@ -806,7 +758,6 @@ namespace Datos
                 throw me;
             }
         }
-
         public int? obtenerProximoIdEmpleadoActivo(int idEmpleado)
         {
 
@@ -823,8 +774,6 @@ namespace Datos
             }
 
         }
-
-
         public int? obtenerPrevioIdEmpleadoActivo(int idEmpleado)
         {
 
@@ -842,7 +791,51 @@ namespace Datos
             }
 
         }
+        public void cambiarNumeroEmpleado(int NumeroActual, int NumeroEmpleadoNuevo)
+        {
+            if (existeEmpleado(NumeroEmpleadoNuevo))
+                throw new Exception("Error al reemplazar el Numero de Empleado.\nYa existe un empleado con el Numero " + NumeroEmpleadoNuevo.ToString());
+            else if (!existeEmpleado(NumeroActual))
+            {
+                throw new Exception("Error al reemplazar el Numero de Empleado.\nNo existe un empleado con el Numero " + NumeroActual.ToString());
+            }
+            MySqlCommand com = null;
+            try
+            {
+                
+                //System.Data.Common.DbTransaction trans = database.Connection.BeginTransaction();
+                System.Data.Common.DbConnection conn = database.Connection;
 
+                
+                string SQL = "UPDATE empleados SET idEmpleado=?idempleadonuevo where idEmpleado=?idempleadoactual";
+                com = new MySqlCommand(SQL, (MySqlConnection) conn);
+                MySqlParameter myIdEmpActual = new MySqlParameter("?idempleadoactual", MySqlDbType.UInt16);
+                myIdEmpActual.Value = NumeroActual;
+                MySqlParameter myNuevoIdEmp = new MySqlParameter("?idempleadonuevo", MySqlDbType.UInt16);
+                myNuevoIdEmp.Value = NumeroEmpleadoNuevo;
+
+                com.Parameters.Add(myIdEmpActual);
+                com.Parameters.Add(myNuevoIdEmp);
+                if (com.Connection.State != ConnectionState.Open)
+                    com.Connection.Open();
+                com.ExecuteNonQuery();
+                com.Connection.Close();
+                
+                //Table<EmPleadOs> empleados = database.GetTable<EmPleadOs>();
+                //EmPleadOs emp = (from varemp in empleados
+                //                 where varemp.IDEmpleado == NumeroActual
+                //                 select varemp).Single();
+
+                //emp.IDEmpleado = (uint)NumeroEmpleadoNuevo;
+                //database.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                if (com != null && com.Connection.State != ConnectionState.Closed)
+                    com.Connection.Close();
+                throw ex;
+            }
+        }
 
         public List<EmPleadOs> buscarEmpleaos(string CampoBusqueda, string patronBusqueda)
         {
@@ -1103,7 +1096,7 @@ namespace Datos
                 Table<ExtrasLiquidAcIonEmPleadO> tabla = database.GetTable<ExtrasLiquidAcIonEmPleadO>();
                 
                 // Chequeo que no esten editando un extra que ya se ha liquidado alguna cuota anterior.
-                int CantCuotasLiquidadas = (int)(from reg in tabla
+                var CantCuotasLiquidadas = (from reg in tabla
                                        where reg.IDEmpleado == idEmpleado && reg.IDExtrasLiquidacionEmpleado == idExtraLiquidacionEmpleado
                                        && reg.Liquidado == 1
                                        select 1).Count();
@@ -1627,7 +1620,50 @@ namespace Datos
 
         #endregion
 
-        
+        public void altaContratoServicioCliente(int NumeroCliente, int NumeroServicio, int NumeroContrato, DateTime FechaInicio, DateTime? FechaFin, bool CostoFijo, bool HorasExtras, string Ajuste, string Observaciones, float Monto)
+        {
+
+            ContraToS con = null;
+
+            try
+            {
+                con = new ContraToS();
+
+                con.TipodeContrato = 0;
+                con.IDContratos = (uint)NumeroContrato;
+                con.FechaIni = FechaInicio;
+                con.FechaFin = FechaFin;
+                if (CostoFijo)
+                    con.CostoFijo = 1;
+                else
+                    con.CostoFijo = 0;
+                if (HorasExtras)
+                    con.HorasExtras = 1;
+                else
+                    con.HorasExtras = 0;
+                con.Ajuste = Ajuste;
+                con.Observaciones = Observaciones;
+                con.Costo = Monto;
+
+                Table<ContraToS> tablaContratos = database.GetTable<ContraToS>();
+                tablaContratos.InsertOnSubmit(con);
+
+                database.SubmitChanges();
+            }
+            catch (MySqlException ex)
+            {
+                //database.Refresh(System.Data.Linq.RefreshMode.KeepCurrentValues);
+                // database.Connection.Close();
+                if (ex.Number == 1062)
+                {
+                    // int index = database.GetChangeSet().Inserts.IndexOf(cliente);
+                    // database.GetChangeSet().Inserts.RemoveAt(index);
+                    database.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues);
+                }
+                throw ex;
+            }
+        }
+
         public ContraToS obtenerContrato(int NumeroContrato)
         {
             try
