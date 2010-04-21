@@ -1,0 +1,5 @@
+-- Eliminar FK sobre idEmpleado si existe
+alter table eventoshistorialempleado add foreign key fk_idEmpleado (idEmpleado) references empleados(idEmpleado) on update cascade on delete restrict;
+
+-- Eliminar FK sobre idEmpleado si existe
+alter table extrasliquidacionempleado add foreign key fk_idEmpleado (idEmpleado) references empleados(idEmpleado) on update cascade on delete restrict;
