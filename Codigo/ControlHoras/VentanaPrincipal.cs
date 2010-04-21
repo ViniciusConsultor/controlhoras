@@ -264,5 +264,21 @@ namespace ControlHoras
             }
             
         }
+
+        private void cambiarNúmeroEmpleadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CambiarNumeroEmpleado cambiarNumEmpleado = CambiarNumeroEmpleado.getVentana();
+                if (cambiarNumEmpleado.Visible == false)
+                    cambiarNumEmpleado.Show(this);
+                else
+                    cambiarNumEmpleado.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

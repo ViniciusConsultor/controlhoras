@@ -148,6 +148,13 @@ namespace Datos
         /// <param name="patronBusqueda">Define el patron de busqueda</param>
         /// <returns>Devuelve una lista de los empleados que matchean con el patron en el campo especificado.</returns>
         List<EmPleadOs> buscarEmpleaos(string CampoBusqueda, string patronBusqueda);
+
+        /// <summary>
+        /// Cambia el Numero del Empleado identificado por el NumeroActual por el Numero NumeroEmpleadoNuevo
+        /// </summary>
+        /// <param name="NumeroActual">Numero Actual del Empleado al cual se le quiere cambiar el Numero</param>
+        /// <param name="NumeroEmpleadoNuevo">Nuevo Nuevo del Empleado que se quiere setear</param>
+        void cambiarNumeroEmpleado(int NumeroActual, int NumeroEmpleadoNuevo);
         #endregion
 
 

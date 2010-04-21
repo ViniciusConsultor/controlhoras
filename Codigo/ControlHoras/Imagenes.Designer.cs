@@ -249,6 +249,13 @@ namespace ControlHoras {
             }
         }
         
+        internal static System.Drawing.Bitmap Search_Icon {
+            get {
+                object obj = ResourceManager.GetObject("Search_Icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap user_group_new {
             get {
                 object obj = ResourceManager.GetObject("user_group_new", resourceCulture);

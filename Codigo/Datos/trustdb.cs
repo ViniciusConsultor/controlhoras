@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2010-04-06 23:51:58Z
+#region Auto-generated classes for trustdb database on 2010-04-21 00:14:28Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2010-04-06 23:51:58Z
+// Auto-generated from trustdb on 2010-04-21 00:14:28Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -3457,10 +3457,72 @@ namespace Datos
 
 		#endregion
 
+		#region Children
+
+		private EntitySet<EventOsHistOrIalEmPleadO> _eventOsHistOrIalEmPleadO;
+		[Association(Storage = "_eventOsHistOrIalEmPleadO", OtherKey = "IDEmpleado", ThisKey = "IDEmpleado", Name = "eventoshistorialempleado_ibfk_1")]
+		[DebuggerNonUserCode]
+		public EntitySet<EventOsHistOrIalEmPleadO> EventOsHistOrIalEmPleadO
+		{
+			get
+			{
+				return _eventOsHistOrIalEmPleadO;
+			}
+			set
+			{
+				_eventOsHistOrIalEmPleadO = value;
+			}
+		}
+
+		private EntitySet<ExtrasLiquidAcIonEmPleadO> _extrasLiquidAcIonEmPleadO;
+		[Association(Storage = "_extrasLiquidAcIonEmPleadO", OtherKey = "IDEmpleado", ThisKey = "IDEmpleado", Name = "extrasliquidacionempleado_ibfk_1")]
+		[DebuggerNonUserCode]
+		public EntitySet<ExtrasLiquidAcIonEmPleadO> ExtrasLiquidAcIonEmPleadO
+		{
+			get
+			{
+				return _extrasLiquidAcIonEmPleadO;
+			}
+			set
+			{
+				_extrasLiquidAcIonEmPleadO = value;
+			}
+		}
+
+
+		#endregion
+
+		#region Attachement handlers
+
+		private void EventOsHistOrIalEmPleadO_Attach(EventOsHistOrIalEmPleadO entity)
+		{
+			entity.EmPleadOs = this;
+		}
+
+		private void EventOsHistOrIalEmPleadO_Detach(EventOsHistOrIalEmPleadO entity)
+		{
+			entity.EmPleadOs = null;
+		}
+
+		private void ExtrasLiquidAcIonEmPleadO_Attach(ExtrasLiquidAcIonEmPleadO entity)
+		{
+			entity.EmPleadOs = this;
+		}
+
+		private void ExtrasLiquidAcIonEmPleadO_Detach(ExtrasLiquidAcIonEmPleadO entity)
+		{
+			entity.EmPleadOs = null;
+		}
+
+
+		#endregion
+
 		#region ctor
 
 		public EmPleadOs()
 		{
+			_eventOsHistOrIalEmPleadO = new EntitySet<EventOsHistOrIalEmPleadO>(EventOsHistOrIalEmPleadO_Attach, EventOsHistOrIalEmPleadO_Detach);
+			_extrasLiquidAcIonEmPleadO = new EntitySet<ExtrasLiquidAcIonEmPleadO>(ExtrasLiquidAcIonEmPleadO_Attach, ExtrasLiquidAcIonEmPleadO_Detach);
 			OnCreated();
 		}
 
@@ -3702,10 +3764,49 @@ namespace Datos
 
 		#endregion
 
+		#region Parents
+
+		private EntityRef<EmPleadOs> _emPleadOs;
+		[Association(Storage = "_emPleadOs", OtherKey = "IDEmpleado", ThisKey = "IDEmpleado", Name = "eventoshistorialempleado_ibfk_1", IsForeignKey = true)]
+		[DebuggerNonUserCode]
+		public EmPleadOs EmPleadOs
+		{
+			get
+			{
+				return _emPleadOs.Entity;
+			}
+			set
+			{
+				if (value != _emPleadOs.Entity)
+				{
+					if (_emPleadOs.Entity != null)
+					{
+						var previousEmPleadOs = _emPleadOs.Entity;
+						_emPleadOs.Entity = null;
+						previousEmPleadOs.EventOsHistOrIalEmPleadO.Remove(this);
+					}
+					_emPleadOs.Entity = value;
+					if (value != null)
+					{
+						value.EventOsHistOrIalEmPleadO.Add(this);
+						_ideMpleado = value.IDEmpleado;
+					}
+					else
+					{
+						_ideMpleado = default(uint);
+					}
+				}
+			}
+		}
+
+
+		#endregion
+
 		#region ctor
 
 		public EventOsHistOrIalEmPleadO()
 		{
+			_emPleadOs = new EntityRef<EmPleadOs>();
 			OnCreated();
 		}
 
@@ -4003,10 +4104,49 @@ namespace Datos
 
 		#endregion
 
+		#region Parents
+
+		private EntityRef<EmPleadOs> _emPleadOs;
+		[Association(Storage = "_emPleadOs", OtherKey = "IDEmpleado", ThisKey = "IDEmpleado", Name = "extrasliquidacionempleado_ibfk_1", IsForeignKey = true)]
+		[DebuggerNonUserCode]
+		public EmPleadOs EmPleadOs
+		{
+			get
+			{
+				return _emPleadOs.Entity;
+			}
+			set
+			{
+				if (value != _emPleadOs.Entity)
+				{
+					if (_emPleadOs.Entity != null)
+					{
+						var previousEmPleadOs = _emPleadOs.Entity;
+						_emPleadOs.Entity = null;
+						previousEmPleadOs.ExtrasLiquidAcIonEmPleadO.Remove(this);
+					}
+					_emPleadOs.Entity = value;
+					if (value != null)
+					{
+						value.ExtrasLiquidAcIonEmPleadO.Add(this);
+						_ideMpleado = value.IDEmpleado;
+					}
+					else
+					{
+						_ideMpleado = default(uint);
+					}
+				}
+			}
+		}
+
+
+		#endregion
+
 		#region ctor
 
 		public ExtrasLiquidAcIonEmPleadO()
 		{
+			_emPleadOs = new EntityRef<EmPleadOs>();
 			OnCreated();
 		}
 
