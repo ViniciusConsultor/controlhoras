@@ -212,6 +212,8 @@ namespace Datos
         void eliminarLineasContrato(int NumeroContrato);
 
         void guardarLineasContrato(List<LineAshOrAs> Lineas);
-        
+
+
+        bool existeEmpleadoCI(string CI, out EmPleadOs empleado);
     }
 }

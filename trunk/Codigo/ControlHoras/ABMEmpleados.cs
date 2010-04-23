@@ -23,12 +23,12 @@ namespace ControlHoras
 {
     public partial class ABMEmpleados : Form
     {
-        
+
         private IEmpleados sistema;
         private IDatos datos;
         private IDatosABMTipos datosTipos;
         private IABMTipos tipos;
-        
+
 
         // Lista de datos que se mantienen para su posterior consulta
         private List<TipOsEventOHistOrIal> listaTiposEventos;
@@ -56,7 +56,7 @@ namespace ControlHoras
         public ABMEmpleados()
         {
             InitializeComponent();
-         //   this.Disposed += new EventHandler(Disposed);
+            //   this.Disposed += new EventHandler(Disposed);
             try
             {
                 sistema = ControladorEmpleados.getInstance();
@@ -67,44 +67,44 @@ namespace ControlHoras
             catch (Exception ex1)
             {
                 throw ex1;
-            }     
+            }
             try
             {
-            missing = System.Reflection.Missing.Value;
-            exefile = Application.ExecutablePath;
-            Info = new FileInfo(exefile);
-            //dirbase = Info.Directory.Parent.Parent.FullName;
-            dirbase = ConfigurationManager.AppSettings["DocsPath"].ToString();
+                missing = System.Reflection.Missing.Value;
+                exefile = Application.ExecutablePath;
+                Info = new FileInfo(exefile);
+                //dirbase = Info.Directory.Parent.Parent.FullName;
+                dirbase = ConfigurationManager.AppSettings["DocsPath"].ToString();
             }
             catch (Exception ex2)
             {
                 throw ex2;
-            }     
+            }
         }
 
         private void ABMEmpleados_Load(object sender, EventArgs e)
         {
             #region CargaCombos
 
-            
-            
+
+
             // Combo TiposDocumentos
-            try
-            {
-                Dictionary<int, string> docs = tipos.obtenerTipoDocumentos(false);                
-                CargarCombo(cmbTipoDocumento, docs);
+            //try
+            //{
+            //    Dictionary<int, string> docs = tipos.obtenerTipoDocumentos(false);                
+            //    CargarCombo(cmbTipoDocumento, docs);
 
-            }catch(Exception ex){
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //}catch(Exception ex){
+            //    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
 
-            
+
             // Combo Bancos
             try
             {
                 Dictionary<int, string> docs = tipos.obtenerBancos(false);
                 CargarCombo(cmbBanco, docs);
-                
+
             }
             catch (Exception ex)
             {
@@ -127,7 +127,7 @@ namespace ControlHoras
             {
                 Dictionary<int, string> docs = tipos.obtenerEmergenciaMedicas(false);
                 CargarCombo(cmbEmergenciaMedica, docs);
-                
+
                 //cmbEmergenciaMedica.BeginUpdate();                
                 //foreach (int key in docs.Keys)
                 //{
@@ -169,9 +169,9 @@ namespace ControlHoras
                 cmbTipoEventoHistorial.ValueMember = "Value";
                 cmbTipoEventoHistorial.DisplayMember = "Display";
                 cmbTipoEventoHistorial.BeginUpdate();
-                foreach (TipOsEventOHistOrIal tipo in tiposeventos )
+                foreach (TipOsEventOHistOrIal tipo in tiposeventos)
                 {
-                    ComboBoxValue cbval = new ComboBoxValue(tipo.Nombre,tipo.IDTipoEventoHistorial );
+                    ComboBoxValue cbval = new ComboBoxValue(tipo.Nombre, tipo.IDTipoEventoHistorial);
                     cmbTipoEventoHistorial.Items.Add(cbval);
                 }
                 cmbTipoEventoHistorial.EndUpdate();
@@ -190,8 +190,8 @@ namespace ControlHoras
                 CargarCombo(cmbTiposCargos, cargosDic);
                 cmbTiposCargos.SelectedIndexChanged += new System.EventHandler(this.cmbTiposCargos_SelectedIndexChanged);
 
-               
-                
+
+
                 /*cmbTiposCargos.ValueMember = "Value";
                 cmbTiposCargos.DisplayMember = "Display";
                 cmbTiposCargos.BeginUpdate();
@@ -208,7 +208,7 @@ namespace ControlHoras
             }
 
             #endregion
-            
+
             btnCancelar.PerformClick();
             mtNumeroEmpleado.Focus();
         }
@@ -231,14 +231,16 @@ namespace ControlHoras
             limpiarTabHistorial();
             btnAgregar.Enabled = false;
             btnGuardar.Enabled = false;
+            BtnReactivar.Visible = false;
             btnAgregarHistorial.Enabled = false;
             btnGuardarHistorial.Enabled = false;
             btnEliminarHistorial.Enabled = false;
             btnExtrasAgregar.Enabled = false;
             btnExtrasEliminar.Enabled = false;
             btnExtrasGuardar.Enabled = false;
-            //ImprimirTSB.Enabled = false;
+            ImprimirTSB.Enabled = false;
             dtpFechaIngreso.Text = DateTime.Now.ToString();
+            dtpFechaAltaBPS.Text = DateTime.Now.ToString();
             tcEmpleado.SelectedIndex = 0;
             mtNumeroEmpleado.Focus();
 
@@ -250,7 +252,7 @@ namespace ControlHoras
             cmbNivelEducativo.SelectedIndex = 0;
             rbAntecedentes_NO.Checked = true;
             lblEstadoEmpleado.Visible = false;
-            
+
             foreach (TabPage tp in tcEmpleado.TabPages)
             {
                 foreach (Control c in tp.Controls)
@@ -284,7 +286,7 @@ namespace ControlHoras
 
                     lblEmpleadoCargado.Text = "";
                     lblEdad.Text = "";
-                    
+
                 }
             }
         }
@@ -298,7 +300,7 @@ namespace ControlHoras
             foreach (TabPage tp in tcEmpleado.TabPages)
             {
                 foreach (Control c in tp.Controls)
-                {                    
+                {
                     string tipoDelControl;
                     tipoDelControl = c.GetType().ToString();
                     if (tipoDelControl == "ControlHoras.TextBoxKeyDown" || tipoDelControl == "ControlHoras.MaskedTextBoxKeyDown")
@@ -341,13 +343,13 @@ namespace ControlHoras
         private void mtNumeroEmpleado_KeyDown(object sender, KeyEventArgs e)
         {
             if (mtNumeroEmpleado.Text != "" && (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab))
-            { 
+            {
                 // traigo el empleado y lleno los datos de los campos.
                 EmPleadOs empleado;
                 try
                 {
                     if (sistema.existeEmpleado(int.Parse(mtNumeroEmpleado.Text)))
-                    {                        
+                    {
                         empleado = datos.obtenerEmpleado(int.Parse(mtNumeroEmpleado.Text));
                         limpiarForm();
                         lblEstadoEmpleado.Visible = true;
@@ -357,7 +359,7 @@ namespace ControlHoras
                         btnGuardar.Enabled = true;
                         btnExtrasAgregar.Enabled = true;
                         btnAgregarHistorial.Enabled = true;
-                        ImprimirTSB.Enabled = true;                        
+                        ImprimirTSB.Enabled = true;
                     }
                     else
                     {
@@ -401,7 +403,7 @@ namespace ControlHoras
                 cbAntecedentePolicialoMilitar.Checked = true;
             else
                 cbAntecedentePolicialoMilitar.Checked = false;
-            if (empleado.PolicialesoMilitar != null) 
+            if (empleado.PolicialesoMilitar != null)
                 cmbPolicialMilitar.SelectedIndex = (int)empleado.PolicialesoMilitar;
 
             try
@@ -411,7 +413,7 @@ namespace ControlHoras
             catch (Exception e) { }
             try
             {
-                cmbBanco.SelectedIndex = (int) empleado.IDBanco;
+                cmbBanco.SelectedIndex = (int)empleado.IDBanco;
             }
             catch (Exception e) { }
             try
@@ -427,12 +429,12 @@ namespace ControlHoras
             try
             {
                 mtAcumulacionBPS.Text = empleado.BpsaCumulacionLaboral.ToString();
-                
+
             }
             catch (Exception e) { }
             try
             {
-                if(empleado.BpsfEchaAlta != null)
+                if (empleado.BpsfEchaAlta != null)
                     dtpFechaAltaBPS.Text = empleado.BpsfEchaAlta.Value.ToString();
             }
             catch (Exception e) { }
@@ -442,7 +444,7 @@ namespace ControlHoras
                 cbBajadoBPS.Checked = (empleado.BpseSBaja == 1);
             }
             catch (Exception e) { }
-            
+
 
             try
             {
@@ -462,8 +464,8 @@ namespace ControlHoras
             {
                 cbBajadoMTSS.Checked = (empleado.MtsseSBaja == 1);
             }
-            catch (Exception e){}
-            
+            catch (Exception e) { }
+
             try
             {
                 if (empleado.MtssfEchaBaja != null)
@@ -496,7 +498,7 @@ namespace ControlHoras
             if (empleado.CapacitadoPortarArma == 1)
                 cbCapacitadoPorteArma.Checked = true;
             else
-                cbCapacitadoPorteArma.Checked = false;            
+                cbCapacitadoPorteArma.Checked = false;
             try
             {
                 txtCelular.Text = empleado.Celular;
@@ -504,7 +506,7 @@ namespace ControlHoras
             catch (Exception e) { }
             try
             {
-                txtCelularConvenio.Text  = empleado.CelularenConvenio;
+                txtCelularConvenio.Text = empleado.CelularenConvenio;
             }
             catch (Exception e) { }
             try
@@ -574,7 +576,7 @@ namespace ControlHoras
                 }
             }
             catch (Exception e) { }
-            
+
             try
             {
                 if (empleado.FechaBaja != null)
@@ -642,7 +644,7 @@ namespace ControlHoras
             catch (Exception e) { }
             try
             {
-                cmbMutualista.SelectedValue = (int) empleado.IDMutualista;
+                cmbMutualista.SelectedValue = (int)empleado.IDMutualista;
             }
             catch (Exception e) { }
             try
@@ -680,7 +682,7 @@ namespace ControlHoras
                 empleado.Observaciones = empleado.Observaciones;
             }
             catch (Exception e) { }
-           
+
             if (empleado.EnServicioArmado == 0)
                 cbEnServicioArmado.Checked = false;
             else
@@ -742,12 +744,12 @@ namespace ControlHoras
                 }
             }
             catch (Exception e) { }
-            try
-            {
-                // Chequear porque el Selected index no deberia ser igual al IdTipoDocumento.
-                cmbTipoDocumento.SelectedValue = (int)empleado.IDTipoDocumento;
-            }
-            catch (Exception e) { }
+            //try
+            //{
+            //    // Chequear porque el Selected index no deberia ser igual al IdTipoDocumento.
+            //    cmbTipoDocumento.SelectedValue = (int)empleado.IDTipoDocumento;
+            //}
+            //catch (Exception e) { }
             try
             {
                 // Chequear porque el Selected index no deberia ser igual al IdTipoDocumento.
@@ -760,7 +762,7 @@ namespace ControlHoras
                 cmbTiposCargos.SelectedValue = (int)empleado.IDCargo;
             }
             catch (Exception e) { }
-            
+
             if (empleado.FechaNacimiento != null)
                 lblEdad.Text = calcularEdad(DateTime.ParseExact(dtpFechaNacimiento.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo)).ToString();
 
@@ -781,7 +783,7 @@ namespace ControlHoras
 
         private void btnSeleccionarImagen_Click(object sender, EventArgs e)
         {
-            
+
             if (pbFoto.Image != null)
             {
                 pbFoto.Image.Dispose();
@@ -796,38 +798,41 @@ namespace ControlHoras
                     Bitmap imgAchicada = new Bitmap(img, pbFoto.Width, pbFoto.Height);
                     pbFoto.Image = (System.Drawing.Image)imgAchicada;
                 }
-                
+
             }
             catch (Exception ioe)
             {
                 MessageBox.Show(this, ioe.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
 
         private System.Drawing.Image devolverImagen(string fileName)
         {
             System.Drawing.Image result;
-    	 
-	        long size = (new FileInfo(fileName)).Length;
-	        FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+
+            long size = (new FileInfo(fileName)).Length;
+            FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
             byte[] data = new byte[size];
-            try {
-            fs.Read(data, 0, (int)size);
-	        } finally {
-	            fs.Close();
-	            fs.Dispose();
-	        }
-    	 
-	        // Convertir bytes a imagen
-    	 
-	        MemoryStream ms = new MemoryStream();
-	        ms.Write(data, 0, (int)size);
-	        result = new Bitmap(ms);
-	        ms.Close();
-    	 
-	        return result;
+            try
+            {
+                fs.Read(data, 0, (int)size);
+            }
+            finally
+            {
+                fs.Close();
+                fs.Dispose();
+            }
+
+            // Convertir bytes a imagen
+
+            MemoryStream ms = new MemoryStream();
+            ms.Write(data, 0, (int)size);
+            result = new Bitmap(ms);
+            ms.Close();
+
+            return result;
 
         }
 
@@ -847,20 +852,16 @@ namespace ControlHoras
             }
             else
                 MessageBox.Show(this, LlenarCamposObligatorios, "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        
+
         }
 
         private bool checkDatosObligatorios()
         {
-            bool aux = true;
-            if (cmbTipoDocumento.Text == "C.I.")
-                aux = mtNumeroDocumento.MaskCompleted;
-            return (mtNumeroEmpleado.Text != "" && txtNombre.Text != "" && txtApellido.Text != "" && cmbTipoDocumento.SelectedIndex > -1 && mtNumeroDocumento.Text != "" && aux);
-
+            return (mtNumeroEmpleado.Text != "" && txtNombre.Text != "" && txtApellido.Text != "" && mtNumeroDocumento.MaskCompleted);
         }
 
         private void agregarOModificarEmpleado(bool agregar)
-        {            
+        {
             DateTime? dtpsicologo;
             DateTime? dtpFechaNac;
             DateTime? dtpFechaIng;
@@ -876,7 +877,7 @@ namespace ControlHoras
             DateTime? dtpFechaEgrPolMil;
             DateTime? dtpFechaVenCarSal;
             DateTime? dtpFechaEgreso;
-            
+
 
             try
             {
@@ -899,7 +900,7 @@ namespace ControlHoras
                 bool antecedentesPolicialesOMilitares = cbAntecedentePolicialoMilitar.Checked;
                 int idcargo = (int)cmbTiposCargos.SelectedValue;
                 int iddepartamento = (int)cmbDepartamento.SelectedValue;
-                int idtipodocumento = (int)cmbTipoDocumento.SelectedValue;
+                int idtipodocumento = 0;// (int)cmbTipoDocumento.SelectedValue;
                 int idmutualista = -1;
                 if (cmbMutualista.SelectedItem != null)
                     idmutualista = (int)cmbMutualista.SelectedValue;
@@ -925,8 +926,8 @@ namespace ControlHoras
                 int edad = 0;
                 if (lblEdad.Text != "")
                     edad = int.Parse(lblEdad.Text);
-                bool antecedentesEmpleado= rbAntecedentes_SI.Checked;
-                
+                bool antecedentesEmpleado = rbAntecedentes_SI.Checked;
+
                 // *** CONTROL DE FECHAS ***
                 if (dtpPsicologo.Text == fechaMask)
                     dtpsicologo = null;
@@ -942,7 +943,7 @@ namespace ControlHoras
                     dtpFechaIng = null;
                 else
                     dtpFechaIng = DateTime.ParseExact(dtpFechaIngreso.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-                
+
                 if (dtpFechaIngresoRenaemse.Text == fechaMask)
                     dtpFechaIngRen = null;
                 else
@@ -999,8 +1000,8 @@ namespace ControlHoras
                 else
                     dtpFechaEgreso = DateTime.ParseExact(dtpFechaEgresoEmpresa.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
 
-                if (agregar)                    
-                //sistema.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), txtNombre.Text, txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, txtNacionalidad.Text, sexo, dtpPsicologo.Value, dtpFechaNacimiento.Value, dtpFechaIngreso.Value, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantHijos, foto, idbanco, txtNumeroCuenta.Text, sueldo, activo, dtpFechaBaja.Value, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngresoRenaemse.Value, acumulacionLaboral, dtpFechaAltaBPS.Value, dtpFechaBajaBPS.Value, txtNumeroCAJ.Text, dtpFechaEmisionCAJ.Value, dtpFechaEntregaCAJ.Value, antecedentes, cmbPolicialMilitar.Text, dtpFechaIngresoPolicialMilitar.Value, dtpFechaEgresoPolicialMilitar.Value, txtPolicialSubEscalafon.Text, combatiente, txtTalleCamisa.Text, txtTallePantalon.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVencimientoCarneSalud.Value, idmutualista, idemergenciamovil);
+                if (agregar)
+                    //sistema.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), txtNombre.Text, txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, txtNacionalidad.Text, sexo, dtpPsicologo.Value, dtpFechaNacimiento.Value, dtpFechaIngreso.Value, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantHijos, foto, idbanco, txtNumeroCuenta.Text, sueldo, activo, dtpFechaBaja.Value, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngresoRenaemse.Value, acumulacionLaboral, dtpFechaAltaBPS.Value, dtpFechaBajaBPS.Value, txtNumeroCAJ.Text, dtpFechaEmisionCAJ.Value, dtpFechaEntregaCAJ.Value, antecedentes, cmbPolicialMilitar.Text, dtpFechaIngresoPolicialMilitar.Value, dtpFechaEgresoPolicialMilitar.Value, txtPolicialSubEscalafon.Text, combatiente, txtTalleCamisa.Text, txtTallePantalon.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVencimientoCarneSalud.Value, idmutualista, idemergenciamovil);
                     datos.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, txtNacionalidad.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, idbanco, txtNumeroCuenta.Text, sueldo, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtBarrio.Text, txtCodigoPostal.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, cbBajadoBPS.Checked, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTalleCamisa.Text, txtTallePantalon.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, cmbNivelEducativo.SelectedItem.ToString(), idcargo, dtpFechaAlMTSS, cbBajadoMTSS.Checked, dtpFechaBaMTSS, dtpFechaEgreso);
                 //datos.modificarEmpleado(idEmpleado, nombre,                         apellido, idTipoDocumento, documento, lugarNacimiento, nacionalidad, sexo, fechaPsicologo, fechaNacimiento, edad, fechaIngreso, telefono, celular, celularConvenio, email, estadoCivil, cantidadHijos, foto, idBanco, numeroCuenta, sueldo, activo, fechaBaja, motivoBaja, idDepartamento, ciudad, barrio, direccion, entreCalles, puntoEncuentro, numeroAsuntoRENAEMSE, fechaIngresoRENAEMSE, acumulacionLaboralBPS, fechaAltaBPS, fechaBajaBPS, numeroCAJ, fechaEmisionCAJ, fechaEntregaCAJ, antecedentesEmpleado, observacionesAntecedentesEmpleado, antecedentesPolicialesOMilitares, PolicialOMilitar, fechaIngresoAntecedete, fechaEgresoAntecedente, subEscalafon, combatiente, talleCamisa, tallePantalon, talleZapatos, talleCampera, vencimientoCarneSalud, idMutualista, idEmergenciaMedica,capacitadoPorteArma,enServicioArmado,observacionesEmpleado);
                 else
@@ -1023,11 +1024,11 @@ namespace ControlHoras
             // Chequeo Campos Obligatorios
             if (checkDatosObligatorios())
             {
-                agregarOModificarEmpleado(true);      
+                agregarOModificarEmpleado(true);
             }
             else
                 MessageBox.Show(this, LlenarCamposObligatorios, "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        
+
         }
 
         private void cbNoActivo_CheckedChanged(object sender, EventArgs e)
@@ -1052,15 +1053,15 @@ namespace ControlHoras
                 cmbPolicialMilitar.Enabled = true;
                 cmbPolicialMilitar.SelectedIndex = 0;
                 dtpFechaIngresoPolicialMilitar.Enabled = true;
-                dtpFechaEgresoPolicialMilitar.Enabled = true;                
+                dtpFechaEgresoPolicialMilitar.Enabled = true;
                 txtPolicialSubEscalafon.Enabled = true;
                 cbCombatiente.Enabled = true;
 
-                
+
             }
             else
             {
-                cmbPolicialMilitar.Enabled = false;                
+                cmbPolicialMilitar.Enabled = false;
                 dtpFechaIngresoPolicialMilitar.Enabled = false;
                 dtpFechaEgresoPolicialMilitar.Enabled = false;
                 txtPolicialSubEscalafon.Enabled = false;
@@ -1069,11 +1070,11 @@ namespace ControlHoras
 
         }
 
-         /*private void dtpFechaNacimiento_Leave(object sender, EventArgs e)
-        {
-             if (dtpFechaNacimiento.Text != fechaMask)
-                lblEdad.Text = calcularEdad(DateTime.ParseExact(dtpFechaNacimiento.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo)).ToString();
-        }*/
+        /*private void dtpFechaNacimiento_Leave(object sender, EventArgs e)
+       {
+            if (dtpFechaNacimiento.Text != fechaMask)
+               lblEdad.Text = calcularEdad(DateTime.ParseExact(dtpFechaNacimiento.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo)).ToString();
+       }*/
 
         private int calcularEdad(DateTime fecha)
         {
@@ -1088,7 +1089,7 @@ namespace ControlHoras
         }
 
         private int calcularAnos(DateTime fi, DateTime ff)
-        {            
+        {
             int anio = (ff.Year - fi.Year);
             if (ff.Month < fi.Month)
                 anio = anio - 1;
@@ -1113,24 +1114,24 @@ namespace ControlHoras
 
             if (FechaIni > FechaFin)
                 MessageBox.Show("La Fecha Fin tiene que ser mayor que la Fecha Inicio.");
-            else if (cmbTipoEventoHistorial.SelectedIndex >=0 && txtDescripcionHistorial.Text != "")
+            else if (cmbTipoEventoHistorial.SelectedIndex >= 0 && txtDescripcionHistorial.Text != "")
             {
                 int n = -10;
                 try
                 {
-                 
-                    int idTipoEventoSelected = ((ComboBoxValue) cmbTipoEventoHistorial.Items[cmbTipoEventoHistorial.SelectedIndex]).Value;
-                    int numEventoNuevo = datos.agregarEventoHistorialEmpleado(int.Parse(mtNumeroEmpleado.Text), FechaIni, FechaFin, idTipoEventoSelected , txtDescripcionHistorial.Text);
+
+                    int idTipoEventoSelected = ((ComboBoxValue)cmbTipoEventoHistorial.Items[cmbTipoEventoHistorial.SelectedIndex]).Value;
+                    int numEventoNuevo = datos.agregarEventoHistorialEmpleado(int.Parse(mtNumeroEmpleado.Text), FechaIni, FechaFin, idTipoEventoSelected, txtDescripcionHistorial.Text);
                     // Una vez agregado el registro, insertamos una nueva fila en el datagrid
                     n = dgvHistorialEmpleado.Rows.Add();
                     dgvHistorialEmpleado.Rows[n].Cells["IdEventoHistorialEmpleado"].Value = numEventoNuevo.ToString();
                     dgvHistorialEmpleado.Rows[n].Cells["FechaInicio"].Value = FechaIni.ToShortDateString();
                     dgvHistorialEmpleado.Rows[n].Cells["FechaFin"].Value = FechaFin.ToShortDateString();
 
-                    dgvHistorialEmpleado.Rows[n].Cells["Descripcion"].Value = txtDescripcionHistorial.Text ;
+                    dgvHistorialEmpleado.Rows[n].Cells["Descripcion"].Value = txtDescripcionHistorial.Text;
                     dgvHistorialEmpleado.Rows[n].Cells["IdTipoEvento"].Value = idTipoEventoSelected;
                     dgvHistorialEmpleado.Rows[n].Cells["TipoEvento"].Value = cmbTipoEventoHistorial.Text;
-                    
+
                     limpiarTabHistorial();
                 }
                 catch (Exception ex)
@@ -1138,8 +1139,8 @@ namespace ControlHoras
                     MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else 
-                MessageBox.Show("Debe llenar todos los datos.","Faltan Datos",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            else
+                MessageBox.Show("Debe llenar todos los datos.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         }
 
@@ -1171,7 +1172,7 @@ namespace ControlHoras
                     MessageBox.Show("La Fecha Fin tiene que ser mayor que la Fecha Inicio.");
                 else if (cmbTipoEventoHistorial.SelectedIndex >= 0 && txtDescripcionHistorial.Text != "")
                 {
-                    int idEvento = ((ComboBoxValue) cmbTipoEventoHistorial.SelectedItem).Value;
+                    int idEvento = ((ComboBoxValue)cmbTipoEventoHistorial.SelectedItem).Value;
                     datos.modificarEventoHistorialEmpleado(int.Parse(lblIdEventoHistorialEmpleado.Text), int.Parse(mtNumeroEmpleado.Text), FechaIni, FechaFin, idEvento, txtDescripcionHistorial.Text);
                     dgvHistorialEmpleado.Rows[numFila].Cells["IdEventoHistorialEmpleado"].Value = lblIdEventoHistorialEmpleado.Text;
                     dgvHistorialEmpleado.Rows[numFila].Cells["FechaInicio"].Value = FechaIni.ToShortDateString();
@@ -1196,10 +1197,10 @@ namespace ControlHoras
             DateTime FechaFin = DateTime.ParseExact(dtpFechaFinHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
 
             if (FechaIni > FechaFin)
-                MessageBox.Show("La Fecha Fin tiene que ser mayor que la Fecha Inicio.","Error Fechas",MessageBoxButtons.OK,MessageBoxIcon.Information);
-            else if (cmbTipoEventoHistorial.SelectedIndex >=0 && txtDescripcionHistorial.Text != "")
+                MessageBox.Show("La Fecha Fin tiene que ser mayor que la Fecha Inicio.", "Error Fechas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else if (cmbTipoEventoHistorial.SelectedIndex >= 0 && txtDescripcionHistorial.Text != "")
             {
-                DialogResult dr = MessageBox.Show("Seguro que desea eliminar el Evento del Empleado?","Confirmación",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                DialogResult dr = MessageBox.Show("Seguro que desea eliminar el Evento del Empleado?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dr == DialogResult.Yes)
                 {
                     int numFila = 0;
@@ -1213,7 +1214,7 @@ namespace ControlHoras
                         {
                             datos.eliminarEventoHistorialEmpleado(int.Parse(lblIdEventoHistorialEmpleado.Text), int.Parse(mtNumeroEmpleado.Text));
                             dgvHistorialEmpleado.Rows.RemoveAt(numFila);
-                            
+
                             MessageBox.Show("Evento eliminado correctamente.", "Eliminacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             limpiarTabHistorial();
                             btnAgregarHistorial.Enabled = true;
@@ -1225,8 +1226,8 @@ namespace ControlHoras
                     }
                 }
             }
-            else 
-                MessageBox.Show("Debe llenar todos los datos.","Faltan Datos",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            else
+                MessageBox.Show("Debe llenar todos los datos.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void cargarHistorialEmpleado(int idEmpleado)
@@ -1236,7 +1237,7 @@ namespace ControlHoras
             {
                 List<EventOsHistOrIalEmPleadO> listaHistorial = datos.obtenerEventosHistorialEmpleado(int.Parse(mtNumeroEmpleado.Text));
                 // llenado de la grilla con estos datos
-                
+
                 foreach (EventOsHistOrIalEmPleadO historial in listaHistorial)
                 {
                     n = dgvHistorialEmpleado.Rows.Add();
@@ -1246,8 +1247,8 @@ namespace ControlHoras
 
                     dgvHistorialEmpleado.Rows[n].Cells["Descripcion"].Value = historial.Descripcion;
                     dgvHistorialEmpleado.Rows[n].Cells["IdTipoEvento"].Value = historial.IDTipoEvento;
-                    
-                    int index=-1;
+
+                    int index = -1;
                     foreach (TipOsEventOHistOrIal tipo in listaTiposEventos)
                     {
                         if (tipo.IDTipoEventoHistorial == historial.IDTipoEvento)
@@ -1259,7 +1260,7 @@ namespace ControlHoras
                     if (index == -1)
                         throw new Excepciones.NoExisteException("No existe un Tipo Evento con identificador: " + historial.IDTipoEvento.ToString());
                     dgvHistorialEmpleado.Rows[n].Cells["TipoEvento"].Value = listaTiposEventos.ElementAt<TipOsEventOHistOrIal>(index).Nombre;
-                    
+
                 }
 
             }
@@ -1310,13 +1311,14 @@ namespace ControlHoras
 
                 btnAgregarHistorial.Enabled = false;
                 btnGuardarHistorial.Enabled = true;
-                btnEliminarHistorial.Enabled= true;
-                     
-            }catch(Exception ex)
+                btnEliminarHistorial.Enabled = true;
+
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
         #endregion
 
@@ -1325,7 +1327,7 @@ namespace ControlHoras
 
         private void btnExtrasAgregar_Click(object sender, EventArgs e)
         {
-            if (txtExtrasDescripcion.Text  != "" && mtExtrasValor.Text != "" && cmbExtrasSigno.SelectedIndex >=0 && mtExtrasCantCuotas.Text != "" )
+            if (txtExtrasDescripcion.Text != "" && mtExtrasValor.Text != "" && cmbExtrasSigno.SelectedIndex >= 0 && mtExtrasCantCuotas.Text != "")
             {
                 try
                 {
@@ -1345,8 +1347,8 @@ namespace ControlHoras
 
 
             }
-            else 
-                MessageBox.Show("Debe llenar todos los datos.","Faltan Datos",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            else
+                MessageBox.Show("Debe llenar todos los datos.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         }
 
@@ -1364,7 +1366,7 @@ namespace ControlHoras
 
         private void btnExtrasGuardar_Click(object sender, EventArgs e)
         {
-            if (txtExtrasDescripcion.Text != "" && mtExtrasValor.Text != ""  && cmbExtrasSigno.SelectedIndex >= 0 && mtExtrasCantCuotas.Text != "")
+            if (txtExtrasDescripcion.Text != "" && mtExtrasValor.Text != "" && cmbExtrasSigno.SelectedIndex >= 0 && mtExtrasCantCuotas.Text != "")
             {
                 int numFila = 0;
                 while (dgvExtrasLiquidacion.RowCount > numFila && lblIdExtraLiquidacion.Text != dgvExtrasLiquidacion.Rows[numFila].Cells["IdExtraLiquidacion"].Value.ToString())
@@ -1405,13 +1407,13 @@ namespace ControlHoras
             if (txtExtrasDescripcion.Text != "" && mtExtrasValor.Text != "" && cmbExtrasSigno.SelectedIndex >= 0 && mtExtrasCantCuotas.Text != "")
             {
                 char signo = cmbExtrasSigno.Text.ToCharArray()[0];
-                DialogResult dr = MessageBox.Show("Seguro que desea eliminar el Extra Liquidación?","Confirmación",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                DialogResult dr = MessageBox.Show("Seguro que desea eliminar el Extra Liquidación?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dr == DialogResult.Yes)
                 {
-                     try
-                     {
-                    datos.eliminarExtraLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), int.Parse(lblIdExtraLiquidacion.Text),dtpExtrasFecha.Value);
-                    limpiarTabExtrasLiquidacion();
+                    try
+                    {
+                        datos.eliminarExtraLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), int.Parse(lblIdExtraLiquidacion.Text), dtpExtrasFecha.Value);
+                        limpiarTabExtrasLiquidacion();
                     }
                     catch (Exception ex)
                     {
@@ -1434,50 +1436,50 @@ namespace ControlHoras
 
         private void cargarGrillaExtraLiquidacionEmpleado()
         {
-                    int n = -10;
-                try
+            int n = -10;
+            try
+            {
+                List<ExtrasLiquidAcIonEmPleadO> listaExtras = datos.obtenerExtrasLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), dtpExtrasFecha.Value);
+                // Vacio la grilla
+                dgvExtrasLiquidacion.Rows.Clear();
+
+
+                // llenado de la grilla con estos datos
+
+                foreach (ExtrasLiquidAcIonEmPleadO extra in listaExtras)
                 {
-                    List<ExtrasLiquidAcIonEmPleadO> listaExtras = datos.obtenerExtrasLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), dtpExtrasFecha.Value);
-                    // Vacio la grilla
-                    dgvExtrasLiquidacion.Rows.Clear();
+                    n = dgvExtrasLiquidacion.Rows.Add();
+                    dgvExtrasLiquidacion.Rows[n].Cells["IdExtraLiquidacion"].Value = extra.IDExtrasLiquidacionEmpleado;
+                    dgvExtrasLiquidacion.Rows[n].Cells["Fecha"].Value = extra.Fecha.ToShortDateString();
+                    dgvExtrasLiquidacion.Rows[n].Cells["DescripcionEvento"].Value = extra.Descripcion;
+                    if (extra.Signo == 1)
+                        dgvExtrasLiquidacion.Rows[n].Cells["Signo"].Value = "+";
+                    else
+                        dgvExtrasLiquidacion.Rows[n].Cells["Signo"].Value = "-";
+                    dgvExtrasLiquidacion.Rows[n].Cells["Valor"].Value = extra.Valor;
+                    dgvExtrasLiquidacion.Rows[n].Cells["CuotaActual"].Value = extra.CuotaActual;
+                    dgvExtrasLiquidacion.Rows[n].Cells["CantidadCuotas"].Value = extra.CantidadCuotas;
+                    if (extra.Liquidado == 1)
+                        dgvExtrasLiquidacion.Rows[n].Cells["Liquidado"].Value = "Si";
+                    else
+                        dgvExtrasLiquidacion.Rows[n].Cells["Liquidado"].Value = "No";
 
-
-                    // llenado de la grilla con estos datos
-
-                    foreach (ExtrasLiquidAcIonEmPleadO extra in listaExtras)
+                }
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("Error al obtener los Extras de la liquidacion del empleado para la fecha " + dtpExtrasFecha.Text);
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (n > -10)
+                    try
                     {
-                        n = dgvExtrasLiquidacion.Rows.Add();
-                        dgvExtrasLiquidacion.Rows[n].Cells["IdExtraLiquidacion"].Value = extra.IDExtrasLiquidacionEmpleado;
-                        dgvExtrasLiquidacion.Rows[n].Cells["Fecha"].Value = extra.Fecha.ToShortDateString();
-                        dgvExtrasLiquidacion.Rows[n].Cells["DescripcionEvento"].Value = extra.Descripcion;
-                        if (extra.Signo == 1)
-                            dgvExtrasLiquidacion.Rows[n].Cells["Signo"].Value = "+";
-                        else
-                            dgvExtrasLiquidacion.Rows[n].Cells["Signo"].Value = "-";
-                        dgvExtrasLiquidacion.Rows[n].Cells["Valor"].Value = extra.Valor;
-                        dgvExtrasLiquidacion.Rows[n].Cells["CuotaActual"].Value = extra.CuotaActual;
-                        dgvExtrasLiquidacion.Rows[n].Cells["CantidadCuotas"].Value = extra.CantidadCuotas;
-                        if (extra.Liquidado == 1)
-                            dgvExtrasLiquidacion.Rows[n].Cells["Liquidado"].Value = "Si";
-                        else
-                            dgvExtrasLiquidacion.Rows[n].Cells["Liquidado"].Value = "No";
-
+                        dgvExtrasLiquidacion.Rows.RemoveAt(n);
                     }
-                }
-                catch (Exception ex)
-                {
-                    //MessageBox.Show("Error al obtener los Extras de la liquidacion del empleado para la fecha " + dtpExtrasFecha.Text);
-                    MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    if (n > -10)
-                        try
-                        {
-                            dgvExtrasLiquidacion.Rows.RemoveAt(n);
-                        }
-                        catch (Exception ex2)
-                        {
-                            MessageBox.Show(this, ex2.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                }
+                    catch (Exception ex2)
+                    {
+                        MessageBox.Show(this, ex2.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+            }
 
         }
 
@@ -1504,7 +1506,7 @@ namespace ControlHoras
         }
 
 
-        
+
         #endregion
 
         private void cbBajadoBPS_CheckedChanged(object sender, EventArgs e)
@@ -1556,21 +1558,22 @@ namespace ControlHoras
 
         private void cmbTiposCargos_SelectedIndexChanged(object sender, EventArgs e)
         {
-           int idtipocargo;
+            int idtipocargo;
             try
-           {
-               if (cmbTiposCargos.SelectedItem != null)
-               {
-                   idtipocargo = (int)cmbTiposCargos.SelectedValue;// ((ComboBoxValue)cmbTiposCargos.SelectedItem).Value;
-                   foreach(TipOscarGoS cargo in cargos)
-                   {
-                       if (cargo.IDCargo == idtipocargo)
-                           lblTipoFacturacion.Text = cargo.TipoFacturacion.ToString();
-                   }
-               }
-            }catch(Exception ex)
             {
-                 MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (cmbTiposCargos.SelectedItem != null)
+                {
+                    idtipocargo = (int)cmbTiposCargos.SelectedValue;// ((ComboBoxValue)cmbTiposCargos.SelectedItem).Value;
+                    foreach (TipOscarGoS cargo in cargos)
+                    {
+                        if (cargo.IDCargo == idtipocargo)
+                            lblTipoFacturacion.Text = cargo.TipoFacturacion.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1583,7 +1586,7 @@ namespace ControlHoras
                     numemp = datos.obtenerProximoIdEmpleadoActivo(int.Parse(mtNumeroEmpleado.Text));
                 else
                     numemp = datos.obtenerProximoIdEmpleadoActivo(-1);
-            
+
                 if (numemp != null)
                 {
                     mtNumeroEmpleado.Text = numemp.ToString();
@@ -1613,7 +1616,7 @@ namespace ControlHoras
                         mtNumeroEmpleado.Text = numemp.ToString();
                         mtNumeroEmpleado.Focus();
 
-                        SendKeys.Send("{ENTER}");                        
+                        SendKeys.Send("{ENTER}");
                     }
                     else
                         MessageBox.Show("No existe un empleado anterior a este.", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1650,7 +1653,7 @@ namespace ControlHoras
                 }
             }
         }
-        
+
         private void txtNombre_Leave(object sender, EventArgs e)
         {
             txtNombre.Text = TranfaTitulo(txtNombre.Text);
@@ -1683,17 +1686,17 @@ namespace ControlHoras
             }
             else
                 return ori;
-        }       
-
-        private void cmbTipoDocumento_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbTipoDocumento.Text == "C.I.")
-                mtNumeroDocumento.Mask = "00000000";
-            else
-                mtNumeroDocumento.Mask = null;
-
-            //mtNumeroDocumento.Refresh();
         }
+
+        //private void cmbTipoDocumento_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (cmbTipoDocumento.Text == "C.I.")
+        //        mtNumeroDocumento.Mask = "00000000";
+        //    else
+        //        mtNumeroDocumento.Mask = null;
+
+        //    //mtNumeroDocumento.Refresh();
+        //}
 
 
         #region **** VALIDAR FECHAS ****
@@ -1709,7 +1712,7 @@ namespace ControlHoras
                 return DateTime.TryParseExact(fecha, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo, dts, out dt);
         }
 
-        
+
         private void dtpFechaNacimiento_Validating(object sender, CancelEventArgs e)
         {
             if (!ValidarFecha(dtpFechaNacimiento.Text))
@@ -1950,7 +1953,7 @@ namespace ControlHoras
         private void dtpFechaIngreso_Validated(object sender, EventArgs e)
         {
             errorProvider1.SetError(dtpFechaIngreso, "");
-            dtpFechaAltaBPS.Text = dtpFechaAltaMTSS.Text = dtpFechaIngreso.Text; 
+            dtpFechaAltaBPS.Text = dtpFechaAltaMTSS.Text = dtpFechaIngreso.Text;
         }
 
         #endregion
@@ -1967,29 +1970,29 @@ namespace ControlHoras
 
         private void contratoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            
+
+
             object fileName = Path.Combine(dirbase, @"Docs\Contrato.doc");// @"C:\Documents and Settings\jcopello\Mis documentos\JPC\TrustSoftware\Codigo\ControlHoras\Docs\Contrato.doc";
             object mark;
             object readOnly = true;
 
-                       
+
             Word._Application oWord;
             oWord = new Word.ApplicationClass();
             Word._Document oDoc;
-           // oWord.DocumentBeforeSave += new Microsoft.Office.Interop.Word.ApplicationEvents4_DocumentBeforeSaveEventHandler(oWord_DocumentBeforeSave);
-           // oWord.DocumentBeforeClose += new Microsoft.Office.Interop.Word.ApplicationEvents4_DocumentBeforeCloseEventHandler(oWord_DocumentBeforeClose);
-           // oWord.Options.SavePropertiesPrompt = false;
-          //  oWord.Options.SaveNormalPrompt = false;
-          //  oWord.DisplayAlerts = Microsoft.Office.Interop.Word.WdAlertLevel.wdAlertsNone;
-          //  oWord.ScreenUpdating = false;
+            // oWord.DocumentBeforeSave += new Microsoft.Office.Interop.Word.ApplicationEvents4_DocumentBeforeSaveEventHandler(oWord_DocumentBeforeSave);
+            // oWord.DocumentBeforeClose += new Microsoft.Office.Interop.Word.ApplicationEvents4_DocumentBeforeCloseEventHandler(oWord_DocumentBeforeClose);
+            // oWord.Options.SavePropertiesPrompt = false;
+            //  oWord.Options.SaveNormalPrompt = false;
+            //  oWord.DisplayAlerts = Microsoft.Office.Interop.Word.WdAlertLevel.wdAlertsNone;
+            //  oWord.ScreenUpdating = false;
             oWord.Visible = true;
             oDoc = oWord.Documents.Open(ref fileName,
                                     ref missing, ref readOnly, ref missing, ref missing, ref missing,
                                     ref missing, ref missing, ref missing, ref missing, ref missing,
                                     ref missing, ref missing, ref missing, ref missing);//, ref missing);
 
-                
+
             //oDoc = oWord.Documents.Add(ref fileName, ref missing, ref missing, ref missing);
             mark = "diaHoy";
             Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
@@ -2002,7 +2005,7 @@ namespace ControlHoras
             mark = "anoHoy";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
             wrdRng.Text = DateTime.Today.Year.ToString();
-            
+
             mark = "nombre";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
             wrdRng.Text = txtNombre.Text + " " + txtApellido.Text;
@@ -2037,7 +2040,7 @@ namespace ControlHoras
 
             mark = "sueldo";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = txtSueldo.Text;            
+            wrdRng.Text = txtSueldo.Text;
 
             #region imprimir
             //string fileNameSave;
@@ -2131,7 +2134,7 @@ namespace ControlHoras
             mark = "nombre";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
             wrdRng.Text = txtNombre.Text + " " + txtApellido.Text;
-            
+
             mark = "ci";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
             wrdRng.Text = TranfCI(mtNumeroDocumento.Text);
@@ -2139,7 +2142,7 @@ namespace ControlHoras
             mark = "domicilio";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
             wrdRng.Text = txtDireccion.Text;
-                        
+
             mark = "dHoy";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
             wrdRng.Text = DateTime.Today.Day.ToString();
@@ -2173,7 +2176,7 @@ namespace ControlHoras
                         ref missing, ref missing, ref missing, ref missing);//, ref missing);
 
             mark = "nombre";
-            Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;            
+            Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
             wrdRng.Text = txtNombre.Text + " " + TranfaTitulo(txtApellido.Text);
 
             mark = "ci";
@@ -2215,8 +2218,8 @@ namespace ControlHoras
             string fileName = Path.Combine(dirbase, @"Docs\Renaemse.xls");// @"C:\Documents and Settings\jcopello\Mis documentos\JPC\TrustSoftware\Codigo\ControlHoras\Docs\Contrato.doc";
             object readOnly = true;
 
-            Excel.Application ExApp; 
-            Excel._Workbook oWBook; 
+            Excel.Application ExApp;
+            Excel._Workbook oWBook;
             Excel._Worksheet oSheet;
             //Excel.Range oRng;
             try
@@ -2249,7 +2252,7 @@ namespace ControlHoras
 
                 //Intersección
                 oSheet.Cells[23, 7] = txtEntreCalles.Text;
-                
+
                 // Nivel Educacional
                 if (cmbNivelEducativo.Text == "PRIMARIO")
                     oSheet.Cells[26, 3] = "X";
@@ -2277,7 +2280,7 @@ namespace ControlHoras
 
                     if (dtpFechaIngresoPolicialMilitar.Text != fechaMask)
                         oSheet.Cells[fila, 6] = dtpFechaIngresoPolicialMilitar.Text;
-                    
+
                     if (dtpFechaEgresoPolicialMilitar.Text != fechaMask)
                         oSheet.Cells[fila, 8] = dtpFechaEgresoPolicialMilitar.Text;
 
@@ -2290,7 +2293,7 @@ namespace ControlHoras
                             oSheet.Cells[fila, 3] = calcularAnos(fi, ff).ToString();
                         }
                     }
-                    catch (Exception ex) {}
+                    catch (Exception ex) { }
                 }
 
                 // Nro CAJ
@@ -2336,7 +2339,7 @@ namespace ControlHoras
         {
             string pdftemplate = Path.Combine(dirbase, @"Docs\formulario 3100 DGI.pdf");
             //string nomEmpresa = "Trust";
-            
+
             PdfReader pdfReader = new PdfReader(pdftemplate);
 
             //saveFileEmpleados.Filter = "Acrobat Reader (*.pdf)|*.pdf";
@@ -2344,59 +2347,59 @@ namespace ControlHoras
             //DialogResult OKSave =  saveFileEmpleados.ShowDialog(this);
             //if (OKSave == DialogResult.OK)
             //{
-                string newFile = mtNumeroEmpleado.Text + "-" + txtNombre.Text + " " + txtApellido.Text + "-FormularioDGI.pdf";
-                PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileStream(newFile, FileMode.Create));
-                AcroFields pdfFormFields = pdfStamper.AcroFields;
+            string newFile = mtNumeroEmpleado.Text + "-" + txtNombre.Text + " " + txtApellido.Text + "-FormularioDGI.pdf";
+            PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileStream(newFile, FileMode.Create));
+            AcroFields pdfFormFields = pdfStamper.AcroFields;
 
 
-                //R1.1Ap - Primer Apellido
-                //R1.2Ap - Segundo Apellido
-                //R1.1Nom - Primer Nombre
-                //R1.2Nom - Segundo Nombre
-                //R1.NDoc - Numero Documento
-                //R1.Año - 
-                //R1.Mes - 
-                //R1.Nom - Nombre o Denominacion
-                //R1.TDoc.0 - NroDocumento en la primera Parte
-                //R1.Pais - Pais del Documento
+            //R1.1Ap - Primer Apellido
+            //R1.2Ap - Segundo Apellido
+            //R1.1Nom - Primer Nombre
+            //R1.2Nom - Segundo Nombre
+            //R1.NDoc - Numero Documento
+            //R1.Año - 
+            //R1.Mes - 
+            //R1.Nom - Nombre o Denominacion
+            //R1.TDoc.0 - NroDocumento en la primera Parte
+            //R1.Pais - Pais del Documento
 
 
-                DateTime hoy = DateTime.Today;
+            DateTime hoy = DateTime.Today;
 
-                pdfFormFields.SetField("R1.1Ap", txtApellido.Text.Split(' ').ElementAt(0));
-                if (txtApellido.Text.Split(' ').Count() > 1)
-                    pdfFormFields.SetField("R1.2Ap", txtApellido.Text.Split(' ').ElementAt(1));
-                pdfFormFields.SetField("R1.1Nom", txtNombre.Text.Split(' ').ElementAt(0));
-                if (txtNombre.Text.Split(' ').Count() > 1)
-                    pdfFormFields.SetField("R1.2Nom", txtNombre.Text.Split(' ').ElementAt(1));
-                pdfFormFields.SetField("R1.TDoc.0", "C.I");
-                pdfFormFields.SetField("R1.Pais", "Uruguay");
-                pdfFormFields.SetField("R1.NDoc", mtNumeroDocumento.Text);
-                //pdfFormFields.SetField("R1.Mes", hoy.Month.ToString());
-                //pdfFormFields.SetField("R1.Año", hoy.Year.ToString());
-                //pdfFormFields.SetField("R1.Nom", nomEmpresa);
+            pdfFormFields.SetField("R1.1Ap", txtApellido.Text.Split(' ').ElementAt(0));
+            if (txtApellido.Text.Split(' ').Count() > 1)
+                pdfFormFields.SetField("R1.2Ap", txtApellido.Text.Split(' ').ElementAt(1));
+            pdfFormFields.SetField("R1.1Nom", txtNombre.Text.Split(' ').ElementAt(0));
+            if (txtNombre.Text.Split(' ').Count() > 1)
+                pdfFormFields.SetField("R1.2Nom", txtNombre.Text.Split(' ').ElementAt(1));
+            pdfFormFields.SetField("R1.TDoc.0", "C.I");
+            pdfFormFields.SetField("R1.Pais", "Uruguay");
+            pdfFormFields.SetField("R1.NDoc", mtNumeroDocumento.Text);
+            //pdfFormFields.SetField("R1.Mes", hoy.Month.ToString());
+            //pdfFormFields.SetField("R1.Año", hoy.Year.ToString());
+            //pdfFormFields.SetField("R1.Nom", nomEmpresa);
 
-                pdfFormFields.SetField("R6.Suscr", txtNombre.Text.Split(' ').ElementAt(0) + " " + TranfaTitulo(txtApellido.Text.Split(' ').ElementAt(0)));
-                pdfFormFields.SetField("R6.Calidad", "empleado");
-                pdfFormFields.SetField("R6.CI", mtNumeroDocumento.Text);
-
-
+            pdfFormFields.SetField("R6.Suscr", txtNombre.Text.Split(' ').ElementAt(0) + " " + TranfaTitulo(txtApellido.Text.Split(' ').ElementAt(0)));
+            pdfFormFields.SetField("R6.Calidad", "empleado");
+            pdfFormFields.SetField("R6.CI", mtNumeroDocumento.Text);
 
 
- 
-                pdfStamper.Close();
-                //DialogResult okOpen = MessageBox.Show("Documento creado correctamente. Desea abrirlo ahora?", "Abrir Formulario DGI 3100...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                //if (okOpen == DialogResult.Yes)
-                //{
-                    // try forcing the window to be full-screen maximized
-                    System.Diagnostics.ProcessStartInfo defapp = new System.Diagnostics.ProcessStartInfo();
 
-                    defapp.FileName = newFile;
-                    defapp.WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized;
-                    System.Diagnostics.Process.Start(defapp);
-                //}
-           // }
-         }
+
+
+            pdfStamper.Close();
+            //DialogResult okOpen = MessageBox.Show("Documento creado correctamente. Desea abrirlo ahora?", "Abrir Formulario DGI 3100...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //if (okOpen == DialogResult.Yes)
+            //{
+            // try forcing the window to be full-screen maximized
+            System.Diagnostics.ProcessStartInfo defapp = new System.Diagnostics.ProcessStartInfo();
+
+            defapp.FileName = newFile;
+            defapp.WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized;
+            System.Diagnostics.Process.Start(defapp);
+            //}
+            // }
+        }
 
         private void PruebaBtn_Click(object sender, EventArgs e)
         {
@@ -2415,12 +2418,12 @@ namespace ControlHoras
             oWord.Visible = true;
             oDoc = oWord.Documents.Add(ref missing, ref missing,
                 ref missing, ref missing);
-                        
+
 
             //Insert a paragraph at the end of the document.
             Word.Paragraph oPara2;
             object oRng = null;
-            
+
             System.Collections.Hashtable h = pdfFormFields.Fields;
 
             foreach (System.Collections.DictionaryEntry d in h)
@@ -2453,7 +2456,7 @@ namespace ControlHoras
             mark = "Apellido";
             Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
             wrdRng.Text = txtApellido.Text.Split(' ').ElementAt(0);
-            
+
             mark = "Nombre";
             wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
             wrdRng.Text = txtNombre.Text.Split(' ').ElementAt(0).ToUpper();
@@ -2468,7 +2471,7 @@ namespace ControlHoras
 
             #region foto
 
-//*************   JUANCHI   *******************            
+            //*************   JUANCHI   *******************            
             //mark = "Imagen";
             //wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
             //wrdRng.Select();
@@ -2477,19 +2480,19 @@ namespace ControlHoras
             //if (pbFoto.Image != null)
             //{
             //    System.Drawing.Image bi = pbFoto.Image;
-                
+
             //    Clipboard.SetDataObject(bi);
             //    wrdRng.Paste();
 
             //    wrdRng.Select();
-                
+
 
             //    oWord.Selection.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
             //}
 
 
 
-//*************   JUAN PABLO *******************
+            //*************   JUAN PABLO *******************
             //Object myFalse = false;
             //Object myTrue = true;
             //Object myEndOfDoc = "\\endofdoc";
@@ -2548,7 +2551,83 @@ namespace ControlHoras
             }
         }
 
-        
+       
+
+        private void BtnReactivar_Click(object sender, EventArgs e)
+        {
+            //string nroViejo = lblEmpleadoCargado.Text.Split('-').ElementAt(0);
+            int nroNuevo = datos.obtenerMaxIdEmpleado() + 1;
+            DialogResult res = MessageBox.Show("Seguro que quiere reactivar el Empleado: " + txtNombre.Text + " " + txtApellido.Text + "?\nNúmero viejo: " + mtNumeroEmpleado.Text + "     Número nuevo: "  + nroNuevo.ToString(), "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (res == DialogResult.Yes)
+            {
+                try
+                {
+                    datos.cambiarNumeroEmpleado(int.Parse(mtNumeroEmpleado.Text), nroNuevo);
+                    MessageBox.Show("El Numero del Empleado a sido cambiado con exito.", "Modifacion con exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    mtNumeroEmpleado.Text = nroNuevo.ToString();
+                    lblEstadoEmpleado.Text = "Activo";
+                    lblEstadoEmpleado.ForeColor = Color.LimeGreen;
+                    string fechaIngreso, fechaBaja, motivo;
+                    fechaIngreso = dtpFechaIngreso.Text;
+                    fechaBaja = dtpFechaBaja.Text;
+                    motivo = txtMotivoBaja.Text;
+                    txtObservaciones.Text = txtObservaciones.Text + "\r\n" + "INGRESÓ: " + fechaIngreso + "\r\nBAJA: " + fechaBaja + "    MOTIVO: " + motivo;
+                    dtpFechaIngreso.Text = DateTime.Now.ToString();
+                    dtpFechaAltaBPS.Text = DateTime.Now.ToString();
+                    cbNoActivo.Checked = false;
+                    dtpFechaBaja.Text = "";
+                    txtMotivoBaja.Text = "";
+                    cbBajadoBPS.Checked = false;
+
+                    btnAgregar.Enabled = false;
+                    btnGuardar.Enabled = true;
+                    BtnReactivar.Visible = false;
+                    btnExtrasAgregar.Enabled = true;
+                    btnAgregarHistorial.Enabled = true;
+                    ImprimirTSB.Enabled = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error el cambiar el NumeroEmpleado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
+
+        private void mtNumeroDocumento_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (mtNumeroDocumento.MaskCompleted && (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab))
+            {
+                // Busco si existe un empleado con esta cédula
+                EmPleadOs empleado;
+                try
+                {
+                    if (datos.existeEmpleadoCI(mtNumeroDocumento.Text, out empleado))
+                    {
+                        //empleado = datos.obtenerEmpleado(int.Parse(mtNumeroEmpleado.Text));
+                        if (empleado.Activo == 1)
+                            MessageBox.Show(this, "Ya existe el empleado ACTIVO " + empleado.Nombre + " " + empleado.Apellido + " Nro: " + empleado.IDEmpleado.ToString() + " con CI: " + mtNumeroDocumento.Text, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        else
+                        {
+                            lblEstadoEmpleado.Visible = true;
+                            cargarEmpleado(empleado);
+                            lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
+                            btnAgregar.Enabled = false;
+                            btnGuardar.Enabled = false;
+                            BtnReactivar.Visible = true;
+                            btnExtrasAgregar.Enabled = false;
+                            btnAgregarHistorial.Enabled = false;
+                            ImprimirTSB.Enabled = false;
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }
 
