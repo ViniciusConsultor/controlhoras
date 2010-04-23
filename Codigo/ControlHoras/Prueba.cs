@@ -16,7 +16,8 @@ namespace ControlHoras
         public Prueba()
         {
             InitializeComponent();
-            //hora = new TimeSpan();                                    
+            //hora = new TimeSpan();
+            HTB.Text = "alamo \r\n perro";                        
         }
 
         protected void textBox1_Validating(object sender, System.ComponentModel.CancelEventArgs e)

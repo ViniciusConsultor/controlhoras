@@ -110,8 +110,9 @@
             // HTB
             // 
             this.HTB.Location = new System.Drawing.Point(325, 153);
+            this.HTB.Multiline = true;
             this.HTB.Name = "HTB";
-            this.HTB.Size = new System.Drawing.Size(100, 22);
+            this.HTB.Size = new System.Drawing.Size(215, 92);
             this.HTB.TabIndex = 2;
             // 
             // mtbkd

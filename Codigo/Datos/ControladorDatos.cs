@@ -2026,7 +2026,34 @@ namespace Datos
             }
         }
 
-        
+
+
+        #region Miembros de IDatos
+
+
+        public bool existeEmpleadoCI(string CI, out EmPleadOs empleado)
+        {   
+            empleado = null;
+            try
+            {
+                Table<EmPleadOs> tabla = database.GetTable<EmPleadOs>();
+                var cli = (from clireg in tabla
+                           where clireg.NumeroDocumento == CI
+                           select clireg);
+                if (cli.Count<EmPleadOs>() == 0)
+                    return false;
+
+                empleado = cli.Single<EmPleadOs>();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                // MySQLException = Access Denied  Codigo = 1045
+            }
+        }
+
+        #endregion
     }
 
 }
