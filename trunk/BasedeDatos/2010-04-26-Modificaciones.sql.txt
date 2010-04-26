@@ -1,0 +1,62 @@
+-- Cambio de nombre de Columna del SueldoActual a ValorHora
+alter table empleados change column SueldoActual ValorHora float(8,2);
+
+-- Se crea el campo Turno, para los valores "VESPERTINO","MATUTINO","NOCTURNO"
+ alter table empleados add column Turno varchar(10) after ValorHora;
+
+-- Se elimina el campo NumeroCuenta
+alter table empleados drop column NumeroCuenta;
+ 
+-- Se cambia el campo idBanco por SueldoActual
+ alter table empleados change column idBanco ServicioActual varchar(100);
+
+-- Se agrega la columna FechaPrevistaPago
+alter table empleados add column FechaPrevistaPago DATE; 
+
+-- Se agrega la columna FechaPagoEfectuado
+alter table empleados add column FechaPagoEfectuado DATE;
+ 
+-- Se elimina el campo MTSSEsBaja
+alter table empleados drop column MTSSEsBaja;
+
+-- Se elimina el campo MTSS_FechaAlta
+alter table empleados drop column MTSS_FechaAlta;
+
+-- Se elimina el campo MTSS_FechaBaja
+alter table empleados drop column MTSS_FechaBaja;
+
+-- Se Elimina el campo EgresadoEmpresa
+alter table empleados drop column EgresadoEmpresa;
+
+-- Se elimina el campo FechaPagoFinal
+alter table empleados drop column FechaPagoFinal;
+
+-- Creacion de tabla consultasempleados
+CREATE TABLE `consultasempleados` (
+  `idConsultaEmpleado` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(100) NOT NULL,
+  `Descripcion` varchar(255) DEFAULT NULL,
+  `Query` varchar(500) NOT NULL,
+  `Activo` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`idConsultaEmpleado`));
+
+-- Creacion de tabla consultasclientes
+CREATE TABLE `consultasclientes` (
+  `idConsultaCliente` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(100) NOT NULL,
+  `Descripcion` varchar(255) DEFAULT NULL,
+  `query` varchar(255) NOT NULL,
+  `Activo` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`idConsultaCliente`));
+ 
+-- Consulta Personal Jornalero Activo
+insert into consultasempleados values (0,"Personal Jornalero Activo","Consulta que devuelve la CI, Apellidos, Nombres, FechaNacimiento, FechaIngreso, NumeroEmpleado, Cargo, ValorHora y el Turno de todos los empleados jornaleros activos.","select emp.NumeroDocumento, emp.Apellido, emp.Nombre, emp.FechaNacimiento, emp.FechaIngreso, emp.idEmpleado, c.Descripcion as Cargo, emp.ValorHora, emp.Turno from empleados emp, TiposCargos c where emp.Activo=1 and emp.IdCargo = c.IdCargo and c.TipoFacturacion='JORNALERO'",1)
+
+-- Consulta Personal Mensual Activo
+insert into consultasempleados values (0,"Personal Mensual Activo","Consulta que devuelve la CI, Apellidos, Nombres, FechaNacimiento, FechaIngreso, NumeroEmpleado, Cargo, ValorHora y el Turno de todos los empleados MENSUALES activos.","select emp.NumeroDocumento, emp.Apellido, emp.Nombre, emp.FechaNacimiento, emp.FechaIngreso, emp.idEmpleado, c.Descripcion as Cargo, emp.ValorHora, emp.Turno from empleados emp, TiposCargos c where emp.Activo=1 and emp.IdCargo = c.IdCargo and c.TipoFacturacion='MENSUAL'",1);
+
+-- Listado de Telefonos de Personal Jornalero Activo
+insert into consultasempleados values (0,"Listado de Telefonos de Personal Jornalero Activo","Consulta que devuelve el NumeroEmpleado, CelularConvenio, NumeroDocumento, Apellidos, Nombres, ServicioActual y Turno de todos los empleados JORNALEROS activos.","select idEmpleado, CelularenConvenio, NumeroDocumento, Apellido, empleados.Nombre, ServicioActual, Turno from empleados , tiposcargos where empleados.Activo=1 and tiposcargos.idCargo=empleados.idCargo and tiposcargos.TipoFacturacion='JORNALERO';",1);
+
+-- Personal Baja pero no tiene Pagado el Egreso
+insert into consultasempleados values (0,"Personal de Baja que no tiene Pagado el Egreso","Consulta que devuelve el CI, Apellidos, Nombres, FechaNacimiento, FechaIngreso, FechaBaja, NumeroEmpleado, Cargo, ValorHora y el Turno de todos los empleados JORNALEROS activos.","select emp.NumeroDocumento, emp.Apellido, emp.Nombre, emp.FechaNacimiento, emp.FechaIngreso, emp.FechaBaja, emp.idEmpleado, c.Descripcion as Cargo, emp.ValorHora, emp.Turno from empleados emp, tiposcargos c where emp.Activo=0 and c.IdCargo=emp.idCargo and FechaPrevistaPago='FECHA'",1);
