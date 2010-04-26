@@ -31,6 +31,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnExportToExcel = new System.Windows.Forms.ToolStripButton();
             this.btnCancelar = new System.Windows.Forms.ToolStripButton();
+            this.saveExcelFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tcConsultas = new System.Windows.Forms.TabControl();
             this.tbPorTablas = new System.Windows.Forms.TabPage();
@@ -48,15 +49,18 @@
             this.btnCargar = new System.Windows.Forms.Button();
             this.cmbTablas = new ControlHoras.ComboBoxKeyDown();
             this.tbEmpleados = new System.Windows.Forms.TabPage();
-            this.maskedTextBoxKeyDown1 = new ControlHoras.MaskedTextBoxKeyDown();
-            this.btnEmpleadosConsultar = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.panelConsultasEmpleadoFecha = new System.Windows.Forms.Panel();
+            this.mtConsultasEmpleadoFecha = new ControlHoras.MaskedTextBoxKeyDown();
+            this.label9 = new System.Windows.Forms.Label();
+            this.panelConsultasEmpleadosNumeroEmpleado = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtEmpleadosDescripcionConsulta = new ControlHoras.TextBoxKeyDown();
-            this.cmbEmpleadosConsultas = new ControlHoras.ComboBoxKeyDown();
+            this.maskedTextBoxKeyDown1 = new ControlHoras.MaskedTextBoxKeyDown();
             this.mtEmpleadosDesde = new ControlHoras.MaskedTextBoxKeyDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnEmpleadosConsultar = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtConsultasEmpleadosDescripcion = new ControlHoras.TextBoxKeyDown();
+            this.cmbEmpleadosConsultas = new ControlHoras.ComboBoxKeyDown();
             this.tbClientes = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -66,7 +70,6 @@
             this.txtClientesDescripcionConsulta = new ControlHoras.TextBoxKeyDown();
             this.cmbClientesConsultas = new ControlHoras.ComboBoxKeyDown();
             this.dgvResultados = new System.Windows.Forms.DataGridView();
-            this.saveExcelFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -75,6 +78,8 @@
             this.tbPorTablas.SuspendLayout();
             this.gbPorTablasFiltros.SuspendLayout();
             this.tbEmpleados.SuspendLayout();
+            this.panelConsultasEmpleadoFecha.SuspendLayout();
+            this.panelConsultasEmpleadosNumeroEmpleado.SuspendLayout();
             this.tbClientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResultados)).BeginInit();
             this.SuspendLayout();
@@ -112,6 +117,11 @@
             this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // saveExcelFileDialog
+            // 
+            this.saveExcelFileDialog.DefaultExt = "xls";
+            this.saveExcelFileDialog.Filter = "Archivos de Microsoft Office Excel(*.xls)|*.xls";
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -141,6 +151,7 @@
             this.tcConsultas.SelectedIndex = 0;
             this.tcConsultas.Size = new System.Drawing.Size(655, 214);
             this.tcConsultas.TabIndex = 6;
+            this.tcConsultas.TabIndexChanged += new System.EventHandler(this.tcConsultas_TabIndexChanged);
             // 
             // tbPorTablas
             // 
@@ -288,15 +299,12 @@
             // 
             // tbEmpleados
             // 
-            this.tbEmpleados.Controls.Add(this.maskedTextBoxKeyDown1);
+            this.tbEmpleados.Controls.Add(this.panelConsultasEmpleadoFecha);
+            this.tbEmpleados.Controls.Add(this.panelConsultasEmpleadosNumeroEmpleado);
             this.tbEmpleados.Controls.Add(this.btnEmpleadosConsultar);
-            this.tbEmpleados.Controls.Add(this.checkBox1);
             this.tbEmpleados.Controls.Add(this.label3);
-            this.tbEmpleados.Controls.Add(this.label2);
-            this.tbEmpleados.Controls.Add(this.label1);
-            this.tbEmpleados.Controls.Add(this.txtEmpleadosDescripcionConsulta);
+            this.tbEmpleados.Controls.Add(this.txtConsultasEmpleadosDescripcion);
             this.tbEmpleados.Controls.Add(this.cmbEmpleadosConsultas);
-            this.tbEmpleados.Controls.Add(this.mtEmpleadosDesde);
             this.tbEmpleados.Location = new System.Drawing.Point(4, 22);
             this.tbEmpleados.Name = "tbEmpleados";
             this.tbEmpleados.Padding = new System.Windows.Forms.Padding(3);
@@ -305,12 +313,78 @@
             this.tbEmpleados.Text = "Empleados";
             this.tbEmpleados.UseVisualStyleBackColor = true;
             // 
+            // panelConsultasEmpleadoFecha
+            // 
+            this.panelConsultasEmpleadoFecha.Controls.Add(this.mtConsultasEmpleadoFecha);
+            this.panelConsultasEmpleadoFecha.Controls.Add(this.label9);
+            this.panelConsultasEmpleadoFecha.Location = new System.Drawing.Point(209, 72);
+            this.panelConsultasEmpleadoFecha.Name = "panelConsultasEmpleadoFecha";
+            this.panelConsultasEmpleadoFecha.Size = new System.Drawing.Size(200, 59);
+            this.panelConsultasEmpleadoFecha.TabIndex = 11;
+            this.panelConsultasEmpleadoFecha.Visible = false;
+            // 
+            // mtConsultasEmpleadoFecha
+            // 
+            this.mtConsultasEmpleadoFecha.Location = new System.Drawing.Point(69, 17);
+            this.mtConsultasEmpleadoFecha.Margin = new System.Windows.Forms.Padding(2);
+            this.mtConsultasEmpleadoFecha.Mask = "00/00/0000";
+            this.mtConsultasEmpleadoFecha.Name = "mtConsultasEmpleadoFecha";
+            this.mtConsultasEmpleadoFecha.Size = new System.Drawing.Size(76, 20);
+            this.mtConsultasEmpleadoFecha.TabIndex = 6;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(14, 20);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(37, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Fecha";
+            // 
+            // panelConsultasEmpleadosNumeroEmpleado
+            // 
+            this.panelConsultasEmpleadosNumeroEmpleado.Controls.Add(this.label1);
+            this.panelConsultasEmpleadosNumeroEmpleado.Controls.Add(this.maskedTextBoxKeyDown1);
+            this.panelConsultasEmpleadosNumeroEmpleado.Controls.Add(this.mtEmpleadosDesde);
+            this.panelConsultasEmpleadosNumeroEmpleado.Controls.Add(this.label2);
+            this.panelConsultasEmpleadosNumeroEmpleado.Location = new System.Drawing.Point(226, 72);
+            this.panelConsultasEmpleadosNumeroEmpleado.Name = "panelConsultasEmpleadosNumeroEmpleado";
+            this.panelConsultasEmpleadosNumeroEmpleado.Size = new System.Drawing.Size(386, 37);
+            this.panelConsultasEmpleadosNumeroEmpleado.TabIndex = 10;
+            this.panelConsultasEmpleadosNumeroEmpleado.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(28, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(137, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Numero Empleado    Desde";
+            // 
             // maskedTextBoxKeyDown1
             // 
-            this.maskedTextBoxKeyDown1.Location = new System.Drawing.Point(492, 66);
+            this.maskedTextBoxKeyDown1.Location = new System.Drawing.Point(299, 9);
             this.maskedTextBoxKeyDown1.Name = "maskedTextBoxKeyDown1";
             this.maskedTextBoxKeyDown1.Size = new System.Drawing.Size(63, 20);
             this.maskedTextBoxKeyDown1.TabIndex = 9;
+            // 
+            // mtEmpleadosDesde
+            // 
+            this.mtEmpleadosDesde.BackColor = System.Drawing.Color.White;
+            this.mtEmpleadosDesde.Location = new System.Drawing.Point(171, 9);
+            this.mtEmpleadosDesde.Name = "mtEmpleadosDesde";
+            this.mtEmpleadosDesde.Size = new System.Drawing.Size(63, 20);
+            this.mtEmpleadosDesde.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(258, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Hasta";
             // 
             // btnEmpleadosConsultar
             // 
@@ -320,69 +394,35 @@
             this.btnEmpleadosConsultar.TabIndex = 8;
             this.btnEmpleadosConsultar.Text = "Consultar";
             this.btnEmpleadosConsultar.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(455, 101);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBox1.Size = new System.Drawing.Size(100, 17);
-            this.checkBox1.TabIndex = 7;
-            this.checkBox1.Text = "Incluir Inactivos";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.btnEmpleadosConsultar.Click += new System.EventHandler(this.btnEmpleadosConsultar_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 11);
+            this.label3.Location = new System.Drawing.Point(8, 11);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Consultas";
             // 
-            // label2
+            // txtConsultasEmpleadosDescripcion
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(451, 69);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Hasta";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(221, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(137, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Numero Empleado    Desde";
-            // 
-            // txtEmpleadosDescripcionConsulta
-            // 
-            this.txtEmpleadosDescripcionConsulta.Location = new System.Drawing.Point(206, 11);
-            this.txtEmpleadosDescripcionConsulta.Multiline = true;
-            this.txtEmpleadosDescripcionConsulta.Name = "txtEmpleadosDescripcionConsulta";
-            this.txtEmpleadosDescripcionConsulta.Size = new System.Drawing.Size(430, 36);
-            this.txtEmpleadosDescripcionConsulta.TabIndex = 6;
+            this.txtConsultasEmpleadosDescripcion.Location = new System.Drawing.Point(209, 11);
+            this.txtConsultasEmpleadosDescripcion.Multiline = true;
+            this.txtConsultasEmpleadosDescripcion.Name = "txtConsultasEmpleadosDescripcion";
+            this.txtConsultasEmpleadosDescripcion.Size = new System.Drawing.Size(430, 55);
+            this.txtConsultasEmpleadosDescripcion.TabIndex = 6;
             // 
             // cmbEmpleadosConsultas
             // 
+            this.cmbEmpleadosConsultas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.cmbEmpleadosConsultas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEmpleadosConsultas.FormattingEnabled = true;
-            this.cmbEmpleadosConsultas.Location = new System.Drawing.Point(22, 27);
+            this.cmbEmpleadosConsultas.Location = new System.Drawing.Point(8, 27);
             this.cmbEmpleadosConsultas.Name = "cmbEmpleadosConsultas";
-            this.cmbEmpleadosConsultas.Size = new System.Drawing.Size(156, 21);
+            this.cmbEmpleadosConsultas.Size = new System.Drawing.Size(195, 21);
             this.cmbEmpleadosConsultas.TabIndex = 4;
-            // 
-            // mtEmpleadosDesde
-            // 
-            this.mtEmpleadosDesde.BackColor = System.Drawing.Color.White;
-            this.mtEmpleadosDesde.Location = new System.Drawing.Point(364, 66);
-            this.mtEmpleadosDesde.Name = "mtEmpleadosDesde";
-            this.mtEmpleadosDesde.Size = new System.Drawing.Size(63, 20);
-            this.mtEmpleadosDesde.TabIndex = 2;
+            this.cmbEmpleadosConsultas.SelectedIndexChanged += new System.EventHandler(this.cmbEmpleadosConsultas_SelectedIndexChanged);
             // 
             // tbClientes
             // 
@@ -472,11 +512,6 @@
             this.dgvResultados.Size = new System.Drawing.Size(655, 211);
             this.dgvResultados.TabIndex = 1;
             // 
-            // saveExcelFileDialog
-            // 
-            this.saveExcelFileDialog.DefaultExt = "xls";
-            this.saveExcelFileDialog.Filter = "Archivos de Microsoft Office Excel|*.xls";
-            // 
             // ExportToExcel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -499,6 +534,10 @@
             this.gbPorTablasFiltros.PerformLayout();
             this.tbEmpleados.ResumeLayout(false);
             this.tbEmpleados.PerformLayout();
+            this.panelConsultasEmpleadoFecha.ResumeLayout(false);
+            this.panelConsultasEmpleadoFecha.PerformLayout();
+            this.panelConsultasEmpleadosNumeroEmpleado.ResumeLayout(false);
+            this.panelConsultasEmpleadosNumeroEmpleado.PerformLayout();
             this.tbClientes.ResumeLayout(false);
             this.tbClientes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResultados)).EndInit();
@@ -527,8 +566,7 @@
         private MaskedTextBoxKeyDown mtEmpleadosDesde;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private TextBoxKeyDown txtEmpleadosDescripcionConsulta;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private TextBoxKeyDown txtConsultasEmpleadosDescripcion;
         private System.Windows.Forms.Button btnEmpleadosConsultar;
         private MaskedTextBoxKeyDown maskedTextBoxKeyDown1;
         private System.Windows.Forms.TabPage tbClientes;
@@ -548,5 +586,10 @@
         private System.Windows.Forms.CheckBox cbPorTablasInactivos;
         private System.Windows.Forms.Label lblOrdenResultado;
         private System.Windows.Forms.SaveFileDialog saveExcelFileDialog;
+        private System.Windows.Forms.Panel panelConsultasEmpleadosNumeroEmpleado;
+        private System.Windows.Forms.Panel panelConsultasEmpleadoFecha;
+        private System.Windows.Forms.Label label9;
+        private MaskedTextBoxKeyDown mtConsultasEmpleadoFecha;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

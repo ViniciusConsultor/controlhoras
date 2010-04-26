@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Datos;
 using Utilidades;
+using System.Globalization;
 
 
 namespace ControlHoras
@@ -17,6 +18,8 @@ namespace ControlHoras
         private IDatos datos;
         private List<string> columnasSeleccionadas = null;
         private static ExportToExcel ventana = null;
+        private List<ConsultAsEmPleadOs> consultasEmpleados;
+        private string fechaMask = @"  /  /";
 
         private ExportToExcel()
         {
@@ -36,7 +39,7 @@ namespace ControlHoras
         {
             try
             {
-                //cargaResultados();
+                //cargaTabTablas();
                 List<string> schema = datos.obtenerNombreTablas();
                 List<string> tablasOcultas = new List<string> { "horariodia", "lineashoras" };
 
@@ -50,12 +53,29 @@ namespace ControlHoras
                         cmbTablas.Items.Add(tmpNombre);
                 }
                 cmbTablas.EndUpdate();
+
+                // cargaTabEmpleados
+                cmbEmpleadosConsultas.BeginUpdate();
+                consultasEmpleados = datos.obtenerConsultasEmpleados(true);
+                cmbEmpleadosConsultas.DataSource = consultasEmpleados;
+                cmbEmpleadosConsultas.DisplayMember = "Nombre";
+                cmbEmpleadosConsultas.ValueMember = "IDConsultaEmpleado";
+                cmbEmpleadosConsultas.EndUpdate();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        //private void CargarCombo(ComboBox cmb, Dictionary<int, string> docs)
+        //{
+        //    BindingSource bs = new BindingSource();
+        //    bs.DataSource = docs;
+        //    cmb.DataSource = bs;
+        //    cmb.ValueMember = "Key";
+        //    cmb.DisplayMember = "Value";
+        //}
 
         private void cargaGrillaResultados()
         {
@@ -65,11 +85,12 @@ namespace ControlHoras
                 
             //    n++;
             //}
+          
             try
             {
                 if (columnasSeleccionadas.Count >= 1)
                 {
-                    DataSet dataTable = datos.obtenerDataFromTable(cmbTablas.SelectedItem.ToString(), columnasSeleccionadas);
+                    DataSet dataTable = datos.obtenerDataFromTable(cmbTablas.SelectedItem.ToString(), columnasSeleccionadas, cbPorTablasInactivos.Checked);
                     dgvResultados.DataSource = dataTable.Tables[0];
                 }else
                     MessageBox.Show("Debe seleccionar por lo menos una campo para consultar.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -254,5 +275,83 @@ namespace ControlHoras
             ventana = null;
         }
 
+        private void tcConsultas_TabIndexChanged(object sender, EventArgs e)
+        {
+            dgvResultados.Rows.Clear();
+        }
+
+        private void cmbEmpleadosConsultas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int s;
+            if (cmbEmpleadosConsultas.SelectedValue != null && int.TryParse(cmbEmpleadosConsultas.SelectedValue.ToString(),out s))
+            {
+                ConsultAsEmPleadOs cons = consultasEmpleados[consultasEmpleados.IndexOf((ConsultAsEmPleadOs)cmbEmpleadosConsultas.SelectedItem)];
+               
+                txtConsultasEmpleadosDescripcion.Text = cons.Descripcion;
+                if (cons.Query.Contains("FECHA"))
+                {
+                    panelConsultasEmpleadoFecha.Visible = true;
+                }
+                else
+                    panelConsultasEmpleadoFecha.Visible = false;
+                
+                
+            }
+        }
+
+        private bool ValidarFecha(string fecha)
+        {
+            DateTime dt;
+            DateTimeStyles dts = new DateTimeStyles();
+
+            if (fecha == fechaMask)
+                return true;
+            else
+                return DateTime.TryParseExact(fecha, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo, dts, out dt);
+        }
+
+        private void mtConsultasEmpleadoFecha_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(mtConsultasEmpleadoFecha.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(mtConsultasEmpleadoFecha, "No es una fecha válida");
+            }
+        }
+
+        private void mtConsultasEmpleadoFecha_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(mtConsultasEmpleadoFecha, "");
+        }
+
+        private void btnEmpleadosConsultar_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, string> parametrosQuery = new Dictionary<string, string>();
+            if (consultasEmpleados[consultasEmpleados.IndexOf((ConsultAsEmPleadOs)cmbEmpleadosConsultas.SelectedItem)].Query.Contains("FECHA") && panelConsultasEmpleadoFecha.Visible)
+            {
+                if (mtConsultasEmpleadoFecha.Text == fechaMask)
+                    MessageBox.Show("Debe llegar el campo fecha para la consulta.", "Llenar Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    try
+                    {
+                        parametrosQuery.Add("FECHA", mtConsultasEmpleadoFecha.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+            }
+            try
+            {
+                DataSet ds = datos.ejecutarConsultaEmpleado(int.Parse(cmbEmpleadosConsultas.SelectedValue.ToString()), parametrosQuery);
+                dgvResultados.DataSource = ds.Tables[0];
+                btnExportToExcel.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
