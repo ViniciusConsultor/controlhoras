@@ -10,6 +10,7 @@ using MySql.Data.MySqlClient;
 using Excepciones;
 using System.Data;
 using System.Configuration;
+using System.Globalization;
 
 namespace Datos
 {
@@ -444,7 +445,7 @@ namespace Datos
         #endregion
 
         #region ABM_Empleados
-        public void altaEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, string nacionalidad, char sexo, DateTime? fechaPsicologo, DateTime? fechaNacimiento, int edad, DateTime? fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadMenoresACargo, byte[] foto, int idBanco, string numeroCuenta, float sueldo, bool activo, DateTime? fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string barrio, string codigoPostal, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime? fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime? fechaAltaBPS, bool bajaBPS, DateTime? fechaBajaBPS, string numeroCAJ, DateTime? fechaEmisionCAJ, DateTime? fechaEntregaCAJ, bool antecedentesEmpleado, string observacionesAntecedentesEmpleado, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime? fechaIngresoAntecedete, DateTime? fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime? vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica, bool capacitadoPorteArma, bool enservicioArmado, string observacionesEmpleado, string nivelEducativo, int idCargo, DateTime? fechaAltaMTSS, bool bajaMTSS, DateTime? fechaBajaMTSS, DateTime? fechaEgreso)
+        public void altaEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, string nacionalidad, char sexo, DateTime? fechaPsicologo, DateTime? fechaNacimiento, int edad, DateTime? fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadMenoresACargo, byte[] foto, float valorHora, bool activo, DateTime? fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string barrio, string codigoPostal, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime? fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime? fechaAltaBPS, bool bajaBPS, DateTime? fechaBajaBPS, string numeroCAJ, DateTime? fechaEmisionCAJ, DateTime? fechaEntregaCAJ, bool antecedentesEmpleado, string observacionesAntecedentesEmpleado, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime? fechaIngresoAntecedete, DateTime? fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime? vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica, bool capacitadoPorteArma, bool enservicioArmado, string observacionesEmpleado, string nivelEducativo, int idCargo, DateTime fechaPagoEfectuado, DateTime fechaPrevistaPago, String servicioActual, string turno)
         {
             Table<EmPleadOs> tablaEmpleados;
             try
@@ -522,9 +523,14 @@ namespace Datos
                 else
                     emp.AntecedentesPolicialesOmIlitares = 0;
 
-                emp.SueldoActual = sueldo;
-                emp.IDBanco = (byte)idBanco;
-                emp.NumeroCuenta = numeroCuenta;
+                emp.ServicioActual = servicioActual;
+                emp.Turno = turno;
+                emp.ValorHora = valorHora;
+                emp.FechaPrevistaPago = fechaPrevistaPago;
+                emp.FechaPagoEfectuado = fechaPagoEfectuado;
+                //emp.SueldoActual = sueldo;
+                //emp.IDBanco = (byte)idBanco;
+                //emp.NumeroCuenta = numeroCuenta;
                 emp.Observaciones = observacionesEmpleado;
                 emp.CajnUmero = numeroCAJ;
                 emp.CajfEchaEmision = fechaEmisionCAJ;
@@ -538,12 +544,12 @@ namespace Datos
                 emp.BpsfEchaBaja = fechaBajaBPS;
                 emp.FechaTestPsicologico = fechaPsicologo;
 
-                emp.MtssfEchaAlta = fechaAltaMTSS;
-                if (bajaMTSS)
-                    emp.MtsseSBaja = 1;
-                else
-                    emp.MtsseSBaja = 0;
-                emp.MtssfEchaBaja = fechaBajaMTSS;
+                //emp.MtssfEchaAlta = fechaAltaMTSS;
+                //if (bajaMTSS)
+                //    emp.MtsseSBaja = 1;
+                //else
+                //    emp.MtsseSBaja = 0;
+                //emp.MtssfEchaBaja = fechaBajaMTSS;
 
                 emp.SubEscalafonPolicial = subEscalafon;
                 if (combatiente)
@@ -554,7 +560,7 @@ namespace Datos
                 emp.RenaemsenUmeroAsunto = numeroAsuntoRENAEMSE;
                 emp.NivelEducativo = nivelEducativo;
                 emp.IDCargo = (short)idCargo;
-                emp.FechaPagoFinal = fechaEgreso;
+                //emp.FechaPagoFinal = fechaEgreso;
                 emp.Activo = 1;
 
                 tablaEmpleados.InsertOnSubmit(emp);
@@ -568,7 +574,7 @@ namespace Datos
 
         }
         //public void modificarEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, string nacionalidad, char sexo, DateTime fechaPsicologo, DateTime fechaNacimiento, DateTime fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadHijos, byte[] foto, int idBanco, string numeroCuenta, float sueldo, bool activo, DateTime fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime fechaAltaBPS, DateTime fechaBajaBPS, string numeroCAJ, DateTime fechaEmisionCAJ, DateTime fechaEntregaCAJ, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime fechaIngresoAntecedete, DateTime fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica)
-        public void modificarEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, string nacionalidad, char sexo, DateTime? fechaPsicologo, DateTime? fechaNacimiento, int edad, DateTime? fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadMenoresACargo, byte[] foto, int idBanco, string numeroCuenta, float sueldo, bool activo, DateTime? fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string barrio, string codigoPostal, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime? fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime? fechaAltaBPS, bool bajaBPS, DateTime? fechaBajaBPS, string numeroCAJ, DateTime? fechaEmisionCAJ, DateTime? fechaEntregaCAJ, bool antecedentesEmpleado, string observacionesAntecedentesEmpleado, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime? fechaIngresoAntecedete, DateTime? fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime? vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica, bool capacitadoPorteArma, bool enservicioArmado, string observacionesEmpleado, string nivelEducativo, int idCargo, DateTime? fechaAltaMTSS, bool bajaMTSS, DateTime? fechaBajaMTSS, DateTime? fechaEgreso)
+        public void modificarEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, string nacionalidad, char sexo, DateTime? fechaPsicologo, DateTime? fechaNacimiento, int edad, DateTime? fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadMenoresACargo, byte[] foto, float valorHora, bool activo, DateTime? fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string barrio, string codigoPostal, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime? fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime? fechaAltaBPS, bool bajaBPS, DateTime? fechaBajaBPS, string numeroCAJ, DateTime? fechaEmisionCAJ, DateTime? fechaEntregaCAJ, bool antecedentesEmpleado, string observacionesAntecedentesEmpleado, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime? fechaIngresoAntecedete, DateTime? fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime? vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica, bool capacitadoPorteArma, bool enservicioArmado, string observacionesEmpleado, string nivelEducativo, int idCargo, DateTime fechaPagoEfectuado, DateTime fechaPrevistaPago, String servicioActual, string turno)
         {
             Table<EmPleadOs> tablaEmpleados;
             try
@@ -648,10 +654,14 @@ namespace Datos
                 else
                     emp.AntecedentesPolicialesOmIlitares = 0;
 
-
-                emp.SueldoActual = sueldo;
-                emp.IDBanco = (byte)idBanco;
-                emp.NumeroCuenta = numeroCuenta;
+                emp.ServicioActual = servicioActual;
+                emp.Turno = turno;
+                emp.ValorHora = valorHora;
+                emp.FechaPrevistaPago = fechaPrevistaPago;
+                emp.FechaPagoEfectuado = fechaPagoEfectuado;
+                //emp.SueldoActual = sueldo;
+                //emp.IDBanco = (byte)idBanco;
+                //emp.NumeroCuenta = numeroCuenta;
                 emp.Observaciones = observacionesEmpleado;
                 emp.CajnUmero = numeroCAJ;
                 emp.CajfEchaEmision = fechaEmisionCAJ;
@@ -665,12 +675,12 @@ namespace Datos
                 emp.BpsfEchaBaja = fechaBajaBPS;
                 emp.FechaTestPsicologico = fechaPsicologo;
 
-                emp.MtssfEchaAlta = fechaAltaMTSS;
-                if (bajaMTSS)
-                    emp.MtsseSBaja = 1;
-                else
-                    emp.MtsseSBaja = 0;
-                emp.MtssfEchaBaja = fechaBajaMTSS;
+                //emp.MtssfEchaAlta = fechaAltaMTSS;
+                //if (bajaMTSS)
+                //    emp.MtsseSBaja = 1;
+                //else
+                //    emp.MtsseSBaja = 0;
+                //emp.MtssfEchaBaja = fechaBajaMTSS;
                 
                 emp.SubEscalafonPolicial = subEscalafon;
                 if (combatiente)
@@ -686,7 +696,7 @@ namespace Datos
                     emp.Activo = 0;
 
                 emp.IDCargo = (short)idCargo;
-                emp.FechaPagoFinal = fechaEgreso;
+                //emp.FechaPagoFinal = fechaEgreso;
 
 
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
@@ -836,7 +846,6 @@ namespace Datos
                 throw ex;
             }
         }
-
         public List<EmPleadOs> buscarEmpleaos(string CampoBusqueda, string patronBusqueda)
         {
             try
@@ -874,6 +883,67 @@ namespace Datos
                         throw new NoExisteException("No existe el Campo de Busqueda " + CampoBusqueda);
                 }
                 return emps;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
+
+        #region Consultas
+        public List<ConsultAsEmPleadOs> obtenerConsultasEmpleados(bool soloactivos)
+        {
+            List<ConsultAsEmPleadOs> lista = new List<ConsultAsEmPleadOs>();
+
+            try
+            {
+                sbyte activos = 0;
+                if (soloactivos)
+                    activos = 1;
+
+                lista = (from reg in database.GetTable<ConsultAsEmPleadOs>()
+                         where reg.Activo == activos   //&&reg.Activo == 0
+                         select reg).ToList();
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
+
+        public DataSet ejecutarConsultaEmpleado(int numeroConsultaEmpleado, Dictionary<string, string> parametrosConsulta)
+        {
+            try
+            {
+                ConsultAsEmPleadOs consEmp = (from reg in database.GetTable<ConsultAsEmPleadOs>()
+                                        where reg.IDConsultaEmpleado == numeroConsultaEmpleado
+                                        select reg).Single();
+                if (consEmp != null)
+                {
+                    string sql = consEmp.Query;
+                    if (consEmp.Query.Contains("FECHA"))
+                        if (parametrosConsulta.ContainsKey("FECHA"))
+                        {
+                            string[] fecha = parametrosConsulta["FECHA"].Split('/');
+                            DateTime dt = new DateTime(int.Parse(fecha[2]), int.Parse(fecha[1]), int.Parse(fecha[0]));
+                            string fecha2 = String.Format("{0:yyyy-MM-dd}", dt);
+                            sql = sql.Replace("FECHA", fecha2);
+                        }
+
+
+                    MySqlConnection conexion = (MySqlConnection)database.Connection;
+
+                    MySqlDataAdapter mysqlAdapter = new MySqlDataAdapter(sql, conexion);
+                    DataSet sd = new DataSet();
+                    mysqlAdapter.Fill(sd);
+                    conexion.Close();
+                    return sd;
+                }
+                throw new Exception("Error al ejecutar la consulta para obtener el query");
             }
             catch (Exception ex)
             {
@@ -1524,7 +1594,7 @@ namespace Datos
                 throw ex;
             }
         }
-        public DataSet obtenerDataFromTable(string nombreTabla, List<string> listaColumnas)
+        public DataSet obtenerDataFromTable(string nombreTabla, List<string> listaColumnas, bool incluirInactivos)
         {
             try
             {
@@ -1542,7 +1612,10 @@ namespace Datos
                     }
 
                 string sql = "SELECT " + campos + " FROM " + nombreTabla;
-                                
+                if (obtenerTableColumnsName(obtenerNombreBaseDatos()+"."+nombreTabla).Contains("Activo"))
+                    if (!incluirInactivos)
+                        sql += " where Activo = 1";
+                    
                 MySqlDataAdapter mysqlAdapter = new MySqlDataAdapter(sql, conexion);
                 DataSet sd = new DataSet();
                 mysqlAdapter.Fill(sd);
@@ -1566,7 +1639,7 @@ namespace Datos
                 database.Connection.Close();
                 foreach (var tabla in dataTables.GetTables())
                 {
-                    if (tabla.TableName == nombreTabla)
+                    if (tabla.TableName ==nombreTabla)
                     {
                         foreach (var column in tabla.RowType.DataMembers)
                         {
