@@ -139,7 +139,7 @@ namespace Logica
         {
            
 
-                            Empleado empleado = new Empleado();
+                            Empleado empleado = new Empleado();/*
                 try{
                     empleado.Antecedentes = false;
                 }catch(Exception e){}
@@ -314,7 +314,7 @@ namespace Logica
                 //    empleado.Activo = cliEmpleado;
                 //}
                 //catch (Exception e) { }
-                            
+                       */     
                 return empleado;
         }
         #endregion
