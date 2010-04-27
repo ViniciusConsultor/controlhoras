@@ -50,13 +50,19 @@ CREATE TABLE `consultasclientes` (
   PRIMARY KEY (`idConsultaCliente`));
  
 -- Consulta Personal Jornalero Activo
-insert into consultasempleados values (0,"Personal Jornalero Activo","Consulta que devuelve la CI, Apellidos, Nombres, FechaNacimiento, FechaIngreso, NumeroEmpleado, Cargo, ValorHora y el Turno de todos los empleados jornaleros activos.","select emp.NumeroDocumento, emp.Apellido, emp.Nombre, emp.FechaNacimiento, emp.FechaIngreso, emp.idEmpleado, c.Descripcion as Cargo, emp.ValorHora, emp.Turno from empleados emp, TiposCargos c where emp.Activo=1 and emp.IdCargo = c.IdCargo and c.TipoFacturacion='JORNALERO'",1)
+insert into consultasempleados values (0,"Personal Jornalero Activo","Consulta que devuelve la CI, Apellidos, Nombres, FechaNacimiento, FechaIngreso, NumeroEmpleado, Cargo, ValorHora y el Turno de todos los empleados jornaleros activos.","select emp.NumeroDocumento, emp.Apellido, emp.Nombre, emp.FechaNacimiento, emp.FechaIngreso, emp.idEmpleado, c.Descripcion as Cargo, emp.ValorHora, emp.ServicioActual, emp.Turno from empleados emp, TiposCargos c where emp.Activo=1 and emp.IdCargo = c.IdCargo and c.TipoFacturacion='JORNALERO'",1);
 
 -- Consulta Personal Mensual Activo
-insert into consultasempleados values (0,"Personal Mensual Activo","Consulta que devuelve la CI, Apellidos, Nombres, FechaNacimiento, FechaIngreso, NumeroEmpleado, Cargo, ValorHora y el Turno de todos los empleados MENSUALES activos.","select emp.NumeroDocumento, emp.Apellido, emp.Nombre, emp.FechaNacimiento, emp.FechaIngreso, emp.idEmpleado, c.Descripcion as Cargo, emp.ValorHora, emp.Turno from empleados emp, TiposCargos c where emp.Activo=1 and emp.IdCargo = c.IdCargo and c.TipoFacturacion='MENSUAL'",1);
+insert into consultasempleados values (0,"Personal Mensual Activo","Consulta que devuelve la CI, Apellidos, Nombres, FechaNacimiento, FechaIngreso, NumeroEmpleado, Cargo, ValorHora y el Turno de todos los empleados MENSUALES activos.","select emp.NumeroDocumento, emp.Apellido, emp.Nombre, emp.FechaNacimiento, emp.FechaIngreso, emp.idEmpleado, c.Descripcion as Cargo, emp.ServicioActual, emp.Turno from empleados emp, TiposCargos c where emp.Activo=1 and emp.IdCargo = c.IdCargo and c.TipoFacturacion='MENSUAL'",1);
 
 -- Listado de Telefonos de Personal Jornalero Activo
 insert into consultasempleados values (0,"Listado de Telefonos de Personal Jornalero Activo","Consulta que devuelve el NumeroEmpleado, CelularConvenio, NumeroDocumento, Apellidos, Nombres, ServicioActual y Turno de todos los empleados JORNALEROS activos.","select idEmpleado, CelularenConvenio, NumeroDocumento, Apellido, empleados.Nombre, ServicioActual, Turno from empleados , tiposcargos where empleados.Activo=1 and tiposcargos.idCargo=empleados.idCargo and tiposcargos.TipoFacturacion='JORNALERO';",1);
 
 -- Personal Baja pero no tiene Pagado el Egreso
 insert into consultasempleados values (0,"Personal de Baja que no tiene Pagado el Egreso","Consulta que devuelve el CI, Apellidos, Nombres, FechaNacimiento, FechaIngreso, FechaBaja, NumeroEmpleado, Cargo, ValorHora y el Turno de todos los empleados JORNALEROS activos.","select emp.NumeroDocumento, emp.Apellido, emp.Nombre, emp.FechaNacimiento, emp.FechaIngreso, emp.FechaBaja, emp.idEmpleado, c.Descripcion as Cargo, emp.ValorHora, emp.Turno from empleados emp, tiposcargos c where emp.Activo=0 and c.IdCargo=emp.idCargo and FechaPrevistaPago='FECHA'",1);
+
+-- 
+insert into consultasempleados values (0,"Personal Liquidadas y no Cobraron","Consulta que devuelve el CI, Apellidos, Nombres, FechaNacimiento, FechaIngreso, NumeroEmpleado, Cargo, ServicioActual, Turno y FechaBaja de todos los empleados dados de Baja pero que tienen para liquidar el Egreso.","select emp.NumeroDocumento, emp.Apellido, emp.Nombre, emp.FechaNacimiento, emp.FechaIngreso,  emp.idEmpleado, c.Descripcion as Cargo, emp.ServicioActual, emp.Turno, emp.FechaBaja from empleados emp, tiposcargos c where emp.Activo=0 and c.IdCargo=emp.idCargo and FechaPrevistaPago<now() and FechaPagoEfectuado is null,1);
+
+
+-- Cambiar todos los empleados a Vigilante Auxiliar
