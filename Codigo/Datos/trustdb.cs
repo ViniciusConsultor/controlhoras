@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2010-04-26 16:39:37Z
+#region Auto-generated classes for trustdb database on 2010-04-28 10:11:45Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2010-04-26 16:39:37Z
+// Auto-generated from trustdb on 2010-04-28 10:11:45Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -1970,6 +1970,8 @@ namespace Datos
 		partial void OnCodigoPostalChanging(string value);
 		partial void OnCombatienteMilitarChanged();
 		partial void OnCombatienteMilitarChanging(sbyte? value);
+		partial void OnConstanciaDomicilioChanged();
+		partial void OnConstanciaDomicilioChanging(sbyte? value);
 		partial void OnDireccionChanged();
 		partial void OnDireccionChanging(string value);
 		partial void OnDireccionDeEncuentroChanged();
@@ -1988,6 +1990,8 @@ namespace Datos
 		partial void OnFechaBajaChanging(DateTime? value);
 		partial void OnFechaEgresoPolicialoMilitarChanged();
 		partial void OnFechaEgresoPolicialoMilitarChanging(DateTime? value);
+		partial void OnFechaEntregaCelularChanged();
+		partial void OnFechaEntregaCelularChanging(DateTime? value);
 		partial void OnFechaIngresoChanged();
 		partial void OnFechaIngresoChanging(DateTime? value);
 		partial void OnFechaIngresoPolicialoMilitarChanged();
@@ -2020,8 +2024,6 @@ namespace Datos
 		partial void OnLugarDeNacimientoChanging(string value);
 		partial void OnMotivoBajaChanged();
 		partial void OnMotivoBajaChanging(string value);
-		partial void OnNacionalidadChanged();
-		partial void OnNacionalidadChanging(string value);
 		partial void OnNivelEducativoChanged();
 		partial void OnNivelEducativoChanging(string value);
 		partial void OnNoHabilitadoParaServicioChanged();
@@ -2557,6 +2559,32 @@ namespace Datos
 
 		#endregion
 
+		#region sbyte? ConstanciaDomicilio
+
+		private sbyte? _constanciaDomicilio;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_constanciaDomicilio", Name = "ConstanciaDomicilio", DbType = "tinyint(1)", AutoSync = AutoSync.Never)]
+		public sbyte? ConstanciaDomicilio
+		{
+			get
+			{
+				return _constanciaDomicilio;
+			}
+			set
+			{
+				if (value != _constanciaDomicilio)
+				{
+					OnConstanciaDomicilioChanging(value);
+					SendPropertyChanging();
+					_constanciaDomicilio = value;
+					SendPropertyChanged("ConstanciaDomicilio");
+					OnConstanciaDomicilioChanged();
+				}
+			}
+		}
+
+		#endregion
+
 		#region string Direccion
 
 		private string _direccion;
@@ -2785,6 +2813,32 @@ namespace Datos
 					_fechaEgresoPolicialoMilitar = value;
 					SendPropertyChanged("FechaEgresoPolicialoMilitar");
 					OnFechaEgresoPolicialoMilitarChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region DateTime? FechaEntregaCelular
+
+		private DateTime? _fechaEntregaCelular;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_fechaEntregaCelular", Name = "FechaEntregaCelular", DbType = "date", AutoSync = AutoSync.Never)]
+		public DateTime? FechaEntregaCelular
+		{
+			get
+			{
+				return _fechaEntregaCelular;
+			}
+			set
+			{
+				if (value != _fechaEntregaCelular)
+				{
+					OnFechaEntregaCelularChanging(value);
+					SendPropertyChanging();
+					_fechaEntregaCelular = value;
+					SendPropertyChanged("FechaEntregaCelular");
+					OnFechaEntregaCelularChanged();
 				}
 			}
 		}
@@ -3201,32 +3255,6 @@ namespace Datos
 					_motivoBaja = value;
 					SendPropertyChanged("MotivoBaja");
 					OnMotivoBajaChanged();
-				}
-			}
-		}
-
-		#endregion
-
-		#region string Nacionalidad
-
-		private string _nacionalidad;
-		[DebuggerNonUserCode]
-		[Column(Storage = "_nacionalidad", Name = "Nacionalidad", DbType = "varchar(50)", AutoSync = AutoSync.Never)]
-		public string Nacionalidad
-		{
-			get
-			{
-				return _nacionalidad;
-			}
-			set
-			{
-				if (value != _nacionalidad)
-				{
-					OnNacionalidadChanging(value);
-					SendPropertyChanging();
-					_nacionalidad = value;
-					SendPropertyChanged("Nacionalidad");
-					OnNacionalidadChanged();
 				}
 			}
 		}
