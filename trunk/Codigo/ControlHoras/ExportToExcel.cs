@@ -330,7 +330,7 @@ namespace ControlHoras
             if (consultasEmpleados[consultasEmpleados.IndexOf((ConsultAsEmPleadOs)cmbEmpleadosConsultas.SelectedItem)].Query.Contains("FECHA") && panelConsultasEmpleadoFecha.Visible)
             {
                 if (mtConsultasEmpleadoFecha.Text == fechaMask)
-                    MessageBox.Show("Debe llegar el campo fecha para la consulta.", "Llenar Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Debe llenar el campo fecha para la consulta.", "Llenar Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                     try
                     {

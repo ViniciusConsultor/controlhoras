@@ -87,7 +87,7 @@ namespace ControlHoras
                 }
                 try
                 {
-                    dirbase = ConfigurationManager.AppSettings["DocsPath"].ToString();
+                    //dirbase = ConfigurationManager.AppSettings["DocsPath"].ToString();
                 }
                 catch (Exception exDir)
                 {
@@ -260,8 +260,8 @@ namespace ControlHoras
             dtpFechaIngreso.Text = DateTime.Now.ToString();
             dtpFechaAltaBPS.Text = DateTime.Now.ToString();
             tcEmpleado.SelectedIndex = 0;
-            mtNumeroEmpleado.Focus();
-
+            //mtNumeroEmpleado.Focus();
+            mtNumeroDocumento.Focus();
         }
 
 
@@ -705,11 +705,11 @@ namespace ControlHoras
                 txtNumAsuntoRenaemse.Text = empleado.RenaemsenUmeroAsunto;
             }
             catch (Exception e) { }
-            //try
-            //{
-            //    txtServicioActual.Text = empleado.NumeroCuenta;
-            //}
-            //catch (Exception e) { }
+            try
+            {
+                txtServicioActual.Text = empleado.ServicioActual;
+            }
+            catch (Exception e) { }
             try
             {
                 mtNumeroDocumento.Text = empleado.NumeroDocumento;
@@ -743,11 +743,11 @@ namespace ControlHoras
                 txtPolicialSubEscalafon.Text = empleado.SubEscalafonPolicial;
             }
             catch (Exception e) { }
-            //try
-            //{
-            //    txtValorHora.Text = empleado.SueldoActual.ToString();
-            //}
-            //catch (Exception e) { }
+            try
+            {
+                txtValorHora.Text = empleado.ValorHora.ToString();
+            }
+            catch (Exception e) { }
             try
             {
                 txtTallePantalon.Text = empleado.TalleCamisa;
@@ -954,10 +954,7 @@ namespace ControlHoras
                 if (cmbEmergenciaMedica.SelectedItem != null)
                     idemergenciamovil = (int)cmbEmergenciaMedica.SelectedValue;
                 string estadoCivil = cmbEstadoCivil.Text;
-                int acumulacionLaboral = 0;
-                float sueldo = 0;
-                if (txtValorHora.Text != "")
-                    sueldo = float.Parse(txtValorHora.Text);
+                int acumulacionLaboral = 0;                
                 if (mtAcumulacionBPS.Text != "")
                     acumulacionLaboral = int.Parse(mtAcumulacionBPS.Text);
                 int cantMenoresACargo = 0;
@@ -2037,7 +2034,8 @@ namespace ControlHoras
 
         private void ABMEmpleados_Shown(object sender, EventArgs e)
         {
-            mtNumeroEmpleado.Focus();
+            //mtNumeroEmpleado.Focus();
+            mtNumeroDocumento.Focus();
         }
 
         private void ImprimirTSB_ButtonClick(object sender, EventArgs e)
@@ -2087,7 +2085,7 @@ namespace ControlHoras
 
                 mark = "nombre";
                 wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-                wrdRng.Text = txtNombre.Text + " " + txtApellido.Text;
+                wrdRng.Text = txtNombre.Text + " " + TranfaTitulo(txtApellido.Text);
 
                 mark = "estadocivil";
                 wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
@@ -2220,7 +2218,7 @@ namespace ControlHoras
 
                 mark = "nombre";
                 wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-                wrdRng.Text = txtNombre.Text + " " + txtApellido.Text;
+                wrdRng.Text = txtNombre.Text + " " + TranfaTitulo(txtApellido.Text);
 
                 mark = "ci";
                 wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
@@ -2335,7 +2333,7 @@ namespace ControlHoras
                 oSheet = (Excel._Worksheet)oWBook.ActiveSheet;
 
                 // Nombre
-                oSheet.Cells[16, 2] = txtApellido.Text + " " + txtNombre.Text;
+                oSheet.Cells[16, 2] = TranfaTitulo(txtApellido.Text) + " " + txtNombre.Text;
 
                 // C.I.
                 oSheet.Cells[18, 2] = "C.I. " + TranfCI(mtNumeroDocumento.Text);
