@@ -53,6 +53,7 @@
             this.mtConsultasEmpleadoFecha = new ControlHoras.MaskedTextBoxKeyDown();
             this.label9 = new System.Windows.Forms.Label();
             this.panelConsultasEmpleadosNumeroEmpleado = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.maskedTextBoxKeyDown1 = new ControlHoras.MaskedTextBoxKeyDown();
             this.mtEmpleadosDesde = new ControlHoras.MaskedTextBoxKeyDown();
@@ -126,7 +127,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 40);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -149,7 +150,7 @@
             this.tcConsultas.Controls.Add(this.tbClientes);
             this.tcConsultas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tcConsultas.Location = new System.Drawing.Point(0, 0);
-            this.tcConsultas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tcConsultas.Margin = new System.Windows.Forms.Padding(4);
             this.tcConsultas.Name = "tcConsultas";
             this.tcConsultas.SelectedIndex = 0;
             this.tcConsultas.Size = new System.Drawing.Size(873, 265);
@@ -166,9 +167,9 @@
             this.tbPorTablas.Controls.Add(this.btnCargar);
             this.tbPorTablas.Controls.Add(this.cmbTablas);
             this.tbPorTablas.Location = new System.Drawing.Point(4, 25);
-            this.tbPorTablas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPorTablas.Margin = new System.Windows.Forms.Padding(4);
             this.tbPorTablas.Name = "tbPorTablas";
-            this.tbPorTablas.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPorTablas.Padding = new System.Windows.Forms.Padding(4);
             this.tbPorTablas.Size = new System.Drawing.Size(865, 236);
             this.tbPorTablas.TabIndex = 0;
             this.tbPorTablas.Text = "Por Tablas";
@@ -192,9 +193,9 @@
             this.gbPorTablasFiltros.Controls.Add(this.lblPorTablaNombre);
             this.gbPorTablasFiltros.Controls.Add(this.cbPorTablasInactivos);
             this.gbPorTablasFiltros.Location = new System.Drawing.Point(11, 182);
-            this.gbPorTablasFiltros.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbPorTablasFiltros.Margin = new System.Windows.Forms.Padding(4);
             this.gbPorTablasFiltros.Name = "gbPorTablasFiltros";
-            this.gbPorTablasFiltros.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbPorTablasFiltros.Padding = new System.Windows.Forms.Padding(4);
             this.gbPorTablasFiltros.Size = new System.Drawing.Size(719, 46);
             this.gbPorTablasFiltros.TabIndex = 11;
             this.gbPorTablasFiltros.TabStop = false;
@@ -203,7 +204,7 @@
             // maskedTextBoxKeyDown5
             // 
             this.maskedTextBoxKeyDown5.Location = new System.Drawing.Point(419, 15);
-            this.maskedTextBoxKeyDown5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.maskedTextBoxKeyDown5.Margin = new System.Windows.Forms.Padding(4);
             this.maskedTextBoxKeyDown5.Name = "maskedTextBoxKeyDown5";
             this.maskedTextBoxKeyDown5.Size = new System.Drawing.Size(80, 22);
             this.maskedTextBoxKeyDown5.TabIndex = 22;
@@ -211,7 +212,7 @@
             // maskedTextBoxKeyDown4
             // 
             this.maskedTextBoxKeyDown4.Location = new System.Drawing.Point(264, 15);
-            this.maskedTextBoxKeyDown4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.maskedTextBoxKeyDown4.Margin = new System.Windows.Forms.Padding(4);
             this.maskedTextBoxKeyDown4.Name = "maskedTextBoxKeyDown4";
             this.maskedTextBoxKeyDown4.Size = new System.Drawing.Size(81, 22);
             this.maskedTextBoxKeyDown4.TabIndex = 21;
@@ -250,7 +251,7 @@
             // 
             this.cbPorTablasInactivos.AutoSize = true;
             this.cbPorTablasInactivos.Location = new System.Drawing.Point(549, 17);
-            this.cbPorTablasInactivos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbPorTablasInactivos.Margin = new System.Windows.Forms.Padding(4);
             this.cbPorTablasInactivos.Name = "cbPorTablasInactivos";
             this.cbPorTablasInactivos.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cbPorTablasInactivos.Size = new System.Drawing.Size(123, 21);
@@ -262,7 +263,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(737, 90);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(111, 43);
             this.button1.TabIndex = 10;
@@ -273,7 +274,7 @@
             // btnSeleccionarTodos
             // 
             this.btnSeleccionarTodos.Location = new System.Drawing.Point(737, 39);
-            this.btnSeleccionarTodos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSeleccionarTodos.Margin = new System.Windows.Forms.Padding(4);
             this.btnSeleccionarTodos.Name = "btnSeleccionarTodos";
             this.btnSeleccionarTodos.Size = new System.Drawing.Size(111, 43);
             this.btnSeleccionarTodos.TabIndex = 9;
@@ -286,7 +287,7 @@
             this.listBoxCampos.CheckOnClick = true;
             this.listBoxCampos.FormattingEnabled = true;
             this.listBoxCampos.Location = new System.Drawing.Point(11, 39);
-            this.listBoxCampos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBoxCampos.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxCampos.MultiColumn = true;
             this.listBoxCampos.Name = "listBoxCampos";
             this.listBoxCampos.Size = new System.Drawing.Size(717, 106);
@@ -296,7 +297,7 @@
             // btnCargar
             // 
             this.btnCargar.Location = new System.Drawing.Point(743, 182);
-            this.btnCargar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCargar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCargar.Name = "btnCargar";
             this.btnCargar.Size = new System.Drawing.Size(100, 28);
             this.btnCargar.TabIndex = 8;
@@ -309,7 +310,7 @@
             this.cmbTablas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.cmbTablas.FormattingEnabled = true;
             this.cmbTablas.Location = new System.Drawing.Point(313, 5);
-            this.cmbTablas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbTablas.Margin = new System.Windows.Forms.Padding(4);
             this.cmbTablas.Name = "cmbTablas";
             this.cmbTablas.Size = new System.Drawing.Size(231, 24);
             this.cmbTablas.TabIndex = 6;
@@ -324,9 +325,9 @@
             this.tbEmpleados.Controls.Add(this.txtConsultasEmpleadosDescripcion);
             this.tbEmpleados.Controls.Add(this.cmbEmpleadosConsultas);
             this.tbEmpleados.Location = new System.Drawing.Point(4, 25);
-            this.tbEmpleados.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbEmpleados.Margin = new System.Windows.Forms.Padding(4);
             this.tbEmpleados.Name = "tbEmpleados";
-            this.tbEmpleados.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbEmpleados.Padding = new System.Windows.Forms.Padding(4);
             this.tbEmpleados.Size = new System.Drawing.Size(865, 236);
             this.tbEmpleados.TabIndex = 1;
             this.tbEmpleados.Text = "Empleados";
@@ -336,8 +337,8 @@
             // 
             this.panelConsultasEmpleadoFecha.Controls.Add(this.mtConsultasEmpleadoFecha);
             this.panelConsultasEmpleadoFecha.Controls.Add(this.label9);
-            this.panelConsultasEmpleadoFecha.Location = new System.Drawing.Point(279, 89);
-            this.panelConsultasEmpleadoFecha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelConsultasEmpleadoFecha.Location = new System.Drawing.Point(425, 89);
+            this.panelConsultasEmpleadoFecha.Margin = new System.Windows.Forms.Padding(4);
             this.panelConsultasEmpleadoFecha.Name = "panelConsultasEmpleadoFecha";
             this.panelConsultasEmpleadoFecha.Size = new System.Drawing.Size(333, 73);
             this.panelConsultasEmpleadoFecha.TabIndex = 11;
@@ -364,48 +365,64 @@
             // 
             // panelConsultasEmpleadosNumeroEmpleado
             // 
+            this.panelConsultasEmpleadosNumeroEmpleado.Controls.Add(this.label10);
             this.panelConsultasEmpleadosNumeroEmpleado.Controls.Add(this.label1);
             this.panelConsultasEmpleadosNumeroEmpleado.Controls.Add(this.maskedTextBoxKeyDown1);
             this.panelConsultasEmpleadosNumeroEmpleado.Controls.Add(this.mtEmpleadosDesde);
             this.panelConsultasEmpleadosNumeroEmpleado.Controls.Add(this.label2);
-            this.panelConsultasEmpleadosNumeroEmpleado.Location = new System.Drawing.Point(301, 89);
-            this.panelConsultasEmpleadosNumeroEmpleado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelConsultasEmpleadosNumeroEmpleado.Location = new System.Drawing.Point(425, 170);
+            this.panelConsultasEmpleadosNumeroEmpleado.Margin = new System.Windows.Forms.Padding(4);
             this.panelConsultasEmpleadosNumeroEmpleado.Name = "panelConsultasEmpleadosNumeroEmpleado";
-            this.panelConsultasEmpleadosNumeroEmpleado.Size = new System.Drawing.Size(515, 46);
+            this.panelConsultasEmpleadosNumeroEmpleado.Size = new System.Drawing.Size(426, 46);
             this.panelConsultasEmpleadosNumeroEmpleado.TabIndex = 10;
             this.panelConsultasEmpleadosNumeroEmpleado.Visible = false;
             // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(143, 14);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(49, 17);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "Desde";
+            // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 15);
+            this.label1.Location = new System.Drawing.Point(19, 14);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(182, 17);
+            this.label1.Size = new System.Drawing.Size(98, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Numero Empleado    Desde";
+            this.label1.Text = "Nro Empleado";
             // 
             // maskedTextBoxKeyDown1
             // 
-            this.maskedTextBoxKeyDown1.Location = new System.Drawing.Point(399, 11);
-            this.maskedTextBoxKeyDown1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.maskedTextBoxKeyDown1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.maskedTextBoxKeyDown1.Location = new System.Drawing.Point(334, 12);
+            this.maskedTextBoxKeyDown1.Margin = new System.Windows.Forms.Padding(4);
             this.maskedTextBoxKeyDown1.Name = "maskedTextBoxKeyDown1";
             this.maskedTextBoxKeyDown1.Size = new System.Drawing.Size(83, 22);
             this.maskedTextBoxKeyDown1.TabIndex = 9;
             // 
             // mtEmpleadosDesde
             // 
+            this.mtEmpleadosDesde.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mtEmpleadosDesde.BackColor = System.Drawing.Color.White;
-            this.mtEmpleadosDesde.Location = new System.Drawing.Point(228, 11);
-            this.mtEmpleadosDesde.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mtEmpleadosDesde.Location = new System.Drawing.Point(192, 12);
+            this.mtEmpleadosDesde.Margin = new System.Windows.Forms.Padding(4);
             this.mtEmpleadosDesde.Name = "mtEmpleadosDesde";
             this.mtEmpleadosDesde.Size = new System.Drawing.Size(83, 22);
             this.mtEmpleadosDesde.TabIndex = 2;
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(344, 15);
+            this.label2.Location = new System.Drawing.Point(288, 14);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 17);
@@ -415,7 +432,7 @@
             // btnEmpleadosConsultar
             // 
             this.btnEmpleadosConsultar.Location = new System.Drawing.Point(69, 160);
-            this.btnEmpleadosConsultar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEmpleadosConsultar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEmpleadosConsultar.Name = "btnEmpleadosConsultar";
             this.btnEmpleadosConsultar.Size = new System.Drawing.Size(100, 28);
             this.btnEmpleadosConsultar.TabIndex = 8;
@@ -435,11 +452,11 @@
             // 
             // txtConsultasEmpleadosDescripcion
             // 
-            this.txtConsultasEmpleadosDescripcion.Location = new System.Drawing.Point(279, 14);
-            this.txtConsultasEmpleadosDescripcion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtConsultasEmpleadosDescripcion.Location = new System.Drawing.Point(425, 14);
+            this.txtConsultasEmpleadosDescripcion.Margin = new System.Windows.Forms.Padding(4);
             this.txtConsultasEmpleadosDescripcion.Multiline = true;
             this.txtConsultasEmpleadosDescripcion.Name = "txtConsultasEmpleadosDescripcion";
-            this.txtConsultasEmpleadosDescripcion.Size = new System.Drawing.Size(572, 67);
+            this.txtConsultasEmpleadosDescripcion.Size = new System.Drawing.Size(426, 67);
             this.txtConsultasEmpleadosDescripcion.TabIndex = 6;
             // 
             // cmbEmpleadosConsultas
@@ -448,9 +465,9 @@
             this.cmbEmpleadosConsultas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEmpleadosConsultas.FormattingEnabled = true;
             this.cmbEmpleadosConsultas.Location = new System.Drawing.Point(11, 33);
-            this.cmbEmpleadosConsultas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbEmpleadosConsultas.Margin = new System.Windows.Forms.Padding(4);
             this.cmbEmpleadosConsultas.Name = "cmbEmpleadosConsultas";
-            this.cmbEmpleadosConsultas.Size = new System.Drawing.Size(259, 24);
+            this.cmbEmpleadosConsultas.Size = new System.Drawing.Size(378, 24);
             this.cmbEmpleadosConsultas.TabIndex = 4;
             this.cmbEmpleadosConsultas.SelectedIndexChanged += new System.EventHandler(this.cmbEmpleadosConsultas_SelectedIndexChanged);
             // 
@@ -464,10 +481,10 @@
             this.tbClientes.Controls.Add(this.txtClientesDescripcionConsulta);
             this.tbClientes.Controls.Add(this.cmbClientesConsultas);
             this.tbClientes.Location = new System.Drawing.Point(4, 25);
-            this.tbClientes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbClientes.Margin = new System.Windows.Forms.Padding(4);
             this.tbClientes.Name = "tbClientes";
-            this.tbClientes.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tbClientes.Size = new System.Drawing.Size(865, 234);
+            this.tbClientes.Padding = new System.Windows.Forms.Padding(4);
+            this.tbClientes.Size = new System.Drawing.Size(865, 236);
             this.tbClientes.TabIndex = 2;
             this.tbClientes.Text = "Clientes";
             this.tbClientes.UseVisualStyleBackColor = true;
@@ -505,7 +522,7 @@
             // maskedTextBoxKeyDown3
             // 
             this.maskedTextBoxKeyDown3.Location = new System.Drawing.Point(663, 80);
-            this.maskedTextBoxKeyDown3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.maskedTextBoxKeyDown3.Margin = new System.Windows.Forms.Padding(4);
             this.maskedTextBoxKeyDown3.Name = "maskedTextBoxKeyDown3";
             this.maskedTextBoxKeyDown3.Size = new System.Drawing.Size(83, 22);
             this.maskedTextBoxKeyDown3.TabIndex = 4;
@@ -513,7 +530,7 @@
             // maskedTextBoxKeyDown2
             // 
             this.maskedTextBoxKeyDown2.Location = new System.Drawing.Point(480, 80);
-            this.maskedTextBoxKeyDown2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.maskedTextBoxKeyDown2.Margin = new System.Windows.Forms.Padding(4);
             this.maskedTextBoxKeyDown2.Name = "maskedTextBoxKeyDown2";
             this.maskedTextBoxKeyDown2.Size = new System.Drawing.Size(83, 22);
             this.maskedTextBoxKeyDown2.TabIndex = 3;
@@ -521,7 +538,7 @@
             // txtClientesDescripcionConsulta
             // 
             this.txtClientesDescripcionConsulta.Location = new System.Drawing.Point(248, 15);
-            this.txtClientesDescripcionConsulta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtClientesDescripcionConsulta.Margin = new System.Windows.Forms.Padding(4);
             this.txtClientesDescripcionConsulta.Multiline = true;
             this.txtClientesDescripcionConsulta.Name = "txtClientesDescripcionConsulta";
             this.txtClientesDescripcionConsulta.Size = new System.Drawing.Size(599, 45);
@@ -533,7 +550,7 @@
             this.cmbClientesConsultas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbClientesConsultas.FormattingEnabled = true;
             this.cmbClientesConsultas.Location = new System.Drawing.Point(11, 34);
-            this.cmbClientesConsultas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbClientesConsultas.Margin = new System.Windows.Forms.Padding(4);
             this.cmbClientesConsultas.Name = "cmbClientesConsultas";
             this.cmbClientesConsultas.Size = new System.Drawing.Size(208, 24);
             this.cmbClientesConsultas.TabIndex = 0;
@@ -545,9 +562,10 @@
             this.dgvResultados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvResultados.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvResultados.Location = new System.Drawing.Point(0, 0);
-            this.dgvResultados.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvResultados.Margin = new System.Windows.Forms.Padding(4);
             this.dgvResultados.Name = "dgvResultados";
             this.dgvResultados.ReadOnly = true;
+            this.dgvResultados.RowTemplate.Height = 24;
             this.dgvResultados.Size = new System.Drawing.Size(873, 262);
             this.dgvResultados.TabIndex = 1;
             // 
@@ -558,7 +576,7 @@
             this.ClientSize = new System.Drawing.Size(873, 572);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ExportToExcel";
             this.Text = "ExportToExcel";
             this.Load += new System.EventHandler(this.ExportToExcel_Load);
@@ -631,5 +649,6 @@
         private System.Windows.Forms.Label label9;
         private MaskedTextBoxKeyDown mtConsultasEmpleadoFecha;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Label label10;
     }
 }
