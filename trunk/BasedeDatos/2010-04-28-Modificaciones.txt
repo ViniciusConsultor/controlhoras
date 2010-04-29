@@ -1,1 +1,2 @@
+-- Elimina Nacionalidad, agrega ConstaciaDomicilio y FechaEntregaCelular
 ALTER TABLE `trustdb`.`empleados` DROP COLUMN `Nacionalidad` , ADD COLUMN `ConstanciaDomicilio` TINYINT(1) NULL DEFAULT 0  AFTER `FechaTestPsicologico` , ADD COLUMN `FechaEntregaCelular` DATE NULL DEFAULT NULL  AFTER `CelularenConvenio` ;
