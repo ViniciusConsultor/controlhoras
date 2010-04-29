@@ -42,6 +42,7 @@ namespace ControlHoras
         private string exefile = null;//Application.ExecutablePath;
         private FileInfo Info = null;//new FileInfo(exefile);
         private string dirbase = null;//Info.Directory.Parent.Parent.FullName;
+        private string dirRelativaDocs = "Docs";
 
 
 
@@ -74,7 +75,24 @@ namespace ControlHoras
                 exefile = Application.ExecutablePath;
                 Info = new FileInfo(exefile);
                 //dirbase = Info.Directory.Parent.Parent.FullName;
-                dirbase = ConfigurationManager.AppSettings["DocsPath"].ToString();
+                dirbase = Info.DirectoryName;//System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
+                
+                try
+                {
+                    dirRelativaDocs = ConfigurationManager.AppSettings["DirectorioRelativoDocs"].ToString();
+                }
+                catch (Exception exDirDocs)
+                {
+                    // no hago nada. Queda con el valor que tiene por default.
+                }
+                try
+                {
+                    dirbase = ConfigurationManager.AppSettings["DocsPath"].ToString();
+                }
+                catch (Exception exDir)
+                {
+                    // no hago nada. Queda con el valor que tiene por default.
+                }
             }
             catch (Exception ex2)
             {
@@ -210,7 +228,7 @@ namespace ControlHoras
             #endregion
 
             btnCancelar.PerformClick();
-            mtNumeroEmpleado.Focus();
+            mtNumeroDocumento.Focus();
         }
 
         private void CargarCombo(ComboBox cmb, Dictionary<int, string> docs)
@@ -1040,7 +1058,8 @@ namespace ControlHoras
                         nivEdu = cmbNivelEducativo.SelectedItem.ToString();
                     datos.modificarEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, valorHora, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtBarrio.Text, txtCodigoPostal.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, cbBajadoBPS.Checked, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTallePantalon.Text, txtTalleCamisa.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, cmbNivelEducativo.SelectedItem.ToString(), idcargo, dtpFechaPagoEfectuado, dtpFechaPagoPrevisto, ServicioActual, Turno, cbConstanciaDomicilio.Checked, dtpFechaEnCelu);
                 }
-                btnCancelar.PerformClick();
+              // JG. Se comenta para que al guardar permanezca cargado el funcionario.
+              //  btnCancelar.PerformClick();
             }
             catch (Exception ex)
             {
@@ -2028,9 +2047,9 @@ namespace ControlHoras
 
         private void contratoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string pathdoc = Path.Combine(dirbase, dirRelativaDocs);
+            object fileName = Path.Combine(pathdoc, "Contrato.doc");
 
-
-            object fileName = Path.Combine(dirbase, @"Docs\Contrato.doc");// @"C:\Documents and Settings\jcopello\Mis documentos\JPC\TrustSoftware\Codigo\ControlHoras\Docs\Contrato.doc";
             object mark;
             object readOnly = true;
 
@@ -2045,126 +2064,134 @@ namespace ControlHoras
             //  oWord.DisplayAlerts = Microsoft.Office.Interop.Word.WdAlertLevel.wdAlertsNone;
             //  oWord.ScreenUpdating = false;
             oWord.Visible = true;
-            oDoc = oWord.Documents.Open(ref fileName,
-                                    ref missing, ref readOnly, ref missing, ref missing, ref missing,
-                                    ref missing, ref missing, ref missing, ref missing, ref missing,
-                                    ref missing, ref missing, ref missing, ref missing);//, ref missing);
-
-
-            //oDoc = oWord.Documents.Add(ref fileName, ref missing, ref missing, ref missing);
-            mark = "diaHoy";
-            Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = DateTime.Today.Day.ToString();
-
-            mark = "mesHoy";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = DateTime.Today.ToString("MMMM");
-
-            mark = "anoHoy";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = DateTime.Today.Year.ToString();
-
-            mark = "nombre";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = txtNombre.Text + " " + txtApellido.Text;
-
-            mark = "estadocivil";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = cmbEstadoCivil.Text;
-
-            mark = "ci";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = TranfCI(mtNumeroDocumento.Text);
-
-            mark = "domicilio";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = txtDireccion.Text;
-
-            mark = "cargo";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = cmbTiposCargos.Text;
-
-            mark = "dia";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = DateTime.Today.Day.ToString();
-
-            mark = "mes";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = DateTime.Today.ToString("MMMM");
-
-            mark = "ano";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = DateTime.Today.Year.ToString();
-
-            mark = "sueldo";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = txtValorHora.Text;
-
-            #region imprimir
-            //string fileNameSave;
-            /*
-            saveFileEmpleados.Filter = "Microsoft Office Word Document (*.doc)|*.doc";
-            DialogResult res = saveFileEmpleados.ShowDialog(this);
-            if (res == DialogResult.OK)
+            try
             {
-                //fileNameSave = txtNombre.Text + " " + txtApellido.Text + "-" + mtNumeroDocumento.Text + "-Contrato.doc";
-                object FileName = saveFileEmpleados.FileName;
-                object FileFormat = Word.WdSaveFormat.wdFormatDocument;
-                object LockComments = false;
-                object AddToRecentFiles = true;
-                object ReadOnlyRecommended = false;
-                object EmbedTrueTypeFonts = false;
-                object SaveNativePictureFormat = true;
-                object SaveFormsData = true;
-                object SaveAsAOCELetter = false;
-                object Encoding = missing;
-                object InsertLineBreaks = false;
-                object AllowSubstitutions = false;
-                object LineEnding = Word.WdLineEndingType.wdCRLF;
-                object AddBiDiMarks = false;
-                try
+                oDoc = oWord.Documents.Open(ref fileName,
+                                        ref missing, ref readOnly, ref missing, ref missing, ref missing,
+                                        ref missing, ref missing, ref missing, ref missing, ref missing,
+                                        ref missing, ref missing, ref missing, ref missing);//, ref missing);
+
+
+                //oDoc = oWord.Documents.Add(ref fileName, ref missing, ref missing, ref missing);
+                mark = "diaHoy";
+                Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = DateTime.Today.Day.ToString();
+
+                mark = "mesHoy";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = DateTime.Today.ToString("MMMM");
+
+                mark = "anoHoy";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = DateTime.Today.Year.ToString();
+
+                mark = "nombre";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = txtNombre.Text + " " + txtApellido.Text;
+
+                mark = "estadocivil";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = cmbEstadoCivil.Text;
+
+                mark = "ci";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = TranfCI(mtNumeroDocumento.Text);
+
+                mark = "domicilio";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = txtDireccion.Text;
+
+                mark = "cargo";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = cmbTiposCargos.Text;
+
+                mark = "dia";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = DateTime.Today.Day.ToString();
+
+                mark = "mes";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = DateTime.Today.ToString("MMMM");
+
+                mark = "ano";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = DateTime.Today.Year.ToString();
+
+                mark = "sueldo";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = txtValorHora.Text;
+
+                #region imprimir
+                //string fileNameSave;
+                /*
+                saveFileEmpleados.Filter = "Microsoft Office Word Document (*.doc)|*.doc";
+                DialogResult res = saveFileEmpleados.ShowDialog(this);
+                if (res == DialogResult.OK)
                 {
-                   // oDoc.Save();
-                  //  oDoc.SaveAs(ref FileName, ref FileFormat, ref LockComments,
-                  //      ref missing, ref AddToRecentFiles, ref missing,
-                  //      ref ReadOnlyRecommended, ref EmbedTrueTypeFonts,
-                  //      ref SaveNativePictureFormat, ref SaveFormsData,
-                  //      ref SaveAsAOCELetter, ref Encoding, ref InsertLineBreaks,
-                  //      ref AllowSubstitutions, ref LineEnding, ref AddBiDiMarks);
-                    Object saveChanges = Type.Missing;
-                    Object originalFormat = Type.Missing;
-                    Object routeDocument = Type.Missing;
+                    //fileNameSave = txtNombre.Text + " " + txtApellido.Text + "-" + mtNumeroDocumento.Text + "-Contrato.doc";
+                    object FileName = saveFileEmpleados.FileName;
+                    object FileFormat = Word.WdSaveFormat.wdFormatDocument;
+                    object LockComments = false;
+                    object AddToRecentFiles = true;
+                    object ReadOnlyRecommended = false;
+                    object EmbedTrueTypeFonts = false;
+                    object SaveNativePictureFormat = true;
+                    object SaveFormsData = true;
+                    object SaveAsAOCELetter = false;
+                    object Encoding = missing;
+                    object InsertLineBreaks = false;
+                    object AllowSubstitutions = false;
+                    object LineEnding = Word.WdLineEndingType.wdCRLF;
+                    object AddBiDiMarks = false;
+                    try
+                    {
+                       // oDoc.Save();
+                      //  oDoc.SaveAs(ref FileName, ref FileFormat, ref LockComments,
+                      //      ref missing, ref AddToRecentFiles, ref missing,
+                      //      ref ReadOnlyRecommended, ref EmbedTrueTypeFonts,
+                      //      ref SaveNativePictureFormat, ref SaveFormsData,
+                      //      ref SaveAsAOCELetter, ref Encoding, ref InsertLineBreaks,
+                      //      ref AllowSubstitutions, ref LineEnding, ref AddBiDiMarks);
+                        Object saveChanges = Type.Missing;
+                        Object originalFormat = Type.Missing;
+                        Object routeDocument = Type.Missing;
                     
-                    oWord.Documents.Close(ref saveChanges, ref originalFormat, ref routeDocument);
-                }
-                catch (Exception ioe)
-                {
-                    MessageBox.Show(this, ioe.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                //finally
-                //{
-                //    //object saveOptions = Microsoft.Office.Interop.Word.WdSaveOptions.wdSaveChanges;
-                //    ////object routeDocument = Microsoft.Office.Interop.Word.WdRoutingSlipDelivery.wdAllAtOnce;
-                //    ////oWord.Quit(ref saveOptions, ref FileFormat, ref missing);
-                //    //object routing = false;
-                //    //object saveFormat = Microsoft.Office.Interop.Word.WdOriginalFormat.wdWordDocument;
-                //    Object saveChanges = Type.Missing;
-                //    Object originalFormat = Type.Missing;
-                //    Object routeDocument = Type.Missing;
+                        oWord.Documents.Close(ref saveChanges, ref originalFormat, ref routeDocument);
+                    }
+                    catch (Exception ioe)
+                    {
+                        MessageBox.Show(this, ioe.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    //finally
+                    //{
+                    //    //object saveOptions = Microsoft.Office.Interop.Word.WdSaveOptions.wdSaveChanges;
+                    //    ////object routeDocument = Microsoft.Office.Interop.Word.WdRoutingSlipDelivery.wdAllAtOnce;
+                    //    ////oWord.Quit(ref saveOptions, ref FileFormat, ref missing);
+                    //    //object routing = false;
+                    //    //object saveFormat = Microsoft.Office.Interop.Word.WdOriginalFormat.wdWordDocument;
+                    //    Object saveChanges = Type.Missing;
+                    //    Object originalFormat = Type.Missing;
+                    //    Object routeDocument = Type.Missing;
 
-                //    oWord.Documents.Close(ref saveChanges, ref originalFormat, ref routeDocument);
-                //    //oDoc.Close(ref saveOptions, ref saveFormat ,ref routing);
+                    //    oWord.Documents.Close(ref saveChanges, ref originalFormat, ref routeDocument);
+                    //    //oDoc.Close(ref saveOptions, ref saveFormat ,ref routing);
 
-                //}
+                    //}
+                }
+                */
+                #endregion
             }
-            */
-            #endregion
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar el documento para el funcionario.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 
         private void movistarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            object fileName = Path.Combine(dirbase, @"Docs\Movistar.doc");// @"C:\Documents and Settings\jcopello\Mis documentos\JPC\TrustSoftware\Codigo\ControlHoras\Docs\Contrato.doc";
+            string pathdoc = Path.Combine(dirbase, dirRelativaDocs);
+            object fileName = Path.Combine(pathdoc, "Movistar.doc");
             object mark;
             object readOnly = true;
 
@@ -2172,55 +2199,64 @@ namespace ControlHoras
             Word._Document oDoc;
             oWord = new Word.Application();
             oWord.Visible = true;
-            oDoc = oWord.Documents.Open(ref fileName,
-                        ref missing, ref readOnly, ref missing, ref missing, ref missing,
-                        ref missing, ref missing, ref missing, ref missing, ref missing,
-                        ref missing, ref missing, ref missing, ref missing);//, ref missing);
+            try
+            {
+                oDoc = oWord.Documents.Open(ref fileName,
+                            ref missing, ref readOnly, ref missing, ref missing, ref missing,
+                            ref missing, ref missing, ref missing, ref missing, ref missing,
+                            ref missing, ref missing, ref missing, ref missing);//, ref missing);
 
-            mark = "diaHoy";
-            Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = DateTime.Today.Day.ToString();
+                mark = "diaHoy";
+                Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = DateTime.Today.Day.ToString();
 
-            mark = "mesHoy";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = DateTime.Today.ToString("MMMM");
+                mark = "mesHoy";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = DateTime.Today.ToString("MMMM");
 
-            mark = "anoHoy";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = DateTime.Today.Year.ToString();
+                mark = "anoHoy";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = DateTime.Today.Year.ToString();
 
-            mark = "nombre";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = txtNombre.Text + " " + txtApellido.Text;
+                mark = "nombre";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = txtNombre.Text + " " + txtApellido.Text;
 
-            mark = "ci";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = TranfCI(mtNumeroDocumento.Text);
+                mark = "ci";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = TranfCI(mtNumeroDocumento.Text);
 
-            mark = "domicilio";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = txtDireccion.Text;
+                mark = "domicilio";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = txtDireccion.Text;
 
-            mark = "dHoy";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = DateTime.Today.Day.ToString();
+                mark = "dHoy";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = DateTime.Today.Day.ToString();
 
-            mark = "mHoy";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = DateTime.Today.ToString("MMMM");
+                mark = "mHoy";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = DateTime.Today.ToString("MMMM");
 
-            mark = "aHoy";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = DateTime.Today.Year.ToString();
+                mark = "aHoy";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = DateTime.Today.Year.ToString();
 
-            mark = "numCel";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = txtCelularConvenio.Text;
+                mark = "numCel";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = txtCelularConvenio.Text;
+            }
+            catch (Exception ex)
+            {
+                //oWord.C
+                MessageBox.Show("Error al cargar el documento para el funcionario.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void diplomaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            object fileName = Path.Combine(dirbase, @"Docs\Diploma.doc");// @"C:\Documents and Settings\jcopello\Mis documentos\JPC\TrustSoftware\Codigo\ControlHoras\Docs\Contrato.doc";
+            string pathdoc = Path.Combine(dirbase, dirRelativaDocs);
+            object fileName = Path.Combine(pathdoc, "Diploma.doc");
             object mark;
             object readOnly = true;
 
@@ -2228,52 +2264,60 @@ namespace ControlHoras
             Word._Document oDoc;
             oWord = new Word.Application();
             oWord.Visible = true;
-            oDoc = oWord.Documents.Open(ref fileName,
-                        ref missing, ref readOnly, ref missing, ref missing, ref missing,
-                        ref missing, ref missing, ref missing, ref missing, ref missing,
-                        ref missing, ref missing, ref missing, ref missing);//, ref missing);
-
-            mark = "nombre";
-            Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = txtNombre.Text + " " + TranfaTitulo(txtApellido.Text);
-
-            mark = "ci";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = TranfCI(mtNumeroDocumento.Text);
-
-            mark = "arma";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            if (cbCapacitadoPorteArma.Checked)
-                wrdRng.Text = "con";
-            else
-                wrdRng.Text = "sin";
-
-            if (dtpFechaIngreso.Text != fechaMask)
+            try
             {
-                DateTime FI = DateTime.ParseExact(dtpFechaIngreso.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+                oDoc = oWord.Documents.Open(ref fileName,
+                            ref missing, ref readOnly, ref missing, ref missing, ref missing,
+                            ref missing, ref missing, ref missing, ref missing, ref missing,
+                            ref missing, ref missing, ref missing, ref missing);//, ref missing);
 
-                mark = "fechaIni";
+                mark = "nombre";
+                Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = txtNombre.Text + " " + TranfaTitulo(txtApellido.Text);
+
+                mark = "ci";
                 wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-                wrdRng.Text = FI.AddDays(-2).Day.ToString();
+                wrdRng.Text = TranfCI(mtNumeroDocumento.Text);
 
-                mark = "fechaFin";
+                mark = "arma";
                 wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-                wrdRng.Text = FI.AddDays(-1).Day.ToString();
+                if (cbCapacitadoPorteArma.Checked)
+                    wrdRng.Text = "con";
+                else
+                    wrdRng.Text = "sin";
+
+                if (dtpFechaIngreso.Text != fechaMask)
+                {
+                    DateTime FI = DateTime.ParseExact(dtpFechaIngreso.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+
+                    mark = "fechaIni";
+                    wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                    wrdRng.Text = FI.AddDays(-2).Day.ToString();
+
+                    mark = "fechaFin";
+                    wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                    wrdRng.Text = FI.AddDays(-1).Day.ToString();
 
 
-                mark = "mes";
-                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-                wrdRng.Text = FI.ToString("MMMM");
+                    mark = "mes";
+                    wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                    wrdRng.Text = FI.ToString("MMMM");
 
-                mark = "ano";
-                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-                wrdRng.Text = FI.Year.ToString();
+                    mark = "ano";
+                    wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                    wrdRng.Text = FI.Year.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar el documento para el funcionario.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void renaemseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string fileName = Path.Combine(dirbase, @"Docs\Renaemse.xls");// @"C:\Documents and Settings\jcopello\Mis documentos\JPC\TrustSoftware\Codigo\ControlHoras\Docs\Contrato.doc";
+            string pathdoc = Path.Combine(dirbase, dirRelativaDocs);
+            string fileName = Path.Combine(pathdoc, "Renaemse.xls");
             object readOnly = true;
 
             Excel.Application ExApp;
@@ -2395,73 +2439,78 @@ namespace ControlHoras
 
         private void formularioDGIToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string pdftemplate = Path.Combine(dirbase, @"Docs\formulario 3100 DGI.pdf");
+            string pathdoc = Path.Combine(dirbase, dirRelativaDocs);
+            string pdftemplate = Path.Combine(pathdoc, "formulario 3100 DGI.pdf");
+            
             //string nomEmpresa = "Trust";
+            try
+            {
+                PdfReader pdfReader = new PdfReader(pdftemplate);
 
-            PdfReader pdfReader = new PdfReader(pdftemplate);
-
-            //saveFileEmpleados.Filter = "Acrobat Reader (*.pdf)|*.pdf";
-            //saveFileEmpleados.FileName = 
-            //DialogResult OKSave =  saveFileEmpleados.ShowDialog(this);
-            //if (OKSave == DialogResult.OK)
-            //{
-            string newFile = mtNumeroEmpleado.Text + "-" + txtNombre.Text + " " + txtApellido.Text + "-FormularioDGI.pdf";
-            PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileStream(newFile, FileMode.Create));
-            AcroFields pdfFormFields = pdfStamper.AcroFields;
-
-
-            //R1.1Ap - Primer Apellido
-            //R1.2Ap - Segundo Apellido
-            //R1.1Nom - Primer Nombre
-            //R1.2Nom - Segundo Nombre
-            //R1.NDoc - Numero Documento
-            //R1.Año - 
-            //R1.Mes - 
-            //R1.Nom - Nombre o Denominacion
-            //R1.TDoc.0 - NroDocumento en la primera Parte
-            //R1.Pais - Pais del Documento
+                //saveFileEmpleados.Filter = "Acrobat Reader (*.pdf)|*.pdf";
+                //saveFileEmpleados.FileName = 
+                //DialogResult OKSave =  saveFileEmpleados.ShowDialog(this);
+                //if (OKSave == DialogResult.OK)
+                //{
+                string newFile = mtNumeroEmpleado.Text + "-" + txtNombre.Text + " " + txtApellido.Text + "-FormularioDGI.pdf";
+                PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileStream(newFile, FileMode.Create));
+                AcroFields pdfFormFields = pdfStamper.AcroFields;
 
 
-            DateTime hoy = DateTime.Today;
+                //R1.1Ap - Primer Apellido
+                //R1.2Ap - Segundo Apellido
+                //R1.1Nom - Primer Nombre
+                //R1.2Nom - Segundo Nombre
+                //R1.NDoc - Numero Documento
+                //R1.Año - 
+                //R1.Mes - 
+                //R1.Nom - Nombre o Denominacion
+                //R1.TDoc.0 - NroDocumento en la primera Parte
+                //R1.Pais - Pais del Documento
 
-            pdfFormFields.SetField("R1.1Ap", txtApellido.Text.Split(' ').ElementAt(0));
-            if (txtApellido.Text.Split(' ').Count() > 1)
-                pdfFormFields.SetField("R1.2Ap", txtApellido.Text.Split(' ').ElementAt(1));
-            pdfFormFields.SetField("R1.1Nom", txtNombre.Text.Split(' ').ElementAt(0));
-            if (txtNombre.Text.Split(' ').Count() > 1)
-                pdfFormFields.SetField("R1.2Nom", txtNombre.Text.Split(' ').ElementAt(1));
-            pdfFormFields.SetField("R1.TDoc.0", "C.I");
-            pdfFormFields.SetField("R1.Pais", "Uruguay");
-            pdfFormFields.SetField("R1.NDoc", mtNumeroDocumento.Text);
-            //pdfFormFields.SetField("R1.Mes", hoy.Month.ToString());
-            //pdfFormFields.SetField("R1.Año", hoy.Year.ToString());
-            //pdfFormFields.SetField("R1.Nom", nomEmpresa);
+                DateTime hoy = DateTime.Today;
 
-            pdfFormFields.SetField("R6.Suscr", txtNombre.Text.Split(' ').ElementAt(0) + " " + TranfaTitulo(txtApellido.Text.Split(' ').ElementAt(0)));
-            pdfFormFields.SetField("R6.Calidad", "empleado");
-            pdfFormFields.SetField("R6.CI", mtNumeroDocumento.Text);
+                pdfFormFields.SetField("R1.1Ap", txtApellido.Text.Split(' ').ElementAt(0));
+                if (txtApellido.Text.Split(' ').Count() > 1)
+                    pdfFormFields.SetField("R1.2Ap", txtApellido.Text.Split(' ').ElementAt(1));
+                pdfFormFields.SetField("R1.1Nom", txtNombre.Text.Split(' ').ElementAt(0));
+                if (txtNombre.Text.Split(' ').Count() > 1)
+                    pdfFormFields.SetField("R1.2Nom", txtNombre.Text.Split(' ').ElementAt(1));
+                pdfFormFields.SetField("R1.TDoc.0", "C.I");
+                pdfFormFields.SetField("R1.Pais", "Uruguay");
+                pdfFormFields.SetField("R1.NDoc", mtNumeroDocumento.Text);
+                //pdfFormFields.SetField("R1.Mes", hoy.Month.ToString());
+                //pdfFormFields.SetField("R1.Año", hoy.Year.ToString());
+                //pdfFormFields.SetField("R1.Nom", nomEmpresa);
 
+                pdfFormFields.SetField("R6.Suscr", txtNombre.Text.Split(' ').ElementAt(0) + " " + TranfaTitulo(txtApellido.Text.Split(' ').ElementAt(0)));
+                pdfFormFields.SetField("R6.Calidad", "empleado");
+                pdfFormFields.SetField("R6.CI", mtNumeroDocumento.Text);
 
+                pdfStamper.Close();
+                //DialogResult okOpen = MessageBox.Show("Documento creado correctamente. Desea abrirlo ahora?", "Abrir Formulario DGI 3100...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //if (okOpen == DialogResult.Yes)
+                //{
+                // try forcing the window to be full-screen maximized
+                System.Diagnostics.ProcessStartInfo defapp = new System.Diagnostics.ProcessStartInfo();
 
-
-
-            pdfStamper.Close();
-            //DialogResult okOpen = MessageBox.Show("Documento creado correctamente. Desea abrirlo ahora?", "Abrir Formulario DGI 3100...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            //if (okOpen == DialogResult.Yes)
-            //{
-            // try forcing the window to be full-screen maximized
-            System.Diagnostics.ProcessStartInfo defapp = new System.Diagnostics.ProcessStartInfo();
-
-            defapp.FileName = newFile;
-            defapp.WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized;
-            System.Diagnostics.Process.Start(defapp);
+                defapp.FileName = newFile;
+                defapp.WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized;
+                System.Diagnostics.Process.Start(defapp);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar el documento para el funcionario.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             //}
             // }
         }
 
         private void PruebaBtn_Click(object sender, EventArgs e)
         {
-            string pdftemplate = Path.Combine(dirbase, @"Docs\formulario 3100 DGI.pdf");
+            string pathdoc = Path.Combine(dirbase, dirRelativaDocs);
+            string pdftemplate = Path.Combine(pathdoc, "formulario 3100 DGI.pdf");
+            
             PdfReader pdfReader = new PdfReader(pdftemplate);
             string newFile = mtNumeroEmpleado.Text + "-" + txtNombre.Text + " " + txtApellido.Text + "-FormularioDGI.pdf";
             PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileStream(newFile, FileMode.Create));
@@ -2474,31 +2523,40 @@ namespace ControlHoras
             Word._Document oDoc;
             oWord = new Word.Application();
             oWord.Visible = true;
-            oDoc = oWord.Documents.Add(ref missing, ref missing,
-                ref missing, ref missing);
-
-
-            //Insert a paragraph at the end of the document.
-            Word.Paragraph oPara2;
-            object oRng = null;
-
-            System.Collections.Hashtable h = pdfFormFields.Fields;
-
-            foreach (System.Collections.DictionaryEntry d in h)
+            try
             {
-                oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
-                oPara2 = oDoc.Content.Paragraphs.Add(ref oRng);
-                oPara2.Range.Text = d.Key.ToString();
-                oPara2.Format.SpaceAfter = 6;
-                oPara2.Range.InsertParagraphAfter();
-            }
+                oDoc = oWord.Documents.Add(ref missing, ref missing,
+                    ref missing, ref missing);
 
-            pdfStamper.Close();
+
+                //Insert a paragraph at the end of the document.
+                Word.Paragraph oPara2;
+                object oRng = null;
+
+                System.Collections.Hashtable h = pdfFormFields.Fields;
+
+                foreach (System.Collections.DictionaryEntry d in h)
+                {
+                    oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+                    oPara2 = oDoc.Content.Paragraphs.Add(ref oRng);
+                    oPara2.Range.Text = d.Key.ToString();
+                    oPara2.Format.SpaceAfter = 6;
+                    oPara2.Range.InsertParagraphAfter();
+                }
+
+                pdfStamper.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar el documento para el funcionario.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void carnetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            object fileName = Path.Combine(dirbase, @"Docs\Carnet.doc");// @"C:\Documents and Settings\jcopello\Mis documentos\JPC\TrustSoftware\Codigo\ControlHoras\Docs\Contrato.doc";
+            string pathdoc = Path.Combine(dirbase, dirRelativaDocs);
+            object fileName = Path.Combine(pathdoc, "Carnet.doc");// @"C:\Documents and Settings\jcopello\Mis documentos\JPC\TrustSoftware\Codigo\ControlHoras\Docs\Contrato.doc";
             object mark;
             object readOnly = true;
 
@@ -2506,68 +2564,75 @@ namespace ControlHoras
             Word._Document oDoc;
             oWord = new Word.Application();
             oWord.Visible = true;
-            oDoc = oWord.Documents.Open(ref fileName,
-                        ref missing, ref readOnly, ref missing, ref missing, ref missing,
-                        ref missing, ref missing, ref missing, ref missing, ref missing,
-                        ref missing, ref missing, ref missing, ref missing);//, ref missing);
+            try
+            {
+                oDoc = oWord.Documents.Open(ref fileName,
+                            ref missing, ref readOnly, ref missing, ref missing, ref missing,
+                            ref missing, ref missing, ref missing, ref missing, ref missing,
+                            ref missing, ref missing, ref missing, ref missing);//, ref missing);
 
-            mark = "Apellido";
-            Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = txtApellido.Text.Split(' ').ElementAt(0);
+                mark = "Apellido";
+                Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = txtApellido.Text.Split(' ').ElementAt(0);
 
-            mark = "Nombre";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = txtNombre.Text.Split(' ').ElementAt(0).ToUpper();
+                mark = "Nombre";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = txtNombre.Text.Split(' ').ElementAt(0).ToUpper();
 
-            mark = "CI";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = TranfCI(mtNumeroDocumento.Text);
+                mark = "CI";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = TranfCI(mtNumeroDocumento.Text);
 
-            mark = "NroFunc";
-            wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            wrdRng.Text = mtNumeroEmpleado.Text;
+                mark = "NroFunc";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                wrdRng.Text = mtNumeroEmpleado.Text;
 
-            #region foto
+                #region foto
 
-            //*************   JUANCHI   *******************            
-            //mark = "Imagen";
-            //wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-            //wrdRng.Select();
-            //oWord.Selection.TypeParagraph();
+                //*************   JUANCHI   *******************            
+                //mark = "Imagen";
+                //wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                //wrdRng.Select();
+                //oWord.Selection.TypeParagraph();
 
-            //if (pbFoto.Image != null)
-            //{
-            //    System.Drawing.Image bi = pbFoto.Image;
+                //if (pbFoto.Image != null)
+                //{
+                //    System.Drawing.Image bi = pbFoto.Image;
 
-            //    Clipboard.SetDataObject(bi);
-            //    wrdRng.Paste();
+                //    Clipboard.SetDataObject(bi);
+                //    wrdRng.Paste();
 
-            //    wrdRng.Select();
-
-
-            //    oWord.Selection.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
-            //}
+                //    wrdRng.Select();
 
 
+                //    oWord.Selection.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
+                //}
 
-            //*************   JUAN PABLO *******************
-            //Object myFalse = false;
-            //Object myTrue = true;
-            //Object myEndOfDoc = "\\endofdoc";
 
-            //// Set the position where the image will be placed
-            //wrdRng = oDoc.Bookmarks.get_Item(ref myEndOfDoc).Range;
-            //Object myImageRange = oDoc.Bookmarks.get_Item(ref myEndOfDoc).Range;
 
-            //// Set the file of the picture
-            //string imagePath = @"C:\Documents and Settings\jcopello\Mis documentos\Mis imágenes\14c.jpg";
+                //*************   JUAN PABLO *******************
+                //Object myFalse = false;
+                //Object myTrue = true;
+                //Object myEndOfDoc = "\\endofdoc";
 
-            //// Add the picture to the document
+                //// Set the position where the image will be placed
+                //wrdRng = oDoc.Bookmarks.get_Item(ref myEndOfDoc).Range;
+                //Object myImageRange = oDoc.Bookmarks.get_Item(ref myEndOfDoc).Range;
 
-            ////myRange.InlineShapes.AddPicture(imagePath, ref myFalse, ref myTrue, ref myImageRange);
-            //wrdRng.InlineShapes.AddPicture(imagePath, ref myFalse, ref myTrue, ref myImageRange);          
+                //// Set the file of the picture
+                //string imagePath = @"C:\Documents and Settings\jcopello\Mis documentos\Mis imágenes\14c.jpg";
 
-            #endregion
+                //// Add the picture to the document
+
+                ////myRange.InlineShapes.AddPicture(imagePath, ref myFalse, ref myTrue, ref myImageRange);
+                //wrdRng.InlineShapes.AddPicture(imagePath, ref myFalse, ref myTrue, ref myImageRange);          
+
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar el documento para el funcionario.\n"+ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void rbAntecedentes_SI_CheckedChanged(object sender, EventArgs e)
