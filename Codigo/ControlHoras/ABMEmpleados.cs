@@ -323,7 +323,7 @@ namespace ControlHoras
                     tipoDelControl = c.GetType().ToString();
                     if (tipoDelControl == "ControlHoras.TextBoxKeyDown" || tipoDelControl == "ControlHoras.MaskedTextBoxKeyDown")
                     {
-                        if (c.Name != "mtNumeroEmpleado")
+                        if (c.Name != "mtNumeroEmpleado" && c.Name != "mtNumeroDocumento")
                             c.Text = "";
                     }
                     else if (tipoDelControl == "System.Windows.Forms.CheckBox")
@@ -334,7 +334,7 @@ namespace ControlHoras
                         {
                             if (cgb.GetType().ToString() == "ControlHoras.TextBoxKeyDown" || cgb.GetType().ToString() == "ControlHoras.MaskedTextBoxKeyDown")
                             {
-                                if (cgb.Name != "mtNumeroEmpleado")
+                                if (cgb.Name != "mtNumeroEmpleado" && cgb.Name != "mtNumeroDocumento")
                                     cgb.Text = "";
                             }
                             else if (cgb.GetType().ToString() == "ControlHoras.ComboBoxKeyDown")
@@ -369,15 +369,29 @@ namespace ControlHoras
                     if (sistema.existeEmpleado(int.Parse(mtNumeroEmpleado.Text)))
                     {
                         empleado = datos.obtenerEmpleado(int.Parse(mtNumeroEmpleado.Text));
-                        limpiarForm();
-                        lblEstadoEmpleado.Visible = true;
+                        if (empleado.Activo == 1)
+                        {
+                            limpiarForm();
+                            lblEstadoEmpleado.Visible = true;
+                            lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
+                            btnAgregar.Enabled = false;
+                            btnGuardar.Enabled = true;
+                            btnExtrasAgregar.Enabled = true;
+                            btnAgregarHistorial.Enabled = true;
+                            ImprimirTSB.Enabled = true;
+                        }
+                        else
+                        {
+                            lblEstadoEmpleado.Visible = true;
+                            lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
+                            btnAgregar.Enabled = false;
+                            btnGuardar.Enabled = false;
+                            BtnReactivar.Visible = true;
+                            btnExtrasAgregar.Enabled = false;
+                            btnAgregarHistorial.Enabled = false;
+                            ImprimirTSB.Enabled = false;
+                        }
                         cargarEmpleado(empleado);
-                        lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
-                        btnAgregar.Enabled = false;
-                        btnGuardar.Enabled = true;
-                        btnExtrasAgregar.Enabled = true;
-                        btnAgregarHistorial.Enabled = true;
-                        ImprimirTSB.Enabled = true;
                     }
                     else
                     {
@@ -1057,6 +1071,7 @@ namespace ControlHoras
                 }
               // JG. Se comenta para que al guardar permanezca cargado el funcionario.
               //  btnCancelar.PerformClick();
+                MessageBox.Show("Datos guardados correctamente.", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -2089,7 +2104,7 @@ namespace ControlHoras
 
                 mark = "estadocivil";
                 wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-                wrdRng.Text = cmbEstadoCivil.Text;
+                wrdRng.Text = cmbEstadoCivil.Text.ToLower();
 
                 mark = "ci";
                 wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
@@ -2736,11 +2751,18 @@ namespace ControlHoras
                     {
                         //empleado = datos.obtenerEmpleado(int.Parse(mtNumeroEmpleado.Text));
                         if (empleado.Activo == 1)
-                            MessageBox.Show(this, "Ya existe el empleado ACTIVO " + empleado.Nombre + " " + empleado.Apellido + " Nro: " + empleado.IDEmpleado.ToString() + " con CI: " + mtNumeroDocumento.Text, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        {
+                            lblEstadoEmpleado.Visible = true;
+                            lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
+                            btnAgregar.Enabled = false;
+                            btnGuardar.Enabled = true;
+                            btnExtrasAgregar.Enabled = true;
+                            btnAgregarHistorial.Enabled = true;
+                            ImprimirTSB.Enabled = true;
+                        }
                         else
                         {
                             lblEstadoEmpleado.Visible = true;
-                            cargarEmpleado(empleado);
                             lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
                             btnAgregar.Enabled = false;
                             btnGuardar.Enabled = false;
@@ -2749,6 +2771,7 @@ namespace ControlHoras
                             btnAgregarHistorial.Enabled = false;
                             ImprimirTSB.Enabled = false;
                         }
+                        cargarEmpleado(empleado);
                     }
 
                 }
@@ -2758,6 +2781,8 @@ namespace ControlHoras
                 }
             }
         }
+
+        
     }
 }
 
