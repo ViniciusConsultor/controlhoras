@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FC8B86E8-A818-4987-B135-16FD6B039E53}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -71,6 +71,9 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Web.Services, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\WINDOWS\assembly\GAC_MSIL\System.Web.Services\2.0.0.0__b03f5f7f11d50a3a\System.Web.Services.dll</HintPath>
@@ -92,6 +95,12 @@
     </Compile>
     <Compile Include="ABMBancos.Designer.cs">
       <DependentUpon>ABMBancos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMLNegra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMLNegra.Designer.cs">
+      <DependentUpon>ABMLNegra.cs</DependentUpon>
     </Compile>
     <Compile Include="ABMTipoEventoHistorial.cs">
       <SubType>Form</SubType>
@@ -264,6 +273,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ABMBancos.resx">
       <DependentUpon>ABMBancos.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMLNegra.resx">
+      <DependentUpon>ABMLNegra.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ABMTipoEventoHistorial.resx">
@@ -554,6 +567,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Search_Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filesave1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_cancel1.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />

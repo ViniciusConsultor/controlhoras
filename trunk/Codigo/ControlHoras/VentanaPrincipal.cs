@@ -280,5 +280,21 @@ namespace ControlHoras
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void listaNegraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ABMLNegra listaNegra = ABMLNegra.getVentana();
+                if (listaNegra.Visible == false)
+                    listaNegra.Show(this);
+                else
+                    listaNegra.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

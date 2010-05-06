@@ -219,5 +219,9 @@ namespace Datos
         bool existeEmpleadoCI(string CI, out EmPleadOs empleado);
         List<ConsultAsEmPleadOs> obtenerConsultasEmpleados(bool soloactivos);
         DataSet ejecutarConsultaEmpleado(int numeroConsultaEmpleado, Dictionary<string,string> parametrosConsulta);
+
+        void altaListaNegra(string CI, string apellidos, string nombres, string motivo);
+        void modificarListaNegra(string CI, string apellidos, string nombres, string motivo);
+        bool existeEmpleadoListaNegra(string CI, out ListAnEGRa empleado);
     }
 }

@@ -2111,8 +2111,7 @@ namespace Datos
 
 
 
-        #region Miembros de IDatos
-
+        
 
         public bool existeEmpleadoCI(string CI, out EmPleadOs empleado)
         {   
@@ -2136,7 +2135,79 @@ namespace Datos
             }
         }
 
-        #endregion
+        public void altaListaNegra(string CI, string apellidos, string nombres, string motivo)
+        {
+            Table<ListAnEGRa> tablaListaNegra;
+            try
+            {
+                tablaListaNegra = database.GetTable<ListAnEGRa>();
+
+                ListAnEGRa emp = new ListAnEGRa();
+                DateTime? hoy = DateTime.Now;
+
+                emp.CI = CI;
+                emp.Apellidos = apellidos;
+                emp.Nombres = nombres;
+                emp.MotivoRechazo = motivo;
+                emp.Activo = 1;
+                emp.FechaAlta = hoy;
+
+                tablaListaNegra.InsertOnSubmit(emp);
+                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        
+        public void modificarListaNegra(string CI, string apellidos, string nombres, string motivo)
+        {
+            Table<ListAnEGRa> tablaListaNegra;
+            try
+            {
+                tablaListaNegra = database.GetTable<ListAnEGRa>();
+
+                ListAnEGRa emp = (from reg in tablaListaNegra
+                                 where reg.CI == CI
+                                 select reg).Single();
+
+                emp.Apellidos = apellidos;
+                emp.Nombres = nombres;
+                emp.MotivoRechazo = motivo;
+
+                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool existeEmpleadoListaNegra(string CI, out ListAnEGRa empleado)
+        {
+            empleado = null;
+            try
+            {
+                Table<ListAnEGRa> tabla = database.GetTable<ListAnEGRa>();
+                var cli = (from clireg in tabla
+                           where clireg.CI == CI
+                           select clireg);
+                if (cli.Count<ListAnEGRa>() == 0)
+                    return false;
+
+                empleado = cli.Single<ListAnEGRa>();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                // MySQLException = Access Denied  Codigo = 1045
+            }
+        }
+
+
     }
 
 }
