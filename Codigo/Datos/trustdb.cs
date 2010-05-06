@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2010-04-28 10:11:45Z
+#region Auto-generated classes for trustdb database on 2010-05-05 15:06:50Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2010-04-28 10:11:45Z
+// Auto-generated from trustdb on 2010-05-05 15:06:50Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -92,6 +92,7 @@ namespace Datos
 		public Table<ExtrasLiquidAcIonEmPleadO> ExtrasLiquidAcIonEmPleadO { get { return GetTable<ExtrasLiquidAcIonEmPleadO>(); } }
 		public Table<HoRaRioDiA> HoRaRioDiA { get { return GetTable<HoRaRioDiA>(); } }
 		public Table<LineAshOrAs> LineAshOrAs { get { return GetTable<LineAshOrAs>(); } }
+		public Table<ListAnEGRa> ListAnEGRa { get { return GetTable<ListAnEGRa>(); } }
 		public Table<MutualIsTAs> MutualIsTAs { get { return GetTable<MutualIsTAs>(); } }
 		public Table<SERVicIoS> SERVicIoS { get { return GetTable<SERVicIoS>(); } }
 		public Table<TipOContraToS> TipOContraToS { get { return GetTable<TipOContraToS>(); } }
@@ -5021,6 +5022,251 @@ namespace Datos
 		{
 			_hoRaRioDiA = new EntitySet<HoRaRioDiA>(HoRaRioDiA_Attach, HoRaRioDiA_Detach);
 			_contraToS = new EntityRef<ContraToS>();
+			OnCreated();
+		}
+
+		#endregion
+
+	}
+
+	[Table(Name = "trustdb.listanegra")]
+	public partial class ListAnEGRa : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		#region INotifyPropertyChanging handling
+
+		public event PropertyChangingEventHandler PropertyChanging;
+
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs("");
+		protected virtual void SendPropertyChanging()
+		{
+			if (PropertyChanging != null)
+			{
+				PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+
+		#endregion
+
+		#region INotifyPropertyChanged handling
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected virtual void SendPropertyChanged(string propertyName)
+		{
+			if (PropertyChanged != null)
+			{
+				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		#endregion
+
+		#region Extensibility Method Definitions
+
+		partial void OnCreated();
+		partial void OnActivoChanged();
+		partial void OnActivoChanging(sbyte? value);
+		partial void OnApellidosChanged();
+		partial void OnApellidosChanging(string value);
+		partial void OnCIChanged();
+		partial void OnCIChanging(string value);
+		partial void OnFechaAltaChanged();
+		partial void OnFechaAltaChanging(DateTime? value);
+		partial void OnFechaBajaChanged();
+		partial void OnFechaBajaChanging(DateTime? value);
+		partial void OnMotivoRechazoChanged();
+		partial void OnMotivoRechazoChanging(string value);
+		partial void OnNombresChanged();
+		partial void OnNombresChanging(string value);
+
+		#endregion
+
+		#region sbyte? Activo
+
+		private sbyte? _activo;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_activo", Name = "Activo", DbType = "tinyint(1)", AutoSync = AutoSync.Never)]
+		public sbyte? Activo
+		{
+			get
+			{
+				return _activo;
+			}
+			set
+			{
+				if (value != _activo)
+				{
+					OnActivoChanging(value);
+					SendPropertyChanging();
+					_activo = value;
+					SendPropertyChanged("Activo");
+					OnActivoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string Apellidos
+
+		private string _apellidos;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_apellidos", Name = "Apellidos", DbType = "varchar(50)", AutoSync = AutoSync.Never)]
+		public string Apellidos
+		{
+			get
+			{
+				return _apellidos;
+			}
+			set
+			{
+				if (value != _apellidos)
+				{
+					OnApellidosChanging(value);
+					SendPropertyChanging();
+					_apellidos = value;
+					SendPropertyChanged("Apellidos");
+					OnApellidosChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string CI
+
+		private string _ci;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_ci", Name = "CI", DbType = "varchar(30)", IsPrimaryKey = true, AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string CI
+		{
+			get
+			{
+				return _ci;
+			}
+			set
+			{
+				if (value != _ci)
+				{
+					OnCIChanging(value);
+					SendPropertyChanging();
+					_ci = value;
+					SendPropertyChanged("CI");
+					OnCIChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region DateTime? FechaAlta
+
+		private DateTime? _fechaAlta;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_fechaAlta", Name = "FechaAlta", DbType = "date", AutoSync = AutoSync.Never)]
+		public DateTime? FechaAlta
+		{
+			get
+			{
+				return _fechaAlta;
+			}
+			set
+			{
+				if (value != _fechaAlta)
+				{
+					OnFechaAltaChanging(value);
+					SendPropertyChanging();
+					_fechaAlta = value;
+					SendPropertyChanged("FechaAlta");
+					OnFechaAltaChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region DateTime? FechaBaja
+
+		private DateTime? _fechaBaja;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_fechaBaja", Name = "FechaBaja", DbType = "date", AutoSync = AutoSync.Never)]
+		public DateTime? FechaBaja
+		{
+			get
+			{
+				return _fechaBaja;
+			}
+			set
+			{
+				if (value != _fechaBaja)
+				{
+					OnFechaBajaChanging(value);
+					SendPropertyChanging();
+					_fechaBaja = value;
+					SendPropertyChanged("FechaBaja");
+					OnFechaBajaChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string MotivoRechazo
+
+		private string _motivoRechazo;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_motivoRechazo", Name = "MotivoRechazo", DbType = "varchar(100)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string MotivoRechazo
+		{
+			get
+			{
+				return _motivoRechazo;
+			}
+			set
+			{
+				if (value != _motivoRechazo)
+				{
+					OnMotivoRechazoChanging(value);
+					SendPropertyChanging();
+					_motivoRechazo = value;
+					SendPropertyChanged("MotivoRechazo");
+					OnMotivoRechazoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string Nombres
+
+		private string _nombres;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_nombres", Name = "Nombres", DbType = "varchar(50)", AutoSync = AutoSync.Never)]
+		public string Nombres
+		{
+			get
+			{
+				return _nombres;
+			}
+			set
+			{
+				if (value != _nombres)
+				{
+					OnNombresChanging(value);
+					SendPropertyChanging();
+					_nombres = value;
+					SendPropertyChanged("Nombres");
+					OnNombresChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region ctor
+
+		public ListAnEGRa()
+		{
 			OnCreated();
 		}
 
