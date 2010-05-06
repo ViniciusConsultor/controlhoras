@@ -2192,7 +2192,7 @@ namespace Datos
             {
                 Table<ListAnEGRa> tabla = database.GetTable<ListAnEGRa>();
                 var cli = (from clireg in tabla
-                           where clireg.CI == CI
+                           where clireg.CI == CI && clireg.Activo == 1
                            select clireg);
                 if (cli.Count<ListAnEGRa>() == 0)
                     return false;

@@ -362,10 +362,11 @@ namespace ControlHoras
         {
             if (mtNumeroEmpleado.Text != "" && (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab))
             {
-                // traigo el empleado y lleno los datos de los campos.
+                // traigo el empleado y lleno los datos de los campos.                
                 EmPleadOs empleado;
+
                 try
-                {
+                {                    
                     if (sistema.existeEmpleado(int.Parse(mtNumeroEmpleado.Text)))
                     {
                         empleado = datos.obtenerEmpleado(int.Parse(mtNumeroEmpleado.Text));
@@ -2717,9 +2718,9 @@ namespace ControlHoras
 
                     btnGuardar.Enabled = true;
                     btnGuardar.PerformClick();
-                    MessageBox.Show("El empleado a sido reingresado con exito.", "Modifacion con exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    mtNumeroEmpleado.Text = nroNuevo.ToString();
-                    SendKeys.Send("{ENTER}");
+                    //MessageBox.Show("El empleado a sido reingresado con exito.", "Modifacion con exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //mtNumeroEmpleado.Text = nroNuevo.ToString();
+                    //SendKeys.Send("{ENTER}");
 
 
                     /*
@@ -2744,36 +2745,52 @@ namespace ControlHoras
             if (mtNumeroDocumento.MaskCompleted && (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab))
             {
                 // Busco si existe un empleado con esta cédula
+                ListAnEGRa sujeto;
                 EmPleadOs empleado;
+                
                 try
                 {
-                    if (datos.existeEmpleadoCI(mtNumeroDocumento.Text, out empleado))
+                    if (datos.existeEmpleadoListaNegra(mtNumeroDocumento.Text, out sujeto))
                     {
-                        //empleado = datos.obtenerEmpleado(int.Parse(mtNumeroEmpleado.Text));
-                        if (empleado.Activo == 1)
+                        ListaNegra sear = new ListaNegra(sujeto);
+                        DialogResult res = sear.ShowDialog(this);
+
+                        if (res == DialogResult.OK)
                         {
-                            lblEstadoEmpleado.Visible = true;
-                            lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
-                            btnAgregar.Enabled = false;
-                            btnGuardar.Enabled = true;
-                            btnExtrasAgregar.Enabled = true;
-                            btnAgregarHistorial.Enabled = true;
-                            ImprimirTSB.Enabled = true;
+                            //Dar de baja en Lista Negra
                         }
                         else
-                        {
-                            lblEstadoEmpleado.Visible = true;
-                            lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
-                            btnAgregar.Enabled = false;
-                            btnGuardar.Enabled = false;
-                            BtnReactivar.Visible = true;
-                            btnExtrasAgregar.Enabled = false;
-                            btnAgregarHistorial.Enabled = false;
-                            ImprimirTSB.Enabled = false;
-                        }
-                        cargarEmpleado(empleado);
+                            btnCancelar.PerformClick();
                     }
-
+                    else
+                    {
+                        if (datos.existeEmpleadoCI(mtNumeroDocumento.Text, out empleado))
+                        {
+                            //empleado = datos.obtenerEmpleado(int.Parse(mtNumeroEmpleado.Text));
+                            if (empleado.Activo == 1)
+                            {
+                                lblEstadoEmpleado.Visible = true;
+                                lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
+                                btnAgregar.Enabled = false;
+                                btnGuardar.Enabled = true;
+                                btnExtrasAgregar.Enabled = true;
+                                btnAgregarHistorial.Enabled = true;
+                                ImprimirTSB.Enabled = true;
+                            }
+                            else
+                            {
+                                lblEstadoEmpleado.Visible = true;
+                                lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
+                                btnAgregar.Enabled = false;
+                                btnGuardar.Enabled = false;
+                                BtnReactivar.Visible = true;
+                                btnExtrasAgregar.Enabled = false;
+                                btnAgregarHistorial.Enabled = false;
+                                ImprimirTSB.Enabled = false;
+                            }
+                            cargarEmpleado(empleado);
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
