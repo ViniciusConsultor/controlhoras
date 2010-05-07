@@ -223,5 +223,6 @@ namespace Datos
         void altaListaNegra(string CI, string apellidos, string nombres, string motivo);
         void modificarListaNegra(string CI, string apellidos, string nombres, string motivo);
         bool existeEmpleadoListaNegra(string CI, out ListAnEGRa empleado);
+        void BajaListaNegra(string CI);
     }
 }
