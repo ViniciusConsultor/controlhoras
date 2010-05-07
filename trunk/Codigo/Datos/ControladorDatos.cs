@@ -2207,6 +2207,29 @@ namespace Datos
             }
         }
 
+        public void BajaListaNegra(string CI)
+        {
+            Table<ListAnEGRa> tablaListaNegra;
+            try
+            {
+                tablaListaNegra = database.GetTable<ListAnEGRa>();
+
+                ListAnEGRa emp = (from reg in tablaListaNegra
+                                  where reg.CI == CI
+                                  select reg).Single();
+
+                emp.FechaBaja = DateTime.Now;
+                emp.Activo = 0;
+
+                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
 
     }
 

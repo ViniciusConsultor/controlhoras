@@ -2758,6 +2758,15 @@ namespace ControlHoras
                         if (res == DialogResult.OK)
                         {
                             //Dar de baja en Lista Negra
+                            txtApellido.Text = sear.Apellidos;
+                            txtNombre.Text = sear.Nombres;
+                            txtObservaciones.Text = txtObservaciones.Text + "\r\n" + "LISTA NEGRA\r\nINGRESÓ: " + sear.FechaAlta + "    MOTIVO: " + sear.Motivo;
+
+                            mtNumeroEmpleado.Focus();
+                            //SendKeys.Send("{ENTER}");
+                            //btnGuardar.PerformClick();
+
+                            datos.BajaListaNegra(mtNumeroDocumento.Text);
                         }
                         else
                             btnCancelar.PerformClick();

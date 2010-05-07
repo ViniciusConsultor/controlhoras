@@ -12,6 +12,11 @@ namespace ControlHoras
 {
     public partial class ListaNegra : Form
     {
+        public string Apellidos;
+        public string Nombres;
+        public string Motivo;
+        public string FechaAlta;
+
         public ListaNegra()
         {
             InitializeComponent();
@@ -21,9 +26,15 @@ namespace ControlHoras
         {
             InitializeComponent();
             ciTB.Text = sujeto.CI;
-            txtApellido.Text = sujeto.Apellidos;
-            txtNombre.Text = sujeto.Nombres;
-            txtMotivoBaja.Text = sujeto.MotivoRechazo;
+            txtApellido.Text = Apellidos = sujeto.Apellidos;
+            txtNombre.Text = Nombres = sujeto.Nombres;
+            txtMotivoBaja.Text = Motivo = sujeto.MotivoRechazo;
+            FechaAltaTB.Text = FechaAlta = sujeto.FechaAlta.Value.ToString(@"dd/MM/yyyy");                        
+        }
+
+        private void ListaNegra_Shown(object sender, EventArgs e)
+        {
+            CancelarBTN.Focus();
         }
     }
 }
