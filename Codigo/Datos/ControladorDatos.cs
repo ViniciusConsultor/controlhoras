@@ -77,7 +77,8 @@ namespace Datos
                     //Database = "trustdb",
                     Database = ConfigurationManager.AppSettings["Base"].ToString(),
                     Pooling = false,
-                    ConnectionLifeTime = 0
+                    ConnectionLifeTime = 0,
+                    AllowUserVariables = true
                 };
             
 
@@ -927,11 +928,12 @@ namespace Datos
 
         public DataSet ejecutarConsultaEmpleado(int numeroConsultaEmpleado, Dictionary<string, string> parametrosConsulta)
         {
+            MySqlConnection conexion2;
             try
             {
                 ConsultAsEmPleadOs consEmp = (from reg in database.GetTable<ConsultAsEmPleadOs>()
-                                        where reg.IDConsultaEmpleado == numeroConsultaEmpleado
-                                        select reg).Single();
+                                              where reg.IDConsultaEmpleado == numeroConsultaEmpleado
+                                              select reg).Single();
                 if (consEmp != null)
                 {
                     string sql = consEmp.Query;
@@ -945,12 +947,13 @@ namespace Datos
                         }
 
 
-                    MySqlConnection conexion = (MySqlConnection)database.Connection;
+                    conexion2 = (MySqlConnection)database.Connection;
 
-                    MySqlDataAdapter mysqlAdapter = new MySqlDataAdapter(sql, conexion);
+                    MySqlDataAdapter mysqlAdapter = new MySqlDataAdapter(sql, conexion2);
+
                     DataSet sd = new DataSet();
                     mysqlAdapter.Fill(sd);
-                    conexion.Close();
+                    //conexion.Close();
                     return sd;
                 }
                 throw new Exception("Error al ejecutar la consulta para obtener el query");
@@ -958,6 +961,10 @@ namespace Datos
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                conexion.Close();
             }
         }
         #endregion
