@@ -2,3 +2,12 @@
 CREATE  TABLE IF NOT EXISTS `trustdb`.`listanegra` (  `CI` VARCHAR(30) NOT NULL ,  `Apellidos` VARCHAR(50) NULL ,  `Nombres` VARCHAR(50) NULL ,  `MotivoRechazo` VARCHAR(100) NOT NULL ,  `Activo` TINYINT(1) NULL DEFAULT '1' ,  `FechaBaja` DATE NULL ,  PRIMARY KEY (`CI`) );
 
 ALTER TABLE `trustdb`.`listanegra` ADD COLUMN `FechaAlta` DATE NULL  AFTER `Activo` ;
+
+
+
+-- JG: Arreglo de Numerador en todos los litados de Empleados
+ update consultasempleados set Query = replace(Query, "select", "select @rownumber:=@rownumber+1 as NroLinea,");
+ update consultasempleados set Query = replace(Query, "from", "from (select @rownumber:=0) r,");
+
+ 
+ 
