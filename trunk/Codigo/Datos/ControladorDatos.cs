@@ -2230,6 +2230,34 @@ namespace Datos
 
         }
 
+        public void altaEmpleadoDesdeListaNegra(string CI, string nroEmpleado, string apellidos, string nombres, string observaciones)
+        {
+            Table<EmPleadOs> tablaEmpleados;
+            try
+            {
+                tablaEmpleados = database.GetTable<EmPleadOs>();
+
+                EmPleadOs emp = new EmPleadOs();
+
+                emp.IDEmpleado = (uint)int.Parse(nroEmpleado);
+                emp.Nombre = nombres;
+                emp.Apellido = apellidos;                
+                emp.NumeroDocumento = CI;
+                emp.Observaciones = observaciones;
+                emp.FechaIngreso = DateTime.Now;
+                emp.BpsfEchaAlta = DateTime.Now;
+                emp.NivelEducativo = "PRIMARIO";
+                emp.Activo = 1;                
+
+                tablaEmpleados.InsertOnSubmit(emp);
+                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }            
+        }
+
 
     }
 

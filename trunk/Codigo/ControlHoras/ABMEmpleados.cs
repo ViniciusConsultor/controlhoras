@@ -358,6 +358,54 @@ namespace ControlHoras
             }
         }
 
+        private void limpiarForm3()
+        {
+            cmbNivelEducativo.SelectedIndex = 0;
+            rbAntecedentes_NO.Checked = true;
+            lblEstadoEmpleado.Visible = false;
+            lblEmpleadoCargado.Text = "";
+            lblEdad.Text = "";
+
+            foreach (TabPage tp in tcEmpleado.TabPages)
+            {
+                foreach (Control c in tp.Controls)
+                {
+                    string tipoDelControl;
+                    tipoDelControl = c.GetType().ToString();
+                    if (tipoDelControl == "ControlHoras.TextBoxKeyDown" || tipoDelControl == "ControlHoras.MaskedTextBoxKeyDown")
+                    {
+                        if (c.Name != "mtNumeroDocumento")
+                            c.Text = "";
+                    }
+                    else if (tipoDelControl == "System.Windows.Forms.CheckBox")
+                        ((CheckBox)c).Checked = false;
+                    else if (tipoDelControl == "System.Windows.Forms.GroupBox")
+                    {
+                        foreach (Control cgb in c.Controls)
+                        {
+                            if (cgb.GetType().ToString() == "ControlHoras.TextBoxKeyDown" || cgb.GetType().ToString() == "ControlHoras.MaskedTextBoxKeyDown")
+                            {
+                                if (cgb.Name != "mtNumeroDocumento")
+                                    cgb.Text = "";
+                            }
+                            else if (cgb.GetType().ToString() == "ControlHoras.ComboBoxKeyDown")
+                            {
+                                if (((ComboBox)cgb).Items.Count > 0)
+                                    ((ComboBox)cgb).SelectedIndex = 0;
+                            }
+                            else if (cgb.GetType().ToString() == "System.Windows.Forms.CheckBox")
+                                ((CheckBox)cgb).Checked = false;
+                        }
+                    }
+
+                    else if (tipoDelControl == "System.Windows.Forms.PictureBox")
+                    {
+                        ((PictureBox)c).Image = null;
+                    }                    
+                }
+            }
+        }
+
         private void mtNumeroEmpleado_KeyDown(object sender, KeyEventArgs e)
         {
             if (mtNumeroEmpleado.Text != "" && (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab))
@@ -377,6 +425,7 @@ namespace ControlHoras
                             lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
                             btnAgregar.Enabled = false;
                             btnGuardar.Enabled = true;
+                            BtnReactivar.Visible = false;
                             btnExtrasAgregar.Enabled = true;
                             btnAgregarHistorial.Enabled = true;
                             ImprimirTSB.Enabled = true;
@@ -417,7 +466,7 @@ namespace ControlHoras
             else if (mtNumeroEmpleado.Text == "" && e.KeyCode == Keys.Enter)
             {
                 mtNumeroEmpleado.Text = (datos.obtenerMaxIdEmpleado() + 1).ToString();
-                limpiarForm2();
+                //limpiarForm2();
                 btnAgregar.Enabled = true;
                 btnGuardar.Enabled = false;
                 btnExtrasAgregar.Enabled = false;
@@ -2750,6 +2799,7 @@ namespace ControlHoras
                 
                 try
                 {
+                    limpiarForm3();
                     if (datos.existeEmpleadoListaNegra(mtNumeroDocumento.Text, out sujeto))
                     {
                         ListaNegra sear = new ListaNegra(sujeto);
@@ -2758,15 +2808,27 @@ namespace ControlHoras
                         if (res == DialogResult.OK)
                         {
                             //Dar de baja en Lista Negra
-                            txtApellido.Text = sear.Apellidos;
-                            txtNombre.Text = sear.Nombres;
-                            txtObservaciones.Text = txtObservaciones.Text + "\r\n" + "LISTA NEGRA\r\nINGRESÓ: " + sear.FechaAlta + "    MOTIVO: " + sear.Motivo;
-
-                            mtNumeroEmpleado.Focus();
-                            //SendKeys.Send("{ENTER}");
-                            //btnGuardar.PerformClick();
-
                             datos.BajaListaNegra(mtNumeroDocumento.Text);
+
+                            //txtApellido.Text = sear.Apellidos;
+                            //txtNombre.Text = sear.Nombres;
+                            //txtObservaciones.Text ="LISTA NEGRA\r\nINGRESÓ: " + sear.FechaAlta + "    MOTIVO: " + sear.Motivo;
+
+                            string obs = "LISTA NEGRA\r\nINGRESÓ: " + sujeto.FechaAlta.Value.ToString(@"dd/MM/yyyy") + "    MOTIVO: " + sujeto.MotivoRechazo;
+                            string nro = (datos.obtenerMaxIdEmpleado() + 1).ToString();
+
+                            datos.altaEmpleadoDesdeListaNegra(mtNumeroDocumento.Text, nro, sujeto.Apellidos, sujeto.Nombres, obs);
+
+                            mtNumeroDocumento.Focus();
+                            SendKeys.Send("{ENTER}");
+
+                            
+                            
+                            //System.Threading.Thread.Sleep(3000);
+                            
+                            
+                            
+                            
                         }
                         else
                             btnCancelar.PerformClick();
@@ -2796,9 +2858,10 @@ namespace ControlHoras
                                 btnExtrasAgregar.Enabled = false;
                                 btnAgregarHistorial.Enabled = false;
                                 ImprimirTSB.Enabled = false;
-                            }
+                            }                           
                             cargarEmpleado(empleado);
                         }
+                        mtNumeroEmpleado.Focus();
                     }
                 }
                 catch (Exception ex)

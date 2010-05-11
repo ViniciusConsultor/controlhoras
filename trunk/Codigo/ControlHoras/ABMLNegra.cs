@@ -43,9 +43,10 @@ namespace ControlHoras
             return ventana;
         }
 
-        private void limpiarForm()
+        private void limpiarForm(bool borroCI)
         {
-            ciTB.Text = "";
+            if (borroCI)
+                ciTB.Text = "";
             txtApellido.Text = "";
             txtNombre.Text = "";
             txtMotivoBaja.Text = "";
@@ -69,7 +70,7 @@ namespace ControlHoras
 
                     btnAgregar.Enabled = true;
                     btnGuardar.Enabled = false;
-                    limpiarForm();
+                    limpiarForm(true);
                 }
                 catch (Exception ex)
                 {
@@ -89,7 +90,7 @@ namespace ControlHoras
                     // Doy de alta en la base de datos
                     datos.altaListaNegra(ciTB.Text, txtApellido.Text, txtNombre.Text, txtMotivoBaja.Text);
 
-                    limpiarForm();
+                    limpiarForm(true);
                 }
                 catch (Exception ex)
                 {
@@ -102,7 +103,7 @@ namespace ControlHoras
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            limpiarForm();
+            limpiarForm(true);
             btnAgregar.Enabled = true;
             btnGuardar.Enabled = false;
             ciTB.Focus();
@@ -117,8 +118,11 @@ namespace ControlHoras
         {
             if (ciTB.MaskCompleted && (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab))
             {
+                limpiarForm(false);
+
                 // Busco si existe un empleado con esta cédula
                 ListAnEGRa sujeto;
+
                 try
                 {
                     if (datos.existeEmpleadoListaNegra(ciTB.Text, out sujeto))
@@ -132,7 +136,17 @@ namespace ControlHoras
                             txtApellido.Text = sujeto.Apellidos;
                             txtNombre.Text = sujeto.Nombres;
                             txtMotivoBaja.Text = sujeto.MotivoRechazo;
-                        }                        
+                        }
+                        else
+                        {
+                            btnAgregar.Enabled = true;
+                            btnGuardar.Enabled = false;
+                        }
+                    }
+                    else
+                    {
+                        btnAgregar.Enabled = true;
+                        btnGuardar.Enabled = false;
                     }
                 }
                 catch (Exception ex)
