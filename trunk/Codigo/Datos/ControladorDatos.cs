@@ -785,7 +785,7 @@ namespace Datos
             try
             {
                 int? idemp = (from reg in database.GetTable<EmPleadOs>()
-                             where reg.IDEmpleado > idEmpleado //&& reg.Activo == 0
+                             where reg.IDEmpleado > idEmpleado && reg.Activo == 1
                              select (int?)reg.IDEmpleado).Min<int?>();
                 return idemp;
             }
@@ -802,7 +802,7 @@ namespace Datos
             {
                 int? idemp = null;
                 idemp = (from reg in database.GetTable<EmPleadOs>()
-                             where reg.IDEmpleado < idEmpleado  //&&reg.Activo == 0
+                             where reg.IDEmpleado < idEmpleado  && reg.Activo == 1
                              select (int?)reg.IDEmpleado).Max<int?>();
                 return idemp;
             }
