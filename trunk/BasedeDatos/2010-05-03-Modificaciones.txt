@@ -10,4 +10,9 @@ ALTER TABLE `trustdb`.`listanegra` ADD COLUMN `FechaAlta` DATE NULL  AFTER `Acti
  update consultasempleados set Query = replace(Query, "from", "from (select @rownumber:=0) r,");
 
  
- 
+
+-- Agrandamos el campo Descripcion de consultasempleados
+alter table consultasempleados change column Descripcion Descripcion varchar(500);
+
+-- Insercion del Listado de RENAEMSE
+insert into consultasempleados values(0,"Consulta RENAEMSE","Consulta que devuelve Nro Correlativo - Apellido - Nombre - ServicioActual - Turno - CI - FechaAprobacionCurso(Dia Anterior al Ingreso) -  CursoServicioArmado(SI/NO) - EnServicioArmado(SI/NO) - CAJ_Numero - CertificadoDomicilio(SI/NO) para todos los empleados ACTIVOS.","select @rownum:=@rownum+1 AS Nro, emp.Apellido AS Apellidos, emp.Nombre AS Nombres, emp.ServicioActual,emp.Turno, emp.NumeroDocumento, ADDDATE(emp.FechaIngreso, -1) AS FeachaAprobCurso,emp.CapacitadoPortarArma AS CursoServicioArmado, emp.EnServicioArmado AS EnServicioArmado, emp.CAJ_Numero, emp.ConstanciaDomicilio AS ConstanciaDomicilio from (SELECT @rownum:=0) r, empleados emp where emp.Activo=1",1);
