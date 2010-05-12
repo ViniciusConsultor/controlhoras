@@ -421,25 +421,27 @@ namespace ControlHoras
                         if (empleado.Activo == 1)
                         {
                             limpiarForm();
-                            lblEstadoEmpleado.Visible = true;
-                            lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
-                            btnAgregar.Enabled = false;
-                            btnGuardar.Enabled = true;
-                            BtnReactivar.Visible = false;
-                            btnExtrasAgregar.Enabled = true;
-                            btnAgregarHistorial.Enabled = true;
-                            ImprimirTSB.Enabled = true;
+                            habilitarPermisosEmpleado(true);
+                            //lblEstadoEmpleado.Visible = true;
+                            //lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
+                            //btnAgregar.Enabled = false;
+                            //btnGuardar.Enabled = true;
+                            //BtnReactivar.Visible = false;
+                            //btnExtrasAgregar.Enabled = true;
+                            //btnAgregarHistorial.Enabled = true;
+                            //ImprimirTSB.Enabled = true;
                         }
                         else
                         {
-                            lblEstadoEmpleado.Visible = true;
-                            lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
-                            btnAgregar.Enabled = false;
-                            btnGuardar.Enabled = false;
-                            BtnReactivar.Visible = true;
-                            btnExtrasAgregar.Enabled = false;
-                            btnAgregarHistorial.Enabled = false;
-                            ImprimirTSB.Enabled = false;
+                            habilitarPermisosEmpleado(false);
+                            //lblEstadoEmpleado.Visible = true;
+                            //lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
+                            //btnAgregar.Enabled = false;
+                            //btnGuardar.Enabled = false;
+                            //BtnReactivar.Visible = true;
+                            //btnExtrasAgregar.Enabled = false;
+                            //btnAgregarHistorial.Enabled = false;
+                            //ImprimirTSB.Enabled = false;
                         }
                         cargarEmpleado(empleado);
                     }
@@ -1107,21 +1109,26 @@ namespace ControlHoras
                     dtpFechaVenCarSal = null;
                 else
                     dtpFechaVenCarSal = DateTime.ParseExact(dtpFechaVencimientoCarneSalud.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-                              
+
 
                 if (agregar)
+                {
                     //sistema.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), txtNombre.Text, txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, txtNacionalidad.Text, sexo, dtpPsicologo.Value, dtpFechaNacimiento.Value, dtpFechaIngreso.Value, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantHijos, foto, idbanco, txtNumeroCuenta.Text, sueldo, activo, dtpFechaBaja.Value, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngresoRenaemse.Value, acumulacionLaboral, dtpFechaAltaBPS.Value, dtpFechaBajaBPS.Value, txtNumeroCAJ.Text, dtpFechaEmisionCAJ.Value, dtpFechaEntregaCAJ.Value, antecedentes, cmbPolicialMilitar.Text, dtpFechaIngresoPolicialMilitar.Value, dtpFechaEgresoPolicialMilitar.Value, txtPolicialSubEscalafon.Text, combatiente, txtTalleCamisa.Text, txtTallePantalon.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVencimientoCarneSalud.Value, idmutualista, idemergenciamovil);
-                    datos.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, valorHora, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtBarrio.Text, txtCodigoPostal.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, cbBajadoBPS.Checked, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTallePantalon.Text, txtTalleCamisa.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, cmbNivelEducativo.SelectedItem.ToString(), idcargo, dtpFechaPagoEfectuado, dtpFechaPagoPrevisto, ServicioActual, Turno, cbConstanciaDomicilio.Checked, dtpFechaEnCelu);                
+                    datos.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, valorHora, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtBarrio.Text, txtCodigoPostal.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, cbBajadoBPS.Checked, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTallePantalon.Text, txtTalleCamisa.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, cmbNivelEducativo.SelectedItem.ToString(), idcargo, dtpFechaPagoEfectuado, dtpFechaPagoPrevisto, ServicioActual, Turno, cbConstanciaDomicilio.Checked, dtpFechaEnCelu);
+                    MessageBox.Show("Empleado agregado Correctamente.", "Alta Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    habilitarPermisosEmpleado(true);
+                }
                 else
                 {
                     string nivEdu = "";
                     if (cmbNivelEducativo.SelectedItem != null)
                         nivEdu = cmbNivelEducativo.SelectedItem.ToString();
                     datos.modificarEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, valorHora, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtBarrio.Text, txtCodigoPostal.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, cbBajadoBPS.Checked, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTallePantalon.Text, txtTalleCamisa.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, cmbNivelEducativo.SelectedItem.ToString(), idcargo, dtpFechaPagoEfectuado, dtpFechaPagoPrevisto, ServicioActual, Turno, cbConstanciaDomicilio.Checked, dtpFechaEnCelu);
+                    MessageBox.Show("Datos guardados correctamente.", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
               // JG. Se comenta para que al guardar permanezca cargado el funcionario.
               //  btnCancelar.PerformClick();
-                MessageBox.Show("Datos guardados correctamente.", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
             catch (Exception ex)
             {
@@ -2838,27 +2845,10 @@ namespace ControlHoras
                         if (datos.existeEmpleadoCI(mtNumeroDocumento.Text, out empleado))
                         {
                             //empleado = datos.obtenerEmpleado(int.Parse(mtNumeroEmpleado.Text));
-                            if (empleado.Activo == 1)
-                            {
-                                lblEstadoEmpleado.Visible = true;
-                                lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
-                                btnAgregar.Enabled = false;
-                                btnGuardar.Enabled = true;
-                                btnExtrasAgregar.Enabled = true;
-                                btnAgregarHistorial.Enabled = true;
-                                ImprimirTSB.Enabled = true;
-                            }
+                            if (empleado.Activo ==1)
+                                habilitarPermisosEmpleado(true);
                             else
-                            {
-                                lblEstadoEmpleado.Visible = true;
-                                lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
-                                btnAgregar.Enabled = false;
-                                btnGuardar.Enabled = false;
-                                BtnReactivar.Visible = true;
-                                btnExtrasAgregar.Enabled = false;
-                                btnAgregarHistorial.Enabled = false;
-                                ImprimirTSB.Enabled = false;
-                            }                           
+                                habilitarPermisosEmpleado(false);
                             cargarEmpleado(empleado);
                         }
                         mtNumeroEmpleado.Focus();
@@ -2868,6 +2858,31 @@ namespace ControlHoras
                 {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void habilitarPermisosEmpleado(bool activo)
+        {
+            if (activo)
+            {
+                lblEstadoEmpleado.Visible = true;
+                lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
+                btnAgregar.Enabled = false;
+                btnGuardar.Enabled = true;
+                btnExtrasAgregar.Enabled = true;
+                btnAgregarHistorial.Enabled = true;
+                ImprimirTSB.Enabled = true;
+            }
+            else
+            {
+                lblEstadoEmpleado.Visible = true;
+                lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
+                btnAgregar.Enabled = false;
+                btnGuardar.Enabled = true;
+                BtnReactivar.Visible = true;
+                btnExtrasAgregar.Enabled = false;
+                btnAgregarHistorial.Enabled = false;
+                ImprimirTSB.Enabled = true;
             }
         }
 
