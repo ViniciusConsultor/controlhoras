@@ -1062,81 +1062,147 @@ namespace Datos
         #endregion
 
         #region ExtrasLiquidacionEmpleado
+        // 2010-05-12 - JG: Esta es la primer version de los extrasliquidacion, cuando se usaba una sola tabla.
+        //public int agregarExtraLiquidacionEmpleado(int idEmpleado, DateTime fecha, string descripcion, bool signoPositivo, float valor, int cantidadCuotas)
+        //{
+        //    ExtrasLiquidAcIonEmPleadO exliq;
+        //    Table<ExtrasLiquidAcIonEmPleadO> tabla;
+        //    try
+        //    {
+        //        tabla = database.GetTable<ExtrasLiquidAcIonEmPleadO>();
+
+        //        int cuotaActual = 1;
+        //        int idExtraARetornar = -1;
+        //        DateTime mesCorrespondiente = fecha;
+
+        //        uint proximoIdExtraEmpleado;
+              
+        //        List<uint> ListExtras = (from reg in tabla
+        //                   where reg.IDEmpleado == idEmpleado
+        //                   select reg.IDExtrasLiquidacionEmpleado).ToList<uint>();
+
+        //        uint extras=0;
+        //        if (ListExtras.Count > 0)
+        //            extras = ListExtras.Max();
+        //        proximoIdExtraEmpleado = (uint)extras + 1;
+                
+        //        // Se crea un registro nuevo por cada cuota, aumentando la cuota y el mes
+        //        while (cuotaActual <= cantidadCuotas)
+        //        {
+        //            exliq = new ExtrasLiquidAcIonEmPleadO();
+
+        //            exliq.IDEmpleado = (uint) idEmpleado;
+        //            exliq.IDExtrasLiquidacionEmpleado = proximoIdExtraEmpleado;
+        //            exliq.Fecha = mesCorrespondiente;
+        //            //if (signoPositivo)
+        //            //    exliq.Signo = 1;
+        //            //else
+        //            //    exliq.Signo = -1;
+        //            exliq.Valor = valor/cantidadCuotas;
+        //            //exliq.CantidadCuotas = (sbyte)cantidadCuotas;
+        //            exliq.Descripcion = descripcion;
+        //            //exliq.CuotaActual = (sbyte) cuotaActual;
+                
+        //            tabla.InsertOnSubmit(exliq);
+                    
+        //            if (cuotaActual == 1)  // Si es la primer cuota, todo el idextra nuevo para retornarlo
+        //                idExtraARetornar = (int) exliq.IDExtrasLiquidacionEmpleado;
+        //            cuotaActual++; // Aumento en uno la cuota actual
+        //            mesCorrespondiente = mesCorrespondiente.AddMonths(1); // Aumento en 1 el mes correspondiente de la cuota.
+        //        }
+
+        //        database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+        //        if (idExtraARetornar != -1)
+        //        {
+                   
+        //            return idExtraARetornar;
+                    
+        //        }
+        //        else
+        //            throw new Exception("Error al crear los Extras para el empleado.");
+
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+
         public int agregarExtraLiquidacionEmpleado(int idEmpleado, DateTime fecha, string descripcion, bool signoPositivo, float valor, int cantidadCuotas)
         {
-            ExtrasLiquidAcIonEmPleadO exliq;
-            Table<ExtrasLiquidAcIonEmPleadO> tabla;
-            //try
-            //{
-            //database.Connection.Open();
-            //System.Data.Common.DbTransaction trans = database.Connection.BeginTransaction();
-            //database.Transaction = trans;
-            //}
-            //catch (Exception e)
-            //{
-            //    throw e;
-            //}
+            Table<ExtrasLiquidAcIon> tablaExtrasLiquidacion;
+            Table<CuOtAsExtrasLiquidAcIon> tablaCuotas;
+            int idExtraARetornar = -1;
+            CuOtAsExtrasLiquidAcIon cuota;
+            ExtrasLiquidAcIon el, el2;
             try
             {
-                tabla = database.GetTable<ExtrasLiquidAcIonEmPleadO>();
-
-                int cuotaActual = 1;
-                int idExtraARetornar = -1;
+                tablaExtrasLiquidacion = database.GetTable<ExtrasLiquidAcIon>();
+                tablaCuotas = database.GetTable<CuOtAsExtrasLiquidAcIon>();
                 DateTime mesCorrespondiente = fecha;
 
-                uint proximoIdExtraEmpleado;
-              
-                List<uint> ListExtras = (from reg in tabla
-                           where reg.IDEmpleado == idEmpleado
-                           select reg.IDExtrasLiquidacionEmpleado).ToList<uint>();
-
-                uint extras=0;
-                if (ListExtras.Count > 0)
-                    extras = ListExtras.Max();
-                proximoIdExtraEmpleado = (uint)extras + 1;
+                el = new ExtrasLiquidAcIon();
+               // tablaExtrasLiquidacion.InsertOnSubmit(el);
+                el.IDEmpleado = (uint) idEmpleado;
+                el.Descripcion = descripcion;
+                if (signoPositivo)
+                    el.Signo = 1;
+                else
+                    el.Signo = 0;
+                el.CuotaActual = 1;
                 
-                // Se crea un registro nuevo por cada cuota, aumentando la cuota y el mes
-                while (cuotaActual <= cantidadCuotas)
-                {
-                    exliq = new ExtrasLiquidAcIonEmPleadO();
-
-                    exliq.IDEmpleado = (uint) idEmpleado;
-                    exliq.IDExtrasLiquidacionEmpleado = proximoIdExtraEmpleado;
-                    exliq.Fecha = mesCorrespondiente;
-                    //if (signoPositivo)
-                    //    exliq.Signo = 1;
-                    //else
-                    //    exliq.Signo = -1;
-                    exliq.Valor = valor/cantidadCuotas;
-                    //exliq.CantidadCuotas = (sbyte)cantidadCuotas;
-                    exliq.Descripcion = descripcion;
-                    //exliq.CuotaActual = (sbyte) cuotaActual;
-                
-                    tabla.InsertOnSubmit(exliq);
-                    
-                    if (cuotaActual == 1)  // Si es la primer cuota, todo el idextra nuevo para retornarlo
-                        idExtraARetornar = (int) exliq.IDExtrasLiquidacionEmpleado;
-                    cuotaActual++; // Aumento en uno la cuota actual
-                    mesCorrespondiente = mesCorrespondiente.AddMonths(1); // Aumento en 1 el mes correspondiente de la cuota.
-                }
-
+                tablaExtrasLiquidacion.InsertOnSubmit(el);
+                 
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+                var maxId =(from reg in tablaExtrasLiquidacion
+                            select reg.IDExtraLiquidacion).Max();
+                el2 = (from reg in tablaExtrasLiquidacion
+                                        where reg.IDExtraLiquidacion == maxId
+                                        select reg).Single();
+                // Genero el EntitySet de CuotasExtrasLiquidacion
+                EntitySet<CuOtAsExtrasLiquidAcIon> set = new EntitySet<CuOtAsExtrasLiquidAcIon>();
+                int numCuota = 1;
+                while (numCuota <= cantidadCuotas)
+                {
+                    cuota = new CuOtAsExtrasLiquidAcIon();
+                    cuota.Fecha = mesCorrespondiente;
+                    cuota.Liquidado = 0;
+                    cuota.NumeroCuota = (sbyte) numCuota;
+                    numCuota++;
+                    cuota.ValorCuota = valor / cantidadCuotas;
+                    cuota.IDExtraLiquidacion = el2.IDExtraLiquidacion;
+                    cuota.ExtrasLiquidAcIon = el2;
+                  //  tablaCuotas.InsertOnSubmit(cuota);
+                    set.Add(cuota);
+                    mesCorrespondiente = mesCorrespondiente.AddMonths(1);
+                }
+                el2.CuOtAsExtrasLiquidAcIon = set;
+
+                ////tablaExtrasLiquidacionInsertOnSub
+                
+                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+                
+                idExtraARetornar = (int)el2.IDExtraLiquidacion;
                 if (idExtraARetornar != -1)
                 {
-                   
                     return idExtraARetornar;
-                    
+
                 }
                 else
                     throw new Exception("Error al crear los Extras para el empleado.");
 
-
+                
             }
             catch (Exception ex)
             {
-                throw ex;
+                
+                throw new Exception("Error al ingresar los extras. " + ex.Message); 
             }
+            
         }
+
+
 
         public void modificarExtraLiquidacionEmpleado(int idEmpleado, int idExtraLiquidacionEmpleado, DateTime fecha, string descripcion, bool  signoPositivo, float valor, int cantidadCuotas)
         {
@@ -1212,15 +1278,38 @@ namespace Datos
             }
         }        
 
-        public List<ExtrasLiquidAcIonEmPleadO> obtenerExtrasLiquidacionEmpleado(int idEmpleado, DateTime mesCorrespondiente)
+        //public List<ExtrasLiquidAcIonEmPleadO> obtenerExtrasLiquidacionEmpleado(int idEmpleado, DateTime mesCorrespondiente)
+        //{
+        //    try
+        //    {
+        //        Table<ExtrasLiquidAcIonEmPleadO> tabla = database.GetTable<ExtrasLiquidAcIonEmPleadO>();
+
+        //        List<ExtrasLiquidAcIonEmPleadO> listaExtras = (from reg in tabla
+        //                           where reg.IDEmpleado == idEmpleado && mesCorrespondiente.Month == reg.Fecha.Month && reg.Fecha.Year == mesCorrespondiente.Year
+        //                           select reg).ToList<ExtrasLiquidAcIonEmPleadO>();
+
+        //        return listaExtras;
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+        public List<ExtrasLiquidAcIon> obtenerExtrasLiquidacionEmpleado(int idEmpleado, DateTime mesCorrespondiente)
         {
             try
             {
-                Table<ExtrasLiquidAcIonEmPleadO> tabla = database.GetTable<ExtrasLiquidAcIonEmPleadO>();
-
-                List<ExtrasLiquidAcIonEmPleadO> listaExtras = (from reg in tabla
-                                   where reg.IDEmpleado == idEmpleado && mesCorrespondiente.Month == reg.Fecha.Month && reg.Fecha.Year == mesCorrespondiente.Year
-                                   select reg).ToList<ExtrasLiquidAcIonEmPleadO>();
+                Table<ExtrasLiquidAcIon> tabla = database.GetTable<ExtrasLiquidAcIon>();
+                Table<CuOtAsExtrasLiquidAcIon> tablaCuotas = database.GetTable<CuOtAsExtrasLiquidAcIon>();
+                var opts = new DbLinq.Data.Linq.DataLoadOptions();
+                opts.LoadWith((ExtrasLiquidAcIon elq) => elq.CuOtAsExtrasLiquidAcIon);
+                //opts.LoadWith<ExtrasLiquidAcIon>(eliq => eliq.CuOtAsExtrasLiquidAcIon);
+                database.LoadOptions = opts;
+                List<ExtrasLiquidAcIon> listaExtras = (from reg in tabla
+                                                       from cuotas in reg.CuOtAsExtrasLiquidAcIon
+                                                               where reg.IDEmpleado == idEmpleado && mesCorrespondiente.Month == cuotas.Fecha.Month && cuotas.Fecha.Year == mesCorrespondiente.Year
+                                                               select reg).ToList<ExtrasLiquidAcIon>();
 
                 return listaExtras;
 
@@ -1230,6 +1319,8 @@ namespace Datos
                 throw ex;
             }
         }
+
+
         #endregion
 
         #region ABM_Departamentos
