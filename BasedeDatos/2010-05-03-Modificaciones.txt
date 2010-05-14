@@ -3,6 +3,25 @@ CREATE  TABLE IF NOT EXISTS `trustdb`.`listanegra` (  `CI` VARCHAR(30) NOT NULL 
 
 ALTER TABLE `trustdb`.`listanegra` ADD COLUMN `FechaAlta` DATE NULL  AFTER `Activo` ;
 
+-- Creacion de Tablas para nueva implementacion de ExtrasLiquidacion
+CREATE TABLE `extrasliquidacion` (
+  `IdExtraLiquidacion` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `IdEmpleado` mediumint(8) unsigned NOT NULL,
+  `Descripcion` varchar(255) NOT NULL,
+  `Signo` mediumint(9) NOT NULL DEFAULT '1',
+  `CuotaActual` tinyint(2) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`IdExtraLiquidacion`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `cuotasextrasliquidacion` (
+  `IdExtraLiquidacion` int(10) unsigned NOT NULL,
+  `NumeroCuota` tinyint(2) NOT NULL DEFAULT '1',
+  `ValorCuota` float NOT NULL,
+  `Liquidado` tinyint(1) NOT NULL DEFAULT '0',
+  `Fecha` date NOT NULL,
+  PRIMARY KEY (`IdExtraLiquidacion`,`NumeroCuota`),
+  CONSTRAINT `cuotasextrasliquidacion_ibfk_1` FOREIGN KEY (`IdExtraLiquidacion`) REFERENCES `extrasliquidacion` (`IdExtraLiquidacion`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 -- JG: Arreglo de Numerador en todos los litados de Empleados
