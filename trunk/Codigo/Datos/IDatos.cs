@@ -126,7 +126,7 @@ namespace Datos
         /// <param name="idEmpleado">Numero del Empleado a modificar el extra.</param>
         /// <param name="mesCorrespondiente">Mes para el cual se quiere obtener los extras.</param>
         /// <returns></returns>
-        List<ExtrasLiquidAcIonEmPleadO> obtenerExtrasLiquidacionEmpleado(int idEmpleado, DateTime mesCorrespondiente);
+        List<ExtrasLiquidAcIon> obtenerExtrasLiquidacionEmpleado(int idEmpleado, DateTime mesCorrespondiente);
 
         /// <summary>
         /// Devuelve el identificador del empleado activo, siguiente al pasado por parametro.
