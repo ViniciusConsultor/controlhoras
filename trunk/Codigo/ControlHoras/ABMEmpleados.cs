@@ -117,23 +117,11 @@ namespace ControlHoras
             //}
 
 
-            // Combo Bancos
-            //try
-            //{
-            //    Dictionary<int, string> docs = tipos.obtenerBancos(false);
-            //    CargarCombo(cmbTurno, docs);
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-
+          
             // Combo Departamentos
             try
             {
-                Dictionary<int, string> docs = tipos.obtenerDepartamentos(false);
-                CargarCombo(cmbDepartamento, docs);
+                updateListOfDepartamentos();
             }
             catch (Exception ex)
             {
@@ -143,8 +131,7 @@ namespace ControlHoras
             // Combo EmergenciaMedica
             try
             {
-                Dictionary<int, string> docs = tipos.obtenerEmergenciaMedicas(false);
-                CargarCombo(cmbEmergenciaMedica, docs);
+                updateListOfEmergenciaMedica();
 
                 //cmbEmergenciaMedica.BeginUpdate();                
                 //foreach (int key in docs.Keys)
@@ -162,8 +149,7 @@ namespace ControlHoras
             // Combo Mutualistas
             try
             {
-                Dictionary<int, string> docs = tipos.obtenerMutualistas(false);
-                CargarCombo(cmbMutualista, docs);
+                updateListOfMutualistas();
                 //cmbMutualista.ValueMember = "Value";
                 //cmbMutualista.DisplayMember = "Display";
                 //cmbMutualista.BeginUpdate();
@@ -182,17 +168,7 @@ namespace ControlHoras
             // Combo TipoEventosHistorial
             try
             {
-                List<TipOsEventOHistOrIal> tiposeventos = datosTipos.obtenerTiposEventoHistorial(false);
-                listaTiposEventos = tiposeventos;
-                cmbTipoEventoHistorial.ValueMember = "Value";
-                cmbTipoEventoHistorial.DisplayMember = "Display";
-                cmbTipoEventoHistorial.BeginUpdate();
-                foreach (TipOsEventOHistOrIal tipo in tiposeventos)
-                {
-                    ComboBoxValue cbval = new ComboBoxValue(tipo.Nombre, tipo.IDTipoEventoHistorial);
-                    cmbTipoEventoHistorial.Items.Add(cbval);
-                }
-                cmbTipoEventoHistorial.EndUpdate();
+                updateListOfTiposEventoHistorialCombo();
             }
             catch (Exception ex)
             {
@@ -203,11 +179,7 @@ namespace ControlHoras
             try
             {
                 cargos = datosTipos.obtenerTiposCargosList(true);
-                Dictionary<int, string> cargosDic = datosTipos.obtenerTiposCargos(true);
-
-                CargarCombo(cmbTiposCargos, cargosDic);
-                cmbTiposCargos.SelectedIndexChanged += new System.EventHandler(this.cmbTiposCargos_SelectedIndexChanged);
-
+                updateListOfCargos();
 
 
                 /*cmbTiposCargos.ValueMember = "Value";
@@ -227,17 +199,29 @@ namespace ControlHoras
 
             #endregion
 
-            btnCancelar.PerformClick();
+          //  btnCancelar.PerformClick();
             mtNumeroDocumento.Focus();
         }
 
         private void CargarCombo(ComboBox cmb, Dictionary<int, string> docs)
         {
+
+
             BindingSource bs = new BindingSource();
             bs.DataSource = docs;
-            cmb.DataSource = bs;
+           
             cmb.ValueMember = "Key";
             cmb.DisplayMember = "Value";
+           
+            if (cmb.DataSource != null)
+            {
+                cmb.BindingContext[cmb.DataSource].SuspendBinding();
+                cmb.DataSource = bs;
+                cmb.BindingContext[cmb.DataSource].ResumeBinding();
+            }
+            else
+                cmb.DataSource = bs;
+            
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -1007,7 +991,15 @@ namespace ControlHoras
                 }
                 bool combatiente = cbCombatiente.Checked;
                 bool antecedentesPolicialesOMilitares = cbAntecedentePolicialoMilitar.Checked;
-                int idcargo = (int)cmbTiposCargos.SelectedValue;
+                int idcargo=-1;
+                try
+                {
+                    idcargo = (int)cmbTiposCargos.SelectedValue;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + " - " + ex.InnerException);
+                }
                 int iddepartamento = (int)cmbDepartamento.SelectedValue;
                 int idtipodocumento = 0;
                 int idmutualista = -1;
@@ -1452,6 +1444,7 @@ namespace ControlHoras
                     if (signo == '+')
                         signoPositivo = true;
                     mtExtrasValor.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+                    mtExtrasCantCuotas.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
                     int numNuevoExtra = datos.agregarExtraLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), dtpExtrasFecha.Value, txtExtrasDescripcion.Text, signoPositivo, float.Parse(mtExtrasValor.Text), int.Parse(mtExtrasCantCuotas.Text));
                     limpiarTabExtrasLiquidacion();
                     cargarGrillaExtraLiquidacionEmpleado();
@@ -1555,32 +1548,32 @@ namespace ControlHoras
             int n = -10;
             try
             {
-                List<ExtrasLiquidAcIonEmPleadO> listaExtras = datos.obtenerExtrasLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), dtpExtrasFecha.Value);
+                //List<ExtrasLiquidAcIon> listaExtras = datos.obtenerExtrasLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), dtpExtrasFecha.Value);
                 // Vacio la grilla
                 dgvExtrasLiquidacion.Rows.Clear();
 
 
                 // llenado de la grilla con estos datos
 
-                foreach (ExtrasLiquidAcIonEmPleadO extra in listaExtras)
-                {
-                    n = dgvExtrasLiquidacion.Rows.Add();
-                    dgvExtrasLiquidacion.Rows[n].Cells["IdExtraLiquidacion"].Value = extra.IDExtrasLiquidacionEmpleado;
-                    dgvExtrasLiquidacion.Rows[n].Cells["Fecha"].Value = extra.Fecha.ToShortDateString();
-                    dgvExtrasLiquidacion.Rows[n].Cells["DescripcionEvento"].Value = extra.Descripcion;
-                    if (extra.Signo == 1)
-                        dgvExtrasLiquidacion.Rows[n].Cells["Signo"].Value = "+";
-                    else
-                        dgvExtrasLiquidacion.Rows[n].Cells["Signo"].Value = "-";
-                    dgvExtrasLiquidacion.Rows[n].Cells["Valor"].Value = extra.Valor;
-                    dgvExtrasLiquidacion.Rows[n].Cells["CuotaActual"].Value = extra.CuotaActual;
-                    dgvExtrasLiquidacion.Rows[n].Cells["CantidadCuotas"].Value = extra.CantidadCuotas;
-                    if (extra.Liquidado == 1)
-                        dgvExtrasLiquidacion.Rows[n].Cells["Liquidado"].Value = "Si";
-                    else
-                        dgvExtrasLiquidacion.Rows[n].Cells["Liquidado"].Value = "No";
+                //foreach (ExtrasLiquidAcIonEmPleadO extra in listaExtras)
+                //{
+                //    n = dgvExtrasLiquidacion.Rows.Add();
+                //    dgvExtrasLiquidacion.Rows[n].Cells["IdExtraLiquidacion"].Value = extra.IDExtrasLiquidacionEmpleado;
+                //    dgvExtrasLiquidacion.Rows[n].Cells["Fecha"].Value = extra.Fecha.ToShortDateString();
+                //    dgvExtrasLiquidacion.Rows[n].Cells["DescripcionEvento"].Value = extra.Descripcion;
+                //    if (extra.Signo == 1)
+                //        dgvExtrasLiquidacion.Rows[n].Cells["Signo"].Value = "+";
+                //    else
+                //        dgvExtrasLiquidacion.Rows[n].Cells["Signo"].Value = "-";
+                //    dgvExtrasLiquidacion.Rows[n].Cells["Valor"].Value = extra.Valor;
+                //    dgvExtrasLiquidacion.Rows[n].Cells["CuotaActual"].Value = extra.CuotaActual;
+                //    dgvExtrasLiquidacion.Rows[n].Cells["CantidadCuotas"].Value = extra.CantidadCuotas;
+                //    if (extra.Liquidado == 1)
+                //        dgvExtrasLiquidacion.Rows[n].Cells["Liquidado"].Value = "Si";
+                //    else
+                //        dgvExtrasLiquidacion.Rows[n].Cells["Liquidado"].Value = "No";
 
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -1654,10 +1647,27 @@ namespace ControlHoras
             }
         }
 
+        private void updateListOfTiposEventoHistorialCombo()
+        {
+            List<TipOsEventOHistOrIal> tiposeventos = datosTipos.obtenerTiposEventoHistorial(false);
+            listaTiposEventos = tiposeventos;
+            cmbTipoEventoHistorial.Items.Clear();
+            cmbTipoEventoHistorial.ValueMember = "Value";
+            cmbTipoEventoHistorial.DisplayMember = "Display";
+            cmbTipoEventoHistorial.BeginUpdate();
+            foreach (TipOsEventOHistOrIal tipo in tiposeventos)
+            {
+                ComboBoxValue cbval = new ComboBoxValue(tipo.Nombre, tipo.IDTipoEventoHistorial);
+                cmbTipoEventoHistorial.Items.Add(cbval);
+            }
+            cmbTipoEventoHistorial.EndUpdate();
+        }
+
         private void btnAddTipoEvento_Click(object sender, EventArgs e)
         {
             ABMTipoEventoHistorial abmtiposeventos = ABMTipoEventoHistorial.getVentana();
             abmtiposeventos.ShowDialog(this);
+            updateListOfTiposEventoHistorialCombo();
         }
 
         private void cmbTiposCargos_SelectedIndexChanged(object sender, EventArgs e)
@@ -1667,7 +1677,8 @@ namespace ControlHoras
             {
                 if (cmbTiposCargos.SelectedItem != null)
                 {
-                    idtipocargo = (int)cmbTiposCargos.SelectedValue;// ((ComboBoxValue)cmbTiposCargos.SelectedItem).Value;
+                    idtipocargo = (int)cmbTiposCargos.SelectedValue;
+                    //idtipocargo = ((ComboBoxValue)cmbTiposCargos.SelectedItem).Value;
                     foreach (TipOscarGoS cargo in cargos)
                     {
                         if (cargo.IDCargo == idtipocargo)
@@ -2884,6 +2895,61 @@ namespace ControlHoras
                 btnAgregarHistorial.Enabled = false;
                 ImprimirTSB.Enabled = true;
             }
+        }
+
+        private void updateListOfDepartamentos()
+        {
+            Dictionary<int, string> docs = tipos.obtenerDepartamentos(false);
+            CargarCombo(cmbDepartamento, docs);
+        }
+
+        private void btnAgregarDepartamento_Click(object sender, EventArgs e)
+        {
+            ABMDepartamentos dptos = ABMDepartamentos.getVentana();
+            dptos.ShowDialog(this);
+            updateListOfDepartamentos();
+        }
+
+        private void updateListOfMutualistas()
+        {
+            Dictionary<int, string> docs = tipos.obtenerMutualistas(false);
+            CargarCombo(cmbMutualista, docs);
+        }
+
+        private void btnAgregarMutualista_Click(object sender, EventArgs e)
+        {
+            ABMMutualistas muts = ABMMutualistas.getVentana();
+            muts.ShowDialog(this);
+            updateListOfMutualistas();
+        }
+
+        private void updateListOfEmergenciaMedica()
+        {
+            Dictionary<int, string> docs = tipos.obtenerEmergenciaMedicas(false);
+            CargarCombo(cmbEmergenciaMedica, docs);
+        }
+
+        private void btnAgregarEmergenciaMedica_Click(object sender, EventArgs e)
+        {
+            ABMEmergenciasMedica emrgs = ABMEmergenciasMedica.getVentana();
+            emrgs.ShowDialog(this);
+            updateListOfEmergenciaMedica();
+        }
+
+        private void updateListOfCargos()
+        {
+            Dictionary<int,string> listCargos = datosTipos.obtenerTiposCargos(true);
+            
+            cargos = datosTipos.obtenerTiposCargosList(true);
+            CargarCombo(cmbTiposCargos, listCargos);
+
+        }
+
+        private void btnAgregarCargo_Click(object sender, EventArgs e)
+        {
+            ABMCargos abmcargos = ABMCargos.getVentana();
+            abmcargos.ShowDialog(this);
+            updateListOfCargos();
         }
 
         
