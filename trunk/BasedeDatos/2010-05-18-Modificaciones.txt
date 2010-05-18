@@ -1,0 +1,6 @@
+-- Cambio NroLínea por Nro
+update consultasempleados set Query = replace(Query, "NroLinea", "Nro");
+
+-- Agrego Fecha Test Psicologico en la consulta RENAEMSE
+update consultasempleados set Query = replace(Query, "emp.NumeroDocumento,", "emp.NumeroDocumento, emp.FechaTestPsicologico,") where Nombre='Consulta RENAEMSE';
+update consultasempleados set Descripcion = replace(Descripcion, "CI -", "CI - FechaTestPsicologico -") where Nombre='Consulta RENAEMSE';
