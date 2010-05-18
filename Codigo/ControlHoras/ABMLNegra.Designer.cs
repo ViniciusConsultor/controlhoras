@@ -33,15 +33,15 @@
             this.btnGuardar = new System.Windows.Forms.ToolStripButton();
             this.btnCancelar = new System.Windows.Forms.ToolStripButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtMotivoBaja = new ControlHoras.TextBoxKeyDown();
             this.label30 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblidCategoria = new System.Windows.Forms.Label();
-            this.txtMotivoBaja = new ControlHoras.TextBoxKeyDown();
             this.txtNombre = new ControlHoras.TextBoxKeyDown();
             this.txtApellido = new ControlHoras.TextBoxKeyDown();
+            this.label2 = new System.Windows.Forms.Label();
             this.ciTB = new ControlHoras.MaskedTextBoxKeyDown();
+            this.lblidCategoria = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -111,6 +111,15 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // txtMotivoBaja
+            // 
+            this.txtMotivoBaja.Location = new System.Drawing.Point(73, 100);
+            this.txtMotivoBaja.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMotivoBaja.Multiline = true;
+            this.txtMotivoBaja.Name = "txtMotivoBaja";
+            this.txtMotivoBaja.Size = new System.Drawing.Size(328, 43);
+            this.txtMotivoBaja.TabIndex = 3;
+            // 
             // label30
             // 
             this.label30.AutoSize = true;
@@ -141,35 +150,6 @@
             this.label4.TabIndex = 25;
             this.label4.Text = "Apellidos";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(40, 22);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 17);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "C.I.*";
-            // 
-            // lblidCategoria
-            // 
-            this.lblidCategoria.AutoSize = true;
-            this.lblidCategoria.Location = new System.Drawing.Point(300, 84);
-            this.lblidCategoria.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblidCategoria.Name = "lblidCategoria";
-            this.lblidCategoria.Size = new System.Drawing.Size(0, 17);
-            this.lblidCategoria.TabIndex = 0;
-            this.lblidCategoria.Visible = false;
-            // 
-            // txtMotivoBaja
-            // 
-            this.txtMotivoBaja.Location = new System.Drawing.Point(73, 100);
-            this.txtMotivoBaja.Margin = new System.Windows.Forms.Padding(4);
-            this.txtMotivoBaja.Multiline = true;
-            this.txtMotivoBaja.Name = "txtMotivoBaja";
-            this.txtMotivoBaja.Size = new System.Drawing.Size(328, 43);
-            this.txtMotivoBaja.TabIndex = 3;
-            // 
             // txtNombre
             // 
             this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -190,6 +170,16 @@
             this.txtApellido.Size = new System.Drawing.Size(192, 24);
             this.txtApellido.TabIndex = 1;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(40, 22);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(33, 17);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "C.I.*";
+            // 
             // ciTB
             // 
             this.ciTB.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
@@ -202,6 +192,16 @@
             this.ciTB.TabIndex = 0;
             this.ciTB.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.ciTB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ciTB_KeyDown);
+            // 
+            // lblidCategoria
+            // 
+            this.lblidCategoria.AutoSize = true;
+            this.lblidCategoria.Location = new System.Drawing.Point(300, 84);
+            this.lblidCategoria.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblidCategoria.Name = "lblidCategoria";
+            this.lblidCategoria.Size = new System.Drawing.Size(0, 17);
+            this.lblidCategoria.TabIndex = 0;
+            this.lblidCategoria.Visible = false;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -236,7 +236,8 @@
             this.MaximizeBox = false;
             this.Name = "ABMLNegra";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "ABMListaNegra";            
+            this.Text = "ABMListaNegra";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ABMLNegra_FormClosed);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);

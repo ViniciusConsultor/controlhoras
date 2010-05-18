@@ -457,6 +457,7 @@ namespace ControlHoras
                 btnGuardar.Enabled = false;
                 btnExtrasAgregar.Enabled = false;
                 btnAgregarHistorial.Enabled = false;
+                //txtApellido.Focus();
             }
         }
 
