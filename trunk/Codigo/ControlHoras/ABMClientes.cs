@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Logica;
+using Datos;
 using Excepciones;
+using System.Globalization;
 
 namespace ControlHoras
 {
@@ -15,6 +17,9 @@ namespace ControlHoras
     {
         IClientesServicios sistema = ControladorClientesServicios.getInstance();
         Cliente cliente;
+        private IDatos datos;
+
+        private string fechaMask = @"  /  /";
         String LlenarCamposObligatorios = "Debe llenar todos los campos obligatorios.";
         static ABMClientes ventana = null;
         public static ABMClientes getVentana()
@@ -28,6 +33,16 @@ namespace ControlHoras
         private ABMClientes()
         {
             InitializeComponent();
+
+            try
+            {
+                datos = ControladorDatos.getInstance();
+            }
+            catch (Exception ex)
+            { 
+                
+                throw ex;
+            }
         }
 
         private void limpiarForm()
@@ -52,6 +67,7 @@ namespace ControlHoras
 
         private void ABMClientes_Load(object sender, EventArgs e)
         {
+            //dtpFechaAlta.Text = DateTime.Now.ToString();
             btnAgregar.Enabled = true;
             btnGuardar.Enabled = false;
             btnServicios.Enabled = false;
@@ -64,16 +80,26 @@ namespace ControlHoras
             if (checkDatosObligatorios())
             {
                 bool checkActivo = true;
-                DateTime dtpBaja = DateTime.MinValue.AddDays(1);
+                DateTime? dtpAlta;
+                DateTime? dtpBaja = null; //= DateTime.MinValue.AddDays(1);
+
+                if (dtpFechaAlta.Text == fechaMask)
+                    dtpAlta = null;
+                else
+                    dtpAlta = DateTime.ParseExact(dtpFechaAlta.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+
                 if (cbNoActivo.Checked)
                 {
-                    checkActivo = false;
-                    dtpBaja = dtpFechaBaja.Value;
+                    checkActivo = false;                    
+                    if (dtpFechaBaja.Text == fechaMask)
+                        dtpBaja = null;
+                    else
+                        dtpBaja = DateTime.ParseExact(dtpFechaBaja.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
                 }
 
                 try
                 {
-                    sistema.altaCliente(int.Parse(mtCliente.Text), txtNombre.Text, txtNombreFantasia.Text, mtRUT.Text,txtEmail.Text,txtDireccion.Text,txtDireccionCobro.Text,txtTelefonos.Text,txtFax.Text,checkActivo, dtpFechaAlta.Value ,dtpBaja, txtMotivoBaja.Text);
+                    sistema.altaCliente(int.Parse(mtCliente.Text), txtNombre.Text, txtNombreFantasia.Text, mtRUT.Text,txtEmail.Text,txtDireccion.Text,txtDireccionCobro.Text,txtTelefonos.Text,txtFax.Text,checkActivo, dtpAlta, dtpBaja, txtMotivoBaja.Text);
 
                     DialogResult res = MessageBox.Show(this, "Desea agregar servicios ahora?", "Servicios", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                     if (res == DialogResult.OK)
@@ -99,13 +125,26 @@ namespace ControlHoras
             {
                 
                 bool checkActivo = true;
-                
+                DateTime? dtpAlta;
+                DateTime? dtpBaja = null;
+
+                if (dtpFechaAlta.Text == fechaMask)
+                    dtpAlta = null;
+                else
+                    dtpAlta = DateTime.ParseExact(dtpFechaAlta.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+
                 if (cbNoActivo.Checked)
+                {
                     checkActivo = false;
+                    if (dtpFechaBaja.Text == fechaMask)
+                        dtpBaja = null;
+                    else
+                        dtpBaja = DateTime.ParseExact(dtpFechaBaja.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+                }
                 
                 try
                 {
-                    sistema.modificarCliente(int.Parse(mtCliente.Text), txtNombre.Text, txtNombreFantasia.Text, mtRUT.Text, txtEmail.Text, txtDireccion.Text, txtDireccionCobro.Text, txtTelefonos.Text, txtFax.Text, checkActivo, dtpFechaAlta.Value, dtpFechaBaja.Value, txtMotivoBaja.Text);
+                    sistema.modificarCliente(int.Parse(mtCliente.Text), txtNombre.Text, txtNombreFantasia.Text, mtRUT.Text, txtEmail.Text, txtDireccion.Text, txtDireccionCobro.Text, txtTelefonos.Text, txtFax.Text, checkActivo, dtpAlta, dtpBaja, txtMotivoBaja.Text);
                     btnCancelar.PerformClick();
                     
                 }
@@ -121,7 +160,7 @@ namespace ControlHoras
 
         private bool checkDatosObligatorios()
         {
-            if (mtCliente.MaskCompleted && txtNombre.Text != "" && txtTelefonos.Text != "")
+            if (mtCliente.Text != "" && txtNombre.Text != "" && txtTelefonos.Text != "")
             {
                 if (!cbNoActivo.Checked || txtMotivoBaja.Text != "")
                     return true;
@@ -132,6 +171,7 @@ namespace ControlHoras
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             limpiarForm();
+            dtpFechaAlta.Text = DateTime.Now.ToString();
             btnAgregar.Enabled = true;
             btnGuardar.Enabled = false;
             btnServicios.Enabled = false;
@@ -150,7 +190,7 @@ namespace ControlHoras
             if (cbNoActivo.Checked)
             {
                 dtpFechaBaja.Enabled = true;
-                dtpFechaBaja.Value = DateTime.Today;
+                dtpFechaBaja.Text = DateTime.Today.ToString(); ;
                 txtMotivoBaja.Enabled = true;
             }
             else
@@ -162,7 +202,7 @@ namespace ControlHoras
 
         private void mtCliente_KeyDown(object sender, KeyEventArgs e)
         {
-            if (mtCliente.MaskCompleted && e.KeyCode == Keys.Enter)
+            if (mtCliente.Text != "" && e.KeyCode == Keys.Enter)
             { // traigo el cliente y lleno los datos de los campos.
                 try
                 {
@@ -199,8 +239,16 @@ namespace ControlHoras
                         SendKeys.Send("{ENTER}");
                     }
                 }
-                else if (mtCliente.Text == "")
+                else if (mtCliente.Text == "" && e.KeyCode == Keys.Enter)
                 {    // Obtengo el ultimo numero de cliente + 1;
+                    mtCliente.Text = (datos.obtenerMaxIdCliente() + 1).ToString();
+                    
+                    string idcliente = mtCliente.Text;
+                    btnCancelar.PerformClick();
+                    mtCliente.Text = idcliente;
+                    
+                    btnAgregar.Enabled = true;
+                    btnGuardar.Enabled = false;
                 }
             }
             
@@ -221,11 +269,11 @@ namespace ControlHoras
                 txtDireccionCobro.Text = cli.getDireccionCobro();
                 txtTelefonos.Text = cli.getTelefonos();
                 txtFax.Text = cli.getFax();
-                dtpFechaAlta.Text = cli.getFechaAlta().ToShortDateString();
+                dtpFechaAlta.Text = cli.getFechaAlta().ToString();
                 if (!cli.getActivo())
                 {
                     cbNoActivo.Checked = true;
-                    dtpFechaBaja.Value = cli.getFechaBaja();
+                    dtpFechaBaja.Text = cli.getFechaBaja().ToString();
                     txtMotivoBaja.Text = cli.getMotivoBaja();
                     lblEstadoCliente.Text = "Inactivo";
                 }
@@ -249,7 +297,46 @@ namespace ControlHoras
         private void ABMClientes_FormClosed(object sender, FormClosedEventArgs e)
         {
             ventana = null;
-        }    
+        }
 
+        private bool ValidarFecha(string fecha)
+        {
+            DateTime dt;
+            DateTimeStyles dts = new DateTimeStyles();
+
+            if (fecha == fechaMask)
+                return true;
+            else
+                return DateTime.TryParseExact(fecha, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo, dts, out dt);
+        }
+
+        private void dtpFechaAlta_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(dtpFechaAlta.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(dtpFechaAlta, "No es una fecha válida");
+            }
+        }
+
+        private void dtpFechaAlta_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(dtpFechaAlta, "");
+        }
+
+        private void dtpFechaBaja_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidarFecha(dtpFechaBaja.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(dtpFechaBaja, "No es una fecha válida");
+            }
+        }
+
+        private void dtpFechaBaja_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(dtpFechaBaja, "");
+        }
+      
     }
 }

@@ -24,8 +24,8 @@ namespace Datos
         #endregion
 
         #region Operaciones_De_Clientes
-        void altaCliente(int numeroCliente, string nombre, string nombreFantantasia, string rut, string email, string direccion, string direccionCobro, string telefono, string fax, bool activo, DateTime fechaAlta, DateTime fechaBaja, string motivoBaja);
-        void modificarCliente(int numeroCliente, string nombre, string nombreFantantasia, string rut, string email, string direccion, string direccionCobro, string telefono, string fax, bool activo, DateTime fechaAlta, DateTime fechaBaja, string motivoBaja);
+        void altaCliente(int numeroCliente, string nombre, string nombreFantantasia, string rut, string email, string direccion, string direccionCobro, string telefono, string fax, bool activo, DateTime? fechaAlta, DateTime? fechaBaja, string motivoBaja);
+        void modificarCliente(int numeroCliente, string nombre, string nombreFantantasia, string rut, string email, string direccion, string direccionCobro, string telefono, string fax, bool activo, DateTime? fechaAlta, DateTime? fechaBaja, string motivoBaja);
         //void bajaCliente(int idcliente);
         //List<Cliente> busquedaClientePorNombre(string nom);
         bool existeCliente(int numCliente);
@@ -225,5 +225,7 @@ namespace Datos
         bool existeEmpleadoListaNegra(string CI, out ListAnEGRa empleado);
         void BajaListaNegra(string CI);
         void altaEmpleadoDesdeListaNegra(string CI, string nroEmpleado, string apellidos, string nombres, string observaciones);
+
+        int obtenerMaxIdCliente();
     }
 }

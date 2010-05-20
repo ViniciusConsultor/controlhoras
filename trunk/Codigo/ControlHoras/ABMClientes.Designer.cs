@@ -29,6 +29,7 @@ namespace ControlHoras
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ABMClientes));
             this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -52,19 +53,21 @@ namespace ControlHoras
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtMotivoBaja = new ControlHoras.TextBoxKeyDown();
             this.label12 = new System.Windows.Forms.Label();
-            this.dtpFechaBaja = new ControlHoras.DateTimePickerKeyDown();
+            this.dtpFechaBaja = new ControlHoras.MaskedTextBoxKeyDown();
             this.txtFax = new ControlHoras.TextBoxKeyDown();
             this.txtTelefonos = new ControlHoras.TextBoxKeyDown();
             this.mtCliente = new ControlHoras.MaskedTextBoxKeyDown();
-            this.dtpFechaAlta = new ControlHoras.DateTimePickerKeyDown();
+            this.dtpFechaAlta = new ControlHoras.MaskedTextBoxKeyDown();
             this.txtEmail = new ControlHoras.TextBoxKeyDown();
             this.txtNombre = new ControlHoras.TextBoxKeyDown();
             this.txtDireccionCobro = new ControlHoras.TextBoxKeyDown();
             this.txtDireccion = new ControlHoras.TextBoxKeyDown();
             this.txtNombreFantasia = new ControlHoras.TextBoxKeyDown();
             this.mtRUT = new ControlHoras.MaskedTextBoxKeyDown();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -238,6 +241,7 @@ namespace ControlHoras
             this.label10.Size = new System.Drawing.Size(75, 17);
             this.label10.TabIndex = 17;
             this.label10.Text = "Fecha Alta";
+            this.label10.Visible = false;
             // 
             // label11
             // 
@@ -247,6 +251,7 @@ namespace ControlHoras
             this.label11.Size = new System.Drawing.Size(79, 17);
             this.label11.TabIndex = 19;
             this.label11.Text = "Fecha Baja";
+            this.label11.Visible = false;
             // 
             // groupBox1
             // 
@@ -282,12 +287,13 @@ namespace ControlHoras
             // dtpFechaBaja
             // 
             this.dtpFechaBaja.Enabled = false;
-            this.dtpFechaBaja.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaBaja.Location = new System.Drawing.Point(190, 19);
+            this.dtpFechaBaja.Mask = "00/00/0000";
             this.dtpFechaBaja.Name = "dtpFechaBaja";
-            this.dtpFechaBaja.Size = new System.Drawing.Size(97, 22);
+            this.dtpFechaBaja.Size = new System.Drawing.Size(93, 22);
             this.dtpFechaBaja.TabIndex = 1;
-            this.dtpFechaBaja.Value = new System.DateTime(1753, 1, 2, 0, 0, 0, 0);
+            this.dtpFechaBaja.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaBaja_Validating);
+            this.dtpFechaBaja.Validated += new System.EventHandler(this.dtpFechaBaja_Validated);
             // 
             // txtFax
             // 
@@ -312,17 +318,17 @@ namespace ControlHoras
             this.mtCliente.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.mtCliente.Size = new System.Drawing.Size(42, 24);
             this.mtCliente.TabIndex = 0;
-            this.mtCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtCliente_KeyDown);            
+            this.mtCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtCliente_KeyDown);
             // 
             // dtpFechaAlta
             // 
-            this.dtpFechaAlta.CustomFormat = "dd/mm/aaaa";
-            this.dtpFechaAlta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaAlta.Location = new System.Drawing.Point(72, 260);
+            this.dtpFechaAlta.Mask = "00/00/0000";
             this.dtpFechaAlta.Name = "dtpFechaAlta";
-            this.dtpFechaAlta.Size = new System.Drawing.Size(100, 22);
+            this.dtpFechaAlta.Size = new System.Drawing.Size(93, 22);
             this.dtpFechaAlta.TabIndex = 9;
-            this.dtpFechaAlta.Value = new System.DateTime(1753, 1, 2, 0, 0, 0, 0);
+            this.dtpFechaAlta.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaAlta_Validating);
+            this.dtpFechaAlta.Validated += new System.EventHandler(this.dtpFechaAlta_Validated);
             // 
             // txtEmail
             // 
@@ -368,6 +374,10 @@ namespace ControlHoras
             this.mtRUT.Size = new System.Drawing.Size(89, 22);
             this.mtRUT.TabIndex = 3;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // ABMClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -407,6 +417,7 @@ namespace ControlHoras
             this.toolStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -439,9 +450,9 @@ namespace ControlHoras
         private ControlHoras.TextBoxKeyDown txtDireccionCobro;
         private ControlHoras.TextBoxKeyDown txtEmail;
         private System.Windows.Forms.Label lblEstadoCliente;
-        private ControlHoras.DateTimePickerKeyDown dtpFechaAlta;
+        private MaskedTextBoxKeyDown dtpFechaAlta;
         private System.Windows.Forms.Label label10;
-        private ControlHoras.DateTimePickerKeyDown dtpFechaBaja;
+        private MaskedTextBoxKeyDown dtpFechaBaja;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label12;
@@ -451,5 +462,6 @@ namespace ControlHoras
         private ControlHoras.MaskedTextBoxKeyDown mtCliente;
         private ControlHoras.TextBoxKeyDown txtTelefonos;
         private ControlHoras.TextBoxKeyDown txtFax;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
