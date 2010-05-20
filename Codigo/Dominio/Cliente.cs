@@ -17,8 +17,8 @@ namespace Logica
         private string Telefonos = null;
         private string Fax = null;
         private bool Activo;
-        private DateTime FechaAlta;
-        private DateTime FechaBaja;
+        private DateTime? FechaAlta;
+        private DateTime? FechaBaja;
         private string MotivoBaja;
         private List<Servicio> ListaServicios;
 
@@ -31,7 +31,7 @@ namespace Logica
             ListaServicios = new List<Servicio>();
         }
 
-        public Cliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime fecAlta, DateTime fecBaja, string motivo, List<Servicio> servicios)
+        public Cliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime? fecAlta, DateTime? fecBaja, string motivo, List<Servicio> servicios)
         {
             Numero=num;
             Nombre=nom;
@@ -100,12 +100,12 @@ namespace Logica
             return Activo;
         }
 
-        public DateTime getFechaAlta()
+        public DateTime? getFechaAlta()
         {
             return FechaAlta;
         }
 
-        public DateTime getFechaBaja()
+        public DateTime? getFechaBaja()
         {
             return FechaBaja;
         }

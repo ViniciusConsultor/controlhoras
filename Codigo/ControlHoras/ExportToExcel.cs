@@ -61,6 +61,7 @@ namespace ControlHoras
                 cmbEmpleadosConsultas.DisplayMember = "Nombre";
                 cmbEmpleadosConsultas.ValueMember = "IDConsultaEmpleado";
                 cmbEmpleadosConsultas.EndUpdate();
+                tcConsultas.SelectedIndex = 1;
             }
             catch (Exception ex)
             {
