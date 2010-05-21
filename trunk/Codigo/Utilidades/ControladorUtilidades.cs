@@ -6,6 +6,7 @@ using Yogesh.ExcelXml;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace Utilidades
 {
@@ -138,6 +139,34 @@ namespace Utilidades
                 return Image.FromStream(ms, true);
             }
             return null;
+        }
+        public static Image imageResize(Image img, double porcentaje)
+        {
+            
+            //get the height and width of the image
+            int originalW = img.Width;
+            int originalH = img.Height;
+            
+            //get the new size based on the percentage change
+            int resizedW = 140;// (int)(originalW * porcentaje);
+            int resizedH = 120;// (int)(originalH * porcentaje);
+            
+            //create a new Bitmap the size of the new image
+            Bitmap bmp = new Bitmap(resizedW, resizedH);
+            
+            //create a new graphic from the Bitmap
+            Graphics graphic = Graphics.FromImage((Image)bmp);
+            graphic.InterpolationMode = InterpolationMode.Default;
+            
+            //draw the newly resized image
+            graphic.DrawImage(img, 0, 0, resizedW, resizedH);
+            
+            //dispose and free up the resources
+            graphic.Dispose();
+            
+            //return the image
+            return (Image)bmp;
+
         }
 
     }

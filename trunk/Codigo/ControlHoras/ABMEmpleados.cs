@@ -2672,23 +2672,23 @@ namespace ControlHoras
                 #region foto
 
                 //*************   JUANCHI   *******************            
-                //mark = "Imagen";
-                //wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                mark = "Imagen";
+                wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
                 //wrdRng.Select();
                 //oWord.Selection.TypeParagraph();
 
-                //if (pbFoto.Image != null)
-                //{
-                //    System.Drawing.Image bi = pbFoto.Image;
-
-                //    Clipboard.SetDataObject(bi);
-                //    wrdRng.Paste();
-
-                //    wrdRng.Select();
-
-
-                //    oWord.Selection.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
-                //}
+                if (pbFoto.Image != null)
+                {
+                    System.Drawing.Image bi = ControladorUtilidades.imageResize(pbFoto.Image, 0.80);
+                    
+                    
+                    Clipboard.SetDataObject(bi);
+                    wrdRng.Paste();
+                    
+                    wrdRng.Select();
+                    
+                    oWord.Selection.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
+                }
 
 
 
