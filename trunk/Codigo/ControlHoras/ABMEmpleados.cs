@@ -1013,12 +1013,15 @@ namespace ControlHoras
                 if (cmbEmergenciaMedica.SelectedItem != null)
                     idemergenciamovil = (int)cmbEmergenciaMedica.SelectedValue;
                 string estadoCivil = cmbEstadoCivil.Text;
-                int acumulacionLaboral = 0;                
+                int acumulacionLaboral = 0;
                 if (mtAcumulacionBPS.Text != "")
-                    acumulacionLaboral = int.Parse(mtAcumulacionBPS.Text);
+                    if (!int.TryParse(mtAcumulacionBPS.Text, out acumulacionLaboral))
+                        throw new Exception("Error de parseo al obtener la AcumulacionLaboral.");
+                    
                 int cantMenoresACargo = 0;
                 if (mtCantidadHijos.Text != "")
-                    cantMenoresACargo = int.Parse(mtCantidadHijos.Text);
+                    if (!int.TryParse(mtCantidadHijos.Text, out cantMenoresACargo))
+                        throw new Exception("Error de parseo al obtener la Cantidad de Hijos a Cargo.");
 
                 bool capacitadoPortarArma = cbCapacitadoPorteArma.Checked;
                 bool enServicioArmado = cbEnServicioArmado.Checked;
@@ -1106,7 +1109,6 @@ namespace ControlHoras
 
                 if (agregar)
                 {
-                    //sistema.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), txtNombre.Text, txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, txtNacionalidad.Text, sexo, dtpPsicologo.Value, dtpFechaNacimiento.Value, dtpFechaIngreso.Value, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantHijos, foto, idbanco, txtNumeroCuenta.Text, sueldo, activo, dtpFechaBaja.Value, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngresoRenaemse.Value, acumulacionLaboral, dtpFechaAltaBPS.Value, dtpFechaBajaBPS.Value, txtNumeroCAJ.Text, dtpFechaEmisionCAJ.Value, dtpFechaEntregaCAJ.Value, antecedentes, cmbPolicialMilitar.Text, dtpFechaIngresoPolicialMilitar.Value, dtpFechaEgresoPolicialMilitar.Value, txtPolicialSubEscalafon.Text, combatiente, txtTalleCamisa.Text, txtTallePantalon.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVencimientoCarneSalud.Value, idmutualista, idemergenciamovil);
                     datos.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, valorHora, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtBarrio.Text, txtCodigoPostal.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, cbBajadoBPS.Checked, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTallePantalon.Text, txtTalleCamisa.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, cmbNivelEducativo.SelectedItem.ToString(), idcargo, dtpFechaPagoEfectuado, dtpFechaPagoPrevisto, ServicioActual, Turno, cbConstanciaDomicilio.Checked, dtpFechaEnCelu);
                     MessageBox.Show("Empleado agregado Correctamente.", "Alta Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     habilitarPermisosEmpleado(true);
@@ -1125,7 +1127,7 @@ namespace ControlHoras
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, ex.Message + " - " + ex.InnerException, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
