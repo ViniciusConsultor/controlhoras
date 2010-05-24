@@ -455,7 +455,7 @@ namespace Datos
 
                 EmPleadOs emp = new EmPleadOs();
 
-                emp.IDEmpleado = (uint)idEmpleado;
+                emp.NroEmpleado = (uint)idEmpleado;
                 emp.Nombre = nombre;
                 emp.Apellido = apellido;
                 emp.IDTipoDocumento = (sbyte)idTipoDocumento;
@@ -591,7 +591,7 @@ namespace Datos
                 tablaEmpleados = database.GetTable<EmPleadOs>();
 
                 EmPleadOs emp = (from reg in tablaEmpleados
-                                 where reg.IDEmpleado == idEmpleado
+                                 where reg.NroEmpleado == idEmpleado
                                  select reg).Single();
 
 
@@ -725,7 +725,7 @@ namespace Datos
 
                 tabla = database.GetTable<EmPleadOs>();
                 var cli = (from clireg in tabla
-                           where clireg.IDEmpleado == idEmpleado
+                           where clireg.NroEmpleado == idEmpleado
                            select clireg);
                 if (cli.Count<EmPleadOs>() == 0)
                     return false;
@@ -743,7 +743,7 @@ namespace Datos
             try
             {
                 var maxId = (from reg in database.GetTable<EmPleadOs>()
-                             select (int)reg.IDEmpleado).Max<int>();
+                             select (int)reg.NroEmpleado).Max<int>();
 
                 return maxId;
             }
@@ -759,7 +759,7 @@ namespace Datos
 
                 Table<EmPleadOs> tabla = database.GetTable<EmPleadOs>();
                 var cli = (from clireg in tabla
-                           where clireg.IDEmpleado == idEmpleado
+                           where clireg.NroEmpleado == idEmpleado
                            select clireg);
                 if (cli.Count<EmPleadOs>() == 0)
                     throw new NoExisteException("No existe el empleado con IdEmpleado " + idEmpleado);
@@ -785,8 +785,8 @@ namespace Datos
             try
             {
                 int? idemp = (from reg in database.GetTable<EmPleadOs>()
-                             where reg.IDEmpleado > idEmpleado && reg.Activo == 1
-                             select (int?)reg.IDEmpleado).Min<int?>();
+                             where reg.NroEmpleado > idEmpleado && reg.Activo == 1
+                             select (int?)reg.NroEmpleado).Min<int?>();
                 return idemp;
             }
             catch (Exception ex)
@@ -802,8 +802,8 @@ namespace Datos
             {
                 int? idemp = null;
                 idemp = (from reg in database.GetTable<EmPleadOs>()
-                             where reg.IDEmpleado < idEmpleado  && reg.Activo == 1
-                             select (int?)reg.IDEmpleado).Max<int?>();
+                             where reg.NroEmpleado < idEmpleado  && reg.Activo == 1
+                             select (int?)reg.NroEmpleado).Max<int?>();
                 return idemp;
             }
             catch (Exception ex)
@@ -2337,7 +2337,7 @@ namespace Datos
 
                 EmPleadOs emp = new EmPleadOs();
 
-                emp.IDEmpleado = (uint)int.Parse(nroEmpleado);
+                emp.NroEmpleado = (uint)int.Parse(nroEmpleado);
                 emp.Nombre = nombres;
                 emp.Apellido = apellidos;                
                 emp.NumeroDocumento = CI;
