@@ -37,7 +37,7 @@ namespace ControlHoras
             while (iter < res.Count)
             {
                 n = dgvResultado.Rows.Add();
-                dgvResultado.Rows[n].Cells["idEmpleado"].Value = res[iter].IDEmpleado.ToString();
+                dgvResultado.Rows[n].Cells["idEmpleado"].Value = res[iter].NroEmpleado.ToString();
                 dgvResultado.Rows[n].Cells["Nombre"].Value = res[iter].Nombre;
                 dgvResultado.Rows[n].Cells["Apellido"].Value = res[iter].Apellido;
                 dgvResultado.Rows[n].Cells["Documento"].Value = res[iter].NumeroDocumento;

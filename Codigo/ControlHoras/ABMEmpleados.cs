@@ -768,7 +768,7 @@ namespace ControlHoras
             catch (Exception e) { }
             try
             {
-                mtNumeroEmpleado.Text = empleado.IDEmpleado.ToString();
+                mtNumeroEmpleado.Text = empleado.NroEmpleado.ToString();
             }
             catch (Exception e) { }
             try
@@ -870,7 +870,7 @@ namespace ControlHoras
             //}
             //catch (Exception e) { }
 
-            cargarHistorialEmpleado((int)empleado.IDEmpleado);
+            cargarHistorialEmpleado((int)empleado.NroEmpleado);
             dtpExtrasFecha.Value = DateTime.Today;
             cargarGrillaExtraLiquidacionEmpleado();
         }

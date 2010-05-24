@@ -4,3 +4,8 @@ update consultasempleados set Query = replace(Query, "NroLinea", "Nro");
 -- Agrego Fecha Test Psicologico en la consulta RENAEMSE
 update consultasempleados set Query = replace(Query, "emp.NumeroDocumento,", "emp.NumeroDocumento, emp.FechaTestPsicologico,") where Nombre='Consulta RENAEMSE';
 update consultasempleados set Descripcion = replace(Descripcion, "CI -", "CI - FechaTestPsicologico -") where Nombre='Consulta RENAEMSE';
+
+-- Cambiar IdEmpleado por NroEmpleado
+ALTER TABLE `trustdb`.`eventoshistorialempleado` DROP FOREIGN KEY `eventoshistorialempleado_ibfk_1`;
+ALTER TABLE `trustdb`.`extrasliquidacionempleado` DROP FOREIGN KEY `extrasliquidacionempleado_ibfk_1`;
+ALTER TABLE `trustdb`.`empleados` CHANGE COLUMN `IdEmpleado` `NroEmpleado` MEDIUMINT(8) UNSIGNED NOT NULL, DROP PRIMARY KEY, ADD PRIMARY KEY (`NroEmpleado`);
