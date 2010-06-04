@@ -94,7 +94,7 @@
             this.GuardarBTN});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1252, 40);
+            this.toolStrip1.Size = new System.Drawing.Size(848, 40);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -154,7 +154,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1091, 645);
+            this.label4.Location = new System.Drawing.Point(12, 695);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 17);
             this.label4.TabIndex = 12;
@@ -195,9 +195,9 @@
             this.ClienteGB.Controls.Add(this.bcUC);
             this.ClienteGB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ClienteGB.Location = new System.Drawing.Point(16, 50);
-            this.ClienteGB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ClienteGB.Margin = new System.Windows.Forms.Padding(4);
             this.ClienteGB.Name = "ClienteGB";
-            this.ClienteGB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ClienteGB.Padding = new System.Windows.Forms.Padding(4);
             this.ClienteGB.Size = new System.Drawing.Size(712, 74);
             this.ClienteGB.TabIndex = 0;
             this.ClienteGB.TabStop = false;
@@ -222,9 +222,9 @@
             this.ServicioGB.Controls.Add(this.label9);
             this.ServicioGB.Enabled = false;
             this.ServicioGB.Location = new System.Drawing.Point(19, 132);
-            this.ServicioGB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ServicioGB.Margin = new System.Windows.Forms.Padding(4);
             this.ServicioGB.Name = "ServicioGB";
-            this.ServicioGB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ServicioGB.Padding = new System.Windows.Forms.Padding(4);
             this.ServicioGB.Size = new System.Drawing.Size(709, 102);
             this.ServicioGB.TabIndex = 1;
             this.ServicioGB.TabStop = false;
@@ -235,7 +235,7 @@
             this.PosteriorBTN.AutoSize = true;
             this.PosteriorBTN.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.PosteriorBTN.Location = new System.Drawing.Point(359, 64);
-            this.PosteriorBTN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PosteriorBTN.Margin = new System.Windows.Forms.Padding(4);
             this.PosteriorBTN.Name = "PosteriorBTN";
             this.PosteriorBTN.Size = new System.Drawing.Size(34, 27);
             this.PosteriorBTN.TabIndex = 1;
@@ -249,7 +249,7 @@
             this.AnteriorBTN.AutoSize = true;
             this.AnteriorBTN.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AnteriorBTN.Location = new System.Drawing.Point(312, 64);
-            this.AnteriorBTN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AnteriorBTN.Margin = new System.Windows.Forms.Padding(4);
             this.AnteriorBTN.Name = "AnteriorBTN";
             this.AnteriorBTN.Size = new System.Drawing.Size(34, 27);
             this.AnteriorBTN.TabIndex = 0;
@@ -273,7 +273,7 @@
             // 
             this.NombreTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NombreTB.Location = new System.Drawing.Point(212, 23);
-            this.NombreTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NombreTB.Margin = new System.Windows.Forms.Padding(4);
             this.NombreTB.Name = "NombreTB";
             this.NombreTB.Size = new System.Drawing.Size(481, 25);
             this.NombreTB.TabIndex = 8;
@@ -282,7 +282,7 @@
             // 
             this.NroMTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NroMTB.Location = new System.Drawing.Point(52, 23);
-            this.NroMTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NroMTB.Margin = new System.Windows.Forms.Padding(4);
             this.NroMTB.Mask = "9990";
             this.NroMTB.Name = "NroMTB";
             this.NroMTB.Size = new System.Drawing.Size(57, 25);
@@ -303,7 +303,7 @@
             // 
             this.FinCKB.AutoSize = true;
             this.FinCKB.Location = new System.Drawing.Point(559, 268);
-            this.FinCKB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FinCKB.Margin = new System.Windows.Forms.Padding(4);
             this.FinCKB.Name = "FinCKB";
             this.FinCKB.Size = new System.Drawing.Size(50, 21);
             this.FinCKB.TabIndex = 3;
@@ -320,7 +320,7 @@
             this.marcarNTToolStripMenuItem});
             this.CargaHorariaCMS.Name = "contextMenuStrip1";
             this.CargaHorariaCMS.Size = new System.Drawing.Size(162, 76);
-            this.CargaHorariaCMS.Text = "Menú";            
+            this.CargaHorariaCMS.Text = "Menú";
             // 
             // copiarToolStripMenuItem
             // 
@@ -395,7 +395,7 @@
             // 
             // MontoTB
             // 
-            this.MontoTB.Location = new System.Drawing.Point(1151, 642);
+            this.MontoTB.Location = new System.Drawing.Point(72, 692);
             this.MontoTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MontoTB.Name = "MontoTB";
             this.MontoTB.ReadOnly = true;
@@ -415,7 +415,7 @@
             this.CargaHorariaDGV.Name = "CargaHorariaDGV";
             this.CargaHorariaDGV.RowTemplate.Height = 24;
             this.CargaHorariaDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.CargaHorariaDGV.Size = new System.Drawing.Size(1237, 194);
+            this.CargaHorariaDGV.Size = new System.Drawing.Size(809, 194);
             this.CargaHorariaDGV.TabIndex = 5;
             this.CargaHorariaDGV.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CargaHorariaDGV_CellMouseClick);
             // 
@@ -476,7 +476,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1028, 741);
+            this.ClientSize = new System.Drawing.Size(848, 741);
             this.Controls.Add(this.FFinMTB);
             this.Controls.Add(this.FIniMTB);
             this.Controls.Add(this.FinCKB);
@@ -487,10 +487,10 @@
             this.Controls.Add(this.AjusteTB);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.HorasExtrasCHK);
-            this.Controls.Add(this.MontoTB);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.CostoCB);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.MontoTB);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.CargaHorariaDGV);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.toolStrip1);

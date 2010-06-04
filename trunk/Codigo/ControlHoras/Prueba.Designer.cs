@@ -33,12 +33,12 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.button1 = new System.Windows.Forms.Button();
+            this.HTB = new System.Windows.Forms.TextBox();
+            this.mtbkd = new ControlHoras.MaskedTextBoxKeyDown();
+            this.HoraTB = new ControlHoras.MaskedTextBoxKeyDown();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maskedTextBoxColumn1 = new ControlHoras.MaskedTextBoxColumn();
-            this.HoraTB = new ControlHoras.MaskedTextBoxKeyDown();
-            this.HTB = new System.Windows.Forms.TextBox();
-            this.mtbkd = new ControlHoras.MaskedTextBoxKeyDown();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,6 +75,31 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // HTB
+            // 
+            this.HTB.Location = new System.Drawing.Point(325, 153);
+            this.HTB.Multiline = true;
+            this.HTB.Name = "HTB";
+            this.HTB.Size = new System.Drawing.Size(215, 92);
+            this.HTB.TabIndex = 2;
+            // 
+            // mtbkd
+            // 
+            this.mtbkd.Location = new System.Drawing.Point(55, 12);
+            this.mtbkd.Name = "mtbkd";
+            this.mtbkd.Size = new System.Drawing.Size(100, 22);
+            this.mtbkd.TabIndex = 0;
+            // 
+            // HoraTB
+            // 
+            this.HoraTB.Location = new System.Drawing.Point(55, 153);
+            this.HoraTB.Mask = "00:00";
+            this.HoraTB.Name = "HoraTB";
+            this.HoraTB.Size = new System.Drawing.Size(100, 22);
+            this.HoraTB.TabIndex = 1;
+            this.HoraTB.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBoxKeyDown1_Validating);
+            this.HoraTB.Validated += new System.EventHandler(this.HoraTB_Validated);
+            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.HeaderText = "Puesto";
@@ -96,31 +121,6 @@
             this.maskedTextBoxColumn1.Name = "maskedTextBoxColumn1";
             this.maskedTextBoxColumn1.PromptChar = '\0';
             this.maskedTextBoxColumn1.ValidatingType = null;
-            // 
-            // HoraTB
-            // 
-            this.HoraTB.Location = new System.Drawing.Point(55, 153);
-            this.HoraTB.Mask = "00:00";
-            this.HoraTB.Name = "HoraTB";
-            this.HoraTB.Size = new System.Drawing.Size(100, 22);
-            this.HoraTB.TabIndex = 1;
-            this.HoraTB.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBoxKeyDown1_Validating);
-            this.HoraTB.Validated += new System.EventHandler(this.HoraTB_Validated);
-            // 
-            // HTB
-            // 
-            this.HTB.Location = new System.Drawing.Point(325, 153);
-            this.HTB.Multiline = true;
-            this.HTB.Name = "HTB";
-            this.HTB.Size = new System.Drawing.Size(215, 92);
-            this.HTB.TabIndex = 2;
-            // 
-            // mtbkd
-            // 
-            this.mtbkd.Location = new System.Drawing.Point(55, 12);
-            this.mtbkd.Name = "mtbkd";
-            this.mtbkd.Size = new System.Drawing.Size(100, 22);
-            this.mtbkd.TabIndex = 0;
             // 
             // Prueba
             // 

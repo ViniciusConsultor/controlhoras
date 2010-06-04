@@ -89,6 +89,88 @@ namespace Logica
 
         #endregion
 
+        #region ABM_Ciudades
+        public int altaCiudad(string nombreCiudad, bool activo)
+        {
+            try
+            {
+                return datos.altaCiudad(nombreCiudad, activo);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void modificarCiudad(int idCiudad, string nombreCiudad, bool activo)
+        {
+            try
+            {
+                datos.modificarCiudad(idCiudad, nombreCiudad, activo);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Dictionary<int, string> obtenerCiudades(bool soloActivos)
+        {
+            try
+            {
+                return datos.obtenerCiudades(soloActivos);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void bajaCiudad(int idCiudad)
+        { }
+
+        #endregion
+
+        #region ABM_Barrios
+        public int altaBarrio(string nombreBarrio, bool activo)
+        {
+            try
+            {
+                return datos.altaBarrio(nombreBarrio, activo);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void modificarBarrio(int idBarrio, string nombreBarrio, bool activo)
+        {
+            try
+            {
+                datos.modificarBarrio(idBarrio, nombreBarrio, activo);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Dictionary<int, string> obtenerBarrios(bool soloActivos)
+        {
+            try
+            {
+                return datos.obtenerBarrios(soloActivos);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void bajaBarrio(int idBarrio)
+        { }
+
+        #endregion
+
         #region ABM_Bancos
         public int altaBanco(string nombreBanco, bool activo)
         {

@@ -23,7 +23,7 @@ namespace ControlHoras
         {
             InitializeComponent();
             bcUC.cliPronto += new EventHandler(bcUC_cliPronto);
-                        
+
             ind = 0;
             cant = 0;
         }
@@ -69,7 +69,7 @@ namespace ControlHoras
             LimpiarPlanilla();
             ServicioGB.Enabled = false;
 
-            ind = 0;             
+            ind = 0;
 
             if (bcUC.find)
             {
@@ -81,7 +81,7 @@ namespace ControlHoras
                 List<Servicio> servicios = cli.getListaServicios();
                 if (servicios.Count != 0)
                 {
-                    ContratoBTN.Enabled = true;                   
+                    ContratoBTN.Enabled = true;
 
                     cant = servicios.Count;
                     numerosSer = new int[cant];
@@ -163,8 +163,8 @@ namespace ControlHoras
         }
 
         private void NroMTB_KeyDown(object sender, KeyEventArgs e)
-        {           
-            if (e.KeyCode == Keys.Enter && NroMTB.Text != "")            
+        {
+            if (e.KeyCode == Keys.Enter && NroMTB.Text != "")
             { // traigo el servicio y lleno los datos de los campos.
                 try
                 {
@@ -207,7 +207,7 @@ namespace ControlHoras
                     int numCli = int.Parse(bcUC.ClienteNRO);
                     int numSer = int.Parse(NroMTB.Text);
                     sistema.altaServicioCliente(numCli, numSer, NombreTB.Text, DirTB.Text, TelTB.Text, ContactTB.Text, emailTB.Text, CelTB.Text, CelTrustTB.Text, TareasTB.Text);
-                    
+
 
                     DialogResult res = MessageBox.Show(this, "Desea definir el contrato ahora?", "Contrato", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                     if (res == DialogResult.OK)

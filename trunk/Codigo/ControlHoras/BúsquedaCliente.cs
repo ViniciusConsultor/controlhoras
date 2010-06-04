@@ -12,7 +12,7 @@ namespace ControlHoras
 {
     public partial class BúsquedaCliente : UserControl
     {
-        //Controlador controller;
+        //Controlador controller;         
         IClientesServicios sistema;// = ControladorClientesServicios.getInstance();
         
         public event EventHandler cliPronto;
@@ -51,7 +51,7 @@ namespace ControlHoras
 
         private void ClienteMT_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter && ClienteMT.MaskCompleted)
+            if (e.KeyCode == Keys.Enter && ClienteMT.Text != "")
             {
                 try
                 {

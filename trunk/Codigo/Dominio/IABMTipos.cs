@@ -23,7 +23,23 @@ namespace Logica
         void bajaDepartamento(int idDepartamento);
 
         #endregion
-        
+
+        #region ABM_Ciudades
+        int altaCiudad(string nombreCiudad, bool activo);
+        void modificarCiudad(int idCiudad, string nombreCiudad, bool activo);
+        Dictionary<int, string> obtenerCiudades(bool activos);
+        void bajaCiudad(int idCiudad);
+
+        #endregion
+
+        #region ABM_Barrios
+        int altaBarrio(string nombreBarrio, bool activo);
+        void modificarBarrio(int idBarrio, string nombreBarrio, bool activo);
+        Dictionary<int, string> obtenerBarrios(bool activos);
+        void bajaBarrio(int idBarrio);
+
+        #endregion
+
         #region ABM_Bancos
         int altaBanco(string nombreBanco, bool activo);
         void modificarBanco(int idBanco, string nombreBanco, bool activo);
