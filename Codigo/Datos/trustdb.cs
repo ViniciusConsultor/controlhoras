@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2010-05-24 11:15:16Z
+#region Auto-generated classes for trustdb database on 2010-06-04 11:38:47Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2010-05-24 11:15:16Z
+// Auto-generated from trustdb on 2010-06-04 11:38:47Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -81,6 +81,7 @@ namespace Datos
 
 		public Table<BanCos> BanCos { get { return GetTable<BanCos>(); } }
 		public Table<BarrioS> BarrioS { get { return GetTable<BarrioS>(); } }
+		public Table<CIudAdEs> CIudAdEs { get { return GetTable<CIudAdEs>(); } }
 		public Table<ClientEs> ClientEs { get { return GetTable<ClientEs>(); } }
 		public Table<ConsultAsClientEs> ConsultAsClientEs { get { return GetTable<ConsultAsClientEs>(); } }
 		public Table<ConsultAsEmPleadOs> ConsultAsEmPleadOs { get { return GetTable<ConsultAsEmPleadOs>(); } }
@@ -307,6 +308,111 @@ namespace Datos
 		#region ctor
 
 		public BarrioS()
+		{
+			OnCreated();
+		}
+
+		#endregion
+
+	}
+
+	[Table(Name = "trustdb.ciudades")]
+	public partial class CIudAdEs : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		#region INotifyPropertyChanging handling
+
+		public event PropertyChangingEventHandler PropertyChanging;
+
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs("");
+		protected virtual void SendPropertyChanging()
+		{
+			if (PropertyChanging != null)
+			{
+				PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+
+		#endregion
+
+		#region INotifyPropertyChanged handling
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected virtual void SendPropertyChanged(string propertyName)
+		{
+			if (PropertyChanged != null)
+			{
+				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		#endregion
+
+		#region Extensibility Method Definitions
+
+		partial void OnCreated();
+		partial void OnIDCiudadesChanged();
+		partial void OnIDCiudadesChanging(byte value);
+		partial void OnNombreChanged();
+		partial void OnNombreChanging(string value);
+
+		#endregion
+
+		#region byte IDCiudades
+
+		private byte _idcIudades;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_idcIudades", Name = "IdCiudades", DbType = "tinyint(2) unsigned", IsPrimaryKey = true, IsDbGenerated = true, AutoSync = AutoSync.Never, CanBeNull = false)]
+		public byte IDCiudades
+		{
+			get
+			{
+				return _idcIudades;
+			}
+			set
+			{
+				if (value != _idcIudades)
+				{
+					OnIDCiudadesChanging(value);
+					SendPropertyChanging();
+					_idcIudades = value;
+					SendPropertyChanged("IDCiudades");
+					OnIDCiudadesChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string Nombre
+
+		private string _nombre;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_nombre", Name = "Nombre", DbType = "varchar(50)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string Nombre
+		{
+			get
+			{
+				return _nombre;
+			}
+			set
+			{
+				if (value != _nombre)
+				{
+					OnNombreChanging(value);
+					SendPropertyChanging();
+					_nombre = value;
+					SendPropertyChanged("Nombre");
+					OnNombreChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region ctor
+
+		public CIudAdEs()
 		{
 			OnCreated();
 		}
@@ -2239,8 +2345,12 @@ namespace Datos
 		partial void OnFechaVencimientoCarneDeSaludChanging(DateTime? value);
 		partial void OnFotoChanged();
 		partial void OnFotoChanging(Byte[] value);
+		partial void OnIDBarrioChanged();
+		partial void OnIDBarrioChanging(sbyte? value);
 		partial void OnIDCargoChanged();
 		partial void OnIDCargoChanging(short value);
+		partial void OnIDCiudadChanged();
+		partial void OnIDCiudadChanging(sbyte? value);
 		partial void OnIDDepartamentoChanged();
 		partial void OnIDDepartamentoChanging(sbyte? value);
 		partial void OnIDEmergenciaMedicaChanged();
@@ -3284,6 +3394,32 @@ namespace Datos
 
 		#endregion
 
+		#region sbyte? IDBarrio
+
+		private sbyte? _idbArrio;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_idbArrio", Name = "IdBarrio", DbType = "tinyint(2)", AutoSync = AutoSync.Never)]
+		public sbyte? IDBarrio
+		{
+			get
+			{
+				return _idbArrio;
+			}
+			set
+			{
+				if (value != _idbArrio)
+				{
+					OnIDBarrioChanging(value);
+					SendPropertyChanging();
+					_idbArrio = value;
+					SendPropertyChanged("IDBarrio");
+					OnIDBarrioChanged();
+				}
+			}
+		}
+
+		#endregion
+
 		#region short IDCargo
 
 		private short _idcArgo;
@@ -3304,6 +3440,32 @@ namespace Datos
 					_idcArgo = value;
 					SendPropertyChanged("IDCargo");
 					OnIDCargoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region sbyte? IDCiudad
+
+		private sbyte? _idcIudad;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_idcIudad", Name = "IdCiudad", DbType = "tinyint(2)", AutoSync = AutoSync.Never)]
+		public sbyte? IDCiudad
+		{
+			get
+			{
+				return _idcIudad;
+			}
+			set
+			{
+				if (value != _idcIudad)
+				{
+					OnIDCiudadChanging(value);
+					SendPropertyChanging();
+					_idcIudad = value;
+					SendPropertyChanged("IDCiudad");
+					OnIDCiudadChanged();
 				}
 			}
 		}

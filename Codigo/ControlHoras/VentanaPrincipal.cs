@@ -296,5 +296,37 @@ namespace ControlHoras
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void ciudadesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ABMCiudades depa = ABMCiudades.getVentana();
+                if (depa.Visible == false)
+                    depa.Show(this);
+                else
+                    depa.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void barriosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ABMBarrios depa = ABMBarrios.getVentana();
+                if (depa.Visible == false)
+                    depa.Show(this);
+                else
+                    depa.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

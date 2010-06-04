@@ -63,7 +63,7 @@ namespace Datos
 
             try
             {
-                string pru = ConfigurationManager.AppSettings["Servidor"].ToString();
+                //string pru = ConfigurationManager.AppSettings["Servidor"].ToString();
                 var builder = new MySqlConnectionStringBuilder() //(StringConnection)
                 {
                     //Server = "localhost",
@@ -446,7 +446,7 @@ namespace Datos
         #endregion
 
         #region ABM_Empleados
-        public void altaEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, char sexo, DateTime? fechaPsicologo, DateTime? fechaNacimiento, int edad, DateTime? fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadMenoresACargo, byte[] foto, float valorHora, bool activo, DateTime? fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string barrio, string codigoPostal, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime? fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime? fechaAltaBPS, bool bajaBPS, DateTime? fechaBajaBPS, string numeroCAJ, DateTime? fechaEmisionCAJ, DateTime? fechaEntregaCAJ, bool antecedentesEmpleado, string observacionesAntecedentesEmpleado, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime? fechaIngresoAntecedete, DateTime? fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime? vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica, bool capacitadoPorteArma, bool enservicioArmado, string observacionesEmpleado, string nivelEducativo, int idCargo, DateTime? fechaPagoEfectuado, DateTime? fechaPrevistaPago, String servicioActual, string turno, bool ConstanciaDomicilio, DateTime? FechaEntregaCelular)
+        public void altaEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, char sexo, DateTime? fechaPsicologo, DateTime? fechaNacimiento, int edad, DateTime? fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadMenoresACargo, byte[] foto, float valorHora, bool activo, DateTime? fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, int ciudad, int barrio, string codigoPostal, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime? fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime? fechaAltaBPS, bool bajaBPS, DateTime? fechaBajaBPS, string numeroCAJ, DateTime? fechaEmisionCAJ, DateTime? fechaEntregaCAJ, bool antecedentesEmpleado, string observacionesAntecedentesEmpleado, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime? fechaIngresoAntecedete, DateTime? fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime? vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica, bool capacitadoPorteArma, bool enservicioArmado, string observacionesEmpleado, string nivelEducativo, int idCargo, DateTime? fechaPagoEfectuado, DateTime? fechaPrevistaPago, String servicioActual, string turno, bool ConstanciaDomicilio, DateTime? FechaEntregaCelular)
         {
             Table<EmPleadOs> tablaEmpleados;
             try
@@ -462,8 +462,10 @@ namespace Datos
                 emp.NumeroDocumento = documento;
                 emp.SexO = sexo.ToString();
                 emp.IDDepartamento = (sbyte)idDepartamento;
-                emp.Ciudad = ciudad;
-                emp.Barrio = barrio;
+                emp.IDCiudad = (sbyte)ciudad;
+                emp.IDBarrio = (sbyte)barrio;
+                //emp.Ciudad = ciudad;
+                //emp.Barrio = barrio;
                 emp.CodigoPostal = codigoPostal;
                 emp.Direccion = direccion;
                 emp.DireccionDeEncuentro = puntoEncuentro;
@@ -583,7 +585,7 @@ namespace Datos
 
         }
         //public void modificarEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, string nacionalidad, char sexo, DateTime fechaPsicologo, DateTime fechaNacimiento, DateTime fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadHijos, byte[] foto, int idBanco, string numeroCuenta, float sueldo, bool activo, DateTime fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime fechaAltaBPS, DateTime fechaBajaBPS, string numeroCAJ, DateTime fechaEmisionCAJ, DateTime fechaEntregaCAJ, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime fechaIngresoAntecedete, DateTime fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica)
-        public void modificarEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, char sexo, DateTime? fechaPsicologo, DateTime? fechaNacimiento, int edad, DateTime? fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadMenoresACargo, byte[] foto, float valorHora, bool activo, DateTime? fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string barrio, string codigoPostal, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime? fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime? fechaAltaBPS, bool bajaBPS, DateTime? fechaBajaBPS, string numeroCAJ, DateTime? fechaEmisionCAJ, DateTime? fechaEntregaCAJ, bool antecedentesEmpleado, string observacionesAntecedentesEmpleado, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime? fechaIngresoAntecedete, DateTime? fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime? vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica, bool capacitadoPorteArma, bool enservicioArmado, string observacionesEmpleado, string nivelEducativo, int idCargo, DateTime? fechaPagoEfectuado, DateTime? fechaPrevistaPago, String servicioActual, string turno, bool ConstanciaDomicilio, DateTime? FechaEntregaCelular)
+        public void modificarEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, char sexo, DateTime? fechaPsicologo, DateTime? fechaNacimiento, int edad, DateTime? fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadMenoresACargo, byte[] foto, float valorHora, bool activo, DateTime? fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, int ciudad, int barrio, string codigoPostal, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime? fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime? fechaAltaBPS, bool bajaBPS, DateTime? fechaBajaBPS, string numeroCAJ, DateTime? fechaEmisionCAJ, DateTime? fechaEntregaCAJ, bool antecedentesEmpleado, string observacionesAntecedentesEmpleado, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime? fechaIngresoAntecedete, DateTime? fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime? vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica, bool capacitadoPorteArma, bool enservicioArmado, string observacionesEmpleado, string nivelEducativo, int idCargo, DateTime? fechaPagoEfectuado, DateTime? fechaPrevistaPago, String servicioActual, string turno, bool ConstanciaDomicilio, DateTime? FechaEntregaCelular)
         {
             Table<EmPleadOs> tablaEmpleados;
             try
@@ -601,8 +603,10 @@ namespace Datos
                 emp.NumeroDocumento = documento;
                 emp.SexO = sexo.ToString();
                 emp.IDDepartamento = (sbyte)idDepartamento;
-                emp.Ciudad = ciudad;
-                emp.Barrio = barrio;
+                emp.IDCiudad = (sbyte)ciudad;
+                emp.IDBarrio = (sbyte)barrio;
+                //emp.Ciudad = ciudad;
+                //emp.Barrio = barrio;
                 emp.CodigoPostal = codigoPostal;
                 emp.Direccion = direccion;
                 emp.DireccionDeEncuentro = puntoEncuentro;
@@ -1392,6 +1396,152 @@ namespace Datos
             }
         }
         public void bajaDepartamento(int idDepartamento)
+        { }
+
+        #endregion
+
+        #region ABM_Ciudades
+        public int altaCiudad(string nombreCiudad, bool activo)
+        {
+            try
+            {
+                Table<CIudAdEs> tabla = database.GetTable<CIudAdEs>();
+                CIudAdEs dep = new CIudAdEs();
+
+                dep.Nombre = nombreCiudad;
+
+                tabla.InsertOnSubmit(dep);
+                database.SubmitChanges();
+                return dep.IDCiudades;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        public void modificarCiudad(int idCiudad, string nombreCiudad, bool activo)
+        {
+            try
+            {
+                Table<CIudAdEs> tabla = database.GetTable<CIudAdEs>();
+                CIudAdEs dep = (from reg in tabla
+                                where reg.IDCiudades == idCiudad
+                                     select reg).Single();
+
+                dep.Nombre = nombreCiudad;
+                //dep.Activo = activo;
+
+                database.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Dictionary<int, string> obtenerCiudades(bool soloActivos)
+        {
+            Dictionary<int, string> result;
+            Table<CIudAdEs> tabla;
+            try
+            {
+                tabla = database.GetTable<CIudAdEs>();
+                result = new Dictionary<int, string>();
+                List<CIudAdEs> listRes;
+                if (!soloActivos)
+                    listRes = tabla.ToList<CIudAdEs>();
+                else
+                    listRes = tabla.ToList<CIudAdEs>();
+                //listRes = (from reg in tabla
+                //           where reg.activo == 1
+                //           select reg).ToList<DepartAmenToS>();
+
+                foreach (CIudAdEs l in listRes)
+                {
+                    result.Add(l.IDCiudades, l.Nombre);
+                }
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void bajaCiudad(int idCiudad)
+        { }
+
+        #endregion
+
+        #region ABM_Barrios
+        public int altaBarrio(string nombreBarrio, bool activo)
+        {
+            try
+            {
+                Table<BarrioS> tabla = database.GetTable<BarrioS>();
+                BarrioS dep = new BarrioS();
+
+                dep.Nombre = nombreBarrio;
+
+                tabla.InsertOnSubmit(dep);
+                database.SubmitChanges();
+                return dep.IDBarrio;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        public void modificarBarrio(int idBarrio, string nombreBarrio, bool activo)
+        {
+            try
+            {
+                Table<BarrioS> tabla = database.GetTable<BarrioS>();
+                BarrioS dep = (from reg in tabla
+                               where reg.IDBarrio == idBarrio
+                                     select reg).Single();
+
+                dep.Nombre = nombreBarrio;
+                //dep.Activo = activo;
+
+                database.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Dictionary<int, string> obtenerBarrios(bool soloActivos)
+        {
+            Dictionary<int, string> result;
+            Table<BarrioS> tabla;
+            try
+            {
+                tabla = database.GetTable<BarrioS>();
+                result = new Dictionary<int, string>();
+                List<BarrioS> listRes;
+                if (!soloActivos)
+                    listRes = tabla.ToList<BarrioS>();
+                else
+                    listRes = tabla.ToList<BarrioS>();
+                //listRes = (from reg in tabla
+                //           where reg.activo == 1
+                //           select reg).ToList<DepartAmenToS>();
+
+                foreach (BarrioS l in listRes)
+                {
+                    result.Add(l.IDBarrio, l.Nombre);
+                }
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void bajaBarrio(int idBarrio)
         { }
 
         #endregion
@@ -2344,7 +2494,7 @@ namespace Datos
                 emp.Observaciones = observaciones;
                 emp.FechaIngreso = DateTime.Now;
                 emp.BpsfEchaAlta = DateTime.Now;
-                emp.NivelEducativo = "PRIMARIO";
+                emp.NivelEducativo = "Primario";
                 emp.Activo = 1;                
 
                 tablaEmpleados.InsertOnSubmit(emp);

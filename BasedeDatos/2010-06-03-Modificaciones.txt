@@ -1,0 +1,13 @@
+-- Cambiar IdEmpleado por NroEmpleado
+ALTER TABLE `trustdb`.`eventoshistorialempleado` DROP FOREIGN KEY `eventoshistorialempleado_ibfk_1`;
+ALTER TABLE `trustdb`.`extrasliquidacionempleado` DROP FOREIGN KEY `extrasliquidacionempleado_ibfk_1`;
+ALTER TABLE `trustdb`.`empleados` CHANGE COLUMN `IdEmpleado` `NroEmpleado` MEDIUMINT(8) UNSIGNED NOT NULL, DROP PRIMARY KEY, ADD PRIMARY KEY (`NroEmpleado`);
+
+-- Crear tabla Ciudades
+CREATE  TABLE IF NOT EXISTS `trustdb`.`ciudades` (  `IdCiudades` TINYINT(2) UNSIGNED NOT NULL AUTO_INCREMENT ,  `Nombre` VARCHAR(50) NOT NULL ,  PRIMARY KEY (`IdCiudades`) );
+
+-- Crear tabla Barrios
+CREATE  TABLE IF NOT EXISTS `trustdb`.`barrios` (  `IdBarrios` TINYINT(2) UNSIGNED NOT NULL AUTO_INCREMENT ,  `Nombre` VARCHAR(50) NOT NULL ,  PRIMARY KEY (`IdBarrios`) );
+
+-- Agregar columnas de Ciudad y Barrio en Empleados
+ALTER TABLE `trustdb`.`empleados` ADD COLUMN `IdCiudad` TINYINT(2) NULL  AFTER `IdDepartamento` , ADD COLUMN `IdBarrio` TINYINT(2) NULL  AFTER `IdCiudad` ;

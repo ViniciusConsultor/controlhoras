@@ -275,11 +275,12 @@ namespace ControlHoras
                     cbNoActivo.Checked = true;
                     dtpFechaBaja.Text = cli.getFechaBaja().ToString();
                     txtMotivoBaja.Text = cli.getMotivoBaja();
+                    lblEstadoCliente.ForeColor = Color.Red;
                     lblEstadoCliente.Text = "Inactivo";
                 }
                 else
                 {
-                    lblEstadoCliente.ForeColor = Color.Green;
+                    lblEstadoCliente.ForeColor = Color.LimeGreen;
                     lblEstadoCliente.Text = "Activo";
                 }
                 // Habilito Botones en la barra

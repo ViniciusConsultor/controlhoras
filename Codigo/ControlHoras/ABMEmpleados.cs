@@ -128,6 +128,26 @@ namespace ControlHoras
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+            // Combo Ciudades
+            try
+            {
+                updateListOfCiudades();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            // Combo Barrios
+            try
+            {
+                updateListOfBarrios();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             // Combo EmergenciaMedica
             try
             {
@@ -485,11 +505,11 @@ namespace ControlHoras
                 cmbTurno.SelectedItem = empleado.Turno;
             }
             catch (Exception e) { }
-            try
-            {
-                txtBarrio.Text = empleado.Barrio;
-            }
-            catch (Exception e) { }
+            //try
+            //{
+            //    txtBarrio.Text = empleado.Barrio;
+            //}
+            //catch (Exception e) { }
             try
             {
                 txtCodigoPostal.Text = empleado.CodigoPostal;
@@ -590,11 +610,11 @@ namespace ControlHoras
                 txtCelularConvenio.Text = empleado.CelularenConvenio;
             }
             catch (Exception e) { }
-            try
-            {
-                txtCiudad.Text = empleado.Ciudad;
-            }
-            catch (Exception e) { }
+            //try
+            //{
+            //    txtCiudad.Text = empleado.Ciudad;
+            //}
+            //catch (Exception e) { }
             try
             {
                 if (empleado.CombatienteMilitar == 1)
@@ -608,6 +628,17 @@ namespace ControlHoras
                 cmbDepartamento.SelectedValue = (int)empleado.IDDepartamento;
             }
             catch (Exception e) { }
+            try
+            {
+                cmbCiudades.SelectedValue = (int)empleado.IDCiudad;
+            }
+            catch (Exception e) { }
+            try
+            {
+                cmbBarrios.SelectedValue = (int)empleado.IDBarrio;
+            }
+            catch (Exception e) { }
+
             try
             {
                 txtDireccion.Text = empleado.Direccion;
@@ -1002,6 +1033,8 @@ namespace ControlHoras
                     MessageBox.Show(ex.Message + " - " + ex.InnerException);
                 }
                 int iddepartamento = (int)cmbDepartamento.SelectedValue;
+                int idciudad = (int)cmbCiudades.SelectedValue;
+                int idbarrio = (int)cmbBarrios.SelectedValue;
                 int idtipodocumento = 0;
                 int idmutualista = -1;
                 if (cmbMutualista.SelectedItem != null)
@@ -1109,7 +1142,7 @@ namespace ControlHoras
 
                 if (agregar)
                 {
-                    datos.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, valorHora, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtBarrio.Text, txtCodigoPostal.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, cbBajadoBPS.Checked, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTallePantalon.Text, txtTalleCamisa.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, cmbNivelEducativo.SelectedItem.ToString(), idcargo, dtpFechaPagoEfectuado, dtpFechaPagoPrevisto, ServicioActual, Turno, cbConstanciaDomicilio.Checked, dtpFechaEnCelu);
+                    datos.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, valorHora, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, idciudad, idbarrio, txtCodigoPostal.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, cbBajadoBPS.Checked, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTallePantalon.Text, txtTalleCamisa.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, cmbNivelEducativo.SelectedItem.ToString(), idcargo, dtpFechaPagoEfectuado, dtpFechaPagoPrevisto, ServicioActual, Turno, cbConstanciaDomicilio.Checked, dtpFechaEnCelu);
                     MessageBox.Show("Empleado agregado Correctamente.", "Alta Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     habilitarPermisosEmpleado(true);
                 }
@@ -1118,7 +1151,7 @@ namespace ControlHoras
                     string nivEdu = "";
                     if (cmbNivelEducativo.SelectedItem != null)
                         nivEdu = cmbNivelEducativo.SelectedItem.ToString();
-                    datos.modificarEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, valorHora, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, txtCiudad.Text, txtBarrio.Text, txtCodigoPostal.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, cbBajadoBPS.Checked, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTallePantalon.Text, txtTalleCamisa.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, cmbNivelEducativo.SelectedItem.ToString(), idcargo, dtpFechaPagoEfectuado, dtpFechaPagoPrevisto, ServicioActual, Turno, cbConstanciaDomicilio.Checked, dtpFechaEnCelu);
+                    datos.modificarEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, valorHora, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, idciudad, idbarrio, txtCodigoPostal.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, cbBajadoBPS.Checked, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTallePantalon.Text, txtTalleCamisa.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, cmbNivelEducativo.SelectedItem.ToString(), idcargo, dtpFechaPagoEfectuado, dtpFechaPagoPrevisto, ServicioActual, Turno, cbConstanciaDomicilio.Checked, dtpFechaEnCelu);
                     MessageBox.Show("Datos guardados correctamente.", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
               // JG. Se comenta para que al guardar permanezca cargado el funcionario.
@@ -1623,8 +1656,12 @@ namespace ControlHoras
 
         private void cbBajadoBPS_CheckedChanged(object sender, EventArgs e)
         {
-            dtpFechaBajaBPS.Enabled = cbBajadoBPS.Checked;
-            dtpFechaBajaBPS.Text = DateTime.Today.ToString();
+            //dtpFechaBajaBPS.Enabled = cbBajadoBPS.Checked;
+            //dtpFechaBajaBPS.Text = DateTime.Today.ToString();
+            if (cbBajadoBPS.Checked)
+                dtpFechaBajaBPS.Text = DateTime.Today.ToString();
+            else
+                dtpFechaBajaBPS.Text = "";
         }
 
         private void cmbPolicialMilitar_SelectedValueChanged(object sender, EventArgs e)
@@ -2440,9 +2477,9 @@ namespace ControlHoras
                 oSheet.Cells[23, 7] = txtEntreCalles.Text;
 
                 // Nivel Educacional
-                if (cmbNivelEducativo.Text == "PRIMARIO")
+                if (cmbNivelEducativo.Text == "Primario")
                     oSheet.Cells[26, 3] = "X";
-                else if (cmbNivelEducativo.Text == "SECUNDARIO")
+                else if (cmbNivelEducativo.Text == "Secundario")
                     oSheet.Cells[26, 5] = "X";
                 else
                     oSheet.Cells[26, 7] = "X";
@@ -2906,11 +2943,37 @@ namespace ControlHoras
             CargarCombo(cmbDepartamento, docs);
         }
 
+        private void updateListOfCiudades()
+        {
+            Dictionary<int, string> docs = tipos.obtenerCiudades(false);
+            CargarCombo(cmbCiudades, docs);
+        }
+
+        private void updateListOfBarrios()
+        {
+            Dictionary<int, string> docs = tipos.obtenerBarrios(false);
+            CargarCombo(cmbBarrios, docs);
+        }
+
         private void btnAgregarDepartamento_Click(object sender, EventArgs e)
         {
             ABMDepartamentos dptos = ABMDepartamentos.getVentana();
             dptos.ShowDialog(this);
             updateListOfDepartamentos();
+        }
+
+        private void btnAgregarCiudad_Click(object sender, EventArgs e)
+        {
+            ABMCiudades dptos = ABMCiudades.getVentana();
+            dptos.ShowDialog(this);
+            updateListOfCiudades();
+        }
+
+        private void btnAgregarBarrio_Click(object sender, EventArgs e)
+        {
+            ABMBarrios dptos = ABMBarrios.getVentana();
+            dptos.ShowDialog(this);
+            updateListOfBarrios();
         }
 
         private void updateListOfMutualistas()
@@ -2953,9 +3016,7 @@ namespace ControlHoras
             ABMCargos abmcargos = ABMCargos.getVentana();
             abmcargos.ShowDialog(this);
             updateListOfCargos();
-        }
-
-        
+        }        
     }
 }
 

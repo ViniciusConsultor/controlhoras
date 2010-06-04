@@ -126,6 +126,8 @@ namespace ControlHoras
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             this.CargaHorariaDGV.Columns.Add(mtbc);
+
+            //CargaHorariaDGV.EditMode = DataGridViewEditMode.EditOnEnter;
         }
 
         private void CostoCB_SelectedValueChanged(object sender, EventArgs e)
@@ -189,6 +191,7 @@ namespace ControlHoras
                         AnteriorBTN.Visible = true;
                         PosteriorBTN.Visible = true;
                     }
+                    FIniMTB.Focus();
                 }
             }
         }
@@ -354,7 +357,7 @@ namespace ControlHoras
             {
                 bcUC.Focus();
                 if (checkDatosObligatorios())
-                {                  
+                {
                     int numCli = int.Parse(bcUC.ClienteNRO);
                     int numSer = int.Parse(NroMTB.Text);
                     DateTime dti = DateTime.ParseExact(FIniMTB.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
@@ -392,14 +395,14 @@ namespace ControlHoras
                                 }
                             }
                             con.addLinea(linea);
-                        }   
+                        }
                     }
 
                     if (datos.existeContrato(nroCon))
                         sistema.modificarContrato(nroCon, con);
                     else
-                        sistema.altaContrato(nroCon , con);
-  
+                        sistema.altaContrato(nroCon, con);
+
                     /*
                     if (datos.existeContrato(nroCon))
                         datos.modificarContrato(nroCon, dti, dtf, costo, hx, AjusteTB.Text, ObsTB.Text, monto);
@@ -409,7 +412,7 @@ namespace ControlHoras
                     //CancelarBTN.PerformClick();
 
                 }
-                else
+                else                
                     MessageBox.Show(this, msgError, "Contrato no válido", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
@@ -482,16 +485,19 @@ namespace ControlHoras
                 //Validar Puesto
                 if (f.Cells[0].Value == null)
                 {
-                    CargaHorariaDGV.Focus();                        
+                    CargaHorariaDGV.Focus();
+                    CargaHorariaDGV.CurrentCell = f.Cells[0];    
                     f.Cells[0].Selected = true;
+                   
                     return false;
                 }
 
                 //Validar Cantidad
                 if (f.Cells[2].Value == null || !esEntero(f.Cells[2].Value.ToString()))
                 {
-                    CargaHorariaDGV.Focus();                        
-                    f.Cells[2].Selected = true;
+                    CargaHorariaDGV.Focus();
+                    CargaHorariaDGV.CurrentCell = f.Cells[2];    
+                    f.Cells[2].Selected = true;                    
                     return false;
                 }
 
@@ -499,6 +505,7 @@ namespace ControlHoras
                 if (f.Cells[3].Value == null || !esFloat(f.Cells[3].Value.ToString()))
                 {
                     CargaHorariaDGV.Focus();
+                    CargaHorariaDGV.CurrentCell = f.Cells[3];
                     f.Cells[3].Selected = true;
                     return false;                    
                 }
@@ -508,7 +515,8 @@ namespace ControlHoras
                 {
                     if (f.Cells[j].Value == null || !ValidarHorario(f.Cells[j].Value.ToString()))
                     {
-                        CargaHorariaDGV.Focus();                        
+                        CargaHorariaDGV.Focus();
+                        CargaHorariaDGV.CurrentCell = f.Cells[j];
                         f.Cells[j].Selected = true;
                         return false;
                     }                        
