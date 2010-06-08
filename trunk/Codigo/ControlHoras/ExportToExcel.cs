@@ -291,7 +291,11 @@ namespace ControlHoras
                 txtConsultasEmpleadosDescripcion.Text = cons.Descripcion;
                 if (cons.Query.Contains("FECHA"))
                 {
+                    lblFechaGenerica.Text = "Fecha Pago Prevista";
+                    if (cons.Nombre.Contains("BAJAS SIN FECHA DE PAGO PREVISTO"))
+                        lblFechaGenerica.Text = "Fecha Desde";
                     panelConsultasEmpleadoFecha.Visible = true;
+                    
                 }
                 else
                     panelConsultasEmpleadoFecha.Visible = false;
