@@ -220,6 +220,8 @@ namespace ControlHoras
             #endregion
 
           //  btnCancelar.PerformClick();
+            mtNumeroDocumento.ContextMenu = new ContextMenu();
+           
             mtNumeroDocumento.Focus();
         }
 
@@ -3018,6 +3020,10 @@ namespace ControlHoras
             abmcargos.ShowDialog(this);
             updateListOfCargos();
         }
+
+
+
+        
      
     }
 }
