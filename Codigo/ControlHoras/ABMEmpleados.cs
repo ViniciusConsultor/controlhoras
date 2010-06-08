@@ -422,9 +422,10 @@ namespace ControlHoras
                     if (sistema.existeEmpleado(int.Parse(mtNumeroEmpleado.Text)))
                     {
                         empleado = datos.obtenerEmpleado(int.Parse(mtNumeroEmpleado.Text));
+                        limpiarForm();
                         if (empleado.Activo == 1)
                         {
-                            limpiarForm();
+                            
                             habilitarPermisosEmpleado(true);
                             //lblEstadoEmpleado.Visible = true;
                             //lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
@@ -3016,7 +3017,8 @@ namespace ControlHoras
             ABMCargos abmcargos = ABMCargos.getVentana();
             abmcargos.ShowDialog(this);
             updateListOfCargos();
-        }        
+        }
+     
     }
 }
 
