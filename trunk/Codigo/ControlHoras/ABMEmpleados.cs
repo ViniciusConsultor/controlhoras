@@ -1662,9 +1662,15 @@ namespace ControlHoras
             //dtpFechaBajaBPS.Enabled = cbBajadoBPS.Checked;
             //dtpFechaBajaBPS.Text = DateTime.Today.ToString();
             if (cbBajadoBPS.Checked)
+            {
+                dtpFechaBajaBPS.Enabled = true;
                 dtpFechaBajaBPS.Text = DateTime.Today.ToString();
+            }
             else
+            {
+                dtpFechaBajaBPS.Enabled = false;
                 dtpFechaBajaBPS.Text = "";
+            }
         }
 
         private void cmbPolicialMilitar_SelectedValueChanged(object sender, EventArgs e)
@@ -1801,9 +1807,13 @@ namespace ControlHoras
             {
                 try
                 {
+                    //int i;
+                    //i = tcEmpleado.SelectedIndex;
+                    tcEmpleado.SelectedIndex = 0;
                     mtNumeroEmpleado.Text = busquedaEmps.idEmpleadoSeleccionado.ToString();
                     mtNumeroEmpleado.Focus();
                     SendKeys.Send("{ENTER}");
+                    //tcEmpleado.SelectedIndex = i;
                 }
                 catch (Exception ex)
                 {
@@ -2923,6 +2933,7 @@ namespace ControlHoras
                 lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
                 btnAgregar.Enabled = false;
                 btnGuardar.Enabled = true;
+                BtnReactivar.Visible = false;
                 btnExtrasAgregar.Enabled = true;
                 btnAgregarHistorial.Enabled = true;
                 ImprimirTSB.Enabled = true;
