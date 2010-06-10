@@ -19,6 +19,7 @@ namespace ControlHoras
         {
             InitializeComponent();
             datos = ControladorDatos.getInstance();
+            cmbCampoBusqueda.SelectedIndex = 1;
         }
 
         private void txtBusqueda_KeyDown(object sender, KeyEventArgs e)
@@ -70,7 +71,7 @@ namespace ControlHoras
         {
             if (dgvResultado.SelectedRows.Count > 0)
                 idEmpleadoSeleccionado = int.Parse(dgvResultado.SelectedRows[0].Cells["idEmpleado"].Value.ToString());
-        }
+        }        
 
     }
 
