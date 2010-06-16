@@ -132,10 +132,16 @@ namespace ControlHoras
 
         private void CostoCB_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (CostoCB.SelectedItem.ToString() == "fijo")
-                MontoTB.ReadOnly = false;
+            if (CostoCB.SelectedItem.ToString() == "Fijo")
+            {
+                MontoLBL.Visible = true;
+                MontoTB.Visible = true;
+            }
             else
-                MontoTB.ReadOnly = true;
+            {
+                MontoLBL.Visible = false;
+                MontoTB.ReadOnly = false;
+            }
         }
 
         private void FinCKB_CheckedChanged(object sender, EventArgs e)
@@ -403,6 +409,8 @@ namespace ControlHoras
                     else
                         sistema.altaContrato(nroCon, con);
 
+                    MessageBox.Show("Datos guardados correctamente.", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     /*
                     if (datos.existeContrato(nroCon))
                         datos.modificarContrato(nroCon, dti, dtf, costo, hx, AjusteTB.Text, ObsTB.Text, monto);
@@ -457,7 +465,7 @@ namespace ControlHoras
                 }
                 if (!ValidarCargaHoraria())
                 {
-                    msgError = "Exite un error en la Carga Horaria";
+                    msgError = "Exite un error en la Carga Horaria en la celda seleccionada";
                     return false;
                 }
 
