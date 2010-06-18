@@ -65,8 +65,6 @@
             this.CargaHorariaDGV = new ControlHoras.DataGridTAB();
             this.Puesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Armado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioXHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -399,7 +397,6 @@
             this.MontoTB.Location = new System.Drawing.Point(72, 510);
             this.MontoTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MontoTB.Name = "MontoTB";
-            this.MontoTB.ReadOnly = true;
             this.MontoTB.Size = new System.Drawing.Size(100, 22);
             this.MontoTB.TabIndex = 7;
             this.MontoTB.Visible = false;
@@ -409,9 +406,7 @@
             this.CargaHorariaDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.CargaHorariaDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Puesto,
-            this.Armado,
-            this.Cantidad,
-            this.PrecioXHora});
+            this.Armado});
             this.CargaHorariaDGV.Location = new System.Drawing.Point(15, 261);
             this.CargaHorariaDGV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CargaHorariaDGV.Name = "CargaHorariaDGV";
@@ -437,22 +432,6 @@
             this.Armado.Name = "Armado";
             this.Armado.TrueValue = "1";
             this.Armado.Width = 63;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Cantidad.Width = 70;
-            // 
-            // PrecioXHora
-            // 
-            this.PrecioXHora.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.PrecioXHora.HeaderText = "Precio X Hora";
-            this.PrecioXHora.Name = "PrecioXHora";
-            this.PrecioXHora.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.PrecioXHora.Width = 102;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -551,11 +530,9 @@
         private System.Windows.Forms.ToolStripMenuItem marcarNTToolStripMenuItem;
         private MaskedTextBoxKeyDown FIniMTB;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private MaskedTextBoxKeyDown FFinMTB;
+        private MaskedTextBoxKeyDown FFinMTB; 
         private System.Windows.Forms.DataGridViewTextBoxColumn Puesto;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Armado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioXHora;
         private BúsquedaCliente bcUC;
     }
 }

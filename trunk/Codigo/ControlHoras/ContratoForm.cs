@@ -62,8 +62,24 @@ namespace ControlHoras
         {
             MaskedTextBoxColumn mtbc;
 
-            
-            
+            mtbc = new MaskedTextBoxColumn();
+            mtbc.Name = "Cantidad";
+            mtbc.HeaderText = "Cantidad";
+            mtbc.Mask = @"00";
+            mtbc.Width = 86;
+            //mtbc.ReadOnly = false;
+            //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            this.CargaHorariaDGV.Columns.Add(mtbc);
+
+            mtbc = new MaskedTextBoxColumn();
+            mtbc.Name = "PrecioXHora";
+            mtbc.HeaderText = "PrecioXHora";
+            mtbc.Mask = @"$ 00";
+            mtbc.Width = 86;
+            //mtbc.ReadOnly = false;
+            //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            this.CargaHorariaDGV.Columns.Add(mtbc);
+                        
             mtbc = new MaskedTextBoxColumn();
             mtbc.Name = "Lunes";
             mtbc.HeaderText = "Lunes";            
@@ -136,11 +152,12 @@ namespace ControlHoras
             {
                 MontoLBL.Visible = true;
                 MontoTB.Visible = true;
+                MontoTB.Focus();
             }
             else
             {
                 MontoLBL.Visible = false;
-                MontoTB.ReadOnly = false;
+                MontoTB.Visible = false;
             }
         }
 
@@ -237,7 +254,7 @@ namespace ControlHoras
                 foreach (LineaDeHoras l in con.getLineas())
                 {
                     insr = new DataGridViewRow();
-                    object[] param = { l.getPuesto(), (l.getArmado())? "1":"0", l.getCantEmp().ToString(), l.getCostoH().ToString()};
+                    object[] param = { l.getPuesto(), (l.getArmado())? "1":"0", l.getCantEmp().ToString(),"$U " + l.getCostoH().ToString()};
                     
                     insr.CreateCells( CargaHorariaDGV, param);
 
@@ -370,7 +387,7 @@ namespace ControlHoras
                     DateTime? dtf = null;
                     if (FinCKB.Checked)
                         dtf = DateTime.ParseExact(FFinMTB.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-                    bool costo = (CostoCB.SelectedItem.ToString() == "fijo");
+                    bool costo = (CostoCB.SelectedItem.ToString() == "Fijo");
                     bool hx = HorasExtrasCHK.Checked;
                     float monto = 0;
                     if (MontoTB.Text != "")
@@ -384,13 +401,15 @@ namespace ControlHoras
                     LineaDeHoras linea = null;
                     HorarioXDia hor = null;
                     DataGridViewCell cel = null;
+                    string precio;
                     foreach (DataGridViewRow fila in CargaHorariaDGV.Rows)
                     {
                         if (fila.Cells[0].RowIndex + 1 < CargaHorariaDGV.RowCount)
                         {
                             if (fila.Cells["Armado"].Value == null)
                                 fila.Cells["Armado"].Value = "0";
-                            linea = new LineaDeHoras(fila.Cells["Puesto"].Value.ToString(), (fila.Cells["Armado"].Value.ToString() == "1") ? true : false, float.Parse(fila.Cells["PrecioXHora"].Value.ToString()), int.Parse(fila.Cells["Cantidad"].Value.ToString()), 0, 0);
+                            precio = fila.Cells["PrecioXHora"].Value.ToString().Substring(3);
+                            linea = new LineaDeHoras(fila.Cells["Puesto"].Value.ToString(), (fila.Cells["Armado"].Value.ToString() == "1") ? true : false, float.Parse(precio), int.Parse(fila.Cells["Cantidad"].Value.ToString()), 0, 0);
                             for (int i = 0; i < 7; i++)
                             {
                                 cel = fila.Cells[dias[i]];
@@ -510,7 +529,7 @@ namespace ControlHoras
                 }
 
                 //Validar Precio
-                if (f.Cells[3].Value == null || !esFloat(f.Cells[3].Value.ToString()))
+                if (f.Cells[3].Value == null)//(f.Cells[3].Value == null || !esFloat(f.Cells[3].Value.ToString()))
                 {
                     CargaHorariaDGV.Focus();
                     CargaHorariaDGV.CurrentCell = f.Cells[3];
