@@ -2838,6 +2838,8 @@ namespace ControlHoras
 
                     btnGuardar.Enabled = true;
                     btnGuardar.PerformClick();
+                    BtnReactivar.Visible = false;
+
                     //MessageBox.Show("El empleado a sido reingresado con exito.", "Modifacion con exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //mtNumeroEmpleado.Text = nroNuevo.ToString();
                     //SendKeys.Send("{ENTER}");
