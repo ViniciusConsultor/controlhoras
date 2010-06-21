@@ -831,8 +831,8 @@ namespace Datos
                 //System.Data.Common.DbTransaction trans = database.Connection.BeginTransaction();
                 System.Data.Common.DbConnection conn = database.Connection;
 
-                
-                string SQL = "UPDATE empleados SET idEmpleado=?idempleadonuevo where idEmpleado=?idempleadoactual";
+
+                string SQL = "UPDATE empleados SET NroEmpleado=?idempleadonuevo where NroEmpleado=?idempleadoactual";
                 com = new MySqlCommand(SQL, (MySqlConnection) conn);
                 MySqlParameter myIdEmpActual = new MySqlParameter("?idempleadoactual", MySqlDbType.UInt16);
                 myIdEmpActual.Value = NumeroActual;
