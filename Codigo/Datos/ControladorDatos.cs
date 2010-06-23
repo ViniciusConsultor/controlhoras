@@ -66,16 +66,16 @@ namespace Datos
                 //string pru = ConfigurationManager.AppSettings["Servidor"].ToString();
                 var builder = new MySqlConnectionStringBuilder() //(StringConnection)
                 {
-                    //Server = "localhost",
-                    Server = ConfigurationManager.AppSettings["Servidor"].ToString(),
-                    //Port = 3306,
-                    Port = uint.Parse(ConfigurationManager.AppSettings["Puerto"].ToString()),
-                    //UserID = "root",
-                    UserID = ConfigurationManager.AppSettings["Usuario"].ToString(),
-                    //Password = "desdere",
-                    Password = ConfigurationManager.AppSettings["Password"].ToString(),
-                    //Database = "trustdb",
-                    Database = ConfigurationManager.AppSettings["Base"].ToString(),
+                    Server = "localhost",
+                    //Server = ConfigurationManager.AppSettings["Servidor"].ToString(),
+                    Port = 3306,
+                    //Port = uint.Parse(ConfigurationManager.AppSettings["Puerto"].ToString()),
+                    UserID = "root",
+                    //UserID = ConfigurationManager.AppSettings["Usuario"].ToString(),
+                    Password = "desdere",
+                    //Password = ConfigurationManager.AppSettings["Password"].ToString(),
+                    Database = "trustdb",
+                    //Database = ConfigurationManager.AppSettings["Base"].ToString(),
                     Pooling = false,
                     ConnectionLifeTime = 0,
                     AllowUserVariables = true
@@ -261,7 +261,7 @@ namespace Datos
         #endregion
 
         #region ServicioCliente
-        public void altaServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas)
+        public void altaServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string DiaDeCobro, string NombreCobrar)
         {
             SERVicIoS ser = null;
             try
@@ -276,6 +276,8 @@ namespace Datos
                 ser.Direccion = Direccion;
                 ser.Telefonos = Telefonos;
                 ser.PersonaContacto = Contacto;
+                ser.DiaCobro = DiaDeCobro;
+                ser.NombreCobrar = NombreCobrar;
                 ser.Celular = Celular;
                 ser.CelularTrust = CelularTrust;
                 ser.TareasAsignadas = Tareas;
@@ -304,7 +306,7 @@ namespace Datos
                 throw ex;
             }
         }
-        public void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas)
+        public void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string DiaDeCobro, string NombreCobrar)
         {
             try
             {
@@ -320,6 +322,8 @@ namespace Datos
                 ser.Direccion = Direccion;
                 ser.Telefonos = Telefonos;
                 ser.PersonaContacto = Contacto;
+                ser.DiaCobro = DiaDeCobro;
+                ser.NombreCobrar = NombreCobrar;
                 ser.Celular = Celular;
                 ser.CelularTrust = CelularTrust;
                 ser.TareasAsignadas = Tareas;
@@ -930,6 +934,29 @@ namespace Datos
 
         }
 
+        public List<ConsultAsClientEs> obtenerConsultasClientes(bool soloactivos)
+        {
+            List<ConsultAsClientEs> lista = new List<ConsultAsClientEs>();
+
+            try
+            {
+                sbyte activos = 0;
+                if (soloactivos)
+                    activos = 1;
+
+                lista = (from reg in database.GetTable<ConsultAsClientEs>()
+                         where reg.Activo == activos   //&&reg.Activo == 0
+                         select reg).ToList();
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
+
         public DataSet ejecutarConsultaEmpleado(int numeroConsultaEmpleado, Dictionary<string, string> parametrosConsulta)
         {
             MySqlConnection conexion2;
@@ -937,6 +964,48 @@ namespace Datos
             {
                 ConsultAsEmPleadOs consEmp = (from reg in database.GetTable<ConsultAsEmPleadOs>()
                                               where reg.IDConsultaEmpleado == numeroConsultaEmpleado
+                                              select reg).Single();
+                if (consEmp != null)
+                {
+                    string sql = consEmp.Query;
+                    if (consEmp.Query.Contains("FECHA"))
+                        if (parametrosConsulta.ContainsKey("FECHA"))
+                        {
+                            string[] fecha = parametrosConsulta["FECHA"].Split('/');
+                            DateTime dt = new DateTime(int.Parse(fecha[2]), int.Parse(fecha[1]), int.Parse(fecha[0]));
+                            string fecha2 = String.Format("{0:yyyy-MM-dd}", dt);
+                            sql = sql.Replace("FECHA", fecha2);
+                        }
+
+
+                    conexion2 = (MySqlConnection)database.Connection;
+
+                    MySqlDataAdapter mysqlAdapter = new MySqlDataAdapter(sql, conexion2);
+
+                    DataSet sd = new DataSet();
+                    mysqlAdapter.Fill(sd);
+                    //conexion.Close();
+                    return sd;
+                }
+                throw new Exception("Error al ejecutar la consulta para obtener el query");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+        public DataSet ejecutarConsultaCliente(int numeroConsultaCliente, Dictionary<string, string> parametrosConsulta)
+        {
+            MySqlConnection conexion2;
+            try
+            {
+                ConsultAsClientEs consEmp = (from reg in database.GetTable<ConsultAsClientEs>()
+                                             where reg.IDConsultaCliente == numeroConsultaCliente
                                               select reg).Single();
                 if (consEmp != null)
                 {

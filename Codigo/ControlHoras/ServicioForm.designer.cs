@@ -38,25 +38,29 @@
             this.CancelarBTN = new System.Windows.Forms.ToolStripButton();
             this.ServicioGB = new System.Windows.Forms.GroupBox();
             this.PosteriorBTN = new System.Windows.Forms.Button();
-            this.TareasTB = new ControlHoras.TextBoxKeyDown();
             this.AnteriorBTN = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.CelTrustTB = new ControlHoras.MaskedTextBoxKeyDown();
             this.label8 = new System.Windows.Forms.Label();
-            this.CelTB = new ControlHoras.MaskedTextBoxKeyDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.emailTB = new ControlHoras.TextBoxKeyDown();
             this.label6 = new System.Windows.Forms.Label();
-            this.ContactTB = new ControlHoras.TextBoxKeyDown();
             this.label5 = new System.Windows.Forms.Label();
-            this.TelTB = new ControlHoras.TextBoxKeyDown();
             this.label4 = new System.Windows.Forms.Label();
-            this.DirTB = new ControlHoras.TextBoxKeyDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.NombreTB = new ControlHoras.TextBoxKeyDown();
             this.NroMTB = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.NombreCobrarTB = new ControlHoras.TextBoxKeyDown();
+            this.DiaCobroTB = new ControlHoras.TextBoxKeyDown();
+            this.TareasTB = new ControlHoras.TextBoxKeyDown();
+            this.CelTrustTB = new ControlHoras.MaskedTextBoxKeyDown();
+            this.CelTB = new ControlHoras.MaskedTextBoxKeyDown();
+            this.emailTB = new ControlHoras.TextBoxKeyDown();
+            this.ContactTB = new ControlHoras.TextBoxKeyDown();
+            this.TelTB = new ControlHoras.TextBoxKeyDown();
+            this.DirTB = new ControlHoras.TextBoxKeyDown();
+            this.NombreTB = new ControlHoras.TextBoxKeyDown();
             this.bcUC = new ControlHoras.BúsquedaCliente();
             this.ClienteGB.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -69,9 +73,9 @@
             this.ClienteGB.Controls.Add(this.bcUC);
             this.ClienteGB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ClienteGB.Location = new System.Drawing.Point(20, 44);
-            this.ClienteGB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ClienteGB.Margin = new System.Windows.Forms.Padding(4);
             this.ClienteGB.Name = "ClienteGB";
-            this.ClienteGB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ClienteGB.Padding = new System.Windows.Forms.Padding(4);
             this.ClienteGB.Size = new System.Drawing.Size(712, 74);
             this.ClienteGB.TabIndex = 0;
             this.ClienteGB.TabStop = false;
@@ -143,6 +147,10 @@
             // ServicioGB
             // 
             this.ServicioGB.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ServicioGB.Controls.Add(this.NombreCobrarTB);
+            this.ServicioGB.Controls.Add(this.label11);
+            this.ServicioGB.Controls.Add(this.DiaCobroTB);
+            this.ServicioGB.Controls.Add(this.label10);
             this.ServicioGB.Controls.Add(this.PosteriorBTN);
             this.ServicioGB.Controls.Add(this.TareasTB);
             this.ServicioGB.Controls.Add(this.AnteriorBTN);
@@ -165,10 +173,10 @@
             this.ServicioGB.Controls.Add(this.label1);
             this.ServicioGB.Enabled = false;
             this.ServicioGB.Location = new System.Drawing.Point(20, 126);
-            this.ServicioGB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ServicioGB.Margin = new System.Windows.Forms.Padding(4);
             this.ServicioGB.Name = "ServicioGB";
-            this.ServicioGB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ServicioGB.Size = new System.Drawing.Size(712, 391);
+            this.ServicioGB.Padding = new System.Windows.Forms.Padding(4);
+            this.ServicioGB.Size = new System.Drawing.Size(712, 464);
             this.ServicioGB.TabIndex = 1;
             this.ServicioGB.TabStop = false;
             this.ServicioGB.Text = "Servicio";
@@ -178,34 +186,24 @@
             this.PosteriorBTN.AutoSize = true;
             this.PosteriorBTN.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.PosteriorBTN.Location = new System.Drawing.Point(296, 12);
-            this.PosteriorBTN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PosteriorBTN.Margin = new System.Windows.Forms.Padding(4);
             this.PosteriorBTN.Name = "PosteriorBTN";
             this.PosteriorBTN.Size = new System.Drawing.Size(34, 27);
-            this.PosteriorBTN.TabIndex = 5;
+            this.PosteriorBTN.TabIndex = 12;
             this.PosteriorBTN.Text = ">>";
             this.PosteriorBTN.UseVisualStyleBackColor = true;
             this.PosteriorBTN.Visible = false;
             this.PosteriorBTN.Click += new System.EventHandler(this.PosteriorBTN_Click);
-            // 
-            // TareasTB
-            // 
-            this.TareasTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TareasTB.Location = new System.Drawing.Point(215, 318);
-            this.TareasTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.TareasTB.Multiline = true;
-            this.TareasTB.Name = "TareasTB";
-            this.TareasTB.Size = new System.Drawing.Size(481, 53);
-            this.TareasTB.TabIndex = 8;
             // 
             // AnteriorBTN
             // 
             this.AnteriorBTN.AutoSize = true;
             this.AnteriorBTN.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AnteriorBTN.Location = new System.Drawing.Point(249, 12);
-            this.AnteriorBTN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AnteriorBTN.Margin = new System.Windows.Forms.Padding(4);
             this.AnteriorBTN.Name = "AnteriorBTN";
             this.AnteriorBTN.Size = new System.Drawing.Size(34, 27);
-            this.AnteriorBTN.TabIndex = 4;
+            this.AnteriorBTN.TabIndex = 11;
             this.AnteriorBTN.Text = "<<";
             this.AnteriorBTN.UseVisualStyleBackColor = true;
             this.AnteriorBTN.Visible = false;
@@ -215,83 +213,45 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(80, 322);
+            this.label9.Location = new System.Drawing.Point(80, 407);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(127, 17);
             this.label9.TabIndex = 16;
             this.label9.Text = "Tareas Asignadas:";
             // 
-            // CelTrustTB
-            //            
-            this.CelTrustTB.Location = new System.Drawing.Point(525, 274);
-            this.CelTrustTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.CelTrustTB.Mask = "000-000-000";
-            this.CelTrustTB.Name = "CelTrustTB";
-            this.CelTrustTB.Size = new System.Drawing.Size(128, 25);
-            this.CelTrustTB.TabIndex = 7;
-            this.CelTrustTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(429, 281);
+            this.label8.Location = new System.Drawing.Point(429, 366);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(89, 17);
             this.label8.TabIndex = 14;
             this.label8.Text = "CelularTrust:";
             // 
-            // CelTB
-            // 
-            this.CelTB.Location = new System.Drawing.Point(215, 273);
-            this.CelTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.CelTB.Mask = "000-000-000";
-            this.CelTB.Name = "CelTB";
-            this.CelTB.Size = new System.Drawing.Size(128, 25);
-            this.CelTB.TabIndex = 6;
-            this.CelTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(151, 278);
+            this.label7.Location = new System.Drawing.Point(151, 363);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(56, 17);
             this.label7.TabIndex = 12;
             this.label7.Text = "Celular:";
             // 
-            // emailTB
-            // 
-            this.emailTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailTB.Location = new System.Drawing.Point(215, 228);
-            this.emailTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.emailTB.Name = "emailTB";
-            this.emailTB.Size = new System.Drawing.Size(481, 25);
-            this.emailTB.TabIndex = 5;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(157, 233);
+            this.label6.Location = new System.Drawing.Point(157, 318);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(50, 17);
             this.label6.TabIndex = 10;
             this.label6.Text = "e-mail:";
-            // 
-            // ContactTB
-            // 
-            this.ContactTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ContactTB.Location = new System.Drawing.Point(215, 183);
-            this.ContactTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ContactTB.Name = "ContactTB";
-            this.ContactTB.Size = new System.Drawing.Size(481, 25);
-            this.ContactTB.TabIndex = 4;
             // 
             // label5
             // 
@@ -304,15 +264,6 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Contacto:";
             // 
-            // TelTB
-            // 
-            this.TelTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TelTB.Location = new System.Drawing.Point(215, 138);
-            this.TelTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.TelTB.Name = "TelTB";
-            this.TelTB.Size = new System.Drawing.Size(481, 25);
-            this.TelTB.TabIndex = 3;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -323,15 +274,6 @@
             this.label4.Size = new System.Drawing.Size(75, 17);
             this.label4.TabIndex = 6;
             this.label4.Text = "Teléfonos:";
-            // 
-            // DirTB
-            // 
-            this.DirTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DirTB.Location = new System.Drawing.Point(215, 94);
-            this.DirTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.DirTB.Name = "DirTB";
-            this.DirTB.Size = new System.Drawing.Size(481, 25);
-            this.DirTB.TabIndex = 2;
             // 
             // label3
             // 
@@ -355,20 +297,11 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Nombre:*";
             // 
-            // NombreTB
-            // 
-            this.NombreTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NombreTB.Location = new System.Drawing.Point(215, 48);
-            this.NombreTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.NombreTB.Name = "NombreTB";
-            this.NombreTB.Size = new System.Drawing.Size(481, 25);
-            this.NombreTB.TabIndex = 1;
-            // 
             // NroMTB
             // 
             this.NroMTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NroMTB.Location = new System.Drawing.Point(51, 46);
-            this.NroMTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NroMTB.Margin = new System.Windows.Forms.Padding(4);
             this.NroMTB.Mask = "9990";
             this.NroMTB.Name = "NroMTB";
             this.NroMTB.Size = new System.Drawing.Size(57, 25);
@@ -388,6 +321,121 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nro:*";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(114, 231);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(93, 17);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "Día de cobro:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(67, 275);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(140, 17);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "Nombre para cobrar:";
+            // 
+            // NombreCobrarTB
+            // 
+            this.NombreCobrarTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NombreCobrarTB.Location = new System.Drawing.Point(215, 270);
+            this.NombreCobrarTB.Margin = new System.Windows.Forms.Padding(4);
+            this.NombreCobrarTB.Name = "NombreCobrarTB";
+            this.NombreCobrarTB.Size = new System.Drawing.Size(481, 25);
+            this.NombreCobrarTB.TabIndex = 6;
+            // 
+            // DiaCobroTB
+            // 
+            this.DiaCobroTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DiaCobroTB.Location = new System.Drawing.Point(215, 226);
+            this.DiaCobroTB.Margin = new System.Windows.Forms.Padding(4);
+            this.DiaCobroTB.Name = "DiaCobroTB";
+            this.DiaCobroTB.Size = new System.Drawing.Size(481, 25);
+            this.DiaCobroTB.TabIndex = 5;
+            // 
+            // TareasTB
+            // 
+            this.TareasTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TareasTB.Location = new System.Drawing.Point(215, 403);
+            this.TareasTB.Margin = new System.Windows.Forms.Padding(4);
+            this.TareasTB.Multiline = true;
+            this.TareasTB.Name = "TareasTB";
+            this.TareasTB.Size = new System.Drawing.Size(481, 53);
+            this.TareasTB.TabIndex = 10;
+            // 
+            // CelTrustTB
+            // 
+            this.CelTrustTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CelTrustTB.Location = new System.Drawing.Point(525, 359);
+            this.CelTrustTB.Margin = new System.Windows.Forms.Padding(4);
+            this.CelTrustTB.Mask = "000-000-000";
+            this.CelTrustTB.Name = "CelTrustTB";
+            this.CelTrustTB.Size = new System.Drawing.Size(128, 25);
+            this.CelTrustTB.TabIndex = 9;
+            // 
+            // CelTB
+            // 
+            this.CelTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CelTB.Location = new System.Drawing.Point(215, 358);
+            this.CelTB.Margin = new System.Windows.Forms.Padding(4);
+            this.CelTB.Mask = "000-000-000";
+            this.CelTB.Name = "CelTB";
+            this.CelTB.Size = new System.Drawing.Size(128, 25);
+            this.CelTB.TabIndex = 8;
+            // 
+            // emailTB
+            // 
+            this.emailTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailTB.Location = new System.Drawing.Point(215, 313);
+            this.emailTB.Margin = new System.Windows.Forms.Padding(4);
+            this.emailTB.Name = "emailTB";
+            this.emailTB.Size = new System.Drawing.Size(481, 25);
+            this.emailTB.TabIndex = 7;
+            // 
+            // ContactTB
+            // 
+            this.ContactTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ContactTB.Location = new System.Drawing.Point(215, 183);
+            this.ContactTB.Margin = new System.Windows.Forms.Padding(4);
+            this.ContactTB.Name = "ContactTB";
+            this.ContactTB.Size = new System.Drawing.Size(481, 25);
+            this.ContactTB.TabIndex = 4;
+            // 
+            // TelTB
+            // 
+            this.TelTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TelTB.Location = new System.Drawing.Point(215, 138);
+            this.TelTB.Margin = new System.Windows.Forms.Padding(4);
+            this.TelTB.Name = "TelTB";
+            this.TelTB.Size = new System.Drawing.Size(481, 25);
+            this.TelTB.TabIndex = 3;
+            // 
+            // DirTB
+            // 
+            this.DirTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DirTB.Location = new System.Drawing.Point(215, 94);
+            this.DirTB.Margin = new System.Windows.Forms.Padding(4);
+            this.DirTB.Name = "DirTB";
+            this.DirTB.Size = new System.Drawing.Size(481, 25);
+            this.DirTB.TabIndex = 2;
+            // 
+            // NombreTB
+            // 
+            this.NombreTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NombreTB.Location = new System.Drawing.Point(215, 48);
+            this.NombreTB.Margin = new System.Windows.Forms.Padding(4);
+            this.NombreTB.Name = "NombreTB";
+            this.NombreTB.Size = new System.Drawing.Size(481, 25);
+            this.NombreTB.TabIndex = 1;
+            // 
             // bcUC
             // 
             this.bcUC.ClienteNRO = "";
@@ -405,7 +453,7 @@
             this.Controls.Add(this.ServicioGB);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.ClienteGB);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ServicioForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ServicioForm";
@@ -450,5 +498,9 @@
         private System.Windows.Forms.ToolStripButton ContratoBTN;
         private System.Windows.Forms.ToolStripButton CancelarBTN;
         private BúsquedaCliente bcUC;
+        private TextBoxKeyDown NombreCobrarTB;
+        private System.Windows.Forms.Label label11;
+        private TextBoxKeyDown DiaCobroTB;
+        private System.Windows.Forms.Label label10;
     }
 }

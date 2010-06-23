@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2010-06-04 11:38:47Z
+#region Auto-generated classes for trustdb database on 2010-06-23 10:37:08Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2010-06-04 11:38:47Z
+// Auto-generated from trustdb on 2010-06-23 10:37:08Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -5897,6 +5897,8 @@ namespace Datos
 		partial void OnCelularChanging(string value);
 		partial void OnCelularTrustChanged();
 		partial void OnCelularTrustChanging(string value);
+		partial void OnDiaCobroChanged();
+		partial void OnDiaCobroChanging(string value);
 		partial void OnDireccionChanged();
 		partial void OnDireccionChanging(string value);
 		partial void OnEmailChanged();
@@ -5909,6 +5911,8 @@ namespace Datos
 		partial void OnMotivoBajaChanging(string value);
 		partial void OnNombreChanged();
 		partial void OnNombreChanging(string value);
+		partial void OnNombreCobrarChanged();
+		partial void OnNombreCobrarChanging(string value);
 		partial void OnNumeroClienteChanged();
 		partial void OnNumeroClienteChanging(uint value);
 		partial void OnNumeroServicioChanged();
@@ -5994,6 +5998,32 @@ namespace Datos
 					_celularTrust = value;
 					SendPropertyChanged("CelularTrust");
 					OnCelularTrustChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string DiaCobro
+
+		private string _diaCobro;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_diaCobro", Name = "DiaCobro", DbType = "varchar(50)", AutoSync = AutoSync.Never)]
+		public string DiaCobro
+		{
+			get
+			{
+				return _diaCobro;
+			}
+			set
+			{
+				if (value != _diaCobro)
+				{
+					OnDiaCobroChanging(value);
+					SendPropertyChanging();
+					_diaCobro = value;
+					SendPropertyChanged("DiaCobro");
+					OnDiaCobroChanged();
 				}
 			}
 		}
@@ -6150,6 +6180,32 @@ namespace Datos
 					_nombre = value;
 					SendPropertyChanged("Nombre");
 					OnNombreChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string NombreCobrar
+
+		private string _nombreCobrar;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_nombreCobrar", Name = "NombreCobrar", DbType = "varchar(50)", AutoSync = AutoSync.Never)]
+		public string NombreCobrar
+		{
+			get
+			{
+				return _nombreCobrar;
+			}
+			set
+			{
+				if (value != _nombreCobrar)
+				{
+					OnNombreCobrarChanging(value);
+					SendPropertyChanging();
+					_nombreCobrar = value;
+					SendPropertyChanged("NombreCobrar");
+					OnNombreCobrarChanged();
 				}
 			}
 		}
