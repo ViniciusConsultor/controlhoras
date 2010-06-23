@@ -1,0 +1,27 @@
+-- Agregar Día de pago y Nombre a Cobrar en SERVICIOS
+ALTER TABLE `trustdb`.`servicios` ADD COLUMN `DiaCobro` VARCHAR(50) NULL  AFTER `PersonaContacto` , ADD COLUMN `NombreCobrar` VARCHAR(50) NULL  AFTER `DiaCobro` ;
+
+-- Agregar listados de SERVICIOS
+insert into consultasclientes
+(Nombre, Descripcion, query)
+values
+("Listado 1",
+"Consulta que devuelve el contacto, teléfono, celular, dirección y tareas asignadas de todos los servicios",
+"select Nombre, PersonaContacto as Contacto, Telefonos, Celular, Direccion, TareasAsignadas from servicios");
+
+insert into consultasclientes
+(Nombre, Descripcion, query)
+values
+("Listado 2",
+"Consulta que devuelve la razón social, el RUT, el nombre fantasía, el día de cobro, teléfono, celular, nombre para cobrar",
+"select c.Nombre, c.RUT, c.NombreFantasia, s.DiaCobro, s.Telefonos, s.Celular, s.NombreCobrar from clientes c, servicios s where s.NumeroCliente=c.NumeroCliente")
+
+
+
+
+select Nombre, PersonaContacto as Contacto, Telefonos, Celular, Direccion, TareasAsignadas
+from servicios
+
+select c.Nombre, c.RUT, c.NombreFantasia, s.DiaCobro, s.Telefonos, s.Celular, s.NombreCobrar
+from clientes c, servicios s
+where s.NumeroCliente=c.NumeroCliente

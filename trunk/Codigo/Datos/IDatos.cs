@@ -35,10 +35,10 @@ namespace Datos
         #endregion
 
         #region Operaciones_DeServicios
-        void altaServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas);
+        void altaServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string DiaDeCobro, string NombreCobrar);
         List<SERVicIoS> obtenerServiciosCliente(int numCliente);
 
-        void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas);
+        void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string DiaDeCobro, string NombreCobrar);
         #endregion
 
         #region Operaciones_De_Empleados
@@ -234,7 +234,9 @@ namespace Datos
 
         bool existeEmpleadoCI(string CI, out EmPleadOs empleado);
         List<ConsultAsEmPleadOs> obtenerConsultasEmpleados(bool soloactivos);
+        List<ConsultAsClientEs> obtenerConsultasClientes(bool soloactivos);
         DataSet ejecutarConsultaEmpleado(int numeroConsultaEmpleado, Dictionary<string,string> parametrosConsulta);
+        DataSet ejecutarConsultaCliente(int numeroConsultaCliente, Dictionary<string, string> parametrosConsulta);
 
         void altaListaNegra(string CI, string apellidos, string nombres, string motivo);
         void modificarListaNegra(string CI, string apellidos, string nombres, string motivo);

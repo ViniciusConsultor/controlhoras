@@ -19,6 +19,7 @@ namespace ControlHoras
         private List<string> columnasSeleccionadas = null;
         private static ExportToExcel ventana = null;
         private List<ConsultAsEmPleadOs> consultasEmpleados;
+        private List<ConsultAsClientEs> consultasClientes;
         private string fechaMask = @"  /  /";
 
         private ExportToExcel()
@@ -61,6 +62,15 @@ namespace ControlHoras
                 cmbEmpleadosConsultas.DisplayMember = "Nombre";
                 cmbEmpleadosConsultas.ValueMember = "IDConsultaEmpleado";
                 cmbEmpleadosConsultas.EndUpdate();
+
+                // cargaTabClientes
+                cmbClientesConsultas.BeginUpdate();
+                consultasClientes = datos.obtenerConsultasClientes(true);
+                cmbClientesConsultas.DataSource = consultasClientes;
+                cmbClientesConsultas.DisplayMember = "Nombre";
+                cmbClientesConsultas.ValueMember = "IDConsultaCliente";
+                cmbClientesConsultas.EndUpdate();
+
                 tcConsultas.SelectedIndex = 1;
             }
             catch (Exception ex)
@@ -304,6 +314,31 @@ namespace ControlHoras
             }
         }
 
+
+        private void cmbClientesConsultas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int s;
+            if (cmbClientesConsultas.SelectedValue != null && int.TryParse(cmbClientesConsultas.SelectedValue.ToString(), out s))
+            {
+                ConsultAsClientEs cons = consultasClientes[consultasClientes.IndexOf((ConsultAsClientEs)cmbClientesConsultas.SelectedItem)];
+
+                txtClientesDescripcionConsulta.Text = cons.Descripcion;
+                /*if (cons.Query.Contains("FECHA"))
+                {
+                    lblFechaGenerica.Text = "Fecha Pago Prevista";
+                    if (cons.Nombre.Contains("BAJAS SIN FECHA DE PAGO PREVISTO"))
+                        lblFechaGenerica.Text = "Fecha Desde";
+                    panelConsultasEmpleadoFecha.Visible = true;
+
+                }
+                else
+                    panelConsultasEmpleadoFecha.Visible = false;*/
+
+
+            }
+        }
+
+
         private bool ValidarFecha(string fecha)
         {
             DateTime dt;
@@ -350,6 +385,36 @@ namespace ControlHoras
             try
             {
                 DataSet ds = datos.ejecutarConsultaEmpleado(int.Parse(cmbEmpleadosConsultas.SelectedValue.ToString()), parametrosQuery);
+                dgvResultados.DataSource = ds.Tables[0];
+                btnExportToExcel.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnClientesConsultar_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, string> parametrosQuery = new Dictionary<string, string>();
+           /* if (consultasClientes[consultasClientes.IndexOf((ConsultAsClientEs)cmbClientesConsultas.SelectedItem)].Query.Contains("FECHA") && panelConsultasEmpleadoFecha.Visible)
+            {
+                if (mtConsultasEmpleadoFecha.Text == fechaMask)
+                    MessageBox.Show("Debe llenar el campo fecha para la consulta.", "Llenar Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    try
+                    {
+                        parametrosQuery.Add("FECHA", mtConsultasEmpleadoFecha.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+            }*/
+            try
+            {
+                DataSet ds = datos.ejecutarConsultaCliente(int.Parse(cmbClientesConsultas.SelectedValue.ToString()), parametrosQuery);
                 dgvResultados.DataSource = ds.Tables[0];
                 btnExportToExcel.Enabled = true;
             }

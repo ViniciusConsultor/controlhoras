@@ -13,6 +13,8 @@ namespace Logica
         private string Direccion = null;
         private string Telefonos = null;
         private string Contacto = null;
+        private string DiaDeCobro = null;
+        private string NombreCobrar = null;
         private string Email = null;
         private string Celular = null;
         private string CelularTrust = null;
@@ -32,7 +34,7 @@ namespace Logica
             Activo = true;
         }
 
-        public Servicio(int num, string nombre, string dir, string tel, string con, string mail, string cel, string celt, string tareas, bool activo, DateTime fechaalta, DateTime fechabaja, string motivobaja)
+        public Servicio(int num, string nombre, string dir, string tel, string con, string mail, string cel, string celt, string tareas, bool activo, DateTime fechaalta, DateTime fechabaja, string motivobaja, string diacobrar, string nombrecobrar)
         {
             Numero = num;            
             Nombre = nombre;
@@ -47,7 +49,8 @@ namespace Logica
             FechaAlta = fechaalta;
             FechaBaja = fechabaja;
             MotivoBaja = motivobaja;
-            
+            DiaDeCobro = diacobrar;
+            NombreCobrar = nombrecobrar;            
         }
 
         public int getNumero()
@@ -98,6 +101,16 @@ namespace Logica
         public bool getActivo()
         {
             return Activo;
+        }
+
+        public string getDiaCobro()
+        {
+            return DiaDeCobro;
+        }
+
+        public string getNombreCobrar()
+        {
+            return NombreCobrar;
         }
 
         //public Contrato getContrato()

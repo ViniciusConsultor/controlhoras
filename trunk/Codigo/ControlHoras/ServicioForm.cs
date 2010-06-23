@@ -53,6 +53,8 @@ namespace ControlHoras
             CelTB.Text = "";
             CelTrustTB.Text = "";
             TareasTB.Text = "";
+            DiaCobroTB.Text = "";
+            NombreCobrarTB.Text = "";
             
             NroMTB.Focus();
         }       
@@ -118,6 +120,8 @@ namespace ControlHoras
             DirTB.Text = ser.getDireccion();
             TelTB.Text = ser.getTelefonos();
             ContactTB.Text = ser.getContacto();
+            DiaCobroTB.Text = ser.getDiaCobro();
+            NombreCobrarTB.Text = ser.getNombreCobrar();
             emailTB.Text = ser.getemail();
             CelTB.Text = ser.getCelular();
             CelTrustTB.Text = ser.getCelularTrust();
@@ -206,7 +210,7 @@ namespace ControlHoras
                 {
                     int numCli = int.Parse(bcUC.ClienteNRO);
                     int numSer = int.Parse(NroMTB.Text);
-                    sistema.altaServicioCliente(numCli, numSer, NombreTB.Text, DirTB.Text, TelTB.Text, ContactTB.Text, emailTB.Text, CelTB.Text, CelTrustTB.Text, TareasTB.Text);
+                    sistema.altaServicioCliente(numCli, numSer, NombreTB.Text, DirTB.Text, TelTB.Text, ContactTB.Text, emailTB.Text, CelTB.Text, CelTrustTB.Text, TareasTB.Text, DiaCobroTB.Text, NombreCobrarTB.Text);
 
 
                     DialogResult res = MessageBox.Show(this, "Desea definir el contrato ahora?", "Contrato", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
@@ -253,7 +257,7 @@ namespace ControlHoras
                 {
                     int numCli = int.Parse(bcUC.ClienteNRO);
                     int numSer = int.Parse(NroMTB.Text);
-                    sistema.modificarServicioCliente(numCli, numSer, NombreTB.Text, DirTB.Text, TelTB.Text, ContactTB.Text, emailTB.Text, CelTB.Text, CelTrustTB.Text, TareasTB.Text);
+                    sistema.modificarServicioCliente(numCli, numSer, NombreTB.Text, DirTB.Text, TelTB.Text, ContactTB.Text, emailTB.Text, CelTB.Text, CelTrustTB.Text, TareasTB.Text, DiaCobroTB.Text, NombreCobrarTB.Text);
 
                     CancelarBTN.PerformClick();
 
