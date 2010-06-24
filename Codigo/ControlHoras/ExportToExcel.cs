@@ -71,6 +71,9 @@ namespace ControlHoras
                 cmbClientesConsultas.ValueMember = "IDConsultaCliente";
                 cmbClientesConsultas.EndUpdate();
 
+                cmbClientesConsultas.SelectedIndex = 1;
+                cmbClientesConsultas.SelectedIndex = 0;
+
                 tcConsultas.SelectedIndex = 1;
             }
             catch (Exception ex)
