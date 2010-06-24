@@ -618,14 +618,14 @@ namespace ControlHoras
             //    txtCiudad.Text = empleado.Ciudad;
             //}
             //catch (Exception e) { }
-            try
-            {
-                if (empleado.CombatienteMilitar == 1)
-                    cbCombatiente.Checked = true;
-                else
-                    cbCombatiente.Checked = false;
-            }
-            catch (Exception e) { }
+            //try
+            //{
+            //    if (empleado.CombatienteMilitar == 1)
+            //        cbCombatiente.Checked = true;
+            //    else
+            //        cbCombatiente.Checked = false;
+            //}
+            //catch (Exception e) { }
             try
             {
                 cmbDepartamento.SelectedValue = (int)empleado.IDDepartamento;
@@ -1024,7 +1024,7 @@ namespace ControlHoras
                     else
                         dtpBaja = DateTime.ParseExact(dtpFechaBaja.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
                 }
-                bool combatiente = cbCombatiente.Checked;
+                bool combatiente = false; //cbCombatiente.Checked;
                 bool antecedentesPolicialesOMilitares = cbAntecedentePolicialoMilitar.Checked;
                 int idcargo=-1;
                 try
@@ -1171,8 +1171,15 @@ namespace ControlHoras
         {
             // Chequeo Campos Obligatorios
             if (checkDatosObligatorios())
-            {
-                agregarOModificarEmpleado(true);
+            {                
+                try
+                {
+                    agregarOModificarEmpleado(true);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
                 MessageBox.Show(this, LlenarCamposObligatorios, "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1207,7 +1214,7 @@ namespace ControlHoras
                 dtpFechaIngresoPolicialMilitar.Enabled = true;
                 dtpFechaEgresoPolicialMilitar.Enabled = true;
                 txtPolicialSubEscalafon.Enabled = true;
-                cbCombatiente.Enabled = true;
+                //cbCombatiente.Enabled = true;
 
 
             }
@@ -1217,7 +1224,7 @@ namespace ControlHoras
                 dtpFechaIngresoPolicialMilitar.Enabled = false;
                 dtpFechaEgresoPolicialMilitar.Enabled = false;
                 txtPolicialSubEscalafon.Enabled = false;
-                cbCombatiente.Enabled = false;
+                //cbCombatiente.Enabled = false;
             }
 
         }
@@ -1682,16 +1689,16 @@ namespace ControlHoras
                     txtPolicialSubEscalafon.Visible = true;
                     txtPolicialSubEscalafon.Enabled = true;
                     lblSubEscalafon.Visible = true;
-                    cbCombatiente.Visible = false;
-                    cbCombatiente.Enabled = false;
+                    //cbCombatiente.Visible = false;
+                    //cbCombatiente.Enabled = false;
                 }
                 else
                 {
                     txtPolicialSubEscalafon.Visible = false;
                     txtPolicialSubEscalafon.Enabled = false;
                     lblSubEscalafon.Visible = false;
-                    cbCombatiente.Visible = true;
-                    cbCombatiente.Enabled = true;
+                    //cbCombatiente.Visible = true;
+                    //cbCombatiente.Enabled = true;
                 }
             }
         }
@@ -1842,6 +1849,19 @@ namespace ControlHoras
             else
                 return ori;
         }
+
+        private string TranfPrimerLetra(string ori)
+        {
+            if (ori.Length > 1)
+            {
+                string dest = ori.Trim();
+                return dest.Substring(0, 1).ToUpper() + dest.Substring(1).ToLower();                
+            }
+            else
+                return ori;
+        }
+
+
 
         private string TranfCI(string ori)
         {
@@ -2510,8 +2530,7 @@ namespace ControlHoras
                     else
                     {
                         fila = 32;
-                        if (cbCombatiente.Checked)
-                            oSheet.Cells[fila, 9] = "Combatiente:               X";
+                        oSheet.Cells[fila, 9] = "Combatiente: " + txtPolicialSubEscalafon.Text;
                     }
 
                     if (dtpFechaIngresoPolicialMilitar.Text != fechaMask)
@@ -2783,13 +2802,13 @@ namespace ControlHoras
             {
                 lblSubEscalafon.Visible = true;
                 txtPolicialSubEscalafon.Visible = true;
-                cbCombatiente.Visible = false;
+                //cbCombatiente.Visible = false;
             }
             else
             {
                 lblSubEscalafon.Visible = false;
                 txtPolicialSubEscalafon.Visible = false;
-                cbCombatiente.Visible = true;
+                //cbCombatiente.Visible = true;
             }
 
         }
