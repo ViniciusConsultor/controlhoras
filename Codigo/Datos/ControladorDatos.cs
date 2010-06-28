@@ -66,16 +66,16 @@ namespace Datos
                 //string pru = ConfigurationManager.AppSettings["Servidor"].ToString();
                 var builder = new MySqlConnectionStringBuilder() //(StringConnection)
                 {
-                    Server = "localhost",
-                    //Server = ConfigurationManager.AppSettings["Servidor"].ToString(),
-                    Port = 3306,
-                    //Port = uint.Parse(ConfigurationManager.AppSettings["Puerto"].ToString()),
-                    UserID = "root",
-                    //UserID = ConfigurationManager.AppSettings["Usuario"].ToString(),
-                    Password = "desdere",
-                    //Password = ConfigurationManager.AppSettings["Password"].ToString(),
-                    Database = "trustdb",
-                    //Database = ConfigurationManager.AppSettings["Base"].ToString(),
+                    //Server = "localhost",
+                    Server = ConfigurationManager.AppSettings["Servidor"].ToString(),
+                    //Port = 3306,
+                    Port = uint.Parse(ConfigurationManager.AppSettings["Puerto"].ToString()),
+                    //UserID = "root",
+                    UserID = ConfigurationManager.AppSettings["Usuario"].ToString(),
+                    //Password = "desdere",
+                    Password = ConfigurationManager.AppSettings["Password"].ToString(),
+                    //Database = "trustdb",
+                    Database = ConfigurationManager.AppSettings["Base"].ToString(),
                     Pooling = false,
                     ConnectionLifeTime = 0,
                     AllowUserVariables = true

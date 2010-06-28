@@ -2569,7 +2569,7 @@ namespace ControlHoras
 
                 // Con o Sin Arma
                 int col;
-                if (cbCapacitadoPorteArma.Checked)
+                if (cbEnServicioArmado.Checked)
                     col = 3;
                 else
                     col = 7;
