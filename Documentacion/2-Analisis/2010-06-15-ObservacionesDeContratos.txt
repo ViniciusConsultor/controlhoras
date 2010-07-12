@@ -1,0 +1,15 @@
+Hablado el Martes 15/06
+Por hacer:
+
+Contratos:
+  - Mostrar mensaje cuando se guarda el Contrato
+  - Borrar la columna que aparece a la izquierda del DataGridView
+  - No dejar ingresar caracteres alfabeticos en Precio y Cantidad
+  - El mensaje de Error, agregarle que tiene un error la celda seleccionada
+  - Arreglar la parte grafica del alta contrato:
+      -> Mover el Monto al lado del Costo y mostrarlo cuando se selecciona el Costo Fijo.
+      -> Arreglar el resto de la ventana.
+
+Tipos Contratos:
+  - Crear un ABM para TiposContratos.
+  - Recrear la tabla suguiendo el esquema de las otras codigureas (AutoCommit, etc).
