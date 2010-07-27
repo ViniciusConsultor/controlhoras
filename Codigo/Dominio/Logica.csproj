@@ -62,6 +62,8 @@
     <Compile Include="ControladorConfiguracion.cs" />
     <Compile Include="ControladorEmpleados.cs" />
     <Compile Include="Empleado.cs" />
+    <Compile Include="Escalafon.cs" />
+    <Compile Include="EscalafonEmpleado.cs" />
     <Compile Include="ExtraLiquidacionEmpleado.cs" />
     <Compile Include="FactoryContrato.cs" />
     <Compile Include="EventoHistorialEmpleado.cs" />

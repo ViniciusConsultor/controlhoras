@@ -33,5 +33,10 @@ namespace Logica
         {
             return HoraFin;
         }
+
+        public override bool Equals(HorarioXDia obj)
+        {
+            return this.Dia == obj.Dia && this.HoraFin == obj.HoraFin && this.HoraInicio == obj.HoraInicio;
+        }
     }
 }
