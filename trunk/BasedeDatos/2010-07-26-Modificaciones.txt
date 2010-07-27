@@ -21,3 +21,7 @@ CREATE TABLE `cuotasextrasliquidacion` (
   PRIMARY KEY (`IdExtraLiquidacion`,`NumeroCuota`),
   CONSTRAINT `cuotasextrasliquidacion_ibfk_1` FOREIGN KEY (`IdExtraLiquidacion`) REFERENCES `extrasliquidacion` (`IdExtraLiquidacion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+create table Escalafon (IdEscalafon int not null, IdContrato mediumint unsigned not null, NumeroServicio mediumint unsigned not null, NumeroCliente mediumint unsigned not null);
+create table EscalafonEmpleado (IdEscalafon int not null, IdEscalafonEmpleado int not null, Dia varchar(10) not null, HoraInicio varchar(10) not null, HoraFin varchar(10) not null, HsLlamadaAntesHoraInicio tinyint(2) not null default 2, ACargoDe varchar(10) not null, NroEmpleado mediumint unsigned not null);
