@@ -103,20 +103,6 @@ namespace ControlHoras
         private void ABMEmpleados_Load(object sender, EventArgs e)
         {
             #region CargaCombos
-
-
-
-            // Combo TiposDocumentos
-            //try
-            //{
-            //    Dictionary<int, string> docs = tipos.obtenerTipoDocumentos(false);                
-            //    CargarCombo(cmbTipoDocumento, docs);
-
-            //}catch(Exception ex){
-            //    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-
-
           
             // Combo Departamentos
             try
@@ -1594,32 +1580,33 @@ namespace ControlHoras
             int n = -10;
             try
             {
-                //List<ExtrasLiquidAcIon> listaExtras = datos.obtenerExtrasLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), dtpExtrasFecha.Value);
+                List<CuOtAsExtrasLiquidAcIon> listaCuotas = datos.obtenerCuotasExtrasLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), dtpExtrasFecha.Value);
                 // Vacio la grilla
                 dgvExtrasLiquidacion.Rows.Clear();
 
 
                 // llenado de la grilla con estos datos
 
-                //foreach (ExtrasLiquidAcIonEmPleadO extra in listaExtras)
-                //{
-                //    n = dgvExtrasLiquidacion.Rows.Add();
-                //    dgvExtrasLiquidacion.Rows[n].Cells["IdExtraLiquidacion"].Value = extra.IDExtrasLiquidacionEmpleado;
-                //    dgvExtrasLiquidacion.Rows[n].Cells["Fecha"].Value = extra.Fecha.ToShortDateString();
-                //    dgvExtrasLiquidacion.Rows[n].Cells["DescripcionEvento"].Value = extra.Descripcion;
-                //    if (extra.Signo == 1)
-                //        dgvExtrasLiquidacion.Rows[n].Cells["Signo"].Value = "+";
-                //    else
-                //        dgvExtrasLiquidacion.Rows[n].Cells["Signo"].Value = "-";
-                //    dgvExtrasLiquidacion.Rows[n].Cells["Valor"].Value = extra.Valor;
-                //    dgvExtrasLiquidacion.Rows[n].Cells["CuotaActual"].Value = extra.CuotaActual;
-                //    dgvExtrasLiquidacion.Rows[n].Cells["CantidadCuotas"].Value = extra.CantidadCuotas;
-                //    if (extra.Liquidado == 1)
-                //        dgvExtrasLiquidacion.Rows[n].Cells["Liquidado"].Value = "Si";
-                //    else
-                //        dgvExtrasLiquidacion.Rows[n].Cells["Liquidado"].Value = "No";
+                
+                foreach (CuOtAsExtrasLiquidAcIon cel in listaCuotas)
+                {
+                    n = dgvExtrasLiquidacion.Rows.Add();
+                    dgvExtrasLiquidacion.Rows[n].Cells["IdExtraLiquidacion"].Value = cel.IDExtraLiquidacion;
+                    dgvExtrasLiquidacion.Rows[n].Cells["Fecha"].Value = cel.Fecha.ToShortDateString();
+                    dgvExtrasLiquidacion.Rows[n].Cells["DescripcionEvento"].Value = cel.ExtrasLiquidAcIon.Descripcion;
+                    if (cel.ExtrasLiquidAcIon.Signo == 1)
+                        dgvExtrasLiquidacion.Rows[n].Cells["Signo"].Value = "+";
+                    else
+                        dgvExtrasLiquidacion.Rows[n].Cells["Signo"].Value = "-";
+                    dgvExtrasLiquidacion.Rows[n].Cells["Valor"].Value = cel.ValorCuota;
+                    dgvExtrasLiquidacion.Rows[n].Cells["CuotaActual"].Value = cel.NumeroCuota;
+                    dgvExtrasLiquidacion.Rows[n].Cells["CantidadCuotas"].Value = cel.ExtrasLiquidAcIon.CantidadCuotas;
+                    if (cel.Liquidado == 1)
+                        dgvExtrasLiquidacion.Rows[n].Cells["Liquidado"].Value = "Si";
+                    else
+                        dgvExtrasLiquidacion.Rows[n].Cells["Liquidado"].Value = "No";
 
-                //}
+                }
             }
             catch (Exception ex)
             {
@@ -1651,8 +1638,8 @@ namespace ControlHoras
                 mtExtrasValor.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["Valor"].Value.ToString();
                 mtExtrasCantCuotas.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["CantidadCuotas"].Value.ToString();
                 btnExtrasAgregar.Enabled = false;
-                btnExtrasGuardar.Enabled = true;
-                btnExtrasEliminar.Enabled = true;
+              //  btnExtrasGuardar.Enabled = true;
+              //  btnExtrasEliminar.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -2349,17 +2336,18 @@ namespace ControlHoras
             object mark;
             object readOnly = true;
 
-            Word._Application oWord;
+            Word._Application oWord = null;
             Word._Document oDoc;
-            oWord = new Word.Application();
-            oWord.Visible = true;
+            
             try
             {
+                oWord = new Word.Application();
+                
                 oDoc = oWord.Documents.Open(ref fileName,
                             ref missing, ref readOnly, ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing, ref missing);//, ref missing);
-
+                oWord.Visible = true;
                 mark = "diaHoy";
                 Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
                 wrdRng.Text = DateTime.Today.Day.ToString();
@@ -2402,8 +2390,9 @@ namespace ControlHoras
             }
             catch (Exception ex)
             {
-                //oWord.C
-                MessageBox.Show("Error al cargar el documento para el funcionario.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    if (oWord != null) 
+            //        oWord.Quit(Sa wdDoNotSaveChanges,
+                MessageBox.Show("Error al cargar el documento Movistar.doc desde la ruta "+ pathdoc + ".\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -2464,7 +2453,7 @@ namespace ControlHoras
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar el documento para el funcionario.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al cargar el documento desde la ruta " + pathdoc + ".\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -1204,11 +1204,12 @@ namespace Datos
 
         public int agregarExtraLiquidacionEmpleado(int idEmpleado, DateTime fecha, string descripcion, bool signoPositivo, float valor, int cantidadCuotas)
         {
-            Table<ExtrasLiquidAcIon> tablaExtrasLiquidacion;
+            Table<ExtrasLiquidAcIon> tablaExtrasLiquidacion =  null;
             Table<CuOtAsExtrasLiquidAcIon> tablaCuotas;
             int idExtraARetornar = -1;
             CuOtAsExtrasLiquidAcIon cuota;
-            ExtrasLiquidAcIon el, el2;
+            ExtrasLiquidAcIon el = null;
+            int estado = 0;
             try
             {
                 tablaExtrasLiquidacion = database.GetTable<ExtrasLiquidAcIon>();
@@ -1216,7 +1217,6 @@ namespace Datos
                 DateTime mesCorrespondiente = fecha;
 
                 el = new ExtrasLiquidAcIon();
-               // tablaExtrasLiquidacion.InsertOnSubmit(el);
                 el.IDEmpleado = (uint) idEmpleado;
                 el.Descripcion = descripcion;
                 if (signoPositivo)
@@ -1224,16 +1224,21 @@ namespace Datos
                 else
                     el.Signo = 0;
                 el.CuotaActual = 1;
-                
+                el.CantidadCuotas = (byte)cantidadCuotas;
+
                 tablaExtrasLiquidacion.InsertOnSubmit(el);
                  
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
-                var maxId =(from reg in tablaExtrasLiquidacion
-                            select reg.IDExtraLiquidacion).Max();
-                el2 = (from reg in tablaExtrasLiquidacion
-                                        where reg.IDExtraLiquidacion == maxId
-                                        select reg).Single();
-                // Genero el EntitySet de CuotasExtrasLiquidacion
+
+                idExtraARetornar = (int)el.IDExtraLiquidacion;
+                if (idExtraARetornar == -1)
+                {
+                    throw new Exception("Error al crear los Extras para el empleado.");
+                }
+
+                // Primer estado, al confirmar el insert del extra
+                estado = 1;
+                
                 EntitySet<CuOtAsExtrasLiquidAcIon> set = new EntitySet<CuOtAsExtrasLiquidAcIon>();
                 int numCuota = 1;
                 while (numCuota <= cantidadCuotas)
@@ -1244,32 +1249,29 @@ namespace Datos
                     cuota.NumeroCuota = (sbyte) numCuota;
                     numCuota++;
                     cuota.ValorCuota = valor / cantidadCuotas;
-                    cuota.IDExtraLiquidacion = el2.IDExtraLiquidacion;
-                    cuota.ExtrasLiquidAcIon = el2;
-                  //  tablaCuotas.InsertOnSubmit(cuota);
+                    cuota.IDExtraLiquidacion = el.IDExtraLiquidacion;
+                    cuota.ExtrasLiquidAcIon = el;
+                  
                     set.Add(cuota);
                     mesCorrespondiente = mesCorrespondiente.AddMonths(1);
                 }
-                el2.CuOtAsExtrasLiquidAcIon = set;
 
-                ////tablaExtrasLiquidacionInsertOnSub
+                el.CuOtAsExtrasLiquidAcIon = set;
                 
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
                 
-                idExtraARetornar = (int)el2.IDExtraLiquidacion;
-                if (idExtraARetornar != -1)
-                {
-                    return idExtraARetornar;
 
-                }
-                else
-                    throw new Exception("Error al crear los Extras para el empleado.");
+                return idExtraARetornar;
 
-                
             }
             catch (Exception ex)
             {
-                
+                if (estado == 1)
+                {
+                    tablaExtrasLiquidacion.DeleteOnSubmit(el);
+                    database.SubmitChanges();
+
+                }
                 throw new Exception("Error al ingresar los extras. " + ex.Message); 
             }
             
@@ -1287,13 +1289,13 @@ namespace Datos
 
                 // Chequeo que no esten editando un extra que ya se ha liquidado alguna cuota anterior.
                 var Cuotas =from reg in tabla
-                                       where reg.IDEmpleado == idEmpleado && reg.IDExtrasLiquidacionEmpleado == idExtraLiquidacionEmpleado
+                                       where reg.IDEmpleado == idEmpleado && reg.IDExtraLiquidacionEmpleado == (uint) idExtraLiquidacionEmpleado
                                        select (int) reg.CantidadCuotas;
                 if (Cuotas.Count<int>() > 1)
                     throw new Exception("No se puede editar un extra con cuotas.");
 
                 var extra = (from reg in tabla
-                            where reg.IDEmpleado == idEmpleado && reg.IDExtrasLiquidacionEmpleado == idExtraLiquidacionEmpleado
+                            where reg.IDEmpleado == idEmpleado && reg.IDExtraLiquidacionEmpleado == idExtraLiquidacionEmpleado
                             select reg).Single();
 
                 //if (signoPositivo)
@@ -1302,7 +1304,7 @@ namespace Datos
                 //    extra.Signo = -1;
                 extra.Descripcion = descripcion;
                 //extra.CantidadCuotas = (sbyte) cantidadCuotas;
-                extra.Valor = valor / cantidadCuotas;
+                extra.ValorTotal = valor / cantidadCuotas;
                 extra.Fecha = fecha;
 
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
@@ -1323,20 +1325,20 @@ namespace Datos
                 
                 // Chequeo que no esten editando un extra que ya se ha liquidado alguna cuota anterior.
                 var CantCuotasLiquidadas = (from reg in tabla
-                                       where reg.IDEmpleado == idEmpleado && reg.IDExtrasLiquidacionEmpleado == idExtraLiquidacionEmpleado
-                                       && reg.Liquidado == 1
+                                       where reg.IDEmpleado == idEmpleado && reg.IDExtraLiquidacionEmpleado == idExtraLiquidacionEmpleado
+                                       //&& reg.Liquidado == 1
                                        select 1).Count();
                 if (CantCuotasLiquidadas >= 1)
                     throw new Exception("No se puede eliminar un extra con alguna cuota liquidada.");
 
                 var ListExtras = from reg in tabla 
-                                 where reg.IDEmpleado == idEmpleado && reg.IDExtrasLiquidacionEmpleado==idExtraLiquidacionEmpleado
+                                 where reg.IDEmpleado == idEmpleado && reg.IDExtraLiquidacionEmpleado==idExtraLiquidacionEmpleado
                                  select reg;
 
                 // Chequeo que solo se pueda eliminar un extra desde el mes correspondiente a la primer cuota.
-                int cuota = (int)((from reg in tabla
-                             where reg.IDEmpleado == idEmpleado && reg.IDExtrasLiquidacionEmpleado == idExtraLiquidacionEmpleado && reg.Fecha.Month == mesSeleccionado.Month && reg.Fecha.Year == mesSeleccionado.Year
-                             select reg.CuotaActual).Single());
+                int cuota = 1; //(int)((from reg in tabla
+                //                      where reg.IDEmpleado == idEmpleado && reg.IDExtraLiquidacionEmpleado == idExtraLiquidacionEmpleado && reg.Fecha.Month == mesSeleccionado.Month && reg.Fecha.Year == mesSeleccionado.Year
+                //                      select reg.CuotaActual).Single());
                 if (cuota != 1)
                     throw new Exception("Para eliminar todas las cuotas del extra debe eliminarlo desde el Mes de la Primer Cuota.");
 
@@ -1393,7 +1395,29 @@ namespace Datos
             }
         }
 
+        public List<CuOtAsExtrasLiquidAcIon> obtenerCuotasExtrasLiquidacionEmpleado(int idEmpleado, DateTime mes)
+        {
+            try
+            {
+                Table<ExtrasLiquidAcIon> tabla = database.GetTable<ExtrasLiquidAcIon>();
+                Table<CuOtAsExtrasLiquidAcIon> tablaCuotas = database.GetTable<CuOtAsExtrasLiquidAcIon>();
+                var opts = new DbLinq.Data.Linq.DataLoadOptions();
+                opts.LoadWith((CuOtAsExtrasLiquidAcIon elq) => elq.ExtrasLiquidAcIon);
+                //opts.LoadWith<ExtrasLiquidAcIon>(eliq => eliq.CuOtAsExtrasLiquidAcIon);
+                //database.LoadOptions = opts;
+                List<CuOtAsExtrasLiquidAcIon> listaCuotasDelMes = (from extra in tabla
+                                                             from cuota in extra.CuOtAsExtrasLiquidAcIon
+                                                               where extra.IDEmpleado == idEmpleado && mes.Month == cuota.Fecha.Month && cuota.Fecha.Year == mes.Year
+                                                               select cuota).ToList<CuOtAsExtrasLiquidAcIon>();
 
+                return listaCuotasDelMes;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         #endregion
 
         #region ABM_Departamentos
