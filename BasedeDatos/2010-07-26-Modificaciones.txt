@@ -1,0 +1,23 @@
+DROP TABLE IF EXISTS extrasliquidacion;
+
+CREATE TABLE `extrasliquidacion` (
+  `IdExtraLiquidacion` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `IdEmpleado` mediumint(8) unsigned NOT NULL,
+  `Descripcion` varchar(255) NOT NULL,
+  `Signo` mediumint(9) NOT NULL DEFAULT '1',
+  `CuotaActual` tinyint(2) NOT NULL DEFAULT '1',
+  `CantidadCuotas` tinyint(3) unsigned NOT NULL,
+  PRIMARY KEY (`IdExtraLiquidacion`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+DROP TABLE IF EXISTS cuotasextrasliquidacion;
+CREATE TABLE `cuotasextrasliquidacion` (
+  `IdExtraLiquidacion` int(10) unsigned NOT NULL,
+  `NumeroCuota` tinyint(2) NOT NULL DEFAULT '1',
+  `ValorCuota` float NOT NULL,
+  `Liquidado` tinyint(1) NOT NULL DEFAULT '0',
+  `Fecha` date NOT NULL,
+  PRIMARY KEY (`IdExtraLiquidacion`,`NumeroCuota`),
+  CONSTRAINT `cuotasextrasliquidacion_ibfk_1` FOREIGN KEY (`IdExtraLiquidacion`) REFERENCES `extrasliquidacion` (`IdExtraLiquidacion`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
