@@ -1281,76 +1281,78 @@ namespace Datos
 
         public void modificarExtraLiquidacionEmpleado(int idEmpleado, int idExtraLiquidacionEmpleado, DateTime fecha, string descripcion, bool  signoPositivo, float valor, int cantidadCuotas)
         {
+            throw new NotImplementedException("El metodo modificarExtraLiquidacionEmpleado");
             // Restricciones. Ver como trabajar con los extras que tienen cuotas. En ppio no se puede editar extras con cuotas.
             // Tratar de hacer alguna logica que permite modificar las cuotas restantes, que no esten liquidadas.
-            try
-            {
-                Table<ExtrasLiquidAcIonEmPleadO> tabla = database.GetTable<ExtrasLiquidAcIonEmPleadO>();
+            //try
+            //{
+            //    Table<ExtrasLiquidAcIon> tabla = database.GetTable<ExtrasLiquidAcIon>();
 
-                // Chequeo que no esten editando un extra que ya se ha liquidado alguna cuota anterior.
-                var Cuotas =from reg in tabla
-                                       where reg.IDEmpleado == idEmpleado && reg.IDExtraLiquidacionEmpleado == (uint) idExtraLiquidacionEmpleado
-                                       select (int) reg.CantidadCuotas;
-                if (Cuotas.Count<int>() > 1)
-                    throw new Exception("No se puede editar un extra con cuotas.");
+            //    // Chequeo que no esten editando un extra que ya se ha liquidado alguna cuota anterior.
+            //    var Cuotas =from reg in tabla
+            //                           where reg.IDEmpleado == idEmpleado && reg.IDExtraLiquidacion == (uint) idExtraLiquidacionEmpleado
+            //                           select (int) reg.CantidadCuotas;
+            //    if (Cuotas.Count<int>() > 1)
+            //        throw new Exception("No se puede editar un extra con cuotas.");
 
-                var extra = (from reg in tabla
-                            where reg.IDEmpleado == idEmpleado && reg.IDExtraLiquidacionEmpleado == idExtraLiquidacionEmpleado
-                            select reg).Single();
+            //    var extra = (from reg in tabla
+            //                where reg.IDEmpleado == idEmpleado && reg.IDExtraLiquidacion == idExtraLiquidacionEmpleado
+            //                select reg).Single();
 
-                //if (signoPositivo)
-                //    extra.Signo = 1;
-                //else
-                //    extra.Signo = -1;
-                extra.Descripcion = descripcion;
-                //extra.CantidadCuotas = (sbyte) cantidadCuotas;
-                extra.ValorTotal = valor / cantidadCuotas;
-                extra.Fecha = fecha;
+            //    //if (signoPositivo)
+            //    //    extra.Signo = 1;
+            //    //else
+            //    //    extra.Signo = -1;
+            //    extra.Descripcion = descripcion;
+            //    //extra.CantidadCuotas = (sbyte) cantidadCuotas;
+            //    extra.ValorTotal = valor / cantidadCuotas;
+            //    extra.Fecha = fecha;
 
-                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+            //    database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
 
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
         }
         
         public void eliminarExtraLiquidacionEmpleado(int idEmpleado, int idExtraLiquidacionEmpleado, DateTime mesSeleccionado)
         {
+            throw new NotImplementedException();
             // REstricciones: - NO se puede eliminar los extras que sean de mas de 1 cuota y tenga alguna cuota liquidada.
-            try
-            {
-                Table<ExtrasLiquidAcIonEmPleadO> tabla = database.GetTable<ExtrasLiquidAcIonEmPleadO>();
+            //try
+            //{
+            //    Table<ExtrasLiquidAcIonEmPleadO> tabla = database.GetTable<ExtrasLiquidAcIonEmPleadO>();
                 
-                // Chequeo que no esten editando un extra que ya se ha liquidado alguna cuota anterior.
-                var CantCuotasLiquidadas = (from reg in tabla
-                                       where reg.IDEmpleado == idEmpleado && reg.IDExtraLiquidacionEmpleado == idExtraLiquidacionEmpleado
-                                       //&& reg.Liquidado == 1
-                                       select 1).Count();
-                if (CantCuotasLiquidadas >= 1)
-                    throw new Exception("No se puede eliminar un extra con alguna cuota liquidada.");
+            //    // Chequeo que no esten editando un extra que ya se ha liquidado alguna cuota anterior.
+            //    var CantCuotasLiquidadas = (from reg in tabla
+            //                           where reg.IDEmpleado == idEmpleado && reg.IDExtraLiquidacionEmpleado == idExtraLiquidacionEmpleado
+            //                           //&& reg.Liquidado == 1
+            //                           select 1).Count();
+            //    if (CantCuotasLiquidadas >= 1)
+            //        throw new Exception("No se puede eliminar un extra con alguna cuota liquidada.");
 
-                var ListExtras = from reg in tabla 
-                                 where reg.IDEmpleado == idEmpleado && reg.IDExtraLiquidacionEmpleado==idExtraLiquidacionEmpleado
-                                 select reg;
+            //    var ListExtras = from reg in tabla 
+            //                     where reg.IDEmpleado == idEmpleado && reg.IDExtraLiquidacionEmpleado==idExtraLiquidacionEmpleado
+            //                     select reg;
 
-                // Chequeo que solo se pueda eliminar un extra desde el mes correspondiente a la primer cuota.
-                int cuota = 1; //(int)((from reg in tabla
-                //                      where reg.IDEmpleado == idEmpleado && reg.IDExtraLiquidacionEmpleado == idExtraLiquidacionEmpleado && reg.Fecha.Month == mesSeleccionado.Month && reg.Fecha.Year == mesSeleccionado.Year
-                //                      select reg.CuotaActual).Single());
-                if (cuota != 1)
-                    throw new Exception("Para eliminar todas las cuotas del extra debe eliminarlo desde el Mes de la Primer Cuota.");
+            //    // Chequeo que solo se pueda eliminar un extra desde el mes correspondiente a la primer cuota.
+            //    int cuota = 1; //(int)((from reg in tabla
+            //    //                      where reg.IDEmpleado == idEmpleado && reg.IDExtraLiquidacionEmpleado == idExtraLiquidacionEmpleado && reg.Fecha.Month == mesSeleccionado.Month && reg.Fecha.Year == mesSeleccionado.Year
+            //    //                      select reg.CuotaActual).Single());
+            //    if (cuota != 1)
+            //        throw new Exception("Para eliminar todas las cuotas del extra debe eliminarlo desde el Mes de la Primer Cuota.");
 
 
-                tabla.DeleteAllOnSubmit(ListExtras);
-                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+            //    tabla.DeleteAllOnSubmit(ListExtras);
+            //    database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
 
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
         }        
 
         //public List<ExtrasLiquidAcIonEmPleadO> obtenerExtrasLiquidacionEmpleado(int idEmpleado, DateTime mesCorrespondiente)
