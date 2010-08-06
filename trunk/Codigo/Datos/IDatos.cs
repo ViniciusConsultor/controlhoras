@@ -223,6 +223,8 @@ namespace Datos
 
         ContraToS obtenerContrato(int NumeroContrato);
 
+        ContraToS obtenerContrato(int NumeroCliente, int NumeroServicio);
+
         void modificarContrato(int numeroContrato, DateTime FechaInicial, DateTime? FechaFinal, bool Costo, bool HorasExtras, string Ajuste, string Observaciones, float Monto);
 
         void altaContrato(ContraToS Contrato, List<LineAshOrAs> Lineas);
