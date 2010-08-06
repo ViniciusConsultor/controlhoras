@@ -25,3 +25,10 @@ CREATE TABLE `cuotasextrasliquidacion` (
 
 create table Escalafon (IdEscalafon int not null, IdContrato mediumint unsigned not null, NumeroServicio mediumint unsigned not null, NumeroCliente mediumint unsigned not null);
 create table EscalafonEmpleado (IdEscalafon int not null, IdEscalafonEmpleado int not null, Dia varchar(10) not null, HoraInicio varchar(10) not null, HoraFin varchar(10) not null, HsLlamadaAntesHoraInicio tinyint(2) not null default 2, ACargoDe varchar(10) not null, NroEmpleado mediumint unsigned not null);
+
+-- Se agregan los atributos NumeroServicio y NumeroCliente a la tabla Contratos para asociar el contrato a un servicio
+alter table contratos add column NumeroServicio mediumint unsigned not null;
+alter table contratos add column NumeroCliente mediumint unsigned not null;
+
+-- Agrego FK
+alter table contratos add constraint foreign key fk_servicios (NumeroServicio,NumeroCliente) references servicios(NumeroServicio,NumeroCliente);
