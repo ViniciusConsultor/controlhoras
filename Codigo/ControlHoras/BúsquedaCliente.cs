@@ -34,8 +34,10 @@ namespace ControlHoras
         public BúsquedaCliente()
         {
             InitializeComponent();
-            
-            sistema = ControladorClientesServicios.getInstance();
+            if (!this.DesignMode)
+            {
+                sistema = ControladorClientesServicios.getInstance();
+            }
             find = false;
         }
 
@@ -76,7 +78,7 @@ namespace ControlHoras
             else
                 if (e.KeyCode == Keys.F2)
                 {
-                    Search_Clientes sear = new Search_Clientes();
+                    BuscarClientes sear = new BuscarClientes();
                     DialogResult res = sear.ShowDialog(this);
 
                     if (res == DialogResult.OK)

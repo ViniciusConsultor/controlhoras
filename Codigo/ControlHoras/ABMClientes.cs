@@ -229,7 +229,7 @@ namespace ControlHoras
             {
                 if (e.KeyCode == Keys.F2)
                 {
-                    Search_Clientes sear = new Search_Clientes();
+                    BuscarClientes sear = new BuscarClientes();
                     DialogResult res = sear.ShowDialog(this);
 
                     if (res == DialogResult.OK)

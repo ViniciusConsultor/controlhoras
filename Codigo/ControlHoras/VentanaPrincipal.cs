@@ -328,5 +328,21 @@ namespace ControlHoras
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnEscalafon_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Escalafon depa = Escalafon.getVentana();
+                if (depa.Visible == false)
+                    depa.Show(this);
+                else
+                    depa.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

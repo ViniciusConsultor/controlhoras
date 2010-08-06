@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2010-07-27 19:35:11Z
+#region Auto-generated classes for trustdb database on 2010-08-06 01:21:13Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2010-07-27 19:35:11Z
+// Auto-generated from trustdb on 2010-08-06 01:21:13Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -1303,6 +1303,10 @@ namespace Datos
 		partial void OnHorasExtrasChanging(sbyte value);
 		partial void OnIDContratosChanged();
 		partial void OnIDContratosChanging(uint value);
+		partial void OnNumeroClienteChanged();
+		partial void OnNumeroClienteChanging(uint value);
+		partial void OnNumeroServicioChanged();
+		partial void OnNumeroServicioChanging(uint value);
 		partial void OnObservacionesChanged();
 		partial void OnObservacionesChanging(string value);
 		partial void OnPlanillaTrustChanged();
@@ -1528,6 +1532,74 @@ namespace Datos
 
 		#endregion
 
+		#region uint NumeroCliente
+
+		private uint _numeroCliente;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_numeroCliente", Name = "NumeroCliente", DbType = "mediumint unsigned", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public uint NumeroCliente
+		{
+			get
+			{
+				return _numeroCliente;
+			}
+			set
+			{
+				if (value != _numeroCliente)
+				{
+					if (_servIcIoS.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					if (_servIcIoS1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					OnNumeroClienteChanging(value);
+					SendPropertyChanging();
+					_numeroCliente = value;
+					SendPropertyChanged("NumeroCliente");
+					OnNumeroClienteChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region uint NumeroServicio
+
+		private uint _numeroServicio;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_numeroServicio", Name = "NumeroServicio", DbType = "mediumint unsigned", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public uint NumeroServicio
+		{
+			get
+			{
+				return _numeroServicio;
+			}
+			set
+			{
+				if (value != _numeroServicio)
+				{
+					if (_servIcIoS.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					if (_servIcIoS1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					OnNumeroServicioChanging(value);
+					SendPropertyChanging();
+					_numeroServicio = value;
+					SendPropertyChanged("NumeroServicio");
+					OnNumeroServicioChanged();
+				}
+			}
+		}
+
+		#endregion
+
 		#region string Observaciones
 
 		private string _observaciones;
@@ -1745,6 +1817,81 @@ namespace Datos
 
 		#endregion
 
+		#region Parents
+
+		private EntityRef<SERVicIoS> _servIcIoS;
+		[Association(Storage = "_servIcIoS", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "contratos_ibfk_1", IsForeignKey = true)]
+		[DebuggerNonUserCode]
+		public SERVicIoS SERVicIoS
+		{
+			get
+			{
+				return _servIcIoS.Entity;
+			}
+			set
+			{
+				if (value != _servIcIoS.Entity)
+				{
+					if (_servIcIoS.Entity != null)
+					{
+						var previousSERVicIoS = _servIcIoS.Entity;
+						_servIcIoS.Entity = null;
+						previousSERVicIoS.ContraToS.Remove(this);
+					}
+					_servIcIoS.Entity = value;
+					if (value != null)
+					{
+						value.ContraToS.Add(this);
+						_numeroServicio = value.NumeroServicio;
+						_numeroCliente = value.NumeroCliente;
+					}
+					else
+					{
+						_numeroServicio = default(uint);
+						_numeroCliente = default(uint);
+					}
+				}
+			}
+		}
+
+		private EntityRef<SERVicIoS> _servIcIoS1;
+		[Association(Storage = "_servIcIoS1", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "contratos_ibfk_2", IsForeignKey = true)]
+		[DebuggerNonUserCode]
+		public SERVicIoS SERVicIoS1
+		{
+			get
+			{
+				return _servIcIoS1.Entity;
+			}
+			set
+			{
+				if (value != _servIcIoS1.Entity)
+				{
+					if (_servIcIoS1.Entity != null)
+					{
+						var previousSERVicIoS = _servIcIoS1.Entity;
+						_servIcIoS1.Entity = null;
+						previousSERVicIoS.ContraToS1.Remove(this);
+					}
+					_servIcIoS1.Entity = value;
+					if (value != null)
+					{
+						value.ContraToS1.Add(this);
+						_numeroServicio = value.NumeroServicio;
+						_numeroCliente = value.NumeroCliente;
+					}
+					else
+					{
+						_numeroServicio = default(uint);
+						_numeroCliente = default(uint);
+					}
+				}
+			}
+		}
+
+
+		#endregion
+
 		#region Attachement handlers
 
 		private void HoRaRioDiA_Attach(HoRaRioDiA entity)
@@ -1776,6 +1923,8 @@ namespace Datos
 		{
 			_hoRaRioDiA = new EntitySet<HoRaRioDiA>(HoRaRioDiA_Attach, HoRaRioDiA_Detach);
 			_lineAshOrAs = new EntitySet<LineAshOrAs>(LineAshOrAs_Attach, LineAshOrAs_Detach);
+			_servIcIoS = new EntityRef<SERVicIoS>();
+			_servIcIoS1 = new EntityRef<SERVicIoS>();
 			OnCreated();
 		}
 
@@ -10347,6 +10496,41 @@ namespace Datos
 
 		#endregion
 
+		#region Children
+
+		private EntitySet<ContraToS> _contraToS;
+		[Association(Storage = "_contraToS", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "contratos_ibfk_1")]
+		[DebuggerNonUserCode]
+		public EntitySet<ContraToS> ContraToS
+		{
+			get
+			{
+				return _contraToS;
+			}
+			set
+			{
+				_contraToS = value;
+			}
+		}
+
+		private EntitySet<ContraToS> _contraToS1;
+		[Association(Storage = "_contraToS1", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "contratos_ibfk_2")]
+		[DebuggerNonUserCode]
+		public EntitySet<ContraToS> ContraToS1
+		{
+			get
+			{
+				return _contraToS1;
+			}
+			set
+			{
+				_contraToS1 = value;
+			}
+		}
+
+
+		#endregion
+
 		#region Parents
 
 		private EntityRef<ClientEs> _clientEs;
@@ -10385,10 +10569,37 @@ namespace Datos
 
 		#endregion
 
+		#region Attachement handlers
+
+		private void ContraToS_Attach(ContraToS entity)
+		{
+			entity.SERVicIoS = this;
+		}
+
+		private void ContraToS_Detach(ContraToS entity)
+		{
+			entity.SERVicIoS = null;
+		}
+
+		private void ContraToS1_Attach(ContraToS entity)
+		{
+			entity.SERVicIoS1 = this;
+		}
+
+		private void ContraToS1_Detach(ContraToS entity)
+		{
+			entity.SERVicIoS1 = null;
+		}
+
+
+		#endregion
+
 		#region ctor
 
 		public SERVicIoS()
 		{
+			_contraToS = new EntitySet<ContraToS>(ContraToS_Attach, ContraToS_Detach);
+			_contraToS1 = new EntitySet<ContraToS>(ContraToS1_Attach, ContraToS1_Detach);
 			_clientEs = new EntityRef<ClientEs>();
 			OnCreated();
 		}

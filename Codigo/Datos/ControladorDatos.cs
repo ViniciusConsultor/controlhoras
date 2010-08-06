@@ -20,7 +20,7 @@ namespace Datos
         private static IDatos instance = null;
         private static MySqlConnection conexion = null;
         
-
+        private static bool InDesignMode = true;
 
         private ControladorDatos()
         {
@@ -39,6 +39,7 @@ namespace Datos
         {
             if (instance == null)
                 instance = new ControladorDatos(); //(string StringConnection)
+            InDesignMode = false;
             return instance;
         }
         internal static MySqlConnection createConexion()//(string StringConnection)
@@ -59,10 +60,11 @@ namespace Datos
 
             //// Force a reload of the changed section.
             //ConfigurationManager.RefreshSection("appSettings");
-
-
+                           
+            
             try
             {
+               
                 //string pru = ConfigurationManager.AppSettings["Servidor"].ToString();
                 var builder = new MySqlConnectionStringBuilder() //(StringConnection)
                 {
@@ -80,16 +82,16 @@ namespace Datos
                     ConnectionLifeTime = 0,
                     AllowUserVariables = true
                 };
-            
 
-            var conn = new MySqlConnection(builder.ToString());
-            return conn;
+
+                var conn = new MySqlConnection(builder.ToString());
+                return conn;
+            
             }
             catch (Exception ex)
             {
                 throw new Exception("No se pudo crear el connectionString.",ex);
-            }
-            
+            }                        
         }
 
         internal static MySqlConnection getConexion()
@@ -2087,6 +2089,33 @@ namespace Datos
                     database.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues);
                 }
                 throw ex;
+            }
+        }
+        public ContraToS obtenerContrato(int NumeroCliente, int NumeroServicio)
+           {
+            try
+            {
+
+                Table<ContraToS> tablaContrato = database.GetTable<ContraToS>();
+                var con = (from conreg in tablaContrato
+                           where conreg.NumeroCliente==NumeroCliente && conreg.NumeroServicio==NumeroServicio
+                           select conreg);
+                if (con.Count<ContraToS>() == 0)
+                    throw new NoExisteException("No existe el contrato para el Cliente " + NumeroCliente + " - Servicio: " + NumeroServicio);
+
+                return con.Single<ContraToS>();
+            }
+            catch (ArgumentNullException anex)
+            {
+                throw new NoExisteException(anex.Message, anex.InnerException);
+            }
+            catch (InvalidOperationException ioex)
+            {
+                throw ioex;
+            }
+            catch (Exception me)
+            {
+                throw me;
             }
         }
 
