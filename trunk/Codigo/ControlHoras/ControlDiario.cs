@@ -6,25 +6,37 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-//using Dominio;
+using Datos;
 
 namespace ControlHoras
 {
     public partial class ControlDiario : Form
     {
-        /*Controlador controller;
+        private static ControlDiario ventana = null;
+
+        private IDatos datos;
+        private string fechaMask = @"  /  /";
+
+        //Controlador controller;
         Color ColorOriginalFila = Color.White;
         Color ColorEntradaFila = Color.SlateGray;
         Color ColorSalidaFila = Color.Yellow;
 
-        public ControlDiario()
+        private ControlDiario()
         {
+            datos = ControladorDatos.getInstance();
+            //InitializeDataGridViewHoras();
             InitializeComponent();
-            controller = Controlador.getControlador();
-            InitializeDataGridViewHoras();
-
+            //controller = Controlador.getControlador();
         }
 
+         public static ControlDiario getInstance()
+        {
+            if (ventana == null)
+                ventana = new ControlDiario();
+            return ventana;
+        }
+/*
         private void InitializeDataGridViewHoras()
         {
 
