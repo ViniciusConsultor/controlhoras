@@ -275,6 +275,7 @@ namespace ControlHoras
                 ind = ind - 1;
 
             limpiarForm();
+            
             Servicio serv = sistema.obtenerServicioCliente(numCli, numerosSer[ind]);
 
             mtServicio.Text = serv.getNumero().ToString();
