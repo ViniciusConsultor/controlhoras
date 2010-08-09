@@ -344,5 +344,21 @@ namespace ControlHoras
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ControlDiario ex = ControlDiario.getInstance();
+                if (ex.Visible == false)
+                    ex.Show(this);
+                else
+                    ex.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
