@@ -6,24 +6,30 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Logica;
 using Datos;
 
 namespace ControlHoras
 {
     public partial class Escalafon : Form
     {
-
+        IClientesServicios sistema = ControladorClientesServicios.getInstance();
         IDatos datos;
         ClientEs cliente = null;
         SERVicIoS servicio;
         ContraToS contrato;
 
+        int idser;
+        int ind;
+        int cant;
+        int[] numerosSer;
+
         static Escalafon ventana = null;
         
         public Escalafon()
         {
-            InitializeComponent();
-       
+            InitializeComponent();       
+            
             try
             {
                 datos = ControladorDatos.getInstance();
@@ -32,6 +38,8 @@ namespace ControlHoras
             { 
                 throw ex;
             }
+            
+            idser = -1;
         }
 
         public static Escalafon getVentana()
@@ -134,9 +142,43 @@ namespace ControlHoras
                 {
                     if (datos.existeCliente(int.Parse(mtCliente.Text)))
                     {
-                        cliente = datos.obtenerCliente(int.Parse(mtCliente.Text));
                         limpiarForm();
+                        ind = 0;
+                        int numCli = int.Parse(mtCliente.Text);
+                        cliente = datos.obtenerCliente(numCli);                        
                         txtCliente.Text = cliente.Nombre;
+                        Cliente cli = sistema.obtenerCliente(numCli);
+                        List<Servicio> servicios = cli.getListaServicios();
+                        if (servicios.Count != 0)
+                        {
+                            //GuardarBTN.Enabled = true;
+                            //ServicioGB.Enabled = true;
+
+                            cant = servicios.Count;
+                            numerosSer = new int[cant];
+                            int i = 0;
+                            foreach (Servicio ser in servicios)
+                            {
+                                numerosSer[i] = ser.getNumero();
+                                if (ser.getNumero() == idser)
+                                    ind = i;
+
+                                i++;
+                            }
+                                                      
+                            Servicio serv = sistema.obtenerServicioCliente(numCli, numerosSer[ind]);
+
+                            mtServicio.Text = serv.getNumero().ToString();
+                            txtServicio.Text = serv.getNombre();
+                            
+                            if (cant > 1)
+                            {
+                                AnteriorBTN.Visible = true;
+                                PosteriorBTN.Visible = true;
+                            }
+
+                            cargarVentana();
+                        }
                     }
                     else
                     {
@@ -224,11 +266,43 @@ namespace ControlHoras
             return ser;
         }
 
+        private void AnteriorBTN_Click(object sender, EventArgs e)
+        {
+            int numCli = int.Parse(mtCliente.Text);
+            if ((ind - 1) < 0)
+                ind = cant - 1;
+            else
+                ind = ind - 1;
+
+            limpiarForm();
+            Servicio serv = sistema.obtenerServicioCliente(numCli, numerosSer[ind]);
+
+            mtServicio.Text = serv.getNumero().ToString();
+            txtServicio.Text = serv.getNombre();
+
+            cargarVentana();   
+        }
+
+        private void PosteriorBTN_Click(object sender, EventArgs e)
+        {
+            int numCli = int.Parse(mtCliente.Text);
+            ind = (ind + 1) % cant;
+
+            limpiarForm();
+
+            Servicio serv = sistema.obtenerServicioCliente(numCli, numerosSer[ind]);
+
+            mtServicio.Text = serv.getNumero().ToString();
+            txtServicio.Text = serv.getNombre();
+
+            cargarVentana();            
+        }
+
 
         private void cargarVentana()
         {
             // Cargar las hs por dia del contrato en el dvg
-        }
+        }     
 
     }
 }
