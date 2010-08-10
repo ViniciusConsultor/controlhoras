@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FC8B86E8-A818-4987-B135-16FD6B039E53}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -349,6 +349,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BúsquedaCliente.resx">
       <DependentUpon>BúsquedaCliente.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CambiarNumeroEmpleado.resx">
       <DependentUpon>CambiarNumeroEmpleado.cs</DependentUpon>
@@ -372,6 +373,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Escalafon.resx">
       <DependentUpon>Escalafon.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ExportToExcel.resx">
       <DependentUpon>ExportToExcel.cs</DependentUpon>

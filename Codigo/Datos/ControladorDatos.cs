@@ -68,16 +68,16 @@ namespace Datos
                 //string pru = ConfigurationManager.AppSettings["Servidor"].ToString();
                 var builder = new MySqlConnectionStringBuilder() //(StringConnection)
                 {
-                    //Server = "localhost",
-                    Server = ConfigurationManager.AppSettings["Servidor"].ToString(),
-                    //Port = 3306,
-                    Port = uint.Parse(ConfigurationManager.AppSettings["Puerto"].ToString()),
-                    //UserID = "root",
-                    UserID = ConfigurationManager.AppSettings["Usuario"].ToString(),
-                    //Password = "desdere",
-                    Password = ConfigurationManager.AppSettings["Password"].ToString(),
-                    //Database = "trustdb",
-                    Database = ConfigurationManager.AppSettings["Base"].ToString(),
+                    Server = "localhost",
+                    //Server = ConfigurationManager.AppSettings["Servidor"].ToString(),
+                    Port = 3306,
+                    //Port = uint.Parse(ConfigurationManager.AppSettings["Puerto"].ToString()),
+                    UserID = "root",
+                    //UserID = ConfigurationManager.AppSettings["Usuario"].ToString(),
+                    Password = "desdere",
+                    //Password = ConfigurationManager.AppSettings["Password"].ToString(),
+                    Database = "trustdb",
+                    //Database = ConfigurationManager.AppSettings["Base"].ToString(),
                     Pooling = false,
                     ConnectionLifeTime = 0,
                     AllowUserVariables = true
@@ -2095,10 +2095,10 @@ namespace Datos
            {
             try
             {
-
+                int ID = NumeroCliente * 1000 + NumeroServicio;
                 Table<ContraToS> tablaContrato = database.GetTable<ContraToS>();
                 var con = (from conreg in tablaContrato
-                           where conreg.NumeroCliente==NumeroCliente && conreg.NumeroServicio==NumeroServicio
+                           where conreg.IDContratos==ID
                            select conreg);
                 if (con.Count<ContraToS>() == 0)
                     throw new NoExisteException("No existe el contrato para el Cliente " + NumeroCliente + " - Servicio: " + NumeroServicio);
