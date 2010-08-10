@@ -492,7 +492,6 @@ namespace ControlHoras
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -597,7 +596,7 @@ namespace ControlHoras
 
         public int CalcNroContrato(int nroCli, int nroSer)
         {
-            return nroCli * 10 + nroSer;
+            return nroCli * 1000 + nroSer;
         }
 
 

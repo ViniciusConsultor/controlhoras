@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2010-06-23 10:37:08Z
+#region Auto-generated classes for trustdb database on 2010-08-10 15:49:23Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2010-06-23 10:37:08Z
+// Auto-generated from trustdb on 2010-08-10 15:49:23Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -90,6 +90,8 @@ namespace Datos
 		public Table<DepartAmenToS> DepartAmenToS { get { return GetTable<DepartAmenToS>(); } }
 		public Table<EmergeNcIasMedicA> EmergeNcIasMedicA { get { return GetTable<EmergeNcIasMedicA>(); } }
 		public Table<EmPleadOs> EmPleadOs { get { return GetTable<EmPleadOs>(); } }
+		public Table<EScalaFOn> EScalaFOn { get { return GetTable<EScalaFOn>(); } }
+		public Table<EScalaFOneMpLeadO> EScalaFOneMpLeadO { get { return GetTable<EScalaFOneMpLeadO>(); } }
 		public Table<EventOsHistOrIalEmPleadO> EventOsHistOrIalEmPleadO { get { return GetTable<EventOsHistOrIalEmPleadO>(); } }
 		public Table<ExtrasLiquidAcIon> ExtrasLiquidAcIon { get { return GetTable<ExtrasLiquidAcIon>(); } }
 		public Table<ExtrasLiquidAcIonEmPleadO> ExtrasLiquidAcIonEmPleadO { get { return GetTable<ExtrasLiquidAcIonEmPleadO>(); } }
@@ -1713,7 +1715,7 @@ namespace Datos
 		#region Children
 
 		private EntitySet<LineAshOrAs> _lineAshOrAs;
-		[Association(Storage = "_lineAshOrAs", OtherKey = "IDContrato", ThisKey = "IDContratos", Name = "FK_Contratos")]
+		[Association(Storage = "_lineAshOrAs", OtherKey = "IDContrato", ThisKey = "IDContratos", Name = "FK_Con")]
 		[DebuggerNonUserCode]
 		public EntitySet<LineAshOrAs> LineAshOrAs
 		{
@@ -4159,6 +4161,440 @@ namespace Datos
 
 	}
 
+	[Table(Name = "trustdb.escalafon")]
+	public partial class EScalaFOn : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		#region INotifyPropertyChanging handling
+
+		public event PropertyChangingEventHandler PropertyChanging;
+
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs("");
+		protected virtual void SendPropertyChanging()
+		{
+			if (PropertyChanging != null)
+			{
+				PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+
+		#endregion
+
+		#region INotifyPropertyChanged handling
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected virtual void SendPropertyChanged(string propertyName)
+		{
+			if (PropertyChanged != null)
+			{
+				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		#endregion
+
+		#region Extensibility Method Definitions
+
+		partial void OnCreated();
+		partial void OnIDContratoChanged();
+		partial void OnIDContratoChanging(uint value);
+		partial void OnIDEscalafonChanged();
+		partial void OnIDEscalafonChanging(int value);
+		partial void OnNumeroClienteChanged();
+		partial void OnNumeroClienteChanging(uint value);
+		partial void OnNumeroServicioChanged();
+		partial void OnNumeroServicioChanging(uint value);
+
+		#endregion
+
+		#region uint IDContrato
+
+		private uint _idcOntrato;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_idcOntrato", Name = "IdContrato", DbType = "mediumint unsigned", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public uint IDContrato
+		{
+			get
+			{
+				return _idcOntrato;
+			}
+			set
+			{
+				if (value != _idcOntrato)
+				{
+					OnIDContratoChanging(value);
+					SendPropertyChanging();
+					_idcOntrato = value;
+					SendPropertyChanged("IDContrato");
+					OnIDContratoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region int IDEscalafon
+
+		private int _ideScalafon;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_ideScalafon", Name = "IdEscalafon", DbType = "int", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public int IDEscalafon
+		{
+			get
+			{
+				return _ideScalafon;
+			}
+			set
+			{
+				if (value != _ideScalafon)
+				{
+					OnIDEscalafonChanging(value);
+					SendPropertyChanging();
+					_ideScalafon = value;
+					SendPropertyChanged("IDEscalafon");
+					OnIDEscalafonChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region uint NumeroCliente
+
+		private uint _numeroCliente;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_numeroCliente", Name = "NumeroCliente", DbType = "mediumint unsigned", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public uint NumeroCliente
+		{
+			get
+			{
+				return _numeroCliente;
+			}
+			set
+			{
+				if (value != _numeroCliente)
+				{
+					OnNumeroClienteChanging(value);
+					SendPropertyChanging();
+					_numeroCliente = value;
+					SendPropertyChanged("NumeroCliente");
+					OnNumeroClienteChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region uint NumeroServicio
+
+		private uint _numeroServicio;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_numeroServicio", Name = "NumeroServicio", DbType = "mediumint unsigned", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public uint NumeroServicio
+		{
+			get
+			{
+				return _numeroServicio;
+			}
+			set
+			{
+				if (value != _numeroServicio)
+				{
+					OnNumeroServicioChanging(value);
+					SendPropertyChanging();
+					_numeroServicio = value;
+					SendPropertyChanged("NumeroServicio");
+					OnNumeroServicioChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region ctor
+
+		public EScalaFOn()
+		{
+			OnCreated();
+		}
+
+		#endregion
+
+	}
+
+	[Table(Name = "trustdb.escalafonempleado")]
+	public partial class EScalaFOneMpLeadO : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		#region INotifyPropertyChanging handling
+
+		public event PropertyChangingEventHandler PropertyChanging;
+
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs("");
+		protected virtual void SendPropertyChanging()
+		{
+			if (PropertyChanging != null)
+			{
+				PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+
+		#endregion
+
+		#region INotifyPropertyChanged handling
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected virtual void SendPropertyChanged(string propertyName)
+		{
+			if (PropertyChanged != null)
+			{
+				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		#endregion
+
+		#region Extensibility Method Definitions
+
+		partial void OnCreated();
+		partial void OnAcArgoDeChanged();
+		partial void OnAcArgoDeChanging(string value);
+		partial void OnDiaChanged();
+		partial void OnDiaChanging(string value);
+		partial void OnHoraFinChanged();
+		partial void OnHoraFinChanging(string value);
+		partial void OnHoraInicioChanged();
+		partial void OnHoraInicioChanging(string value);
+		partial void OnHsLlamadaAntesHoraInicioChanged();
+		partial void OnHsLlamadaAntesHoraInicioChanging(sbyte value);
+		partial void OnIDEscalafonChanged();
+		partial void OnIDEscalafonChanging(int value);
+		partial void OnIDEscalafonEmpleadoChanged();
+		partial void OnIDEscalafonEmpleadoChanging(int value);
+		partial void OnNroEmpleadoChanged();
+		partial void OnNroEmpleadoChanging(uint value);
+
+		#endregion
+
+		#region string AcArgoDe
+
+		private string _acArgoDe;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_acArgoDe", Name = "ACargoDe", DbType = "varchar(10)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string AcArgoDe
+		{
+			get
+			{
+				return _acArgoDe;
+			}
+			set
+			{
+				if (value != _acArgoDe)
+				{
+					OnAcArgoDeChanging(value);
+					SendPropertyChanging();
+					_acArgoDe = value;
+					SendPropertyChanged("AcArgoDe");
+					OnAcArgoDeChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string Dia
+
+		private string _dia;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_dia", Name = "Dia", DbType = "varchar(10)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string Dia
+		{
+			get
+			{
+				return _dia;
+			}
+			set
+			{
+				if (value != _dia)
+				{
+					OnDiaChanging(value);
+					SendPropertyChanging();
+					_dia = value;
+					SendPropertyChanged("Dia");
+					OnDiaChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string HoraFin
+
+		private string _horaFin;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_horaFin", Name = "HoraFin", DbType = "varchar(10)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string HoraFin
+		{
+			get
+			{
+				return _horaFin;
+			}
+			set
+			{
+				if (value != _horaFin)
+				{
+					OnHoraFinChanging(value);
+					SendPropertyChanging();
+					_horaFin = value;
+					SendPropertyChanged("HoraFin");
+					OnHoraFinChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string HoraInicio
+
+		private string _horaInicio;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_horaInicio", Name = "HoraInicio", DbType = "varchar(10)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string HoraInicio
+		{
+			get
+			{
+				return _horaInicio;
+			}
+			set
+			{
+				if (value != _horaInicio)
+				{
+					OnHoraInicioChanging(value);
+					SendPropertyChanging();
+					_horaInicio = value;
+					SendPropertyChanged("HoraInicio");
+					OnHoraInicioChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region sbyte HsLlamadaAntesHoraInicio
+
+		private sbyte _hsLlamadaAntesHoraInicio;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_hsLlamadaAntesHoraInicio", Name = "HsLlamadaAntesHoraInicio", DbType = "tinyint(2)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public sbyte HsLlamadaAntesHoraInicio
+		{
+			get
+			{
+				return _hsLlamadaAntesHoraInicio;
+			}
+			set
+			{
+				if (value != _hsLlamadaAntesHoraInicio)
+				{
+					OnHsLlamadaAntesHoraInicioChanging(value);
+					SendPropertyChanging();
+					_hsLlamadaAntesHoraInicio = value;
+					SendPropertyChanged("HsLlamadaAntesHoraInicio");
+					OnHsLlamadaAntesHoraInicioChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region int IDEscalafon
+
+		private int _ideScalafon;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_ideScalafon", Name = "IdEscalafon", DbType = "int", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public int IDEscalafon
+		{
+			get
+			{
+				return _ideScalafon;
+			}
+			set
+			{
+				if (value != _ideScalafon)
+				{
+					OnIDEscalafonChanging(value);
+					SendPropertyChanging();
+					_ideScalafon = value;
+					SendPropertyChanged("IDEscalafon");
+					OnIDEscalafonChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region int IDEscalafonEmpleado
+
+		private int _ideScalafonEmpleado;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_ideScalafonEmpleado", Name = "IdEscalafonEmpleado", DbType = "int", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public int IDEscalafonEmpleado
+		{
+			get
+			{
+				return _ideScalafonEmpleado;
+			}
+			set
+			{
+				if (value != _ideScalafonEmpleado)
+				{
+					OnIDEscalafonEmpleadoChanging(value);
+					SendPropertyChanging();
+					_ideScalafonEmpleado = value;
+					SendPropertyChanged("IDEscalafonEmpleado");
+					OnIDEscalafonEmpleadoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region uint NroEmpleado
+
+		private uint _nroEmpleado;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_nroEmpleado", Name = "NroEmpleado", DbType = "mediumint unsigned", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public uint NroEmpleado
+		{
+			get
+			{
+				return _nroEmpleado;
+			}
+			set
+			{
+				if (value != _nroEmpleado)
+				{
+					OnNroEmpleadoChanging(value);
+					SendPropertyChanging();
+					_nroEmpleado = value;
+					SendPropertyChanged("NroEmpleado");
+					OnNroEmpleadoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region ctor
+
+		public EScalaFOneMpLeadO()
+		{
+			OnCreated();
+		}
+
+		#endregion
+
+	}
+
 	[Table(Name = "trustdb.eventoshistorialempleado")]
 	public partial class EventOsHistOrIalEmPleadO : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -4439,6 +4875,8 @@ namespace Datos
 		#region Extensibility Method Definitions
 
 		partial void OnCreated();
+		partial void OnCantidadCuotasChanged();
+		partial void OnCantidadCuotasChanging(byte value);
 		partial void OnCuotaActualChanged();
 		partial void OnCuotaActualChanging(sbyte value);
 		partial void OnDescripcionChanged();
@@ -4449,6 +4887,32 @@ namespace Datos
 		partial void OnIDExtraLiquidacionChanging(uint value);
 		partial void OnSignoChanged();
 		partial void OnSignoChanging(int value);
+
+		#endregion
+
+		#region byte CantidadCuotas
+
+		private byte _cantidadCuotas;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_cantidadCuotas", Name = "CantidadCuotas", DbType = "tinyint(3) unsigned", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public byte CantidadCuotas
+		{
+			get
+			{
+				return _cantidadCuotas;
+			}
+			set
+			{
+				if (value != _cantidadCuotas)
+				{
+					OnCantidadCuotasChanging(value);
+					SendPropertyChanging();
+					_cantidadCuotas = value;
+					SendPropertyChanged("CantidadCuotas");
+					OnCantidadCuotasChanged();
+				}
+			}
+		}
 
 		#endregion
 
@@ -5111,7 +5575,7 @@ namespace Datos
 		#region Parents
 
 		private EntityRef<LineAshOrAs> _lineAshOrAs;
-		[Association(Storage = "_lineAshOrAs", OtherKey = "IDContrato", ThisKey = "IDContrato", Name = "`FK IdContrato HD`", IsForeignKey = true)]
+		[Association(Storage = "_lineAshOrAs", OtherKey = "IDContrato", ThisKey = "IDContrato", Name = "FK_IdContrato", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public LineAshOrAs LineAshOrAs
 		{
@@ -5423,7 +5887,7 @@ namespace Datos
 		#region Children
 
 		private EntitySet<HoRaRioDiA> _hoRaRioDiA;
-		[Association(Storage = "_hoRaRioDiA", OtherKey = "IDContrato", ThisKey = "IDContrato", Name = "`FK IdContrato HD`")]
+		[Association(Storage = "_hoRaRioDiA", OtherKey = "IDContrato", ThisKey = "IDContrato", Name = "FK_IdContrato")]
 		[DebuggerNonUserCode]
 		public EntitySet<HoRaRioDiA> HoRaRioDiA
 		{
@@ -5443,7 +5907,7 @@ namespace Datos
 		#region Parents
 
 		private EntityRef<ContraToS> _contraToS;
-		[Association(Storage = "_contraToS", OtherKey = "IDContratos", ThisKey = "IDContrato", Name = "FK_Contratos", IsForeignKey = true)]
+		[Association(Storage = "_contraToS", OtherKey = "IDContratos", ThisKey = "IDContrato", Name = "FK_Con", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public ContraToS ContraToS
 		{
