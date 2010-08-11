@@ -40,6 +40,7 @@ namespace ControlHoras
             }
             
             idser = -1;
+            InicializardgEscalafon();
         }
 
         public static Escalafon getVentana()
@@ -71,7 +72,7 @@ namespace ControlHoras
                         try
                         {
                             EmPleadOs emp = datos.obtenerEmpleado(busquedaEmps.idEmpleadoSeleccionado);
-                            dgEscalafon.Rows[celdaSeleccionada.RowIndex].Cells[0].Value = emp.NroEmpleado;
+                            dgEscalafon.Rows[celdaSeleccionada.RowIndex].Cells[0].Value = emp.NroEmpleado.ToString();
                             dgEscalafon.Rows[celdaSeleccionada.RowIndex].Cells[1].Value = emp.Nombre + " " + emp.Apellido;
                             
                             SendKeys.Send("{ENTER}");   
@@ -102,7 +103,9 @@ namespace ControlHoras
             int n = dgEscalafon.Rows.Add();
             ((DataGridViewComboBoxCell)dgEscalafon.Rows[n].Cells[dgEscalafon.Columns.Count - 1]).Value = "EMPRESA";
         //    DataGridViewComboBoxColumn dgvcbc = dgEscalafon.Columns[dgEscalafon.Columns.Count - 1] as DataGridViewComboBoxColumn;
-            
+            dgEscalafon.Focus();
+            dgEscalafon.CurrentCell = dgEscalafon.Rows[n].Cells[0];
+            //dgEscalafon.Rows[n].Cells[2].Selected = true;
         }
 
         private void btnEliminarLineaEscalafon_Click(object sender, EventArgs e)
@@ -303,7 +306,113 @@ namespace ControlHoras
         private void cargarVentana()
         {
             // Cargar las hs por dia del contrato en el dvg
-        }     
+        }
+
+        private void InicializardgEscalafon()
+        {
+            MaskedTextBoxColumn mtbc;
+            DataGridViewColumn dgvc;
+            DataGridViewCell cell;
+
+            mtbc = new MaskedTextBoxColumn();
+            mtbc.Name = "Nº Emp";
+            mtbc.HeaderText = "Nº Emp";
+            mtbc.Mask = @"0000";
+            mtbc.Width = 45;
+            mtbc.DefaultCellStyle.BackColor = Color.FromArgb(192, 255, 192);            
+            this.dgEscalafon.Columns.Add(mtbc);
+
+            cell = new DataGridViewTextBoxCell();
+            dgvc = new DataGridViewColumn(cell);
+            dgvc.Name = "Funcionario";
+            dgvc.HeaderText = "Funcionario";            
+            dgvc.Width = 150;
+            dgvc.ReadOnly = true;
+            dgvc.DefaultCellStyle.BackColor = Color.FromArgb(192, 255, 192);            
+            this.dgEscalafon.Columns.Add(dgvc);
+            
+            cell = new DataGridViewTextBoxCell();
+            dgvc = new DataGridViewColumn(cell);
+            dgvc.Name = "Código Puesto";
+            dgvc.HeaderText = "Código Puesto";
+            dgvc.Width = 52;            
+            this.dgEscalafon.Columns.Add(dgvc);
+
+            mtbc = new MaskedTextBoxColumn();
+            mtbc.Name = "Hora Confirma";
+            mtbc.HeaderText = "Hora Confirma";
+            mtbc.Mask = @"0 Hs";
+            mtbc.Width = 49;
+            //mtbc.ReadOnly = false;
+            //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgEscalafon.Columns.Add(mtbc);
+
+            mtbc = new MaskedTextBoxColumn();
+            mtbc.Name = "Lunes";
+            mtbc.HeaderText = "Lunes";
+            mtbc.Mask = @"00:00 \a 00:00";
+            mtbc.Width = 86;
+            mtbc.DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 192);
+            this.dgEscalafon.Columns.Add(mtbc);
+
+            mtbc = new MaskedTextBoxColumn();
+            mtbc.Name = "Martes";
+            mtbc.HeaderText = "Martes";
+            mtbc.Mask = @"00:00 \a 00:00";
+            mtbc.Width = 86;
+            mtbc.DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 192);
+            this.dgEscalafon.Columns.Add(mtbc);
+
+            mtbc = new MaskedTextBoxColumn();
+            mtbc.Name = "Miercoles";
+            mtbc.HeaderText = "Miercoles";
+            mtbc.Mask = @"00:00 \a 00:00";
+            mtbc.Width = 86;
+            mtbc.DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 192);
+            this.dgEscalafon.Columns.Add(mtbc);
+
+            mtbc = new MaskedTextBoxColumn();
+            mtbc.Name = "Jueves";
+            mtbc.HeaderText = "Jueves";
+            mtbc.Mask = @"00:00 \a 00:00";
+            mtbc.Width = 86;
+            mtbc.DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 192);
+            this.dgEscalafon.Columns.Add(mtbc);
+
+            mtbc = new MaskedTextBoxColumn();
+            mtbc.Name = "Viernes";
+            mtbc.HeaderText = "Viernes";
+            mtbc.Mask = @"00:00 \a 00:00";
+            mtbc.Width = 86;
+            mtbc.DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 192);
+            this.dgEscalafon.Columns.Add(mtbc);
+
+            mtbc = new MaskedTextBoxColumn();
+            mtbc.Name = "Sabado";
+            mtbc.HeaderText = "Sabado";
+            mtbc.Mask = @"00:00 \a 00:00";
+            mtbc.Width = 86;
+            mtbc.DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 192);
+            this.dgEscalafon.Columns.Add(mtbc);
+
+            mtbc = new MaskedTextBoxColumn();
+            mtbc.Name = "Domingo";
+            mtbc.HeaderText = "Domingo";
+            mtbc.Mask = @"00:00 \a 00:00";
+            mtbc.Width = 86;
+            mtbc.DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 192);
+            this.dgEscalafon.Columns.Add(mtbc);
+
+            DataGridViewComboBoxColumn cbc = new DataGridViewComboBoxColumn();
+            cbc.Name = "A Cargo De";
+            cbc.HeaderText = "A Cargo De";
+            cbc.Width = 80;
+            cbc.Items.Add("CLIENTE");
+            cbc.Items.Add("EMPRESA");
+            this.dgEscalafon.Columns.Add(cbc);
+
+            //dgEscalafon.EditMode = DataGridViewEditMode.EditOnEnter;
+        }
 
     }
 }
