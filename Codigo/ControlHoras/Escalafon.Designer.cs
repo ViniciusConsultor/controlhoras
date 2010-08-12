@@ -108,6 +108,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Panel2.Enabled = false;
             this.splitContainer1.Size = new System.Drawing.Size(1279, 596);
             this.splitContainer1.SplitterDistance = 129;
             this.splitContainer1.SplitterWidth = 5;
@@ -422,6 +423,8 @@
             this.dgEscalafon.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgEscalafon.Size = new System.Drawing.Size(1213, 366);
             this.dgEscalafon.TabIndex = 0;
+            this.dgEscalafon.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEscalafon_CellValueChanged);
+            this.dgEscalafon.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgEscalafon_EditingControlShowing);
             this.dgEscalafon.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgEscalafon_KeyDown);
             // 
             // HsACubrirLunes

@@ -1,0 +1,16 @@
+
+--Saco las columnas día, horaIni y horaFin de ESCALAFONEMPLEADO y creo una nueva tabla
+ALTER TABLE `trustdb`.`escalafonempleado` DROP COLUMN `Dia` , DROP COLUMN `HoraFin` , DROP COLUMN `HoraInicio` ;
+CREATE  TABLE IF NOT EXISTS `trustdb`.`horarioescalafon` (
+  `idEscalafon` INT(11) NOT NULL ,
+  `idEscalafonEmpleado` INT(11) NOT NULL ,
+  `dia` VARCHAR(10) NOT NULL ,
+  `horaini` VARCHAR(10) NULL ,
+  `horafin` VARCHAR(10) NULL ,
+  `tipoDia` TINYINT(2) UNSIGNED NULL ,
+  PRIMARY KEY (`idEscalafon`, `idEscalafonEmpleado`, `dia`) );
+CREATE  TABLE IF NOT EXISTS `trustdb`.`tiposdias` (
+  `id` TINYINT(2) UNSIGNED NOT NULL ,
+  `nombre` VARCHAR(20) NOT NULL ,
+  `descripcion` VARCHAR(50) NOT NULL ,
+  PRIMARY KEY (`id`) );

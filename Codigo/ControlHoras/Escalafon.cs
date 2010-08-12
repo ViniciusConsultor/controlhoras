@@ -14,6 +14,7 @@ namespace ControlHoras
     public partial class Escalafon : Form
     {
         IClientesServicios sistema = ControladorClientesServicios.getInstance();
+        IEmpleados sistemaEmp = ControladorEmpleados.getInstance();
         IDatos datos;
         ClientEs cliente = null;
         SERVicIoS servicio;
@@ -23,6 +24,7 @@ namespace ControlHoras
         int ind;
         int cant;
         int[] numerosSer;
+        DataGridViewCell LastCellChanged = null;
 
         static Escalafon ventana = null;
         
@@ -62,7 +64,7 @@ namespace ControlHoras
             {
                 DataGridViewCell celdaSeleccionada = dgEscalafon.SelectedCells[0];
                 // Si se apreta F4 en alguna celda de la primer o segunda columna se abre el buscador de funcionarios.
-                if (e.KeyCode == Keys.F4 && dgEscalafon.SelectedCells[0].ColumnIndex < 2)
+                if (e.KeyCode == Keys.F4 && dgEscalafon.CurrentCell.ColumnIndex < 2)
                 {
                     // Muestro ventana de busqueda de empleados. La misma que en ABMEmpleados
                     BuscarEmpleados busquedaEmps = new BuscarEmpleados();
@@ -83,6 +85,8 @@ namespace ControlHoras
                         }
                     }
                 }
+                //if (dgEscalafon.CurrentCell.ColumnIndex=0 
+                
             }
         }
 
@@ -154,6 +158,7 @@ namespace ControlHoras
                         List<Servicio> servicios = cli.getListaServicios();
                         if (servicios.Count != 0)
                         {
+                            splitContainer1.Panel2.Enabled = true;
                             //GuardarBTN.Enabled = true;
                             //ServicioGB.Enabled = true;
 
@@ -185,6 +190,7 @@ namespace ControlHoras
                     }
                     else
                     {
+                        splitContainer1.Panel2.Enabled = false;
                         MessageBox.Show("No existe el cliente numero " + mtCliente.Text, "No existe cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
@@ -412,6 +418,44 @@ namespace ControlHoras
             this.dgEscalafon.Columns.Add(cbc);
 
             //dgEscalafon.EditMode = DataGridViewEditMode.EditOnEnter;
+        }
+        
+        private void dgEscalafon_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            LastCellChanged = dgEscalafon.CurrentCell;
+        }
+
+        private void dgEscalafon_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {            
+            if (LastCellChanged != null && LastCellChanged.Value != null)                
+            {
+                //&& LastCellChanged.Value != ""
+                if (LastCellChanged.ColumnIndex == 0)
+                {
+                    EmPleadOs emp;
+                    try
+                    {
+                        if (sistemaEmp.existeEmpleado(int.Parse(LastCellChanged.Value.ToString())))
+                        {
+                            emp = datos.obtenerEmpleado(int.Parse(LastCellChanged.Value.ToString()));
+                            dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[1].Value = emp.Nombre + " " + emp.Apellido;
+                            //dgEscalafon.CurrentCell = dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[2];
+                        }
+                        else
+                        {
+                            dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[1].Value = "";
+                            MessageBox.Show("No existe el empleado Nro: " + LastCellChanged.Value.ToString(), "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //dgEscalafon.CurrentCell = LastCellChanged;
+                            //dgEscalafon.CurrentCell.InitializeEditingControl(LastCellChanged.RowIndex, LastCellChanged.Value.ToString(), LastCellChanged.Style);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                }
+            }
         }
 
     }
