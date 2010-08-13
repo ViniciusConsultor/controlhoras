@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Escalafon));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -61,6 +62,13 @@
             this.btnEliminarLineaEscalafon = new System.Windows.Forms.Button();
             this.btnAgregarLineaEscalafon = new System.Windows.Forms.Button();
             this.dgvHsPorCubrir = new System.Windows.Forms.DataGridView();
+            this.EscalafonCMS = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copiarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pegarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.marcarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.descansoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.licenciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,6 +92,7 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHsPorCubrir)).BeginInit();
+            this.EscalafonCMS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgEscalafon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -308,6 +317,58 @@
             this.dgvHsPorCubrir.RowHeadersWidthChanged += new System.EventHandler(this.dgvHsPorCubrir_RowHeadersWidthChanged);
             this.dgvHsPorCubrir.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvHsPorCubrir_ColumnWidthChanged);
             // 
+            // EscalafonCMS
+            // 
+            this.EscalafonCMS.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copiarToolStripMenuItem,
+            this.pegarToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.marcarToolStripMenuItem});
+            this.EscalafonCMS.Name = "EscalafonCMS";
+            this.EscalafonCMS.Size = new System.Drawing.Size(132, 76);
+            // 
+            // copiarToolStripMenuItem
+            // 
+            this.copiarToolStripMenuItem.Name = "copiarToolStripMenuItem";
+            this.copiarToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.copiarToolStripMenuItem.Text = "Copiar";
+            this.copiarToolStripMenuItem.Click += new System.EventHandler(this.copiarToolStripMenuItem_Click);
+            // 
+            // pegarToolStripMenuItem
+            // 
+            this.pegarToolStripMenuItem.Name = "pegarToolStripMenuItem";
+            this.pegarToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.pegarToolStripMenuItem.Text = "Pegar";
+            this.pegarToolStripMenuItem.Click += new System.EventHandler(this.pegarToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(128, 6);
+            // 
+            // marcarToolStripMenuItem
+            // 
+            this.marcarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.descansoToolStripMenuItem,
+            this.licenciaToolStripMenuItem});
+            this.marcarToolStripMenuItem.Name = "marcarToolStripMenuItem";
+            this.marcarToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.marcarToolStripMenuItem.Text = "Marcar";
+            // 
+            // descansoToolStripMenuItem
+            // 
+            this.descansoToolStripMenuItem.Name = "descansoToolStripMenuItem";
+            this.descansoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.descansoToolStripMenuItem.Text = "Descanso";
+            this.descansoToolStripMenuItem.Click += new System.EventHandler(this.descansoToolStripMenuItem_Click);
+            // 
+            // licenciaToolStripMenuItem
+            // 
+            this.licenciaToolStripMenuItem.Name = "licenciaToolStripMenuItem";
+            this.licenciaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.licenciaToolStripMenuItem.Text = "Licencia";
+            this.licenciaToolStripMenuItem.Click += new System.EventHandler(this.licenciaToolStripMenuItem_Click);
+            // 
             // dataGridViewTextBoxColumn1
             // 
             dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -406,7 +467,6 @@
             this.dgEscalafon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgEscalafon.Location = new System.Drawing.Point(16, 0);
             this.dgEscalafon.Margin = new System.Windows.Forms.Padding(4);
-            this.dgEscalafon.MultiSelect = false;
             this.dgEscalafon.Name = "dgEscalafon";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
@@ -424,6 +484,7 @@
             this.dgEscalafon.Size = new System.Drawing.Size(1213, 366);
             this.dgEscalafon.TabIndex = 0;
             this.dgEscalafon.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEscalafon_CellValueChanged);
+            this.dgEscalafon.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgEscalafon_CellMouseClick);
             this.dgEscalafon.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgEscalafon_EditingControlShowing);
             this.dgEscalafon.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgEscalafon_KeyDown);
             // 
@@ -532,6 +593,7 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHsPorCubrir)).EndInit();
+            this.EscalafonCMS.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgEscalafon)).EndInit();
             this.ResumeLayout(false);
 
@@ -569,5 +631,12 @@
         private System.Windows.Forms.ToolStripButton btnBuscarClientes;
         private System.Windows.Forms.Button PosteriorBTN;
         private System.Windows.Forms.Button AnteriorBTN;
+        private System.Windows.Forms.ContextMenuStrip EscalafonCMS;
+        private System.Windows.Forms.ToolStripMenuItem copiarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pegarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem marcarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem descansoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem licenciaToolStripMenuItem;
     }
 }

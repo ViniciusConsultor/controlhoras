@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Globalization;
 
 namespace Logica
 {
@@ -32,6 +33,18 @@ namespace Logica
         public string getHoraFin()
         {
             return HoraFin;
+        }
+
+        public TimeSpan getCantHoras()
+        {
+            DateTime dti, dtf;
+            TimeSpan res;
+
+            dti = DateTime.ParseExact(HoraInicio, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+            dtf = DateTime.ParseExact(HoraFin, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+            res = dtf - dti;
+            
+            return res;
         }
 
         //public override bool Equals(HorarioXDia obj)

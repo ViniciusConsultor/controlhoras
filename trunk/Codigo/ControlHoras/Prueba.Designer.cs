@@ -39,6 +39,10 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maskedTextBoxColumn1 = new ControlHoras.MaskedTextBoxColumn();
+            this.horaini = new System.Windows.Forms.TextBox();
+            this.horafin = new System.Windows.Forms.TextBox();
+            this.difbtn = new System.Windows.Forms.Button();
+            this.result = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,11 +126,47 @@
             this.maskedTextBoxColumn1.PromptChar = '\0';
             this.maskedTextBoxColumn1.ValidatingType = null;
             // 
+            // horaini
+            // 
+            this.horaini.Location = new System.Drawing.Point(55, 284);
+            this.horaini.Name = "horaini";
+            this.horaini.Size = new System.Drawing.Size(100, 22);
+            this.horaini.TabIndex = 6;
+            // 
+            // horafin
+            // 
+            this.horafin.Location = new System.Drawing.Point(55, 339);
+            this.horafin.Name = "horafin";
+            this.horafin.Size = new System.Drawing.Size(100, 22);
+            this.horafin.TabIndex = 7;
+            // 
+            // difbtn
+            // 
+            this.difbtn.Location = new System.Drawing.Point(200, 310);
+            this.difbtn.Margin = new System.Windows.Forms.Padding(4);
+            this.difbtn.Name = "difbtn";
+            this.difbtn.Size = new System.Drawing.Size(100, 28);
+            this.difbtn.TabIndex = 8;
+            this.difbtn.Text = "button2";
+            this.difbtn.UseVisualStyleBackColor = true;
+            this.difbtn.Click += new System.EventHandler(this.difbtn_Click);
+            // 
+            // result
+            // 
+            this.result.Location = new System.Drawing.Point(403, 313);
+            this.result.Name = "result";
+            this.result.Size = new System.Drawing.Size(100, 22);
+            this.result.TabIndex = 9;
+            // 
             // Prueba
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(885, 443);
+            this.Controls.Add(this.result);
+            this.Controls.Add(this.difbtn);
+            this.Controls.Add(this.horafin);
+            this.Controls.Add(this.horaini);
             this.Controls.Add(this.mtbkd);
             this.Controls.Add(this.HTB);
             this.Controls.Add(this.HoraTB);
@@ -154,6 +194,10 @@
         private MaskedTextBoxKeyDown HoraTB;
         private System.Windows.Forms.TextBox HTB;
         private MaskedTextBoxKeyDown mtbkd;
+        private System.Windows.Forms.TextBox result;
+        private System.Windows.Forms.Button difbtn;
+        private System.Windows.Forms.TextBox horafin;
+        private System.Windows.Forms.TextBox horaini;
 
 
     }

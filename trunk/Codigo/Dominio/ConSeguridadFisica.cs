@@ -83,5 +83,41 @@ namespace Logica
         {
             Lineas.Add(linea);
         }
+
+        public TimeSpan[] getTotalesHoras()
+        {
+            TimeSpan a = new TimeSpan(0,0,0);
+            TimeSpan [] horas = new TimeSpan[7] {a,a,a,a,a,a,a};
+            foreach (LineaDeHoras l in Lineas)
+            {
+                foreach (HorarioXDia h in l.getHorario())
+                {
+                    horas[toint(h.getDia())] = horas[toint(h.getDia())] + h.getCantHoras();
+                }
+            }
+            return horas;
+        }
+
+        private int toint(string dia)
+        {
+            switch (dia)
+            {
+                case "Lunes":
+                    return 0;
+                case "Martes":
+                    return 1;
+                case "Miercoles":
+                    return 2;
+                case "Jueves":
+                    return 3;
+                case "Viernes":
+                    return 4;
+                case "Sabado":
+                    return 5;
+                case "Domingo":
+                    return 6;
+            }
+            return -1;            
+        }
     }
 }
