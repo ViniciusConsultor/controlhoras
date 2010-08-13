@@ -6,8 +6,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Globalization;
 using Logica;
 using Datos;
+
 
 namespace ControlHoras
 {
@@ -24,7 +26,8 @@ namespace ControlHoras
         int ind;
         int cant;
         int[] numerosSer;
-        DataGridViewCell LastCellChanged = null;
+        DataGridViewCell celda, LastCellChanged = null;
+        string stbuffer;
 
         static Escalafon ventana = null;
         
@@ -101,16 +104,7 @@ namespace ControlHoras
             int numR = dgvHsPorCubrir.Rows.Add();
             dgvHsPorCubrir.Rows[numR].HeaderCell.Value = "Hs Faltan Cubrir";
         }
-
-        private void btnAgregarLineaEscalafon_Click(object sender, EventArgs e)
-        {
-            int n = dgEscalafon.Rows.Add();
-            ((DataGridViewComboBoxCell)dgEscalafon.Rows[n].Cells[dgEscalafon.Columns.Count - 1]).Value = "EMPRESA";
-        //    DataGridViewComboBoxColumn dgvcbc = dgEscalafon.Columns[dgEscalafon.Columns.Count - 1] as DataGridViewComboBoxColumn;
-            dgEscalafon.Focus();
-            dgEscalafon.CurrentCell = dgEscalafon.Rows[n].Cells[0];
-            //dgEscalafon.Rows[n].Cells[2].Selected = true;
-        }
+              
 
         private void btnEliminarLineaEscalafon_Click(object sender, EventArgs e)
         {
@@ -185,7 +179,7 @@ namespace ControlHoras
                                 PosteriorBTN.Visible = true;
                             }
 
-                            cargarVentana();
+                            cargarVentana(numCli, numerosSer[ind]);
                         }
                     }
                     else
@@ -238,7 +232,7 @@ namespace ControlHoras
                         //Falta traer el contrato.
                         contrato = datos.obtenerContrato(int.Parse(mtCliente.Text), int.Parse(mtServicio.Text));
 
-                        cargarVentana();
+                        cargarVentana(int.Parse(mtCliente.Text), int.Parse(mtServicio.Text));
                     }
                     else
                     {
@@ -290,7 +284,7 @@ namespace ControlHoras
             mtServicio.Text = serv.getNumero().ToString();
             txtServicio.Text = serv.getNombre();
 
-            cargarVentana();   
+            cargarVentana(numCli, numerosSer[ind]);   
         }
 
         private void PosteriorBTN_Click(object sender, EventArgs e)
@@ -305,13 +299,34 @@ namespace ControlHoras
             mtServicio.Text = serv.getNumero().ToString();
             txtServicio.Text = serv.getNombre();
 
-            cargarVentana();            
+            cargarVentana(numCli, numerosSer[ind]);            
         }
 
 
-        private void cargarVentana()
+        private void cargarVentana(int numCli, int numSer)
         {
             // Cargar las hs por dia del contrato en el dvg
+            ConSeguridadFisica con = null;
+            int nroCon = CalcNroContrato(numCli, numSer);
+            if (datos.existeContrato(nroCon))
+            {
+                con = sistema.getContrato(CalcNroContrato(numCli, numSer));
+                TimeSpan[] horas = con.getTotalesHoras();
+                for (int i = 0; i < 7; i++ )
+                {
+                    dgvHsPorCubrir.Rows[0].Cells[i].Value = impHora(horas[i]);
+                }
+            }
+        }
+
+        private string impHora(TimeSpan h)
+        {
+            return h.Hours.ToString() + ":" + h.Minutes.ToString();
+        }
+
+        public int CalcNroContrato(int nroCli, int nroSer)
+        {
+            return nroCli * 1000 + nroSer;
         }
 
         private void InicializardgEscalafon()
@@ -458,5 +473,168 @@ namespace ControlHoras
             }
         }
 
+        private void dgEscalafon_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex == -1)
+            {
+                return;
+            }
+            if (e.Button == MouseButtons.Right)
+            {
+                celda = dgEscalafon.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                EscalafonCMS.Show(MousePosition);
+            }
+        }
+
+        private void copiarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (celda != null)
+                stbuffer = celda.Value.ToString();
+        }
+
+        private void pegarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewCell c in dgEscalafon.SelectedCells)
+                c.Value = stbuffer;
+        }
+
+        private void descansoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewCell c in dgEscalafon.SelectedCells)
+            {
+                //c.Style 
+                c.Value = "Descanso";
+            }
+        }
+
+        private void licenciaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewCell c in dgEscalafon.SelectedCells)
+            {
+                //c.Style 
+                c.Value = "Licencia";
+            }
+        }
+
+        private bool ValidarLinea(int fila)
+        {
+            DataGridViewRow f;
+
+            foreach (DataGridViewCell c in dgEscalafon.SelectedCells)
+                c.Selected = false;
+            
+            f = dgEscalafon.Rows[fila];
+
+            //Validar Empleado
+            if (f.Cells[0].Value == null)
+            {
+                dgEscalafon.Focus();
+                dgEscalafon.CurrentCell = f.Cells[0];
+                f.Cells[0].Selected = true;
+
+                return false;
+            }
+
+            //Validar Codigo Puesto
+            if (f.Cells[2].Value == null )
+            {
+                dgEscalafon.Focus();
+                dgEscalafon.CurrentCell = f.Cells[2];
+                f.Cells[2].Selected = true;
+                return false;
+            }
+
+            //Validar Hora Confirmar
+            if (f.Cells[3].Value == null)
+            {
+                dgEscalafon.Focus();
+                dgEscalafon.CurrentCell = f.Cells[3];
+                f.Cells[3].Selected = true;
+                return false;
+            }
+
+            //Validar Horarios
+            for (int j = 4; j < 11; j++)
+            {
+                if (f.Cells[j].Value == null || !ValidarHorario(f.Cells[j].Value.ToString()))
+                {
+                    dgEscalafon.Focus();
+                    dgEscalafon.CurrentCell = f.Cells[j];
+                    f.Cells[j].Selected = true;
+                    return false;
+                }
+            }           
+
+            return true;
+        }
+
+        private bool ValidarHorario(string hor)
+        {
+            if (hor=="Descanso" || hor=="Licencia")
+                return true;
+            if (hor.IndexOfAny(new Char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }) == -1)
+                return false;
+            if (hor.Length != 13)
+                return false;
+            string hini = obtHIni(hor);
+            string hfin = obtHFin(hor);
+            DateTimeStyles dts = new DateTimeStyles();
+            DateTime dti;
+            DateTime dtf;
+
+            if (!DateTime.TryParseExact(hini, @"HH:mm", DateTimeFormatInfo.InvariantInfo, dts, out dti))
+                return false;
+            if (!DateTime.TryParseExact(hfin, @"HH:mm", DateTimeFormatInfo.InvariantInfo, dts, out dtf))
+                return false;
+            if (dti > dtf)
+                return false;
+            return true;
+        }
+
+        private bool esEntero(string p)
+        {
+            int aux;
+            return int.TryParse(p, out aux);
+        }
+
+        private string obtHFin(string texto)
+        {
+            return texto.Substring(8, 5);
+        }
+
+        private string obtHIni(string texto)
+        {
+            return texto.Substring(0, 5);
+        }
+
+         private void btnAgregarLineaEscalafon_Click(object sender, EventArgs e)
+        {
+            int f = dgEscalafon.RowCount -1;
+            if (f > -1)
+            {
+                if (ValidarLinea(f))
+                {
+                    int n = dgEscalafon.Rows.Add();
+                    ((DataGridViewComboBoxCell)dgEscalafon.Rows[n].Cells[dgEscalafon.Columns.Count - 1]).Value = "EMPRESA";
+
+
+                    dgEscalafon.Focus();
+                    dgEscalafon.CurrentCell = dgEscalafon.Rows[n].Cells[0];
+                    //dgEscalafon.Rows[n].Cells[2].Selected = true;
+                }
+                else
+                    MessageBox.Show(this, "Error en la línea anterior en la celda seleccionada", "Línea no valida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                int n = dgEscalafon.Rows.Add();
+                ((DataGridViewComboBoxCell)dgEscalafon.Rows[n].Cells[dgEscalafon.Columns.Count - 1]).Value = "EMPRESA";
+
+
+                dgEscalafon.Focus();
+                dgEscalafon.CurrentCell = dgEscalafon.Rows[n].Cells[0];
+                //dgEscalafon.Rows[n].Cells[2].Selected = true;
+            }
+        }
     }
 }

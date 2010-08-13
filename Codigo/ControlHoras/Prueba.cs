@@ -81,6 +81,18 @@ namespace ControlHoras
             errorProvider1.SetError(HoraTB, "");
             hora = TimeSpan.Parse(HoraTB.Text);
             HTB.Text = hora.ToString().Substring(0,5);
+        }
+
+        private void difbtn_Click(object sender, EventArgs e)
+        {            
+            DateTime dti,dtf;
+            TimeSpan res;
+            
+            dti = DateTime.ParseExact(horaini.Text, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+            dtf = DateTime.ParseExact(horafin.Text, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+            res = dtf - dti;
+                       
+            result.Text = res.Hours.ToString() + ":" + res.Minutes.ToString();
         }      
 
 
