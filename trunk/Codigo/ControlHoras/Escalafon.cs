@@ -18,9 +18,9 @@ namespace ControlHoras
         IClientesServicios sistema = ControladorClientesServicios.getInstance();
         IEmpleados sistemaEmp = ControladorEmpleados.getInstance();
         IDatos datos;
-        ClientEs cliente = null;
-        SERVicIoS servicio;
+        ClientEs cliente = null;        
         ContraToS contrato;
+
 
         int idser;
         int ind;
@@ -28,6 +28,7 @@ namespace ControlHoras
         int[] numerosSer;
         DataGridViewCell celda, LastCellChanged = null;
         string stbuffer;
+        TimeSpan[] hporCubrir;
 
         static Escalafon ventana = null;
         
@@ -65,6 +66,7 @@ namespace ControlHoras
         {
             if (dgEscalafon.SelectedCells.Count > 0)
             {
+                dgvHsPorCubrir.Refresh();
                 DataGridViewCell celdaSeleccionada = dgEscalafon.SelectedCells[0];
                 // Si se apreta F4 en alguna celda de la primer o segunda columna se abre el buscador de funcionarios.
                 if (e.KeyCode == Keys.F4 && dgEscalafon.CurrentCell.ColumnIndex < 2)
@@ -92,22 +94,27 @@ namespace ControlHoras
                 
             }
         }
-
-        private void dgEscalafon_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
-        {
-
-        }
-
+               
         private void Escalafon_Load(object sender, EventArgs e)
         {
             
             int numR = dgvHsPorCubrir.Rows.Add();
             dgvHsPorCubrir.Rows[numR].HeaderCell.Value = "Hs Faltan Cubrir";
+
+            dgvHsPorCubrir.ClearSelection();
+
+            //DataGridViewColumnHeaderCell c = new DataGridViewColumnHeaderCell();
+            //c.Style.BackColor = Color.Gray;
+            //c.Style.ForeColor=Color.Red;            
+            //dgvHsPorCubrir.Columns[7].HeaderCell = c;
+            //dgvHsPorCubrir.Columns[7].HeaderCell.Value = "ORTO";
+
+            //c.Value = dgvHsPorCubrir.Columns[7].HeaderCell.HasStyle.ToString();
         }
               
 
         private void btnEliminarLineaEscalafon_Click(object sender, EventArgs e)
-        {
+        {          
             if (dgEscalafon.SelectedCells.Count > 0)
             {
                 string msg = "Esta seguro que desea eliminar la fila " + dgEscalafon.SelectedCells[0].RowIndex + 1 + "?";
@@ -122,12 +129,7 @@ namespace ControlHoras
         private void Escalafon_FormClosed(object sender, FormClosedEventArgs e)
         {
             ventana = null;
-        }
-
-        private void dgvHsPorCubrir_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
-        {
-            
-        }
+        }      
 
         private void dgvHsPorCubrir_RowHeadersWidthChanged(object sender, EventArgs e)
         {
@@ -153,7 +155,7 @@ namespace ControlHoras
                         if (servicios.Count != 0)
                         {
                             splitContainer1.Panel2.Enabled = true;
-                            //GuardarBTN.Enabled = true;
+                            GuardarBTN.Enabled = true;
                             //ServicioGB.Enabled = true;
 
                             cant = servicios.Count;
@@ -184,12 +186,14 @@ namespace ControlHoras
                     }
                     else
                     {
+                        GuardarBTN.Enabled = false;
                         splitContainer1.Panel2.Enabled = false;
                         MessageBox.Show("No existe el cliente numero " + mtCliente.Text, "No existe cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
                 {
+                    GuardarBTN.Enabled = false;
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -311,11 +315,8 @@ namespace ControlHoras
             if (datos.existeContrato(nroCon))
             {
                 con = sistema.getContrato(CalcNroContrato(numCli, numSer));
-                TimeSpan[] horas = con.getTotalesHoras();
-                for (int i = 0; i < 7; i++ )
-                {
-                    dgvHsPorCubrir.Rows[0].Cells[i].Value = impHora(horas[i]);
-                }
+                hporCubrir = con.getTotalesHoras();
+                CargarHporCubrir();               
             }
         }
 
@@ -438,40 +439,7 @@ namespace ControlHoras
         private void dgEscalafon_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             LastCellChanged = dgEscalafon.CurrentCell;
-        }
-
-        private void dgEscalafon_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {            
-            if (LastCellChanged != null && LastCellChanged.Value != null)                
-            {
-                //&& LastCellChanged.Value != ""
-                if (LastCellChanged.ColumnIndex == 0)
-                {
-                    EmPleadOs emp;
-                    try
-                    {
-                        if (sistemaEmp.existeEmpleado(int.Parse(LastCellChanged.Value.ToString())))
-                        {
-                            emp = datos.obtenerEmpleado(int.Parse(LastCellChanged.Value.ToString()));
-                            dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[1].Value = emp.Nombre + " " + emp.Apellido;
-                            //dgEscalafon.CurrentCell = dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[2];
-                        }
-                        else
-                        {
-                            dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[1].Value = "";
-                            MessageBox.Show("No existe el empleado Nro: " + LastCellChanged.Value.ToString(), "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //dgEscalafon.CurrentCell = LastCellChanged;
-                            //dgEscalafon.CurrentCell.InitializeEditingControl(LastCellChanged.RowIndex, LastCellChanged.Value.ToString(), LastCellChanged.Style);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-                }
-            }
-        }
+        }       
 
         private void dgEscalafon_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -526,7 +494,7 @@ namespace ControlHoras
             f = dgEscalafon.Rows[fila];
 
             //Validar Empleado
-            if (f.Cells[0].Value == null)
+            if (f.Cells[0].Value == null || f.Cells[0].Value == "")
             {
                 dgEscalafon.Focus();
                 dgEscalafon.CurrentCell = f.Cells[0];
@@ -614,10 +582,14 @@ namespace ControlHoras
             {
                 if (ValidarLinea(f))
                 {
+                    //TimeSpan [] horas = ObtenerHoras(f);
+                    //hporCubrir = restar(hporCubrir, horas);
+                    //CargarHporCubrir();
+
+                    ActHorasBTN.PerformClick();
                     int n = dgEscalafon.Rows.Add();
                     ((DataGridViewComboBoxCell)dgEscalafon.Rows[n].Cells[dgEscalafon.Columns.Count - 1]).Value = "EMPRESA";
-
-
+                    
                     dgEscalafon.Focus();
                     dgEscalafon.CurrentCell = dgEscalafon.Rows[n].Cells[0];
                     //dgEscalafon.Rows[n].Cells[2].Selected = true;
@@ -629,12 +601,194 @@ namespace ControlHoras
             {
                 int n = dgEscalafon.Rows.Add();
                 ((DataGridViewComboBoxCell)dgEscalafon.Rows[n].Cells[dgEscalafon.Columns.Count - 1]).Value = "EMPRESA";
-
-
+                
                 dgEscalafon.Focus();
                 dgEscalafon.CurrentCell = dgEscalafon.Rows[n].Cells[0];
                 //dgEscalafon.Rows[n].Cells[2].Selected = true;
             }
         }
+
+         private void CargarHporCubrir()
+         {
+             for (int i = 0; i < 7; i++)
+             {
+                 dgvHsPorCubrir.Rows[0].Cells[i].Value = impHora(hporCubrir[i]);
+             }
+         }
+
+         private TimeSpan[] restar(TimeSpan[] hporCubrir, TimeSpan[] horas)
+         {
+             TimeSpan[] aux = new TimeSpan[7];
+             for (int i = 0; i < 7; i++)
+             {
+                 aux[i] = hporCubrir[i] - horas[i];
+             }
+             return aux;
+         }
+
+         private TimeSpan[] ObtenerHoras(int f)
+         {
+             TimeSpan[] aux = new TimeSpan[7];
+             TimeSpan a = new TimeSpan(0, 0, 0);
+             string valor;
+             DataGridViewRow fila = dgEscalafon.Rows[f];
+             for (int i = 0; i < 7; i++)
+             {
+                 valor = fila.Cells[i + 4].Value.ToString();
+                 if (valor == "Descanso" || valor == "Licencia")
+                     aux[i] = a;
+                 else
+                     aux[i] = calcDif(fila.Cells[i + 4].Value.ToString());
+             }
+             return aux;
+         }
+
+         private TimeSpan calcDif(string p)
+         {
+             DateTime dti, dtf;
+             TimeSpan res;
+
+             dti = DateTime.ParseExact(p.Substring(0,5), @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+             dtf = DateTime.ParseExact(p.Substring(8,5), @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+             res = dtf - dti;
+
+             return res;
+         }
+
+         private void dgEscalafon_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+         {
+             if (LastCellChanged != null && LastCellChanged.Value != null)
+             {
+                 //&& LastCellChanged.Value != ""
+                 if (LastCellChanged.ColumnIndex == 0)
+                 {
+                     EmPleadOs emp;
+                     try
+                     {
+                         if (sistemaEmp.existeEmpleado(int.Parse(LastCellChanged.Value.ToString())))
+                         {
+                             emp = datos.obtenerEmpleado(int.Parse(LastCellChanged.Value.ToString()));
+                             dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[1].Value = emp.Nombre + " " + emp.Apellido;
+                             //dgEscalafon.CurrentCell = dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[2];
+                         }
+                         else
+                         {
+                             dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[1].Value = "";
+                             MessageBox.Show("No existe el empleado Nro: " + LastCellChanged.Value.ToString(), "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                             dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[0].Value = "";
+                             //dgEscalafon.CurrentCell = LastCellChanged;
+                             //dgEscalafon.CurrentCell.InitializeEditingControl(LastCellChanged.RowIndex, LastCellChanged.Value.ToString(), LastCellChanged.Style);
+                         }
+                     }
+                     catch (Exception ex)
+                     {
+                         MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                     }
+
+                 }
+             }
+         }
+
+         private void ActHorasBTN_Click(object sender, EventArgs e)
+         {
+             //Validar DataGrid
+             bool aux = ValidarEscalafon();
+             int totLineas = dgEscalafon.RowCount;
+
+             
+             if (aux && totLineas>0)
+             {
+                 int numCli = int.Parse(mtCliente.Text);
+                 int numSer = int.Parse(mtServicio.Text);
+                 ConSeguridadFisica con = null;
+                 int nroCon = CalcNroContrato(numCli, numSer);
+                 try
+                 {
+                     if (datos.existeContrato(nroCon))
+                     {
+                         con = sistema.getContrato(CalcNroContrato(numCli, numSer));
+                         hporCubrir = con.getTotalesHoras();
+                         for (int i = 0; i < totLineas; i++)
+                         {
+                             hporCubrir = restar(hporCubrir, ObtenerHoras(i));
+                         }
+
+                         CargarHporCubrir();
+                     }
+                 }
+                 catch (Exception ex)
+                 {
+                     
+                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 }
+             }
+             else
+                 MessageBox.Show(this, "Error en la celda seleccionada", "Línea no valida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+         }
+
+         private void GuardarBTN_Click(object sender, EventArgs e)
+         {
+             if (ValidarEscalafon())
+             {
+                 int numCli = int.Parse(mtCliente.Text);
+                 int numSer = int.Parse(mtServicio.Text);
+                 /*
+                 ConSeguridadFisica con = new ConSeguridadFisica(hx, 0, 0, 0, dti, dtf, AjusteTB.Text, ObsTB.Text, costo, monto);
+
+                 // ACA GUARDO TODOS LOS DATOS DEL DATAGRIDVIEW
+
+                 LineaDeHoras linea = null;
+                 HorarioXDia hor = null;
+                 DataGridViewCell cel = null;
+                 string precio;
+                 foreach (DataGridViewRow fila in CargaHorariaDGV.Rows)
+                 {
+                     if (fila.Cells[0].RowIndex + 1 < CargaHorariaDGV.RowCount)
+                     {
+                         if (fila.Cells["Armado"].Value == null)
+                             fila.Cells["Armado"].Value = "0";
+                         precio = fila.Cells["PrecioXHora"].Value.ToString().Substring(3);
+                         linea = new LineaDeHoras(fila.Cells["Puesto"].Value.ToString(), (fila.Cells["Armado"].Value.ToString() == "1") ? true : false, float.Parse(precio), int.Parse(fila.Cells["Cantidad"].Value.ToString()), 0, 0);
+                         for (int i = 0; i < 7; i++)
+                         {
+                             cel = fila.Cells[dias[i]];
+                             if (cel.Value.ToString() != @"N/T")
+                             {
+                                 hor = new HorarioXDia(dias[i], obtHIni(cel.Value.ToString()), obtHFin(cel.Value.ToString()));
+                                 linea.addDia(hor);
+                             }
+                         }
+                         con.addLinea(linea);
+                     }
+                 }
+
+                 if (datos.existeContrato(nroCon))
+                     sistema.modificarContrato(nroCon, con);
+                 else
+                     sistema.altaContrato(nroCon, con);
+                  
+                 */
+                 MessageBox.Show("Datos guardados correctamente.", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+             }
+             else
+                 MessageBox.Show(this, "Error en la celda seleccionada", "Línea no valida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+         }
+
+        private bool ValidarEscalafon()
+        {
+            bool aux = true;
+            int nroLinea = 0;
+            int totLineas = dgEscalafon.RowCount;
+
+            while (aux && nroLinea < totLineas)
+            {
+                aux = ValidarLinea(nroLinea);
+                nroLinea++;
+            }
+
+            return aux;
+        }
+
     }
 }
