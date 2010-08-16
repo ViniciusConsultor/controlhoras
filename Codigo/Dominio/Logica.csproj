@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{AFC517DD-78C0-4139-ADFE-84AFB3320F61}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -67,11 +67,13 @@
     <Compile Include="ExtraLiquidacionEmpleado.cs" />
     <Compile Include="FactoryContrato.cs" />
     <Compile Include="EventoHistorialEmpleado.cs" />
+    <Compile Include="HorarioEscalafon.cs" />
     <Compile Include="HorarioXDia.cs" />
     <Compile Include="IABMTipos.cs" />
     <Compile Include="IClientesServicios.cs" />
     <Compile Include="IEmpleados.cs" />
     <Compile Include="LineaDeHoras.cs" />
+    <Compile Include="LineasEscalafon.cs" />
     <Compile Include="Servicio.cs" />
     <Compile Include="TipoEmpleado.cs" />
     <Compile Include="TipoEmpleadoJornalero.cs" />
