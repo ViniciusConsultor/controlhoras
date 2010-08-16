@@ -32,3 +32,36 @@ alter table contratos add column NumeroCliente mediumint unsigned not null;
 
 -- Agrego FK
 alter table contratos add constraint foreign key fk_servicios (NumeroServicio,NumeroCliente) references servicios(NumeroServicio,NumeroCliente);
+
+
+-- Creacion de Tabla HorasGeneradasEscalafon
+| horasgeneradasescalafon | CREATE TABLE `horasgeneradasescalafon` (
+  `IdHorasGeneradasEscalafon` bigint(20) NOT NULL AUTO_INCREMENT,
+  `NumeroCliente` mediumint(8) unsigned NOT NULL,
+  `NumeroServicio` mediumint(8) unsigned NOT NULL,
+  `NroEmpleado` mediumint(8) unsigned NOT NULL,
+  `FechaCorrespondiente` date NOT NULL,
+  `HoraEntrada` datetime NOT NULL,
+  `HoraSalida` datetime NOT NULL,
+  PRIMARY KEY (`IdHorasGeneradasEscalafon`),
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+-- FK's
+ alter table HorasGeneradasEscalafon add constraint foreign key (NroEmpleado) references empleados(NroEmpleado);
+ alter table HorasGeneradasEscalafon add constraint foreign key (NumeroCliente,NumeroServicio) references servicios(NumeroCliente,NumeroServicios);
+ 
+
+-- Creo indice Hash por NroEmpleado
+create index ix_NroEmpleado using hash on HorasGeneradasEscalafon (NroEmpleado);
+create index ix_CliServ on HorasGeneradasEscalafon(NumeroCliente,NumeroServicio);
+
+-- Creacion de la tabla motivoscambiosdiarios
+create table motivoscambiosdiarios (IdMotivoCambioDiario int not null auto_increment primary key, IdTipoMotivo mediumint unsigned not null, Fecha TimeStamp not null default current_timestamp, Observaciones varchar(1000), NumeroCliente mediumint unsigned not null, NumeroServicio mediumint unsigned not null, NroEmpleado mediumint unsigned not null);
+
+-- Creacion de la tabla TiposMotivoCambioDiario
+create table TiposMotivoCambioDiario (IdTipoMotivo mediumint unsigned not null auto_increment primary key, Descripcion varchar(255) not null,Activo smallint(1) not null default 0);
+ 
+-- Creacion de Foreign Key
+alter table motivoscambiosdiarios add foreign key (IdTipoMotivo) references TiposMotivoCambioDiario(IdTipoMotivo);
+alter table motivoscambiosdiarios add foreign key (NumeroCliente,NumeroServicio) references servicios(NumeroCliente,NumeroServicio);
+alter table motivoscambiosdiarios add foreign key (NroEmpleado) references empleados(NroEmpleado);
