@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FC8B86E8-A818-4987-B135-16FD6B039E53}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -174,6 +174,18 @@
     <Compile Include="BúsquedaCliente.Designer.cs">
       <DependentUpon>BúsquedaCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="CambiarFuncionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CambiarFuncionario.Designer.cs">
+      <DependentUpon>CambiarFuncionario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CambiarHoraFuncionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CambiarHoraFuncionario.Designer.cs">
+      <DependentUpon>CambiarHoraFuncionario.cs</DependentUpon>
+    </Compile>
     <Compile Include="CambiarNumeroEmpleado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,6 +222,12 @@
     </Compile>
     <Compile Include="ControlDiario.Designer.cs">
       <DependentUpon>ControlDiario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMTiposMotivoCambioDiario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMTiposMotivoCambioDiario.Designer.cs">
+      <DependentUpon>ABMTiposMotivoCambioDiario.cs</DependentUpon>
     </Compile>
     <Compile Include="DataGridTAB.cs">
       <SubType>Component</SubType>
@@ -257,6 +275,12 @@
     </Compile>
     <Compile Include="BuscarClientes.Designer.cs">
       <DependentUpon>BuscarClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MotivoCambioDiarioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MotivoCambioDiarioForm.Designer.cs">
+      <DependentUpon>MotivoCambioDiarioForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ServicioForm.cs">
       <SubType>Form</SubType>
@@ -351,6 +375,12 @@
       <DependentUpon>BúsquedaCliente.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="CambiarFuncionario.resx">
+      <DependentUpon>CambiarFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CambiarHoraFuncionario.resx">
+      <DependentUpon>CambiarHoraFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CambiarNumeroEmpleado.resx">
       <DependentUpon>CambiarNumeroEmpleado.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -373,6 +403,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EscalafonForm.resx">
       <DependentUpon>EscalafonForm.cs</DependentUpon>
+    <EmbeddedResource Include="ABMTiposMotivoCambioDiario.resx">
+      <DependentUpon>ABMTiposMotivoCambioDiario.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ExportToExcel.resx">
@@ -391,6 +425,9 @@
     <EmbeddedResource Include="BuscarClientes.resx">
       <DependentUpon>BuscarClientes.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MotivoCambioDiarioForm.resx">
+      <DependentUpon>MotivoCambioDiarioForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ServicioForm.resx">
       <DependentUpon>ServicioForm.cs</DependentUpon>

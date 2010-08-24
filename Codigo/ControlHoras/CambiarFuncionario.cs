@@ -6,26 +6,22 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Dominio;
+using Datos;
 namespace ControlHoras
 {
     public partial class CambiarFuncionario : Form
     {
 
-        private Controlador Controller;
+        private IDatos Controller;
+        public EmPleadOs FuncionarioNuevo { get; private set; }
 
         public CambiarFuncionario(int idFunc, string nombre)
         {
             InitializeComponent();
             mtFuncionarioActual.Text = idFunc.ToString();
             txtNombreFuncionarioActual.Text = nombre;
-            Controller = Controlador.getControlador();
-        }
-
-        public int getFuncionarioNuevo()
-        {
-            return int.Parse(mtFuncionarioNuevo.Text);
-        }
+            Controller = ControladorDatos.getInstance();
+        }       
 
         private void mtFuncionarioNuevo_KeyDown(object sender, KeyEventArgs e)
         {
@@ -34,8 +30,9 @@ namespace ControlHoras
             {
                 try
                 {
-                    Funcionario f = Controller.obtenerFuncionario(int.Parse(mtFuncionarioNuevo.Text));
-                    txtNombreFuncionarioNuevo.Text = f.getNombre() + " " + f.getApellido();
+                    FuncionarioNuevo = Controller.obtenerEmpleado(int.Parse(mtFuncionarioNuevo.Text));
+                    mtFuncionarioNuevo.Text = FuncionarioNuevo.NroEmpleado.ToString();
+                    txtNombreFuncionarioNuevo.Text = FuncionarioNuevo.Nombre + " " + FuncionarioNuevo.Apellido;
                     //SendKeys.Send("{TAB}");
                     btnAceptar.Enabled = true;
                 }
@@ -46,11 +43,26 @@ namespace ControlHoras
             }
             if (e.KeyCode == Keys.F2)
             {
-                // Abrir ventana de busqueda de servicios de ese cliente.
+                // Muestro ventana de busqueda de empleados. La misma que en ABMEmpleados
+                BuscarEmpleados busquedaEmps = new BuscarEmpleados();
+                DialogResult res = busquedaEmps.ShowDialog(this);
+                if (res == DialogResult.OK)
+                {
+                    try
+                    {
+                        FuncionarioNuevo = Controller.obtenerEmpleado(busquedaEmps.idEmpleadoSeleccionado);
+                        mtFuncionarioNuevo.Text = FuncionarioNuevo.NroEmpleado.ToString();
+                        txtNombreFuncionarioNuevo.Text = FuncionarioNuevo.Nombre + " " + FuncionarioNuevo.Apellido;
+                        SendKeys.Send("{ENTER}");
+                        btnAceptar.Enabled = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
-
-
 
     }
 }
