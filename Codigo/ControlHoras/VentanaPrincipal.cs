@@ -333,7 +333,7 @@ namespace ControlHoras
         {
             try
             {
-                Escalafon depa = Escalafon.getVentana();
+                EscalafonForm depa = EscalafonForm.getVentana();
                 if (depa.Visible == false)
                     depa.Show(this);
                 else

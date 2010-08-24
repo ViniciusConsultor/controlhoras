@@ -5,18 +5,20 @@ using System.Text;
 
 namespace Logica
 {
-    class EscalafonEmpleado
+    public class EscalafonEmpleado
     {
-        public HorarioXDia Horario { set; get; }
+        public int NroEmpleado { set; get; }
+        public string CodigoPuesto { set; get; }
         public int CantidadHsLlamadaAntesHoraInicio { set; get; }
-        public enum ACargo { Empresa, Cliente }
 
-        public ACargo ACargoDe;
+        public string AcargoDe;        
+        
+        public List<HorarioEscalafon> Horario;
 
-        public Empleado Funcionario { set; get; }
-        public Escalafon Planificacion { set; get; }
+        //public enum ACargo { Empresa, Cliente }
+        //public ACargo ACargoDe;
 
-
+        /*      
         public EscalafonEmpleado()
         {
 
@@ -24,11 +26,12 @@ namespace Logica
 
         public EscalafonEmpleado(HorarioXDia horario, int cantHsLlamadaAntesHoraInicio, ACargo aCargo, Empleado empleado, Escalafon escalafon)
         {
-            this.Horario = horario;
+            
             this.CantidadHsLlamadaAntesHoraInicio = cantHsLlamadaAntesHoraInicio;
             this.ACargoDe = aCargo;
             this.Funcionario = empleado;
             this.Planificacion = Planificacion;
+            this.Horario = horario;
         }
 
         public EscalafonEmpleado(string dia, string horaInicio, string horaFin, int cantHsLlamadaAntesHoraInicio, ACargo aCargo, Empleado empleado, Escalafon escalafon)
@@ -39,6 +42,8 @@ namespace Logica
             this.Funcionario = empleado;
             this.Planificacion = Planificacion;
         }
+        
+        */
 
 
 

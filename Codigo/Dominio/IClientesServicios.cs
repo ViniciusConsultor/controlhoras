@@ -47,5 +47,11 @@ namespace Logica
         ConSeguridadFisica getContrato(int NumeroContrato);
 
         void modificarContrato(int NumeroContrato, ConSeguridadFisica Contrato);
+
+        void altaEscalafon(int numCli, int numSer, int nroCon, Escalafon es);
+
+        void modificarEscalafon(int nroCon, Escalafon es);
+
+        Escalafon getEscalafon(int nroEsc);
     }
 }

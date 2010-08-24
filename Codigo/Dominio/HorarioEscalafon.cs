@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Logica
 {
-    class HorarioEscalafon
+    public class HorarioEscalafon
     {      
         private string Dia;
         private string HoraInicio;
@@ -20,8 +20,9 @@ namespace Logica
             TipoDia = 0;
         }
 
-        public HorarioEscalafon(string tipoDia)
+        public HorarioEscalafon(string dia, string tipoDia)
         {
+            Dia = dia;
             switch (tipoDia)
             {
                 case "Descanso":
@@ -33,6 +34,11 @@ namespace Logica
             }
         }
 
+        public HorarioEscalafon(string dia, int tipoDia)
+        {
+            Dia = dia;
+            TipoDia = tipoDia;
+        }
 
         public string getDia()
         {
@@ -52,6 +58,11 @@ namespace Logica
         public int getTipoDia()
         {
             return TipoDia;
+        }
+
+        public bool EsLaborable()
+        {
+            return (TipoDia == 0);
         }
     }
 }

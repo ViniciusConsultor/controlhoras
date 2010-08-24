@@ -68,16 +68,16 @@ namespace Datos
                 //string pru = ConfigurationManager.AppSettings["Servidor"].ToString();
                 var builder = new MySqlConnectionStringBuilder() //(StringConnection)
                 {
-                    Server = "localhost",
-                    //Server = ConfigurationManager.AppSettings["Servidor"].ToString(),
-                    Port = 3306,
-                    //Port = uint.Parse(ConfigurationManager.AppSettings["Puerto"].ToString()),
-                    UserID = "root",
-                    //UserID = ConfigurationManager.AppSettings["Usuario"].ToString(),
-                    Password = "desdere",
-                    //Password = ConfigurationManager.AppSettings["Password"].ToString(),
-                    Database = "trustdb",
-                    //Database = ConfigurationManager.AppSettings["Base"].ToString(),
+                    //Server = "localhost",
+                    Server = ConfigurationManager.AppSettings["Servidor"].ToString(),
+                    //Port = 3306,
+                    Port = uint.Parse(ConfigurationManager.AppSettings["Puerto"].ToString()),
+                    //UserID = "root",
+                    UserID = ConfigurationManager.AppSettings["Usuario"].ToString(),
+                    //Password = "desdere",
+                    Password = ConfigurationManager.AppSettings["Password"].ToString(),
+                    //Database = "trustdb",
+                    Database = ConfigurationManager.AppSettings["Base"].ToString(),
                     Pooling = false,
                     ConnectionLifeTime = 0,
                     AllowUserVariables = true
@@ -2024,9 +2024,11 @@ namespace Datos
                 //database.Connection.Open();
                 var dataTables = database.Mapping;
                 //database.Connection.Close();
+                string nomtabla = nombreTabla.Split(".".ToCharArray()[0])[1];
                 foreach (var tabla in dataTables.GetTables())
                 {
-                    if (nombreTabla == tabla.TableName)
+                    string nomtablatemp = tabla.TableName.Split(".".ToCharArray()[0])[1];
+                    if (nomtabla == nomtablatemp)
                     {
                         foreach (var column in tabla.RowType.DataMembers)
                         {
@@ -2644,7 +2646,337 @@ namespace Datos
                 throw e;
             }
         }
+              
 
+        public bool existeEscalafon(int nroEsc)
+        {
+            try
+            {
+                var cli = (from clireg in database.GetTable<EScalaFOn>()
+                           where clireg.IDEscalafon == nroEsc
+                           select clireg);
+                if (cli.Count<EScalaFOn>() == 0)
+                    return false;
+                else
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;                
+            }
+        }
+
+        public void altaEscalafon(EScalaFOn escalafon, List<EScalaFOneMpLeadO> lineas)
+        {
+            System.Data.Common.DbConnection conexion = database.Connection;
+            try
+            {
+                // Inserción de Escalafon 
+                string nombreTabla = database.Connection.Database + ".escalafon";
+                List<string> campos = obtenerColumnasDeTabla(nombreTabla);
+                string st = "INSERT INTO ";
+                st += nombreTabla + " (";
+                
+                foreach (string columna in campos)
+                {
+                    if (campos.Last<string>().Equals(columna))
+                        st += columna + ") ";
+                    else
+                        st += columna + ", ";
+                }
+                st += " VALUES(";
+                st += "0, ";
+                st += escalafon.IDContrato.ToString() + ", ";
+                st += escalafon.IDEscalafon.ToString() + ", ";
+                st += escalafon.NumeroCliente.ToString() + ", ";                
+                st += escalafon.NumeroServicio.ToString() + ")";
+
+
+                if (conexion.State != System.Data.ConnectionState.Open)
+                    conexion.Open();
+                System.Data.Common.DbTransaction tran = conexion.BeginTransaction();
+                database.Transaction = tran;
+                database.ExecuteCommand(st, null);
+
+                nombreTabla = database.Connection.Database + ".escalafonempleado";
+                string sqlLineasHoras = "INSERT INTO " + nombreTabla + " (";
+                campos = obtenerColumnasDeTabla(nombreTabla);
+
+                foreach (string columna in campos)
+                {
+                    if (campos.Last<string>().Equals(columna))
+                        sqlLineasHoras += columna + ") ";
+                    else
+                        sqlLineasHoras += columna + ", ";
+                }
+                sqlLineasHoras += " VALUES(";
+                string tempsql;
+                string sqlhorariodia;
+                foreach (EScalaFOneMpLeadO lh in lineas)
+                {
+                    tempsql = sqlLineasHoras;
+                    tempsql += "'" + lh.AcArgoDe + "', '";
+                    tempsql += lh.CodigoPuesto + "', ";
+                    tempsql += lh.HsLlamadaAntesHoraInicio.ToString() + ", ";
+                    tempsql += lh.IDEscalafon.ToString() + ", ";
+                    tempsql += lh.IDEscalafonEmpleado.ToString() + ", ";                    
+                    tempsql += lh.NroEmpleado.ToString() + ")";
+                    database.ExecuteCommand(tempsql, null);
+                    nombreTabla = database.Connection.Database + ".horarioescalafon";
+                    campos = obtenerColumnasDeTabla(nombreTabla);
+                    sqlhorariodia = "INSERT INTO " + nombreTabla + "(";
+                    foreach (string columna in campos)
+                    {
+                        if (campos.Last<string>().Equals(columna))
+                            sqlhorariodia += columna + ") ";
+                        else
+                            sqlhorariodia += columna + ", ";
+                    }
+                    sqlhorariodia += " VALUES (";
+                    foreach (HoRaRioEScalaFOn dh in lh.HoRaRioEScalaFOn)
+                    {
+                        tempsql = sqlhorariodia;
+                        tempsql += "'" + dh.DiA + "', ";
+                        tempsql += "'" + dh.HoRaFIn + "', ";
+                        tempsql += "'" + dh.HoRaInI + "', ";
+                        tempsql += dh.IDEscalafon.ToString() + ", ";
+                        tempsql += dh.IDEscalafonEmpleado.ToString() + ", ";
+                        tempsql += dh.TipoDia.ToString() + ")";
+                        database.ExecuteCommand(tempsql, null);
+                    }
+
+                }
+                database.Transaction.Commit();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                //database.SubmitChanges();
+            }
+            catch (MySqlException ex)
+            {
+                //database.Refresh(System.Data.Linq.RefreshMode.KeepCurrentValues);
+                // database.Connection.Close();
+                database.Transaction.Rollback();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                if (ex.Number == 1062)
+                {
+                    // int index = database.GetChangeSet().Inserts.IndexOf(cliente);
+                    // database.GetChangeSet().Inserts.RemoveAt(index);
+                    database.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues);
+                }
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                database.Transaction.Rollback();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                throw ex;
+            } 
+        }
+
+        public string getNombreEmpleado(int nroEmpleado)
+        {
+            Table<EmPleadOs> tabla;
+            try
+            {
+                tabla = database.GetTable<EmPleadOs>();
+                var cli = (from clireg in tabla
+                           where clireg.NroEmpleado == nroEmpleado
+                           select clireg);
+                if (cli.Count<EmPleadOs>() == 0)
+                    return "";
+                else
+                    return cli.Single<EmPleadOs>().Nombre + " " + cli.Single<EmPleadOs>().Apellido;
+            }
+            catch (Exception ex)
+            {
+                throw ex;               
+            }
+        }      
+
+        public EScalaFOn obtenerEscalafon(int NroEscalafon)
+        {
+            try
+            {
+                Table<EScalaFOn> tablaEscalafon = database.GetTable<EScalaFOn>();
+                var con = (from conreg in tablaEscalafon
+                           where conreg.IDEscalafon == NroEscalafon
+                           select conreg);
+                if (con.Count<EScalaFOn>() == 0)
+                    throw new NoExisteException("No existe el escalafón con número " + NroEscalafon);
+
+                return con.Single<EScalaFOn>();
+            }
+            catch (ArgumentNullException anex)
+            {
+                throw new NoExisteException(anex.Message, anex.InnerException);
+            }
+            catch (InvalidOperationException ioex)
+            {
+                throw ioex;
+            }
+            catch (Exception me)
+            {
+                throw me;
+            }
+        }
+
+        public void eliminarLineasEscalafon(int NroEscalafon)
+        {
+            System.Data.Common.DbConnection conexion = database.Connection;
+            try
+            {
+                string sqlHoras = @"DELETE FROM trustdb.horarioescalafon WHERE idEscalafon=" + NroEscalafon.ToString();
+
+                if (conexion.State != System.Data.ConnectionState.Open)
+                    conexion.Open();
+                System.Data.Common.DbTransaction tran = conexion.BeginTransaction();
+                database.Transaction = tran;
+                database.ExecuteCommand(sqlHoras, null);
+                database.Transaction.Commit();
+
+                tran = conexion.BeginTransaction();
+                database.Transaction = tran;
+                string sqllineas = @"DELETE FROM trustdb.escalafonempleado WHERE idEscalafon=" + NroEscalafon.ToString();
+                database.ExecuteCommand(sqllineas, null);
+
+                database.Transaction.Commit();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+            catch (MySqlException ex)
+            {
+                //database.Refresh(System.Data.Linq.RefreshMode.KeepCurrentValues);
+                // database.Connection.Close();
+                database.Transaction.Rollback();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                if (ex.Number == 1062)
+                {
+                    // int index = database.GetChangeSet().Inserts.IndexOf(cliente);
+                    // database.GetChangeSet().Inserts.RemoveAt(index);
+                    database.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues);
+                }
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                database.Transaction.Rollback();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                throw ex;
+            }
+        }
+        
+        public void guardarLineasEscalafon(List<EScalaFOneMpLeadO> lineas)
+        {
+            System.Data.Common.DbConnection conexion = database.Connection;
+            try
+            {
+                string nombreTabla = database.Connection.Database + ".escalafonempleado";
+                string sqlLineasHoras = "INSERT INTO " + nombreTabla + " (";
+                List<string> campos = obtenerColumnasDeTabla(nombreTabla);
+
+                foreach (string columna in campos)
+                {
+                    if (campos.Last<string>().Equals(columna))
+                        sqlLineasHoras += columna + ") ";
+                    else
+                        sqlLineasHoras += columna + ", ";
+                }
+                sqlLineasHoras += " VALUES(";
+                string tempsql;
+                string sqlhorariodia;
+
+                if (conexion.State != System.Data.ConnectionState.Open)
+                    conexion.Open();
+                System.Data.Common.DbTransaction tran = conexion.BeginTransaction();
+                database.Transaction = tran;
+
+                foreach (EScalaFOneMpLeadO lh in lineas)
+                {
+                    tempsql = sqlLineasHoras;
+                    tempsql += "'" + lh.AcArgoDe + "', '";
+                    tempsql += lh.CodigoPuesto + "', ";
+                    tempsql += lh.HsLlamadaAntesHoraInicio.ToString() + ", ";
+                    tempsql += lh.IDEscalafon.ToString() + ", ";
+                    tempsql += lh.IDEscalafonEmpleado.ToString() + ", ";
+                    tempsql += lh.NroEmpleado.ToString() + ")";
+                    database.ExecuteCommand(tempsql, null);
+                    nombreTabla = database.Connection.Database + ".horarioescalafon";
+                    campos = obtenerColumnasDeTabla(nombreTabla);
+                    sqlhorariodia = "INSERT INTO " + nombreTabla + "(";
+                    foreach (string columna in campos)
+                    {
+                        if (campos.Last<string>().Equals(columna))
+                            sqlhorariodia += columna + ") ";
+                        else
+                            sqlhorariodia += columna + ", ";
+                    }
+                    sqlhorariodia += " VALUES (";
+                    foreach (HoRaRioEScalaFOn dh in lh.HoRaRioEScalaFOn)
+                    {
+                        tempsql = sqlhorariodia;
+                        tempsql += "'" + dh.DiA + "', ";
+                        tempsql += "'" + dh.HoRaFIn + "', ";
+                        tempsql += "'" + dh.HoRaInI + "', ";
+                        tempsql += dh.IDEscalafon.ToString() + ", ";
+                        tempsql += dh.IDEscalafonEmpleado.ToString() + ", ";
+                        tempsql += dh.TipoDia.ToString() + ")";
+                        database.ExecuteCommand(tempsql, null);
+                    }
+
+                }
+                database.Transaction.Commit();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                //database.SubmitChanges();
+            }
+            catch (MySqlException ex)
+            {
+                //database.Refresh(System.Data.Linq.RefreshMode.KeepCurrentValues);
+                // database.Connection.Close();
+                database.Transaction.Rollback();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                if (ex.Number == 1062)
+                {
+                    // int index = database.GetChangeSet().Inserts.IndexOf(cliente);
+                    // database.GetChangeSet().Inserts.RemoveAt(index);
+                    database.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues);
+                }
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                database.Transaction.Rollback();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                throw ex;
+            }
+        }
+        public void modificarEscalafon(EScalaFOn escal)
+        {
+            Table<EScalaFOn> tabla = database.EScalaFOn;
+            try
+            {
+                EScalaFOn es = (from reg in tabla
+                                where reg.IDEscalafon == escal.IDEscalafon
+                                select reg).Single();
+                es.EScalaFOneMpLeadO = escal.EScalaFOneMpLeadO;
+                es.Cubierto = escal.Cubierto;
+
+                database.SubmitChanges();
+                   
+            }
+            
+            catch (Exception ex)
+            {                
+                throw ex;
+            }
+
+        }
         
     }
 

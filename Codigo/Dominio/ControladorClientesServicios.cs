@@ -371,8 +371,154 @@ namespace Logica
             }
 
             datos.guardarLineasContrato(lhs);
-        }
-        
+        }       
 
+        public void altaEscalafon(int numCli, int numSer, int nroCon, Escalafon es)
+        {
+            EScalaFOn esc = null;
+
+            esc = new EScalaFOn();
+            esc.NumeroCliente = (uint)numCli;
+            esc.NumeroServicio = (uint)numSer;
+            esc.IDContrato = (uint)nroCon;
+            esc.IDEscalafon = (uint)nroCon;
+
+            if (es.Cubierto)
+                esc.Cubierto = 1;
+            else
+                esc.Cubierto = 0;
+
+            List<EScalaFOneMpLeadO> lhs = new List<EScalaFOneMpLeadO>();
+            EScalaFOneMpLeadO lh = null;            
+            int i=0;
+            foreach (EscalafonEmpleado ldh in es.ListaEscalafonEmpleados)
+            {
+                lh = new EScalaFOneMpLeadO();
+                lh.IDEscalafon = (uint)nroCon;
+                lh.IDEscalafonEmpleado = (uint)i;
+                lh.NroEmpleado = (uint)ldh.NroEmpleado;
+                lh.CodigoPuesto  = ldh.CodigoPuesto;
+                lh.HsLlamadaAntesHoraInicio = (sbyte)ldh.CantidadHsLlamadaAntesHoraInicio;
+                lh.AcArgoDe = ldh.AcargoDe;
+                
+                //pasar los horarios por dia
+                HoRaRioEScalaFOn hd = null;
+                foreach (HorarioEscalafon hpd in ldh.Horario)
+                {
+                    hd = new HoRaRioEScalaFOn();
+                    hd.IDEscalafon = (uint)nroCon;
+                    hd.IDEscalafonEmpleado = (uint)i;
+                    if (hpd.EsLaborable())
+                    {
+                        hd.DiA = hpd.getDia();
+                        hd.HoRaInI = hpd.getHoraIni();
+                        hd.HoRaFIn = hpd.getHoraFin();
+                        hd.TipoDia = 0;
+                    }
+                    else
+                    {
+                        hd.DiA = hpd.getDia();
+                        hd.TipoDia = (byte)hpd.getTipoDia();
+                    }
+
+                    lh.HoRaRioEScalaFOn.Add(hd);
+                }
+                
+                lhs.Add(lh);
+                //con.LineAshOrAs.Add(lh);
+                i++;
+            }
+
+            datos.altaEscalafon(esc, lhs);
+        }
+
+        public void modificarEscalafon(int nroEsc, Escalafon es)
+        {
+            datos.eliminarLineasEscalafon(nroEsc);
+            EScalaFOn escalafonSave = datos.obtenerEscalafon(nroEsc);
+            
+            EntitySet<EScalaFOneMpLeadO> lhs = new EntitySet<EScalaFOneMpLeadO>();
+            EScalaFOneMpLeadO lh = null;
+            
+            int i = 0;
+            foreach (EscalafonEmpleado ldh in es.ListaEscalafonEmpleados)
+            {
+                
+                lh = new EScalaFOneMpLeadO();
+                lh.IDEscalafon = (uint)nroEsc;
+                lh.IDEscalafonEmpleado = (uint)i;
+                lh.NroEmpleado = (uint)ldh.NroEmpleado;
+                lh.CodigoPuesto = ldh.CodigoPuesto;
+                lh.HsLlamadaAntesHoraInicio = (sbyte)ldh.CantidadHsLlamadaAntesHoraInicio;
+                lh.AcArgoDe = ldh.AcargoDe;
+
+                //pasar los horarios por dia
+                HoRaRioEScalaFOn hd = null;
+                foreach (HorarioEscalafon hpd in ldh.Horario)
+                {
+                    hd = new HoRaRioEScalaFOn();
+                    hd.IDEscalafon = (uint)nroEsc;
+                    hd.IDEscalafonEmpleado = (uint)i;
+                    if (hpd.EsLaborable())
+                    {
+                        hd.DiA = hpd.getDia();
+                        hd.HoRaInI = hpd.getHoraIni();
+                        hd.HoRaFIn = hpd.getHoraFin();
+                        hd.TipoDia = 0;
+                    }
+                    else
+                    {
+                        hd.DiA = hpd.getDia();
+                        hd.TipoDia = (byte)hpd.getTipoDia();
+                    }
+
+                    lh.HoRaRioEScalaFOn.Add(hd);
+                }
+
+                lhs.Add(lh);
+                //con.LineAshOrAs.Add(lh);
+                i++;
+            }
+            escalafonSave.EScalaFOneMpLeadO = lhs;
+            datos.modificarEscalafon(escalafonSave);
+        }
+
+        public Escalafon getEscalafon(int nroEsc)
+        {
+            EScalaFOn esc = datos.obtenerEscalafon(nroEsc);
+            
+            Escalafon aux = new Escalafon();
+            aux.Cubierto = esc.Cubierto == 1;
+            aux.ListaEscalafonEmpleados = new List<EscalafonEmpleado>();
+            
+            EscalafonEmpleado lhs = null;
+            HorarioEscalafon hor = null;
+
+            foreach (EScalaFOneMpLeadO lh in esc.EScalaFOneMpLeadO)
+            {
+                lhs = new EscalafonEmpleado();
+                lhs.NroEmpleado = (int)lh.NroEmpleado;
+                lhs.CodigoPuesto = lh.CodigoPuesto;
+                lhs.CantidadHsLlamadaAntesHoraInicio = lh.HsLlamadaAntesHoraInicio;
+                lhs.AcargoDe = lh.AcArgoDe;
+                lhs.Horario = new List<HorarioEscalafon>();
+                
+                foreach (HoRaRioEScalaFOn h in lh.HoRaRioEScalaFOn)
+                {
+                    if (h.IDEscalafon == lh.IDEscalafon && h.IDEscalafonEmpleado == lh.IDEscalafonEmpleado)
+                    {
+                        if (h.TipoDia == 0)
+                            hor = new HorarioEscalafon(h.DiA, h.HoRaInI, h.HoRaFIn);
+                        else
+                            hor = new HorarioEscalafon(h.DiA, (int)h.TipoDia);
+                        
+                        lhs.Horario.Add(hor);
+                    }
+                }
+                aux.ListaEscalafonEmpleados.Add(lhs);
+            }
+
+            return aux;
+        }
     }
 }

@@ -5,12 +5,13 @@ using System.Text;
 
 namespace Logica
 {
-    class Escalafon
+    public class Escalafon
     {
         public Contrato ContratoServicio { set; get; }
         public Servicio ServicioCliente { set; get; }
+        public bool Cubierto { set; get; }
 
-        public List<EscalafonEmpleado> ListaEscalafonEmpleados { set; get; }
+        public List<EscalafonEmpleado> ListaEscalafonEmpleados;
 
 
     }

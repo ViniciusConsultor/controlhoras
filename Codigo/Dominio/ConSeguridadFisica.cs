@@ -92,7 +92,7 @@ namespace Logica
             {
                 foreach (HorarioXDia h in l.getHorario())
                 {
-                    horas[toint(h.getDia())] = horas[toint(h.getDia())] + h.getCantHoras();
+                    horas[toint(h.getDia())] = horas[toint(h.getDia())] + TimeSpan.FromTicks(h.getCantHoras().Ticks * l.getCantEmp());
                 }
             }
             return horas;
