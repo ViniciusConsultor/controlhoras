@@ -403,12 +403,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EscalafonForm.resx">
       <DependentUpon>EscalafonForm.cs</DependentUpon>
+	  <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABMTiposMotivoCambioDiario.resx">
       <DependentUpon>ABMTiposMotivoCambioDiario.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    </EmbeddedResource>     
     <EmbeddedResource Include="ExportToExcel.resx">
       <DependentUpon>ExportToExcel.cs</DependentUpon>
       <SubType>Designer</SubType>
