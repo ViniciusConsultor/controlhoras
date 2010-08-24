@@ -36,7 +36,7 @@ namespace ControlHoras
             InitializeComponent();
             if (!this.DesignMode)
             {
-                sistema = ControladorClientesServicios.getInstance();
+            
             }
             find = false;
         }
@@ -57,6 +57,7 @@ namespace ControlHoras
             {
                 try
                 {
+                    sistema = ControladorClientesServicios.getInstance();
                     Cliente cli = sistema.obtenerCliente(int.Parse(ClienteMT.Text));
                     ClienteTB.Text = cli.getNombre();                    
                     //SendKeys.Send("{TAB}");
@@ -120,6 +121,8 @@ namespace ControlHoras
 
 
         #endregion
+
+
 
 
 

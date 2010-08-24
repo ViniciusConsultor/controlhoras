@@ -360,5 +360,21 @@ namespace ControlHoras
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void tiposMotivosCambioDiarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ABMTiposMotivoCambioDiario depa = ABMTiposMotivoCambioDiario.getVentana();
+                if (depa.Visible == false)
+                    depa.Show(this);
+                else
+                    depa.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

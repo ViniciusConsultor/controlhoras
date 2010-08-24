@@ -29,79 +29,52 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.mtServicio = new System.Windows.Forms.MaskedTextBox();
-            this.mtCliente = new System.Windows.Forms.MaskedTextBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtServicio = new System.Windows.Forms.TextBox();
-            this.txtCliente = new System.Windows.Forms.TextBox();
             this.dgvHoras = new System.Windows.Forms.DataGridView();
             this.menuStripdgvHoras = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cambiarFuncionario = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.cambiarHoraIngreso = new System.Windows.Forms.ToolStripMenuItem();
-            this.cambiarHoraFin = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.cancelarSalidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambiarHoraEntrada = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambiarHoraSalida = new System.Windows.Forms.ToolStripMenuItem();
+            this.agregarFuncionario = new System.Windows.Forms.ToolStripMenuItem();
             this.mtFecha = new System.Windows.Forms.MaskedTextBox();
             this.btnDiaSiguiente = new System.Windows.Forms.Button();
             this.btnDiaAnterior = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.maskedTextBoxColumn1 = new ControlHoras.MaskedTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maskedTextBoxColumn2 = new ControlHoras.MaskedTextBoxColumn();
+            this.maskedTextBoxColumn3 = new ControlHoras.MaskedTextBoxColumn();
+            this.mtServicio = new ControlHoras.MaskedTextBoxKeyDown();
+            this.ucCliente = new ControlHoras.BúsquedaCliente();
+            this.IdHorasGeneradasEscalafon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NroEmpleado = new ControlHoras.MaskedTextBoxColumn();
+            this.Funcionario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HoraEntrada = new ControlHoras.MaskedTextBoxColumn();
+            this.HoraSalida = new ControlHoras.MaskedTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHoras)).BeginInit();
             this.menuStripdgvHoras.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // mtServicio
-            // 
-            this.mtServicio.BackColor = System.Drawing.SystemColors.Window;
-            this.mtServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtServicio.Location = new System.Drawing.Point(24, 75);
-            this.mtServicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.mtServicio.Mask = "9990";
-            this.mtServicio.Name = "mtServicio";
-            this.mtServicio.Size = new System.Drawing.Size(57, 25);
-            this.mtServicio.TabIndex = 2;
-            //this.mtServicio.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtServicio_KeyDown);
-            //this.mtServicio.Leave += new System.EventHandler(this.mtServicio_Leave);
-            //this.mtServicio.Enter += new System.EventHandler(this.mtServicio_Enter);
-            // 
-            // mtCliente
-            // 
-            this.mtCliente.AllowPromptAsInput = false;
-            this.mtCliente.BackColor = System.Drawing.SystemColors.Window;
-            this.mtCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtCliente.Location = new System.Drawing.Point(24, 42);
-            this.mtCliente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.mtCliente.Mask = "0000";
-            this.mtCliente.Name = "mtCliente";
-            this.mtCliente.Size = new System.Drawing.Size(57, 25);
-            this.mtCliente.TabIndex = 1;
-            //this.mtCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtCliente_KeyDown);            
-            //this.mtCliente.Leave += new System.EventHandler(this.mtCliente_Leave);
-            //this.mtCliente.Enter += new System.EventHandler(this.mtCliente_Enter);
             // 
             // txtServicio
             // 
             this.txtServicio.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtServicio.Location = new System.Drawing.Point(91, 76);
-            this.txtServicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtServicio.Location = new System.Drawing.Point(62, 65);
             this.txtServicio.Name = "txtServicio";
             this.txtServicio.ReadOnly = true;
-            this.txtServicio.Size = new System.Drawing.Size(481, 25);
-            this.txtServicio.TabIndex = 10;
+            this.txtServicio.Size = new System.Drawing.Size(362, 22);
+            this.txtServicio.TabIndex = 1;
             this.txtServicio.TabStop = false;
-            // 
-            // txtCliente
-            // 
-            this.txtCliente.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCliente.Location = new System.Drawing.Point(91, 43);
-            this.txtCliente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtCliente.Name = "txtCliente";
-            this.txtCliente.ReadOnly = true;
-            this.txtCliente.Size = new System.Drawing.Size(481, 25);
-            this.txtCliente.TabIndex = 12;
-            this.txtCliente.TabStop = false;
             // 
             // dgvHoras
             // 
@@ -109,19 +82,33 @@
             this.dgvHoras.AllowUserToDeleteRows = false;
             this.dgvHoras.AllowUserToResizeColumns = false;
             this.dgvHoras.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvHoras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvHoras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvHoras.Location = new System.Drawing.Point(16, 155);
-            this.dgvHoras.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvHoras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdHorasGeneradasEscalafon,
+            this.NroEmpleado,
+            this.Funcionario,
+            this.HoraEntrada,
+            this.HoraSalida});
+            this.dgvHoras.ContextMenuStrip = this.menuStripdgvHoras;
+            this.dgvHoras.Location = new System.Drawing.Point(12, 126);
             this.dgvHoras.MultiSelect = false;
             this.dgvHoras.Name = "dgvHoras";
             this.dgvHoras.ReadOnly = true;
             this.dgvHoras.RowHeadersVisible = false;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvHoras.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvHoras.RowTemplate.Height = 24;
             this.dgvHoras.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHoras.Size = new System.Drawing.Size(751, 287);
-            this.dgvHoras.TabIndex = 6;
-            //this.dgvHoras.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvHoras_CellMouseClick);
-            //this.dgvHoras.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvHoras_CellMouseDoubleClick);
+            this.dgvHoras.Size = new System.Drawing.Size(563, 239);
+            this.dgvHoras.TabIndex = 0;
             // 
             // menuStripdgvHoras
             // 
@@ -129,120 +116,239 @@
             this.menuStripdgvHoras.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cambiarFuncionario,
             this.toolStripSeparator2,
-            this.cambiarHoraIngreso,
-            this.cambiarHoraFin,
-            this.toolStripSeparator1,
-            this.toolStripMenuItem1,
-            this.cancelarSalidaToolStripMenuItem});
+            this.cambiarHoraEntrada,
+            this.cambiarHoraSalida,
+            this.agregarFuncionario});
             this.menuStripdgvHoras.Name = "menuStripdgvHoras";
             this.menuStripdgvHoras.ShowImageMargin = false;
-            this.menuStripdgvHoras.Size = new System.Drawing.Size(199, 126);
+            this.menuStripdgvHoras.Size = new System.Drawing.Size(167, 98);
             // 
             // cambiarFuncionario
             // 
             this.cambiarFuncionario.Name = "cambiarFuncionario";
-            this.cambiarFuncionario.Size = new System.Drawing.Size(198, 22);
+            this.cambiarFuncionario.Size = new System.Drawing.Size(166, 22);
             this.cambiarFuncionario.Text = "Cambiar Funcionario";
-            //this.cambiarFuncionario.Click += new System.EventHandler(this.cambiarFuncionario_Click);
+            this.cambiarFuncionario.Click += new System.EventHandler(this.cambiarFuncionario_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(195, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(163, 6);
             // 
-            // cambiarHoraIngreso
+            // cambiarHoraEntrada
             // 
-            this.cambiarHoraIngreso.Name = "cambiarHoraIngreso";
-            this.cambiarHoraIngreso.Size = new System.Drawing.Size(198, 22);
-            this.cambiarHoraIngreso.Text = "Cambiar Hora Ingreso";
-            //this.cambiarHoraIngreso.Click += new System.EventHandler(this.cambiarHoraIngreso_Click);
+            this.cambiarHoraEntrada.Name = "cambiarHoraEntrada";
+            this.cambiarHoraEntrada.Size = new System.Drawing.Size(166, 22);
+            this.cambiarHoraEntrada.Text = "Cambiar Hora Entrada";
+            this.cambiarHoraEntrada.Click += new System.EventHandler(this.cambiarHoraEntrada_Click);
             // 
-            // cambiarHoraFin
+            // cambiarHoraSalida
             // 
-            this.cambiarHoraFin.Name = "cambiarHoraFin";
-            this.cambiarHoraFin.Size = new System.Drawing.Size(198, 22);
-            this.cambiarHoraFin.Text = "Cambiar Hora Fin";
-            //this.cambiarHoraFin.Click += new System.EventHandler(this.cambiarHoraFin_Click);
+            this.cambiarHoraSalida.Name = "cambiarHoraSalida";
+            this.cambiarHoraSalida.Size = new System.Drawing.Size(166, 22);
+            this.cambiarHoraSalida.Text = "Cambiar Hora Salida";
+            this.cambiarHoraSalida.Click += new System.EventHandler(this.cambiarHoraSalida_Click);
             // 
-            // toolStripSeparator1
+            // agregarFuncionario
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(195, 6);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.White;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(198, 22);
-            this.toolStripMenuItem1.Text = "Cancelar Entrada";
-            //this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
-            // cancelarSalidaToolStripMenuItem
-            // 
-            this.cancelarSalidaToolStripMenuItem.Name = "cancelarSalidaToolStripMenuItem";
-            this.cancelarSalidaToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.cancelarSalidaToolStripMenuItem.Text = "Cancelar Salida";
-            //this.cancelarSalidaToolStripMenuItem.Click += new System.EventHandler(this.cancelarSalidaToolStripMenuItem_Click);
+            this.agregarFuncionario.Name = "agregarFuncionario";
+            this.agregarFuncionario.Size = new System.Drawing.Size(166, 22);
+            this.agregarFuncionario.Text = "Agregar Funcionario";
+            this.agregarFuncionario.Click += new System.EventHandler(this.agregarFuncionario_Click);
             // 
             // mtFecha
             // 
             this.mtFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtFecha.Location = new System.Drawing.Point(16, 123);
-            this.mtFecha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mtFecha.Location = new System.Drawing.Point(12, 100);
             this.mtFecha.Mask = "00/00/0000";
             this.mtFecha.Name = "mtFecha";
-            this.mtFecha.Size = new System.Drawing.Size(92, 25);
-            this.mtFecha.TabIndex = 3;
+            this.mtFecha.Size = new System.Drawing.Size(70, 22);
+            this.mtFecha.TabIndex = 2;
             this.mtFecha.ValidatingType = typeof(System.DateTime);
-            //this.mtFecha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtFecha_KeyDown);
-            //this.mtFecha.Leave += new System.EventHandler(this.mtFecha_Leave);
-            //this.mtFecha.Enter += new System.EventHandler(this.mtFecha_Enter);
+            this.mtFecha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtFecha_KeyDown);
             // 
             // btnDiaSiguiente
             // 
-            this.btnDiaSiguiente.Location = new System.Drawing.Point(163, 123);
-            this.btnDiaSiguiente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDiaSiguiente.Location = new System.Drawing.Point(122, 100);
             this.btnDiaSiguiente.Name = "btnDiaSiguiente";
-            this.btnDiaSiguiente.Size = new System.Drawing.Size(37, 28);
+            this.btnDiaSiguiente.Size = new System.Drawing.Size(28, 23);
             this.btnDiaSiguiente.TabIndex = 5;
             this.btnDiaSiguiente.Text = ">";
             this.btnDiaSiguiente.UseVisualStyleBackColor = true;
-            //this.btnDiaSiguiente.Click += new System.EventHandler(this.btnDiaSiguiente_Click);
             // 
             // btnDiaAnterior
             // 
-            this.btnDiaAnterior.Location = new System.Drawing.Point(117, 123);
-            this.btnDiaAnterior.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDiaAnterior.Location = new System.Drawing.Point(88, 100);
             this.btnDiaAnterior.Name = "btnDiaAnterior";
-            this.btnDiaAnterior.Size = new System.Drawing.Size(37, 28);
+            this.btnDiaAnterior.Size = new System.Drawing.Size(28, 23);
             this.btnDiaAnterior.TabIndex = 4;
             this.btnDiaAnterior.Text = "<";
             this.btnDiaAnterior.UseVisualStyleBackColor = true;
-            //this.btnDiaAnterior.Click += new System.EventHandler(this.btnDiaAnterior_Click);
             // 
             // toolStrip1
             // 
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(783, 25);
-            this.toolStrip1.TabIndex = 13;
+            this.toolStrip1.Size = new System.Drawing.Size(587, 25);
+            this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // maskedTextBoxColumn1
+            // 
+            dataGridViewCellStyle7.Format = "0000";
+            this.maskedTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle7;
+            this.maskedTextBoxColumn1.Frozen = true;
+            this.maskedTextBoxColumn1.HeaderText = "Nro Empleado";
+            this.maskedTextBoxColumn1.IncludeLiterals = false;
+            this.maskedTextBoxColumn1.IncludePrompt = false;
+            this.maskedTextBoxColumn1.Mask = null;
+            this.maskedTextBoxColumn1.Name = "maskedTextBoxColumn1";
+            this.maskedTextBoxColumn1.PromptChar = '\0';
+            this.maskedTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.maskedTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.maskedTextBoxColumn1.ValidatingType = null;
+            this.maskedTextBoxColumn1.Width = 104;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.Frozen = true;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Funcionario";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 250;
+            // 
+            // maskedTextBoxColumn2
+            // 
+            dataGridViewCellStyle8.Format = "00:00";
+            dataGridViewCellStyle8.NullValue = null;
+            this.maskedTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle8;
+            this.maskedTextBoxColumn2.Frozen = true;
+            this.maskedTextBoxColumn2.HeaderText = "Hora Entrada";
+            this.maskedTextBoxColumn2.IncludeLiterals = false;
+            this.maskedTextBoxColumn2.IncludePrompt = false;
+            this.maskedTextBoxColumn2.Mask = null;
+            this.maskedTextBoxColumn2.Name = "maskedTextBoxColumn2";
+            this.maskedTextBoxColumn2.PromptChar = '\0';
+            this.maskedTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.maskedTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.maskedTextBoxColumn2.ValidatingType = null;
+            // 
+            // maskedTextBoxColumn3
+            // 
+            dataGridViewCellStyle9.Format = "00:00";
+            this.maskedTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle9;
+            this.maskedTextBoxColumn3.Frozen = true;
+            this.maskedTextBoxColumn3.HeaderText = "Hora Salida";
+            this.maskedTextBoxColumn3.IncludeLiterals = false;
+            this.maskedTextBoxColumn3.IncludePrompt = false;
+            this.maskedTextBoxColumn3.Mask = null;
+            this.maskedTextBoxColumn3.Name = "maskedTextBoxColumn3";
+            this.maskedTextBoxColumn3.PromptChar = '\0';
+            this.maskedTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.maskedTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.maskedTextBoxColumn3.ValidatingType = null;
+            // 
+            // mtServicio
+            // 
+            this.mtServicio.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludePrompt;
+            this.mtServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mtServicio.Location = new System.Drawing.Point(12, 65);
+            this.mtServicio.Mask = "9990";
+            this.mtServicio.Name = "mtServicio";
+            this.mtServicio.Size = new System.Drawing.Size(44, 22);
+            this.mtServicio.TabIndex = 1;
+            this.mtServicio.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtServicio.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtServicio_KeyDown);
+            // 
+            // ucCliente
+            // 
+            this.ucCliente.ClienteNRO = "";
+            this.ucCliente.Location = new System.Drawing.Point(11, 27);
+            this.ucCliente.Margin = new System.Windows.Forms.Padding(2);
+            this.ucCliente.Name = "ucCliente";
+            this.ucCliente.Size = new System.Drawing.Size(418, 41);
+            this.ucCliente.TabIndex = 0;
+            // 
+            // IdHorasGeneradasEscalafon
+            // 
+            this.IdHorasGeneradasEscalafon.Frozen = true;
+            this.IdHorasGeneradasEscalafon.HeaderText = "IdHorasGeneradasEscalafon";
+            this.IdHorasGeneradasEscalafon.Name = "IdHorasGeneradasEscalafon";
+            this.IdHorasGeneradasEscalafon.ReadOnly = true;
+            this.IdHorasGeneradasEscalafon.Visible = false;
+            // 
+            // NroEmpleado
+            // 
+            dataGridViewCellStyle2.Format = "0000";
+            this.NroEmpleado.DefaultCellStyle = dataGridViewCellStyle2;
+            this.NroEmpleado.Frozen = true;
+            this.NroEmpleado.HeaderText = "Nro Empleado";
+            this.NroEmpleado.IncludeLiterals = false;
+            this.NroEmpleado.IncludePrompt = false;
+            this.NroEmpleado.Mask = null;
+            this.NroEmpleado.Name = "NroEmpleado";
+            this.NroEmpleado.PromptChar = '\0';
+            this.NroEmpleado.ReadOnly = true;
+            this.NroEmpleado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NroEmpleado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.NroEmpleado.ValidatingType = null;
+            this.NroEmpleado.Width = 104;
+            // 
+            // Funcionario
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Funcionario.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Funcionario.Frozen = true;
+            this.Funcionario.HeaderText = "Funcionario";
+            this.Funcionario.Name = "Funcionario";
+            this.Funcionario.ReadOnly = true;
+            this.Funcionario.Width = 250;
+            // 
+            // HoraEntrada
+            // 
+            dataGridViewCellStyle4.Format = "00:00";
+            dataGridViewCellStyle4.NullValue = null;
+            this.HoraEntrada.DefaultCellStyle = dataGridViewCellStyle4;
+            this.HoraEntrada.Frozen = true;
+            this.HoraEntrada.HeaderText = "Hora Entrada";
+            this.HoraEntrada.IncludeLiterals = false;
+            this.HoraEntrada.IncludePrompt = false;
+            this.HoraEntrada.Mask = null;
+            this.HoraEntrada.Name = "HoraEntrada";
+            this.HoraEntrada.PromptChar = '\0';
+            this.HoraEntrada.ReadOnly = true;
+            this.HoraEntrada.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.HoraEntrada.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.HoraEntrada.ValidatingType = null;
+            // 
+            // HoraSalida
+            // 
+            dataGridViewCellStyle5.Format = "00:00";
+            this.HoraSalida.DefaultCellStyle = dataGridViewCellStyle5;
+            this.HoraSalida.Frozen = true;
+            this.HoraSalida.HeaderText = "Hora Salida";
+            this.HoraSalida.IncludeLiterals = false;
+            this.HoraSalida.IncludePrompt = false;
+            this.HoraSalida.Mask = null;
+            this.HoraSalida.Name = "HoraSalida";
+            this.HoraSalida.PromptChar = '\0';
+            this.HoraSalida.ReadOnly = true;
+            this.HoraSalida.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.HoraSalida.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.HoraSalida.ValidatingType = null;
             // 
             // ControlDiario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(783, 464);
+            this.ClientSize = new System.Drawing.Size(587, 377);
+            this.Controls.Add(this.mtServicio);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.mtFecha);
             this.Controls.Add(this.btnDiaAnterior);
             this.Controls.Add(this.dgvHoras);
-            this.Controls.Add(this.mtServicio);
-            this.Controls.Add(this.mtCliente);
             this.Controls.Add(this.btnDiaSiguiente);
             this.Controls.Add(this.txtServicio);
-            this.Controls.Add(this.txtCliente);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Controls.Add(this.ucCliente);
             this.Name = "ControlDiario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ControlDiario";
@@ -255,22 +361,28 @@
 
         #endregion
 
-        private System.Windows.Forms.MaskedTextBox mtServicio;
-        private System.Windows.Forms.MaskedTextBox mtCliente;
         private System.Windows.Forms.TextBox txtServicio;
-        private System.Windows.Forms.TextBox txtCliente;
         private System.Windows.Forms.DataGridView dgvHoras;
         private System.Windows.Forms.ContextMenuStrip menuStripdgvHoras;
         private System.Windows.Forms.ToolStripMenuItem cambiarFuncionario;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem cambiarHoraIngreso;
-        private System.Windows.Forms.ToolStripMenuItem cambiarHoraFin;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem cambiarHoraEntrada;
+        private System.Windows.Forms.ToolStripMenuItem cambiarHoraSalida;
         private System.Windows.Forms.MaskedTextBox mtFecha;
-        private System.Windows.Forms.ToolStripMenuItem cancelarSalidaToolStripMenuItem;
         private System.Windows.Forms.Button btnDiaSiguiente;
         private System.Windows.Forms.Button btnDiaAnterior;
         private System.Windows.Forms.ToolStrip toolStrip1;
+        private MaskedTextBoxKeyDown mtServicio;
+        private BúsquedaCliente ucCliente;
+        private MaskedTextBoxColumn maskedTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private MaskedTextBoxColumn maskedTextBoxColumn2;
+        private MaskedTextBoxColumn maskedTextBoxColumn3;
+        private System.Windows.Forms.ToolStripMenuItem agregarFuncionario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdHorasGeneradasEscalafon;
+        private MaskedTextBoxColumn NroEmpleado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Funcionario;
+        private MaskedTextBoxColumn HoraEntrada;
+        private MaskedTextBoxColumn HoraSalida;
     }
 }
