@@ -226,77 +226,84 @@ namespace ControlHoras
             NroMTB.Text = ser.getNumero().ToString();
             NombreTB.Text = ser.getNombre();
 
-            
-            ConSeguridadFisica con = null;
-            int nroCon = CalcNroContrato(numCli, numSer);
-            if (datos.existeContrato(nroCon))
+
+            try
             {
-                con = sistema.getContrato(CalcNroContrato(numCli, numSer));
-
-                FIniMTB.Text = con.getFechaIni().ToString();
-                if (con.getFechaFin() != null)
+                ConSeguridadFisica con = null;
+                int nroCon = CalcNroContrato(numCli, numSer);
+                if (datos.existeContrato(nroCon))
                 {
-                    FinCKB.Checked = true;
-                    FFinMTB.Text = con.getFechaFin().ToString();
-                }
-                if(con.GetCostoFijo())
-                    CostoCB.SelectedIndex = 1;
-                else
-                    CostoCB.SelectedIndex = 0;
-                if (con.getHorasExtras())
-                    HorasExtrasCHK.Checked = true;
-                AjusteTB.Text = con.getAjuste();
-                ObsTB.Text = con.getObservaciones();
-                MontoTB.Text = con.getMonto().ToString();
+                    con = sistema.getContrato(CalcNroContrato(numCli, numSer));
 
-                int i = 0;
-                DataGridViewRow insr = null;
-                foreach (LineaDeHoras l in con.getLineas())
-                {
-                    insr = new DataGridViewRow();
-                    object[] param = { l.getPuesto(), (l.getArmado())? "1":"0", l.getCantEmp().ToString(),"$U " + l.getCostoH().ToString()};
-                    
-                    insr.CreateCells( CargaHorariaDGV, param);
-
-                    CargaHorariaDGV.Rows.Add(insr);
-
-                    foreach (HorarioXDia h in l.getHorario())
+                    FIniMTB.Text = con.getFechaIni().ToString();
+                    if (con.getFechaFin() != null)
                     {
-                        CargaHorariaDGV.Rows[i].Cells[h.getDia()].Value = h.getHoraIni() + " a " + h.getHoraFin();
-                        //insr.Cells[h.getDia()].Value = h.getHoraIni() + " a " + h.getHoraFin();
+                        FinCKB.Checked = true;
+                        FFinMTB.Text = con.getFechaFin().ToString();
                     }
-                    
-                    // Carga los N/T
-                    for (int j=4; j < 11; j++)
+                    if (con.GetCostoFijo())
+                        CostoCB.SelectedIndex = 1;
+                    else
+                        CostoCB.SelectedIndex = 0;
+                    if (con.getHorasExtras())
+                        HorasExtrasCHK.Checked = true;
+                    AjusteTB.Text = con.getAjuste();
+                    ObsTB.Text = con.getObservaciones();
+                    MontoTB.Text = con.getMonto().ToString();
+
+                    int i = 0;
+                    DataGridViewRow insr = null;
+                    foreach (LineaDeHoras l in con.getLineas())
                     {
-                        if (CargaHorariaDGV.Rows[i].Cells[j].Value == null)
-                            CargaHorariaDGV.Rows[i].Cells[j].Value = @"N/T";
+                        insr = new DataGridViewRow();
+                        object[] param = { l.getPuesto(), (l.getArmado()) ? "1" : "0", l.getCantEmp().ToString(), "$U " + l.getCostoH().ToString() };
+
+                        insr.CreateCells(CargaHorariaDGV, param);
+
+                        CargaHorariaDGV.Rows.Add(insr);
+
+                        foreach (HorarioXDia h in l.getHorario())
+                        {
+                            CargaHorariaDGV.Rows[i].Cells[h.getDia()].Value = h.getHoraIni() + " a " + h.getHoraFin();
+                            //insr.Cells[h.getDia()].Value = h.getHoraIni() + " a " + h.getHoraFin();
+                        }
+
+                        // Carga los N/T
+                        for (int j = 4; j < 11; j++)
+                        {
+                            if (CargaHorariaDGV.Rows[i].Cells[j].Value == null)
+                                CargaHorariaDGV.Rows[i].Cells[j].Value = @"N/T";
+                        }
+
+                        i++;
+
                     }
-                                        
-                    i++;                  
-                    
+                    /*
+                    con = datos.obtenerContrato(CalcNroContrato(numCli, numSer));
+                    FIniMTB.Text=con.FechaIni.ToString();
+                    if (con.FechaFin != null)
+                    {
+                        FinCKB.Checked=true;
+                        FFinMTB.Text=con.FechaFin.ToString();
+                    }
+                    if (con.CostoFijo == 1)
+                        CostoCB.SelectedIndex = 1;
+                    else
+                        CostoCB.SelectedIndex = 0;
+                    if (con.HorasExtras==1)
+                        HorasExtrasCHK.Checked=true;
+                    AjusteTB.Text=con.Ajuste;
+                    ObsTB.Text=con.Observaciones;
+                    MontoTB.Text=con.Costo.ToString();
+                    */
                 }
-                /*
-                con = datos.obtenerContrato(CalcNroContrato(numCli, numSer));
-                FIniMTB.Text=con.FechaIni.ToString();
-                if (con.FechaFin != null)
-                {
-                    FinCKB.Checked=true;
-                    FFinMTB.Text=con.FechaFin.ToString();
-                }
-                if (con.CostoFijo == 1)
-                    CostoCB.SelectedIndex = 1;
-                else
-                    CostoCB.SelectedIndex = 0;
-                if (con.HorasExtras==1)
-                    HorasExtrasCHK.Checked=true;
-                AjusteTB.Text=con.Ajuste;
-                ObsTB.Text=con.Observaciones;
-                MontoTB.Text=con.Costo.ToString();
-                */
+                //else
+                //    FIniMTB.Focus();
             }
-            //else
-            //    FIniMTB.Focus();            
+            catch (Exception ex)
+            {                
+               MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }            
         }
 
         private void AnteriorBTN_Click(object sender, EventArgs e)

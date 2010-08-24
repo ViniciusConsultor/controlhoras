@@ -73,7 +73,6 @@
     <Compile Include="IClientesServicios.cs" />
     <Compile Include="IEmpleados.cs" />
     <Compile Include="LineaDeHoras.cs" />
-    <Compile Include="LineasEscalafon.cs" />
     <Compile Include="Servicio.cs" />
     <Compile Include="TipoEmpleado.cs" />
     <Compile Include="TipoEmpleadoJornalero.cs" />

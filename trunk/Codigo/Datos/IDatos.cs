@@ -247,5 +247,18 @@ namespace Datos
         void altaEmpleadoDesdeListaNegra(string CI, string nroEmpleado, string apellidos, string nombres, string observaciones);
 
         int obtenerMaxIdCliente();
+
+        bool existeEscalafon(int nroCon);
+
+        void altaEscalafon(EScalaFOn esc, List<EScalaFOneMpLeadO> lhs);
+
+        string getNombreEmpleado(int NroEmpleado);
+
+        EScalaFOn obtenerEscalafon(int NroEscalafon);
+
+        void eliminarLineasEscalafon(int NroEscalafon);
+
+        void guardarLineasEscalafon(List<EScalaFOneMpLeadO> lineas);
+        void modificarEscalafon(EScalaFOn escal);
     }
 }

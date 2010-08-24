@@ -43,6 +43,8 @@
             this.horafin = new System.Windows.Forms.TextBox();
             this.difbtn = new System.Windows.Forms.Button();
             this.result = new System.Windows.Forms.TextBox();
+            this.res2TB = new System.Windows.Forms.TextBox();
+            this.res3TB = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -153,16 +155,32 @@
             // 
             // result
             // 
-            this.result.Location = new System.Drawing.Point(403, 313);
+            this.result.Location = new System.Drawing.Point(336, 313);
             this.result.Name = "result";
             this.result.Size = new System.Drawing.Size(100, 22);
             this.result.TabIndex = 9;
+            // 
+            // res2TB
+            // 
+            this.res2TB.Location = new System.Drawing.Point(469, 313);
+            this.res2TB.Name = "res2TB";
+            this.res2TB.Size = new System.Drawing.Size(100, 22);
+            this.res2TB.TabIndex = 10;
+            // 
+            // res3TB
+            // 
+            this.res3TB.Location = new System.Drawing.Point(606, 313);
+            this.res3TB.Name = "res3TB";
+            this.res3TB.Size = new System.Drawing.Size(100, 22);
+            this.res3TB.TabIndex = 11;
             // 
             // Prueba
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(885, 443);
+            this.Controls.Add(this.res3TB);
+            this.Controls.Add(this.res2TB);
             this.Controls.Add(this.result);
             this.Controls.Add(this.difbtn);
             this.Controls.Add(this.horafin);
@@ -198,6 +216,8 @@
         private System.Windows.Forms.Button difbtn;
         private System.Windows.Forms.TextBox horafin;
         private System.Windows.Forms.TextBox horaini;
+        private System.Windows.Forms.TextBox res2TB;
+        private System.Windows.Forms.TextBox res3TB;
 
 
     }

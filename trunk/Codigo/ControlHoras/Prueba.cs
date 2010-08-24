@@ -93,6 +93,8 @@ namespace ControlHoras
             res = dtf - dti;
                        
             result.Text = res.Hours.ToString() + ":" + res.Minutes.ToString();
+            res2TB.Text = res.TotalHours.ToString();
+            res3TB.Text = System.Math.Truncate(res.TotalHours).ToString();
         }      
 
 
