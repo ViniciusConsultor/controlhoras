@@ -1,6 +1,21 @@
 
 --Saco las columnas día, horaIni y horaFin de ESCALAFONEMPLEADO y creo una nueva tabla
-ALTER TABLE `trustdb`.`escalafonempleado` DROP COLUMN `Dia` , DROP COLUMN `HoraFin` , DROP COLUMN `HoraInicio` ;
+ALTER TABLE `trustdb`.`escalafonempleado` DROP COLUMN `Dia` , DROP COLUMN `HoraFin` , DROP COLUMN `HoraInicio` ;
+ALTER TABLE `trustdb`.`escalafonempleado` 
+ADD PRIMARY KEY (`IdEscalafon`, `IdEscalafonEmpleado`) ;
+ALTER TABLE `trustdb`.`escalafonempleado` ADD COLUMN `CodigoPuesto` VARCHAR(20) NULL  AFTER `IdEscalafonEmpleado` ;
+ALTER TABLE `trustdb`.`escalafonempleado` CHANGE COLUMN `IdEscalafon` `IdEscalafon` INT(11) UNSIGNED NOT NULL  , CHANGE COLUMN `IdEscalafonEmpleado` `IdEscalafonEmpleado` INT(11) UNSIGNED NOT NULL  ;
+ALTER TABLE `trustdb`.`escalafonempleado` 
+  ADD CONSTRAINT `FK_LineasEscalafon`
+  FOREIGN KEY (`IdEscalafon` )
+  REFERENCES `trustdb`.`escalafon` (`IdEscalafon` )
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION
+, ADD INDEX `FK_LineasEscalafon` (`IdEscalafon` ASC) ;
+
+
+
+
 CREATE  TABLE IF NOT EXISTS `trustdb`.`horarioescalafon` (
   `idEscalafon` INT(11) NOT NULL ,
   `idEscalafonEmpleado` INT(11) NOT NULL ,
@@ -8,9 +23,29 @@ CREATE  TABLE IF NOT EXISTS `trustdb`.`horarioescalafon` (
   `horaini` VARCHAR(10) NULL ,
   `horafin` VARCHAR(10) NULL ,
   `tipoDia` TINYINT(2) UNSIGNED NULL ,
-  PRIMARY KEY (`idEscalafon`, `idEscalafonEmpleado`, `dia`) );
+  PRIMARY KEY (`idEscalafon`, `idEscalafonEmpleado`, `dia`) );
+ALTER TABLE `trustdb`.`horarioescalafon` 
+  ADD CONSTRAINT `FK_IdEscalafon`
+  FOREIGN KEY (`idEscalafon` )
+  REFERENCES `trustdb`.`escalafonempleado` (`IdEscalafon` )
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION
+, ADD INDEX `FK_IdEscalafon` (`idEscalafon` ASC) ;
+ALTER TABLE `trustdb`.`horarioescalafon` CHANGE COLUMN `idEscalafon` `idEscalafon` INT(11) UNSIGNED NOT NULL  , CHANGE COLUMN `idEscalafonEmpleado` `idEscalafonEmpleado` INT(11) UNSIGNED NOT NULL  ;
+
+
 CREATE  TABLE IF NOT EXISTS `trustdb`.`tiposdias` (
   `id` TINYINT(2) UNSIGNED NOT NULL ,
   `nombre` VARCHAR(20) NOT NULL ,
   `descripcion` VARCHAR(50) NOT NULL ,
   PRIMARY KEY (`id`) );
+
+
+-Agrego el campo Cubierto a Escalafón
+ALTER TABLE `trustdb`.`escalafon` ADD COLUMN `Cubierto` TINYINT(1) NOT NULL DEFAULT 0  AFTER `NumeroCliente` 
+, ADD UNIQUE INDEX `IdContrato_UNIQUE` (`IdContrato` ASC) 
+, ADD PRIMARY KEY (`IdEscalafon`) ;
+
+ALTER TABLE `trustdb`.`escalafon` CHANGE COLUMN `IdEscalafon` `IdEscalafon` INT(11) UNSIGNED NOT NULL;
+
+
