@@ -381,6 +381,22 @@ namespace Datos
 
             }
         }
+
+        public SERVicIoS obtenerServicioCliente(int numeroCliente, int numeroServicio)
+        {
+            try
+            {
+                SERVicIoS servsCli = (from servreg in database.GetTable<SERVicIoS>()
+                                            where servreg.NumeroCliente == numeroCliente && servreg.NumeroServicio == numeroServicio
+                                            select servreg).Single<SERVicIoS>();
+                return servsCli;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+        }
         #endregion
 
         #region Contratos
@@ -2152,7 +2168,7 @@ namespace Datos
         public void modificarContrato(int numeroContrato, DateTime FechaInicial, DateTime? FechaFinal, bool Costo, bool HorasExtras, string Ajuste, string Observaciones, float Monto)
         {
             try
-            {   ;
+            {  
                 ContraToS con = (from conreg in database.GetTable<ContraToS>()
                                  where conreg.IDContratos == numeroContrato
                                  select conreg).Single<ContraToS>();
@@ -2178,8 +2194,7 @@ namespace Datos
             {
                 throw e;
             }
-        }
-        
+        }        
 
         public void altaContrato(ContraToS Contrato, List<LineAshOrAs> Lineas)
         {
@@ -2392,8 +2407,7 @@ namespace Datos
             }
             */
         }
-           
-        
+                  
         public void guardarLineasContrato(List<LineAshOrAs> Lineas)
         {
             System.Data.Common.DbConnection conexion = database.Connection;
@@ -2482,10 +2496,6 @@ namespace Datos
                 throw ex;
             }
         }
-
-
-
-        
 
         public bool existeEmpleadoCI(string CI, out EmPleadOs empleado)
         {   
@@ -2648,6 +2658,202 @@ namespace Datos
         }
               
 
+        public List<HoRaSGeneraDaSEScalaFOn> obtenerHorasGeneradasServicio(int NumeroCliente, int NumeroServicio, DateTime fecha)
+        {
+            List<HoRaSGeneraDaSEScalaFOn> result;
+            Table<HoRaSGeneraDaSEScalaFOn> tabla;
+            try
+            {
+                tabla = database.GetTable<HoRaSGeneraDaSEScalaFOn>();                
+                
+                result = (from reg in tabla
+                          where reg.NumeroCliente == NumeroCliente && reg.NumeroServicio==NumeroServicio && reg.FechaCorrespondiente==fecha
+                          select reg).ToList<HoRaSGeneraDaSEScalaFOn>();
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        #region TiposMotivoCambioDiario
+        public List<TipOsMotIVOCamBIoDiARio> obtenerTiposMotivoCambioDiario()
+        {
+            try
+            {
+                return database.TipOsMotIVOCamBIoDiARio.ToList<TipOsMotIVOCamBIoDiARio>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void altaTipoMotivoCambioDiario(TipOsMotIVOCamBIoDiARio t)
+        {
+            try
+            {
+                database.TipOsMotIVOCamBIoDiARio.InsertOnSubmit(t);
+                database.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+        }
+        public void modificacionTipoMotivoCambioDiario(TipOsMotIVOCamBIoDiARio t)
+        {
+            try
+            {
+                TipOsMotIVOCamBIoDiARio treg = (from reg in database.TipOsMotIVOCamBIoDiARio
+                                               where reg.IDTipoMotivo == t.IDTipoMotivo
+                                               select reg).Single<TipOsMotIVOCamBIoDiARio>();
+                if (treg != null)
+                {
+                    treg.Activo = t.Activo;
+                    treg.Descripcion = t.Descripcion;
+                    database.SubmitChanges();
+                }
+                else
+                {
+                    throw new NoExisteException("No existe un Tipo Motivo Cambio Diario con id " + t.IDTipoMotivo);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public void bajaTipoMotivoCambioDiario(TipOsMotIVOCamBIoDiARio t)
+        {
+            try
+            {
+                TipOsMotIVOCamBIoDiARio treg = (from reg in database.TipOsMotIVOCamBIoDiARio
+                                                where reg.IDTipoMotivo == t.IDTipoMotivo
+                                                select reg).Single<TipOsMotIVOCamBIoDiARio>();
+                if (treg != null)
+                {
+                    treg.Activo = t.Activo;
+                    database.SubmitChanges();
+                }
+                else
+                {
+                    throw new NoExisteException("No existe un Tipo Motivo Cambio Diario con id " + t.IDTipoMotivo);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        #endregion
+
+        #region MotivosCambioDiario
+        public List<MotIVOsCamBiosDiARioS> obtenerMotivosCambiosDiarios(int numeroCliente, int numeroServicio, int nroEmpleado, DateTime fecha)
+        {
+            try
+            {
+                List<MotIVOsCamBiosDiARioS> motivosServicio = null;
+                if (fecha == null)
+                {
+                    motivosServicio = (from reg in database.MotIVOsCamBiosDiARioS
+                                                                   where reg.NumeroCliente == numeroCliente & reg.NumeroServicio == numeroServicio & reg.NroEmpleado == nroEmpleado
+                                                                   select reg).ToList<MotIVOsCamBiosDiARioS>();
+                }
+                else
+                {
+                    motivosServicio = (from reg in database.MotIVOsCamBiosDiARioS
+                                                                   where reg.NumeroCliente == numeroCliente & reg.NumeroServicio == numeroServicio & reg.Fecha == fecha & reg.NroEmpleado == nroEmpleado
+                                                                   select reg).ToList<MotIVOsCamBiosDiARioS>();
+                }
+                return motivosServicio;
+                
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public void altaMotivosCambiosDiarios(MotIVOsCamBiosDiARioS t)
+        {
+            try
+            {
+                database.MotIVOsCamBiosDiARioS.InsertOnSubmit(t);
+                database.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public void modificacionMotivosCambiosDiarios(MotIVOsCamBiosDiARioS t)
+        {
+            try
+            {
+                MotIVOsCamBiosDiARioS treg = (from reg in database.MotIVOsCamBiosDiARioS
+                                                where reg.IDMotivoCambioDiario == t.IDMotivoCambioDiario
+                                                select reg).Single<MotIVOsCamBiosDiARioS>();
+                if (treg != null)
+                {
+                    treg.IDTipoMotivo = t.IDTipoMotivo;
+                    treg.NroEmpleado = t.NroEmpleado;
+                    treg.NumeroCliente = t.NumeroCliente;
+                    treg.NumeroServicio = t.NumeroServicio;
+                    treg.Observaciones = t.Observaciones;                    
+                    database.SubmitChanges();
+                }
+                else
+                {
+                    throw new NoExisteException("No existe un Motivo Cambio Diario con id " + t.IDTipoMotivo);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public void cambiarFuncionarioControlDiario(long IdHorasGeneragasEscalafon, int NroEmpleadoNuevo, MotIVOsCamBiosDiARioS mtcd)
+        {
+            Table<HoRaSGeneraDaSEScalaFOn> horasGen = database.HoRaSGeneraDaSEScalaFOn;
+            try
+            {
+                HoRaSGeneraDaSEScalaFOn hs = (from reg in horasGen
+                                              where reg.IDHorasGeneradasEscalafon == IdHorasGeneragasEscalafon
+                                              select reg).Single<HoRaSGeneraDaSEScalaFOn>();
+                hs.NroEmpleado = (uint) NroEmpleadoNuevo;
+
+                mtcd.HoRaSGeneraDaSEScalaFOn = hs;
+                database.MotIVOsCamBiosDiARioS.InsertOnSubmit(mtcd);
+                database.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public void cambiarHoraFuncionarioControlDiario(long IdHorasGeneragasEscalafon, int NroEmpleado, string horanueva, bool Entrada, MotIVOsCamBiosDiARioS mtcd)
+        {
+            Table<HoRaSGeneraDaSEScalaFOn> horasGen = database.HoRaSGeneraDaSEScalaFOn;
+            try
+            {
+                HoRaSGeneraDaSEScalaFOn hs = (from reg in horasGen
+                                              where reg.IDHorasGeneradasEscalafon == IdHorasGeneragasEscalafon
+                                              select reg).Single<HoRaSGeneraDaSEScalaFOn>();
+                //hs.NroEmpleado = (uint)NroEmpleadoNuevo;
+
+                //mtcd.HoRaSGeneraDaSEScalaFOn = hs;
+                //database.MotIVOsCamBiosDiARioS.InsertOnSubmit(mtcd);
+                //database.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        #endregion
         public bool existeEscalafon(int nroEsc)
         {
             try

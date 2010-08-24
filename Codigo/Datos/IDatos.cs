@@ -34,10 +34,10 @@ namespace Datos
         List<ClientEs> buscarClientes(string Nombre);
         #endregion
 
-        #region Operaciones_DeServicios
+        #region Operaciones_De_Servicios
         void altaServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string DiaDeCobro, string NombreCobrar);
-        List<SERVicIoS> obtenerServiciosCliente(int numCliente);
-
+        List<SERVicIoS> obtenerServiciosCliente(int numeroCliente);
+        SERVicIoS obtenerServicioCliente(int numeroCliente, int numeroServicio);
         void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string DiaDeCobro, string NombreCobrar);
         #endregion
 
@@ -159,7 +159,6 @@ namespace Datos
         void cambiarNumeroEmpleado(int NumeroActual, int NumeroEmpleadoNuevo);
         #endregion
 
-
         #region ABM_Departamentos
         int altaDepartamento(string nombreDepartamento, bool activo);
         void modificarDepartamento(int idDepartamento, string nombreDepartamento, bool activo);
@@ -213,41 +212,59 @@ namespace Datos
         void bajaTipoDocumento(int idTipoDocumento);
         #endregion
 
-
+        #region HorasGeneradasEscalafon
+        List<HoRaSGeneraDaSEScalaFOn> obtenerHorasGeneradasServicio(int NumeroCliente, int NumeroServicio, DateTime fecha);
+        void cambiarFuncionarioControlDiario(long IdHorasGeneragasEscalafon, int NroEmpleado, MotIVOsCamBiosDiARioS mtcd);
+        void cambiarHoraFuncionarioControlDiario(long IdHorasGeneragasEscalafon, int NroEmpleado, string horanueva, bool Entrada, MotIVOsCamBiosDiARioS mtcd);
+        #endregion
 
         bool existeClienteServicio(int NumeroCliente, int NumeroServicio);
 
         void altaContratoServicioCliente(int NumeroCliente, int NumeroServicio, int NumeroContrato, DateTime FechaInicio, DateTime? FechaFin, bool CostoFijo, bool HorasExtras, string Ajuste, string Observaciones, float Monto);
-
         bool existeContrato(int NumeroContrato);
-
         ContraToS obtenerContrato(int NumeroContrato);
-
         ContraToS obtenerContrato(int NumeroCliente, int NumeroServicio);
-
         void modificarContrato(int numeroContrato, DateTime FechaInicial, DateTime? FechaFinal, bool Costo, bool HorasExtras, string Ajuste, string Observaciones, float Monto);
-
         void altaContrato(ContraToS Contrato, List<LineAshOrAs> Lineas);
-
         void eliminarLineasContrato(int NumeroContrato);
-
         void guardarLineasContrato(List<LineAshOrAs> Lineas);
-
-
+        
         bool existeEmpleadoCI(string CI, out EmPleadOs empleado);
         List<ConsultAsEmPleadOs> obtenerConsultasEmpleados(bool soloactivos);
         List<ConsultAsClientEs> obtenerConsultasClientes(bool soloactivos);
         DataSet ejecutarConsultaEmpleado(int numeroConsultaEmpleado, Dictionary<string,string> parametrosConsulta);
         DataSet ejecutarConsultaCliente(int numeroConsultaCliente, Dictionary<string, string> parametrosConsulta);
 
+        #region ListaNegra
         void altaListaNegra(string CI, string apellidos, string nombres, string motivo);
         void modificarListaNegra(string CI, string apellidos, string nombres, string motivo);
         bool existeEmpleadoListaNegra(string CI, out ListAnEGRa empleado);
         void BajaListaNegra(string CI);
         void altaEmpleadoDesdeListaNegra(string CI, string nroEmpleado, string apellidos, string nombres, string observaciones);
+        #endregion
 
         int obtenerMaxIdCliente();
 
+        #region TiposMotivoCambioDiario
+        List<TipOsMotIVOCamBIoDiARio> obtenerTiposMotivoCambioDiario();
+        void altaTipoMotivoCambioDiario(TipOsMotIVOCamBIoDiARio t);
+        void modificacionTipoMotivoCambioDiario(TipOsMotIVOCamBIoDiARio t);
+        void bajaTipoMotivoCambioDiario(TipOsMotIVOCamBIoDiARio t);
+        #endregion
+
+        #region MotivosCambioDiario
+        /// <summary>
+        /// Devuelve la lista de MotivosCambioDiarios de un empleado en determinado cliente. 
+        /// </summary>
+        /// <param name="numeroCliente">NumeroCliente del Cliente</param>
+        /// <param name="numeroServicio">NumeroServicio del Servicio</param>
+        /// <param name="numeroServicio">Numero del Empleado</param>
+        /// <param name="fecha">Fecha del dia que se quiere obtener los motivos de cambios. Si es null se obtienen todos.</param>
+        /// <returns>Lista de MotivosCambiosDiarios</returns>
+        List<MotIVOsCamBiosDiARioS> obtenerMotivosCambiosDiarios(int numeroCliente, int numeroServicio, int nroEmpleado, DateTime fecha);
+        void altaMotivosCambiosDiarios(MotIVOsCamBiosDiARioS t);
+        void modificacionMotivosCambiosDiarios(MotIVOsCamBiosDiARioS t);
+        #endregion
         bool existeEscalafon(int nroCon);
 
         void altaEscalafon(EScalaFOn esc, List<EScalaFOneMpLeadO> lhs);
