@@ -65,3 +65,6 @@ create table TiposMotivoCambioDiario (IdTipoMotivo mediumint unsigned not null a
 alter table motivoscambiosdiarios add foreign key (IdTipoMotivo) references TiposMotivoCambioDiario(IdTipoMotivo);
 alter table motivoscambiosdiarios add foreign key (NumeroCliente,NumeroServicio) references servicios(NumeroCliente,NumeroServicio);
 alter table motivoscambiosdiarios add foreign key (NroEmpleado) references empleados(NroEmpleado);
+
+alter table motivoscambiosdiarios add column IdHorasGeneradasEscalafon bigint not null;
+-- alter table motivoscambiosdiarios add foreign key (IdHorasGeneragasEscalafon) references HorasGeneragasEscalafon(IdHorasGeneradasEscalafon);
