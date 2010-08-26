@@ -2824,7 +2824,7 @@ namespace Datos
                                               where reg.IDHorasGeneradasEscalafon == IdHorasGeneragasEscalafon
                                               select reg).Single<HoRaSGeneraDaSEScalaFOn>();
                 hs.NroEmpleado = (uint) NroEmpleadoNuevo;
-
+                
                 mtcd.HoRaSGeneraDaSEScalaFOn = hs;
                 database.MotIVOsCamBiosDiARioS.InsertOnSubmit(mtcd);
                 database.SubmitChanges();
@@ -3073,7 +3073,7 @@ namespace Datos
                     conexion.Close();
                 throw ex;
             }
-        }
+        }        
         
         public void guardarLineasEscalafon(List<EScalaFOneMpLeadO> lineas)
         {
@@ -3187,3 +3187,6 @@ namespace Datos
     }
 
 }
+
+        
+ 

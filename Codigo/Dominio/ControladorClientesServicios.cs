@@ -435,15 +435,12 @@ namespace Logica
         public void modificarEscalafon(int nroEsc, Escalafon es)
         {
             datos.eliminarLineasEscalafon(nroEsc);
-            EScalaFOn escalafonSave = datos.obtenerEscalafon(nroEsc);
-            
-            EntitySet<EScalaFOneMpLeadO> lhs = new EntitySet<EScalaFOneMpLeadO>();
+
+            List<EScalaFOneMpLeadO> lhs = new List<EScalaFOneMpLeadO>();
             EScalaFOneMpLeadO lh = null;
-            
             int i = 0;
             foreach (EscalafonEmpleado ldh in es.ListaEscalafonEmpleados)
             {
-                
                 lh = new EScalaFOneMpLeadO();
                 lh.IDEscalafon = (uint)nroEsc;
                 lh.IDEscalafonEmpleado = (uint)i;
@@ -479,8 +476,8 @@ namespace Logica
                 //con.LineAshOrAs.Add(lh);
                 i++;
             }
-            escalafonSave.EScalaFOneMpLeadO = lhs;
-            datos.modificarEscalafon(escalafonSave);
+            
+            datos.guardarLineasEscalafon(lhs);
         }
 
         public Escalafon getEscalafon(int nroEsc)
