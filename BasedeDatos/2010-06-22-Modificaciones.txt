@@ -1,14 +1,9 @@
 -- Agregar Día de pago y Nombre a Cobrar en SERVICIOS
-ALTER TABLE `trustdb`.`servicios` ADD COLUMN `DiaCobro` VARCHAR(50) NULL  AFTER `PersonaContacto` , ADD COLUMN `NombreCobrar` VARCHAR(50) NULL  AFTER `DiaCobro` ;
+-- ALTER TABLE `trustdb`.`servicios` ADD COLUMN `DiaCobro` VARCHAR(50) NULL  AFTER `PersonaContacto` , ADD COLUMN `NombreCobrar` VARCHAR(50) NULL  AFTER `DiaCobro` ;
 
-
+/*
 -- Agregar listados de SERVICIOS
-insert into consultasclientes
-(Nombre, Descripcion, query)
-values
-("Listado 1",
-"Consulta que devuelve el contacto, teléfono, celular, dirección y tareas asignadas de todos los servicios",
-"select Nombre, PersonaContacto as Contacto, Telefonos, Celular, Direccion, TareasAsignadas from servicios");
+insert into consultasclientes (Nombre, Descripcion, query) values ("Listado 1", "Consulta que devuelve el contacto, teléfono, celular, dirección y tareas asignadas de todos los servicios","select Nombre, PersonaContacto as Contacto, Telefonos, Celular, Direccion, TareasAsignadas from servicios");
 
 insert into consultasclientes
 (Nombre, Descripcion, query)
@@ -16,15 +11,15 @@ values
 ("Listado 2",
 "Consulta que devuelve la razón social, el RUT, el nombre fantasía, el día de cobro, teléfono, celular, nombre para cobrar",
 "select c.Nombre, c.RUT, c.NombreFantasia, s.DiaCobro, s.Telefonos, s.Celular, s.NombreCobrar from clientes c, servicios s where s.NumeroCliente=c.NumeroCliente");
+*/
 
-
---Borrar los empleados 255 y 555
+-- Borrar los empleados 255 y 555
 DELETE FROM empleados WHERE NroEmpleado=255;
 DELETE FROM empleados WHERE NroEmpleado=555;
 
 
 ************AVERIGUAR idConsultaEmpleado PRIMERO************
---Agregar Cargo a listado RENAEMSE 
+-- Agregar Cargo a listado RENAEMSE 
 update consultasempleados set Query ="select @rownum:=@rownum+1 AS Nro, emp.Apellido AS Apellidos, emp.Nombre AS Nombres, c.Nombre AS Cargo, emp.ServicioActual,emp.Turno, emp.NumeroDocumento, emp.FechaTestPsicologico, ADDDATE(emp.FechaIngreso, -1) AS FeachaAprobCurso,emp.CapacitadoPortarArma AS CursoServicioArmado, emp.EnServicioArmado AS EnServicioArmado, emp.CAJ_Numero, emp.ConstanciaDomicilio AS ConstanciaDomicilio from (SELECT @rownum:=0) r, empleados emp, tiposcargos c where emp.Activo=1 AND c.IdCargo=emp.IdCargo" where idConsultaEmpleado = ??;
 
 update consultasempleados set Descripcion ="Consulta que devuelve Nro Correlativo - Apellido - Nombre - Cargo - ServicioActual - Turno - CI - FechaTestPsicologico - FechaAprobacionCurso(Dia Anterior al Ingreso) -  CursoServicioArmado(SI/NO) - EnServicioArmado(SI/NO) - CAJ_Numero - CertificadoDomicilio(SI/NO) para todos los empleados ACTIVOS." where idConsultaEmpleado = ??;
@@ -34,19 +29,19 @@ update consultasempleados set Descripcion ="Consulta que devuelve Nro Correlativ
 
 
 
---***BACKUP***
-mysqldump -u root -p trustdb > C:\2010-06-25_BackupTrustdb.sql
+-- ***BACKUP***
+-- mysqldump -u root -p trustdb > C:\2010-06-25_BackupTrustdb.sql
 
-'select @rownum:=@rownum+1 AS Nro, emp.Apellido AS Apellidos, emp.Nombre AS Nombres, emp.ServicioActual,emp.Turno, emp.NumeroDocumento, emp.FechaTestPsicologico, ADDDATE(emp.FechaIngreso, -1) AS FeachaAprobCurso,emp.CapacitadoPortarArma AS CursoServicioArmado, emp.EnServicioArmado AS EnServicioArmado, emp.CAJ_Numero, emp.ConstanciaDomicilio AS ConstanciaDomicilio from (SELECT @rownum:=0) r, empleados emp where emp.Activo=1'
+-- 'select @rownum:=@rownum+1 AS Nro, emp.Apellido AS Apellidos, emp.Nombre AS Nombres, emp.ServicioActual,emp.Turno, emp.NumeroDocumento, emp.FechaTestPsicologico, ADDDATE(emp.FechaIngreso, -1) AS FeachaAprobCurso,emp.CapacitadoPortarArma AS CursoServicioArmado, emp.EnServicioArmado AS EnServicioArmado, emp.CAJ_Numero, emp.ConstanciaDomicilio AS ConstanciaDomicilio from (SELECT @rownum:=0) r, empleados emp where emp.Activo=1'
 
-'Consulta que devuelve Nro Correlativo - Apellido - Nombre - ServicioActual - Turno - CI - FechaTestPsicologico - FechaAprobacionCurso(Dia Anterior al Ingreso) -  CursoServicioArmado(SI/NO) - EnServicioArmado(SI/NO) - CAJ_Numero - CertificadoDomicilio(SI/NO) para todos los empleados ACTIVOS.'
-
-
+-- 'Consulta que devuelve Nro Correlativo - Apellido - Nombre - ServicioActual - Turno - CI - FechaTestPsicologico - FechaAprobacionCurso(Dia Anterior al Ingreso) -  CursoServicioArmado(SI/NO) - EnServicioArmado(SI/NO) - CAJ_Numero - CertificadoDomicilio(SI/NO) para todos los empleados ACTIVOS.'
 
 
-select Nombre, PersonaContacto as Contacto, Telefonos, Celular, Direccion, TareasAsignadas
+
+
+-- select Nombre, PersonaContacto as Contacto, Telefonos, Celular, Direccion, TareasAsignadas
 from servicios
 
-select c.Nombre, c.RUT, c.NombreFantasia, s.DiaCobro, s.Telefonos, s.Celular, s.NombreCobrar
+-- select c.Nombre, c.RUT, c.NombreFantasia, s.DiaCobro, s.Telefonos, s.Celular, s.NombreCobrar
 from clientes c, servicios s
 where s.NumeroCliente=c.NumeroCliente

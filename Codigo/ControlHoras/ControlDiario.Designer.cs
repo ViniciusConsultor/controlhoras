@@ -31,15 +31,20 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtServicio = new System.Windows.Forms.TextBox();
             this.dgvHoras = new System.Windows.Forms.DataGridView();
+            this.IdHorasGeneradasEscalafon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NroEmpleado = new ControlHoras.MaskedTextBoxColumn();
+            this.Funcionario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HoraEntrada = new ControlHoras.MaskedTextBoxColumn();
+            this.HoraSalida = new ControlHoras.MaskedTextBoxColumn();
             this.menuStripdgvHoras = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cambiarFuncionario = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -56,11 +61,6 @@
             this.maskedTextBoxColumn3 = new ControlHoras.MaskedTextBoxColumn();
             this.mtServicio = new ControlHoras.MaskedTextBoxKeyDown();
             this.ucCliente = new ControlHoras.BúsquedaCliente();
-            this.IdHorasGeneradasEscalafon = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NroEmpleado = new ControlHoras.MaskedTextBoxColumn();
-            this.Funcionario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HoraEntrada = new ControlHoras.MaskedTextBoxColumn();
-            this.HoraSalida = new ControlHoras.MaskedTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHoras)).BeginInit();
             this.menuStripdgvHoras.SuspendLayout();
             this.SuspendLayout();
@@ -109,6 +109,75 @@
             this.dgvHoras.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvHoras.Size = new System.Drawing.Size(563, 239);
             this.dgvHoras.TabIndex = 0;
+            this.dgvHoras.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvHoras_CellMouseDown);
+            // 
+            // IdHorasGeneradasEscalafon
+            // 
+            this.IdHorasGeneradasEscalafon.Frozen = true;
+            this.IdHorasGeneradasEscalafon.HeaderText = "IdHorasGeneradasEscalafon";
+            this.IdHorasGeneradasEscalafon.Name = "IdHorasGeneradasEscalafon";
+            this.IdHorasGeneradasEscalafon.ReadOnly = true;
+            this.IdHorasGeneradasEscalafon.Visible = false;
+            // 
+            // NroEmpleado
+            // 
+            dataGridViewCellStyle2.Format = "0000";
+            this.NroEmpleado.DefaultCellStyle = dataGridViewCellStyle2;
+            this.NroEmpleado.Frozen = true;
+            this.NroEmpleado.HeaderText = "Nro Empleado";
+            this.NroEmpleado.IncludeLiterals = false;
+            this.NroEmpleado.IncludePrompt = false;
+            this.NroEmpleado.Mask = null;
+            this.NroEmpleado.Name = "NroEmpleado";
+            this.NroEmpleado.PromptChar = '\0';
+            this.NroEmpleado.ReadOnly = true;
+            this.NroEmpleado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NroEmpleado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.NroEmpleado.ValidatingType = null;
+            this.NroEmpleado.Width = 104;
+            // 
+            // Funcionario
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Funcionario.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Funcionario.Frozen = true;
+            this.Funcionario.HeaderText = "Funcionario";
+            this.Funcionario.Name = "Funcionario";
+            this.Funcionario.ReadOnly = true;
+            this.Funcionario.Width = 250;
+            // 
+            // HoraEntrada
+            // 
+            dataGridViewCellStyle4.Format = "00:00";
+            dataGridViewCellStyle4.NullValue = null;
+            this.HoraEntrada.DefaultCellStyle = dataGridViewCellStyle4;
+            this.HoraEntrada.Frozen = true;
+            this.HoraEntrada.HeaderText = "Hora Entrada";
+            this.HoraEntrada.IncludeLiterals = false;
+            this.HoraEntrada.IncludePrompt = false;
+            this.HoraEntrada.Mask = null;
+            this.HoraEntrada.Name = "HoraEntrada";
+            this.HoraEntrada.PromptChar = '\0';
+            this.HoraEntrada.ReadOnly = true;
+            this.HoraEntrada.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.HoraEntrada.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.HoraEntrada.ValidatingType = null;
+            // 
+            // HoraSalida
+            // 
+            dataGridViewCellStyle5.Format = "00:00";
+            this.HoraSalida.DefaultCellStyle = dataGridViewCellStyle5;
+            this.HoraSalida.Frozen = true;
+            this.HoraSalida.HeaderText = "Hora Salida";
+            this.HoraSalida.IncludeLiterals = false;
+            this.HoraSalida.IncludePrompt = false;
+            this.HoraSalida.Mask = null;
+            this.HoraSalida.Name = "HoraSalida";
+            this.HoraSalida.PromptChar = '\0';
+            this.HoraSalida.ReadOnly = true;
+            this.HoraSalida.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.HoraSalida.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.HoraSalida.ValidatingType = null;
             // 
             // menuStripdgvHoras
             // 
@@ -172,18 +241,20 @@
             this.btnDiaSiguiente.Location = new System.Drawing.Point(122, 100);
             this.btnDiaSiguiente.Name = "btnDiaSiguiente";
             this.btnDiaSiguiente.Size = new System.Drawing.Size(28, 23);
-            this.btnDiaSiguiente.TabIndex = 5;
+            this.btnDiaSiguiente.TabIndex = 4;
             this.btnDiaSiguiente.Text = ">";
             this.btnDiaSiguiente.UseVisualStyleBackColor = true;
+            this.btnDiaSiguiente.Click += new System.EventHandler(this.btnDiaSiguiente_Click);
             // 
             // btnDiaAnterior
             // 
             this.btnDiaAnterior.Location = new System.Drawing.Point(88, 100);
             this.btnDiaAnterior.Name = "btnDiaAnterior";
             this.btnDiaAnterior.Size = new System.Drawing.Size(28, 23);
-            this.btnDiaAnterior.TabIndex = 4;
+            this.btnDiaAnterior.TabIndex = 3;
             this.btnDiaAnterior.Text = "<";
             this.btnDiaAnterior.UseVisualStyleBackColor = true;
+            this.btnDiaAnterior.Click += new System.EventHandler(this.btnDiaAnterior_Click);
             // 
             // toolStrip1
             // 
@@ -267,74 +338,6 @@
             this.ucCliente.Name = "ucCliente";
             this.ucCliente.Size = new System.Drawing.Size(418, 41);
             this.ucCliente.TabIndex = 0;
-            // 
-            // IdHorasGeneradasEscalafon
-            // 
-            this.IdHorasGeneradasEscalafon.Frozen = true;
-            this.IdHorasGeneradasEscalafon.HeaderText = "IdHorasGeneradasEscalafon";
-            this.IdHorasGeneradasEscalafon.Name = "IdHorasGeneradasEscalafon";
-            this.IdHorasGeneradasEscalafon.ReadOnly = true;
-            this.IdHorasGeneradasEscalafon.Visible = false;
-            // 
-            // NroEmpleado
-            // 
-            dataGridViewCellStyle2.Format = "0000";
-            this.NroEmpleado.DefaultCellStyle = dataGridViewCellStyle2;
-            this.NroEmpleado.Frozen = true;
-            this.NroEmpleado.HeaderText = "Nro Empleado";
-            this.NroEmpleado.IncludeLiterals = false;
-            this.NroEmpleado.IncludePrompt = false;
-            this.NroEmpleado.Mask = null;
-            this.NroEmpleado.Name = "NroEmpleado";
-            this.NroEmpleado.PromptChar = '\0';
-            this.NroEmpleado.ReadOnly = true;
-            this.NroEmpleado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.NroEmpleado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.NroEmpleado.ValidatingType = null;
-            this.NroEmpleado.Width = 104;
-            // 
-            // Funcionario
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Funcionario.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Funcionario.Frozen = true;
-            this.Funcionario.HeaderText = "Funcionario";
-            this.Funcionario.Name = "Funcionario";
-            this.Funcionario.ReadOnly = true;
-            this.Funcionario.Width = 250;
-            // 
-            // HoraEntrada
-            // 
-            dataGridViewCellStyle4.Format = "00:00";
-            dataGridViewCellStyle4.NullValue = null;
-            this.HoraEntrada.DefaultCellStyle = dataGridViewCellStyle4;
-            this.HoraEntrada.Frozen = true;
-            this.HoraEntrada.HeaderText = "Hora Entrada";
-            this.HoraEntrada.IncludeLiterals = false;
-            this.HoraEntrada.IncludePrompt = false;
-            this.HoraEntrada.Mask = null;
-            this.HoraEntrada.Name = "HoraEntrada";
-            this.HoraEntrada.PromptChar = '\0';
-            this.HoraEntrada.ReadOnly = true;
-            this.HoraEntrada.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.HoraEntrada.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.HoraEntrada.ValidatingType = null;
-            // 
-            // HoraSalida
-            // 
-            dataGridViewCellStyle5.Format = "00:00";
-            this.HoraSalida.DefaultCellStyle = dataGridViewCellStyle5;
-            this.HoraSalida.Frozen = true;
-            this.HoraSalida.HeaderText = "Hora Salida";
-            this.HoraSalida.IncludeLiterals = false;
-            this.HoraSalida.IncludePrompt = false;
-            this.HoraSalida.Mask = null;
-            this.HoraSalida.Name = "HoraSalida";
-            this.HoraSalida.PromptChar = '\0';
-            this.HoraSalida.ReadOnly = true;
-            this.HoraSalida.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.HoraSalida.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.HoraSalida.ValidatingType = null;
             // 
             // ControlDiario
             // 
