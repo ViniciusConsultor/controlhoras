@@ -11,6 +11,7 @@ using Excepciones;
 using System.Data;
 using System.Configuration;
 using System.Globalization;
+using System.IO;
 
 namespace Datos
 {
@@ -19,8 +20,6 @@ namespace Datos
         private static TrustDb database = null;
         private static IDatos instance = null;
         private static MySqlConnection conexion = null;
-        
-        private static bool InDesignMode = true;
 
         private ControladorDatos()
         {
@@ -39,29 +38,26 @@ namespace Datos
         {
             if (instance == null)
                 instance = new ControladorDatos(); //(string StringConnection)
-            InDesignMode = false;
             return instance;
         }
+
+        private void recargarContexto()
+        {
+            try
+            {
+                database = createContext();
+            }
+            catch (Exception e)
+            {
+                
+                throw e;
+            }
+      
+        }
+
+
         internal static MySqlConnection createConexion()//(string StringConnection)
         {
-            //System.Configuration.Configuration config =
-            // ConfigurationManager.OpenExeConfiguration(
-            // ConfigurationUserLevel.None);
-            //int appStgCnt =
-            //    ConfigurationManager.AppSettings.Count;
-            //string newKey = "Servidor";
-
-            //string newValue = "localhost";
-
-            //config.AppSettings.Settings.Add(newKey, newValue);
-
-            //// Save the configuration file.
-            //config.Save(ConfigurationSaveMode.Modified);
-
-            //// Force a reload of the changed section.
-            //ConfigurationManager.RefreshSection("appSettings");
-                           
-            
             try
             {
                
@@ -105,6 +101,7 @@ namespace Datos
         {
 
             TrustDb context = new TrustDb(getConexion(), new DbLinq.MySql.MySqlVendor());
+            //context.Log = new StreamWriter("C:\\dblinq.log"); 
             return context;
         }
 
@@ -2816,37 +2813,46 @@ namespace Datos
             }
         }
         public void cambiarFuncionarioControlDiario(long IdHorasGeneragasEscalafon, int NroEmpleadoNuevo, MotIVOsCamBiosDiARioS mtcd)
-        {
-            Table<HoRaSGeneraDaSEScalaFOn> horasGen = database.HoRaSGeneraDaSEScalaFOn;
+        {            
             try
             {
-                HoRaSGeneraDaSEScalaFOn hs = (from reg in horasGen
-                                              where reg.IDHorasGeneradasEscalafon == IdHorasGeneragasEscalafon
-                                              select reg).Single<HoRaSGeneraDaSEScalaFOn>();
-                hs.NroEmpleado = (uint) NroEmpleadoNuevo;
+                HoRaSGeneraDaSEScalaFOn hs = database.HoRaSGeneraDaSEScalaFOn.Single(p => p.IDHorasGeneradasEscalafon == IdHorasGeneragasEscalafon);
+                EmPleadOs emp = database.EmPleadOs.Single(e => e.NroEmpleado == NroEmpleadoNuevo);
+
+                mtcd.NroEmpleado = (uint)NroEmpleadoNuevo;
                 
-                mtcd.HoRaSGeneraDaSEScalaFOn = hs;
-                database.MotIVOsCamBiosDiARioS.InsertOnSubmit(mtcd);
-                database.SubmitChanges();
+                //hs.EmPleadOs = emp;
+                hs.NroEmpleado = (uint) NroEmpleadoNuevo;
+                hs.MotIVOsCamBiosDiARioS.Add(mtcd);
+                //string query = "UPDATE HorasGeneradasEscalafon SET NroEmpleado=" + NroEmpleadoNuevo.ToString() + " WHERE IdHorasGeneragasEscalafon=" + IdHorasGeneragasEscalafon.ToString() + ";";
+                //database.ExecuteQuery<HoRaSGeneraDaSEScalaFOn>(query, null);
+                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+
+                
             }
             catch (Exception e)
             {
-                throw e;
+                throw new Exception(e.Message, e);
             }
         }
+
         public void cambiarHoraFuncionarioControlDiario(long IdHorasGeneragasEscalafon, int NroEmpleado, string horanueva, bool Entrada, MotIVOsCamBiosDiARioS mtcd)
         {
             Table<HoRaSGeneraDaSEScalaFOn> horasGen = database.HoRaSGeneraDaSEScalaFOn;
             try
             {
-                HoRaSGeneraDaSEScalaFOn hs = (from reg in horasGen
-                                              where reg.IDHorasGeneradasEscalafon == IdHorasGeneragasEscalafon
-                                              select reg).Single<HoRaSGeneraDaSEScalaFOn>();
-                //hs.NroEmpleado = (uint)NroEmpleadoNuevo;
+                HoRaSGeneraDaSEScalaFOn hs = database.HoRaSGeneraDaSEScalaFOn.Single(p => p.IDHorasGeneradasEscalafon == IdHorasGeneragasEscalafon);
 
-                //mtcd.HoRaSGeneraDaSEScalaFOn = hs;
-                //database.MotIVOsCamBiosDiARioS.InsertOnSubmit(mtcd);
-                //database.SubmitChanges();
+                if (Entrada)
+                    hs.HoraEntrada = DateTime.Parse(horanueva);
+                else
+                    hs.HoraSalida = DateTime.Parse(horanueva); 
+                
+                mtcd.IDHorasGeneragasEscalafon = IdHorasGeneragasEscalafon;
+                
+                database.MotIVOsCamBiosDiARioS.InsertOnSubmit(mtcd);
+                
+                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
             }
             catch (Exception e)
             {
@@ -2882,7 +2888,7 @@ namespace Datos
                 List<string> campos = obtenerColumnasDeTabla(nombreTabla);
                 string st = "INSERT INTO ";
                 st += nombreTabla + " (";
-                
+
                 foreach (string columna in campos)
                 {
                     if (campos.Last<string>().Equals(columna))
@@ -2894,7 +2900,7 @@ namespace Datos
                 st += "0, ";
                 st += escalafon.IDContrato.ToString() + ", ";
                 st += escalafon.IDEscalafon.ToString() + ", ";
-                st += escalafon.NumeroCliente.ToString() + ", ";                
+                st += escalafon.NumeroCliente.ToString() + ", ";
                 st += escalafon.NumeroServicio.ToString() + ")";
 
 
@@ -2925,7 +2931,7 @@ namespace Datos
                     tempsql += lh.CodigoPuesto + "', ";
                     tempsql += lh.HsLlamadaAntesHoraInicio.ToString() + ", ";
                     tempsql += lh.IDEscalafon.ToString() + ", ";
-                    tempsql += lh.IDEscalafonEmpleado.ToString() + ", ";                    
+                    tempsql += lh.IDEscalafonEmpleado.ToString() + ", ";
                     tempsql += lh.NroEmpleado.ToString() + ")";
                     database.ExecuteCommand(tempsql, null);
                     nombreTabla = database.Connection.Database + ".horarioescalafon";
@@ -2955,6 +2961,7 @@ namespace Datos
                 database.Transaction.Commit();
                 if (conexion.State == System.Data.ConnectionState.Open)
                     conexion.Close();
+                recargarContexto();
                 //database.SubmitChanges();
             }
             catch (MySqlException ex)
@@ -3138,6 +3145,7 @@ namespace Datos
                 if (conexion.State == System.Data.ConnectionState.Open)
                     conexion.Close();
                 //database.SubmitChanges();
+                recargarContexto();
             }
             catch (MySqlException ex)
             {
@@ -3174,11 +3182,11 @@ namespace Datos
                 es.Cubierto = escal.Cubierto;
 
                 database.SubmitChanges();
-                   
+
             }
-            
+
             catch (Exception ex)
-            {                
+            {
                 throw ex;
             }
 

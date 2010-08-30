@@ -380,7 +380,7 @@ namespace ControlHoras
 
         private string impHora(TimeSpan h)
         {
-            return System.Math.Truncate(h.TotalHours).ToString()  + ":" + h.Minutes.ToString();
+            return System.Math.Truncate(h.TotalHours).ToString()  + ":" + h.Minutes.ToString();          
         }
 
         public int CalcNroContrato(int nroCli, int nroSer)
@@ -664,9 +664,18 @@ namespace ControlHoras
 
          private void CargarHporCubrir()
          {
+
+             bool cubierto = true;
              for (int i = 0; i < 7; i++)
              {
                  dgvHsPorCubrir.Rows[0].Cells[i].Value = impHora(hporCubrir[i]);
+                 if (hporCubrir[i] > TimeSpan.Zero)
+                 {
+                     dgvHsPorCubrir.Rows[0].Cells[i].Style.BackColor = Color.OrangeRed;
+                     cubierto = false;
+                 }
+                 else
+                     dgvHsPorCubrir.Rows[0].Cells[i].Style.BackColor = Color.White;
              }
          }
 

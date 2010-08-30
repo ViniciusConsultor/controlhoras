@@ -420,7 +420,7 @@ namespace Logica
                         hd.DiA = hpd.getDia();
                         hd.TipoDia = (byte)hpd.getTipoDia();
                     }
-
+                    
                     lh.HoRaRioEScalaFOn.Add(hd);
                 }
                 
@@ -434,50 +434,58 @@ namespace Logica
 
         public void modificarEscalafon(int nroEsc, Escalafon es)
         {
-            datos.eliminarLineasEscalafon(nroEsc);
-
-            List<EScalaFOneMpLeadO> lhs = new List<EScalaFOneMpLeadO>();
-            EScalaFOneMpLeadO lh = null;
-            int i = 0;
-            foreach (EscalafonEmpleado ldh in es.ListaEscalafonEmpleados)
+            try
             {
-                lh = new EScalaFOneMpLeadO();
-                lh.IDEscalafon = (uint)nroEsc;
-                lh.IDEscalafonEmpleado = (uint)i;
-                lh.NroEmpleado = (uint)ldh.NroEmpleado;
-                lh.CodigoPuesto = ldh.CodigoPuesto;
-                lh.HsLlamadaAntesHoraInicio = (sbyte)ldh.CantidadHsLlamadaAntesHoraInicio;
-                lh.AcArgoDe = ldh.AcargoDe;
+                datos.eliminarLineasEscalafon(nroEsc);
 
-                //pasar los horarios por dia
-                HoRaRioEScalaFOn hd = null;
-                foreach (HorarioEscalafon hpd in ldh.Horario)
+                List<EScalaFOneMpLeadO> lhs = new List<EScalaFOneMpLeadO>();
+                EScalaFOneMpLeadO lh = null;
+                int i = 0;
+                foreach (EscalafonEmpleado ldh in es.ListaEscalafonEmpleados)
                 {
-                    hd = new HoRaRioEScalaFOn();
-                    hd.IDEscalafon = (uint)nroEsc;
-                    hd.IDEscalafonEmpleado = (uint)i;
-                    if (hpd.EsLaborable())
+                    lh = new EScalaFOneMpLeadO();
+                    lh.IDEscalafon = (uint)nroEsc;
+                    lh.IDEscalafonEmpleado = (uint)i;
+                    lh.NroEmpleado = (uint)ldh.NroEmpleado;
+                    lh.CodigoPuesto = ldh.CodigoPuesto;
+                    lh.HsLlamadaAntesHoraInicio = (sbyte)ldh.CantidadHsLlamadaAntesHoraInicio;
+                    lh.AcArgoDe = ldh.AcargoDe;
+
+                    //pasar los horarios por dia
+                    HoRaRioEScalaFOn hd = null;
+                    foreach (HorarioEscalafon hpd in ldh.Horario)
                     {
-                        hd.DiA = hpd.getDia();
-                        hd.HoRaInI = hpd.getHoraIni();
-                        hd.HoRaFIn = hpd.getHoraFin();
-                        hd.TipoDia = 0;
-                    }
-                    else
-                    {
-                        hd.DiA = hpd.getDia();
-                        hd.TipoDia = (byte)hpd.getTipoDia();
+                        hd = new HoRaRioEScalaFOn();
+                        hd.IDEscalafon = (uint)nroEsc;
+                        hd.IDEscalafonEmpleado = (uint)i;
+                        if (hpd.EsLaborable())
+                        {
+                            hd.DiA = hpd.getDia();
+                            hd.HoRaInI = hpd.getHoraIni();
+                            hd.HoRaFIn = hpd.getHoraFin();
+                            hd.TipoDia = 0;
+                        }
+                        else
+                        {
+                            hd.DiA = hpd.getDia();
+                            hd.TipoDia = (byte)hpd.getTipoDia();
+                        }
+
+                        lh.HoRaRioEScalaFOn.Add(hd);
                     }
 
-                    lh.HoRaRioEScalaFOn.Add(hd);
+                    lhs.Add(lh);
+                    //con.LineAshOrAs.Add(lh);
+                    i++;
                 }
 
-                lhs.Add(lh);
-                //con.LineAshOrAs.Add(lh);
-                i++;
+                datos.guardarLineasEscalafon(lhs);
+                
             }
-            
-            datos.guardarLineasEscalafon(lhs);
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public Escalafon getEscalafon(int nroEsc)

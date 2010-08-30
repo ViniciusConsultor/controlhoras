@@ -277,5 +277,10 @@ namespace Datos
 
         void guardarLineasEscalafon(List<EScalaFOneMpLeadO> lineas);
         void modificarEscalafon(EScalaFOn escal);
+
+        /// <summary>
+        /// Recarga el Contexto del ORM
+        /// </summary>
+        //public void recargarContexto();
     }
 }

@@ -60,7 +60,7 @@ namespace ControlHoras
                     sistema = ControladorClientesServicios.getInstance();
                     Cliente cli = sistema.obtenerCliente(int.Parse(ClienteMT.Text));
                     ClienteTB.Text = cli.getNombre();                    
-                    //SendKeys.Send("{TAB}");
+                    SendKeys.Send("{TAB}");
 
                     find = true;
                     if (cliPronto != null)
@@ -121,6 +121,7 @@ namespace ControlHoras
 
 
         #endregion
+
 
 
 
