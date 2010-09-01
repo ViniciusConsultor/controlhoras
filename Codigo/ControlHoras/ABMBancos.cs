@@ -159,22 +159,24 @@ namespace ControlHoras
             btnGuardar.Enabled = false;
         }
 
-        private void dgvBancos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvTiposMotivoCambioDiario_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (e.RowIndex == -1)
+            int rowindex = dgvBancos.SelectedRows[0].Index;
+            if (rowindex == -1)
             {
                 return;
             }
-            txtNombre.Text = dgvBancos.Rows[e.RowIndex].Cells["Nombre"].Value.ToString();
-            if (dgvBancos.Rows[e.RowIndex].Cells["Activa"].Value.ToString() == "N")
+            
+            txtNombre.Text = dgvBancos.Rows[rowindex].Cells["Nombre"].Value.ToString();
+            if (dgvBancos.Rows[rowindex].Cells["Activa"].Value.ToString() == "N")
                 cbEstado.Checked = true;
             else
                 cbEstado.Checked = false;
-            lblidCategoria.Text = dgvBancos.Rows[e.RowIndex].Cells["idBanco"].Value.ToString();
+            lblidCategoria.Text = dgvBancos.Rows[rowindex].Cells["idBanco"].Value.ToString();
 
             btnAgregar.Enabled = false;
             btnGuardar.Enabled = true;
-
+            
 
 
         }

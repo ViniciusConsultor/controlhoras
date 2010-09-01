@@ -195,23 +195,24 @@ namespace ControlHoras
             btnGuardar.Enabled = false;
         }
 
-        private void dgvCargos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvTiposMotivoCambioDiario_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (e.RowIndex == -1)
+            int rowindex = dgvCargos.SelectedRows[0].Index;
+            if (rowindex == -1)
             {
                 return;
             }
-            lblIdTipoCargo.Text = dgvCargos.Rows[e.RowIndex].Cells["IdTipoCargo"].Value.ToString();
-            txtNombre.Text = dgvCargos.Rows[e.RowIndex].Cells["Nombre"].Value.ToString();
-            txtDescripcion.Text = dgvCargos.Rows[e.RowIndex].Cells["Descripcion"].Value.ToString();
-            mtHsComunes.Text = dgvCargos.Rows[e.RowIndex].Cells["HsComunes"].Value.ToString();
-            cmbTipoFacturacion.SelectedItem = dgvCargos.Rows[e.RowIndex].Cells["TipoFacturacion"].Value;
-            if (dgvCargos.Rows[e.RowIndex].Cells["Activo"].Value.ToString() == "NO")
+            lblIdTipoCargo.Text = dgvCargos.Rows[rowindex].Cells["IdTipoCargo"].Value.ToString();
+            txtNombre.Text = dgvCargos.Rows[rowindex].Cells["Nombre"].Value.ToString();
+            txtDescripcion.Text = dgvCargos.Rows[rowindex].Cells["Descripcion"].Value.ToString();
+            mtHsComunes.Text = dgvCargos.Rows[rowindex].Cells["HsComunes"].Value.ToString();
+            cmbTipoFacturacion.SelectedItem = dgvCargos.Rows[rowindex].Cells["TipoFacturacion"].Value;
+            if (dgvCargos.Rows[rowindex].Cells["Activo"].Value.ToString() == "NO")
                 cbEstado.Checked = true;
             else
                 cbEstado.Checked = false;
-            cbFulltime.Checked = (bool)dgvCargos.Rows[e.RowIndex].Cells["Fulltime"].Value;
-            cbCobraExtras.Checked = (bool)dgvCargos.Rows[e.RowIndex].Cells["CobraHsExtras"].Value;
+            cbFulltime.Checked = (bool)dgvCargos.Rows[rowindex].Cells["Fulltime"].Value;
+            cbCobraExtras.Checked = (bool)dgvCargos.Rows[rowindex].Cells["CobraHsExtras"].Value;
             
 
             btnAgregar.Enabled = false;

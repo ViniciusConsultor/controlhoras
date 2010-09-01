@@ -157,18 +157,19 @@ namespace ControlHoras
             btnGuardar.Enabled = false;
         }
 
-        private void dgvEmergenciasMedica_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvTiposMotivoCambioDiario_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (e.RowIndex == -1)
+            int rowindex = dgvEmergenciasMedica.SelectedRows[0].Index;
+            if (rowindex == -1)
             {
                 return;
             }
-            txtNombre.Text = dgvEmergenciasMedica.Rows[e.RowIndex].Cells["Nombre"].Value.ToString();
-            if (dgvEmergenciasMedica.Rows[e.RowIndex].Cells["Activa"].Value.ToString() == "N")
+            txtNombre.Text = dgvEmergenciasMedica.Rows[rowindex].Cells["Nombre"].Value.ToString();
+            if (dgvEmergenciasMedica.Rows[rowindex].Cells["Activa"].Value.ToString() == "N")
                 cbEstado.Checked = true;
             else
                 cbEstado.Checked = false;
-            lblidCategoria.Text = dgvEmergenciasMedica.Rows[e.RowIndex].Cells["idEmergenciaMedica"].Value.ToString();
+            lblidCategoria.Text = dgvEmergenciasMedica.Rows[rowindex].Cells["idEmergenciaMedica"].Value.ToString();
 
             btnAgregar.Enabled = false;
             btnGuardar.Enabled = true;

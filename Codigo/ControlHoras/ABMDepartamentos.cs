@@ -53,7 +53,7 @@ namespace ControlHoras
                     n = dgvDepartamentos.Rows.Add();
                     dgvDepartamentos.Rows[n].Cells["idDepartamento"].Value = iter;
                     dgvDepartamentos.Rows[n].Cells["Nombre"].Value = dptos[iter];
-                    //dgvDepartamentos.Rows[n].Cells["Activa"].Value = cat[3];
+                    //dgvCiudades.Rows[n].Cells["Activa"].Value = cat[3];
                     dgvDepartamentos.Rows[n].Cells["Activa"].Value = "S";
                 }
                 catch (Exception ex)
@@ -156,18 +156,19 @@ namespace ControlHoras
             btnGuardar.Enabled = false;
         }
 
-        private void dgvDepartamentos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvTiposMotivoCambioDiario_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (e.RowIndex == -1)
+            int rowindex = dgvDepartamentos.SelectedRows[0].Index;
+            if (rowindex == -1)
             {
                 return;
             }
-            txtNombre.Text = dgvDepartamentos.Rows[e.RowIndex].Cells["Nombre"].Value.ToString();
-            if (dgvDepartamentos.Rows[e.RowIndex].Cells["Activa"].Value.ToString() == "N")
+            txtNombre.Text = dgvDepartamentos.Rows[rowindex].Cells["Nombre"].Value.ToString();
+            if (dgvDepartamentos.Rows[rowindex].Cells["Activa"].Value.ToString() == "N")
                 cbEstado.Checked = true;
             else
                 cbEstado.Checked = false;
-            lblidCategoria.Text = dgvDepartamentos.Rows[e.RowIndex].Cells["idDepartamento"].Value.ToString();
+            lblidCategoria.Text = dgvDepartamentos.Rows[rowindex].Cells["idDepartamento"].Value.ToString();
 
             btnAgregar.Enabled = false;
             btnGuardar.Enabled = true;

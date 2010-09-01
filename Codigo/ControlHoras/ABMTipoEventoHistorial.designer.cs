@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ABMTipoEventoHistorial));
             this.label1 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.dgvCategoria = new System.Windows.Forms.DataGridView();
+            this.dgvEventosHistorial = new System.Windows.Forms.DataGridView();
             this.idTipoEventoHistorial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Activa = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,7 +46,7 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCategoria)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEventosHistorial)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -68,26 +68,26 @@
             this.txtNombre.Size = new System.Drawing.Size(247, 20);
             this.txtNombre.TabIndex = 2;
             // 
-            // dgvCategoria
+            // dgvEventosHistorial
             // 
-            this.dgvCategoria.AllowUserToAddRows = false;
-            this.dgvCategoria.AllowUserToDeleteRows = false;
-            this.dgvCategoria.AllowUserToResizeRows = false;
-            this.dgvCategoria.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCategoria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvEventosHistorial.AllowUserToAddRows = false;
+            this.dgvEventosHistorial.AllowUserToDeleteRows = false;
+            this.dgvEventosHistorial.AllowUserToResizeRows = false;
+            this.dgvEventosHistorial.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvEventosHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEventosHistorial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idTipoEventoHistorial,
             this.Nombre,
             this.Activa});
-            this.dgvCategoria.Location = new System.Drawing.Point(9, 131);
-            this.dgvCategoria.MultiSelect = false;
-            this.dgvCategoria.Name = "dgvCategoria";
-            this.dgvCategoria.ReadOnly = true;
-            this.dgvCategoria.RowHeadersVisible = false;
-            this.dgvCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCategoria.Size = new System.Drawing.Size(343, 201);
-            this.dgvCategoria.TabIndex = 4;
-            this.dgvCategoria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCategoria_CellContentDoubleClick);
+            this.dgvEventosHistorial.Location = new System.Drawing.Point(9, 131);
+            this.dgvEventosHistorial.MultiSelect = false;
+            this.dgvEventosHistorial.Name = "dgvEventosHistorial";
+            this.dgvEventosHistorial.ReadOnly = true;
+            this.dgvEventosHistorial.RowHeadersVisible = false;
+            this.dgvEventosHistorial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvEventosHistorial.Size = new System.Drawing.Size(343, 201);
+            this.dgvEventosHistorial.TabIndex = 4;
+            this.dgvEventosHistorial.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvTiposMotivoCambioDiario_MouseDoubleClick);
             // 
             // idTipoEventoHistorial
             // 
@@ -221,7 +221,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(361, 344);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.dgvCategoria);
+            this.Controls.Add(this.dgvEventosHistorial);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
             this.Name = "ABMTipoEventoHistorial";
@@ -229,7 +229,7 @@
             this.Text = "ABMTipoEventoHistorial";
             this.Load += new System.EventHandler(this.ABMCategoria_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ABMTipoEventoHistorial_FormClosed);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCategoria)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEventosHistorial)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -243,7 +243,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.DataGridView dgvCategoria;
+        private System.Windows.Forms.DataGridView dgvEventosHistorial;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnAgregar;
         private System.Windows.Forms.ToolStripButton btnGuardar;
