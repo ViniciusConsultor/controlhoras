@@ -87,7 +87,7 @@
             this.dgvBancos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBancos.Size = new System.Drawing.Size(261, 156);
             this.dgvBancos.TabIndex = 4;
-            this.dgvBancos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBancos_CellContentDoubleClick);
+            this.dgvBancos.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvTiposMotivoCambioDiario_MouseDoubleClick);
             // 
             // idBanco
             // 

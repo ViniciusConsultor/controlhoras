@@ -155,18 +155,19 @@ namespace ControlHoras
             btnGuardar.Enabled = false;
         }
 
-        private void dgvMutualistas_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvTiposMotivoCambioDiario_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (e.RowIndex == -1)
+            int rowindex = dgvMutualistas.SelectedRows[0].Index;
+            if (rowindex == -1)
             {
                 return;
             }
-            txtNombre.Text = dgvMutualistas.Rows[e.RowIndex].Cells["Nombre"].Value.ToString();
-            if (dgvMutualistas.Rows[e.RowIndex].Cells["Activa"].Value.ToString() == "N")
+            txtNombre.Text = dgvMutualistas.Rows[rowindex].Cells["Nombre"].Value.ToString();
+            if (dgvMutualistas.Rows[rowindex].Cells["Activa"].Value.ToString() == "N")
                 cbEstado.Checked = true;
             else
                 cbEstado.Checked = false;
-            lblidCategoria.Text = dgvMutualistas.Rows[e.RowIndex].Cells["idMutualista"].Value.ToString();
+            lblidCategoria.Text = dgvMutualistas.Rows[rowindex].Cells["idMutualista"].Value.ToString();
 
             btnAgregar.Enabled = false;
             btnGuardar.Enabled = true;

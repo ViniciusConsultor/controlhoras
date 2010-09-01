@@ -54,19 +54,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 68);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(20, 55);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 17);
+            this.label1.Size = new System.Drawing.Size(44, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre";
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(93, 64);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNombre.Location = new System.Drawing.Point(70, 52);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(261, 22);
+            this.txtNombre.Size = new System.Drawing.Size(197, 20);
             this.txtNombre.TabIndex = 2;
             // 
             // dgvDepartamentos
@@ -80,16 +78,15 @@
             this.idDepartamento,
             this.Nombre,
             this.Activa});
-            this.dgvDepartamentos.Location = new System.Drawing.Point(16, 153);
-            this.dgvDepartamentos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvDepartamentos.Location = new System.Drawing.Point(12, 124);
             this.dgvDepartamentos.MultiSelect = false;
             this.dgvDepartamentos.Name = "dgvDepartamentos";
             this.dgvDepartamentos.ReadOnly = true;
             this.dgvDepartamentos.RowHeadersVisible = false;
             this.dgvDepartamentos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDepartamentos.Size = new System.Drawing.Size(348, 192);
+            this.dgvDepartamentos.Size = new System.Drawing.Size(261, 156);
             this.dgvDepartamentos.TabIndex = 4;
-            this.dgvDepartamentos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDepartamentos_CellContentDoubleClick);
+            this.dgvDepartamentos.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvTiposMotivoCambioDiario_MouseDoubleClick);
             // 
             // idDepartamento
             // 
@@ -119,7 +116,7 @@
             this.btnCancelar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(380, 40);
+            this.toolStrip1.Size = new System.Drawing.Size(285, 36);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -128,7 +125,7 @@
             this.btnAgregar.Image = global::ControlHoras.Imagenes.document_new;
             this.btnAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(60, 37);
+            this.btnAgregar.Size = new System.Drawing.Size(50, 33);
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -138,7 +135,7 @@
             this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
             this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(61, 37);
+            this.btnGuardar.Size = new System.Drawing.Size(50, 33);
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -149,7 +146,7 @@
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
             this.btnCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(64, 37);
+            this.btnCancelar.Size = new System.Drawing.Size(53, 33);
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -157,20 +154,18 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 49);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(6, 40);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 17);
+            this.label3.Size = new System.Drawing.Size(40, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "Estado";
             // 
             // cbEstado
             // 
             this.cbEstado.AutoSize = true;
-            this.cbEstado.Location = new System.Drawing.Point(77, 48);
-            this.cbEstado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbEstado.Location = new System.Drawing.Point(58, 39);
             this.cbEstado.Name = "cbEstado";
-            this.cbEstado.Size = new System.Drawing.Size(113, 21);
+            this.cbEstado.Size = new System.Drawing.Size(90, 17);
             this.cbEstado.TabIndex = 7;
             this.cbEstado.Text = "Deshabilitado";
             this.cbEstado.UseVisualStyleBackColor = true;
@@ -180,21 +175,18 @@
             this.groupBox1.Controls.Add(this.cbEstado);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.lblidCategoria);
-            this.groupBox1.Location = new System.Drawing.Point(16, 49);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Location = new System.Drawing.Point(12, 40);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(348, 84);
+            this.groupBox1.Size = new System.Drawing.Size(261, 68);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             // 
             // lblidCategoria
             // 
             this.lblidCategoria.AutoSize = true;
-            this.lblidCategoria.Location = new System.Drawing.Point(300, 84);
-            this.lblidCategoria.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblidCategoria.Location = new System.Drawing.Point(225, 68);
             this.lblidCategoria.Name = "lblidCategoria";
-            this.lblidCategoria.Size = new System.Drawing.Size(0, 17);
+            this.lblidCategoria.Size = new System.Drawing.Size(0, 13);
             this.lblidCategoria.TabIndex = 0;
             this.lblidCategoria.Visible = false;
             // 
@@ -222,15 +214,14 @@
             // 
             // ABMDepartamentos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(380, 359);
+            this.ClientSize = new System.Drawing.Size(285, 292);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dgvDepartamentos);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "ABMDepartamentos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

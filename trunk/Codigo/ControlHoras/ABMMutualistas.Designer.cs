@@ -86,7 +86,7 @@
             this.dgvMutualistas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMutualistas.Size = new System.Drawing.Size(261, 156);
             this.dgvMutualistas.TabIndex = 4;
-            this.dgvMutualistas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMutualistas_CellContentDoubleClick);
+            this.dgvMutualistas.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvTiposMotivoCambioDiario_MouseDoubleClick);
             // 
             // idMutualista
             // 

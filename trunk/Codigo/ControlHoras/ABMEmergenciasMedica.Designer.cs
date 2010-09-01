@@ -87,7 +87,7 @@
             this.dgvEmergenciasMedica.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEmergenciasMedica.Size = new System.Drawing.Size(261, 156);
             this.dgvEmergenciasMedica.TabIndex = 4;
-            this.dgvEmergenciasMedica.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmergenciasMedica_CellContentDoubleClick);
+            this.dgvEmergenciasMedica.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvTiposMotivoCambioDiario_MouseDoubleClick);
             // 
             // idEmergenciaMedica
             // 

@@ -53,13 +53,13 @@ namespace ControlHoras
                 int n = -10;
                 try
                 {
-                    n = dgvCategoria.Rows.Add();
-                    dgvCategoria.Rows[n].Cells["idTipoEventoHistorial"].Value = iter.IDTipoEventoHistorial;
-                    dgvCategoria.Rows[n].Cells["Nombre"].Value = iter.Nombre;
+                    n = dgvEventosHistorial.Rows.Add();
+                    dgvEventosHistorial.Rows[n].Cells["idTipoEventoHistorial"].Value = iter.IDTipoEventoHistorial;
+                    dgvEventosHistorial.Rows[n].Cells["Nombre"].Value = iter.Nombre;
                     if (iter.Activo == 1)
-                        dgvCategoria.Rows[n].Cells["Activa"].Value = "S";
+                        dgvEventosHistorial.Rows[n].Cells["Activa"].Value = "S";
                     else
-                        dgvCategoria.Rows[n].Cells["Activa"].Value = "N";
+                        dgvEventosHistorial.Rows[n].Cells["Activa"].Value = "N";
 
                 }
                 catch (Exception ex)
@@ -68,7 +68,7 @@ namespace ControlHoras
                     if (n > -10)
                         try
                         {
-                            dgvCategoria.Rows.RemoveAt(n);
+                            dgvEventosHistorial.Rows.RemoveAt(n);
                         }
                         catch (Exception ex1)
                         {
@@ -85,11 +85,11 @@ namespace ControlHoras
                 try
                 {
                     int numFila = 0;
-                    while (dgvCategoria.RowCount > numFila && lblIdTipoEventoHistorial.Text != dgvCategoria.Rows[numFila].Cells["idTipoEventoHistorial"].Value.ToString())
+                    while (dgvEventosHistorial.RowCount > numFila && lblIdTipoEventoHistorial.Text != dgvEventosHistorial.Rows[numFila].Cells["idTipoEventoHistorial"].Value.ToString())
                     {
                         numFila++;
                     }
-                    if (numFila != dgvCategoria.RowCount)
+                    if (numFila != dgvEventosHistorial.RowCount)
                     {
                         char estado = 'S';
                         if (cbEstado.Checked)
@@ -100,8 +100,8 @@ namespace ControlHoras
                         // Modifica el valor en la base de datos
                         DatosTipos.modificarTipoEventoHistorial(int.Parse(lblIdTipoEventoHistorial.Text), txtNombre.Text, !cbEstado.Checked);
 
-                        dgvCategoria.Rows[numFila].Cells["Nombre"].Value = txtNombre.Text;
-                        dgvCategoria.Rows[numFila].Cells["Activa"].Value = estado;
+                        dgvEventosHistorial.Rows[numFila].Cells["Nombre"].Value = txtNombre.Text;
+                        dgvEventosHistorial.Rows[numFila].Cells["Activa"].Value = estado;
 
                         btnAgregar.Enabled = true;
                         btnGuardar.Enabled = false;
@@ -131,10 +131,10 @@ namespace ControlHoras
                     // Doy de alta la categoria en la base de datos
                     lblIdTipoEventoHistorial.Text = DatosTipos.altaTipoEventoHistorial(txtNombre.Text, !cbEstado.Checked).ToString();
 
-                    n = dgvCategoria.Rows.Add();
-                    dgvCategoria.Rows[n].Cells["idTipoEventoHistorial"].Value = lblIdTipoEventoHistorial.Text;
-                    dgvCategoria.Rows[n].Cells["Nombre"].Value = txtNombre.Text;
-                    dgvCategoria.Rows[n].Cells["Activa"].Value = estado.ToString();
+                    n = dgvEventosHistorial.Rows.Add();
+                    dgvEventosHistorial.Rows[n].Cells["idTipoEventoHistorial"].Value = lblIdTipoEventoHistorial.Text;
+                    dgvEventosHistorial.Rows[n].Cells["Nombre"].Value = txtNombre.Text;
+                    dgvEventosHistorial.Rows[n].Cells["Activa"].Value = estado.ToString();
 
                     limpiarForm();
                 }
@@ -144,7 +144,7 @@ namespace ControlHoras
                     if (n > -10)
                         try
                         {
-                            dgvCategoria.Rows.RemoveAt(n);
+                            dgvEventosHistorial.Rows.RemoveAt(n);
                         }
                         catch (Exception ex2)
                         {
@@ -163,18 +163,19 @@ namespace ControlHoras
             btnGuardar.Enabled = false;
         }
 
-        private void dgvCategoria_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvTiposMotivoCambioDiario_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (e.RowIndex == -1)
+            int rowindex = dgvEventosHistorial.SelectedRows[0].Index;
+            if (rowindex == -1)
             {
                 return;
             }
-            txtNombre.Text = dgvCategoria.Rows[e.RowIndex].Cells["Nombre"].Value.ToString();
-            if (dgvCategoria.Rows[e.RowIndex].Cells["Activa"].Value.ToString() == "N")
+            txtNombre.Text = dgvEventosHistorial.Rows[rowindex].Cells["Nombre"].Value.ToString();
+            if (dgvEventosHistorial.Rows[rowindex].Cells["Activa"].Value.ToString() == "N")
                 cbEstado.Checked = true;
             else
                 cbEstado.Checked = false;
-            lblIdTipoEventoHistorial.Text = dgvCategoria.Rows[e.RowIndex].Cells["idTipoEventoHistorial"].Value.ToString();
+            lblIdTipoEventoHistorial.Text = dgvEventosHistorial.Rows[rowindex].Cells["idTipoEventoHistorial"].Value.ToString();
 
             btnAgregar.Enabled = false;
             btnGuardar.Enabled = true;

@@ -50,11 +50,11 @@ namespace ControlHoras
                 int n = -10;
                 try
                 {
-                    n = dgvDepartamentos.Rows.Add();
-                    dgvDepartamentos.Rows[n].Cells["idDepartamento"].Value = iter;
-                    dgvDepartamentos.Rows[n].Cells["Nombre"].Value = dptos[iter];
-                    //dgvDepartamentos.Rows[n].Cells["Activa"].Value = cat[3];
-                    dgvDepartamentos.Rows[n].Cells["Activa"].Value = "S";
+                    n = dgvCiudades.Rows.Add();
+                    dgvCiudades.Rows[n].Cells["idCiudad"].Value = iter;
+                    dgvCiudades.Rows[n].Cells["Nombre"].Value = dptos[iter];
+                    //dgvCiudades.Rows[n].Cells["Activa"].Value = cat[3];
+                    dgvCiudades.Rows[n].Cells["Activa"].Value = "S";
                 }
                 catch (Exception ex)
                 {
@@ -62,7 +62,7 @@ namespace ControlHoras
                     if (n > -10)
                         try
                         {
-                            dgvDepartamentos.Rows.RemoveAt(n);
+                            dgvCiudades.Rows.RemoveAt(n);
                         }
                         catch (Exception ex1)
                         {
@@ -79,11 +79,11 @@ namespace ControlHoras
                 try
                 {
                     int numFila = 0;
-                    while (dgvDepartamentos.RowCount > numFila && lblidCategoria.Text != dgvDepartamentos.Rows[numFila].Cells["idDepartamento"].Value.ToString())
+                    while (dgvCiudades.RowCount > numFila && lblidCategoria.Text != dgvCiudades.Rows[numFila].Cells["idCiudad"].Value.ToString())
                     {
                         numFila++;
                     }
-                    if (numFila != dgvDepartamentos.RowCount)
+                    if (numFila != dgvCiudades.RowCount)
                     {
                         char estado = 'S';
                         if (cbEstado.Checked)
@@ -94,8 +94,8 @@ namespace ControlHoras
                         // Modifica el valor en la base de datos
                         tipos.modificarCiudad(int.Parse(lblidCategoria.Text), txtNombre.Text, ! cbEstado.Checked);
 
-                        dgvDepartamentos.Rows[numFila].Cells["Nombre"].Value = txtNombre.Text;
-                        dgvDepartamentos.Rows[numFila].Cells["Activa"].Value = estado;
+                        dgvCiudades.Rows[numFila].Cells["Nombre"].Value = txtNombre.Text;
+                        dgvCiudades.Rows[numFila].Cells["Activa"].Value = estado;
                         
                         btnAgregar.Enabled = true;
                         btnGuardar.Enabled = false;
@@ -125,10 +125,10 @@ namespace ControlHoras
                     // Doy de alta la categoria en la base de datos
                     lblidCategoria.Text = tipos.altaCiudad(txtNombre.Text,!cbEstado.Checked).ToString();
 
-                    n = dgvDepartamentos.Rows.Add();
-                    dgvDepartamentos.Rows[n].Cells["idDepartamento"].Value = lblidCategoria.Text;
-                    dgvDepartamentos.Rows[n].Cells["Nombre"].Value = txtNombre.Text;
-                    dgvDepartamentos.Rows[n].Cells["Activa"].Value = estado.ToString();
+                    n = dgvCiudades.Rows.Add();
+                    dgvCiudades.Rows[n].Cells["idCiudad"].Value = lblidCategoria.Text;
+                    dgvCiudades.Rows[n].Cells["Nombre"].Value = txtNombre.Text;
+                    dgvCiudades.Rows[n].Cells["Activa"].Value = estado.ToString();
 
                     limpiarForm();
                 }
@@ -137,7 +137,7 @@ namespace ControlHoras
                     MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     try
                     {
-                        dgvDepartamentos.Rows.RemoveAt(n);
+                        dgvCiudades.Rows.RemoveAt(n);
                     }
                     catch (Exception ex2)
                     {
@@ -156,18 +156,19 @@ namespace ControlHoras
             btnGuardar.Enabled = false;
         }
 
-        private void dgvDepartamentos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvTiposMotivoCambioDiario_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (e.RowIndex == -1)
+            int rowindex = dgvCiudades.SelectedRows[0].Index;
+            if (rowindex == -1)
             {
                 return;
             }
-            txtNombre.Text = dgvDepartamentos.Rows[e.RowIndex].Cells["Nombre"].Value.ToString();
-            if (dgvDepartamentos.Rows[e.RowIndex].Cells["Activa"].Value.ToString() == "N")
+            txtNombre.Text = dgvCiudades.Rows[rowindex].Cells["Nombre"].Value.ToString();
+            if (dgvCiudades.Rows[rowindex].Cells["Activa"].Value.ToString() == "N")
                 cbEstado.Checked = true;
             else
                 cbEstado.Checked = false;
-            lblidCategoria.Text = dgvDepartamentos.Rows[e.RowIndex].Cells["idDepartamento"].Value.ToString();
+            lblidCategoria.Text = dgvCiudades.Rows[rowindex].Cells["idCiudad"].Value.ToString();
 
             btnAgregar.Enabled = false;
             btnGuardar.Enabled = true;
