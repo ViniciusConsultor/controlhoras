@@ -29,6 +29,7 @@ namespace ControlHoras
         int[] numerosSer;
         DataGridViewCell celda, LastCellChanged = null;
         string stbuffer;
+        string oldvalor;
         TimeSpan[] hporCubrir;
         string[] dias = new string[] { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
 
@@ -301,10 +302,18 @@ namespace ControlHoras
 
         private void cargarVentana(int numCli, int numSer)
         {
-            Servicio serv = sistema.obtenerServicioCliente(numCli, numerosSer[ind]);
+            try
+            {
+                Servicio serv = sistema.obtenerServicioCliente(numCli, numerosSer[ind]);
 
-            mtServicio.Text = serv.getNumero().ToString();
-            txtServicio.Text = serv.getNombre();
+                mtServicio.Text = serv.getNumero().ToString();
+                txtServicio.Text = serv.getNombre();
+            }
+            catch (Exception ex)
+            {
+                
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
            
             try
             {
@@ -335,9 +344,12 @@ namespace ControlHoras
                                 switch (h.getTipoDia())
                                 {
                                     case 1:
-                                        dgEscalafon.Rows[i].Cells[h.getDia()].Value = "Descanso";
+                                        dgEscalafon.Rows[i].Cells[h.getDia()].Value = "EnOtroServ";
                                         break;
                                     case 2:
+                                        dgEscalafon.Rows[i].Cells[h.getDia()].Value = "Descanso";
+                                        break;
+                                    case 3:
                                         dgEscalafon.Rows[i].Cells[h.getDia()].Value = "Licencia";
                                         break;
                                     default:
@@ -497,6 +509,14 @@ namespace ControlHoras
         private void dgEscalafon_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             LastCellChanged = dgEscalafon.CurrentCell;
+            if (dgEscalafon.CurrentCell.Value != null)
+            {
+                oldvalor = dgEscalafon.CurrentCell.Value.ToString();
+                ptb.Text = oldvalor;
+            }
+            else
+                oldvalor = "v";
+            
         }       
 
         private void dgEscalafon_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -521,13 +541,39 @@ namespace ControlHoras
         private void pegarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewCell c in dgEscalafon.SelectedCells)
+            {                
+                if (c.ColumnIndex > 3 && c.ColumnIndex < 11)
+                {
+                    if (c.Value != null)
+                        CargarHorarioCelda(c.ColumnIndex, c.Value.ToString(), stbuffer);
+                    else
+                        CargarHorarioCelda(c.ColumnIndex, "v", stbuffer);
+                }
                 c.Value = stbuffer;
+            }
+        }
+
+        private void CargarHorarioCelda(int indice, string viejo, string nuevo)
+        {
+            TimeSpan old = ObtenerHoraString(viejo);
+            TimeSpan niu = ObtenerHoraString(nuevo);
+            TimeSpan aux = niu - old;
+            hporCubrir[indice - 4] = hporCubrir[indice - 4] - aux;
+            
+            CargarHporCubrir();
         }
 
         private void descansoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewCell c in dgEscalafon.SelectedCells)
-            {
+            {               
+                if (c.ColumnIndex > 3 && c.ColumnIndex < 11)
+                {
+                    if (c.Value != null)
+                        CargarHorarioCelda(c.ColumnIndex, c.Value.ToString(), "Descanso");
+                    else
+                        CargarHorarioCelda(c.ColumnIndex, "v", "Descanso");
+                }
                 //c.Style 
                 c.Value = "Descanso";
             }
@@ -536,7 +582,14 @@ namespace ControlHoras
         private void licenciaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewCell c in dgEscalafon.SelectedCells)
-            {
+            {                
+                if (c.ColumnIndex > 3 && c.ColumnIndex < 11)
+                {
+                    if (c.Value != null)
+                        CargarHorarioCelda(c.ColumnIndex, c.Value.ToString(), "Licencia");
+                    else
+                        CargarHorarioCelda(c.ColumnIndex, "v", "Licencia");
+                }
                 //c.Style 
                 c.Value = "Licencia";
             }
@@ -596,7 +649,7 @@ namespace ControlHoras
 
         private bool ValidarHorario(string hor)
         {
-            if (hor=="Descanso" || hor=="Licencia")
+            if (hor=="EnOtroServ" || hor=="Descanso" || hor=="Licencia")
                 return true;
             if (hor.IndexOfAny(new Char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }) == -1)
                 return false;
@@ -671,11 +724,14 @@ namespace ControlHoras
                  dgvHsPorCubrir.Rows[0].Cells[i].Value = impHora(hporCubrir[i]);
                  if (hporCubrir[i] > TimeSpan.Zero)
                  {
-                     dgvHsPorCubrir.Rows[0].Cells[i].Style.BackColor = Color.OrangeRed;
+                     dgvHsPorCubrir.Rows[0].Cells[i].Style.BackColor = Color.FromArgb(255, 128, 128);
                      cubierto = false;
                  }
                  else
-                     dgvHsPorCubrir.Rows[0].Cells[i].Style.BackColor = Color.White;
+                     if (hporCubrir[i] < TimeSpan.Zero)
+                         dgvHsPorCubrir.Rows[0].Cells[i].Style.BackColor = Color.FromArgb(128, 255, 128);
+                     else
+                         dgvHsPorCubrir.Rows[0].Cells[i].Style.BackColor = Color.White;
              }
          }
 
@@ -689,22 +745,32 @@ namespace ControlHoras
              return aux;
          }
 
-         private TimeSpan[] ObtenerHoras(int f)
+         private TimeSpan[] ObtenerHorasFila(int f)
          {
-             TimeSpan[] aux = new TimeSpan[7];
-             TimeSpan a = new TimeSpan(0, 0, 0);
+             TimeSpan[] aux = new TimeSpan[7];             
              string valor;
              DataGridViewRow fila = dgEscalafon.Rows[f];
              for (int i = 0; i < 7; i++)
              {
                  valor = fila.Cells[i + 4].Value.ToString();
-                 if (valor == "Descanso" || valor == "Licencia")
-                     aux[i] = a;
-                 else
-                     aux[i] = calcDif(fila.Cells[i + 4].Value.ToString());
+                 aux[i] = ObtenerHoraString(valor);
+                 //if (valor=="EnOtroServ" || valor == "Descanso" || valor == "Licencia")
+                 //    aux[i] = a;
+                 //else
+                 //    aux[i] = calcDif(fila.Cells[i + 4].Value.ToString());
              }
              return aux;
          }
+
+         private TimeSpan ObtenerHoraString(string horario)
+         {
+             TimeSpan a = new TimeSpan(0, 0, 0);
+             if (horario == "EnOtroServ" || horario == "Descanso" || horario == "Licencia" || horario == "v")
+                 return a;
+             else
+                 return calcDif(horario);
+         }
+
 
          private TimeSpan calcDif(string p)
          {
@@ -722,6 +788,7 @@ namespace ControlHoras
          {
              if (LastCellChanged != null && LastCellChanged.Value != null)
              {
+                 int j = LastCellChanged.ColumnIndex;
                  //&& LastCellChanged.Value != ""
                  if (LastCellChanged.ColumnIndex == 0)
                  {
@@ -749,6 +816,25 @@ namespace ControlHoras
                      }
 
                  }
+                 else
+                     if (LastCellChanged.ColumnIndex > 3 && LastCellChanged.ColumnIndex < 11)
+                     {
+                         if (dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value == null || !ValidarHorario(dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString()))
+                         {
+                             dgEscalafon.Focus();
+                             dgEscalafon.CurrentCell = dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j];
+                             dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Selected = true;
+                             MessageBox.Show(this, "Horario mal ingresado", "Celda no valida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                         }
+                         else
+                         {
+                             CargarHorarioCelda(j, oldvalor, dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString());
+                             //TimeSpan aux = ObtenerHoraString(dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString());
+                             //hporCubrir[j-4] = hporCubrir[j-4] - aux;
+                             //CargarHporCubrir();
+                         }
+
+                     }
              }
          }
 
@@ -774,7 +860,7 @@ namespace ControlHoras
                          {
                              for (int i = 0; i < totLineas; i++)
                              {
-                                 hporCubrir = restar(hporCubrir, ObtenerHoras(i));
+                                 hporCubrir = restar(hporCubrir, ObtenerHorasFila(i));
                              }
 
                              CargarHporCubrir();
@@ -860,6 +946,27 @@ namespace ControlHoras
 
             return aux;
         }
+
+        private void enOtroServicioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewCell c in dgEscalafon.SelectedCells)
+            {               
+                if (c.ColumnIndex > 3 && c.ColumnIndex < 11)
+                {
+                    if (c.Value != null)
+                        CargarHorarioCelda(c.ColumnIndex, c.Value.ToString(), "EnOtroServ");
+                    else
+                        CargarHorarioCelda(c.ColumnIndex, "v", "EnOtroServ");
+                }
+                //c.Style 
+                c.Value = "EnOtroServ";
+            }
+        }
+
+        private bool EsHorario(string texto)
+        {
+            return (texto.IndexOfAny(new Char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }) == 0);
+        }     
 
     }
 }

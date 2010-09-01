@@ -2848,7 +2848,7 @@ namespace Datos
                 else
                     hs.HoraSalida = DateTime.Parse(horanueva); 
                 
-                mtcd.IDHorasGeneragasEscalafon = IdHorasGeneragasEscalafon;
+                mtcd.IDHorasGeneradasEscalafon = IdHorasGeneragasEscalafon;
                 
                 database.MotIVOsCamBiosDiARioS.InsertOnSubmit(mtcd);
                 
@@ -3191,7 +3191,24 @@ namespace Datos
             }
 
         }
-        
+
+        public List<EScalaFOneMpLeadO> getHorariosEmpleado(int NroEmpleado)
+        {
+            try
+            {
+                List<EScalaFOneMpLeadO> hors = (from varcli in database.GetTable<EScalaFOneMpLeadO>()
+                                        where varcli.NroEmpleado == (uint)NroEmpleado
+                                        select varcli).ToList<EScalaFOneMpLeadO>();
+                return hors;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+        }
+
+
     }
 
 }

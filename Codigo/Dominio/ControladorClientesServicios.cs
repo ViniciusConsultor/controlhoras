@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DbLinq.Data.Linq;
 using System.Text;
+using System.Globalization;
 using Datos;
 
 namespace Logica
@@ -524,6 +525,49 @@ namespace Logica
             }
 
             return aux;
+        }
+
+        public bool EsHorarioSolapado(int NroEmpleado, string dia, string HoraIni, string HoraFin)
+        {
+            try
+            {
+                List<EScalaFOneMpLeadO> horarios = datos.getHorariosEmpleado(NroEmpleado);
+
+                foreach (EScalaFOneMpLeadO linea in horarios)
+                {
+                    foreach (HoRaRioEScalaFOn h in linea.HoRaRioEScalaFOn)
+                    {
+                        if (h.IDEscalafonEmpleado == linea.IDEscalafonEmpleado && h.DiA == dia && h.TipoDia == 0)
+                        {
+                            if (HorariosSolapados(HoraIni, HoraFin, h.HoRaInI, h.HoRaFIn))
+                                return true;
+                        }
+                    }
+
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
+        }
+
+        private bool HorariosSolapados(string hi1, string hf1, string hi2, string hf2)
+        {
+            DateTime dti1, dtf1, dti2, dtf2;
+
+            dti1 = DateTime.ParseExact(hi1, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+            dtf1 = DateTime.ParseExact(hf1, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+            dti2 = DateTime.ParseExact(hi2, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+            dtf2 = DateTime.ParseExact(hf2, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+
+            if (dti2 < dtf1 && dtf2 > dti1)
+                return true;
+            else
+                return false;
         }
     }
 }

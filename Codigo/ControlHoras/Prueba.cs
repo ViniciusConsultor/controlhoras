@@ -62,10 +62,10 @@ namespace ControlHoras
 
         private void maskedTextBoxKeyDown1_Validating(object sender, CancelEventArgs e)
         {
-            if (!ValidarHTB(HoraTB.Text))
+            if (!ValidarHTB(Hini1.Text))
             {
                 e.Cancel = true;
-                errorProvider1.SetError(HoraTB, "No es una hora válida");
+                errorProvider1.SetError(Hini1, "No es una hora válida");
             }            
         }
 
@@ -78,20 +78,44 @@ namespace ControlHoras
 
         private void HoraTB_Validated(object sender, EventArgs e)
         {
-            errorProvider1.SetError(HoraTB, "");
-            hora = TimeSpan.Parse(HoraTB.Text);
+            errorProvider1.SetError(Hini1, "");
+            hora = TimeSpan.Parse(Hini1.Text);
             HTB.Text = hora.ToString().Substring(0,5);
         }
 
         private void difbtn_Click(object sender, EventArgs e)
-        {            
-            DateTime dti,dtf;
+        {
+            if (HorariosSolapados(Hini1.Text, Hfin1.Text, Hini2.Text, Hfin2.Text))
+                result.Text = "SE CRUZAN";
+            else
+                result.Text = "NO SE CRUZAN";
+
+        }
+
+        private bool HorariosSolapados(string hi1, string hf1, string hi2, string hf2)
+        {
+            DateTime dti1, dtf1, dti2, dtf2;
+
+            dti1 = DateTime.ParseExact(hi1, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+            dtf1 = DateTime.ParseExact(hf1, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+            dti2 = DateTime.ParseExact(hi2, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+            dtf2 = DateTime.ParseExact(hf2, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+
+            if (dti2 < dtf1 && dtf2 > dti1)
+                return true;
+            else
+                return false;
+        }
+
+        private void CalcDiff()
+        {
+            DateTime dti, dtf;
             TimeSpan res;
-            
-            dti = DateTime.ParseExact(horaini.Text, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
-            dtf = DateTime.ParseExact(horafin.Text, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+
+            dti = DateTime.ParseExact(Hini1.Text, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+            dtf = DateTime.ParseExact(Hfin1.Text, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
             res = dtf - dti;
-                       
+
             result.Text = res.Hours.ToString() + ":" + res.Minutes.ToString();
             res2TB.Text = res.TotalHours.ToString();
             res3TB.Text = System.Math.Truncate(res.TotalHours).ToString();
