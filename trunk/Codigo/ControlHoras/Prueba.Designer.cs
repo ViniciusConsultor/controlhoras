@@ -35,16 +35,17 @@
             this.button1 = new System.Windows.Forms.Button();
             this.HTB = new System.Windows.Forms.TextBox();
             this.mtbkd = new ControlHoras.MaskedTextBoxKeyDown();
-            this.HoraTB = new ControlHoras.MaskedTextBoxKeyDown();
+            this.Hini1 = new ControlHoras.MaskedTextBoxKeyDown();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maskedTextBoxColumn1 = new ControlHoras.MaskedTextBoxColumn();
-            this.horaini = new System.Windows.Forms.TextBox();
-            this.horafin = new System.Windows.Forms.TextBox();
             this.difbtn = new System.Windows.Forms.Button();
             this.result = new System.Windows.Forms.TextBox();
             this.res2TB = new System.Windows.Forms.TextBox();
             this.res3TB = new System.Windows.Forms.TextBox();
+            this.Hfin1 = new ControlHoras.MaskedTextBoxKeyDown();
+            this.Hini2 = new ControlHoras.MaskedTextBoxKeyDown();
+            this.Hfin2 = new ControlHoras.MaskedTextBoxKeyDown();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,15 +97,15 @@
             this.mtbkd.Size = new System.Drawing.Size(100, 22);
             this.mtbkd.TabIndex = 0;
             // 
-            // HoraTB
+            // Hini1
             // 
-            this.HoraTB.Location = new System.Drawing.Point(55, 153);
-            this.HoraTB.Mask = "00:00";
-            this.HoraTB.Name = "HoraTB";
-            this.HoraTB.Size = new System.Drawing.Size(100, 22);
-            this.HoraTB.TabIndex = 1;
-            this.HoraTB.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBoxKeyDown1_Validating);
-            this.HoraTB.Validated += new System.EventHandler(this.HoraTB_Validated);
+            this.Hini1.Location = new System.Drawing.Point(55, 153);
+            this.Hini1.Mask = "00:00";
+            this.Hini1.Name = "Hini1";
+            this.Hini1.Size = new System.Drawing.Size(100, 22);
+            this.Hini1.TabIndex = 0;
+            this.Hini1.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBoxKeyDown1_Validating);
+            this.Hini1.Validated += new System.EventHandler(this.HoraTB_Validated);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -128,34 +129,20 @@
             this.maskedTextBoxColumn1.PromptChar = '\0';
             this.maskedTextBoxColumn1.ValidatingType = null;
             // 
-            // horaini
-            // 
-            this.horaini.Location = new System.Drawing.Point(55, 284);
-            this.horaini.Name = "horaini";
-            this.horaini.Size = new System.Drawing.Size(100, 22);
-            this.horaini.TabIndex = 6;
-            // 
-            // horafin
-            // 
-            this.horafin.Location = new System.Drawing.Point(55, 339);
-            this.horafin.Name = "horafin";
-            this.horafin.Size = new System.Drawing.Size(100, 22);
-            this.horafin.TabIndex = 7;
-            // 
             // difbtn
             // 
-            this.difbtn.Location = new System.Drawing.Point(200, 310);
+            this.difbtn.Location = new System.Drawing.Point(55, 333);
             this.difbtn.Margin = new System.Windows.Forms.Padding(4);
             this.difbtn.Name = "difbtn";
             this.difbtn.Size = new System.Drawing.Size(100, 28);
-            this.difbtn.TabIndex = 8;
+            this.difbtn.TabIndex = 4;
             this.difbtn.Text = "button2";
             this.difbtn.UseVisualStyleBackColor = true;
             this.difbtn.Click += new System.EventHandler(this.difbtn_Click);
             // 
             // result
             // 
-            this.result.Location = new System.Drawing.Point(336, 313);
+            this.result.Location = new System.Drawing.Point(201, 339);
             this.result.Name = "result";
             this.result.Size = new System.Drawing.Size(100, 22);
             this.result.TabIndex = 9;
@@ -174,20 +161,45 @@
             this.res3TB.Size = new System.Drawing.Size(100, 22);
             this.res3TB.TabIndex = 11;
             // 
+            // Hfin1
+            // 
+            this.Hfin1.Location = new System.Drawing.Point(55, 181);
+            this.Hfin1.Mask = "00:00";
+            this.Hfin1.Name = "Hfin1";
+            this.Hfin1.Size = new System.Drawing.Size(100, 22);
+            this.Hfin1.TabIndex = 1;
+            // 
+            // Hini2
+            // 
+            this.Hini2.Location = new System.Drawing.Point(55, 242);
+            this.Hini2.Mask = "00:00";
+            this.Hini2.Name = "Hini2";
+            this.Hini2.Size = new System.Drawing.Size(100, 22);
+            this.Hini2.TabIndex = 2;
+            // 
+            // Hfin2
+            // 
+            this.Hfin2.Location = new System.Drawing.Point(55, 284);
+            this.Hfin2.Mask = "00:00";
+            this.Hfin2.Name = "Hfin2";
+            this.Hfin2.Size = new System.Drawing.Size(100, 22);
+            this.Hfin2.TabIndex = 3;
+            // 
             // Prueba
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(885, 443);
+            this.Controls.Add(this.Hfin2);
+            this.Controls.Add(this.Hini2);
+            this.Controls.Add(this.Hfin1);
             this.Controls.Add(this.res3TB);
             this.Controls.Add(this.res2TB);
             this.Controls.Add(this.result);
             this.Controls.Add(this.difbtn);
-            this.Controls.Add(this.horafin);
-            this.Controls.Add(this.horaini);
             this.Controls.Add(this.mtbkd);
             this.Controls.Add(this.HTB);
-            this.Controls.Add(this.HoraTB);
+            this.Controls.Add(this.Hini1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -209,15 +221,16 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Button button1;
-        private MaskedTextBoxKeyDown HoraTB;
+        private MaskedTextBoxKeyDown Hini1;
         private System.Windows.Forms.TextBox HTB;
         private MaskedTextBoxKeyDown mtbkd;
         private System.Windows.Forms.TextBox result;
         private System.Windows.Forms.Button difbtn;
-        private System.Windows.Forms.TextBox horafin;
-        private System.Windows.Forms.TextBox horaini;
         private System.Windows.Forms.TextBox res2TB;
         private System.Windows.Forms.TextBox res3TB;
+        private MaskedTextBoxKeyDown Hfin2;
+        private MaskedTextBoxKeyDown Hini2;
+        private MaskedTextBoxKeyDown Hfin1;
 
 
     }

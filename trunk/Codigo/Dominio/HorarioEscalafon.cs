@@ -25,11 +25,14 @@ namespace Logica
             Dia = dia;
             switch (tipoDia)
             {
-                case "Descanso":
+                case "EnOtroServ":
                     TipoDia = 1;
                     break;
-                case "Licencia":
+                case "Descanso":
                     TipoDia = 2;
+                    break;
+                case "Licencia":
+                    TipoDia = 3;
                     break;
             }
         }

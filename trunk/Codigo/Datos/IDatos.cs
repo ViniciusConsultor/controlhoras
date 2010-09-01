@@ -282,5 +282,7 @@ namespace Datos
         /// Recarga el Contexto del ORM
         /// </summary>
         //public void recargarContexto();
+
+        List<EScalaFOneMpLeadO> getHorariosEmpleado(int NroEmpleado);
     }
 }

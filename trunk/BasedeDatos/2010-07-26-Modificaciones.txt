@@ -67,4 +67,4 @@ alter table motivoscambiosdiarios add foreign key (NumeroCliente,NumeroServicio)
 alter table motivoscambiosdiarios add foreign key (NroEmpleado) references empleados(NroEmpleado);
 
 alter table motivoscambiosdiarios add column IdHorasGeneradasEscalafon bigint not null;
--- alter table motivoscambiosdiarios add foreign key (IdHorasGeneragasEscalafon) references HorasGeneragasEscalafon(IdHorasGeneradasEscalafon);
+alter table motivoscambiosdiarios add foreign key (IdHorasGeneradasEscalafon) references HorasGeneragasEscalafon(IdHorasGeneradasEscalafon);
