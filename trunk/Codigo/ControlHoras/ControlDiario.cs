@@ -126,7 +126,7 @@ namespace ControlHoras
                         int numFila = dgvHoras.SelectedRows[0].Index;
                         motivoCambio = mcdf.motivoCambio;
                         long idhge = (long)dgvHoras.Rows[numFila].Cells["IdHorasGeneradasEscalafon"].Value;
-                        motivoCambio.IDHorasGeneragasEscalafon = idhge;
+                        motivoCambio.IDHorasGeneradasEscalafon = idhge;
                         motivoCambio.NumeroCliente = uint.Parse(ucCliente.ClienteNRO);
                         //motivoCambio.SERVicIoS = servicio;                        
                         motivoCambio.NumeroServicio = servicio.NumeroServicio;                        
@@ -195,7 +195,7 @@ namespace ControlHoras
                             long idhge = (long)dgvHoras.Rows[numFila].Cells["IdHorasGeneradasEscalafon"].Value;
                             int nroEmp = int.Parse(dgvHoras.Rows[numFila].Cells["NroEmpleado"].Value.ToString());
                             string HoraNueva = changeHourForm.getHoraNueva();
-                            mcdf.motivoCambio.IDHorasGeneragasEscalafon = idhge;
+                            mcdf.motivoCambio.IDHorasGeneradasEscalafon = idhge;
                             mcdf.motivoCambio.NroEmpleado = (uint)nroEmp;
                             mcdf.motivoCambio.NumeroCliente = uint.Parse(ucCliente.ClienteNRO);
                             mcdf.motivoCambio.NumeroServicio = servicio.NumeroServicio;

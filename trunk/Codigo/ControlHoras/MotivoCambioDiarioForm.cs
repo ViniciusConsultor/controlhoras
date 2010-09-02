@@ -28,14 +28,20 @@ namespace ControlHoras
             cmbMotivosCambio.DisplayMember = "Descripcion";
             cmbMotivosCambio.EndUpdate();
             //}
+            
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            motivoCambio = new MotIVOsCamBiosDiARioS();
-            motivoCambio.Fecha = DateTime.Now;
-            motivoCambio.Observaciones = txtObservaciones.Text;
-            motivoCambio.TipOsMotIVOCamBIoDiARio = ((TipOsMotIVOCamBIoDiARio)cmbMotivosCambio.SelectedValue);            
+            if (txtObservaciones.Text != "")
+            {
+                motivoCambio = new MotIVOsCamBiosDiARioS();
+                motivoCambio.Fecha = DateTime.Now;
+                motivoCambio.Observaciones = txtObservaciones.Text;
+                motivoCambio.TipOsMotIVOCamBIoDiARio = ((TipOsMotIVOCamBIoDiARio)cmbMotivosCambio.SelectedValue);
+            }
+            else
+                MessageBox.Show(this, "Debe ingresar una observacion.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

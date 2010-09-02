@@ -38,6 +38,7 @@
             // 
             // cmbMotivosCambio
             // 
+            this.cmbMotivosCambio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMotivosCambio.FormattingEnabled = true;
             this.cmbMotivosCambio.Location = new System.Drawing.Point(71, 37);
             this.cmbMotivosCambio.Name = "cmbMotivosCambio";
