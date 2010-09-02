@@ -2958,6 +2958,7 @@ namespace Datos
                     tempsql += lh.IDEscalafon.ToString() + ", ";
                     tempsql += lh.IDEscalafonEmpleado.ToString() + ", ";
                     tempsql += lh.NroEmpleado.ToString() + ")";
+                    
                     database.ExecuteCommand(tempsql, null);
                     nombreTabla = database.Connection.Database + ".horarioescalafon";
                     campos = obtenerColumnasDeTabla(nombreTabla);
@@ -2978,6 +2979,7 @@ namespace Datos
                         tempsql += "'" + dh.HoRaInI + "', ";
                         tempsql += dh.IDEscalafon.ToString() + ", ";
                         tempsql += dh.IDEscalafonEmpleado.ToString() + ", ";
+                        tempsql += dh.Solapa + ", ";
                         tempsql += dh.TipoDia.ToString() + ")";
                         database.ExecuteCommand(tempsql, null);
                     }
@@ -3161,6 +3163,7 @@ namespace Datos
                         tempsql += "'" + dh.HoRaInI + "', ";
                         tempsql += dh.IDEscalafon.ToString() + ", ";
                         tempsql += dh.IDEscalafonEmpleado.ToString() + ", ";
+                        tempsql += dh.Solapa + ", ";
                         tempsql += dh.TipoDia.ToString() + ")";
                         database.ExecuteCommand(tempsql, null);
                     }

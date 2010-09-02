@@ -338,7 +338,11 @@ namespace ControlHoras
                         foreach (HorarioEscalafon h in l.Horario)
                         {
                             if (h.EsLaborable())
+                            {
                                 dgEscalafon.Rows[i].Cells[h.getDia()].Value = h.getHoraIni() + " a " + h.getHoraFin();
+                                if (h.Solapea())
+                                    dgEscalafon.Rows[i].Cells[h.getDia()].Style.BackColor = Color.Red;
+                            }
                             else
                             {
                                 switch (h.getTipoDia())
@@ -356,7 +360,7 @@ namespace ControlHoras
                                         dgEscalafon.Rows[i].Cells[h.getDia()].Value = "Error";
                                         break;
                                 }
-                                
+
                             }
                             
                         }
@@ -383,10 +387,21 @@ namespace ControlHoras
                     CargarHporCubrir();
                     ActHorasBTN.PerformClick();
                 }
+                else
+                    LimpiarHporCubrir();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LimpiarHporCubrir()
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                dgvHsPorCubrir.Rows[0].Cells[i].Value = "";
+                dgvHsPorCubrir.Rows[0].Cells[i].Style.BackColor = Color.White;
             }
         }
 
@@ -511,8 +526,7 @@ namespace ControlHoras
             LastCellChanged = dgEscalafon.CurrentCell;
             if (dgEscalafon.CurrentCell.Value != null)
             {
-                oldvalor = dgEscalafon.CurrentCell.Value.ToString();
-                ptb.Text = oldvalor;
+                oldvalor = dgEscalafon.CurrentCell.Value.ToString();                
             }
             else
                 oldvalor = "v";
@@ -605,7 +619,7 @@ namespace ControlHoras
             f = dgEscalafon.Rows[fila];
 
             //Validar Empleado
-            if (f.Cells[0].Value == null || f.Cells[0].Value == "")
+            if (f.Cells[0].Value == null || f.Cells[0].Value.ToString() == "")
             {
                 dgEscalafon.Focus();
                 dgEscalafon.CurrentCell = f.Cells[0];
@@ -821,6 +835,7 @@ namespace ControlHoras
                      {
                          if (dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value == null || !ValidarHorario(dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString()))
                          {
+                             dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value = oldvalor;
                              dgEscalafon.Focus();
                              dgEscalafon.CurrentCell = dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j];
                              dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Selected = true;
@@ -880,6 +895,9 @@ namespace ControlHoras
 
          private void GuardarBTN_Click(object sender, EventArgs e)
          {
+             bool solapa;
+             bool hubosolapa = false;
+
              dgEscalafon.EndEdit();
              if (ValidarEscalafon())
              {
@@ -903,17 +921,27 @@ namespace ControlHoras
                      linea.CantidadHsLlamadaAntesHoraInicio = int.Parse(fila.Cells[3].Value.ToString().Substring(0,1));
                      linea.AcargoDe = fila.Cells[11].Value.ToString();
                      linea.Horario = new List<HorarioEscalafon>();
+                     solapa = false;
                      for (int i = 0; i < 7; i++)
-                     {
+                     {                         
                          cel = fila.Cells[dias[i]];
                          if (cel.Value.ToString().IndexOfAny(new Char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }) == -1) //cel.Value.ToString() == "Descanso" || cel.Value.ToString() == "Licencia")
                          {
                              hor = new HorarioEscalafon(dias[i], cel.Value.ToString());
+                             cel.Style.BackColor = Color.FromArgb(255, 255, 192);
                          }
                          else
                          {
-                             hor = new HorarioEscalafon(dias[i], obtHIni(cel.Value.ToString()), obtHFin(cel.Value.ToString()));                             
-                         }
+                             solapa = sistema.EsHorarioSolapado(nroCon, linea.NroEmpleado, dias[i], obtHIni(cel.Value.ToString()), obtHFin(cel.Value.ToString())); 
+                             hor = new HorarioEscalafon(dias[i], obtHIni(cel.Value.ToString()), obtHFin(cel.Value.ToString()), solapa);
+                             if (solapa)
+                             {
+                                 hubosolapa = true;
+                                 cel.Style.BackColor = Color.Red;
+                             }
+                             else
+                                 cel.Style.BackColor = Color.FromArgb(255, 255, 192);
+                         }                         
                          linea.Horario.Add(hor);
                      }
                      
@@ -923,9 +951,12 @@ namespace ControlHoras
                  if (datos.existeEscalafon(nroCon))
                      sistema.modificarEscalafon(nroCon, es);
                  else
-                     sistema.altaEscalafon(numCli, numSer, nroCon, es);                  
-                 
-                 MessageBox.Show("Datos guardados correctamente.", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                     sistema.altaEscalafon(numCli, numSer, nroCon, es);
+
+                 if (hubosolapa)
+                     MessageBox.Show("En los horarios en rojo el empleado ya trabaja", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                 else
+                     MessageBox.Show("Datos guardados correctamente.", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
              }
              else
                  MessageBox.Show(this, "Error en la celda seleccionada", "Línea no valida", MessageBoxButtons.OK, MessageBoxIcon.Error);

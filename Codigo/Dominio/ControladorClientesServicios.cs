@@ -400,7 +400,7 @@ namespace Logica
                 lh.NroEmpleado = (uint)ldh.NroEmpleado;
                 lh.CodigoPuesto  = ldh.CodigoPuesto;
                 lh.HsLlamadaAntesHoraInicio = (sbyte)ldh.CantidadHsLlamadaAntesHoraInicio;
-                lh.AcArgoDe = ldh.AcargoDe;
+                lh.AcArgoDe = ldh.AcargoDe;                
                 
                 //pasar los horarios por dia
                 HoRaRioEScalaFOn hd = null;
@@ -415,11 +415,13 @@ namespace Logica
                         hd.HoRaInI = hpd.getHoraIni();
                         hd.HoRaFIn = hpd.getHoraFin();
                         hd.TipoDia = 0;
+                        hd.Solapa = (hpd.Solapea()) ? (sbyte)1 : (sbyte)0;
                     }
                     else
                     {
                         hd.DiA = hpd.getDia();
                         hd.TipoDia = (byte)hpd.getTipoDia();
+                        hd.Solapa = 0;
                     }
                     
                     lh.HoRaRioEScalaFOn.Add(hd);
@@ -450,7 +452,7 @@ namespace Logica
                     lh.NroEmpleado = (uint)ldh.NroEmpleado;
                     lh.CodigoPuesto = ldh.CodigoPuesto;
                     lh.HsLlamadaAntesHoraInicio = (sbyte)ldh.CantidadHsLlamadaAntesHoraInicio;
-                    lh.AcArgoDe = ldh.AcargoDe;
+                    lh.AcArgoDe = ldh.AcargoDe;                   
 
                     //pasar los horarios por dia
                     HoRaRioEScalaFOn hd = null;
@@ -465,11 +467,13 @@ namespace Logica
                             hd.HoRaInI = hpd.getHoraIni();
                             hd.HoRaFIn = hpd.getHoraFin();
                             hd.TipoDia = 0;
+                            hd.Solapa = (hpd.Solapea()) ? (sbyte)1 : (sbyte)0;
                         }
                         else
                         {
                             hd.DiA = hpd.getDia();
                             hd.TipoDia = (byte)hpd.getTipoDia();
+                            hd.Solapa = 0;
                         }
 
                         lh.HoRaRioEScalaFOn.Add(hd);
@@ -514,7 +518,7 @@ namespace Logica
                     if (h.IDEscalafon == lh.IDEscalafon && h.IDEscalafonEmpleado == lh.IDEscalafonEmpleado)
                     {
                         if (h.TipoDia == 0)
-                            hor = new HorarioEscalafon(h.DiA, h.HoRaInI, h.HoRaFIn);
+                            hor = new HorarioEscalafon(h.DiA, h.HoRaInI, h.HoRaFIn, (h.Solapa == 1)? true:false);
                         else
                             hor = new HorarioEscalafon(h.DiA, (int)h.TipoDia);
                         
@@ -527,7 +531,7 @@ namespace Logica
             return aux;
         }
 
-        public bool EsHorarioSolapado(int NroEmpleado, string dia, string HoraIni, string HoraFin)
+        public bool EsHorarioSolapado(int IdEscalafon, int NroEmpleado, string dia, string HoraIni, string HoraFin)
         {
             try
             {
@@ -535,15 +539,17 @@ namespace Logica
 
                 foreach (EScalaFOneMpLeadO linea in horarios)
                 {
-                    foreach (HoRaRioEScalaFOn h in linea.HoRaRioEScalaFOn)
+                    if (linea.IDEscalafon != IdEscalafon)
                     {
-                        if (h.IDEscalafonEmpleado == linea.IDEscalafonEmpleado && h.DiA == dia && h.TipoDia == 0)
+                        foreach (HoRaRioEScalaFOn h in linea.HoRaRioEScalaFOn)
                         {
-                            if (HorariosSolapados(HoraIni, HoraFin, h.HoRaInI, h.HoRaFIn))
-                                return true;
+                            if (h.IDEscalafonEmpleado == linea.IDEscalafonEmpleado && h.DiA == dia && h.TipoDia == 0)
+                            {
+                                if (HorariosSolapados(HoraIni, HoraFin, h.HoRaInI, h.HoRaFIn))
+                                    return true;
+                            }
                         }
                     }
-
                 }
 
                 return false;

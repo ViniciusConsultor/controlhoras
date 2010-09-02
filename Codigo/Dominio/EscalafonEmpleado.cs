@@ -11,7 +11,8 @@ namespace Logica
         public string CodigoPuesto { set; get; }
         public int CantidadHsLlamadaAntesHoraInicio { set; get; }
 
-        public string AcargoDe;        
+        public string AcargoDe;
+        public bool Solapa;
         
         public List<HorarioEscalafon> Horario;
 
