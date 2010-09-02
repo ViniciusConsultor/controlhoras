@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2010-08-30 10:08:50Z
+#region Auto-generated classes for trustdb database on 2010-09-02 18:38:02Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2010-08-30 10:08:50Z
+// Auto-generated from trustdb on 2010-09-02 18:38:02Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -5817,6 +5817,8 @@ namespace Datos
 		partial void OnIDEscalafonChanging(uint value);
 		partial void OnIDEscalafonEmpleadoChanged();
 		partial void OnIDEscalafonEmpleadoChanging(uint value);
+		partial void OnSolapaChanged();
+		partial void OnSolapaChanging(sbyte value);
 		partial void OnTipoDiaChanged();
 		partial void OnTipoDiaChanging(byte? value);
 
@@ -5946,6 +5948,32 @@ namespace Datos
 					_ideScalafonEmpleado = value;
 					SendPropertyChanged("IDEscalafonEmpleado");
 					OnIDEscalafonEmpleadoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region sbyte Solapa
+
+		private sbyte _solapa;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_solapa", Name = "Solapa", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public sbyte Solapa
+		{
+			get
+			{
+				return _solapa;
+			}
+			set
+			{
+				if (value != _solapa)
+				{
+					OnSolapaChanging(value);
+					SendPropertyChanging();
+					_solapa = value;
+					SendPropertyChanged("Solapa");
+					OnSolapaChanged();
 				}
 			}
 		}
@@ -7332,7 +7360,7 @@ namespace Datos
 		}
 
 		private EntityRef<SERVicIoS> _servIcIoS;
-		[Association(Storage = "_servIcIoS", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "motivoscambiosdiarios_ibfk_2", IsForeignKey = true)]
+		[Association(Storage = "_servIcIoS", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "motivoscambiosdiarios_ibfk_2", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public SERVicIoS SERVicIoS
 		{
@@ -7354,13 +7382,13 @@ namespace Datos
 					if (value != null)
 					{
 						value.MotIVOsCamBiosDiARioS.Add(this);
-						_numeroCliente = value.NumeroCliente;
 						_numeroServicio = value.NumeroServicio;
+						_numeroCliente = value.NumeroCliente;
 					}
 					else
 					{
-						_numeroCliente = default(uint);
 						_numeroServicio = default(uint);
+						_numeroCliente = default(uint);
 					}
 				}
 			}
@@ -8030,7 +8058,7 @@ namespace Datos
 		}
 
 		private EntitySet<MotIVOsCamBiosDiARioS> _motIvoSCamBiosDiArIoS;
-		[Association(Storage = "_motIvoSCamBiosDiArIoS", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "motivoscambiosdiarios_ibfk_2")]
+		[Association(Storage = "_motIvoSCamBiosDiArIoS", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "motivoscambiosdiarios_ibfk_2")]
 		[DebuggerNonUserCode]
 		public EntitySet<MotIVOsCamBiosDiARioS> MotIVOsCamBiosDiARioS
 		{

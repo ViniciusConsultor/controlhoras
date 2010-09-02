@@ -1,0 +1,3 @@
+ALTER TABLE `trustdb`.`horarioescalafon` ADD COLUMN `Solapa` TINYINT(1) NOT NULL DEFAULT 0  AFTER `tipoDia` ;
+
+

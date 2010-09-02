@@ -53,5 +53,7 @@ namespace Logica
         void modificarEscalafon(int nroCon, Escalafon es);
 
         Escalafon getEscalafon(int nroEsc);
+
+        bool EsHorarioSolapado(int IdEscalafon, int NroEmpleado, string dia, string HoraIni, string HoraFin);
     }
 }

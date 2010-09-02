@@ -11,13 +11,15 @@ namespace Logica
         private string HoraInicio;
         private string HoraFin;
         private int TipoDia;
+        private bool Solapa;
 
-        public HorarioEscalafon(string dia, string HInicio, string HFin)
+        public HorarioEscalafon(string dia, string HInicio, string HFin, bool solapa)
         {
             Dia = dia;
             HoraInicio = HInicio;
             HoraFin = HFin;
             TipoDia = 0;
+            Solapa = solapa;
         }
 
         public HorarioEscalafon(string dia, string tipoDia)
@@ -35,12 +37,14 @@ namespace Logica
                     TipoDia = 3;
                     break;
             }
+            Solapa = false;
         }
 
         public HorarioEscalafon(string dia, int tipoDia)
         {
             Dia = dia;
             TipoDia = tipoDia;
+            Solapa = false;
         }
 
         public string getDia()
@@ -66,6 +70,11 @@ namespace Logica
         public bool EsLaborable()
         {
             return (TipoDia == 0);
+        }
+
+        public bool Solapea()
+        {
+            return Solapa;
         }
     }
 }

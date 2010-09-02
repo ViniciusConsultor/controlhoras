@@ -49,6 +49,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.ptb = new System.Windows.Forms.TextBox();
             this.PosteriorBTN = new System.Windows.Forms.Button();
             this.AnteriorBTN = new System.Windows.Forms.Button();
             this.mtServicio = new System.Windows.Forms.MaskedTextBox();
@@ -87,7 +88,6 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ptb = new System.Windows.Forms.TextBox();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -127,6 +127,14 @@
             this.splitContainer1.SplitterDistance = 129;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // ptb
+            // 
+            this.ptb.Location = new System.Drawing.Point(805, 65);
+            this.ptb.Name = "ptb";
+            this.ptb.Size = new System.Drawing.Size(100, 22);
+            this.ptb.TabIndex = 19;
+            this.ptb.Visible = false;
             // 
             // PosteriorBTN
             // 
@@ -607,13 +615,6 @@
             this.dataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn7.Width = 75;
-            // 
-            // ptb
-            // 
-            this.ptb.Location = new System.Drawing.Point(805, 65);
-            this.ptb.Name = "ptb";
-            this.ptb.Size = new System.Drawing.Size(100, 22);
-            this.ptb.TabIndex = 19;
             // 
             // EscalafonForm
             // 
