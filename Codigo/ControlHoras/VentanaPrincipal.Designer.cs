@@ -54,11 +54,14 @@
             this.tiposDeDocumentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tiposDeEventosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cargosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tiposMotivosCambioDiarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarNúmeroEmpleadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.tiposMotivosCambioDiarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.administracionToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.consolidarEscalafonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generarHorasDiariasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -133,7 +136,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivoToolStripMenuItem,
-            this.administracionToolStripMenuItem});
+            this.administracionToolStripMenuItem,
+            this.administracionToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(400, 24);
@@ -284,6 +288,13 @@
             this.cargosToolStripMenuItem.Text = "Cargos";
             this.cargosToolStripMenuItem.Click += new System.EventHandler(this.cargosToolStripMenuItem_Click);
             // 
+            // tiposMotivosCambioDiarioToolStripMenuItem
+            // 
+            this.tiposMotivosCambioDiarioToolStripMenuItem.Name = "tiposMotivosCambioDiarioToolStripMenuItem";
+            this.tiposMotivosCambioDiarioToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.tiposMotivosCambioDiarioToolStripMenuItem.Text = "Tipos Motivos Cambio Diario";
+            this.tiposMotivosCambioDiarioToolStripMenuItem.Click += new System.EventHandler(this.tiposMotivosCambioDiarioToolStripMenuItem_Click);
+            // 
             // cambiarNúmeroEmpleadoToolStripMenuItem
             // 
             this.cambiarNúmeroEmpleadoToolStripMenuItem.Name = "cambiarNúmeroEmpleadoToolStripMenuItem";
@@ -318,12 +329,27 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // tiposMotivosCambioDiarioToolStripMenuItem
+            // administracionToolStripMenuItem1
             // 
-            this.tiposMotivosCambioDiarioToolStripMenuItem.Name = "tiposMotivosCambioDiarioToolStripMenuItem";
-            this.tiposMotivosCambioDiarioToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.tiposMotivosCambioDiarioToolStripMenuItem.Text = "Tipos Motivos Cambio Diario";
-            this.tiposMotivosCambioDiarioToolStripMenuItem.Click += new System.EventHandler(this.tiposMotivosCambioDiarioToolStripMenuItem_Click);
+            this.administracionToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.consolidarEscalafonToolStripMenuItem,
+            this.generarHorasDiariasToolStripMenuItem});
+            this.administracionToolStripMenuItem1.Name = "administracionToolStripMenuItem1";
+            this.administracionToolStripMenuItem1.Size = new System.Drawing.Size(88, 20);
+            this.administracionToolStripMenuItem1.Text = "Administracion";
+            // 
+            // consolidarEscalafonToolStripMenuItem
+            // 
+            this.consolidarEscalafonToolStripMenuItem.Name = "consolidarEscalafonToolStripMenuItem";
+            this.consolidarEscalafonToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.consolidarEscalafonToolStripMenuItem.Text = "Consolidar Escalafon";
+            // 
+            // generarHorasDiariasToolStripMenuItem
+            // 
+            this.generarHorasDiariasToolStripMenuItem.Name = "generarHorasDiariasToolStripMenuItem";
+            this.generarHorasDiariasToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.generarHorasDiariasToolStripMenuItem.Text = "Generar Horas Diarias";
+            this.generarHorasDiariasToolStripMenuItem.Click += new System.EventHandler(this.generarHorasDiariasToolStripMenuItem_Click);
             // 
             // VentanaPrincipal
             // 
@@ -383,5 +409,8 @@
         private System.Windows.Forms.ToolStripButton btnEscalafon;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ToolStripMenuItem tiposMotivosCambioDiarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem administracionToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem consolidarEscalafonToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem generarHorasDiariasToolStripMenuItem;
     }
 }

@@ -376,5 +376,11 @@ namespace ControlHoras
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void generarHorasDiariasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GenerarHorasDiariasForm ghdf = new GenerarHorasDiariasForm();
+            ghdf.ShowDialog(this);
+        }
     }
 }

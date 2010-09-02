@@ -30,7 +30,7 @@ namespace Datos
         //List<Cliente> busquedaClientePorNombre(string nom);
         bool existeCliente(int numCliente);
         ClientEs obtenerCliente(int idcliente);
-        //List<Cliente> obtenerClientes(bool activos);
+        List<ClientEs> obtenerClientes(bool soloActivos);
         List<ClientEs> buscarClientes(string Nombre);
         #endregion
 

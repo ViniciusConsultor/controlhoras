@@ -160,6 +160,31 @@ namespace Datos
 
 
         }
+
+        public List<ClientEs> obtenerClientes(bool soloActivos)
+        {
+            List<ClientEs> result;
+            Table<ClientEs> tabla;
+            try
+            {
+                tabla = database.GetTable<ClientEs>();
+                result = new List<ClientEs>();
+                
+                if (!soloActivos)
+                    result = tabla.ToList<ClientEs>();
+                else
+                    result = (from reg in tabla
+                           where reg.Activo == 1
+                           select reg).ToList<ClientEs>();
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public ClientEs obtenerCliente(int idcliente)
         {
 

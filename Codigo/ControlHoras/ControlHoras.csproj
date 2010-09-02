@@ -52,6 +52,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DbLinq, Version=0.19.0.0, Culture=neutral, PublicKeyToken=61e015a67077348b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\DbLinq.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp, Version=5.0.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\itextsharp.dll</HintPath>
@@ -253,6 +257,12 @@
     <Compile Include="ExportToExcel.Designer.cs">
       <DependentUpon>ExportToExcel.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenerarHorasDiariasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarHorasDiariasForm.Designer.cs">
+      <DependentUpon>GenerarHorasDiariasForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Imagenes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -404,14 +414,17 @@
     <EmbeddedResource Include="EscalafonForm.resx">
       <DependentUpon>EscalafonForm.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>     
+    </EmbeddedResource>
     <EmbeddedResource Include="ABMTiposMotivoCambioDiario.resx">
       <DependentUpon>ABMTiposMotivoCambioDiario.cs</DependentUpon>
       <SubType>Designer</SubType>
-     </EmbeddedResource>     
+    </EmbeddedResource>
     <EmbeddedResource Include="ExportToExcel.resx">
       <DependentUpon>ExportToExcel.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarHorasDiariasForm.resx">
+      <DependentUpon>GenerarHorasDiariasForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Imagenes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
