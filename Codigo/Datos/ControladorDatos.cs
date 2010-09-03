@@ -2920,9 +2920,9 @@ namespace Datos
                         st += columna + ") ";
                     else
                         st += columna + ", ";
-                }
+                }                
                 st += " VALUES(";
-                st += "0, ";
+                st += escalafon.Cubierto + ", ";
                 st += escalafon.IDContrato.ToString() + ", ";
                 st += escalafon.IDEscalafon.ToString() + ", ";
                 st += escalafon.NumeroCliente.ToString() + ", ";
@@ -3236,7 +3236,64 @@ namespace Datos
             }
         }
 
+        public bool ClienteActivo(int NroCliente)
+        {
+            try
+            {
 
+                Table<ClientEs> tablaCliente = database.GetTable<ClientEs>();
+                var cli = (from clireg in tablaCliente
+                           where clireg.NumeroCliente == NroCliente
+                           select clireg);
+                if (cli.Count<ClientEs>() == 0)
+                    throw new NoExisteException("No existe el cliente con idCliente " + NroCliente);
+
+                return (cli.Single<ClientEs>().Activo == 1);
+            }
+            catch (ArgumentNullException anex)
+            {
+                throw new NoExisteException(anex.Message, anex.InnerException);
+            }
+            catch (InvalidOperationException ioex)
+            {
+                throw ioex;
+            }
+            catch (Exception me)
+            {
+                throw me;
+            }
+        }
+        
+
+        public void SetearCubierto(int NroEscalafon, bool ContCubierto)
+        {
+            try
+            {
+                Table<EScalaFOn> tablaEscalafon = database.GetTable<EScalaFOn>();
+                var con = (from conreg in tablaEscalafon
+                           where conreg.IDEscalafon == NroEscalafon
+                           select conreg);
+                if (con.Count<EScalaFOn>() == 0)
+                    throw new NoExisteException("No existe el escalafón con número " + NroEscalafon);
+                con.Single<EScalaFOn>().Cubierto = (ContCubierto) ? (sbyte)1 : (sbyte)0;
+
+                database.SubmitChanges();
+            }
+            catch (ArgumentNullException anex)
+            {
+                throw new NoExisteException(anex.Message, anex.InnerException);
+            }
+            catch (InvalidOperationException ioex)
+            {
+                throw ioex;
+            }
+            catch (Exception me)
+            {
+                throw me;
+            }
+        }
+
+        
     }
 
 }

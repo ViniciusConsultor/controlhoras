@@ -439,6 +439,8 @@ namespace Logica
         {
             try
             {
+                datos.SetearCubierto(nroEsc, es.Cubierto);
+
                 datos.eliminarLineasEscalafon(nroEsc);
 
                 List<EScalaFOneMpLeadO> lhs = new List<EScalaFOneMpLeadO>();

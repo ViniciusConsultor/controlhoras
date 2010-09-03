@@ -32,6 +32,7 @@ namespace ControlHoras
         string oldvalor;
         TimeSpan[] hporCubrir;
         string[] dias = new string[] { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
+        bool ContCubierto;
 
         static EscalafonForm ventana = null;
         
@@ -49,6 +50,7 @@ namespace ControlHoras
             }
             
             idser = -1;
+            ContCubierto = false;
             InicializardgEscalafon();
         }
 
@@ -145,7 +147,7 @@ namespace ControlHoras
         }
 
         private void mtCliente_KeyDown(object sender, KeyEventArgs e)
-        {
+        {            
             if (mtCliente.Text != "" && (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab))
             {
                 // traigo el cliente.                
@@ -153,7 +155,10 @@ namespace ControlHoras
                 {
                     limpiarForm();
                     if (datos.existeCliente(int.Parse(mtCliente.Text)))
-                    {                        
+                    {
+                        if (!datos.ClienteActivo(int.Parse(mtCliente.Text)))
+                            MessageBox.Show("El cliente "+ mtCliente.Text +" está inactivo", "Cliente Inactivo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
                         ind = 0;
                         int numCli = int.Parse(mtCliente.Text);
                         cliente = datos.obtenerCliente(numCli);                        
@@ -751,6 +756,11 @@ namespace ControlHoras
                      else
                          dgvHsPorCubrir.Rows[0].Cells[i].Style.BackColor = Color.White;
              }
+             ContCubierto = cubierto;
+             if (cubierto)
+                 cubiertoTB.BackColor = Color.FromArgb(128, 255, 128);
+             else
+                 cubiertoTB.BackColor = Color.FromArgb(255, 128, 128);
          }
 
          private TimeSpan[] restar(TimeSpan[] hporCubrir, TimeSpan[] horas)
@@ -816,8 +826,17 @@ namespace ControlHoras
                          if (sistemaEmp.existeEmpleado(int.Parse(LastCellChanged.Value.ToString())))
                          {
                              emp = datos.obtenerEmpleado(int.Parse(LastCellChanged.Value.ToString()));
-                             dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[1].Value = emp.Nombre + " " + emp.Apellido;
-                             //dgEscalafon.CurrentCell = dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[2];
+                             if (emp.Activo == 1)
+                             {
+                                 dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[1].Value = emp.Nombre + " " + emp.Apellido;
+                                 //dgEscalafon.CurrentCell = dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[2];
+                             }
+                             else
+                             {
+                                 MessageBox.Show("El empleado " + emp.Nombre + " - " + emp.NroEmpleado + " está inactivo", "Empleado Inactivo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                 dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[0].Value = "";
+                                 dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[1].Value = "";                                 
+                             }
                          }
                          else
                          {
@@ -869,6 +888,7 @@ namespace ControlHoras
                  int numSer = int.Parse(mtServicio.Text);
                  int nroCon = CalcNroContrato(numCli, numSer);
                  Escalafon es = new Escalafon();
+                 es.Cubierto = ContCubierto;
                  es.ListaEscalafonEmpleados = new List<EscalafonEmpleado>();
 
                  // ACA GUARDO TODOS LOS DATOS DEL DATAGRIDVIEW

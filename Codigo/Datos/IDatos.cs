@@ -284,5 +284,9 @@ namespace Datos
         //public void recargarContexto();
 
         List<EScalaFOneMpLeadO> getHorariosEmpleado(int NroEmpleado);
+
+        bool ClienteActivo(int NroCliente);
+
+        void SetearCubierto(int NroEscalafon, bool ContCubierto);
     }
 }
