@@ -64,7 +64,7 @@
             this.btnEliminarLineaEscalafon = new System.Windows.Forms.Button();
             this.btnAgregarLineaEscalafon = new System.Windows.Forms.Button();
             this.dgEscalafon = new ControlHoras.DataGridTAB();
-            this.ActHorasBTN = new System.Windows.Forms.Button();
+            this.VerContratoBTN = new System.Windows.Forms.Button();
             this.dgvHsPorCubrir = new System.Windows.Forms.DataGridView();
             this.HsACubrirLunes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HsACubrirMartes = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -268,7 +268,7 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.ActHorasBTN);
+            this.splitContainer2.Panel2.Controls.Add(this.VerContratoBTN);
             this.splitContainer2.Panel2.Controls.Add(this.dgvHsPorCubrir);
             this.splitContainer2.Size = new System.Drawing.Size(1279, 462);
             this.splitContainer2.SplitterDistance = 365;
@@ -324,15 +324,17 @@
             this.dgEscalafon.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgEscalafon_EditingControlShowing);
             this.dgEscalafon.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgEscalafon_KeyDown);
             // 
-            // ActHorasBTN
+            // VerContratoBTN
             // 
-            this.ActHorasBTN.Location = new System.Drawing.Point(882, 28);
-            this.ActHorasBTN.Name = "ActHorasBTN";
-            this.ActHorasBTN.Size = new System.Drawing.Size(86, 23);
-            this.ActHorasBTN.TabIndex = 3;
-            this.ActHorasBTN.Text = "Actualizar";
-            this.ActHorasBTN.UseVisualStyleBackColor = false;
-            this.ActHorasBTN.Click += new System.EventHandler(this.ActHorasBTN_Click);
+            this.VerContratoBTN.AutoSize = true;
+            this.VerContratoBTN.Enabled = false;
+            this.VerContratoBTN.Location = new System.Drawing.Point(882, 3);
+            this.VerContratoBTN.Name = "VerContratoBTN";
+            this.VerContratoBTN.Size = new System.Drawing.Size(98, 27);
+            this.VerContratoBTN.TabIndex = 4;
+            this.VerContratoBTN.Text = "Ver Contrato";
+            this.VerContratoBTN.UseVisualStyleBackColor = true;
+            this.VerContratoBTN.Click += new System.EventHandler(this.VerContratoBTN_Click);
             // 
             // dgvHsPorCubrir
             // 
@@ -635,6 +637,7 @@
             this.toolStrip1.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgEscalafon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHsPorCubrir)).EndInit();
@@ -675,7 +678,6 @@
         private System.Windows.Forms.ToolStripMenuItem marcarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem descansoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem licenciaToolStripMenuItem;
-        private System.Windows.Forms.Button ActHorasBTN;
         private System.Windows.Forms.DataGridViewTextBoxColumn HsACubrirLunes;
         private System.Windows.Forms.DataGridViewTextBoxColumn HsACubrirMartes;
         private System.Windows.Forms.DataGridViewTextBoxColumn HsACubrirMiercoles;
@@ -687,5 +689,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem enOtroServicioToolStripMenuItem;
         private System.Windows.Forms.TextBox ptb;
+        private System.Windows.Forms.Button VerContratoBTN;
     }
 }

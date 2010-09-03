@@ -129,7 +129,7 @@ namespace ControlHoras
                 if (dr == DialogResult.Yes)
                 {
                     dgEscalafon.Rows.RemoveAt(dgEscalafon.SelectedCells[0].RowIndex);
-                    ActHorasBTN.PerformClick();
+                    ActualizarHporCubrir();
                 }
             }
         }
@@ -385,10 +385,14 @@ namespace ControlHoras
                     contrato = sistema.getContrato(CalcNroContrato(numCli, numSer));
                     hporCubrir = contrato.getTotalesHoras();
                     CargarHporCubrir();
-                    ActHorasBTN.PerformClick();
+                    ActualizarHporCubrir();
+                    VerContratoBTN.Enabled = true;
                 }
                 else
+                {
+                    VerContratoBTN.Enabled = false;
                     LimpiarHporCubrir();
+                }
             }
             catch (Exception ex)
             {
@@ -707,7 +711,7 @@ namespace ControlHoras
             {
                 if (ValidarLinea(f))
                 {
-                    ActHorasBTN.PerformClick();
+                    ActualizarHporCubrir();
                     int n = dgEscalafon.Rows.Add();
                     ((DataGridViewComboBoxCell)dgEscalafon.Rows[n].Cells[dgEscalafon.Columns.Count - 1]).Value = "Empresa";
                     
@@ -851,47 +855,7 @@ namespace ControlHoras
 
                      }
              }
-         }
-
-         private void ActHorasBTN_Click(object sender, EventArgs e)
-         {
-             int numCli = int.Parse(mtCliente.Text);
-             int numSer = int.Parse(mtServicio.Text);
-             //ConSeguridadFisica con = null;
-             int nroCon = CalcNroContrato(numCli, numSer);
-
-             try
-             {
-                 if (datos.existeContrato(nroCon))
-                 {
-                     contrato = sistema.getContrato(CalcNroContrato(numCli, numSer));
-                     hporCubrir = contrato.getTotalesHoras();
-                     CargarHporCubrir();
-
-                     int totLineas = dgEscalafon.RowCount;
-                     if (totLineas > 0)
-                     {
-                         if (ValidarEscalafon())
-                         {
-                             for (int i = 0; i < totLineas; i++)
-                             {
-                                 hporCubrir = restar(hporCubrir, ObtenerHorasFila(i));
-                             }
-
-                             CargarHporCubrir();
-                         }
-                         else
-                             MessageBox.Show(this, "Error en la celda seleccionada", "Línea no valida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                     }
-                 }
-             }
-             catch (Exception ex)
-             {
-
-                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-             }
-                 
-         }
+         }         
 
          private void GuardarBTN_Click(object sender, EventArgs e)
          {
@@ -997,7 +961,52 @@ namespace ControlHoras
         private bool EsHorario(string texto)
         {
             return (texto.IndexOfAny(new Char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }) == 0);
-        }     
+        }
+
+        private void VerContratoBTN_Click(object sender, EventArgs e)
+        {
+            int NroCon = CalcNroContrato(int.Parse(mtCliente.Text), int.Parse(mtServicio.Text));
+            ShowContrato sc = new ShowContrato(NroCon);
+            sc.Show();
+        }
+
+        private void ActualizarHporCubrir()
+        {
+            int numCli = int.Parse(mtCliente.Text);
+            int numSer = int.Parse(mtServicio.Text);
+            
+            int nroCon = CalcNroContrato(numCli, numSer);
+            try
+            {
+                if (datos.existeContrato(nroCon))
+                {
+                    contrato = sistema.getContrato(CalcNroContrato(numCli, numSer));
+                    hporCubrir = contrato.getTotalesHoras();
+                    CargarHporCubrir();
+
+                    int totLineas = dgEscalafon.RowCount;
+                    if (totLineas > 0)
+                    {
+                        if (ValidarEscalafon())
+                        {
+                            for (int i = 0; i < totLineas; i++)
+                            {
+                                hporCubrir = restar(hporCubrir, ObtenerHorasFila(i));
+                            }
+
+                            CargarHporCubrir();
+                        }
+                        else
+                            MessageBox.Show(this, "Error en la celda seleccionada", "Línea no valida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
     }
 }
