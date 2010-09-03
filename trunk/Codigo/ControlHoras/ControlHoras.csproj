@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FC8B86E8-A818-4987-B135-16FD6B039E53}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -298,6 +298,12 @@
     <Compile Include="ServicioForm.designer.cs">
       <DependentUpon>ServicioForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShowContrato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowContrato.Designer.cs">
+      <DependentUpon>ShowContrato.cs</DependentUpon>
+    </Compile>
     <Compile Include="TextBoxKeyDown.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -444,6 +450,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ServicioForm.resx">
       <DependentUpon>ServicioForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowContrato.resx">
+      <DependentUpon>ShowContrato.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TextBoxKeyDown.resx">
