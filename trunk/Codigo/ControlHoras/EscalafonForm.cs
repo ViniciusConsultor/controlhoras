@@ -191,6 +191,12 @@ namespace ControlHoras
                             
                             cargarVentana(numCli, numerosSer[ind]);
                         }
+                        else
+                        {
+                            GuardarBTN.Enabled = false;
+                            splitContainer1.Panel2.Enabled = false;
+                            MessageBox.Show("El cliente numero " + mtCliente.Text + " no tiene servicios asociados.", "Cliente sin Servicios", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -313,91 +319,75 @@ namespace ControlHoras
 
                 mtServicio.Text = serv.getNumero().ToString();
                 txtServicio.Text = serv.getNombre();
-            }
-            catch (Exception ex)
-            {
-                
-                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-           
-            try
-            {
-                Escalafon esc = null;
-                int nroEsc = CalcNroContrato(numCli, numSer);
-                if (datos.existeEscalafon(nroEsc))
+
+                int nroCon = CalcNroContrato(numCli, numSer);
+                if (!datos.existeContrato(nroCon))
                 {
-                    esc = sistema.getEscalafon(nroEsc);
-                    
-                    int i = 0;
-                    DataGridViewRow insr = null;
-                    foreach (EscalafonEmpleado l in esc.ListaEscalafonEmpleados)
+                    splitContainer1.Panel2.Enabled = false;
+                    MessageBox.Show("Este servicio no tiene contrato.\nNo se puede generar escalafón.", "Servicio sin Contrato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    Escalafon esc = null;
+                    int nroEsc = CalcNroContrato(numCli, numSer);
+                    if (datos.existeEscalafon(nroEsc))
                     {
-                        insr = new DataGridViewRow();
+                        esc = sistema.getEscalafon(nroEsc);
 
-                        object[] param = { l.NroEmpleado.ToString(), datos.getNombreEmpleado(l.NroEmpleado), l.CodigoPuesto, l.CantidadHsLlamadaAntesHoraInicio.ToString()+" Hs"};
-
-                        insr.CreateCells(dgEscalafon, param);
-
-                        dgEscalafon.Rows.Add(insr);
-
-                        foreach (HorarioEscalafon h in l.Horario)
+                        int i = 0;
+                        DataGridViewRow insr = null;
+                        foreach (EscalafonEmpleado l in esc.ListaEscalafonEmpleados)
                         {
-                            if (h.EsLaborable())
+                            insr = new DataGridViewRow();
+
+                            object[] param = { l.NroEmpleado.ToString(), datos.getNombreEmpleado(l.NroEmpleado), l.CodigoPuesto, l.CantidadHsLlamadaAntesHoraInicio.ToString() + " Hs" };
+
+                            insr.CreateCells(dgEscalafon, param);
+
+                            dgEscalafon.Rows.Add(insr);
+
+                            foreach (HorarioEscalafon h in l.Horario)
                             {
-                                dgEscalafon.Rows[i].Cells[h.getDia()].Value = h.getHoraIni() + " a " + h.getHoraFin();
-                                if (h.Solapea())
-                                    dgEscalafon.Rows[i].Cells[h.getDia()].Style.BackColor = Color.Red;
-                            }
-                            else
-                            {
-                                switch (h.getTipoDia())
+                                if (h.EsLaborable())
                                 {
-                                    case 1:
-                                        dgEscalafon.Rows[i].Cells[h.getDia()].Value = "EnOtroServ";
-                                        break;
-                                    case 2:
-                                        dgEscalafon.Rows[i].Cells[h.getDia()].Value = "Descanso";
-                                        break;
-                                    case 3:
-                                        dgEscalafon.Rows[i].Cells[h.getDia()].Value = "Licencia";
-                                        break;
-                                    default:
-                                        dgEscalafon.Rows[i].Cells[h.getDia()].Value = "Error";
-                                        break;
+                                    dgEscalafon.Rows[i].Cells[h.getDia()].Value = h.getHoraIni() + " a " + h.getHoraFin();
+                                    if (h.Solapea())
+                                        dgEscalafon.Rows[i].Cells[h.getDia()].Style.BackColor = Color.Red;
+                                }
+                                else
+                                {
+                                    switch (h.getTipoDia())
+                                    {
+                                        case 1:
+                                            dgEscalafon.Rows[i].Cells[h.getDia()].Value = "EnOtroServ";
+                                            break;
+                                        case 2:
+                                            dgEscalafon.Rows[i].Cells[h.getDia()].Value = "Descanso";
+                                            break;
+                                        case 3:
+                                            dgEscalafon.Rows[i].Cells[h.getDia()].Value = "Licencia";
+                                            break;
+                                        default:
+                                            dgEscalafon.Rows[i].Cells[h.getDia()].Value = "Error";
+                                            break;
+                                    }
+
                                 }
 
                             }
-                            
-                        }
-                        
-                        dgEscalafon.Rows[i].Cells[11].Value = l.AcargoDe;
-                        i++;
-                    }                    
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
 
-            // Cargar las hs por dia del contrato en el dvg            
-            int nroCon = CalcNroContrato(numCli, numSer);
-            try
-            {
-                if (datos.existeContrato(nroCon))
-                {
+                            dgEscalafon.Rows[i].Cells[11].Value = l.AcargoDe;
+                            i++;
+                        }
+                    }
+
+                    // Cargar las hs por dia del contrato en el dvg            
                     contrato = sistema.getContrato(CalcNroContrato(numCli, numSer));
                     hporCubrir = contrato.getTotalesHoras();
                     CargarHporCubrir();
                     ActualizarHporCubrir();
                     VerContratoBTN.Enabled = true;
-                }
-                else
-                {
-                    VerContratoBTN.Enabled = false;
-                    LimpiarHporCubrir();
-                }
+                }            
             }
             catch (Exception ex)
             {

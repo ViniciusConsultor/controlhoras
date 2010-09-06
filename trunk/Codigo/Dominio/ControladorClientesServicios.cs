@@ -577,5 +577,54 @@ namespace Logica
             else
                 return false;
         }
+
+        public bool HorariosCruzados(int NroEmp1, int NroEmp2)
+        {
+            try
+            {
+                List<EScalaFOneMpLeadO> horariosEmp2 = datos.getHorariosEmpleado(NroEmp2);               
+
+                foreach (EScalaFOneMpLeadO linea in horariosEmp2)
+                {
+                    foreach (HoRaRioEScalaFOn h in linea.HoRaRioEScalaFOn)
+                    {
+                        if (h.IDEscalafonEmpleado == linea.IDEscalafonEmpleado && h.TipoDia == 0)
+                        {
+                            if (EsHorarioSolapado(-1, NroEmp1, h.DiA, h.HoRaInI, h.HoRaFIn))
+                                return true;
+                        }
+                    }                    
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
+        public bool SustituirEmpleado(int NroNuevoEmp, int NroViejoEmp)
+        {
+            try
+            {
+                if (HorariosCruzados(NroNuevoEmp, NroViejoEmp))
+                    return false;
+                else
+                {
+                    datos.SustituirEmpleado(NroNuevoEmp, NroViejoEmp);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        
     }
 }

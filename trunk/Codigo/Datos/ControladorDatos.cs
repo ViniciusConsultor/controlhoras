@@ -3293,7 +3293,30 @@ namespace Datos
             }
         }
 
-        
+
+        public void SustituirEmpleado(int NroNuevoEmp, int NroViejoEmp)
+        {
+            try
+            {
+                List<EScalaFOneMpLeadO> hors = (from reg in database.GetTable<EScalaFOneMpLeadO>()
+                                                where reg.NroEmpleado == (uint)NroViejoEmp
+                                                select reg).ToList<EScalaFOneMpLeadO>();
+
+                foreach (EScalaFOneMpLeadO linea in hors)
+                {
+                    linea.NroEmpleado = (uint)NroNuevoEmp;
+                }
+
+                database.SubmitChanges();
+
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
+        }
+
     }
 
 }
