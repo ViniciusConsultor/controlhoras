@@ -288,5 +288,7 @@ namespace Datos
         bool ClienteActivo(int NroCliente);
 
         void SetearCubierto(int NroEscalafon, bool ContCubierto);
+
+        void SustituirEmpleado(int NroNuevoEmpleado, int NroViejoEmpleado);
     }
 }
