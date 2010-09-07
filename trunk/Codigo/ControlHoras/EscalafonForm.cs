@@ -406,7 +406,7 @@ namespace ControlHoras
 
         private string impHora(TimeSpan h)
         {
-            return System.Math.Truncate(h.TotalHours).ToString()  + ":" + h.Minutes.ToString();          
+            return System.Math.Abs(System.Math.Truncate(h.TotalHours)).ToString()  + ":" + System.Math.Abs(h.Minutes).ToString();          
         }
 
         public int CalcNroContrato(int nroCli, int nroSer)
@@ -808,11 +808,12 @@ namespace ControlHoras
              {
                  int j = LastCellChanged.ColumnIndex;
                  //&& LastCellChanged.Value != ""
-                 if (LastCellChanged.ColumnIndex == 0)
+                 try
                  {
-                     EmPleadOs emp;
-                     try
+                     if (LastCellChanged.ColumnIndex == 0)
                      {
+                         EmPleadOs emp;
+                        
                          if (sistemaEmp.existeEmpleado(int.Parse(LastCellChanged.Value.ToString())))
                          {
                              emp = datos.obtenerEmpleado(int.Parse(LastCellChanged.Value.ToString()));
@@ -836,35 +837,62 @@ namespace ControlHoras
                              //dgEscalafon.CurrentCell = LastCellChanged;
                              //dgEscalafon.CurrentCell.InitializeEditingControl(LastCellChanged.RowIndex, LastCellChanged.Value.ToString(), LastCellChanged.Style);
                          }
+                         
                      }
-                     catch (Exception ex)
-                     {
-                         MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                     }
+                     else
+                         if (LastCellChanged.ColumnIndex > 3 && LastCellChanged.ColumnIndex < 11)
+                         {
+                             if (dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value == null || !ValidarHorario(dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString()))
+                             {
+                                 dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value = oldvalor;
+                                 dgEscalafon.Focus();
+                                 dgEscalafon.CurrentCell = dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j];
+                                 dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Selected = true;
+                                 MessageBox.Show(this, "Horario mal ingresado", "Celda no valida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                             }
+                             else
+                             {
+                                 CargarHorarioCelda(j, oldvalor, dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString());
+                                 if (PisaHorario(dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[0].Value.ToString(), dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString()))
+                                     MessageBox.Show("El empleado " + dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[0].Value.ToString() + " ya trabaja dentro de ese horario en este cliente", "Solapamiento de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                 //TimeSpan aux = ObtenerHoraString(dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString());
+                                 //hporCubrir[j-4] = hporCubrir[j-4] - aux;
+                                 //CargarHporCubrir();
+                             }
 
+                         }
                  }
-                 else
-                     if (LastCellChanged.ColumnIndex > 3 && LastCellChanged.ColumnIndex < 11)
-                     {
-                         if (dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value == null || !ValidarHorario(dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString()))
-                         {
-                             dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value = oldvalor;
-                             dgEscalafon.Focus();
-                             dgEscalafon.CurrentCell = dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j];
-                             dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Selected = true;
-                             MessageBox.Show(this, "Horario mal ingresado", "Celda no valida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                         }
-                         else
-                         {
-                             CargarHorarioCelda(j, oldvalor, dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString());
-                             //TimeSpan aux = ObtenerHoraString(dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString());
-                             //hporCubrir[j-4] = hporCubrir[j-4] - aux;
-                             //CargarHporCubrir();
-                         }
-
-                     }
+                 catch (Exception ex)
+                 {
+                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 }                   
              }
-         }         
+         }
+
+         private bool PisaHorario(string NroFunc, string Hor)
+         {
+             int totLineas = dgEscalafon.RowCount-1;
+             string valor;
+             if (totLineas > 0)
+             {   
+                 for (int i = 0; i < totLineas; i++)
+                 {
+                     if (dgEscalafon.Rows[i].Cells[0].Value.ToString() == NroFunc)
+                     {
+                         for (int j = 0; j < 7; j++)
+                         {
+                             valor = dgEscalafon.Rows[i].Cells[j + 4].Value.ToString();
+                             if (valor == "EnOtroServ" || valor == "Descanso" || valor == "Licencia" || valor == "v")
+                                 j = j;
+                             else
+                                 if (HorariosSolapados(obtHIni(Hor), obtHFin(Hor), obtHIni(valor), obtHFin(valor)))
+                                     return true;
+                         }
+                     }
+                 }
+             }
+             return false;
+         }            
 
          private void GuardarBTN_Click(object sender, EventArgs e)
          {
@@ -1016,6 +1044,21 @@ namespace ControlHoras
 
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private bool HorariosSolapados(string hi1, string hf1, string hi2, string hf2)
+        {
+            DateTime dti1, dtf1, dti2, dtf2;
+
+            dti1 = DateTime.ParseExact(hi1, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+            dtf1 = DateTime.ParseExact(hf1, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+            dti2 = DateTime.ParseExact(hi2, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+            dtf2 = DateTime.ParseExact(hf2, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+
+            if (dti2 < dtf1 && dtf2 > dti1)
+                return true;
+            else
+                return false;
         }
 
     }
