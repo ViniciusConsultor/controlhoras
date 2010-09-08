@@ -54,6 +54,7 @@
             // 
             this.Puesto.HeaderText = "Puesto";
             this.Puesto.Name = "Puesto";
+            this.Puesto.ReadOnly = true;
             this.Puesto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Armado
@@ -63,6 +64,7 @@
             this.Armado.HeaderText = "Armado";
             this.Armado.IndeterminateValue = "0";
             this.Armado.Name = "Armado";
+            this.Armado.ReadOnly = true;
             this.Armado.TrueValue = "1";
             this.Armado.Width = 63;
             // 
@@ -74,6 +76,7 @@
             this.Controls.Add(this.CargaHorariaDGV);
             this.Name = "ShowContrato";
             this.Text = "ShowContrato";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.CargaHorariaDGV)).EndInit();
             this.ResumeLayout(false);
 
