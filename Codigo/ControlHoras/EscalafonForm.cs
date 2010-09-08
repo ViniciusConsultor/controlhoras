@@ -15,8 +15,8 @@ namespace ControlHoras
 {
     public partial class EscalafonForm : Form
     {
-        IClientesServicios sistema = ControladorClientesServicios.getInstance();
-        IEmpleados sistemaEmp = ControladorEmpleados.getInstance();
+        IClientesServicios sistema;// = ControladorClientesServicios.getInstance();
+        IEmpleados sistemaEmp;// = ControladorEmpleados.getInstance();
         IDatos datos;
         ClientEs cliente = null;        
         ContraToS con;
@@ -42,6 +42,8 @@ namespace ControlHoras
             
             try
             {
+                sistema = ControladorClientesServicios.getInstance();
+                sistemaEmp = ControladorEmpleados.getInstance();
                 datos = ControladorDatos.getInstance();
             }
             catch (Exception ex)
@@ -160,17 +162,12 @@ namespace ControlHoras
                             MessageBox.Show("El cliente "+ mtCliente.Text +" está inactivo", "Cliente Inactivo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                         ind = 0;
-                        int numCli = int.Parse(mtCliente.Text);
-                        cliente = datos.obtenerCliente(numCli);                        
-                        txtCliente.Text = cliente.Nombre;
+                        int numCli = int.Parse(mtCliente.Text);                        
                         Cliente cli = sistema.obtenerCliente(numCli);
+                        txtCliente.Text = cli.getNombre();
                         List<Servicio> servicios = cli.getListaServicios();
                         if (servicios.Count != 0)
-                        {
-                            splitContainer1.Panel2.Enabled = true;
-                            GuardarBTN.Enabled = true;
-                            //ServicioGB.Enabled = true;
-
+                        {                            
                             cant = servicios.Count;
                             numerosSer = new int[cant];
                             int i = 0;
@@ -188,11 +185,23 @@ namespace ControlHoras
                                 AnteriorBTN.Visible = true;
                                 PosteriorBTN.Visible = true;
                             }
+                            else
+                            {
+                                AnteriorBTN.Visible = false;
+                                PosteriorBTN.Visible = false;
+                            }
                             
                             cargarVentana(numCli, numerosSer[ind]);
                         }
                         else
                         {
+                            AnteriorBTN.Visible = false;
+                            PosteriorBTN.Visible = false;                            
+                            mtServicio.Text = "";
+                            txtServicio.Text = "";
+                            cubiertoTB.Visible = false;
+                            CubiertoLBL.Visible = false;
+                            LimpiarHporCubrir();
                             GuardarBTN.Enabled = false;
                             splitContainer1.Panel2.Enabled = false;
                             MessageBox.Show("El cliente numero " + mtCliente.Text + " no tiene servicios asociados.", "Cliente sin Servicios", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -200,6 +209,14 @@ namespace ControlHoras
                     }
                     else
                     {
+                        AnteriorBTN.Visible = false;
+                        PosteriorBTN.Visible = false;
+                        txtCliente.Text = "";
+                        mtServicio.Text = "";
+                        txtServicio.Text = "";
+                        cubiertoTB.Visible = false;
+                        CubiertoLBL.Visible = false;
+                        LimpiarHporCubrir();
                         GuardarBTN.Enabled = false;
                         splitContainer1.Panel2.Enabled = false;
                         MessageBox.Show("No existe el cliente numero " + mtCliente.Text, "No existe cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -323,11 +340,20 @@ namespace ControlHoras
                 int nroCon = CalcNroContrato(numCli, numSer);
                 if (!datos.existeContrato(nroCon))
                 {
-                    splitContainer1.Panel2.Enabled = false;
+                    cubiertoTB.Visible = false;
+                    CubiertoLBL.Visible = false;
+                    LimpiarHporCubrir();
+                    GuardarBTN.Enabled = false;
+                    splitContainer1.Panel2.Enabled = false;                    
                     MessageBox.Show("Este servicio no tiene contrato.\nNo se puede generar escalafón.", "Servicio sin Contrato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
+                    cubiertoTB.Visible = true;
+                    CubiertoLBL.Visible = true;                    
+                    GuardarBTN.Enabled = true;
+                    splitContainer1.Panel2.Enabled = true;
+
                     Escalafon esc = null;
                     int nroEsc = CalcNroContrato(numCli, numSer);
                     if (datos.existeEscalafon(nroEsc))
@@ -737,14 +763,14 @@ namespace ControlHoras
                  dgvHsPorCubrir.Rows[0].Cells[i].Value = impHora(hporCubrir[i]);
                  if (hporCubrir[i] > TimeSpan.Zero)
                  {
-                     dgvHsPorCubrir.Rows[0].Cells[i].Style.BackColor = Color.FromArgb(255, 128, 128);
+                     dgvHsPorCubrir.Rows[0].Cells[i].Style.BackColor = Color.FromArgb(255, 128, 128);//Rojo
                      cubierto = false;
                  }
                  else
                      if (hporCubrir[i] < TimeSpan.Zero)
-                         dgvHsPorCubrir.Rows[0].Cells[i].Style.BackColor = Color.FromArgb(128, 255, 128);
+                         dgvHsPorCubrir.Rows[0].Cells[i].Style.BackColor = Color.FromArgb(128, 255, 128);//Verde
                      else
-                         dgvHsPorCubrir.Rows[0].Cells[i].Style.BackColor = Color.White;
+                         dgvHsPorCubrir.Rows[0].Cells[i].Style.BackColor = Color.White;//Blanco
              }
              ContCubierto = cubierto;
              if (cubierto)
@@ -898,71 +924,78 @@ namespace ControlHoras
          {
              bool solapa;
              bool hubosolapa = false;
-
              dgEscalafon.EndEdit();
-             if (ValidarEscalafon())
+
+             try
              {
-                 int numCli = int.Parse(mtCliente.Text);
-                 int numSer = int.Parse(mtServicio.Text);
-                 int nroCon = CalcNroContrato(numCli, numSer);
-                 Escalafon es = new Escalafon();
-                 es.Cubierto = ContCubierto;
-                 es.ListaEscalafonEmpleados = new List<EscalafonEmpleado>();
-
-                 // ACA GUARDO TODOS LOS DATOS DEL DATAGRIDVIEW
-
-                 EscalafonEmpleado linea; 
-                 HorarioEscalafon hor = null;
-                 DataGridViewCell cel = null;
-                 
-                 foreach (DataGridViewRow fila in dgEscalafon.Rows)
+                 if (ValidarEscalafon())
                  {
-                     linea = new EscalafonEmpleado();
-                     linea.NroEmpleado = int.Parse(fila.Cells[0].Value.ToString());
-                     linea.CodigoPuesto = fila.Cells[2].Value.ToString();
-                     linea.CantidadHsLlamadaAntesHoraInicio = int.Parse(fila.Cells[3].Value.ToString().Substring(0,1));
-                     linea.AcargoDe = fila.Cells[11].Value.ToString();
-                     linea.Horario = new List<HorarioEscalafon>();
-                     solapa = false;
-                     for (int i = 0; i < 7; i++)
-                     {                         
-                         cel = fila.Cells[dias[i]];
-                         if (cel.Value.ToString().IndexOfAny(new Char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }) == -1) //cel.Value.ToString() == "Descanso" || cel.Value.ToString() == "Licencia")
+                     int numCli = int.Parse(mtCliente.Text);
+                     int numSer = int.Parse(mtServicio.Text);
+                     int nroCon = CalcNroContrato(numCli, numSer);
+                     Escalafon es = new Escalafon();
+                     es.Cubierto = ContCubierto;
+                     es.ListaEscalafonEmpleados = new List<EscalafonEmpleado>();
+
+                     // ACA GUARDO TODOS LOS DATOS DEL DATAGRIDVIEW
+
+                     EscalafonEmpleado linea;
+                     HorarioEscalafon hor = null;
+                     DataGridViewCell cel = null;
+
+                     foreach (DataGridViewRow fila in dgEscalafon.Rows)
+                     {
+                         linea = new EscalafonEmpleado();
+                         linea.NroEmpleado = int.Parse(fila.Cells[0].Value.ToString());
+                         linea.CodigoPuesto = fila.Cells[2].Value.ToString();
+                         linea.CantidadHsLlamadaAntesHoraInicio = int.Parse(fila.Cells[3].Value.ToString().Substring(0, 1));
+                         linea.AcargoDe = fila.Cells[11].Value.ToString();
+                         linea.Horario = new List<HorarioEscalafon>();
+                         solapa = false;
+                         for (int i = 0; i < 7; i++)
                          {
-                             hor = new HorarioEscalafon(dias[i], cel.Value.ToString());
-                             cel.Style.BackColor = Color.FromArgb(255, 255, 192);
-                         }
-                         else
-                         {
-                             solapa = sistema.EsHorarioSolapado(nroCon, linea.NroEmpleado, dias[i], obtHIni(cel.Value.ToString()), obtHFin(cel.Value.ToString())); 
-                             hor = new HorarioEscalafon(dias[i], obtHIni(cel.Value.ToString()), obtHFin(cel.Value.ToString()), solapa);
-                             if (solapa)
+                             cel = fila.Cells[dias[i]];
+                             if (cel.Value.ToString().IndexOfAny(new Char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }) == -1) //cel.Value.ToString() == "Descanso" || cel.Value.ToString() == "Licencia")
                              {
-                                 hubosolapa = true;
-                                 cel.Style.BackColor = Color.Red;
+                                 hor = new HorarioEscalafon(dias[i], cel.Value.ToString());
+                                 cel.Style.BackColor = Color.FromArgb(255, 255, 192);//Amarillito
                              }
                              else
-                                 cel.Style.BackColor = Color.FromArgb(255, 255, 192);
-                         }                         
-                         linea.Horario.Add(hor);
+                             {
+                                 solapa = sistema.EsHorarioSolapado(nroCon, linea.NroEmpleado, dias[i], obtHIni(cel.Value.ToString()), obtHFin(cel.Value.ToString()));
+                                 hor = new HorarioEscalafon(dias[i], obtHIni(cel.Value.ToString()), obtHFin(cel.Value.ToString()), solapa);
+                                 if (solapa)
+                                 {
+                                     hubosolapa = true;
+                                     cel.Style.BackColor = Color.Red;//Rojo
+                                 }
+                                 else
+                                     cel.Style.BackColor = Color.FromArgb(255, 255, 192);//Amarillito
+                             }
+                             linea.Horario.Add(hor);
+                         }
+
+                         es.ListaEscalafonEmpleados.Add(linea);
                      }
-                     
-                     es.ListaEscalafonEmpleados.Add(linea);                     
+
+                     if (datos.existeEscalafon(nroCon))
+                         sistema.modificarEscalafon(nroCon, es);
+                     else
+                         sistema.altaEscalafon(numCli, numSer, nroCon, es);
+
+                     if (hubosolapa)
+                         MessageBox.Show("En los horarios en rojo el empleado ya trabaja", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                     else
+                         MessageBox.Show("Datos guardados correctamente.", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                  }
-
-                 if (datos.existeEscalafon(nroCon))
-                     sistema.modificarEscalafon(nroCon, es);
                  else
-                     sistema.altaEscalafon(numCli, numSer, nroCon, es);
+                     MessageBox.Show(this, "Error en la celda seleccionada", "Línea no valida", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                 if (hubosolapa)
-                     MessageBox.Show("En los horarios en rojo el empleado ya trabaja", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                 else
-                     MessageBox.Show("Datos guardados correctamente.", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
              }
-             else
-                 MessageBox.Show(this, "Error en la celda seleccionada", "Línea no valida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+             catch (Exception ex)
+             {                 
+                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+             }
          }
 
         private bool ValidarEscalafon()
@@ -1018,7 +1051,7 @@ namespace ControlHoras
             {
                 if (datos.existeContrato(nroCon))
                 {
-                    contrato = sistema.getContrato(CalcNroContrato(numCli, numSer));
+                    contrato = sistema.getContrato(nroCon);
                     hporCubrir = contrato.getTotalesHoras();
                     CargarHporCubrir();
 
