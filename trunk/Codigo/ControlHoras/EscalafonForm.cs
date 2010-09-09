@@ -107,7 +107,7 @@ namespace ControlHoras
         {
             
             int numR = dgvHsPorCubrir.Rows.Add();
-            dgvHsPorCubrir.Rows[numR].HeaderCell.Value = "Hs Faltan Cubrir";
+            dgvHsPorCubrir.Rows[numR].HeaderCell.Value = "Horas : Minutos";// "Hs Faltan Cubrir";
 
             dgvHsPorCubrir.ClearSelection();
 
@@ -199,8 +199,10 @@ namespace ControlHoras
                             PosteriorBTN.Visible = false;                            
                             mtServicio.Text = "";
                             txtServicio.Text = "";
-                            cubiertoTB.Visible = false;
-                            CubiertoLBL.Visible = false;
+                            GraficosPL.Visible = false;
+                            //ConLBL.Visible = false;
+                            //cubiertoTB.Visible = false;
+                            //CubiertoLBL.Visible = false;
                             LimpiarHporCubrir();
                             GuardarBTN.Enabled = false;
                             splitContainer1.Panel2.Enabled = false;
@@ -214,8 +216,10 @@ namespace ControlHoras
                         txtCliente.Text = "";
                         mtServicio.Text = "";
                         txtServicio.Text = "";
-                        cubiertoTB.Visible = false;
-                        CubiertoLBL.Visible = false;
+                        GraficosPL.Visible = false;
+                        //ConLBL.Visible = false;
+                        //cubiertoTB.Visible = false;
+                        //CubiertoLBL.Visible = false;
                         LimpiarHporCubrir();
                         GuardarBTN.Enabled = false;
                         splitContainer1.Panel2.Enabled = false;
@@ -340,8 +344,10 @@ namespace ControlHoras
                 int nroCon = CalcNroContrato(numCli, numSer);
                 if (!datos.existeContrato(nroCon))
                 {
-                    cubiertoTB.Visible = false;
-                    CubiertoLBL.Visible = false;
+                    GraficosPL.Visible = false;
+                    //ConLBL.Visible = false;
+                    //cubiertoTB.Visible = false;
+                    //CubiertoLBL.Visible = false;
                     LimpiarHporCubrir();
                     GuardarBTN.Enabled = false;
                     splitContainer1.Panel2.Enabled = false;                    
@@ -349,8 +355,10 @@ namespace ControlHoras
                 }
                 else
                 {
-                    cubiertoTB.Visible = true;
-                    CubiertoLBL.Visible = true;                    
+                    GraficosPL.Visible = true;
+                    //ConLBL.Visible = true;
+                    //cubiertoTB.Visible = true;
+                    //CubiertoLBL.Visible = true;                    
                     GuardarBTN.Enabled = true;
                     splitContainer1.Panel2.Enabled = true;
 
@@ -774,9 +782,15 @@ namespace ControlHoras
              }
              ContCubierto = cubierto;
              if (cubierto)
+             {
                  cubiertoTB.BackColor = Color.FromArgb(128, 255, 128);
+                 CubiertoLBL.Text = "CUBIERTO";
+             }
              else
+             {
                  cubiertoTB.BackColor = Color.FromArgb(255, 128, 128);
+                 CubiertoLBL.Text = "NO CUBIERTO";
+             }
          }
 
          private TimeSpan[] restar(TimeSpan[] hporCubrir, TimeSpan[] horas)
@@ -1094,5 +1108,10 @@ namespace ControlHoras
                 return false;
         }
 
+        private void dgvHsPorCubrir_SelectionChanged(object sender, EventArgs e)
+        {
+            dgvHsPorCubrir.ClearSelection();
+        }
+        
     }
 }
