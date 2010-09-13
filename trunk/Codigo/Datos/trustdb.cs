@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2010-09-02 18:38:02Z
+#region Auto-generated classes for trustdb database on 2010-09-13 17:01:31Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2010-09-02 18:38:02Z
+// Auto-generated from trustdb on 2010-09-13 17:01:31Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -4662,7 +4662,7 @@ namespace Datos
 		#region Children
 
 		private EntitySet<HoRaRioEScalaFOn> _hoRaRioEsCalaFoN;
-		[Association(Storage = "_hoRaRioEsCalaFoN", OtherKey = "IDEscalafon", ThisKey = "IDEscalafon", Name = "FK_HorasLineas")]
+		[Association(Storage = "_hoRaRioEsCalaFoN", OtherKey = "IDEscalafon,IDEscalafonEmpleado", ThisKey = "IDEscalafon,IDEscalafonEmpleado", Name = "FK_horasEscalEmpleados")]
 		[DebuggerNonUserCode]
 		public EntitySet<HoRaRioEScalaFOn> HoRaRioEScalaFOn
 		{
@@ -6009,7 +6009,7 @@ namespace Datos
 		#region Parents
 
 		private EntityRef<EScalaFOneMpLeadO> _esCalaFoNeMpLeadO;
-		[Association(Storage = "_esCalaFoNeMpLeadO", OtherKey = "IDEscalafon", ThisKey = "IDEscalafon", Name = "FK_HorasLineas", IsForeignKey = true)]
+		[Association(Storage = "_esCalaFoNeMpLeadO", OtherKey = "IDEscalafon,IDEscalafonEmpleado", ThisKey = "IDEscalafon,IDEscalafonEmpleado", Name = "FK_horasEscalEmpleados", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public EScalaFOneMpLeadO EScalaFOneMpLeadO
 		{
@@ -6032,10 +6032,12 @@ namespace Datos
 					{
 						value.HoRaRioEScalaFOn.Add(this);
 						_ideScalafon = value.IDEscalafon;
+						_ideScalafonEmpleado = value.IDEscalafonEmpleado;
 					}
 					else
 					{
 						_ideScalafon = default(uint);
+						_ideScalafonEmpleado = default(uint);
 					}
 				}
 			}
@@ -7360,7 +7362,7 @@ namespace Datos
 		}
 
 		private EntityRef<SERVicIoS> _servIcIoS;
-		[Association(Storage = "_servIcIoS", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "motivoscambiosdiarios_ibfk_2", IsForeignKey = true)]
+		[Association(Storage = "_servIcIoS", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "motivoscambiosdiarios_ibfk_2", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public SERVicIoS SERVicIoS
 		{
@@ -7382,13 +7384,13 @@ namespace Datos
 					if (value != null)
 					{
 						value.MotIVOsCamBiosDiARioS.Add(this);
-						_numeroServicio = value.NumeroServicio;
 						_numeroCliente = value.NumeroCliente;
+						_numeroServicio = value.NumeroServicio;
 					}
 					else
 					{
-						_numeroServicio = default(uint);
 						_numeroCliente = default(uint);
+						_numeroServicio = default(uint);
 					}
 				}
 			}
@@ -8058,7 +8060,7 @@ namespace Datos
 		}
 
 		private EntitySet<MotIVOsCamBiosDiARioS> _motIvoSCamBiosDiArIoS;
-		[Association(Storage = "_motIvoSCamBiosDiArIoS", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "motivoscambiosdiarios_ibfk_2")]
+		[Association(Storage = "_motIvoSCamBiosDiArIoS", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "motivoscambiosdiarios_ibfk_2")]
 		[DebuggerNonUserCode]
 		public EntitySet<MotIVOsCamBiosDiARioS> MotIVOsCamBiosDiARioS
 		{

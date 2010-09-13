@@ -57,5 +57,7 @@ namespace Logica
         bool EsHorarioSolapado(int IdEscalafon, int NroEmpleado, string dia, string HoraIni, string HoraFin);
 
         bool SustituirEmpleado(int NroNuevoEmpleado, int NroViejoEmpleado);
+
+        void marcarSolapados(int NroEscalafon, Escalafon EscSolapados);
     }
 }
