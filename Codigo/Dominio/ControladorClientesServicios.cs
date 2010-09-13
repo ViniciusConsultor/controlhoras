@@ -625,6 +625,53 @@ namespace Logica
             }
         }
 
-        
+        public void marcarSolapados(int IdEscalafon, Escalafon EscSolapados)
+        {
+            int NroEmp;
+            List<HoRaRioEScalaFOn> HorsSolap = new List<HoRaRioEScalaFOn>();
+            foreach (EscalafonEmpleado ee in EscSolapados.ListaEscalafonEmpleados)
+            {
+                NroEmp = ee.NroEmpleado;
+                foreach (HorarioEscalafon he in ee.Horario)
+                {
+                    if (he.Solapea())
+                    {
+                        try
+                        {
+                            List<EScalaFOneMpLeadO> horarios = datos.getHorariosEmpleado(NroEmp);
+                            foreach (EScalaFOneMpLeadO linea in horarios)
+                            {
+                                if (linea.IDEscalafon != IdEscalafon)
+                                {
+                                    foreach (HoRaRioEScalaFOn h in linea.HoRaRioEScalaFOn)
+                                    {
+                                        if (h.IDEscalafonEmpleado == linea.IDEscalafonEmpleado && h.DiA == he.getDia() && h.TipoDia == 0)
+                                        {
+                                            if (HorariosSolapados(he.getHoraIni(), he.getHoraFin(), h.HoRaInI, h.HoRaFIn))
+                                                HorsSolap.Add(h);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+
+                            throw ex;
+                        }
+                    }
+                }
+            }
+            try
+            {                
+                datos.MarcarSolapados(HorsSolap);
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
+        }        
+
     }
 }

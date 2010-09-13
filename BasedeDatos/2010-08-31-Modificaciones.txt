@@ -1,3 +1,14 @@
 ALTER TABLE `trustdb`.`horarioescalafon` ADD COLUMN `Solapa` TINYINT(1) NOT NULL DEFAULT 0  AFTER `tipoDia` ;
+
+ALTER TABLE `trustdb`.`horarioescalafon` DROP FOREIGN KEY `FK_HorasLineas` ;
+
+ALTER TABLE `trustdb`.`horarioescalafon` 
+  ADD CONSTRAINT `FK_horasEscalEmpleados`
+  FOREIGN KEY (`idEscalafon` , `idEscalafonEmpleado` )
+  REFERENCES `trustdb`.`escalafonempleado` (`IdEscalafon` , `IdEscalafonEmpleado` )
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION
+, ADD INDEX `FK_horasEscalEmpleados` (`idEscalafon` ASC, `idEscalafonEmpleado` ASC) ;
+
 
 

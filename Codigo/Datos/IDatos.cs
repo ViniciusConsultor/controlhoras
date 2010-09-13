@@ -290,5 +290,7 @@ namespace Datos
         void SetearCubierto(int NroEscalafon, bool ContCubierto);
 
         void SustituirEmpleado(int NroNuevoEmpleado, int NroViejoEmpleado);
+
+        void MarcarSolapados(List<HoRaRioEScalaFOn> HorsSolapados);
     }
 }

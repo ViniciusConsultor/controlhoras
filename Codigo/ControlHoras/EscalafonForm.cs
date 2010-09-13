@@ -893,7 +893,7 @@ namespace ControlHoras
                              else
                              {
                                  CargarHorarioCelda(j, oldvalor, dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString());
-                                 if (PisaHorario(dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[0].Value.ToString(), dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString()))
+                                 if (PisaHorario(dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[0].Value.ToString(), LastCellChanged.RowIndex, dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString()))
                                      MessageBox.Show("El empleado " + dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[0].Value.ToString() + " ya trabaja dentro de ese horario en este cliente", "Solapamiento de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                  //TimeSpan aux = ObtenerHoraString(dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString());
                                  //hporCubrir[j-4] = hporCubrir[j-4] - aux;
@@ -909,24 +909,28 @@ namespace ControlHoras
              }
          }
 
-         private bool PisaHorario(string NroFunc, string Hor)
+         private bool PisaHorario(string NroFunc, int NroLinea, string Hor)
          {
-             int totLineas = dgEscalafon.RowCount-1;
+             int totLineas = dgEscalafon.RowCount;
              string valor;
-             if (totLineas > 0)
-             {   
-                 for (int i = 0; i < totLineas; i++)
+
+             if (!(Hor == "EnOtroServ" || Hor == "Descanso" || Hor == "Licencia" || Hor == "v"))
+             {
+                 if (totLineas > 0)
                  {
-                     if (dgEscalafon.Rows[i].Cells[0].Value.ToString() == NroFunc)
+                     for (int i = 0; i < totLineas; i++)
                      {
-                         for (int j = 0; j < 7; j++)
+                         if (i != NroLinea && dgEscalafon.Rows[i].Cells[0].Value.ToString() == NroFunc)
                          {
-                             valor = dgEscalafon.Rows[i].Cells[j + 4].Value.ToString();
-                             if (valor == "EnOtroServ" || valor == "Descanso" || valor == "Licencia" || valor == "v")
-                                 j = j;
-                             else
-                                 if (HorariosSolapados(obtHIni(Hor), obtHFin(Hor), obtHIni(valor), obtHFin(valor)))
-                                     return true;
+                             for (int j = 0; j < 7; j++)
+                             {
+                                 valor = dgEscalafon.Rows[i].Cells[j + 4].Value.ToString();
+                                 if (valor == "EnOtroServ" || valor == "Descanso" || valor == "Licencia" || valor == "v")
+                                     j = j;
+                                 else
+                                     if (HorariosSolapados(obtHIni(Hor), obtHFin(Hor), obtHIni(valor), obtHFin(valor)))
+                                         return true;
+                             }
                          }
                      }
                  }
@@ -998,7 +1002,10 @@ namespace ControlHoras
                          sistema.altaEscalafon(numCli, numSer, nroCon, es);
 
                      if (hubosolapa)
-                         MessageBox.Show("En los horarios en rojo el empleado ya trabaja", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                     {
+                         sistema.marcarSolapados(nroCon, es);
+                         MessageBox.Show("Datos guardados correctamente.\nEn los horarios en rojo el empleado ya trabaja.", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                     }
                      else
                          MessageBox.Show("Datos guardados correctamente.", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                  }

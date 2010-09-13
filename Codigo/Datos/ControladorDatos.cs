@@ -3317,6 +3317,32 @@ namespace Datos
             }
         }
 
+        public void MarcarSolapados(List<HoRaRioEScalaFOn> HorsSolapados)
+        {
+            try
+            {
+                recargarContexto();
+
+                foreach (HoRaRioEScalaFOn h in HorsSolapados)
+                {
+                    HoRaRioEScalaFOn hor = (from reg in database.GetTable<HoRaRioEScalaFOn>()
+                                            where reg.IDEscalafon == h.IDEscalafon && reg.IDEscalafonEmpleado == h.IDEscalafonEmpleado && reg.DiA == h.DiA
+                                            select reg).Single<HoRaRioEScalaFOn>();
+                    hor.Solapa = 1;
+                }                   
+                
+                database.SubmitChanges();
+
+                recargarContexto();
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
+        }
+
+
     }
 
 }
