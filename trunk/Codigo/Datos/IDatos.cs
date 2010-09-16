@@ -271,6 +271,10 @@ namespace Datos
 
         string getNombreEmpleado(int NroEmpleado);
 
+        string getNombreCliente(int NroCliente);
+
+        string getNombreServicio(int NroServicio);
+
         EScalaFOn obtenerEscalafon(int NroEscalafon);
 
         void eliminarLineasEscalafon(int NroEscalafon);

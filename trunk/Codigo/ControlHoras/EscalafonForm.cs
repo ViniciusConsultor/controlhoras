@@ -36,7 +36,7 @@ namespace ControlHoras
 
         static EscalafonForm ventana = null;
         
-        public EscalafonForm()
+        private EscalafonForm()
         {
             InitializeComponent();       
             
@@ -864,7 +864,7 @@ namespace ControlHoras
                              }
                              else
                              {
-                                 MessageBox.Show("El empleado " + emp.Nombre + " - " + emp.NroEmpleado + " está inactivo", "Empleado Inactivo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                 MessageBox.Show("El empleado " + emp.Nombre + " " + emp.Apellido + " - " + emp.NroEmpleado + " está inactivo", "Empleado Inactivo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                  dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[0].Value = "";
                                  dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[1].Value = "";                                 
                              }
@@ -1058,7 +1058,7 @@ namespace ControlHoras
         private void VerContratoBTN_Click(object sender, EventArgs e)
         {
             int NroCon = CalcNroContrato(int.Parse(mtCliente.Text), int.Parse(mtServicio.Text));
-            ShowContrato sc = new ShowContrato(NroCon);
+            ShowContrato sc = new ShowContrato(int.Parse(mtCliente.Text), int.Parse(mtServicio.Text), NroCon);
             sc.Show();
         }
 

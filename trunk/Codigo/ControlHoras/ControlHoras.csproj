@@ -257,12 +257,6 @@
     <Compile Include="ExportToExcel.Designer.cs">
       <DependentUpon>ExportToExcel.cs</DependentUpon>
     </Compile>
-    <Compile Include="GenerarHorasDiariasForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GenerarHorasDiariasForm.Designer.cs">
-      <DependentUpon>GenerarHorasDiariasForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Imagenes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -303,6 +297,12 @@
     </Compile>
     <Compile Include="ShowContrato.Designer.cs">
       <DependentUpon>ShowContrato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SustituirFuncionarioEsc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SustituirFuncionarioEsc.Designer.cs">
+      <DependentUpon>SustituirFuncionarioEsc.cs</DependentUpon>
     </Compile>
     <Compile Include="TextBoxKeyDown.cs">
       <SubType>Component</SubType>
@@ -429,9 +429,6 @@
       <DependentUpon>ExportToExcel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="GenerarHorasDiariasForm.resx">
-      <DependentUpon>GenerarHorasDiariasForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Imagenes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Imagenes.Designer.cs</LastGenOutput>
@@ -454,6 +451,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ShowContrato.resx">
       <DependentUpon>ShowContrato.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SustituirFuncionarioEsc.resx">
+      <DependentUpon>SustituirFuncionarioEsc.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TextBoxKeyDown.resx">
