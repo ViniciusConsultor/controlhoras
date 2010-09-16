@@ -607,7 +607,7 @@ namespace Logica
 
 
         public bool SustituirEmpleado(int NroNuevoEmp, int NroViejoEmp)
-        {
+        {            
             try
             {
                 if (HorariosCruzados(NroNuevoEmp, NroViejoEmp))

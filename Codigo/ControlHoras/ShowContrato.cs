@@ -24,7 +24,25 @@ namespace ControlHoras
         public ShowContrato(int NroContrato)
         {
             InitializeComponent();
+            
+            InicializarCargaHorariaDGV();
+            CargarCargaHorariaDGV(NroContrato);
+        }
 
+        public ShowContrato(int NroCliente, int NroServicio, int NroContrato)
+        {
+            InitializeComponent();
+
+            try
+            {
+                ClienteLBL.Text = NroCliente.ToString() + " - " + datos.getNombreCliente(NroCliente);
+                ServicioLBL.Text = NroServicio.ToString() + " - " + datos.getNombreServicio(NroServicio);                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);                             
+            }
+            
             InicializarCargaHorariaDGV();
             CargarCargaHorariaDGV(NroContrato);
         }
@@ -142,6 +160,26 @@ namespace ControlHoras
             {
                 MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }            
+        }
+
+        private void CloseBTN_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ServicioLBL_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
 
 

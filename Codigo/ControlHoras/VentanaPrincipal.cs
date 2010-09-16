@@ -379,8 +379,24 @@ namespace ControlHoras
 
         private void generarHorasDiariasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GenerarHorasDiariasForm ghdf = new GenerarHorasDiariasForm();
-            ghdf.ShowDialog(this);
+            //GenerarHorasDiariasForm ghdf = new GenerarHorasDiariasForm();
+            //ghdf.ShowDialog(this);
+        }
+
+        private void sustituirEnEscalafonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SustituirFuncionarioEsc ex = SustituirFuncionarioEsc.getVentana();
+                if (ex.Visible == false)
+                    ex.Show(this);
+                else
+                    ex.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

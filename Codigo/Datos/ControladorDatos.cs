@@ -3033,7 +3033,47 @@ namespace Datos
             {
                 throw ex;               
             }
-        }      
+        }
+
+        public string getNombreCliente(int NroCliente)
+        {           
+            try
+            {                
+                var cli = (from clireg in database.GetTable<ClientEs>()
+                           where clireg.NumeroCliente == NroCliente
+                           select clireg);
+                if (cli.Count<ClientEs>() == 0)
+                    return "";
+                else
+                    return cli.Single<ClientEs>().Nombre;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+        public string getNombreServicio(int nroServicio)
+        {
+            Table<SERVicIoS> tabla;
+            try
+            {
+                tabla = database.GetTable<SERVicIoS>();
+                var cli = (from clireg in tabla
+                           where clireg.NumeroServicio == nroServicio
+                           select clireg);
+                if (cli.Count<SERVicIoS>() == 0)
+                    return "";
+                else
+                    return cli.Single<SERVicIoS>().Nombre;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public EScalaFOn obtenerEscalafon(int NroEscalafon)
         {
