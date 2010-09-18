@@ -1,0 +1,12 @@
+ERRORES DETECTADOS DE LA SEGUNDA ETAPA DE LA PRIMER PRESENTACION (2010-09-17)
+
+- Situcacion: Horarios en conflictos. Mas de un horario marcado en conflicto. Al corregir uno de los horarios, los otros no se actualizan.
+(Observacion: tener en cuenta que puede haber mas de dos horarios en conlicto en un misma hora. Un horario puede estar en conflicto con una lista de horarios)
+
+- Contrato: Horarios de mas de un dia, por ejemplo de 22:00 a 06:00, el 06:00 corresponde al otro dia. Ver el parseo al grabar y al cargar.
+
+- Controles del Escalafon: Ver controles en el documento 2010-06-09-ReunionPorRequerimientos-2Etapa.pdf. Control de que todo funcionario tiene que tener planificado un dia de descanso.
+
+- Listado de la generacion para un dia determinado de un empleado (O del cliente?)
+
+- CambiarHoraSalida (El boton no esta ejecutando el evento).
