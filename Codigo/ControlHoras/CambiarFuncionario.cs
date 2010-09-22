@@ -14,6 +14,8 @@ namespace ControlHoras
 
         private IDatos Controller;
         public EmPleadOs FuncionarioNuevo { get; private set; }
+        public string HoraInicio { get; private set; }
+        public string HoraFin { get; private set; }
 
         public CambiarFuncionario(int idFunc, string nombre)
         {

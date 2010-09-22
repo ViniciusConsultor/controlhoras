@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FC8B86E8-A818-4987-B135-16FD6B039E53}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -233,6 +233,12 @@
     <Compile Include="ABMTiposMotivoCambioDiario.Designer.cs">
       <DependentUpon>ABMTiposMotivoCambioDiario.cs</DependentUpon>
     </Compile>
+    <Compile Include="ControlDiarioAgregarFuncionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlDiarioAgregarFuncionario.Designer.cs">
+      <DependentUpon>ControlDiarioAgregarFuncionario.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataGridTAB.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -416,6 +422,9 @@
     <EmbeddedResource Include="ControlDiario.resx">
       <DependentUpon>ControlDiario.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlDiarioAgregarFuncionario.resx">
+      <DependentUpon>ControlDiarioAgregarFuncionario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EscalafonForm.resx">
       <DependentUpon>EscalafonForm.cs</DependentUpon>
