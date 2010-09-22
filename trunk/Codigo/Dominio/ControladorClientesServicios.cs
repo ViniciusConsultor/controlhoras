@@ -557,8 +557,7 @@ namespace Logica
                 return false;
             }
             catch (Exception ex)
-            {
-                
+            {                
                 throw ex;
             }
         }
@@ -572,10 +571,11 @@ namespace Logica
             dti2 = DateTime.ParseExact(hi2, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
             dtf2 = DateTime.ParseExact(hf2, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
 
-            if (dti2 < dtf1 && dtf2 > dti1)
-                return true;
-            else
+            // if (dti2 < dtf1 && dtf2 > dti1) - Con este IF se controla solo un caso
+            if ((dti1 < dtf1 && dti2 < dtf2) && (dti2 > dtf1 || dtf2 < dti1)) // Asi se controlan los dos casos.
                 return false;
+            else
+                return true;
         }
 
         public bool HorariosCruzados(int NroEmp1, int NroEmp2)
@@ -671,7 +671,48 @@ namespace Logica
                 
                 throw ex;
             }
-        }        
+        }    
+    
+        /// <summary>
+        /// Agrega un nuevo funcionario con un horario determinado a un HorasGeneradasEscalafon de un cliente servicio de un dia determinado aplicando los controles necesarios para su alta.
+        /// </summary>
+        /// <param name="fechaCorresponde">La fechaCorrespondiente a la que se va a dar el alta</param>
+        /// <param name="horaGeneradaEscalafon">La horaGeneradaEscalafon a dar de alta sin el Identificador y el Motivo.</param>
+        /// <param name="motivoCambio">El MotivoCambioDiario correspondiente al motivo del cambio.</param>
+        /// <returns>El Identificador del alta de HorarioEscalafonEmpleado</returns>
+        public long agregarEmpleadoControlDiario(DateTime fechaCorresponde, HoRaSGeneraDaSEScalaFOn horaGeneradaEscalafon, MotIVOsCamBiosDiARioS motivoCambio)
+        {
+            try
+            {
+                aplicarControlesAltaHoraGeneradaEscalafon(fechaCorresponde, horaGeneradaEscalafon);
+                long ret = datos.agregarEmpleadoHoraGeneradaEscalafon(horaGeneradaEscalafon, motivoCambio);
+
+                return ret;
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void aplicarControlesAltaHoraGeneradaEscalafon(DateTime fechaCorresponde, HoRaSGeneraDaSEScalaFOn horaGeneradaEscalafon)
+        {
+            try
+            {
+                List<HoRaSGeneraDaSEScalaFOn> horarios = datos.obtenerHorasGeneradasEscalafonEmpleado(horaGeneradaEscalafon.NroEmpleado,fechaCorresponde);
+
+                foreach (HoRaSGeneraDaSEScalaFOn linea in horarios)
+                {
+                    //DayOfWeek day = (DayOfWeek) DayOfWeek.Parse(typeof(DayOfWeek), h.DiA, true);
+                    if (HorariosSolapados(horaGeneradaEscalafon.HoraEntrada.ToLongTimeString(), horaGeneradaEscalafon.HoraSalida.ToLongTimeString(), linea.HoraEntrada.ToLongTimeString(), linea.HoraSalida.ToLongTimeString()))
+                        throw new Exception("Error de solapamiento de horarios. (" + horaGeneradaEscalafon.HoraEntrada.ToLongTimeString() + "-" + horaGeneradaEscalafon.HoraSalida.ToLongTimeString() + ") con " + "(" + linea.HoraEntrada.ToLongTimeString() + " - " + linea.HoraSalida.ToLongTimeString() + "). Dia: " + fechaCorresponde.ToShortDateString());
+                                       
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }
