@@ -924,12 +924,15 @@ namespace ControlHoras
                          {
                              for (int j = 0; j < 7; j++)
                              {
-                                 valor = dgEscalafon.Rows[i].Cells[j + 4].Value.ToString();
-                                 if (valor == "EnOtroServ" || valor == "Descanso" || valor == "Licencia" || valor == "v")
-                                     j = j;
-                                 else
-                                     if (HorariosSolapados(obtHIni(Hor), obtHFin(Hor), obtHIni(valor), obtHFin(valor)))
-                                         return true;
+                                 valor = (string) dgEscalafon.Rows[i].Cells[j + 4].Value;
+                                 if (valor != null)
+                                 {
+                                     if (valor == "EnOtroServ" || valor == "Descanso" || valor == "Licencia" || valor == "v")
+                                         j = j;
+                                     else
+                                         if (HorariosSolapados(obtHIni(Hor), obtHFin(Hor), obtHIni(valor), obtHFin(valor)))
+                                             return true;
+                                 }
                              }
                          }
                      }

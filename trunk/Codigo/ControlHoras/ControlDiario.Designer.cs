@@ -190,7 +190,7 @@
             this.agregarFuncionario});
             this.menuStripdgvHoras.Name = "menuStripdgvHoras";
             this.menuStripdgvHoras.ShowImageMargin = false;
-            this.menuStripdgvHoras.Size = new System.Drawing.Size(167, 98);
+            this.menuStripdgvHoras.Size = new System.Drawing.Size(167, 120);
             // 
             // cambiarFuncionario
             // 
@@ -355,6 +355,7 @@
             this.Name = "ControlDiario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ControlDiario";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ControlDiario_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHoras)).EndInit();
             this.menuStripdgvHoras.ResumeLayout(false);
             this.ResumeLayout(false);
