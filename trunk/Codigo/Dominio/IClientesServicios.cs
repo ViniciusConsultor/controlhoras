@@ -44,6 +44,8 @@ namespace Logica
 
         void altaContrato(int NumeroContrato, ConSeguridadFisica contrato);
 
+        int CalcNroContrato(int nroCliente, int nroServicio);
+
         ConSeguridadFisica getContrato(int NumeroContrato);
 
         void modificarContrato(int NumeroContrato, ConSeguridadFisica Contrato);
@@ -59,5 +61,30 @@ namespace Logica
         bool SustituirEmpleado(int NroNuevoEmpleado, int NroViejoEmpleado);
 
         void marcarSolapados(int NroEscalafon, Escalafon EscSolapados);
+
+        
+        #region GeneracionHorasDiarias
+        /// <summary>
+        /// Inicia una generacion de horas. Finalizar invocando finalizarGeneracionHoras
+        /// </summary>
+        void iniciarGeneracionHoras();
+
+        /// <summary>
+        /// Finaliza la generacion de Horas.
+        /// </summary>
+        /// <param name="commit">True para confirmar OK la generacion de Horas, false para Cancelar (Rollback)</param>
+        /// <param name="sobreescribir">True para sobreescribir las Horas Generadas existentes en el periodo.</param>
+        void finalizarGeneracionHoras(bool commit, bool sobreescribir);
+
+        /// <summary>
+        /// Genera los registros de HorasGeneradasEscalafon para un determinado servicio.
+        /// </summary>
+        /// <param name="NumeroCliente">NumeroCliente del cliente a generar.</param>
+        /// <param name="NumeroServicio">NumeroServicio del servicio a generar.</param>
+        /// <param name="Fecha">Fecha a Generar.</param>
+        /// <param name="ForzarGeneracion">Si es true, se fuerza la generacion. Si es true y ya existen horasgeneradas para el Cliente-Servicio en la fecha dada, lo pasa por arriba.</param>
+        void generarHorasDiaServicio(int NumeroCliente, int NumeroServicio, DateTime Fecha, bool ForzarGeneracion);
+
+        #endregion
     }
 }

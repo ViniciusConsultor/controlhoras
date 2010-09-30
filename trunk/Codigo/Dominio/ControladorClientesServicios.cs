@@ -14,6 +14,11 @@ namespace Logica
         private static ControladorClientesServicios instancia = null;
         private IDatos datos;
 
+        // Variable para la generacion de horas. Se inicializa, se genera cada cliente y se confirma. 
+        // Es una forma de generar un estilo de transaccion a nivel logico
+        List<HoRaSGeneraDaSEScalaFOn> listaHorasGeneradas = null;
+
+
         private ControladorClientesServicios()
         {
             try
@@ -182,8 +187,6 @@ namespace Logica
             }
         }
 
-
-
         public List<Cliente> buscarCliente(string Nombre)
         {
             try
@@ -205,11 +208,6 @@ namespace Logica
             
         }
 
-
-
-        
-
-
         public bool existeClienteServicio(int NumeroCliente, int NumeroServicio)
         {
             try
@@ -220,8 +218,7 @@ namespace Logica
             {
                 throw e;
             }
-        }
-                   
+        }                   
         
         public void altaContratoServicioCliente(int NumeroCliente, int NumeroServicio, int NumeroContrato, DateTime FechaInicio, DateTime? FechaFin, bool CostoFijo, bool HorasExtras, string Ajuste, string Observaciones, float Monto)
         {
@@ -235,6 +232,10 @@ namespace Logica
                 throw ex;
             }
         }
+        public int CalcNroContrato(int nroCli, int nroSer)
+        {
+            return nroCli * 1000 + nroSer;
+        }
 
         public bool existeContrato(int NumeroContrato)
         {
@@ -247,7 +248,6 @@ namespace Logica
                 throw ex;
             }
         }
-
 
         public void altaContrato(int NumeroContrato, ConSeguridadFisica cont)
         {
@@ -714,5 +714,118 @@ namespace Logica
             }
         }
 
+        #region GeneracionHorasDiarias
+        public void iniciarGeneracionHoras()
+        {
+            if (listaHorasGeneradas != null)
+                throw new TransaccionGeneracionHorasYaIniciadaException("Existe una transaccion en ejecucion en este momento");
+            listaHorasGeneradas = new List<HoRaSGeneraDaSEScalaFOn>();
+        }
+
+
+        public void finalizarGeneracionHoras(bool commit, bool sobreescribir)
+        {
+            if (listaHorasGeneradas != null)
+            {
+                if (commit)
+                {
+                    try
+                    {
+                         datos.guardarGeneracionHorasEscalafon(listaHorasGeneradas,sobreescribir);
+                    }
+                    catch (Exception e)
+                    {
+                        throw e;
+                    }
+                    finally
+                    {
+                        listaHorasGeneradas = null;
+                    }
+                }
+                else
+                {
+                    listaHorasGeneradas = null;
+                }
+            }
+            else
+            {
+                throw new TransaccionGeneracionHorasNoIniciadaException("No hay una transaccion de Generacion de Horas iniciada.");
+            }
+
+        }
+
+        public void generarHorasDiaServicio(int NumeroCliente, int NumeroServicio, DateTime Fecha, bool ForzarGeneracion)
+        {
+            try
+            {
+                if (Fecha.Date.CompareTo(DateTime.Today) <= 0)
+                {
+                    throw new GenerarHorasDiaException("La fecha a generar debe ser mayor a hoy. " + DateTime.Today.ToShortDateString());
+                }
+                List<HoRaSGeneraDaSEScalaFOn> listaHoras = datos.obtenerHorasGeneradasServicio(NumeroCliente, NumeroServicio, Fecha);
+                if (listaHoras.Count != 0 && !ForzarGeneracion)
+                {
+                    throw new YaExistenHorasGeneradasParaLaFechaException("Existen HorasGeneradas del Cliente: " + NumeroCliente + " - Servicio: " + NumeroServicio + " en la Fecha: " + Fecha.ToShortDateString());
+                }else
+                {
+                    SERVicIoS serv = datos.obtenerServicioCliente(NumeroCliente, NumeroServicio);
+                    EScalaFOn escalafon = datos.obtenerEscalafon(CalcNroContrato(NumeroCliente,NumeroServicio));
+                    HoRaSGeneraDaSEScalaFOn hge;
+                    foreach(EScalaFOneMpLeadO esc in escalafon.EScalaFOneMpLeadO)
+                    {
+                        hge = new HoRaSGeneraDaSEScalaFOn();
+                        hge.FechaCorrespondiente = Fecha;
+                        int i=0;
+                        while (! nombreDiasInglesAEspanol(Fecha.DayOfWeek.ToString()).Equals(esc.HoRaRioEScalaFOn[i].DiA))
+                        {
+                            i++;
+                        }
+                        if (esc.HoRaRioEScalaFOn[i].TipoDia == 0)  // Si el dia es Laborable
+                        {
+                            hge.HoraEntrada = DateTime.Parse(Fecha.ToShortDateString() + " " + esc.HoRaRioEScalaFOn[i].HoRaInI);                            
+                            hge.HoraSalida = DateTime.Parse(Fecha.ToShortDateString() + " " + esc.HoRaRioEScalaFOn[i].HoRaFIn);
+                            hge.NroEmpleado = esc.NroEmpleado;
+                            hge.NumeroCliente = escalafon.NumeroCliente;
+                            hge.NumeroServicio = escalafon.NumeroServicio;
+                            listaHorasGeneradas.Add(hge);
+                        }
+                    }
+                }
+            }
+            catch(YaExistenHorasGeneradasParaLaFechaException y)
+            {
+                throw;
+            }
+            catch (Exception e)
+            {
+                throw new GenerarHorasDiaException("Error en la generacion de horas. Cliente: " + NumeroCliente + " - Servicio: "+NumeroServicio + " - Fecha: " + Fecha.ToShortDateString(),e);
+            }
+        }
+
+        private string nombreDiasInglesAEspanol(string nomDiaIngles)
+        {
+            switch (nomDiaIngles)
+            {
+                case "Monday":
+                    return "Lunes";
+                   
+                case "Tuesday":
+                    return "Martes";
+                    
+                case "Wednesday":
+                    return "Miercoles";
+                case "Thursday":                    
+                    return "Jueves";
+                case "Friday":
+                    return "Viernes";
+                case "Saturday":
+                    return "Sabado";
+                case "Sunday":
+                    return "Domingo";
+
+            }
+            return null;
+        }
+        #endregion
     }
 }

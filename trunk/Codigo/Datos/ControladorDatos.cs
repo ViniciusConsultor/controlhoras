@@ -55,29 +55,29 @@ namespace Datos
       
         }
 
-
         internal static MySqlConnection createConexion()//(string StringConnection)
         {
             try
             {
-               
-                //string pru = ConfigurationManager.AppSettings["Servidor"].ToString();
-                var builder = new MySqlConnectionStringBuilder() //(StringConnection)
-                {
-                    //Server = "localhost",
-                    Server = ConfigurationManager.AppSettings["Servidor"].ToString(),
-                    //Port = 3306,
-                    Port = uint.Parse(ConfigurationManager.AppSettings["Puerto"].ToString()),
-                    //UserID = "root",
-                    UserID = ConfigurationManager.AppSettings["Usuario"].ToString(),
-                    //Password = "desdere",
-                    Password = ConfigurationManager.AppSettings["Password"].ToString(),
-                    //Database = "trustdb",
-                    Database = ConfigurationManager.AppSettings["Base"].ToString(),
-                    Pooling = false,
-                    ConnectionLifeTime = 0,
-                    AllowUserVariables = true
-                };
+                // Cambio las properties a mano por un connection string ya que le da mas modificabilidad.
+                ConnectionStringSettingsCollection conections = ConfigurationManager.ConnectionStrings;
+
+                var builder = new MySqlConnectionStringBuilder(conections["TrustDbConnectionString"].ToString());
+                //{
+                //    //Server = "192.168.1.103",
+                //    Server = ConfigurationManager.AppSettings["Servidor"].ToString(),
+                //    //Port = 3306,
+                //    Port = uint.Parse(ConfigurationManager.AppSettings["Puerto"].ToString()),
+                //    //UserID = "usrtrust",
+                //    UserID = ConfigurationManager.AppSettings["Usuario"].ToString(),
+                //    //Password = "usrtrust",
+                //    Password = ConfigurationManager.AppSettings["Password"].ToString(),
+                //    //Database = "trustdb",
+                //    Database = ConfigurationManager.AppSettings["Base"].ToString(),
+                //    Pooling = false,
+                //    ConnectionLifeTime = 0,
+                //    AllowUserVariables = true
+                //};
 
 
                 var conn = new MySqlConnection(builder.ToString());
@@ -2679,7 +2679,6 @@ namespace Datos
             }
         }
               
-
         public List<HoRaSGeneraDaSEScalaFOn> obtenerHorasGeneradasServicio(int NumeroCliente, int NumeroServicio, DateTime fecha)
         {
             List<HoRaSGeneraDaSEScalaFOn> result;
@@ -2873,7 +2872,7 @@ namespace Datos
                 else
                     hs.HoraSalida = DateTime.Parse(horanueva); 
                 
-                mtcd.IDHorasGeneradasEscalafon = IdHorasGeneragasEscalafon;
+                mtcd.IDHorasGeneradasEscalafon = IdHorasGeneragasEscalafon;                
                 
                 database.MotIVOsCamBiosDiARioS.InsertOnSubmit(mtcd);
                 
@@ -2885,6 +2884,7 @@ namespace Datos
             }
         }
         #endregion
+
         public bool existeEscalafon(int nroEsc)
         {
             try
@@ -3238,6 +3238,7 @@ namespace Datos
                 throw ex;
             }
         }
+        
         public void modificarEscalafon(EScalaFOn escal)
         {
             Table<EScalaFOn> tabla = database.EScalaFOn;
@@ -3304,7 +3305,6 @@ namespace Datos
             }
         }
         
-
         public void SetearCubierto(int NroEscalafon, bool ContCubierto)
         {
             try
@@ -3332,7 +3332,6 @@ namespace Datos
                 throw me;
             }
         }
-
 
         public void SustituirEmpleado(int NroNuevoEmp, int NroViejoEmp)
         {
@@ -3382,7 +3381,77 @@ namespace Datos
             }
         }
 
+        public long agregarEmpleadoHoraGeneradaEscalafon(HoRaSGeneraDaSEScalaFOn horaGeneradaEscalafon, MotIVOsCamBiosDiARioS motivoCambio)
+        {
+            try
+            {
+                Table<HoRaSGeneraDaSEScalaFOn> tabla = database.HoRaSGeneraDaSEScalaFOn;
+                motivoCambio.HoRaSGeneraDaSEScalaFOn = horaGeneradaEscalafon;
+                tabla.InsertOnSubmit(horaGeneradaEscalafon);
+               // database.MotIVOsCamBiosDiARioS.InsertOnSubmit(motivoCambio);
 
+                database.SubmitChanges();
+
+                return horaGeneradaEscalafon.IDHorasGeneradasEscalafon;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
+        }
+
+        public List<HoRaSGeneraDaSEScalaFOn> obtenerHorasGeneradasEscalafonEmpleado(uint nroEmpleado, DateTime fechaCorresponde)
+        {
+            try
+            {
+                List<HoRaSGeneraDaSEScalaFOn> listaRetornar;
+
+                listaRetornar = (from reg in database.HoRaSGeneraDaSEScalaFOn
+                                 where reg.NroEmpleado == nroEmpleado && reg.FechaCorrespondiente.Date == fechaCorresponde.Date
+                                 select reg).ToList<HoRaSGeneraDaSEScalaFOn>();
+
+                return listaRetornar;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void guardarGeneracionHorasEscalafon(List<HoRaSGeneraDaSEScalaFOn> listaHorasGeneradas, bool sobreescribir)
+        {
+            try
+            {
+                if (sobreescribir)
+                {
+                    List<HoRaSGeneraDaSEScalaFOn> hgeAux;
+                    List<string> listaYaEliminados = new List<string>();
+                    string cliserdate;
+                    foreach (HoRaSGeneraDaSEScalaFOn hge in listaHorasGeneradas)
+                    {
+                        cliserdate = hge.NumeroCliente.ToString() + "-" + hge.NumeroServicio.ToString() + "-" + hge.FechaCorrespondiente.Ticks.ToString();
+                        if (!listaYaEliminados.Contains(cliserdate))
+                        {
+                            hgeAux = (from hg in database.HoRaSGeneraDaSEScalaFOn
+                                      where hg.NumeroCliente == hge.NumeroCliente && hg.NumeroServicio == hge.NumeroServicio && hg.FechaCorrespondiente == hge.FechaCorrespondiente
+                                      select hg).ToList();
+                            
+                            database.HoRaSGeneraDaSEScalaFOn.DeleteAllOnSubmit(hgeAux);
+                            listaYaEliminados.Add(cliserdate);
+                        }
+                    }
+
+                }
+                database.HoRaSGeneraDaSEScalaFOn.InsertAllOnSubmit(listaHorasGeneradas);
+                database.SubmitChanges();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException myex)
+            {
+                throw myex;
+            }
+        }
     }
 
 }

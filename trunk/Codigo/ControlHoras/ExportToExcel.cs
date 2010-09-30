@@ -71,8 +71,8 @@ namespace ControlHoras
                 cmbClientesConsultas.ValueMember = "IDConsultaCliente";
                 cmbClientesConsultas.EndUpdate();
 
-                cmbClientesConsultas.SelectedIndex = 1;
-                cmbClientesConsultas.SelectedIndex = 0;
+                //cmbClientesConsultas.SelectedIndex = 1;
+                cmbClientesConsultas.SelectedIndex = cmbClientesConsultas.Items.Count -1;
 
                 tcConsultas.SelectedIndex = 1;
             }

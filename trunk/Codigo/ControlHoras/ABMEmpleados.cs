@@ -109,6 +109,9 @@ namespace ControlHoras
             {
                 updateListOfDepartamentos();
             }
+            //catch (MySql.Data.MySqlClient.MySQLException mex)
+            //{
+            //}
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
