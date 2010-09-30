@@ -216,6 +216,21 @@ namespace Datos
         List<HoRaSGeneraDaSEScalaFOn> obtenerHorasGeneradasServicio(int NumeroCliente, int NumeroServicio, DateTime fecha);
         void cambiarFuncionarioControlDiario(long IdHorasGeneragasEscalafon, int NroEmpleado, MotIVOsCamBiosDiARioS mtcd);
         void cambiarHoraFuncionarioControlDiario(long IdHorasGeneragasEscalafon, int NroEmpleado, string horanueva, bool Entrada, MotIVOsCamBiosDiARioS mtcd);
+         /// <summary>
+        /// Agrega un nuevo funcionario con un horario determinado a un HorasGeneradasEscalafon de un cliente servicio de un dia determinado aplicando los controles necesarios para su alta.
+        /// </summary>
+        /// <param name="horaGeneradaEscalafon">La horaGeneradaEscalafon a dar de alta sin el Identificador y el Motivo.</param>
+        /// <param name="motivoCambio">El MotivoCambioDiario correspondiente al motivo del cambio.</param>
+        /// <returns>El Identificador del alta de HorarioEscalafonEmpleado</returns>
+        long agregarEmpleadoHoraGeneradaEscalafon(HoRaSGeneraDaSEScalaFOn horaGeneradaEscalafon, MotIVOsCamBiosDiARioS motivoCambio);
+        
+        /// <summary>
+        /// Retorna la lista de HorasGeneradasEscalafon del empledo correspondiente a la fecha fechaCorresponde
+        /// </summary>
+        /// <param name="nroEmpleado">Identificador del Empleado</param>
+        /// <param name="fechaCorresponde">Fecha Correspondiente al dia que se quieren los datos.</param>
+        /// <returns>Lista de HorasGeneradasEscalafon</returns>
+        List<HoRaSGeneraDaSEScalaFOn> obtenerHorasGeneradasEscalafonEmpleado(uint nroEmpleado,DateTime fechaCorresponde);
         #endregion
 
         bool existeClienteServicio(int NumeroCliente, int NumeroServicio);
@@ -296,5 +311,12 @@ namespace Datos
         void SustituirEmpleado(int NroNuevoEmpleado, int NroViejoEmpleado);
 
         void MarcarSolapados(List<HoRaRioEScalaFOn> HorsSolapados);
+
+        /// <summary>
+        /// Crea los registros de HorasGeneradasEscalafon
+        /// </summary>
+        /// <param name="listaHorasGeneradas">Lista de HorasGeneradasEscalafon a guardar</param>
+        /// <param name="sobreescribir">True para sobreescribir las Horas Generadas existentes con las nuevas.</param>
+        void guardarGeneracionHorasEscalafon(List<HoRaSGeneraDaSEScalaFOn> listaHorasGeneradas, bool sobreescribir);
     }
 }

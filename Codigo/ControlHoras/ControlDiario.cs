@@ -89,11 +89,37 @@ namespace ControlHoras
                 }
                 dgvHoras.Refresh();
                 DateTime fecha = DateTime.Parse(mtFecha.Text);
+                lblDia.Text = nombreDiasInglesAEspanol(fecha.DayOfWeek.ToString());
                 List<HoRaSGeneraDaSEScalaFOn> listFunc = datos.obtenerHorasGeneradasServicio((int)servicio.NumeroCliente, (int)servicio.NumeroServicio, fecha);
                 rellenarDatosDgvHoras(listFunc);
             }
            // mtFecha.TextMaskFormat = MaskFormat.IncludeLiterals;
             
+        }
+
+        private string nombreDiasInglesAEspanol(string nomDiaIngles)
+        {
+            switch (nomDiaIngles)
+            {
+                case "Monday":
+                    return "Lunes";
+
+                case "Tuesday":
+                    return "Martes";
+
+                case "Wednesday":
+                    return "Miercoles";
+                case "Thursday":
+                    return "Jueves";
+                case "Friday":
+                    return "Viernes";
+                case "Saturday":
+                    return "Sabado";
+                case "Sunday":
+                    return "Domingo";
+
+            }
+            return null;
         }
 
         private void rellenarDatosDgvHoras(List<HoRaSGeneraDaSEScalaFOn> funcControlDiario)
@@ -338,6 +364,7 @@ namespace ControlHoras
             }
      
         }
+
 
 
 

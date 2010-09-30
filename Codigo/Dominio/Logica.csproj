@@ -3,12 +3,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{AFC517DD-78C0-4139-ADFE-84AFB3320F61}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dominio</RootNamespace>
+    <RootNamespace>Logica</RootNamespace>
     <AssemblyName>Dominio</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -67,6 +67,7 @@
     <Compile Include="ExtraLiquidacionEmpleado.cs" />
     <Compile Include="FactoryContrato.cs" />
     <Compile Include="EventoHistorialEmpleado.cs" />
+    <Compile Include="GenerarHorasDiaException.cs" />
     <Compile Include="HorarioEscalafon.cs" />
     <Compile Include="HorarioXDia.cs" />
     <Compile Include="IABMTipos.cs" />
@@ -78,6 +79,9 @@
     <Compile Include="TipoEmpleadoJornalero.cs" />
     <Compile Include="TipoEmpleadoMensual.cs" />
     <Compile Include="TipoServicio.cs" />
+    <Compile Include="TransaccionGeneracionHorasNoIniciadaException.cs" />
+    <Compile Include="TransaccionGeneracionHorasYaIniciadaException.cs" />
+    <Compile Include="YaExistenHorasGeneradasParaLaFechaException.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />

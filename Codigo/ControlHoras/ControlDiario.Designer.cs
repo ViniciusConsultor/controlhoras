@@ -61,6 +61,7 @@
             this.maskedTextBoxColumn3 = new ControlHoras.MaskedTextBoxColumn();
             this.mtServicio = new ControlHoras.MaskedTextBoxKeyDown();
             this.ucCliente = new ControlHoras.BúsquedaCliente();
+            this.lblDia = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHoras)).BeginInit();
             this.menuStripdgvHoras.SuspendLayout();
             this.SuspendLayout();
@@ -190,7 +191,7 @@
             this.agregarFuncionario});
             this.menuStripdgvHoras.Name = "menuStripdgvHoras";
             this.menuStripdgvHoras.ShowImageMargin = false;
-            this.menuStripdgvHoras.Size = new System.Drawing.Size(167, 120);
+            this.menuStripdgvHoras.Size = new System.Drawing.Size(167, 98);
             // 
             // cambiarFuncionario
             // 
@@ -339,11 +340,21 @@
             this.ucCliente.Size = new System.Drawing.Size(418, 41);
             this.ucCliente.TabIndex = 0;
             // 
+            // lblDia
+            // 
+            this.lblDia.AutoSize = true;
+            this.lblDia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDia.Location = new System.Drawing.Point(168, 105);
+            this.lblDia.Name = "lblDia";
+            this.lblDia.Size = new System.Drawing.Size(0, 16);
+            this.lblDia.TabIndex = 7;
+            // 
             // ControlDiario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(587, 377);
+            this.Controls.Add(this.lblDia);
             this.Controls.Add(this.mtServicio);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.mtFecha);
@@ -388,5 +399,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Funcionario;
         private MaskedTextBoxColumn HoraEntrada;
         private MaskedTextBoxColumn HoraSalida;
+        private System.Windows.Forms.Label lblDia;
     }
 }
