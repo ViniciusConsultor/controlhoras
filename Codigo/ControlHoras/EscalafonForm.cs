@@ -1004,9 +1004,10 @@ namespace ControlHoras
                      else
                          sistema.altaEscalafon(numCli, numSer, nroCon, es);
 
+                     sistema.marcarSolapados(nroCon, es);
+
                      if (hubosolapa)
-                     {
-                         sistema.marcarSolapados(nroCon, es);
+                     {                         
                          MessageBox.Show("Datos guardados correctamente.\nEn los horarios en rojo el empleado ya trabaja.", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                      }
                      else

@@ -3122,6 +3122,13 @@ namespace Datos
                 database.ExecuteCommand(sqllineas, null);
 
                 database.Transaction.Commit();
+
+                tran = conexion.BeginTransaction();
+                database.Transaction = tran;
+                sqllineas = @"DELETE FROM trustdb.horariosempleados WHERE idEscalafon=" + NroEscalafon.ToString();
+                database.ExecuteCommand(sqllineas, null);
+
+                database.Transaction.Commit();
                 if (conexion.State == System.Data.ConnectionState.Open)
                     conexion.Close();
             }
@@ -3356,18 +3363,23 @@ namespace Datos
             }
         }
 
-        public void MarcarSolapados(List<HoRaRioEScalaFOn> HorsSolapados)
+        public void MarcarSolapados(List<HoRaRioSEmPleadOs> HorsSolapados)
         {
             try
             {
                 recargarContexto();
 
-                foreach (HoRaRioEScalaFOn h in HorsSolapados)
+                foreach (HoRaRioSEmPleadOs h in HorsSolapados)
                 {
                     HoRaRioEScalaFOn hor = (from reg in database.GetTable<HoRaRioEScalaFOn>()
-                                            where reg.IDEscalafon == h.IDEscalafon && reg.IDEscalafonEmpleado == h.IDEscalafonEmpleado && reg.DiA == h.DiA
+                                            where reg.IDEscalafon == h.IDEscalafon && reg.IDEscalafonEmpleado == h.IDEscalafonEmpleado && reg.DiA == h.Dia
                                             select reg).Single<HoRaRioEScalaFOn>();
                     hor.Solapa = 1;
+
+                    HoRaRioSEmPleadOs he = (from reg in database.GetTable<HoRaRioSEmPleadOs>()
+                                            where reg.IDEscalafon == h.IDEscalafon && reg.IDEscalafonEmpleado == h.IDEscalafonEmpleado && reg.Dia == h.Dia && reg.NroEmpleado == h.NroEmpleado
+                                            select reg).Single<HoRaRioSEmPleadOs>();
+                   he.Solapa = 1;   
                 }                   
                 
                 database.SubmitChanges();
@@ -3450,6 +3462,85 @@ namespace Datos
             catch (MySql.Data.MySqlClient.MySqlException myex)
             {
                 throw myex;
+            }
+        }
+        
+        public void altaHorEmpleado(HoRaRioSEmPleadOs horario)
+        {
+            try
+            {
+                Table<HoRaRioSEmPleadOs> tabla = database.GetTable<HoRaRioSEmPleadOs>();
+                tabla.InsertOnSubmit(horario);               
+                database.SubmitChanges();                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            } 
+        }
+
+        public List<HoRaRioSEmPleadOs> getHorEmpleado(int NroEmpleado, string dia, int IdEscalafon)
+        {
+            try
+            {
+                List<HoRaRioSEmPleadOs> hors = (from varcli in database.GetTable<HoRaRioSEmPleadOs>()
+                                                where varcli.NroEmpleado == (uint)NroEmpleado && varcli.Dia == dia && varcli.IDEscalafon != (uint)IdEscalafon
+                                                select varcli).ToList<HoRaRioSEmPleadOs>();
+                return hors;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+        }
+
+        public HoRaRioEScalaFOn getHorario(HoRaRioSEmPleadOs h)
+        {
+            try
+            {
+                Table<HoRaRioEScalaFOn> tablaCliente = database.GetTable<HoRaRioEScalaFOn>();
+                var cli = (from clireg in tablaCliente
+                           where clireg.IDEscalafon == h.IDEscalafon && clireg.IDEscalafonEmpleado == h.IDEscalafonEmpleado && clireg.DiA == h.Dia
+                           select clireg);
+                if (cli.Count<HoRaRioEScalaFOn>() == 0)
+                    throw new NoExisteException("No existe el horarioescalafon");
+
+                return cli.Single<HoRaRioEScalaFOn>();
+            }
+            catch (Exception anex)
+            {
+                throw anex;
+            }
+        }
+
+        public void MarcarNoSolapados(List<HoRaRioSEmPleadOs> HorsNOSolap)
+        {
+            try
+            {
+                recargarContexto();
+
+                foreach (HoRaRioSEmPleadOs h in HorsNOSolap)
+                {
+                    HoRaRioEScalaFOn hor = (from reg in database.GetTable<HoRaRioEScalaFOn>()
+                                            where reg.IDEscalafon == h.IDEscalafon && reg.IDEscalafonEmpleado == h.IDEscalafonEmpleado && reg.DiA == h.Dia
+                                            select reg).Single<HoRaRioEScalaFOn>();
+                    hor.Solapa = 0;
+
+                    HoRaRioSEmPleadOs he = (from reg in database.GetTable<HoRaRioSEmPleadOs>()
+                                            where reg.IDEscalafon == h.IDEscalafon && reg.IDEscalafonEmpleado == h.IDEscalafonEmpleado && reg.Dia == h.Dia && reg.NroEmpleado == h.NroEmpleado
+                                            select reg).Single<HoRaRioSEmPleadOs>();
+                    he.Solapa = 0;
+                }
+
+                database.SubmitChanges();
+
+                recargarContexto();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
     }

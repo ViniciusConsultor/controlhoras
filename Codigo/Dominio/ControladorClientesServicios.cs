@@ -376,63 +376,83 @@ namespace Logica
 
         public void altaEscalafon(int numCli, int numSer, int nroCon, Escalafon es)
         {
-            EScalaFOn esc = null;
-
-            esc = new EScalaFOn();
-            esc.NumeroCliente = (uint)numCli;
-            esc.NumeroServicio = (uint)numSer;
-            esc.IDContrato = (uint)nroCon;
-            esc.IDEscalafon = (uint)nroCon;
-
-            if (es.Cubierto)
-                esc.Cubierto = 1;
-            else
-                esc.Cubierto = 0;
-
-            List<EScalaFOneMpLeadO> lhs = new List<EScalaFOneMpLeadO>();
-            EScalaFOneMpLeadO lh = null;            
-            int i=0;
-            foreach (EscalafonEmpleado ldh in es.ListaEscalafonEmpleados)
+            try
             {
-                lh = new EScalaFOneMpLeadO();
-                lh.IDEscalafon = (uint)nroCon;
-                lh.IDEscalafonEmpleado = (uint)i;
-                lh.NroEmpleado = (uint)ldh.NroEmpleado;
-                lh.CodigoPuesto  = ldh.CodigoPuesto;
-                lh.HsLlamadaAntesHoraInicio = (sbyte)ldh.CantidadHsLlamadaAntesHoraInicio;
-                lh.AcArgoDe = ldh.AcargoDe;                
-                
-                //pasar los horarios por dia
-                HoRaRioEScalaFOn hd = null;
-                foreach (HorarioEscalafon hpd in ldh.Horario)
-                {
-                    hd = new HoRaRioEScalaFOn();
-                    hd.IDEscalafon = (uint)nroCon;
-                    hd.IDEscalafonEmpleado = (uint)i;
-                    if (hpd.EsLaborable())
-                    {
-                        hd.DiA = hpd.getDia();
-                        hd.HoRaInI = hpd.getHoraIni();
-                        hd.HoRaFIn = hpd.getHoraFin();
-                        hd.TipoDia = 0;
-                        hd.Solapa = (hpd.Solapea()) ? (sbyte)1 : (sbyte)0;
-                    }
-                    else
-                    {
-                        hd.DiA = hpd.getDia();
-                        hd.TipoDia = (byte)hpd.getTipoDia();
-                        hd.Solapa = 0;
-                    }
-                    
-                    lh.HoRaRioEScalaFOn.Add(hd);
-                }
-                
-                lhs.Add(lh);
-                //con.LineAshOrAs.Add(lh);
-                i++;
-            }
+                EScalaFOn esc = null;
 
-            datos.altaEscalafon(esc, lhs);
+                esc = new EScalaFOn();
+                esc.NumeroCliente = (uint)numCli;
+                esc.NumeroServicio = (uint)numSer;
+                esc.IDContrato = (uint)nroCon;
+                esc.IDEscalafon = (uint)nroCon;
+
+                if (es.Cubierto)
+                    esc.Cubierto = 1;
+                else
+                    esc.Cubierto = 0;
+
+                List<EScalaFOneMpLeadO> lhs = new List<EScalaFOneMpLeadO>();
+                EScalaFOneMpLeadO lh = null;
+                int i = 0;
+                foreach (EscalafonEmpleado ldh in es.ListaEscalafonEmpleados)
+                {
+                    lh = new EScalaFOneMpLeadO();
+                    lh.IDEscalafon = (uint)nroCon;
+                    lh.IDEscalafonEmpleado = (uint)i;
+                    lh.NroEmpleado = (uint)ldh.NroEmpleado;
+                    lh.CodigoPuesto = ldh.CodigoPuesto;
+                    lh.HsLlamadaAntesHoraInicio = (sbyte)ldh.CantidadHsLlamadaAntesHoraInicio;
+                    lh.AcArgoDe = ldh.AcargoDe;
+
+                    //pasar los horarios por dia
+                    HoRaRioEScalaFOn hd = null;
+                    HoRaRioSEmPleadOs he = null;
+                    foreach (HorarioEscalafon hpd in ldh.Horario)
+                    {
+                        hd = new HoRaRioEScalaFOn();
+                        hd.IDEscalafon = (uint)nroCon;
+                        hd.IDEscalafonEmpleado = (uint)i;
+                        if (hpd.EsLaborable())
+                        {
+                            hd.DiA = hpd.getDia();
+                            hd.HoRaInI = hpd.getHoraIni();
+                            hd.HoRaFIn = hpd.getHoraFin();
+                            hd.TipoDia = 0;
+                            hd.Solapa = (hpd.Solapea()) ? (sbyte)1 : (sbyte)0;
+                        }
+                        else
+                        {
+                            hd.DiA = hpd.getDia();
+                            hd.TipoDia = (byte)hpd.getTipoDia();
+                            hd.Solapa = 0;
+                        }
+
+                        lh.HoRaRioEScalaFOn.Add(hd);
+
+                        //HORARIOS EMPLEADOS
+                        he = new HoRaRioSEmPleadOs();
+                        he.NroEmpleado = (uint)ldh.NroEmpleado;
+                        he.IDEscalafon = (uint)nroCon;
+                        he.IDEscalafonEmpleado = (uint)i;
+                        he.Dia = hpd.getDia();
+                        he.TipoDia = (byte)hpd.getTipoDia();
+                        he.Solapa = (hpd.Solapea()) ? (sbyte)1 : (sbyte)0;
+
+                        datos.altaHorEmpleado(he);
+                    }
+
+                    lhs.Add(lh);
+                    //con.LineAshOrAs.Add(lh);
+                    i++;
+                }
+
+                datos.altaEscalafon(esc, lhs);
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
         }
 
         public void modificarEscalafon(int nroEsc, Escalafon es)
@@ -458,6 +478,7 @@ namespace Logica
 
                     //pasar los horarios por dia
                     HoRaRioEScalaFOn hd = null;
+                    HoRaRioSEmPleadOs he = null;
                     foreach (HorarioEscalafon hpd in ldh.Horario)
                     {
                         hd = new HoRaRioEScalaFOn();
@@ -479,6 +500,18 @@ namespace Logica
                         }
 
                         lh.HoRaRioEScalaFOn.Add(hd);
+
+
+                        //HORARIOS EMPLEADOS
+                        he = new HoRaRioSEmPleadOs();
+                        he.NroEmpleado = (uint)ldh.NroEmpleado;
+                        he.IDEscalafon = (uint)nroEsc;
+                        he.IDEscalafonEmpleado = (uint)i;
+                        he.Dia = hpd.getDia();
+                        he.TipoDia = (byte)hpd.getTipoDia();
+                        he.Solapa = (hpd.Solapea()) ? (sbyte)1 : (sbyte)0;
+
+                        datos.altaHorEmpleado(he);
                     }
 
                     lhs.Add(lh);
@@ -571,11 +604,11 @@ namespace Logica
             dti2 = DateTime.ParseExact(hi2, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
             dtf2 = DateTime.ParseExact(hf2, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
 
-            // if (dti2 < dtf1 && dtf2 > dti1) - Con este IF se controla solo un caso
-            if ((dti1 < dtf1 && dti2 < dtf2) && (dti2 > dtf1 || dtf2 < dti1)) // Asi se controlan los dos casos.
-                return false;
-            else
+            if (dti2 < dtf1 && dtf2 > dti1) //- Con este IF se controla solo un caso
+            //if ((dti1 < dtf1 && dti2 < dtf2) && (dti2 > dtf1 || dtf2 < dti1)) // Asi se controlan los dos casos.
                 return true;
+            else
+                return false;
         }
 
         public bool HorariosCruzados(int NroEmp1, int NroEmp2)
@@ -628,7 +661,8 @@ namespace Logica
         public void marcarSolapados(int IdEscalafon, Escalafon EscSolapados)
         {
             int NroEmp;
-            List<HoRaRioEScalaFOn> HorsSolap = new List<HoRaRioEScalaFOn>();
+            List<HoRaRioSEmPleadOs> HorsSolap = new List<HoRaRioSEmPleadOs>();
+            List<HoRaRioSEmPleadOs> HorsNOSolap = new List<HoRaRioSEmPleadOs>();
             foreach (EscalafonEmpleado ee in EscSolapados.ListaEscalafonEmpleados)
             {
                 NroEmp = ee.NroEmpleado;
@@ -639,6 +673,7 @@ namespace Logica
                         try
                         {
                             List<EScalaFOneMpLeadO> horarios = datos.getHorariosEmpleado(NroEmp);
+                            HoRaRioSEmPleadOs hemp;
                             foreach (EScalaFOneMpLeadO linea in horarios)
                             {
                                 if (linea.IDEscalafon != IdEscalafon)
@@ -648,7 +683,18 @@ namespace Logica
                                         if (h.IDEscalafonEmpleado == linea.IDEscalafonEmpleado && h.DiA == he.getDia() && h.TipoDia == 0)
                                         {
                                             if (HorariosSolapados(he.getHoraIni(), he.getHoraFin(), h.HoRaInI, h.HoRaFIn))
-                                                HorsSolap.Add(h);
+                                            {
+                                                //HORARIOS EMPLEADOS
+                                                hemp = new HoRaRioSEmPleadOs();
+                                                hemp.NroEmpleado = (uint)NroEmp;
+                                                hemp.IDEscalafon = h.IDEscalafon;
+                                                hemp.IDEscalafonEmpleado = h.IDEscalafonEmpleado;
+                                                hemp.Dia = h.DiA;
+                                                hemp.TipoDia = h.TipoDia;
+                                                hemp.Solapa = 1;
+
+                                                HorsSolap.Add(hemp);
+                                            }
                                         }
                                     }
                                 }
@@ -660,10 +706,33 @@ namespace Logica
                             throw ex;
                         }
                     }
+                    else
+                    {
+                        try
+                        {
+                            List<HoRaRioSEmPleadOs> horemp = datos.getHorEmpleado(NroEmp, he.getDia(), IdEscalafon);                            
+                            HoRaRioEScalaFOn h2;
+                            foreach (HoRaRioSEmPleadOs h in horemp)
+                            {
+                                if (h.Solapa == 1)
+                                {
+                                    h2 = datos.getHorario(h);
+                                    if (!EsHorarioSolapado((int)h.IDEscalafon, (int)h.NroEmpleado, h2.DiA, h2.HoRaInI, h2.HoRaFIn))
+                                        HorsNOSolap.Add(h);
+                                }                                    
+                            }                                
+                        }
+                        catch (Exception ex)
+                        {
+
+                            throw ex;
+                        }
+                    }
                 }
             }
             try
-            {                
+            {
+                datos.MarcarNoSolapados(HorsNOSolap);
                 datos.MarcarSolapados(HorsSolap);
             }
             catch (Exception ex)
