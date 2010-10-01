@@ -47,8 +47,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 18);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Cliente:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.Text = "Cliente:";           
             // 
             // ClienteLBL
             // 
@@ -68,8 +67,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 18);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Servicio:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.label2.Text = "Servicio:";            
             // 
             // ServicioLBL
             // 
@@ -79,8 +77,7 @@
             this.ServicioLBL.Name = "ServicioLBL";
             this.ServicioLBL.Size = new System.Drawing.Size(65, 18);
             this.ServicioLBL.TabIndex = 10;
-            this.ServicioLBL.Text = "Cliente:";
-            this.ServicioLBL.Click += new System.EventHandler(this.ServicioLBL_Click);
+            this.ServicioLBL.Text = "Cliente:";            
             // 
             // CloseBTN
             // 

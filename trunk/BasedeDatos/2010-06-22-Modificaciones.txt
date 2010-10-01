@@ -30,7 +30,7 @@ update consultasempleados set Descripcion ="Consulta que devuelve Nro Correlativ
 
 
 -- ***BACKUP***
--- mysqldump -u root -p trustdb > C:\2010-06-25_BackupTrustdb.sql
+-- mysqldump -d -u root -pdesdere > C:\2010-09-17_BackupTrustdb.sql
 
 -- 'select @rownum:=@rownum+1 AS Nro, emp.Apellido AS Apellidos, emp.Nombre AS Nombres, emp.ServicioActual,emp.Turno, emp.NumeroDocumento, emp.FechaTestPsicologico, ADDDATE(emp.FechaIngreso, -1) AS FeachaAprobCurso,emp.CapacitadoPortarArma AS CursoServicioArmado, emp.EnServicioArmado AS EnServicioArmado, emp.CAJ_Numero, emp.ConstanciaDomicilio AS ConstanciaDomicilio from (SELECT @rownum:=0) r, empleados emp where emp.Activo=1'
 

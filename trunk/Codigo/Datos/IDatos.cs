@@ -304,13 +304,15 @@ namespace Datos
 
         List<EScalaFOneMpLeadO> getHorariosEmpleado(int NroEmpleado);
 
+        List<HoRaRioSEmPleadOs> getHorEmpleado(int NroEmpleado, string dia, int IdEscalafon);
+
         bool ClienteActivo(int NroCliente);
 
         void SetearCubierto(int NroEscalafon, bool ContCubierto);
 
         void SustituirEmpleado(int NroNuevoEmpleado, int NroViejoEmpleado);
 
-        void MarcarSolapados(List<HoRaRioEScalaFOn> HorsSolapados);
+        void MarcarSolapados(List<HoRaRioSEmPleadOs> HorsSolapados);
 
         /// <summary>
         /// Crea los registros de HorasGeneradasEscalafon
@@ -318,5 +320,12 @@ namespace Datos
         /// <param name="listaHorasGeneradas">Lista de HorasGeneradasEscalafon a guardar</param>
         /// <param name="sobreescribir">True para sobreescribir las Horas Generadas existentes con las nuevas.</param>
         void guardarGeneracionHorasEscalafon(List<HoRaSGeneraDaSEScalaFOn> listaHorasGeneradas, bool sobreescribir);
+
+        void altaHorEmpleado(HoRaRioSEmPleadOs horario);
+
+
+        HoRaRioEScalaFOn getHorario(HoRaRioSEmPleadOs h);
+
+        void MarcarNoSolapados(List<HoRaRioSEmPleadOs> HorsNOSolap);
     }
 }
