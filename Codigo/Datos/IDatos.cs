@@ -312,7 +312,7 @@ namespace Datos
 
         void SustituirEmpleado(int NroNuevoEmpleado, int NroViejoEmpleado);
 
-        void MarcarSolapados(List<HoRaRioSEmPleadOs> HorsSolapados);
+        void MarcarSolapados(List<HoRaRioEScalaFOn> HorsSolapados);
 
         /// <summary>
         /// Crea los registros de HorasGeneradasEscalafon
@@ -326,6 +326,8 @@ namespace Datos
 
         HoRaRioEScalaFOn getHorario(HoRaRioSEmPleadOs h);
 
-        void MarcarNoSolapados(List<HoRaRioSEmPleadOs> HorsNOSolap);
+        void MarcarNoSolapados(List<HoRaRioEScalaFOn> HorsNOSolap);
+
+        List<HoRaRioEScalaFOn> getHorariosEmpleadoDia(int NroEmpleado, string dia, int IdEscalafon);
     }
 }

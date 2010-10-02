@@ -2979,6 +2979,7 @@ namespace Datos
                         tempsql += "'" + dh.HoRaInI + "', ";
                         tempsql += dh.IDEscalafon.ToString() + ", ";
                         tempsql += dh.IDEscalafonEmpleado.ToString() + ", ";
+                        tempsql += dh.NroEmpleado + ", ";
                         tempsql += dh.Solapa + ", ";
                         tempsql += dh.TipoDia.ToString() + ")";
                         database.ExecuteCommand(tempsql, null);
@@ -3123,12 +3124,12 @@ namespace Datos
 
                 database.Transaction.Commit();
 
-                tran = conexion.BeginTransaction();
-                database.Transaction = tran;
-                sqllineas = @"DELETE FROM trustdb.horariosempleados WHERE idEscalafon=" + NroEscalafon.ToString();
-                database.ExecuteCommand(sqllineas, null);
+                //tran = conexion.BeginTransaction();
+                //database.Transaction = tran;
+                //sqllineas = @"DELETE FROM trustdb.horariosempleados WHERE idEscalafon=" + NroEscalafon.ToString();
+                //database.ExecuteCommand(sqllineas, null);
 
-                database.Transaction.Commit();
+                //database.Transaction.Commit();
                 if (conexion.State == System.Data.ConnectionState.Open)
                     conexion.Close();
             }
@@ -3210,6 +3211,7 @@ namespace Datos
                         tempsql += "'" + dh.HoRaInI + "', ";
                         tempsql += dh.IDEscalafon.ToString() + ", ";
                         tempsql += dh.IDEscalafonEmpleado.ToString() + ", ";
+                        tempsql += dh.NroEmpleado + ", ";
                         tempsql += dh.Solapa + ", ";
                         tempsql += dh.TipoDia.ToString() + ")";
                         database.ExecuteCommand(tempsql, null);
@@ -3363,23 +3365,18 @@ namespace Datos
             }
         }
 
-        public void MarcarSolapados(List<HoRaRioSEmPleadOs> HorsSolapados)
+        public void MarcarSolapados(List<HoRaRioEScalaFOn> HorsSolapados)
         {
             try
             {
                 recargarContexto();
 
-                foreach (HoRaRioSEmPleadOs h in HorsSolapados)
+                foreach (HoRaRioEScalaFOn h in HorsSolapados)
                 {
                     HoRaRioEScalaFOn hor = (from reg in database.GetTable<HoRaRioEScalaFOn>()
-                                            where reg.IDEscalafon == h.IDEscalafon && reg.IDEscalafonEmpleado == h.IDEscalafonEmpleado && reg.DiA == h.Dia
+                                            where reg.IDEscalafon == h.IDEscalafon && reg.IDEscalafonEmpleado == h.IDEscalafonEmpleado && reg.DiA == h.DiA
                                             select reg).Single<HoRaRioEScalaFOn>();
-                    hor.Solapa = 1;
-
-                    HoRaRioSEmPleadOs he = (from reg in database.GetTable<HoRaRioSEmPleadOs>()
-                                            where reg.IDEscalafon == h.IDEscalafon && reg.IDEscalafonEmpleado == h.IDEscalafonEmpleado && reg.Dia == h.Dia && reg.NroEmpleado == h.NroEmpleado
-                                            select reg).Single<HoRaRioSEmPleadOs>();
-                   he.Solapa = 1;   
+                    hor.Solapa = 1;                  
                 }                   
                 
                 database.SubmitChanges();
@@ -3514,23 +3511,18 @@ namespace Datos
             }
         }
 
-        public void MarcarNoSolapados(List<HoRaRioSEmPleadOs> HorsNOSolap)
+        public void MarcarNoSolapados(List<HoRaRioEScalaFOn> HorsNOSolap)
         {
             try
             {
                 recargarContexto();
 
-                foreach (HoRaRioSEmPleadOs h in HorsNOSolap)
+                foreach (HoRaRioEScalaFOn h in HorsNOSolap)
                 {
                     HoRaRioEScalaFOn hor = (from reg in database.GetTable<HoRaRioEScalaFOn>()
-                                            where reg.IDEscalafon == h.IDEscalafon && reg.IDEscalafonEmpleado == h.IDEscalafonEmpleado && reg.DiA == h.Dia
+                                            where reg.IDEscalafon == h.IDEscalafon && reg.IDEscalafonEmpleado == h.IDEscalafonEmpleado && reg.DiA == h.DiA
                                             select reg).Single<HoRaRioEScalaFOn>();
-                    hor.Solapa = 0;
-
-                    HoRaRioSEmPleadOs he = (from reg in database.GetTable<HoRaRioSEmPleadOs>()
-                                            where reg.IDEscalafon == h.IDEscalafon && reg.IDEscalafonEmpleado == h.IDEscalafonEmpleado && reg.Dia == h.Dia && reg.NroEmpleado == h.NroEmpleado
-                                            select reg).Single<HoRaRioSEmPleadOs>();
-                    he.Solapa = 0;
+                    hor.Solapa = 0;                   
                 }
 
                 database.SubmitChanges();
@@ -3543,6 +3535,24 @@ namespace Datos
                 throw ex;
             }
         }
+
+        public List<HoRaRioEScalaFOn> getHorariosEmpleadoDia(int NroEmpleado, string dia, int IdEscalafon)
+        {
+            try
+            {
+                List<HoRaRioEScalaFOn> hors = (from varcli in database.GetTable<HoRaRioEScalaFOn>()
+                                                where varcli.NroEmpleado == (uint)NroEmpleado && varcli.DiA == dia && varcli.IDEscalafon != IdEscalafon
+                                               select varcli).ToList<HoRaRioEScalaFOn>();
+                return hors;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+        }
+
+        
     }
 
 }
