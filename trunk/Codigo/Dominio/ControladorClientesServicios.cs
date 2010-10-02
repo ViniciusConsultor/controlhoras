@@ -406,12 +406,13 @@ namespace Logica
 
                     //pasar los horarios por dia
                     HoRaRioEScalaFOn hd = null;
-                    HoRaRioSEmPleadOs he = null;
+                    //HoRaRioSEmPleadOs he = null;
                     foreach (HorarioEscalafon hpd in ldh.Horario)
                     {
                         hd = new HoRaRioEScalaFOn();
                         hd.IDEscalafon = (uint)nroCon;
                         hd.IDEscalafonEmpleado = (uint)i;
+                        hd.NroEmpleado = (uint)ldh.NroEmpleado;
                         if (hpd.EsLaborable())
                         {
                             hd.DiA = hpd.getDia();
@@ -430,15 +431,15 @@ namespace Logica
                         lh.HoRaRioEScalaFOn.Add(hd);
 
                         //HORARIOS EMPLEADOS
-                        he = new HoRaRioSEmPleadOs();
-                        he.NroEmpleado = (uint)ldh.NroEmpleado;
-                        he.IDEscalafon = (uint)nroCon;
-                        he.IDEscalafonEmpleado = (uint)i;
-                        he.Dia = hpd.getDia();
-                        he.TipoDia = (byte)hpd.getTipoDia();
-                        he.Solapa = (hpd.Solapea()) ? (sbyte)1 : (sbyte)0;
+                        //he = new HoRaRioSEmPleadOs();
+                        //he.NroEmpleado = (uint)ldh.NroEmpleado;
+                        //he.IDEscalafon = (uint)nroCon;
+                        //he.IDEscalafonEmpleado = (uint)i;
+                        //he.Dia = hpd.getDia();
+                        //he.TipoDia = (byte)hpd.getTipoDia();
+                        //he.Solapa = (hpd.Solapea()) ? (sbyte)1 : (sbyte)0;
 
-                        datos.altaHorEmpleado(he);
+                        //datos.altaHorEmpleado(he);
                     }
 
                     lhs.Add(lh);
@@ -484,6 +485,7 @@ namespace Logica
                         hd = new HoRaRioEScalaFOn();
                         hd.IDEscalafon = (uint)nroEsc;
                         hd.IDEscalafonEmpleado = (uint)i;
+                        hd.NroEmpleado = (uint)ldh.NroEmpleado;
                         if (hpd.EsLaborable())
                         {
                             hd.DiA = hpd.getDia();
@@ -503,15 +505,15 @@ namespace Logica
 
 
                         //HORARIOS EMPLEADOS
-                        he = new HoRaRioSEmPleadOs();
-                        he.NroEmpleado = (uint)ldh.NroEmpleado;
-                        he.IDEscalafon = (uint)nroEsc;
-                        he.IDEscalafonEmpleado = (uint)i;
-                        he.Dia = hpd.getDia();
-                        he.TipoDia = (byte)hpd.getTipoDia();
-                        he.Solapa = (hpd.Solapea()) ? (sbyte)1 : (sbyte)0;
+                        //he = new HoRaRioSEmPleadOs();
+                        //he.NroEmpleado = (uint)ldh.NroEmpleado;
+                        //he.IDEscalafon = (uint)nroEsc;
+                        //he.IDEscalafonEmpleado = (uint)i;
+                        //he.Dia = hpd.getDia();
+                        //he.TipoDia = (byte)hpd.getTipoDia();
+                        //he.Solapa = (hpd.Solapea()) ? (sbyte)1 : (sbyte)0;
 
-                        datos.altaHorEmpleado(he);
+                        //datos.altaHorEmpleado(he);
                     }
 
                     lhs.Add(lh);
@@ -570,23 +572,16 @@ namespace Logica
         {
             try
             {
-                List<EScalaFOneMpLeadO> horarios = datos.getHorariosEmpleado(NroEmpleado);
-
-                foreach (EScalaFOneMpLeadO linea in horarios)
+                List<HoRaRioEScalaFOn> horarios = datos.getHorariosEmpleadoDia(NroEmpleado, dia, IdEscalafon);
+                
+                foreach (HoRaRioEScalaFOn h in horarios)
                 {
-                    if (linea.IDEscalafon != IdEscalafon)
+                    if (h.TipoDia == 0)
                     {
-                        foreach (HoRaRioEScalaFOn h in linea.HoRaRioEScalaFOn)
-                        {
-                            if (h.IDEscalafonEmpleado == linea.IDEscalafonEmpleado && h.DiA == dia && h.TipoDia == 0)
-                            {
-                                if (HorariosSolapados(HoraIni, HoraFin, h.HoRaInI, h.HoRaFIn))
-                                    return true;
-                            }
-                        }
+                        if (HorariosSolapados(HoraIni, HoraFin, h.HoRaInI, h.HoRaFIn))
+                            return true;
                     }
                 }
-
                 return false;
             }
             catch (Exception ex)
@@ -661,77 +656,44 @@ namespace Logica
         public void marcarSolapados(int IdEscalafon, Escalafon EscSolapados)
         {
             int NroEmp;
-            List<HoRaRioSEmPleadOs> HorsSolap = new List<HoRaRioSEmPleadOs>();
-            List<HoRaRioSEmPleadOs> HorsNOSolap = new List<HoRaRioSEmPleadOs>();
-            foreach (EscalafonEmpleado ee in EscSolapados.ListaEscalafonEmpleados)
+            List<HoRaRioEScalaFOn> HorsSolap = new List<HoRaRioEScalaFOn>();
+            List<HoRaRioEScalaFOn> HorsNOSolap = new List<HoRaRioEScalaFOn>();
+            List<HoRaRioEScalaFOn> aux;
+            try
             {
-                NroEmp = ee.NroEmpleado;
-                foreach (HorarioEscalafon he in ee.Horario)
+                foreach (EscalafonEmpleado ee in EscSolapados.ListaEscalafonEmpleados)
                 {
-                    if (he.Solapea())
+                    NroEmp = ee.NroEmpleado;
+                    foreach (HorarioEscalafon he in ee.Horario)
                     {
-                        try
+                        aux = datos.getHorariosEmpleadoDia(NroEmp, he.getDia(), IdEscalafon);
+                        if (he.Solapea())
                         {
-                            List<EScalaFOneMpLeadO> horarios = datos.getHorariosEmpleado(NroEmp);
-                            HoRaRioSEmPleadOs hemp;
-                            foreach (EScalaFOneMpLeadO linea in horarios)
+                            foreach (HoRaRioEScalaFOn h in aux)
                             {
-                                if (linea.IDEscalafon != IdEscalafon)
+                                if (h.TipoDia == 0)
                                 {
-                                    foreach (HoRaRioEScalaFOn h in linea.HoRaRioEScalaFOn)
+                                    if (HorariosSolapados(he.getHoraIni(), he.getHoraFin(), h.HoRaInI, h.HoRaFIn))
                                     {
-                                        if (h.IDEscalafonEmpleado == linea.IDEscalafonEmpleado && h.DiA == he.getDia() && h.TipoDia == 0)
-                                        {
-                                            if (HorariosSolapados(he.getHoraIni(), he.getHoraFin(), h.HoRaInI, h.HoRaFIn))
-                                            {
-                                                //HORARIOS EMPLEADOS
-                                                hemp = new HoRaRioSEmPleadOs();
-                                                hemp.NroEmpleado = (uint)NroEmp;
-                                                hemp.IDEscalafon = h.IDEscalafon;
-                                                hemp.IDEscalafonEmpleado = h.IDEscalafonEmpleado;
-                                                hemp.Dia = h.DiA;
-                                                hemp.TipoDia = h.TipoDia;
-                                                hemp.Solapa = 1;
-
-                                                HorsSolap.Add(hemp);
-                                            }
-                                        }
+                                        HorsSolap.Add(h);
                                     }
                                 }
                             }
                         }
-                        catch (Exception ex)
+                        else
                         {
-
-                            throw ex;
-                        }
-                    }
-                    else
-                    {
-                        try
-                        {
-                            List<HoRaRioSEmPleadOs> horemp = datos.getHorEmpleado(NroEmp, he.getDia(), IdEscalafon);                            
-                            HoRaRioEScalaFOn h2;
-                            foreach (HoRaRioSEmPleadOs h in horemp)
+                            foreach (HoRaRioEScalaFOn h in aux)
                             {
                                 if (h.Solapa == 1)
                                 {
-                                    h2 = datos.getHorario(h);
-                                    if (!EsHorarioSolapado((int)h.IDEscalafon, (int)h.NroEmpleado, h2.DiA, h2.HoRaInI, h2.HoRaFIn))
+                                    if (!EsHorarioSolapado((int)h.IDEscalafon, (int)h.NroEmpleado, h.DiA, h.HoRaInI, h.HoRaFIn))
                                         HorsNOSolap.Add(h);
-                                }                                    
-                            }                                
-                        }
-                        catch (Exception ex)
-                        {
-
-                            throw ex;
+                                }
+                            }
                         }
                     }
                 }
-            }
-            try
-            {
+
                 datos.MarcarNoSolapados(HorsNOSolap);
                 datos.MarcarSolapados(HorsSolap);
             }
@@ -739,7 +701,7 @@ namespace Logica
             {
                 
                 throw ex;
-            }
+            }      
         }    
     
         /// <summary>

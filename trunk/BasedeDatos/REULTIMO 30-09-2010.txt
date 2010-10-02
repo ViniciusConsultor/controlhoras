@@ -1,8 +1,5 @@
-CREATE  TABLE IF NOT EXISTS `trustdb`.`horariosempleados` (
-  `NroEmpleado` MEDIUMINT(8) UNSIGNED NOT NULL ,
-  `IdEscalafon` INT(11) UNSIGNED NOT NULL ,
-  `IdEscalafonEmpleado` INT(11) UNSIGNED NOT NULL ,
-  `Dia` VARCHAR(10) NOT NULL ,
-  `TipoDia` TINYINT(2) UNSIGNED NULL ,
-  `Solapa` TINYINT(1) NULL ,
-  PRIMARY KEY (`NroEmpleado`, `IdEscalafon`, `IdEscalafonEmpleado`, `Dia`) );
+-- Agrgo el Nro de Empleado al HorarioEscalafon
+ALTER TABLE `trustdb`.`horarioescalafon` ADD COLUMN `NroEmpleado` MEDIUMINT(8) UNSIGNED NOT NULL  AFTER `Solapa` ;
+
+-- ESTA TABLA NO VA MAS ****************
+CREATE  TABLE IF NOT EXISTS `trustdb`.`horariosempleados` (  `NroEmpleado` MEDIUMINT(8) UNSIGNED NOT NULL ,  `IdEscalafon` INT(11) UNSIGNED NOT NULL ,  `IdEscalafonEmpleado` INT(11) UNSIGNED NOT NULL ,  `Dia` VARCHAR(10) NOT NULL ,  `TipoDia` TINYINT(2) UNSIGNED NULL ,  `Solapa` TINYINT(1) NULL ,  PRIMARY KEY (`NroEmpleado`, `IdEscalafon`, `IdEscalafonEmpleado`, `Dia`) );
