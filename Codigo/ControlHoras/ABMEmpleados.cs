@@ -1401,7 +1401,7 @@ namespace ControlHoras
                         }
                     }
                     if (index == -1)
-                        throw new Excepciones.NoExisteException("No existe un Tipo Evento con identificador: " + historial.IDTipoEvento.ToString());
+                        throw new NoExisteException("No existe un Tipo Evento con identificador: " + historial.IDTipoEvento.ToString());
                     dgvHistorialEmpleado.Rows[n].Cells["TipoEvento"].Value = listaTiposEventos.ElementAt<TipOsEventOHistOrIal>(index).Nombre;
 
                 }

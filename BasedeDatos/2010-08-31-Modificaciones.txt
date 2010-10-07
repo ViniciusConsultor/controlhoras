@@ -10,5 +10,5 @@ ALTER TABLE `trustdb`.`horarioescalafon`
   ON UPDATE NO ACTION
 , ADD INDEX `FK_horasEscalEmpleados` (`idEscalafon` ASC, `idEscalafonEmpleado` ASC) ;
 
-
-
+-- JG: 02/09/2010
+alter table horarioescalafon add foreign key (tipoDia) references tiposdias(id);

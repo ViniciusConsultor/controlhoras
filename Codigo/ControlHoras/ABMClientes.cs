@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Logica;
 using Datos;
-using Excepciones;
+//using Excepciones;
 using System.Globalization;
 
 namespace ControlHoras

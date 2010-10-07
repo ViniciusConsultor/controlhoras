@@ -30,17 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EscalafonForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -48,8 +41,24 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.GraficosPL = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ConLBL = new System.Windows.Forms.Label();
+            this.CubiertoLBL = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cubiertoTB = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.PosteriorBTN = new System.Windows.Forms.Button();
             this.AnteriorBTN = new System.Windows.Forms.Button();
             this.mtServicio = new System.Windows.Forms.MaskedTextBox();
@@ -61,23 +70,22 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnBuscarClientes = new System.Windows.Forms.ToolStripButton();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.label9 = new System.Windows.Forms.Label();
             this.btnEliminarLineaEscalafon = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
             this.btnAgregarLineaEscalafon = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cubiertoTB = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.CubiertoLBL = new System.Windows.Forms.Label();
-            this.ConLBL = new System.Windows.Forms.Label();
+            this.dgEscalafon = new ControlHoras.DataGridTAB();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.VerContratoBTN = new System.Windows.Forms.Button();
             this.dgvHsPorCubrir = new System.Windows.Forms.DataGridView();
+            this.HsACubrirLunes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HsACubrirMartes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HsACubrirMiercoles = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HsACubrirJueves = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HsACubrirViernes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HsACubrirSabado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HsACubrirDomingo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EscalafonCMS = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copiarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pegarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,14 +101,8 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgEscalafon = new ControlHoras.DataGridTAB();
-            this.HsACubrirLunes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HsACubrirMartes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HsACubrirMiercoles = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HsACubrirJueves = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HsACubrirViernes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HsACubrirSabado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HsACubrirDomingo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnVerEscalafonFuncionario = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -109,9 +111,9 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgEscalafon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHsPorCubrir)).BeginInit();
             this.EscalafonCMS.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgEscalafon)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -156,6 +158,88 @@
             this.GraficosPL.Size = new System.Drawing.Size(394, 65);
             this.GraficosPL.TabIndex = 19;
             this.GraficosPL.Visible = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(46, 45);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(100, 13);
+            this.label9.TabIndex = 27;
+            this.label9.Text = "Horario en Conflicto";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(46, 9);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(59, 13);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "Empleados";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(46, 27);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(77, 13);
+            this.label5.TabIndex = 25;
+            this.label5.Text = "Horario Normal";
+            // 
+            // ConLBL
+            // 
+            this.ConLBL.AutoSize = true;
+            this.ConLBL.Location = new System.Drawing.Point(317, 32);
+            this.ConLBL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ConLBL.Name = "ConLBL";
+            this.ConLBL.Size = new System.Drawing.Size(47, 13);
+            this.ConLBL.TabIndex = 21;
+            this.ConLBL.Text = "Contarto";
+            // 
+            // CubiertoLBL
+            // 
+            this.CubiertoLBL.AutoSize = true;
+            this.CubiertoLBL.Location = new System.Drawing.Point(306, 45);
+            this.CubiertoLBL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.CubiertoLBL.Name = "CubiertoLBL";
+            this.CubiertoLBL.Size = new System.Drawing.Size(81, 13);
+            this.CubiertoLBL.TabIndex = 20;
+            this.CubiertoLBL.Text = "NO CUBIERTO";
+            // 
+            // label10
+            // 
+            this.label10.BackColor = System.Drawing.Color.Red;
+            this.label10.Location = new System.Drawing.Point(29, 45);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(11, 13);
+            this.label10.TabIndex = 26;
+            // 
+            // label8
+            // 
+            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label8.Location = new System.Drawing.Point(29, 9);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(11, 13);
+            this.label8.TabIndex = 22;
+            // 
+            // cubiertoTB
+            // 
+            this.cubiertoTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.cubiertoTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.cubiertoTB.Location = new System.Drawing.Point(323, 9);
+            this.cubiertoTB.Margin = new System.Windows.Forms.Padding(2);
+            this.cubiertoTB.Name = "cubiertoTB";
+            this.cubiertoTB.ReadOnly = true;
+            this.cubiertoTB.Size = new System.Drawing.Size(34, 20);
+            this.cubiertoTB.TabIndex = 19;
+            // 
+            // label6
+            // 
+            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label6.Location = new System.Drawing.Point(29, 27);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(11, 13);
+            this.label6.TabIndex = 24;
             // 
             // PosteriorBTN
             // 
@@ -234,7 +318,9 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.GuardarBTN,
             this.toolStripSeparator2,
-            this.btnBuscarClientes});
+            this.btnBuscarClientes,
+            this.toolStripSeparator3,
+            this.btnVerEscalafonFuncionario});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(959, 36);
@@ -292,15 +378,6 @@
             this.splitContainer2.SplitterDistance = 297;
             this.splitContainer2.TabIndex = 0;
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(46, 45);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(100, 13);
-            this.label9.TabIndex = 27;
-            this.label9.Text = "Horario en Conflicto";
-            // 
             // btnEliminarLineaEscalafon
             // 
             this.btnEliminarLineaEscalafon.Location = new System.Drawing.Point(928, 33);
@@ -310,14 +387,6 @@
             this.btnEliminarLineaEscalafon.Text = "-";
             this.btnEliminarLineaEscalafon.UseVisualStyleBackColor = true;
             this.btnEliminarLineaEscalafon.Click += new System.EventHandler(this.btnEliminarLineaEscalafon_Click);
-            // 
-            // label10
-            // 
-            this.label10.BackColor = System.Drawing.Color.Red;
-            this.label10.Location = new System.Drawing.Point(29, 45);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(11, 13);
-            this.label10.TabIndex = 26;
             // 
             // btnAgregarLineaEscalafon
             // 
@@ -329,70 +398,31 @@
             this.btnAgregarLineaEscalafon.UseVisualStyleBackColor = true;
             this.btnAgregarLineaEscalafon.Click += new System.EventHandler(this.btnAgregarLineaEscalafon_Click);
             // 
-            // label5
+            // dgEscalafon
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(46, 27);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 13);
-            this.label5.TabIndex = 25;
-            this.label5.Text = "Horario Normal";
-            // 
-            // label6
-            // 
-            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.label6.Location = new System.Drawing.Point(29, 27);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(11, 13);
-            this.label6.TabIndex = 24;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(46, 9);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 13);
-            this.label7.TabIndex = 23;
-            this.label7.Text = "Empleados";
-            // 
-            // cubiertoTB
-            // 
-            this.cubiertoTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.cubiertoTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.cubiertoTB.Location = new System.Drawing.Point(323, 9);
-            this.cubiertoTB.Margin = new System.Windows.Forms.Padding(2);
-            this.cubiertoTB.Name = "cubiertoTB";
-            this.cubiertoTB.ReadOnly = true;
-            this.cubiertoTB.Size = new System.Drawing.Size(34, 20);
-            this.cubiertoTB.TabIndex = 19;
-            // 
-            // label8
-            // 
-            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.label8.Location = new System.Drawing.Point(29, 9);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(11, 13);
-            this.label8.TabIndex = 22;
-            // 
-            // CubiertoLBL
-            // 
-            this.CubiertoLBL.AutoSize = true;
-            this.CubiertoLBL.Location = new System.Drawing.Point(306, 45);
-            this.CubiertoLBL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.CubiertoLBL.Name = "CubiertoLBL";
-            this.CubiertoLBL.Size = new System.Drawing.Size(81, 13);
-            this.CubiertoLBL.TabIndex = 20;
-            this.CubiertoLBL.Text = "NO CUBIERTO";
-            // 
-            // ConLBL
-            // 
-            this.ConLBL.AutoSize = true;
-            this.ConLBL.Location = new System.Drawing.Point(317, 32);
-            this.ConLBL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.ConLBL.Name = "ConLBL";
-            this.ConLBL.Size = new System.Drawing.Size(47, 13);
-            this.ConLBL.TabIndex = 21;
-            this.ConLBL.Text = "Contarto";
+            this.dgEscalafon.AllowUserToAddRows = false;
+            this.dgEscalafon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgEscalafon.Location = new System.Drawing.Point(12, 0);
+            this.dgEscalafon.Name = "dgEscalafon";
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.Format = "t";
+            dataGridViewCellStyle19.NullValue = "--------";
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgEscalafon.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            this.dgEscalafon.RowHeadersVisible = false;
+            this.dgEscalafon.RowTemplate.Height = 24;
+            this.dgEscalafon.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgEscalafon.Size = new System.Drawing.Size(910, 297);
+            this.dgEscalafon.TabIndex = 0;
+            this.dgEscalafon.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgEscalafon_CellMouseClick);
+            this.dgEscalafon.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEscalafon_CellEndEdit);
+            this.dgEscalafon.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgEscalafon_EditingControlShowing);
+            this.dgEscalafon.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgEscalafon_KeyDown);
             // 
             // label3
             // 
@@ -491,6 +521,91 @@
             this.dgvHsPorCubrir.TabIndex = 1;
             this.dgvHsPorCubrir.RowHeadersWidthChanged += new System.EventHandler(this.dgvHsPorCubrir_RowHeadersWidthChanged);
             this.dgvHsPorCubrir.SelectionChanged += new System.EventHandler(this.dgvHsPorCubrir_SelectionChanged);
+            // 
+            // HsACubrirLunes
+            // 
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle22.Format = "t";
+            dataGridViewCellStyle22.NullValue = null;
+            this.HsACubrirLunes.DefaultCellStyle = dataGridViewCellStyle22;
+            this.HsACubrirLunes.HeaderText = "Lunes";
+            this.HsACubrirLunes.Name = "HsACubrirLunes";
+            this.HsACubrirLunes.ReadOnly = true;
+            this.HsACubrirLunes.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.HsACubrirLunes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.HsACubrirLunes.Width = 75;
+            // 
+            // HsACubrirMartes
+            // 
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle23.Format = "t";
+            this.HsACubrirMartes.DefaultCellStyle = dataGridViewCellStyle23;
+            this.HsACubrirMartes.HeaderText = "Martes";
+            this.HsACubrirMartes.Name = "HsACubrirMartes";
+            this.HsACubrirMartes.ReadOnly = true;
+            this.HsACubrirMartes.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.HsACubrirMartes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.HsACubrirMartes.Width = 75;
+            // 
+            // HsACubrirMiercoles
+            // 
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle24.Format = "t";
+            this.HsACubrirMiercoles.DefaultCellStyle = dataGridViewCellStyle24;
+            this.HsACubrirMiercoles.HeaderText = "Miercoles";
+            this.HsACubrirMiercoles.Name = "HsACubrirMiercoles";
+            this.HsACubrirMiercoles.ReadOnly = true;
+            this.HsACubrirMiercoles.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.HsACubrirMiercoles.Width = 75;
+            // 
+            // HsACubrirJueves
+            // 
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle25.Format = "t";
+            this.HsACubrirJueves.DefaultCellStyle = dataGridViewCellStyle25;
+            this.HsACubrirJueves.HeaderText = "Jueves";
+            this.HsACubrirJueves.Name = "HsACubrirJueves";
+            this.HsACubrirJueves.ReadOnly = true;
+            this.HsACubrirJueves.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.HsACubrirJueves.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.HsACubrirJueves.Width = 75;
+            // 
+            // HsACubrirViernes
+            // 
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle26.Format = "t";
+            this.HsACubrirViernes.DefaultCellStyle = dataGridViewCellStyle26;
+            this.HsACubrirViernes.HeaderText = "Viernes";
+            this.HsACubrirViernes.Name = "HsACubrirViernes";
+            this.HsACubrirViernes.ReadOnly = true;
+            this.HsACubrirViernes.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.HsACubrirViernes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.HsACubrirViernes.Width = 75;
+            // 
+            // HsACubrirSabado
+            // 
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle27.Format = "t";
+            dataGridViewCellStyle27.NullValue = null;
+            this.HsACubrirSabado.DefaultCellStyle = dataGridViewCellStyle27;
+            this.HsACubrirSabado.HeaderText = "Sabado";
+            this.HsACubrirSabado.Name = "HsACubrirSabado";
+            this.HsACubrirSabado.ReadOnly = true;
+            this.HsACubrirSabado.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.HsACubrirSabado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.HsACubrirSabado.Width = 75;
+            // 
+            // HsACubrirDomingo
+            // 
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle28.Format = "t";
+            this.HsACubrirDomingo.DefaultCellStyle = dataGridViewCellStyle28;
+            this.HsACubrirDomingo.HeaderText = "Domingo";
+            this.HsACubrirDomingo.Name = "HsACubrirDomingo";
+            this.HsACubrirDomingo.ReadOnly = true;
+            this.HsACubrirDomingo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.HsACubrirDomingo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.HsACubrirDomingo.Width = 75;
             // 
             // EscalafonCMS
             // 
@@ -637,116 +752,20 @@
             this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn7.Width = 75;
             // 
-            // dgEscalafon
+            // toolStripSeparator3
             // 
-            this.dgEscalafon.AllowUserToAddRows = false;
-            this.dgEscalafon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgEscalafon.Location = new System.Drawing.Point(12, 0);
-            this.dgEscalafon.Name = "dgEscalafon";
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.Format = "t";
-            dataGridViewCellStyle19.NullValue = "--------";
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgEscalafon.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
-            this.dgEscalafon.RowHeadersVisible = false;
-            this.dgEscalafon.RowTemplate.Height = 24;
-            this.dgEscalafon.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgEscalafon.Size = new System.Drawing.Size(910, 297);
-            this.dgEscalafon.TabIndex = 0;
-            this.dgEscalafon.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgEscalafon_CellMouseClick);
-            this.dgEscalafon.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEscalafon_CellEndEdit);
-            this.dgEscalafon.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgEscalafon_EditingControlShowing);
-            this.dgEscalafon.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgEscalafon_KeyDown);
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 36);
             // 
-            // HsACubrirLunes
+            // btnVerEscalafonFuncionario
             // 
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle22.Format = "t";
-            dataGridViewCellStyle22.NullValue = null;
-            this.HsACubrirLunes.DefaultCellStyle = dataGridViewCellStyle22;
-            this.HsACubrirLunes.HeaderText = "Lunes";
-            this.HsACubrirLunes.Name = "HsACubrirLunes";
-            this.HsACubrirLunes.ReadOnly = true;
-            this.HsACubrirLunes.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.HsACubrirLunes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.HsACubrirLunes.Width = 75;
-            // 
-            // HsACubrirMartes
-            // 
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle23.Format = "t";
-            this.HsACubrirMartes.DefaultCellStyle = dataGridViewCellStyle23;
-            this.HsACubrirMartes.HeaderText = "Martes";
-            this.HsACubrirMartes.Name = "HsACubrirMartes";
-            this.HsACubrirMartes.ReadOnly = true;
-            this.HsACubrirMartes.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.HsACubrirMartes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.HsACubrirMartes.Width = 75;
-            // 
-            // HsACubrirMiercoles
-            // 
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle24.Format = "t";
-            this.HsACubrirMiercoles.DefaultCellStyle = dataGridViewCellStyle24;
-            this.HsACubrirMiercoles.HeaderText = "Miercoles";
-            this.HsACubrirMiercoles.Name = "HsACubrirMiercoles";
-            this.HsACubrirMiercoles.ReadOnly = true;
-            this.HsACubrirMiercoles.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.HsACubrirMiercoles.Width = 75;
-            // 
-            // HsACubrirJueves
-            // 
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle25.Format = "t";
-            this.HsACubrirJueves.DefaultCellStyle = dataGridViewCellStyle25;
-            this.HsACubrirJueves.HeaderText = "Jueves";
-            this.HsACubrirJueves.Name = "HsACubrirJueves";
-            this.HsACubrirJueves.ReadOnly = true;
-            this.HsACubrirJueves.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.HsACubrirJueves.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.HsACubrirJueves.Width = 75;
-            // 
-            // HsACubrirViernes
-            // 
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle26.Format = "t";
-            this.HsACubrirViernes.DefaultCellStyle = dataGridViewCellStyle26;
-            this.HsACubrirViernes.HeaderText = "Viernes";
-            this.HsACubrirViernes.Name = "HsACubrirViernes";
-            this.HsACubrirViernes.ReadOnly = true;
-            this.HsACubrirViernes.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.HsACubrirViernes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.HsACubrirViernes.Width = 75;
-            // 
-            // HsACubrirSabado
-            // 
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle27.Format = "t";
-            dataGridViewCellStyle27.NullValue = null;
-            this.HsACubrirSabado.DefaultCellStyle = dataGridViewCellStyle27;
-            this.HsACubrirSabado.HeaderText = "Sabado";
-            this.HsACubrirSabado.Name = "HsACubrirSabado";
-            this.HsACubrirSabado.ReadOnly = true;
-            this.HsACubrirSabado.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.HsACubrirSabado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.HsACubrirSabado.Width = 75;
-            // 
-            // HsACubrirDomingo
-            // 
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle28.Format = "t";
-            this.HsACubrirDomingo.DefaultCellStyle = dataGridViewCellStyle28;
-            this.HsACubrirDomingo.HeaderText = "Domingo";
-            this.HsACubrirDomingo.Name = "HsACubrirDomingo";
-            this.HsACubrirDomingo.ReadOnly = true;
-            this.HsACubrirDomingo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.HsACubrirDomingo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.HsACubrirDomingo.Width = 75;
+            this.btnVerEscalafonFuncionario.Image = ((System.Drawing.Image)(resources.GetObject("btnVerEscalafonFuncionario.Image")));
+            this.btnVerEscalafonFuncionario.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnVerEscalafonFuncionario.Name = "btnVerEscalafonFuncionario";
+            this.btnVerEscalafonFuncionario.Size = new System.Drawing.Size(115, 33);
+            this.btnVerEscalafonFuncionario.Text = "Escalafon Funcionario";
+            this.btnVerEscalafonFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnVerEscalafonFuncionario.Click += new System.EventHandler(this.btnVerEscalafonFuncionario_Click);
             // 
             // EscalafonForm
             // 
@@ -770,9 +789,9 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
             this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgEscalafon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHsPorCubrir)).EndInit();
             this.EscalafonCMS.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgEscalafon)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -834,5 +853,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel GraficosPL;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton btnVerEscalafonFuncionario;
     }
 }

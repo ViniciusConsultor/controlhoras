@@ -61,6 +61,8 @@
     <Compile Include="ControladorClientesServicios.cs" />
     <Compile Include="ControladorConfiguracion.cs" />
     <Compile Include="ControladorEmpleados.cs" />
+    <Compile Include="ControlEscalafonEmpleadoException.cs" />
+    <Compile Include="ControlEscalafonServicioException.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="Escalafon.cs" />
     <Compile Include="EscalafonEmpleado.cs" />

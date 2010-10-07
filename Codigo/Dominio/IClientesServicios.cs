@@ -86,5 +86,23 @@ namespace Logica
         void generarHorasDiaServicio(int NumeroCliente, int NumeroServicio, DateTime Fecha, bool ForzarGeneracion);
 
         #endregion
+
+        #region Consolidacion
+        /// <summary>
+        /// Aplica un conjunto de controles del Escalafon planificado en el servicio.
+        /// </summary>
+        /// <param name="NumeroCliente">Numero de Cliente del Servicio.</param>
+        /// <param name="NumeroServicio">Numero de Servicio a controlar.</param>
+        /// <returns>Devuelve una lista de errores en caso de que hubiesen. Si no hay, devuelve null.</returns>
+        List<string> ejecutarControlesEscalafonServicio(int NumeroCliente, int NumeroServicio);
+
+        /// <summary>
+        /// Aplica un conjunto de controles a todos los empleados que se encuentran en el Escalafon del Servicio.
+        /// </summary>
+        /// <param name="NumeroCliente">Numero de Cliente del Servicio.</param>
+        /// <param name="NumeroServicio">Numero de Servicio a controlar.</param>
+        /// <returns>Devuelve una lista de errores en caso de que hubiesen. Si no hay, devuelve null.</returns>
+        List<string> ejecutarControlesEscalafonEmpleado(int NumeroCliente, int NumeroServicio);
+        #endregion
     }
 }

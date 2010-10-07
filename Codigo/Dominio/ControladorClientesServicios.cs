@@ -745,6 +745,47 @@ namespace Logica
             }
         }
 
+        private List<string> controlarPlanificacionEscalafonEmpleado(int nroEmpleado)
+        {
+            try
+            {
+                List<string> listaErrores = new List<string>();
+                List<EScalaFOneMpLeadO> listaEscEmp = datos.getHorariosEmpleado(nroEmpleado);
+
+                bool tieneDescanso = false;
+                bool tienePlanificado6Dias = false;
+
+                int cantDiasPlanificados = 0;
+                foreach (EScalaFOneMpLeadO escEmp in listaEscEmp)
+                {
+                    foreach (HoRaRioEScalaFOn he in escEmp.HoRaRioEScalaFOn)
+                    {
+                        if (he.TipOsDiAs.NoMbRe.Equals("Descanso", StringComparison.OrdinalIgnoreCase))
+                        {
+                            tieneDescanso = true;
+                        }
+                        else
+                        {
+                            if (he.TipOsDiAs.NoMbRe.Equals("Laborable", StringComparison.OrdinalIgnoreCase))
+                            {
+                                cantDiasPlanificados++;
+                            }
+                        } 
+                    }
+                }
+
+                if (cantDiasPlanificados < 6)
+                    listaErrores.Add(nroEmpleado + " tiene planificados " + cantDiasPlanificados + " dias. Debe completar los 6 dias.");
+                if (!tieneDescanso)
+                    listaErrores.Add(nroEmpleado + " no tiene un descanso planificado.");
+                return listaErrores;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         #region GeneracionHorasDiarias
         public void iniciarGeneracionHoras()
         {
@@ -856,6 +897,45 @@ namespace Logica
 
             }
             return null;
+        }
+        #endregion
+
+        #region Consolidacion - Controles
+        public List<string> ejecutarControlesEscalafonServicio(int NumeroCliente, int NumeroServicio)
+        {
+            try
+            {
+                List<string> errores = new List<string>();
+                EScalaFOn escalafon = datos.obtenerEscalafon(CalcNroContrato(NumeroCliente, NumeroServicio));
+                if (escalafon.Cubierto == 0)
+                    errores.Add("El Contrato no esta Cubierto. No se cubren todas las horas contratadas.");
+                
+                return errores;
+            }catch
+            {
+                throw;
+            }
+        }
+
+        public List<string> ejecutarControlesEscalafonEmpleado(int NumeroCliente, int NumeroServicio)
+        {
+
+            try
+            {
+                List<string> errores = new List<string>();
+                EScalaFOn escalafon = datos.obtenerEscalafon(CalcNroContrato(NumeroCliente, NumeroServicio));
+                List<string> erroresControlEmpleado;
+                foreach (EScalaFOneMpLeadO escEmp in escalafon.EScalaFOneMpLeadO)
+                {
+                    erroresControlEmpleado = controlarPlanificacionEscalafonEmpleado((int)escEmp.NroEmpleado);
+                    errores.Concat(erroresControlEmpleado);
+                }
+                
+                return errores;
+            }catch
+            {
+                throw;
+            }
         }
         #endregion
     }

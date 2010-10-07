@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3BBD3DD3-954B-48C1-93D6-6D32309233E2}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -64,17 +64,12 @@
     <Compile Include="DatosABMTipos.cs" />
     <Compile Include="IDatos.cs" />
     <Compile Include="IDatosABMTipos.cs" />
+    <Compile Include="NoExisteException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="trustdb.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Excepciones\Excepciones.csproj">
-      <Project>{4A1DB0C2-AFDB-44CB-8F7D-03F4CE1C02EE}</Project>
-      <Name>Excepciones</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

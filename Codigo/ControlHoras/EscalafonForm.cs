@@ -1123,6 +1123,11 @@ namespace ControlHoras
         {
             dgvHsPorCubrir.ClearSelection();
         }
+
+        private void btnVerEscalafonFuncionario_Click(object sender, EventArgs e)
+        {
+
+        }
         
     }
 }

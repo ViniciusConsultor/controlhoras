@@ -398,5 +398,11 @@ namespace ControlHoras
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void consolidarEscalafonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConsolidarEscalafonesForm cef = new ConsolidarEscalafonesForm();
+            cef.ShowDialog(this);
+        }
     }
 }
