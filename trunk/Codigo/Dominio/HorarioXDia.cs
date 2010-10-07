@@ -14,7 +14,6 @@ namespace Logica
 
         public HorarioXDia(string dia, string HInicio, string HFin)
         {
-
             Dia = dia;
             HoraInicio = HInicio;
             HoraFin = HFin;
@@ -42,6 +41,8 @@ namespace Logica
 
             dti = DateTime.ParseExact(HoraInicio, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
             dtf = DateTime.ParseExact(HoraFin, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+            if (dtf < dti)
+                dtf = dtf.AddDays(1);
             res = dtf - dti;
             
             return res;
