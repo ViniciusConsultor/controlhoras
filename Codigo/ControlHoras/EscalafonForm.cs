@@ -698,7 +698,7 @@ namespace ControlHoras
         {
             if (hor=="EnOtroServ" || hor=="Descanso" || hor=="Licencia")
                 return true;
-            if (hor.IndexOfAny(new Char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }) == -1)
+            if (hor.IndexOfAny(new Char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }) != 0)
                 return false;
             if (hor.Length != 13)
                 return false;
@@ -712,8 +712,8 @@ namespace ControlHoras
                 return false;
             if (!DateTime.TryParseExact(hfin, @"HH:mm", DateTimeFormatInfo.InvariantInfo, dts, out dtf))
                 return false;
-            if (dti > dtf)
-                return false;
+            //if (dti > dtf)
+            //    return false;
             return true;
         }
 
@@ -837,6 +837,8 @@ namespace ControlHoras
 
              dti = DateTime.ParseExact(p.Substring(0,5), @"HH:mm", DateTimeFormatInfo.InvariantInfo);
              dtf = DateTime.ParseExact(p.Substring(8,5), @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+             if (dtf < dti)
+                 dtf = dtf.AddDays(1);
              res = dtf - dti;
 
              return res;
