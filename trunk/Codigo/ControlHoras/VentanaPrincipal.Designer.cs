@@ -58,11 +58,11 @@
             this.cambiarNúmeroEmpleadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administracionToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.consolidarEscalafonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sustituirEnEscalafonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generarHorasDiariasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.sustituirEnEscalafonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -316,13 +316,21 @@
             // consolidarEscalafonToolStripMenuItem
             // 
             this.consolidarEscalafonToolStripMenuItem.Name = "consolidarEscalafonToolStripMenuItem";
-            this.consolidarEscalafonToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.consolidarEscalafonToolStripMenuItem.Text = "Consolidar Escalafon";
+            this.consolidarEscalafonToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.consolidarEscalafonToolStripMenuItem.Text = "Consolidar Escalafones";
+            this.consolidarEscalafonToolStripMenuItem.Click += new System.EventHandler(this.consolidarEscalafonToolStripMenuItem_Click);
+            // 
+            // sustituirEnEscalafonToolStripMenuItem
+            // 
+            this.sustituirEnEscalafonToolStripMenuItem.Name = "sustituirEnEscalafonToolStripMenuItem";
+            this.sustituirEnEscalafonToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.sustituirEnEscalafonToolStripMenuItem.Text = "Sustituir en Escalafon";
+            this.sustituirEnEscalafonToolStripMenuItem.Click += new System.EventHandler(this.sustituirEnEscalafonToolStripMenuItem_Click);
             // 
             // generarHorasDiariasToolStripMenuItem
             // 
             this.generarHorasDiariasToolStripMenuItem.Name = "generarHorasDiariasToolStripMenuItem";
-            this.generarHorasDiariasToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.generarHorasDiariasToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.generarHorasDiariasToolStripMenuItem.Text = "Generar Horas Diarias";
             this.generarHorasDiariasToolStripMenuItem.Click += new System.EventHandler(this.generarHorasDiariasToolStripMenuItem_Click);
             // 
@@ -352,13 +360,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            // 
-            // sustituirEnEscalafonToolStripMenuItem
-            // 
-            this.sustituirEnEscalafonToolStripMenuItem.Name = "sustituirEnEscalafonToolStripMenuItem";
-            this.sustituirEnEscalafonToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.sustituirEnEscalafonToolStripMenuItem.Text = "Sustituir en Escalafon";
-            this.sustituirEnEscalafonToolStripMenuItem.Click += new System.EventHandler(this.sustituirEnEscalafonToolStripMenuItem_Click);
             // 
             // VentanaPrincipal
             // 

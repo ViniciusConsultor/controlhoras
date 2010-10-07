@@ -34,14 +34,14 @@
             this.progressBarGeneracion = new System.Windows.Forms.ProgressBar();
             this.lblProcesando = new System.Windows.Forms.Label();
             this.lblNroCliente = new System.Windows.Forms.Label();
-            this.mtFechaDesde = new System.Windows.Forms.MaskedTextBox();
-            this.mtFechaHasta = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
             this.lbErrores = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.mtFechaDesde = new ControlHoras.MaskedTextBoxKeyDown();
+            this.mtFechaHasta = new ControlHoras.MaskedTextBoxKeyDown();
             this.SuspendLayout();
             // 
             // btnGenerar
@@ -89,26 +89,6 @@
             this.lblNroCliente.TabIndex = 8;
             this.lblNroCliente.Visible = false;
             // 
-            // mtFechaDesde
-            // 
-            this.mtFechaDesde.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtFechaDesde.Location = new System.Drawing.Point(98, 102);
-            this.mtFechaDesde.Mask = "00/00/0000";
-            this.mtFechaDesde.Name = "mtFechaDesde";
-            this.mtFechaDesde.Size = new System.Drawing.Size(70, 22);
-            this.mtFechaDesde.TabIndex = 0;
-            this.mtFechaDesde.ValidatingType = typeof(System.DateTime);
-            // 
-            // mtFechaHasta
-            // 
-            this.mtFechaHasta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtFechaHasta.Location = new System.Drawing.Point(275, 102);
-            this.mtFechaHasta.Mask = "00/00/0000";
-            this.mtFechaHasta.Name = "mtFechaHasta";
-            this.mtFechaHasta.Size = new System.Drawing.Size(70, 22);
-            this.mtFechaHasta.TabIndex = 1;
-            this.mtFechaHasta.ValidatingType = typeof(System.DateTime);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -146,11 +126,13 @@
             // 
             // lbErrores
             // 
+            this.lbErrores.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbErrores.FormattingEnabled = true;
             this.lbErrores.HorizontalScrollbar = true;
+            this.lbErrores.ItemHeight = 15;
             this.lbErrores.Location = new System.Drawing.Point(12, 229);
             this.lbErrores.Name = "lbErrores";
-            this.lbErrores.Size = new System.Drawing.Size(411, 147);
+            this.lbErrores.Size = new System.Drawing.Size(411, 139);
             this.lbErrores.TabIndex = 3;
             // 
             // label4
@@ -162,19 +144,35 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Bitacora de Errores";
             // 
+            // mtFechaDesde
+            // 
+            this.mtFechaDesde.Location = new System.Drawing.Point(101, 104);
+            this.mtFechaDesde.Mask = "00/00/0000";
+            this.mtFechaDesde.Name = "mtFechaDesde";
+            this.mtFechaDesde.Size = new System.Drawing.Size(70, 20);
+            this.mtFechaDesde.TabIndex = 13;
+            // 
+            // mtFechaHasta
+            // 
+            this.mtFechaHasta.Location = new System.Drawing.Point(275, 104);
+            this.mtFechaHasta.Mask = "00/00/0000";
+            this.mtFechaHasta.Name = "mtFechaHasta";
+            this.mtFechaHasta.Size = new System.Drawing.Size(70, 20);
+            this.mtFechaHasta.TabIndex = 14;
+            // 
             // GenerarHorasDiariasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(436, 380);
+            this.Controls.Add(this.mtFechaHasta);
+            this.Controls.Add(this.mtFechaDesde);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lbErrores);
             this.Controls.Add(this.lblFecha);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.mtFechaHasta);
-            this.Controls.Add(this.mtFechaDesde);
             this.Controls.Add(this.lblNroCliente);
             this.Controls.Add(this.lblProcesando);
             this.Controls.Add(this.progressBarGeneracion);
@@ -194,14 +192,14 @@
         private System.Windows.Forms.ProgressBar progressBarGeneracion;
         private System.Windows.Forms.Label lblProcesando;
         private System.Windows.Forms.Label lblNroCliente;
-        private System.Windows.Forms.MaskedTextBox mtFechaDesde;
-        private System.Windows.Forms.MaskedTextBox mtFechaHasta;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.ListBox lbErrores;
         private System.Windows.Forms.Label label4;
+        private MaskedTextBoxKeyDown mtFechaDesde;
+        private MaskedTextBoxKeyDown mtFechaHasta;
 
     }
 }

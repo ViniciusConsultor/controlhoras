@@ -52,6 +52,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Enterprise.Framework, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Enterprise.InfoStore, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="DbLinq, Version=0.19.0.0, Culture=neutral, PublicKeyToken=61e015a67077348b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\DbLinq.dll</HintPath>
@@ -209,6 +215,12 @@
       <DependentUpon>ComboBoxKeyDown.cs</DependentUpon>
     </Compile>
     <Compile Include="ComboBoxValue.cs" />
+    <Compile Include="ConsolidarEscalafonesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsolidarEscalafonesForm.Designer.cs">
+      <DependentUpon>ConsolidarEscalafonesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ContratoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -238,6 +250,12 @@
     </Compile>
     <Compile Include="ControlDiarioAgregarFuncionario.Designer.cs">
       <DependentUpon>ControlDiarioAgregarFuncionario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRErroresConsolidacionEscalafones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRErroresConsolidacionEscalafones.Designer.cs">
+      <DependentUpon>CRErroresConsolidacionEscalafones.cs</DependentUpon>
     </Compile>
     <Compile Include="DataGridTAB.cs">
       <SubType>Component</SubType>
@@ -273,6 +291,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Imagenes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ListaErroresConsolidacion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListaErroresConsolidacion.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ListaNegra.cs">
       <SubType>Form</SubType>
@@ -419,6 +443,9 @@
       <DependentUpon>CambiarPasswordUsuario.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsolidarEscalafonesForm.resx">
+      <DependentUpon>ConsolidarEscalafonesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ContratoForm.resx">
       <DependentUpon>ContratoForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -434,6 +461,9 @@
     <EmbeddedResource Include="ControlDiarioAgregarFuncionario.resx">
       <DependentUpon>ControlDiarioAgregarFuncionario.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRErroresConsolidacionEscalafones.resx">
+      <DependentUpon>CRErroresConsolidacionEscalafones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EscalafonForm.resx">
       <DependentUpon>EscalafonForm.cs</DependentUpon>
@@ -455,6 +485,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Imagenes.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaErroresConsolidacion.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ListaErroresConsolidacion.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ListaNegra.resx">
       <DependentUpon>ListaNegra.cs</DependentUpon>
@@ -509,9 +543,15 @@
       <DependentUpon>Selección de Recurso.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="TreeClientesServicios.resx">
+      <DependentUpon>TreeClientesServicios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VentanaPrincipal.resx">
       <DependentUpon>VentanaPrincipal.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerEscalafonEmpleadoForm.resx">
+      <DependentUpon>VerEscalafonEmpleadoForm.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -539,11 +579,23 @@
     <Compile Include="Selección de Recurso.Designer.cs">
       <DependentUpon>Selección de Recurso.cs</DependentUpon>
     </Compile>
+    <Compile Include="TreeClientesServicios.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TreeClientesServicios.Designer.cs">
+      <DependentUpon>TreeClientesServicios.cs</DependentUpon>
+    </Compile>
     <Compile Include="VentanaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VentanaPrincipal.Designer.cs">
       <DependentUpon>VentanaPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerEscalafonEmpleadoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerEscalafonEmpleadoForm.Designer.cs">
+      <DependentUpon>VerEscalafonEmpleadoForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -557,10 +609,6 @@
     <ProjectReference Include="..\Dominio\Logica.csproj">
       <Project>{AFC517DD-78C0-4139-ADFE-84AFB3320F61}</Project>
       <Name>Logica</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Excepciones\Excepciones.csproj">
-      <Project>{4A1DB0C2-AFDB-44CB-8F7D-03F4CE1C02EE}</Project>
-      <Name>Excepciones</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utilidades\Utilidades.csproj">
       <Project>{74EBE032-537C-43B3-AF31-07C5174CB3E2}</Project>

@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2010-10-01 20:31:58Z
+#region Auto-generated classes for trustdb database on 2010-10-01 18:54:41Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2010-10-01 20:31:58Z
+// Auto-generated from trustdb on 2010-10-01 18:54:41Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -98,7 +98,6 @@ namespace Datos
 		public Table<ExtrasLiquidAcIonEmPleadO> ExtrasLiquidAcIonEmPleadO { get { return GetTable<ExtrasLiquidAcIonEmPleadO>(); } }
 		public Table<HoRaRioDiA> HoRaRioDiA { get { return GetTable<HoRaRioDiA>(); } }
 		public Table<HoRaRioEScalaFOn> HoRaRioEScalaFOn { get { return GetTable<HoRaRioEScalaFOn>(); } }
-		public Table<HoRaRioSEmPleadOs> HoRaRioSEmPleadOs { get { return GetTable<HoRaRioSEmPleadOs>(); } }
 		public Table<HoRaSGeneraDaSEScalaFOn> HoRaSGeneraDaSEScalaFOn { get { return GetTable<HoRaSGeneraDaSEScalaFOn>(); } }
 		public Table<LineAshOrAs> LineAshOrAs { get { return GetTable<LineAshOrAs>(); } }
 		public Table<ListAnEGRa> ListAnEGRa { get { return GetTable<ListAnEGRa>(); } }
@@ -5896,8 +5895,6 @@ namespace Datos
 		partial void OnIDEscalafonChanging(uint value);
 		partial void OnIDEscalafonEmpleadoChanged();
 		partial void OnIDEscalafonEmpleadoChanging(uint value);
-		partial void OnNroEmpleadoChanged();
-		partial void OnNroEmpleadoChanging(uint value);
 		partial void OnSolapaChanged();
 		partial void OnSolapaChanging(sbyte value);
 		partial void OnTipoDiaChanged();
@@ -6035,32 +6032,6 @@ namespace Datos
 
 		#endregion
 
-		#region uint NroEmpleado
-
-		private uint _nroEmpleado;
-		[DebuggerNonUserCode]
-		[Column(Storage = "_nroEmpleado", Name = "NroEmpleado", DbType = "mediumint unsigned", AutoSync = AutoSync.Never, CanBeNull = false)]
-		public uint NroEmpleado
-		{
-			get
-			{
-				return _nroEmpleado;
-			}
-			set
-			{
-				if (value != _nroEmpleado)
-				{
-					OnNroEmpleadoChanging(value);
-					SendPropertyChanging();
-					_nroEmpleado = value;
-					SendPropertyChanged("NroEmpleado");
-					OnNroEmpleadoChanged();
-				}
-			}
-		}
-
-		#endregion
-
 		#region sbyte Solapa
 
 		private sbyte _solapa;
@@ -6192,223 +6163,6 @@ namespace Datos
 		{
 			_esCalaFoNeMpLeadO = new EntityRef<EScalaFOneMpLeadO>();
 			_tipOsDiAs = new EntityRef<TipOsDiAs>();
-			OnCreated();
-		}
-
-		#endregion
-
-	}
-
-	[Table(Name = "trustdb.horariosempleados")]
-	public partial class HoRaRioSEmPleadOs : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		#region INotifyPropertyChanging handling
-
-		public event PropertyChangingEventHandler PropertyChanging;
-
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs("");
-		protected virtual void SendPropertyChanging()
-		{
-			if (PropertyChanging != null)
-			{
-				PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-
-		#endregion
-
-		#region INotifyPropertyChanged handling
-
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected virtual void SendPropertyChanged(string propertyName)
-		{
-			if (PropertyChanged != null)
-			{
-				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-
-		#endregion
-
-		#region Extensibility Method Definitions
-
-		partial void OnCreated();
-		partial void OnDiaChanged();
-		partial void OnDiaChanging(string value);
-		partial void OnIDEscalafonChanged();
-		partial void OnIDEscalafonChanging(uint value);
-		partial void OnIDEscalafonEmpleadoChanged();
-		partial void OnIDEscalafonEmpleadoChanging(uint value);
-		partial void OnNroEmpleadoChanged();
-		partial void OnNroEmpleadoChanging(uint value);
-		partial void OnSolapaChanged();
-		partial void OnSolapaChanging(sbyte? value);
-		partial void OnTipoDiaChanged();
-		partial void OnTipoDiaChanging(byte? value);
-
-		#endregion
-
-		#region string Dia
-
-		private string _dia;
-		[DebuggerNonUserCode]
-		[Column(Storage = "_dia", Name = "Dia", DbType = "varchar(10)", IsPrimaryKey = true, AutoSync = AutoSync.Never, CanBeNull = false)]
-		public string Dia
-		{
-			get
-			{
-				return _dia;
-			}
-			set
-			{
-				if (value != _dia)
-				{
-					OnDiaChanging(value);
-					SendPropertyChanging();
-					_dia = value;
-					SendPropertyChanged("Dia");
-					OnDiaChanged();
-				}
-			}
-		}
-
-		#endregion
-
-		#region uint IDEscalafon
-
-		private uint _ideScalafon;
-		[DebuggerNonUserCode]
-		[Column(Storage = "_ideScalafon", Name = "IdEscalafon", DbType = "int unsigned", IsPrimaryKey = true, AutoSync = AutoSync.Never, CanBeNull = false)]
-		public uint IDEscalafon
-		{
-			get
-			{
-				return _ideScalafon;
-			}
-			set
-			{
-				if (value != _ideScalafon)
-				{
-					OnIDEscalafonChanging(value);
-					SendPropertyChanging();
-					_ideScalafon = value;
-					SendPropertyChanged("IDEscalafon");
-					OnIDEscalafonChanged();
-				}
-			}
-		}
-
-		#endregion
-
-		#region uint IDEscalafonEmpleado
-
-		private uint _ideScalafonEmpleado;
-		[DebuggerNonUserCode]
-		[Column(Storage = "_ideScalafonEmpleado", Name = "IdEscalafonEmpleado", DbType = "int unsigned", IsPrimaryKey = true, AutoSync = AutoSync.Never, CanBeNull = false)]
-		public uint IDEscalafonEmpleado
-		{
-			get
-			{
-				return _ideScalafonEmpleado;
-			}
-			set
-			{
-				if (value != _ideScalafonEmpleado)
-				{
-					OnIDEscalafonEmpleadoChanging(value);
-					SendPropertyChanging();
-					_ideScalafonEmpleado = value;
-					SendPropertyChanged("IDEscalafonEmpleado");
-					OnIDEscalafonEmpleadoChanged();
-				}
-			}
-		}
-
-		#endregion
-
-		#region uint NroEmpleado
-
-		private uint _nroEmpleado;
-		[DebuggerNonUserCode]
-		[Column(Storage = "_nroEmpleado", Name = "NroEmpleado", DbType = "mediumint unsigned", IsPrimaryKey = true, AutoSync = AutoSync.Never, CanBeNull = false)]
-		public uint NroEmpleado
-		{
-			get
-			{
-				return _nroEmpleado;
-			}
-			set
-			{
-				if (value != _nroEmpleado)
-				{
-					OnNroEmpleadoChanging(value);
-					SendPropertyChanging();
-					_nroEmpleado = value;
-					SendPropertyChanged("NroEmpleado");
-					OnNroEmpleadoChanged();
-				}
-			}
-		}
-
-		#endregion
-
-		#region sbyte? Solapa
-
-		private sbyte? _solapa;
-		[DebuggerNonUserCode]
-		[Column(Storage = "_solapa", Name = "Solapa", DbType = "tinyint(1)", AutoSync = AutoSync.Never)]
-		public sbyte? Solapa
-		{
-			get
-			{
-				return _solapa;
-			}
-			set
-			{
-				if (value != _solapa)
-				{
-					OnSolapaChanging(value);
-					SendPropertyChanging();
-					_solapa = value;
-					SendPropertyChanged("Solapa");
-					OnSolapaChanged();
-				}
-			}
-		}
-
-		#endregion
-
-		#region byte? TipoDia
-
-		private byte? _tipoDia;
-		[DebuggerNonUserCode]
-		[Column(Storage = "_tipoDia", Name = "TipoDia", DbType = "tinyint(2) unsigned", AutoSync = AutoSync.Never)]
-		public byte? TipoDia
-		{
-			get
-			{
-				return _tipoDia;
-			}
-			set
-			{
-				if (value != _tipoDia)
-				{
-					OnTipoDiaChanging(value);
-					SendPropertyChanging();
-					_tipoDia = value;
-					SendPropertyChanged("TipoDia");
-					OnTipoDiaChanged();
-				}
-			}
-		}
-
-		#endregion
-
-		#region ctor
-
-		public HoRaRioSEmPleadOs()
-		{
 			OnCreated();
 		}
 
@@ -6718,7 +6472,7 @@ namespace Datos
 		}
 
 		private EntityRef<SERVicIoS> _servIcIoS;
-		[Association(Storage = "_servIcIoS", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "hsgenesc_FK2", IsForeignKey = true)]
+		[Association(Storage = "_servIcIoS", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "hsgenesc_FK2", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public SERVicIoS SERVicIoS
 		{
@@ -6740,13 +6494,13 @@ namespace Datos
 					if (value != null)
 					{
 						value.HoRaSGeneraDaSEScalaFOn.Add(this);
-						_numeroCliente = value.NumeroCliente;
 						_numeroServicio = value.NumeroServicio;
+						_numeroCliente = value.NumeroCliente;
 					}
 					else
 					{
-						_numeroCliente = default(uint);
 						_numeroServicio = default(uint);
+						_numeroCliente = default(uint);
 					}
 				}
 			}
@@ -8403,7 +8157,7 @@ namespace Datos
 		#region Children
 
 		private EntitySet<HoRaSGeneraDaSEScalaFOn> _hoRaSgEneraDaSesCalaFoN;
-		[Association(Storage = "_hoRaSgEneraDaSesCalaFoN", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "hsgenesc_FK2")]
+		[Association(Storage = "_hoRaSgEneraDaSesCalaFoN", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "hsgenesc_FK2")]
 		[DebuggerNonUserCode]
 		public EntitySet<HoRaSGeneraDaSEScalaFOn> HoRaSGeneraDaSEScalaFOn
 		{

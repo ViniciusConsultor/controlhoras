@@ -76,7 +76,7 @@ namespace ControlHoras
                                             {
                                                 controladorClientes.generarHorasDiaServicio((int)cli.NumeroCliente, (int)ser.NumeroServicio, dateAux, sobrescribirHorasGeneradas);
                                             }
-                                            catch (YaExistenHorasGeneradasParaLaFechaException yehgplf)
+                                            catch (YaExistenHorasGeneradasParaLaFechaException )
                                             {
                                                 if (!sobrescribirHorasGeneradas)
                                                 {

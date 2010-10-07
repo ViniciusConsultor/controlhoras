@@ -7,7 +7,6 @@ using DbLinq.MySql;
 using DbLinq.Data.Linq;
 using MySql.Data;
 using MySql.Data.MySqlClient;
-using Excepciones;
 using System.Data;
 using System.Configuration;
 using System.Globalization;
@@ -1118,7 +1117,7 @@ namespace Datos
                                  select reg).Single<EventOsHistOrIalEmPleadO>();
 
                 if (eventHist == null)
-                    throw new Excepciones.NoExisteException("No existe el Evento en el Historial del Empleado " + idEmpleado.ToString());
+                    throw new NoExisteException("No existe el Evento en el Historial del Empleado " + idEmpleado.ToString());
 
                 eventHist.FechaInicio = fechaInicioEvento;
                 eventHist.FechaFin = fechaFinEvento;
@@ -1144,7 +1143,7 @@ namespace Datos
                                  select reg).Single<EventOsHistOrIalEmPleadO>();
 
                 if (eventHist == null)
-                    throw new Excepciones.NoExisteException("No existe el Evento en el Historial del Empleado " + idEmpleado.ToString());
+                    throw new NoExisteException("No existe el Evento en el Historial del Empleado " + idEmpleado.ToString());
                 //eventHist.BoRrAdo = 1;
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
 
