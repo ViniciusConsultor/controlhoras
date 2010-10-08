@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2010-10-01 18:54:41Z
+#region Auto-generated classes for trustdb database on 2010-10-08 12:05:08Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2010-10-01 18:54:41Z
+// Auto-generated from trustdb on 2010-10-08 12:05:08Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -90,7 +90,6 @@ namespace Datos
 		public Table<DepartAmenToS> DepartAmenToS { get { return GetTable<DepartAmenToS>(); } }
 		public Table<EmergeNcIasMedicA> EmergeNcIasMedicA { get { return GetTable<EmergeNcIasMedicA>(); } }
 		public Table<EmPleadOs> EmPleadOs { get { return GetTable<EmPleadOs>(); } }
-		public Table<EnterOs> EnterOs { get { return GetTable<EnterOs>(); } }
 		public Table<EScalaFOn> EScalaFOn { get { return GetTable<EScalaFOn>(); } }
 		public Table<EScalaFOneMpLeadO> EScalaFOneMpLeadO { get { return GetTable<EScalaFOneMpLeadO>(); } }
 		public Table<EventOsHistOrIalEmPleadO> EventOsHistOrIalEmPleadO { get { return GetTable<EventOsHistOrIalEmPleadO>(); } }
@@ -4229,83 +4228,6 @@ namespace Datos
 
 	}
 
-	[Table(Name = "trustdb.enteros")]
-	public partial class EnterOs : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		#region INotifyPropertyChanging handling
-
-		public event PropertyChangingEventHandler PropertyChanging;
-
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs("");
-		protected virtual void SendPropertyChanging()
-		{
-			if (PropertyChanging != null)
-			{
-				PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-
-		#endregion
-
-		#region INotifyPropertyChanged handling
-
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected virtual void SendPropertyChanged(string propertyName)
-		{
-			if (PropertyChanged != null)
-			{
-				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-
-		#endregion
-
-		#region Extensibility Method Definitions
-
-		partial void OnCreated();
-		partial void OnEnterOChanged();
-		partial void OnEnterOChanging(int? value);
-
-		#endregion
-
-		#region int? EnterO
-
-		private int? _enterO;
-		[DebuggerNonUserCode]
-		[Column(Storage = "_enterO", Name = "entero", DbType = "int", AutoSync = AutoSync.Never)]
-		public int? EnterO
-		{
-			get
-			{
-				return _enterO;
-			}
-			set
-			{
-				if (value != _enterO)
-				{
-					OnEnterOChanging(value);
-					SendPropertyChanging();
-					_enterO = value;
-					SendPropertyChanged("EnterO");
-					OnEnterOChanged();
-				}
-			}
-		}
-
-		#endregion
-
-		#region ctor
-
-		public EnterOs()
-		{
-			OnCreated();
-		}
-
-		#endregion
-
-	}
-
 	[Table(Name = "trustdb.escalafon")]
 	public partial class EScalaFOn : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -5895,6 +5817,8 @@ namespace Datos
 		partial void OnIDEscalafonChanging(uint value);
 		partial void OnIDEscalafonEmpleadoChanged();
 		partial void OnIDEscalafonEmpleadoChanging(uint value);
+		partial void OnNroEmpleadoChanged();
+		partial void OnNroEmpleadoChanging(uint value);
 		partial void OnSolapaChanged();
 		partial void OnSolapaChanging(sbyte value);
 		partial void OnTipoDiaChanged();
@@ -6026,6 +5950,32 @@ namespace Datos
 					_ideScalafonEmpleado = value;
 					SendPropertyChanged("IDEscalafonEmpleado");
 					OnIDEscalafonEmpleadoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region uint NroEmpleado
+
+		private uint _nroEmpleado;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_nroEmpleado", Name = "NroEmpleado", DbType = "mediumint unsigned", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public uint NroEmpleado
+		{
+			get
+			{
+				return _nroEmpleado;
+			}
+			set
+			{
+				if (value != _nroEmpleado)
+				{
+					OnNroEmpleadoChanging(value);
+					SendPropertyChanging();
+					_nroEmpleado = value;
+					SendPropertyChanged("NroEmpleado");
+					OnNroEmpleadoChanged();
 				}
 			}
 		}
@@ -6472,7 +6422,7 @@ namespace Datos
 		}
 
 		private EntityRef<SERVicIoS> _servIcIoS;
-		[Association(Storage = "_servIcIoS", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "hsgenesc_FK2", IsForeignKey = true)]
+		[Association(Storage = "_servIcIoS", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "hsgenesc_FK2", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public SERVicIoS SERVicIoS
 		{
@@ -6494,13 +6444,13 @@ namespace Datos
 					if (value != null)
 					{
 						value.HoRaSGeneraDaSEScalaFOn.Add(this);
-						_numeroServicio = value.NumeroServicio;
 						_numeroCliente = value.NumeroCliente;
+						_numeroServicio = value.NumeroServicio;
 					}
 					else
 					{
-						_numeroServicio = default(uint);
 						_numeroCliente = default(uint);
+						_numeroServicio = default(uint);
 					}
 				}
 			}
@@ -8157,7 +8107,7 @@ namespace Datos
 		#region Children
 
 		private EntitySet<HoRaSGeneraDaSEScalaFOn> _hoRaSgEneraDaSesCalaFoN;
-		[Association(Storage = "_hoRaSgEneraDaSesCalaFoN", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "hsgenesc_FK2")]
+		[Association(Storage = "_hoRaSgEneraDaSesCalaFoN", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "hsgenesc_FK2")]
 		[DebuggerNonUserCode]
 		public EntitySet<HoRaSGeneraDaSEScalaFOn> HoRaSGeneraDaSEScalaFOn
 		{

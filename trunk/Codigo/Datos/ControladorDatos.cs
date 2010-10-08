@@ -3459,29 +3459,16 @@ namespace Datos
             {
                 throw myex;
             }
-        }
-        
-        public void altaHorEmpleado(HoRaRioSEmPleadOs horario)
-        {
-            try
-            {
-                Table<HoRaRioSEmPleadOs> tabla = database.GetTable<HoRaRioSEmPleadOs>();
-                tabla.InsertOnSubmit(horario);               
-                database.SubmitChanges();                
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            } 
-        }
+        }       
+  
 
-        public List<HoRaRioSEmPleadOs> getHorEmpleado(int NroEmpleado, string dia, int IdEscalafon)
+        public List<HoRaRioEScalaFOn> getHorEmpleado(int NroEmpleado, string dia, int IdEscalafon)
         {
             try
             {
-                List<HoRaRioSEmPleadOs> hors = (from varcli in database.GetTable<HoRaRioSEmPleadOs>()
-                                                where varcli.NroEmpleado == (uint)NroEmpleado && varcli.Dia == dia && varcli.IDEscalafon != (uint)IdEscalafon
-                                                select varcli).ToList<HoRaRioSEmPleadOs>();
+                List<HoRaRioEScalaFOn> hors = (from varcli in database.GetTable<HoRaRioEScalaFOn>()
+                                                where varcli.NroEmpleado == (uint)NroEmpleado && varcli.DiA == dia && varcli.IDEscalafon != (uint)IdEscalafon
+                                               select varcli).ToList<HoRaRioEScalaFOn>();
                 return hors;
             }
             catch (Exception ex)
@@ -3490,25 +3477,7 @@ namespace Datos
 
             }
         }
-
-        public HoRaRioEScalaFOn getHorario(HoRaRioSEmPleadOs h)
-        {
-            try
-            {
-                Table<HoRaRioEScalaFOn> tablaCliente = database.GetTable<HoRaRioEScalaFOn>();
-                var cli = (from clireg in tablaCliente
-                           where clireg.IDEscalafon == h.IDEscalafon && clireg.IDEscalafonEmpleado == h.IDEscalafonEmpleado && clireg.DiA == h.Dia
-                           select clireg);
-                if (cli.Count<HoRaRioEScalaFOn>() == 0)
-                    throw new NoExisteException("No existe el horarioescalafon");
-
-                return cli.Single<HoRaRioEScalaFOn>();
-            }
-            catch (Exception anex)
-            {
-                throw anex;
-            }
-        }
+ 
 
         public void MarcarNoSolapados(List<HoRaRioEScalaFOn> HorsNOSolap)
         {
