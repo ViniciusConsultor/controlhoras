@@ -304,7 +304,7 @@ namespace Datos
 
         List<EScalaFOneMpLeadO> getHorariosEmpleado(int NroEmpleado);
 
-        List<HoRaRioSEmPleadOs> getHorEmpleado(int NroEmpleado, string dia, int IdEscalafon);
+        List<HoRaRioEScalaFOn> getHorEmpleado(int NroEmpleado, string dia, int IdEscalafon);
 
         bool ClienteActivo(int NroCliente);
 
@@ -320,12 +320,7 @@ namespace Datos
         /// <param name="listaHorasGeneradas">Lista de HorasGeneradasEscalafon a guardar</param>
         /// <param name="sobreescribir">True para sobreescribir las Horas Generadas existentes con las nuevas.</param>
         void guardarGeneracionHorasEscalafon(List<HoRaSGeneraDaSEScalaFOn> listaHorasGeneradas, bool sobreescribir);
-
-        void altaHorEmpleado(HoRaRioSEmPleadOs horario);
-
-
-        HoRaRioEScalaFOn getHorario(HoRaRioSEmPleadOs h);
-
+        
         void MarcarNoSolapados(List<HoRaRioEScalaFOn> HorsNOSolap);
 
         List<HoRaRioEScalaFOn> getHorariosEmpleadoDia(int NroEmpleado, string dia, int IdEscalafon);

@@ -479,7 +479,7 @@ namespace Logica
 
                     //pasar los horarios por dia
                     HoRaRioEScalaFOn hd = null;
-                    HoRaRioSEmPleadOs he = null;
+                  
                     foreach (HorarioEscalafon hpd in ldh.Horario)
                     {
                         hd = new HoRaRioEScalaFOn();
