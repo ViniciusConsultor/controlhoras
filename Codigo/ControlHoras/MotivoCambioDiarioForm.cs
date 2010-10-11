@@ -13,6 +13,7 @@ namespace ControlHoras
 {
     public partial class MotivoCambioDiarioForm : Form
     {
+        private bool botonAceptar = false;
         private IDatos datos = null;
         public MotIVOsCamBiosDiARioS motivoCambio { set; get; }
         private List<TipOsMotIVOCamBIoDiARio> listaTiposMotivos = null; 
@@ -27,6 +28,7 @@ namespace ControlHoras
             cmbMotivosCambio.DataSource = listaTiposMotivos;
             cmbMotivosCambio.DisplayMember = "Descripcion";
             cmbMotivosCambio.EndUpdate();
+            botonAceptar = false;
             //}
             
         }
@@ -39,9 +41,28 @@ namespace ControlHoras
                 motivoCambio.Fecha = DateTime.Now;
                 motivoCambio.Observaciones = txtObservaciones.Text;
                 motivoCambio.TipOsMotIVOCamBIoDiARio = ((TipOsMotIVOCamBIoDiARio)cmbMotivosCambio.SelectedValue);
+                
             }
             else
+            {
                 MessageBox.Show(this, "Debe ingresar una observacion.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+            }
+            botonAceptar = true;
+        }
+
+        private void MotivoCambioDiarioForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (botonAceptar && txtObservaciones.Text == "")
+            {
+                e.Cancel = true;
+            }
+
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            botonAceptar = false;
         }
     }
 }

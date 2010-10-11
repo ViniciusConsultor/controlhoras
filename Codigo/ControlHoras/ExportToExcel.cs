@@ -326,16 +326,14 @@ namespace ControlHoras
                 ConsultAsClientEs cons = consultasClientes[consultasClientes.IndexOf((ConsultAsClientEs)cmbClientesConsultas.SelectedItem)];
 
                 txtClientesDescripcionConsulta.Text = cons.Descripcion;
-                /*if (cons.Query.Contains("FECHA"))
+                if (cons.Query.Contains("FECHA"))
                 {
-                    lblFechaGenerica.Text = "Fecha Pago Prevista";
-                    if (cons.Nombre.Contains("BAJAS SIN FECHA DE PAGO PREVISTO"))
-                        lblFechaGenerica.Text = "Fecha Desde";
-                    panelConsultasEmpleadoFecha.Visible = true;
+                    lblFechaGenerica.Text = "Fecha";
+                    clientesPanelFecha.Visible = true;
 
                 }
                 else
-                    panelConsultasEmpleadoFecha.Visible = false;*/
+                    clientesPanelFecha.Visible = false;
 
 
             }
@@ -400,21 +398,21 @@ namespace ControlHoras
         private void btnClientesConsultar_Click(object sender, EventArgs e)
         {
             Dictionary<string, string> parametrosQuery = new Dictionary<string, string>();
-           /* if (consultasClientes[consultasClientes.IndexOf((ConsultAsClientEs)cmbClientesConsultas.SelectedItem)].Query.Contains("FECHA") && panelConsultasEmpleadoFecha.Visible)
+            if (consultasClientes[consultasClientes.IndexOf((ConsultAsClientEs)cmbClientesConsultas.SelectedItem)].Query.Contains("FECHA") && clientesPanelFecha.Visible)
             {
-                if (mtConsultasEmpleadoFecha.Text == fechaMask)
+                if (clientePanelFechaMT.Text == fechaMask)
                     MessageBox.Show("Debe llenar el campo fecha para la consulta.", "Llenar Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                     try
                     {
-                        parametrosQuery.Add("FECHA", mtConsultasEmpleadoFecha.Text);
+                        parametrosQuery.Add("FECHA", clientePanelFechaMT.Text);
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
-            }*/
+            }
             try
             {
                 DataSet ds = datos.ejecutarConsultaCliente(int.Parse(cmbClientesConsultas.SelectedValue.ToString()), parametrosQuery);

@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2010-10-08 12:05:08Z
+#region Auto-generated classes for trustdb database on 2010-10-10 14:06:31Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2010-10-08 12:05:08Z
+// Auto-generated from trustdb on 2010-10-10 14:06:31Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -90,6 +90,7 @@ namespace Datos
 		public Table<DepartAmenToS> DepartAmenToS { get { return GetTable<DepartAmenToS>(); } }
 		public Table<EmergeNcIasMedicA> EmergeNcIasMedicA { get { return GetTable<EmergeNcIasMedicA>(); } }
 		public Table<EmPleadOs> EmPleadOs { get { return GetTable<EmPleadOs>(); } }
+		public Table<EnterOs> EnterOs { get { return GetTable<EnterOs>(); } }
 		public Table<EScalaFOn> EScalaFOn { get { return GetTable<EScalaFOn>(); } }
 		public Table<EScalaFOneMpLeadO> EScalaFOneMpLeadO { get { return GetTable<EScalaFOneMpLeadO>(); } }
 		public Table<EventOsHistOrIalEmPleadO> EventOsHistOrIalEmPleadO { get { return GetTable<EventOsHistOrIalEmPleadO>(); } }
@@ -4221,6 +4222,83 @@ namespace Datos
 		{
 			_hoRaSgEneraDaSesCalaFoN = new EntitySet<HoRaSGeneraDaSEScalaFOn>(HoRaSGeneraDaSEScalaFOn_Attach, HoRaSGeneraDaSEScalaFOn_Detach);
 			_motIvoSCamBiosDiArIoS = new EntitySet<MotIVOsCamBiosDiARioS>(MotIVOsCamBiosDiARioS_Attach, MotIVOsCamBiosDiARioS_Detach);
+			OnCreated();
+		}
+
+		#endregion
+
+	}
+
+	[Table(Name = "trustdb.enteros")]
+	public partial class EnterOs : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		#region INotifyPropertyChanging handling
+
+		public event PropertyChangingEventHandler PropertyChanging;
+
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs("");
+		protected virtual void SendPropertyChanging()
+		{
+			if (PropertyChanging != null)
+			{
+				PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+
+		#endregion
+
+		#region INotifyPropertyChanged handling
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected virtual void SendPropertyChanged(string propertyName)
+		{
+			if (PropertyChanged != null)
+			{
+				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		#endregion
+
+		#region Extensibility Method Definitions
+
+		partial void OnCreated();
+		partial void OnEnterOChanged();
+		partial void OnEnterOChanging(int? value);
+
+		#endregion
+
+		#region int? EnterO
+
+		private int? _enterO;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_enterO", Name = "entero", DbType = "int", AutoSync = AutoSync.Never)]
+		public int? EnterO
+		{
+			get
+			{
+				return _enterO;
+			}
+			set
+			{
+				if (value != _enterO)
+				{
+					OnEnterOChanging(value);
+					SendPropertyChanging();
+					_enterO = value;
+					SendPropertyChanged("EnterO");
+					OnEnterOChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region ctor
+
+		public EnterOs()
+		{
 			OnCreated();
 		}
 

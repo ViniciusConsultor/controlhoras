@@ -1128,7 +1128,14 @@ namespace ControlHoras
 
         private void btnVerEscalafonFuncionario_Click(object sender, EventArgs e)
         {
-
+            VerEscalafonEmpleadoForm veef = new VerEscalafonEmpleadoForm();
+            try
+            {
+                veef.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+            }
         }
         
     }

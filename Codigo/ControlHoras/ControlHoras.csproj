@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FC8B86E8-A818-4987-B135-16FD6B039E53}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -745,10 +745,34 @@
     <None Include="Resources\Search_Icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\filesave1.png" />
+    <None Include="Resources\ClientsSearch.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\button_cancel1.png" />
+    <None Include="Resources\Escalafon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UserSearch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ClientsSearch42x42.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search-user_48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\companies.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon-query-reporting.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_icon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />

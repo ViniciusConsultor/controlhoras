@@ -393,7 +393,7 @@
             // 
             // btnBuscarEmpleado
             // 
-            this.btnBuscarEmpleado.Image = global::ControlHoras.Imagenes.Search_Icon;
+            this.btnBuscarEmpleado.Image = global::ControlHoras.Imagenes.search_user_48x48;
             this.btnBuscarEmpleado.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnBuscarEmpleado.Name = "btnBuscarEmpleado";
             this.btnBuscarEmpleado.Size = new System.Drawing.Size(43, 33);
@@ -495,7 +495,7 @@
             this.DatosDelEmpleado.Controls.Add(this.pbFoto);
             this.DatosDelEmpleado.Location = new System.Drawing.Point(4, 22);
             this.DatosDelEmpleado.Name = "DatosDelEmpleado";
-            this.DatosDelEmpleado.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.DatosDelEmpleado.Padding = new System.Windows.Forms.Padding(3);
             this.DatosDelEmpleado.Size = new System.Drawing.Size(653, 357);
             this.DatosDelEmpleado.TabIndex = 0;
             this.DatosDelEmpleado.Text = "Datos del Empleado";
@@ -627,7 +627,7 @@
             this.cbConstanciaDomicilio.AutoSize = true;
             this.cbConstanciaDomicilio.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cbConstanciaDomicilio.Location = new System.Drawing.Point(6, 248);
-            this.cbConstanciaDomicilio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbConstanciaDomicilio.Margin = new System.Windows.Forms.Padding(2);
             this.cbConstanciaDomicilio.Name = "cbConstanciaDomicilio";
             this.cbConstanciaDomicilio.Size = new System.Drawing.Size(139, 17);
             this.cbConstanciaDomicilio.TabIndex = 7;
@@ -637,7 +637,7 @@
             // dtpFechaEntregaCelular
             // 
             this.dtpFechaEntregaCelular.Location = new System.Drawing.Point(124, 111);
-            this.dtpFechaEntregaCelular.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpFechaEntregaCelular.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFechaEntregaCelular.Mask = "00/00/0000";
             this.dtpFechaEntregaCelular.Name = "dtpFechaEntregaCelular";
             this.dtpFechaEntregaCelular.Size = new System.Drawing.Size(76, 20);
@@ -657,7 +657,7 @@
             // dtpFechaIngreso
             // 
             this.dtpFechaIngreso.Location = new System.Drawing.Point(124, 212);
-            this.dtpFechaIngreso.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpFechaIngreso.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFechaIngreso.Mask = "00/00/0000";
             this.dtpFechaIngreso.Name = "dtpFechaIngreso";
             this.dtpFechaIngreso.Size = new System.Drawing.Size(76, 20);
@@ -793,7 +793,7 @@
             // dtpFechaNacimiento
             // 
             this.dtpFechaNacimiento.Location = new System.Drawing.Point(101, 146);
-            this.dtpFechaNacimiento.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpFechaNacimiento.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFechaNacimiento.Mask = "00/00/0000";
             this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
             this.dtpFechaNacimiento.Size = new System.Drawing.Size(76, 20);
@@ -1090,8 +1090,8 @@
             this.OtrosDatosDelEmpleado.Controls.Add(this.groupBox1);
             this.OtrosDatosDelEmpleado.Location = new System.Drawing.Point(4, 22);
             this.OtrosDatosDelEmpleado.Name = "OtrosDatosDelEmpleado";
-            this.OtrosDatosDelEmpleado.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.OtrosDatosDelEmpleado.Size = new System.Drawing.Size(653, 361);
+            this.OtrosDatosDelEmpleado.Padding = new System.Windows.Forms.Padding(3);
+            this.OtrosDatosDelEmpleado.Size = new System.Drawing.Size(653, 357);
             this.OtrosDatosDelEmpleado.TabIndex = 2;
             this.OtrosDatosDelEmpleado.Text = "Otros Datos del Empleado";
             this.OtrosDatosDelEmpleado.UseVisualStyleBackColor = true;
@@ -1155,7 +1155,7 @@
             // dtpPsicologo
             // 
             this.dtpPsicologo.Location = new System.Drawing.Point(152, 16);
-            this.dtpPsicologo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpPsicologo.Margin = new System.Windows.Forms.Padding(2);
             this.dtpPsicologo.Mask = "00/00/0000";
             this.dtpPsicologo.Name = "dtpPsicologo";
             this.dtpPsicologo.Size = new System.Drawing.Size(76, 20);
@@ -1519,7 +1519,7 @@
             // dtpFechaVencimientoCarneSalud
             // 
             this.dtpFechaVencimientoCarneSalud.Location = new System.Drawing.Point(187, 12);
-            this.dtpFechaVencimientoCarneSalud.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpFechaVencimientoCarneSalud.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFechaVencimientoCarneSalud.Mask = "00/00/0000";
             this.dtpFechaVencimientoCarneSalud.Name = "dtpFechaVencimientoCarneSalud";
             this.dtpFechaVencimientoCarneSalud.Size = new System.Drawing.Size(71, 20);
@@ -1582,8 +1582,8 @@
             this.AltasYBajas.Controls.Add(this.groupBox11);
             this.AltasYBajas.Location = new System.Drawing.Point(4, 22);
             this.AltasYBajas.Name = "AltasYBajas";
-            this.AltasYBajas.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.AltasYBajas.Size = new System.Drawing.Size(653, 361);
+            this.AltasYBajas.Padding = new System.Windows.Forms.Padding(3);
+            this.AltasYBajas.Size = new System.Drawing.Size(653, 357);
             this.AltasYBajas.TabIndex = 4;
             this.AltasYBajas.Text = "Altas y Bajas";
             this.AltasYBajas.UseVisualStyleBackColor = true;
@@ -1610,7 +1610,7 @@
             // 
             this.mtFechaPrevistaPago.Enabled = false;
             this.mtFechaPrevistaPago.Location = new System.Drawing.Point(138, 85);
-            this.mtFechaPrevistaPago.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mtFechaPrevistaPago.Margin = new System.Windows.Forms.Padding(2);
             this.mtFechaPrevistaPago.Mask = "00/00/0000";
             this.mtFechaPrevistaPago.Name = "mtFechaPrevistaPago";
             this.mtFechaPrevistaPago.Size = new System.Drawing.Size(76, 20);
@@ -1631,7 +1631,7 @@
             // 
             this.mtFechaPagoEfectuado.Enabled = false;
             this.mtFechaPagoEfectuado.Location = new System.Drawing.Point(138, 114);
-            this.mtFechaPagoEfectuado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mtFechaPagoEfectuado.Margin = new System.Windows.Forms.Padding(2);
             this.mtFechaPagoEfectuado.Mask = "00/00/0000";
             this.mtFechaPagoEfectuado.Name = "mtFechaPagoEfectuado";
             this.mtFechaPagoEfectuado.Size = new System.Drawing.Size(76, 20);
@@ -1652,7 +1652,7 @@
             // 
             this.dtpFechaBaja.Enabled = false;
             this.dtpFechaBaja.Location = new System.Drawing.Point(253, 19);
-            this.dtpFechaBaja.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpFechaBaja.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFechaBaja.Mask = "00/00/0000";
             this.dtpFechaBaja.Name = "dtpFechaBaja";
             this.dtpFechaBaja.Size = new System.Drawing.Size(76, 20);
@@ -1769,7 +1769,7 @@
             // dtpFechaIngresoRenaemse
             // 
             this.dtpFechaIngresoRenaemse.Location = new System.Drawing.Point(253, 12);
-            this.dtpFechaIngresoRenaemse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpFechaIngresoRenaemse.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFechaIngresoRenaemse.Mask = "00/00/0000";
             this.dtpFechaIngresoRenaemse.Name = "dtpFechaIngresoRenaemse";
             this.dtpFechaIngresoRenaemse.Size = new System.Drawing.Size(76, 20);
@@ -1822,7 +1822,7 @@
             // 
             this.dtpFechaBajaBPS.Enabled = false;
             this.dtpFechaBajaBPS.Location = new System.Drawing.Point(253, 43);
-            this.dtpFechaBajaBPS.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpFechaBajaBPS.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFechaBajaBPS.Mask = "00/00/0000";
             this.dtpFechaBajaBPS.Name = "dtpFechaBajaBPS";
             this.dtpFechaBajaBPS.Size = new System.Drawing.Size(76, 20);
@@ -1833,7 +1833,7 @@
             // dtpFechaAltaBPS
             // 
             this.dtpFechaAltaBPS.Location = new System.Drawing.Point(253, 16);
-            this.dtpFechaAltaBPS.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpFechaAltaBPS.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFechaAltaBPS.Mask = "00/00/0000";
             this.dtpFechaAltaBPS.Name = "dtpFechaAltaBPS";
             this.dtpFechaAltaBPS.Size = new System.Drawing.Size(76, 20);
@@ -1905,7 +1905,7 @@
             // dtpFechaEntregaCAJ
             // 
             this.dtpFechaEntregaCAJ.Location = new System.Drawing.Point(253, 41);
-            this.dtpFechaEntregaCAJ.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpFechaEntregaCAJ.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFechaEntregaCAJ.Mask = "00/00/0000";
             this.dtpFechaEntregaCAJ.Name = "dtpFechaEntregaCAJ";
             this.dtpFechaEntregaCAJ.Size = new System.Drawing.Size(76, 20);
@@ -1916,7 +1916,7 @@
             // dtpFechaEmisionCAJ
             // 
             this.dtpFechaEmisionCAJ.Location = new System.Drawing.Point(253, 15);
-            this.dtpFechaEmisionCAJ.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpFechaEmisionCAJ.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFechaEmisionCAJ.Mask = "00/00/0000";
             this.dtpFechaEmisionCAJ.Name = "dtpFechaEmisionCAJ";
             this.dtpFechaEmisionCAJ.Size = new System.Drawing.Size(76, 20);
@@ -1979,7 +1979,7 @@
             // 
             this.dtpFechaEgresoPolicialMilitar.Enabled = false;
             this.dtpFechaEgresoPolicialMilitar.Location = new System.Drawing.Point(94, 74);
-            this.dtpFechaEgresoPolicialMilitar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpFechaEgresoPolicialMilitar.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFechaEgresoPolicialMilitar.Mask = "00/00/0000";
             this.dtpFechaEgresoPolicialMilitar.Name = "dtpFechaEgresoPolicialMilitar";
             this.dtpFechaEgresoPolicialMilitar.Size = new System.Drawing.Size(76, 20);
@@ -1991,7 +1991,7 @@
             // 
             this.dtpFechaIngresoPolicialMilitar.Enabled = false;
             this.dtpFechaIngresoPolicialMilitar.Location = new System.Drawing.Point(94, 46);
-            this.dtpFechaIngresoPolicialMilitar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpFechaIngresoPolicialMilitar.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFechaIngresoPolicialMilitar.Mask = "00/00/0000";
             this.dtpFechaIngresoPolicialMilitar.Name = "dtpFechaIngresoPolicialMilitar";
             this.dtpFechaIngresoPolicialMilitar.Size = new System.Drawing.Size(76, 20);
@@ -2063,8 +2063,8 @@
             this.Historial.Controls.Add(this.splitContainer1);
             this.Historial.Location = new System.Drawing.Point(4, 22);
             this.Historial.Name = "Historial";
-            this.Historial.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.Historial.Size = new System.Drawing.Size(653, 361);
+            this.Historial.Padding = new System.Windows.Forms.Padding(3);
+            this.Historial.Size = new System.Drawing.Size(653, 357);
             this.Historial.TabIndex = 1;
             this.Historial.Text = "Historial";
             this.Historial.UseVisualStyleBackColor = true;
@@ -2095,14 +2095,14 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dgvHistorialEmpleado);
-            this.splitContainer1.Size = new System.Drawing.Size(647, 355);
-            this.splitContainer1.SplitterDistance = 122;
+            this.splitContainer1.Size = new System.Drawing.Size(647, 351);
+            this.splitContainer1.SplitterDistance = 120;
             this.splitContainer1.TabIndex = 0;
             // 
             // dtpFechaFinHistorial
             // 
             this.dtpFechaFinHistorial.Location = new System.Drawing.Point(396, 20);
-            this.dtpFechaFinHistorial.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpFechaFinHistorial.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFechaFinHistorial.Mask = "00/00/0000";
             this.dtpFechaFinHistorial.Name = "dtpFechaFinHistorial";
             this.dtpFechaFinHistorial.Size = new System.Drawing.Size(76, 20);
@@ -2114,7 +2114,7 @@
             // 
             this.dtpFechaInicioHistorial.BackColor = System.Drawing.Color.White;
             this.dtpFechaInicioHistorial.Location = new System.Drawing.Point(151, 20);
-            this.dtpFechaInicioHistorial.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpFechaInicioHistorial.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFechaInicioHistorial.Mask = "00/00/0000";
             this.dtpFechaInicioHistorial.Name = "dtpFechaInicioHistorial";
             this.dtpFechaInicioHistorial.Size = new System.Drawing.Size(76, 20);
@@ -2246,7 +2246,7 @@
             this.dgvHistorialEmpleado.RowHeadersVisible = false;
             this.dgvHistorialEmpleado.RowTemplate.Height = 24;
             this.dgvHistorialEmpleado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHistorialEmpleado.Size = new System.Drawing.Size(647, 229);
+            this.dgvHistorialEmpleado.Size = new System.Drawing.Size(647, 227);
             this.dgvHistorialEmpleado.TabIndex = 0;
             this.dgvHistorialEmpleado.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHistorialEmpleado_CellDoubleClick);
             // 
@@ -2298,7 +2298,7 @@
             this.ExtrasLiquidacion.Controls.Add(this.splitContainer2);
             this.ExtrasLiquidacion.Location = new System.Drawing.Point(4, 22);
             this.ExtrasLiquidacion.Name = "ExtrasLiquidacion";
-            this.ExtrasLiquidacion.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.ExtrasLiquidacion.Padding = new System.Windows.Forms.Padding(3);
             this.ExtrasLiquidacion.Size = new System.Drawing.Size(653, 357);
             this.ExtrasLiquidacion.TabIndex = 3;
             this.ExtrasLiquidacion.Text = "Extras Liquidación";

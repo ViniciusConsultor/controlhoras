@@ -89,8 +89,8 @@ namespace ControlHoras
 
                 if (listaErrores.Count > 0)
                 {
-                    CRErroresConsolidacionEscalafones crece = new CRErroresConsolidacionEscalafones(listaErrores);
-                    crece.Show();
+                    //CRErroresConsolidacionEscalafones crece = new CRErroresConsolidacionEscalafones(listaErrores);
+                    //crece.Show();
                     // Despliego el conjunto de errores.
                     MessageBox.Show(this, "Consolidacion Finalizada Con Errores.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }

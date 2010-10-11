@@ -229,15 +229,7 @@ namespace ControlHoras
             {
                 if (e.KeyCode == Keys.F2)
                 {
-                    BuscarClientes sear = new BuscarClientes();
-                    DialogResult res = sear.ShowDialog(this);
-
-                    if (res == DialogResult.OK)
-                    {
-                        mtCliente.Text = sear.NumCliente;
-                        mtCliente.Focus();
-                        SendKeys.Send("{ENTER}");
-                    }
+                    btnBuscarCliente.PerformClick();
                 }
                 else if (mtCliente.Text == "" && e.KeyCode == Keys.Enter)
                 {    // Obtengo el ultimo numero de cliente + 1;
@@ -337,6 +329,19 @@ namespace ControlHoras
         private void dtpFechaBaja_Validated(object sender, EventArgs e)
         {
             errorProvider1.SetError(dtpFechaBaja, "");
+        }
+
+        private void btnBuscarCliente_Click(object sender, EventArgs e)
+        {
+            BuscarClientes sear = new BuscarClientes();
+            DialogResult res = sear.ShowDialog(this);
+
+            if (res == DialogResult.OK)
+            {
+                mtCliente.Text = sear.NumCliente;
+                mtCliente.Focus();
+                SendKeys.Send("{ENTER}");
+            }
         }
       
     }

@@ -65,6 +65,7 @@ namespace ControlHoras
             this.txtNombreFantasia = new ControlHoras.TextBoxKeyDown();
             this.mtRUT = new ControlHoras.MaskedTextBoxKeyDown();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnBuscarCliente = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -75,7 +76,7 @@ namespace ControlHoras
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 81);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 17);
+            this.label1.Size = new System.Drawing.Size(51, 13);
             this.label1.TabIndex = 5;
             this.label1.Text = "Nombre *";
             // 
@@ -86,10 +87,11 @@ namespace ControlHoras
             this.btnGuardar,
             this.btnCancelar,
             this.toolStripSeparator1,
-            this.btnServicios});
+            this.btnServicios,
+            this.btnBuscarCliente});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(374, 40);
+            this.toolStrip1.Size = new System.Drawing.Size(374, 36);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -98,7 +100,7 @@ namespace ControlHoras
             this.btnAgregar.Image = global::ControlHoras.Imagenes.document_new;
             this.btnAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(60, 37);
+            this.btnAgregar.Size = new System.Drawing.Size(50, 33);
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -108,7 +110,7 @@ namespace ControlHoras
             this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
             this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(61, 37);
+            this.btnGuardar.Size = new System.Drawing.Size(50, 33);
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -119,7 +121,7 @@ namespace ControlHoras
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
             this.btnCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(64, 37);
+            this.btnCancelar.Size = new System.Drawing.Size(53, 33);
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -127,14 +129,14 @@ namespace ControlHoras
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 40);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 36);
             // 
             // btnServicios
             // 
             this.btnServicios.Image = ((System.Drawing.Image)(resources.GetObject("btnServicios.Image")));
             this.btnServicios.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnServicios.Name = "btnServicios";
-            this.btnServicios.Size = new System.Drawing.Size(65, 37);
+            this.btnServicios.Size = new System.Drawing.Size(53, 33);
             this.btnServicios.Text = "Servicios";
             this.btnServicios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnServicios.Click += new System.EventHandler(this.btnServicios_Click);
@@ -144,7 +146,7 @@ namespace ControlHoras
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 53);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 17);
+            this.label4.Size = new System.Drawing.Size(46, 13);
             this.label4.TabIndex = 6;
             this.label4.Text = "Cliente *";
             // 
@@ -153,7 +155,7 @@ namespace ControlHoras
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 134);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 17);
+            this.label2.Size = new System.Drawing.Size(30, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "RUT";
             // 
@@ -162,7 +164,7 @@ namespace ControlHoras
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 108);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(116, 17);
+            this.label5.Size = new System.Drawing.Size(87, 13);
             this.label5.TabIndex = 2;
             this.label5.Text = "Nombre Fantasia";
             // 
@@ -171,7 +173,7 @@ namespace ControlHoras
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(13, 186);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(67, 17);
+            this.label6.Size = new System.Drawing.Size(52, 13);
             this.label6.TabIndex = 6;
             this.label6.Text = "Dirección";
             // 
@@ -180,7 +182,7 @@ namespace ControlHoras
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(13, 212);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(134, 17);
+            this.label7.Size = new System.Drawing.Size(101, 13);
             this.label7.TabIndex = 7;
             this.label7.Text = "Dirección de Crobro";
             // 
@@ -189,7 +191,7 @@ namespace ControlHoras
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(13, 238);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 17);
+            this.label3.Size = new System.Drawing.Size(61, 13);
             this.label3.TabIndex = 3;
             this.label3.Text = "Teléfonos *";
             // 
@@ -198,7 +200,7 @@ namespace ControlHoras
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(12, 160);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(42, 17);
+            this.label8.Size = new System.Drawing.Size(32, 13);
             this.label8.TabIndex = 8;
             this.label8.Text = "Email";
             // 
@@ -207,7 +209,7 @@ namespace ControlHoras
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(251, 238);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(30, 17);
+            this.label9.Size = new System.Drawing.Size(24, 13);
             this.label9.TabIndex = 9;
             this.label9.Text = "Fax";
             // 
@@ -216,7 +218,7 @@ namespace ControlHoras
             this.cbNoActivo.AutoSize = true;
             this.cbNoActivo.Location = new System.Drawing.Point(37, 22);
             this.cbNoActivo.Name = "cbNoActivo";
-            this.cbNoActivo.Size = new System.Drawing.Size(87, 21);
+            this.cbNoActivo.Size = new System.Drawing.Size(73, 17);
             this.cbNoActivo.TabIndex = 0;
             this.cbNoActivo.Text = "No Activo";
             this.cbNoActivo.UseVisualStyleBackColor = true;
@@ -229,7 +231,7 @@ namespace ControlHoras
             this.lblEstadoCliente.ForeColor = System.Drawing.Color.DarkRed;
             this.lblEstadoCliente.Location = new System.Drawing.Point(169, 49);
             this.lblEstadoCliente.Name = "lblEstadoCliente";
-            this.lblEstadoCliente.Size = new System.Drawing.Size(161, 24);
+            this.lblEstadoCliente.Size = new System.Drawing.Size(140, 20);
             this.lblEstadoCliente.TabIndex = 15;
             this.lblEstadoCliente.Text = "lblEstadoCliente";
             // 
@@ -238,7 +240,7 @@ namespace ControlHoras
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(13, 264);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(75, 17);
+            this.label10.Size = new System.Drawing.Size(58, 13);
             this.label10.TabIndex = 17;
             this.label10.Text = "Fecha Alta";
             this.label10.Visible = false;
@@ -248,7 +250,7 @@ namespace ControlHoras
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(123, 23);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(79, 17);
+            this.label11.Size = new System.Drawing.Size(61, 13);
             this.label11.TabIndex = 19;
             this.label11.Text = "Fecha Baja";
             this.label11.Visible = false;
@@ -272,7 +274,7 @@ namespace ControlHoras
             this.txtMotivoBaja.Enabled = false;
             this.txtMotivoBaja.Location = new System.Drawing.Point(52, 48);
             this.txtMotivoBaja.Name = "txtMotivoBaja";
-            this.txtMotivoBaja.Size = new System.Drawing.Size(288, 22);
+            this.txtMotivoBaja.Size = new System.Drawing.Size(288, 20);
             this.txtMotivoBaja.TabIndex = 2;
             // 
             // label12
@@ -280,7 +282,7 @@ namespace ControlHoras
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(6, 52);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(58, 17);
+            this.label12.Size = new System.Drawing.Size(46, 13);
             this.label12.TabIndex = 20;
             this.label12.Text = "Motivo *";
             // 
@@ -290,7 +292,7 @@ namespace ControlHoras
             this.dtpFechaBaja.Location = new System.Drawing.Point(190, 19);
             this.dtpFechaBaja.Mask = "00/00/0000";
             this.dtpFechaBaja.Name = "dtpFechaBaja";
-            this.dtpFechaBaja.Size = new System.Drawing.Size(93, 22);
+            this.dtpFechaBaja.Size = new System.Drawing.Size(93, 20);
             this.dtpFechaBaja.TabIndex = 1;
             this.dtpFechaBaja.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaBaja_Validating);
             this.dtpFechaBaja.Validated += new System.EventHandler(this.dtpFechaBaja_Validated);
@@ -299,14 +301,14 @@ namespace ControlHoras
             // 
             this.txtFax.Location = new System.Drawing.Point(276, 234);
             this.txtFax.Name = "txtFax";
-            this.txtFax.Size = new System.Drawing.Size(86, 22);
+            this.txtFax.Size = new System.Drawing.Size(86, 20);
             this.txtFax.TabIndex = 8;
             // 
             // txtTelefonos
             // 
             this.txtTelefonos.Location = new System.Drawing.Point(74, 234);
             this.txtTelefonos.Name = "txtTelefonos";
-            this.txtTelefonos.Size = new System.Drawing.Size(171, 22);
+            this.txtTelefonos.Size = new System.Drawing.Size(171, 20);
             this.txtTelefonos.TabIndex = 7;
             // 
             // mtCliente
@@ -316,7 +318,7 @@ namespace ControlHoras
             this.mtCliente.Mask = "9990";
             this.mtCliente.Name = "mtCliente";
             this.mtCliente.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.mtCliente.Size = new System.Drawing.Size(42, 24);
+            this.mtCliente.Size = new System.Drawing.Size(42, 21);
             this.mtCliente.TabIndex = 0;
             this.mtCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtCliente_KeyDown);
             // 
@@ -325,7 +327,7 @@ namespace ControlHoras
             this.dtpFechaAlta.Location = new System.Drawing.Point(72, 260);
             this.dtpFechaAlta.Mask = "00/00/0000";
             this.dtpFechaAlta.Name = "dtpFechaAlta";
-            this.dtpFechaAlta.Size = new System.Drawing.Size(93, 22);
+            this.dtpFechaAlta.Size = new System.Drawing.Size(93, 20);
             this.dtpFechaAlta.TabIndex = 9;
             this.dtpFechaAlta.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaAlta_Validating);
             this.dtpFechaAlta.Validated += new System.EventHandler(this.dtpFechaAlta_Validated);
@@ -334,7 +336,7 @@ namespace ControlHoras
             // 
             this.txtEmail.Location = new System.Drawing.Point(72, 156);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(201, 22);
+            this.txtEmail.Size = new System.Drawing.Size(201, 20);
             this.txtEmail.TabIndex = 4;
             // 
             // txtNombre
@@ -342,28 +344,28 @@ namespace ControlHoras
             this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombre.Location = new System.Drawing.Point(72, 76);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(289, 25);
+            this.txtNombre.Size = new System.Drawing.Size(289, 22);
             this.txtNombre.TabIndex = 1;
             // 
             // txtDireccionCobro
             // 
             this.txtDireccionCobro.Location = new System.Drawing.Point(126, 208);
             this.txtDireccionCobro.Name = "txtDireccionCobro";
-            this.txtDireccionCobro.Size = new System.Drawing.Size(236, 22);
+            this.txtDireccionCobro.Size = new System.Drawing.Size(236, 20);
             this.txtDireccionCobro.TabIndex = 6;
             // 
             // txtDireccion
             // 
             this.txtDireccion.Location = new System.Drawing.Point(72, 182);
             this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(290, 22);
+            this.txtDireccion.Size = new System.Drawing.Size(290, 20);
             this.txtDireccion.TabIndex = 5;
             // 
             // txtNombreFantasia
             // 
             this.txtNombreFantasia.Location = new System.Drawing.Point(108, 104);
             this.txtNombreFantasia.Name = "txtNombreFantasia";
-            this.txtNombreFantasia.Size = new System.Drawing.Size(253, 22);
+            this.txtNombreFantasia.Size = new System.Drawing.Size(253, 20);
             this.txtNombreFantasia.TabIndex = 2;
             // 
             // mtRUT
@@ -371,16 +373,26 @@ namespace ControlHoras
             this.mtRUT.Location = new System.Drawing.Point(72, 130);
             this.mtRUT.Mask = "00.000.000.0000";
             this.mtRUT.Name = "mtRUT";
-            this.mtRUT.Size = new System.Drawing.Size(89, 22);
+            this.mtRUT.Size = new System.Drawing.Size(89, 20);
             this.mtRUT.TabIndex = 3;
             // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // btnBuscarCliente
+            // 
+            this.btnBuscarCliente.Image = global::ControlHoras.Imagenes.ClientsSearch42x42;
+            this.btnBuscarCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnBuscarCliente.Name = "btnBuscarCliente";
+            this.btnBuscarCliente.Size = new System.Drawing.Size(79, 33);
+            this.btnBuscarCliente.Text = "Buscar Cliente";
+            this.btnBuscarCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnBuscarCliente.Click += new System.EventHandler(this.btnBuscarCliente_Click);
+            // 
             // ABMClientes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(374, 384);
             this.Controls.Add(this.txtFax);
@@ -463,5 +475,6 @@ namespace ControlHoras
         private ControlHoras.TextBoxKeyDown txtTelefonos;
         private ControlHoras.TextBoxKeyDown txtFax;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ToolStripButton btnBuscarCliente;
     }
 }

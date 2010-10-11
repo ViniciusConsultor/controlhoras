@@ -365,6 +365,12 @@ namespace ControlHoras
      
         }
 
+        private void btnBuscarCliente_Click(object sender, EventArgs e)
+        {
+            KeyEventArgs kea = new KeyEventArgs(Keys.F2);
+            ucCliente.ClienteMT_KeyDown(sender, kea);
+        }
+
 
 
 

@@ -186,9 +186,37 @@ namespace ControlHoras {
             }
         }
         
+        internal static System.Drawing.Bitmap CheckIcon {
+            get {
+                object obj = ResourceManager.GetObject("CheckIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap client {
             get {
                 object obj = ResourceManager.GetObject("client", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ClientsSearch {
+            get {
+                object obj = ResourceManager.GetObject("ClientsSearch", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ClientsSearch42x42 {
+            get {
+                object obj = ResourceManager.GetObject("ClientsSearch42x42", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap companies {
+            get {
+                object obj = ResourceManager.GetObject("companies", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -214,9 +242,23 @@ namespace ControlHoras {
             }
         }
         
+        internal static System.Drawing.Bitmap Escalafon {
+            get {
+                object obj = ResourceManager.GetObject("Escalafon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap filesave {
             get {
                 object obj = ResourceManager.GetObject("filesave", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap icon_query_reporting {
+            get {
+                object obj = ResourceManager.GetObject("icon_query_reporting", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -249,6 +291,20 @@ namespace ControlHoras {
             }
         }
         
+        internal static System.Drawing.Bitmap report_icon {
+            get {
+                object obj = ResourceManager.GetObject("report_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap search {
+            get {
+                object obj = ResourceManager.GetObject("search", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Search_Icon {
             get {
                 object obj = ResourceManager.GetObject("Search_Icon", resourceCulture);
@@ -256,9 +312,23 @@ namespace ControlHoras {
             }
         }
         
+        internal static System.Drawing.Bitmap search_user_48x48 {
+            get {
+                object obj = ResourceManager.GetObject("search_user_48x48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap user_group_new {
             get {
                 object obj = ResourceManager.GetObject("user_group_new", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap UserSearch {
+            get {
+                object obj = ResourceManager.GetObject("UserSearch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
