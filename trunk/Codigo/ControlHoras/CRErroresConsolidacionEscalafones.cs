@@ -26,7 +26,7 @@ namespace ControlHoras
             cr.SetDatabaseLogon("user", "user");
 
             crvErrores.ReportSource = cr;
-           
+            
             crvErrores.Refresh();
 
             crvErrores.Show();    

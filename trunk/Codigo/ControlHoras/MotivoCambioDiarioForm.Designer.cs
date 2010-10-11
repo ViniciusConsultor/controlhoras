@@ -92,10 +92,10 @@
             this.btnCancelar.TabIndex = 5;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // MotivoCambioDiarioForm
             // 
-            this.AcceptButton = this.btnAceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
@@ -109,6 +109,7 @@
             this.Name = "MotivoCambioDiarioForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "MotivoCambioDiarioForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MotivoCambioDiarioForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

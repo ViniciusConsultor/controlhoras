@@ -62,15 +62,17 @@
             this.mtServicio = new ControlHoras.MaskedTextBoxKeyDown();
             this.ucCliente = new ControlHoras.BúsquedaCliente();
             this.lblDia = new System.Windows.Forms.Label();
+            this.btnBuscarCliente = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHoras)).BeginInit();
             this.menuStripdgvHoras.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtServicio
             // 
             this.txtServicio.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtServicio.Location = new System.Drawing.Point(62, 65);
+            this.txtServicio.Location = new System.Drawing.Point(62, 77);
             this.txtServicio.Name = "txtServicio";
             this.txtServicio.ReadOnly = true;
             this.txtServicio.Size = new System.Drawing.Size(362, 22);
@@ -99,7 +101,7 @@
             this.HoraEntrada,
             this.HoraSalida});
             this.dgvHoras.ContextMenuStrip = this.menuStripdgvHoras;
-            this.dgvHoras.Location = new System.Drawing.Point(12, 126);
+            this.dgvHoras.Location = new System.Drawing.Point(12, 138);
             this.dgvHoras.MultiSelect = false;
             this.dgvHoras.Name = "dgvHoras";
             this.dgvHoras.ReadOnly = true;
@@ -229,7 +231,7 @@
             // mtFecha
             // 
             this.mtFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtFecha.Location = new System.Drawing.Point(12, 100);
+            this.mtFecha.Location = new System.Drawing.Point(12, 110);
             this.mtFecha.Mask = "00/00/0000";
             this.mtFecha.Name = "mtFecha";
             this.mtFecha.Size = new System.Drawing.Size(70, 22);
@@ -239,9 +241,9 @@
             // 
             // btnDiaSiguiente
             // 
-            this.btnDiaSiguiente.Location = new System.Drawing.Point(122, 100);
+            this.btnDiaSiguiente.Location = new System.Drawing.Point(122, 110);
             this.btnDiaSiguiente.Name = "btnDiaSiguiente";
-            this.btnDiaSiguiente.Size = new System.Drawing.Size(28, 23);
+            this.btnDiaSiguiente.Size = new System.Drawing.Size(28, 24);
             this.btnDiaSiguiente.TabIndex = 4;
             this.btnDiaSiguiente.Text = ">";
             this.btnDiaSiguiente.UseVisualStyleBackColor = true;
@@ -249,9 +251,9 @@
             // 
             // btnDiaAnterior
             // 
-            this.btnDiaAnterior.Location = new System.Drawing.Point(88, 100);
+            this.btnDiaAnterior.Location = new System.Drawing.Point(88, 110);
             this.btnDiaAnterior.Name = "btnDiaAnterior";
-            this.btnDiaAnterior.Size = new System.Drawing.Size(28, 23);
+            this.btnDiaAnterior.Size = new System.Drawing.Size(28, 24);
             this.btnDiaAnterior.TabIndex = 3;
             this.btnDiaAnterior.Text = "<";
             this.btnDiaAnterior.UseVisualStyleBackColor = true;
@@ -259,9 +261,11 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnBuscarCliente});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(587, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(587, 36);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -323,7 +327,7 @@
             // 
             this.mtServicio.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludePrompt;
             this.mtServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtServicio.Location = new System.Drawing.Point(12, 65);
+            this.mtServicio.Location = new System.Drawing.Point(12, 77);
             this.mtServicio.Mask = "9990";
             this.mtServicio.Name = "mtServicio";
             this.mtServicio.Size = new System.Drawing.Size(44, 22);
@@ -334,41 +338,53 @@
             // ucCliente
             // 
             this.ucCliente.ClienteNRO = "";
-            this.ucCliente.Location = new System.Drawing.Point(11, 27);
+            this.ucCliente.Location = new System.Drawing.Point(12, 34);
             this.ucCliente.Margin = new System.Windows.Forms.Padding(2);
             this.ucCliente.Name = "ucCliente";
-            this.ucCliente.Size = new System.Drawing.Size(418, 41);
+            this.ucCliente.Size = new System.Drawing.Size(418, 40);
             this.ucCliente.TabIndex = 0;
             // 
             // lblDia
             // 
             this.lblDia.AutoSize = true;
             this.lblDia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDia.Location = new System.Drawing.Point(168, 105);
+            this.lblDia.Location = new System.Drawing.Point(168, 115);
             this.lblDia.Name = "lblDia";
             this.lblDia.Size = new System.Drawing.Size(0, 16);
             this.lblDia.TabIndex = 7;
+            // 
+            // btnBuscarCliente
+            // 
+            this.btnBuscarCliente.Image = global::ControlHoras.Imagenes.ClientsSearch42x42;
+            this.btnBuscarCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnBuscarCliente.Name = "btnBuscarCliente";
+            this.btnBuscarCliente.Size = new System.Drawing.Size(79, 33);
+            this.btnBuscarCliente.Text = "Buscar Cliente";
+            this.btnBuscarCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnBuscarCliente.Click += new System.EventHandler(this.btnBuscarCliente_Click);
             // 
             // ControlDiario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(587, 377);
+            this.ClientSize = new System.Drawing.Size(587, 389);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.lblDia);
             this.Controls.Add(this.mtServicio);
-            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.mtFecha);
-            this.Controls.Add(this.btnDiaAnterior);
-            this.Controls.Add(this.dgvHoras);
-            this.Controls.Add(this.btnDiaSiguiente);
-            this.Controls.Add(this.txtServicio);
             this.Controls.Add(this.ucCliente);
+            this.Controls.Add(this.btnDiaAnterior);
+            this.Controls.Add(this.btnDiaSiguiente);
+            this.Controls.Add(this.dgvHoras);
+            this.Controls.Add(this.txtServicio);
             this.Name = "ControlDiario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ControlDiario";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ControlDiario_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHoras)).EndInit();
             this.menuStripdgvHoras.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -400,5 +416,6 @@
         private MaskedTextBoxColumn HoraEntrada;
         private MaskedTextBoxColumn HoraSalida;
         private System.Windows.Forms.Label lblDia;
+        private System.Windows.Forms.ToolStripButton btnBuscarCliente;
     }
 }

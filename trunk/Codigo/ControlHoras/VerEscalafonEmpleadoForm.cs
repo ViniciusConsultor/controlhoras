@@ -37,7 +37,8 @@ namespace ControlHoras
                     EmPleadOs Funcionario = datos.obtenerEmpleado(int.Parse(mtFuncionario.Text));
                     mtFuncionario.Text = Funcionario.NroEmpleado.ToString();
                     txtNombreFuncionario.Text = Funcionario.Nombre + " " + Funcionario.Apellido;
-                    SendKeys.Send("{ENTER}");
+                    cargarGrilla(Funcionario);
+
                 }
                 catch (Exception ex)
                 {
@@ -64,6 +65,52 @@ namespace ControlHoras
                     }
                 }
             }
+
+        }
+
+        private void cargarGrilla(EmPleadOs Funcionario)
+        {
+            int n = -10;
+            try
+            {
+                List<EScalaFOneMpLeadO> listaEscs = datos.getHorariosEmpleado((int)Funcionario.NroEmpleado);
+                foreach (EScalaFOneMpLeadO l in listaEscs)
+                {
+                    n = dgvEscalafonEmpleado.Rows.Add();
+                    dgvEscalafonEmpleado.Rows[n].Cells["ClienteServicio"].Value = l.EScalaFOn.NumeroCliente.ToString() + "/" + l.EScalaFOn.NumeroServicio.ToString();
+                    foreach (HoRaRioEScalaFOn h in l.HoRaRioEScalaFOn)
+                    {
+
+                        
+                        switch (h.TipOsDiAs.NoMbRe)
+                        {
+                            case "Descanso":
+                                dgvEscalafonEmpleado.Rows[n].Cells[h.DiA].Value = "Descanso";
+                                break;
+                            case "Laborable":
+                                dgvEscalafonEmpleado.Rows[n].Cells[h.DiA].Value = h.HoRaInI + " a " + h.HoRaFIn;
+                                break;
+                            //case "Licencia":
+                            //    dgvEscalafonEmpleado.Rows[n].Cells[h.DiA].Value = "Licencia";
+                            //    break;
+                            //default:
+                            //    dgvEscalafonEmpleado.Rows[n].Cells[h.DiA].Value = "Desconocido";
+                        }
+
+                    }
+                    n = -10;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (n != -10)
+                    dgvEscalafonEmpleado.Rows.RemoveAt(n);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void mtFuncionario_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
 
         }
     }

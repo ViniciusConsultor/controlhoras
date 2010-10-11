@@ -51,7 +51,7 @@ namespace ControlHoras
             ClienteMT.BackColor = Color.White;
         }
 
-        private void ClienteMT_KeyDown(object sender, KeyEventArgs e)
+        public void ClienteMT_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter && ClienteMT.Text != "")
             {
