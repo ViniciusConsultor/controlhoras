@@ -774,8 +774,8 @@ namespace Logica
                     }
                 }
 
-                if (cantDiasPlanificados < 6)
-                    listaErrores.Add(nroEmpleado + " tiene planificados " + cantDiasPlanificados + " dias. Debe completar los 6 dias.");
+                //if (cantDiasPlanificados < 6)
+                //    listaErrores.Add(nroEmpleado + " tiene planificados " + cantDiasPlanificados + " dias. Debe completar los 6 dias.");
                 if (!tieneDescanso)
                     listaErrores.Add(nroEmpleado + " no tiene un descanso planificado.");
                 return listaErrores;
@@ -928,7 +928,9 @@ namespace Logica
                 foreach (EScalaFOneMpLeadO escEmp in escalafon.EScalaFOneMpLeadO)
                 {
                     erroresControlEmpleado = controlarPlanificacionEscalafonEmpleado((int)escEmp.NroEmpleado);
-                    errores.Concat(erroresControlEmpleado);
+                    //errores.Concat(erroresControlEmpleado);
+                    erroresControlEmpleado.Concat(errores);
+                    errores = erroresControlEmpleado;
                 }
                 
                 return errores;
