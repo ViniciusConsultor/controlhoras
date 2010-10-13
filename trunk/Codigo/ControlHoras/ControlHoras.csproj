@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FC8B86E8-A818-4987-B135-16FD6B039E53}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -322,6 +322,12 @@
     <Compile Include="MotivoCambioDiarioForm.Designer.cs">
       <DependentUpon>MotivoCambioDiarioForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Prueba 2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Prueba 2.Designer.cs">
+      <DependentUpon>Prueba 2.cs</DependentUpon>
+    </Compile>
     <Compile Include="ServicioForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -445,6 +451,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsolidarEscalafonesForm.resx">
       <DependentUpon>ConsolidarEscalafonesForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ContratoForm.resx">
       <DependentUpon>ContratoForm.cs</DependentUpon>
@@ -464,6 +471,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CRErroresConsolidacionEscalafones.resx">
       <DependentUpon>CRErroresConsolidacionEscalafones.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="EscalafonForm.resx">
       <DependentUpon>EscalafonForm.cs</DependentUpon>
@@ -500,6 +508,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MotivoCambioDiarioForm.resx">
       <DependentUpon>MotivoCambioDiarioForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prueba 2.resx">
+      <DependentUpon>Prueba 2.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ServicioForm.resx">
@@ -545,6 +557,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TreeClientesServicios.resx">
       <DependentUpon>TreeClientesServicios.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="VentanaPrincipal.resx">
       <DependentUpon>VentanaPrincipal.cs</DependentUpon>
@@ -552,6 +565,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VerEscalafonEmpleadoForm.resx">
       <DependentUpon>VerEscalafonEmpleadoForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

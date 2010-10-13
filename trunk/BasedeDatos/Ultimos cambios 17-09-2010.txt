@@ -38,6 +38,8 @@ ALTER TABLE horarioescalafon CHANGE COLUMN `idEscalafon` `idEscalafon` INT(11) U
 
 ALTER TABLE `trustdb`.`horarioescalafon` ADD COLUMN `Solapa` TINYINT(1) NOT NULL DEFAULT 0  AFTER `tipoDia` ;
 
+ALTER TABLE `trustdb`.`horarioescalafon` ADD COLUMN `NroEmpleado` MEDIUMINT(8) UNSIGNED NOT NULL  AFTER `Solapa` ;
+
 ALTER TABLE `trustdb`.`horarioescalafon` 
   ADD CONSTRAINT `FK_horasEscalEmpleados`
   FOREIGN KEY (`idEscalafon` , `idEscalafonEmpleado` )
@@ -51,7 +53,10 @@ CREATE  TABLE IF NOT EXISTS tiposdias (
   `id` TINYINT(2) UNSIGNED NOT NULL ,
   `nombre` VARCHAR(20) NOT NULL ,
   `descripcion` VARCHAR(50) NOT NULL ,
-  PRIMARY KEY (`id`) );
+  PRIMARY KEY (`id`) );
+
+
+alter table horarioescalafon add foreign key (tipoDia) references tiposdias(id);
 
 
 
