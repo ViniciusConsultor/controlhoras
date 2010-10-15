@@ -22,7 +22,7 @@ namespace ControlHoras
             InitializeComponent();
             mtFuncionarioActual.Text = idFunc.ToString();
             txtNombreFuncionarioActual.Text = nombre;
-            Controller = ControladorDatos.getInstance();
+            Controller = ControladorDatos.getInstance();            
         }       
 
         private void mtFuncionarioNuevo_KeyDown(object sender, KeyEventArgs e)
@@ -64,6 +64,30 @@ namespace ControlHoras
                     }
                 }
             }
+        }
+
+        private void mtFuncionarioNuevo_Leave(object sender, EventArgs e)
+        {
+            if (mtFuncionarioNuevo.Text != "")
+            {
+                try
+                {
+                    FuncionarioNuevo = Controller.obtenerEmpleado(int.Parse(mtFuncionarioNuevo.Text));
+                    mtFuncionarioNuevo.Text = FuncionarioNuevo.NroEmpleado.ToString();
+                    txtNombreFuncionarioNuevo.Text = FuncionarioNuevo.Nombre + " " + FuncionarioNuevo.Apellido;
+                    //SendKeys.Send("{TAB}");
+                    btnAceptar.Enabled = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void CambiarFuncionario_Shown(object sender, EventArgs e)
+        {
+            mtFuncionarioNuevo.Focus();
         }
 
     }

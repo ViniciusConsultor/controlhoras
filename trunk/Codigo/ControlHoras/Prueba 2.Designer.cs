@@ -28,16 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.erroresTB = new System.Windows.Forms.TextBox();
+            this.erroresTB = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // erroresTB
             // 
-            this.erroresTB.Location = new System.Drawing.Point(31, 12);
-            this.erroresTB.Multiline = true;
+            this.erroresTB.AcceptsTab = true;
+            this.erroresTB.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.erroresTB.Location = new System.Drawing.Point(12, 12);
             this.erroresTB.Name = "erroresTB";
-            this.erroresTB.Size = new System.Drawing.Size(760, 252);
+            this.erroresTB.ReadOnly = true;
+            this.erroresTB.Size = new System.Drawing.Size(794, 264);
             this.erroresTB.TabIndex = 0;
+            this.erroresTB.Text = "";
             // 
             // Prueba_2
             // 
@@ -46,15 +49,15 @@
             this.ClientSize = new System.Drawing.Size(818, 288);
             this.Controls.Add(this.erroresTB);
             this.Name = "Prueba_2";
-            this.Text = "Prueba_2";
+            this.Text = "Errores al Consolidar Escalafones";
             this.Load += new System.EventHandler(this.Prueba_2_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox erroresTB;
+        private System.Windows.Forms.RichTextBox erroresTB;
+
     }
 }
