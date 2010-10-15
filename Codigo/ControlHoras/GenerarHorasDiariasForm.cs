@@ -22,6 +22,19 @@ namespace ControlHoras
             InitializeComponent();
             datos = ControladorDatos.getInstance();
             controladorClientes = ControladorClientesServicios.getInstance();
+            RichTextBoxMensaje.Text = "1-Seleccione los clientes\n2-Presione el botón Generar para iniciar el proceso de Generación de las Horas Diarias para todos los Servicios Activos de los Clientes Activos seleccionados, según el Escalafón armado para cada servicio. El proceso de Generación, antes de iniciar, corre una consolidación comprobando la consistencia del Escalafon de todos los servicios.";
+        }
+
+        private void GenerarHorasDiariasForm_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                ucTreeClientesServicios.cargarDatos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void btnGenerar_Click(object sender, EventArgs e)
@@ -29,107 +42,123 @@ namespace ControlHoras
             DateTime fechaDesde;
             DateTime fechaHasta;
             List<string> listaErrores = new List<string>();
-            if(DateTime.TryParse(mtFechaDesde.Text,out fechaDesde))
-            {
-                if (DateTime.TryParse(mtFechaHasta.Text, out fechaHasta))
-                {
-                    if (fechaDesde <= fechaHasta)
-                    {
-                        DialogResult dg = MessageBox.Show(this, "Confirma el inicio de la Generacion?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 
-                        if (dg == DialogResult.Yes)
+            //*********CONTROL CURRERO
+            fechaDesde = DateTime.Now;
+            fechaHasta = DateTime.ParseExact("26/10/2010", @"dd/MM/yyyy", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+            if (fechaDesde < fechaHasta)
+            {
+
+                if (DateTime.TryParse(mtFechaDesde.Text, out fechaDesde))
+                {
+                    if (DateTime.TryParse(mtFechaHasta.Text, out fechaHasta))
+                    {
+                        if (fechaDesde <= fechaHasta)
                         {
-                            try
+                            DialogResult dg = MessageBox.Show(this, "Confirma el inicio de la Generacion?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+                            if (dg == DialogResult.Yes)
                             {
-                                lbErrores.Text = "";
-                                lbErrores.DataSource = null;
-                                lblProcesando.Visible = true;
-                                lblNroCliente.Visible = true;
-                                // Consolidar todos los escalafones
-                                // 1- Que se cumple el contrato de todos los serivicios
-                                // 2- Que todos los empleados (no de licencia ni descanso, ni suspendios, trabaja las hs normales correspondientes a su cargo por jornada
-                                //    6 diasa  la semana, y que tiene un dia de descanso.
-                                // 3- Que no se solapan los horarios de los emplreados.
-                                TimeSpan diffTime = fechaHasta - fechaDesde;
-                                progressBarGeneracion.Minimum = 1;
-                                progressBarGeneracion.Maximum = diffTime.Days+1;
-                                DateTime dateAux = fechaDesde;
-                                int indice = 1;
-                                bool huboErrores = false;
-                                // Obtenemos la lista de clientes activos.
-                                List<ClientEs> clientes = datos.obtenerClientes(true);
-                                bool sobrescribirHorasGeneradas = false;
-                                controladorClientes.iniciarGeneracionHoras();
-                                while (dateAux <= fechaHasta)
+                                try
                                 {
-                                    lblFecha.Text = dateAux.ToShortDateString();
-                                    lblFecha.Refresh();
-                                    progressBarGeneracion.Value = indice;
+                                    lbErrores.Text = "";
+                                    lbErrores.DataSource = null;
+                                    lblProcesando.Visible = true;
+                                    lblNroCliente.Visible = true;
+                                    // Consolidar todos los escalafones
+                                    // 1- Que se cumple el contrato de todos los serivicios
+                                    // 2- Que todos los empleados (no de licencia ni descanso, ni suspendios, trabaja las hs normales correspondientes a su cargo por jornada
+                                    //    6 diasa  la semana, y que tiene un dia de descanso.
+                                    // 3- Que no se solapan los horarios de los emplreados.
+                                    TimeSpan diffTime = fechaHasta - fechaDesde;
+                                    progressBarGeneracion.Minimum = 1;
+                                    progressBarGeneracion.Maximum = diffTime.Days + 1;
+                                    DateTime dateAux = fechaDesde;
+                                    int indice = 1;
+                                    bool huboErrores = false;
                                     
-                                    foreach (ClientEs cli in clientes)
+                                    // Obtenemos la lista de clientes activos.
+                                    //List<ClientEs> clientes = datos.obtenerClientes(true);
+                                    List<ClientEs> clientes = ucTreeClientesServicios.obtenerClientesSeleccionados();
+
+                                    bool sobrescribirHorasGeneradas = false;
+                                    controladorClientes.iniciarGeneracionHoras();
+                                    while (dateAux <= fechaHasta)
                                     {
-                                        lblNroCliente.Text = cli.NumeroCliente.ToString();
-                                        lblNroCliente.Refresh();
-                                        foreach (SERVicIoS ser in cli.SERVicIoS)
+                                        lblFecha.Text = dateAux.ToShortDateString();
+                                        lblFecha.Refresh();
+                                        progressBarGeneracion.Value = indice;
+
+                                        foreach (ClientEs cli in clientes)
                                         {
-                                            try
+                                            lblNroCliente.Text = cli.NumeroCliente.ToString();
+                                            lblNroCliente.Refresh();
+                                            foreach (SERVicIoS ser in cli.SERVicIoS)
                                             {
-                                                controladorClientes.generarHorasDiaServicio((int)cli.NumeroCliente, (int)ser.NumeroServicio, dateAux, sobrescribirHorasGeneradas);
-                                            }
-                                            catch (YaExistenHorasGeneradasParaLaFechaException )
-                                            {
-                                                if (!sobrescribirHorasGeneradas)
+                                                try
                                                 {
-                                                    DialogResult dg2 = MessageBox.Show(this, "Ya existen Horas Generadas en el periodo. Desea sobreescribirlas?", "Ya Existen Horas", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                                                    if (dg2 == DialogResult.Yes)
+                                                    controladorClientes.generarHorasDiaServicio((int)cli.NumeroCliente, (int)ser.NumeroServicio, dateAux, sobrescribirHorasGeneradas);
+                                                }
+                                                catch (YaExistenHorasGeneradasParaLaFechaException)
+                                                {
+                                                    if (!sobrescribirHorasGeneradas)
                                                     {
-                                                        sobrescribirHorasGeneradas = true;
-                                                        controladorClientes.generarHorasDiaServicio((int)cli.NumeroCliente, (int)ser.NumeroServicio, dateAux, sobrescribirHorasGeneradas);
+                                                        DialogResult dg2 = MessageBox.Show(this, "Ya existen Horas Generadas en el periodo. Desea sobreescribirlas?", "Ya Existen Horas", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                                                        if (dg2 == DialogResult.Yes)
+                                                        {
+                                                            sobrescribirHorasGeneradas = true;
+                                                            controladorClientes.generarHorasDiaServicio((int)cli.NumeroCliente, (int)ser.NumeroServicio, dateAux, sobrescribirHorasGeneradas);
+                                                        }
                                                     }
-                                                }                 
-                                            }
-                                            catch (Exception exGen)
-                                            {
-                                                huboErrores = true;
-                                                listaErrores.Add(exGen.Message + ": " + exGen.InnerException.Message);
-                                                break;
+                                                }
+                                                catch (Exception exGen)
+                                                {
+                                                    huboErrores = true;
+                                                    listaErrores.Add(exGen.Message + ": " + exGen.InnerException.Message);
+                                                    break;
+                                                }
                                             }
                                         }
+                                        indice++;
+                                        dateAux = dateAux.AddDays(1);
+                                        if (huboErrores)
+                                            break;
                                     }
-                                    indice++;
-                                    dateAux = dateAux.AddDays(1);
-                                    if (huboErrores)
-                                        break; 
-                                }
-                                if (!huboErrores)
-                                {
-                                    controladorClientes.finalizarGeneracionHoras(true,sobrescribirHorasGeneradas);
-                                    MessageBox.Show(this, "Proceso Finalizado Correctamente.","Generacion Exitosa",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                                }
-                                else
-                                {
-                                    controladorClientes.finalizarGeneracionHoras(false,false);
-                                    lbErrores.DataSource = listaErrores;
-                                    MessageBox.Show(this, "Generacion Cancelada." + "\n" + listaErrores.First(), "Error al Generar", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
+                                    if (!huboErrores)
+                                    {
+                                        controladorClientes.finalizarGeneracionHoras(true, sobrescribirHorasGeneradas);
+                                        MessageBox.Show(this, "Proceso Finalizado Correctamente.", "Generacion Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
+                                    else
+                                    {
+                                        controladorClientes.finalizarGeneracionHoras(false, false);
+                                        lbErrores.DataSource = listaErrores;
+                                        MessageBox.Show(this, "Generacion Cancelada." + "\n" + listaErrores.First(), "Error al Generar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
 
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(this, "Generacion Cancelada." + "\n", "Error al Generar. " + ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                finally
+                                {
+                                    lblProcesando.Visible = false;
+                                    lblNroCliente.Visible = false;
+                                }
                             }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(this, "Generacion Cancelada." + "\n", "Error al Generar. " + ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                            finally
-                            {
-                                lblProcesando.Visible = false;
-                                lblNroCliente.Visible = false;
-                            }
-                        }else
-                            MessageBox.Show(this, "La Fecha Desde debe ser menor a la Fecha Hasta.", "Datos Incorrectos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }else
-                        MessageBox.Show(this, "FechaHasta debe ser mayor o igual a FechaDesde.", "Datos Incorrectos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }else
-                    MessageBox.Show(this, "El formato de la fecha Desde ingresada no es correcto.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //else
+                            //    MessageBox.Show(this, "La Fecha Desde debe ser menor a la Fecha Hasta.", "Datos Incorrectos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                            MessageBox.Show(this, "FechaHasta debe ser mayor o igual a FechaDesde.", "Datos Incorrectos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                        MessageBox.Show(this, "El formato de la fecha Desde ingresada no es correcto.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
+
+       
     }
 }

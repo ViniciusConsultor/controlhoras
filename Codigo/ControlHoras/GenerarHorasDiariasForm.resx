@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="RichTextBoxMensaje.Text" xml:space="preserve">
-    <value>Presione el botón Generar para iniciar el proceso de Generación de las Horas Diarias para todos los Servicios Activos de los Clientes Activos según el Escalafón armado para cada servicio. El proceso de Generación, antes de iniciar, corre una consolidación comprobando la consistencia del Escalafon de todos los servicios.</value>
+    <value>1-Seleccione los serviciosPresione el botón Generar para iniciar el proceso de Generación de las Horas Diarias para todos los Servicios Activos de los Clientes Activos según el Escalafón armado para cada servicio. El proceso de Generación, antes de iniciar, corre una consolidación comprobando la consistencia del Escalafon de todos los servicios.</value>
   </data>
 </root>

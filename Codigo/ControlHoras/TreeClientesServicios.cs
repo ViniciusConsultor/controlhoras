@@ -154,5 +154,34 @@ namespace ControlHoras
                     child.Checked = false;
             }
         }
+
+        public List<ClientEs> obtenerClientesSeleccionados()
+        {
+            try
+            {
+                string auxStr;
+                ClientEs auxCli = null;
+                List<ClientEs> clientes = new List<ClientEs>();
+                foreach (TreeNode tn in tvClientesServicios.Nodes)
+                {
+                    if (tn.Checked)
+                    {
+                        auxStr = tn.Text.Split('|')[0];
+                        auxStr = auxStr.Remove(0, 9).Trim();
+                        //str = str.Remove(str.Length - auxStr-1).Trim();
+                        auxCli = datos.obtenerCliente(int.Parse(auxStr));
+                        clientes.Add(auxCli);
+                    }
+                }
+
+                return clientes;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
     }
 }

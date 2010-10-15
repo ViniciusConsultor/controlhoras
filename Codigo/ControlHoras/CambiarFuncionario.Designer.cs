@@ -42,33 +42,37 @@
             // 
             this.mtFuncionarioNuevo.BackColor = System.Drawing.SystemColors.Window;
             this.mtFuncionarioNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtFuncionarioNuevo.Location = new System.Drawing.Point(26, 89);
+            this.mtFuncionarioNuevo.Location = new System.Drawing.Point(35, 110);
+            this.mtFuncionarioNuevo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mtFuncionarioNuevo.Mask = "9990";
             this.mtFuncionarioNuevo.Name = "mtFuncionarioNuevo";
-            this.mtFuncionarioNuevo.Size = new System.Drawing.Size(44, 22);
+            this.mtFuncionarioNuevo.Size = new System.Drawing.Size(57, 25);
             this.mtFuncionarioNuevo.TabIndex = 14;
             this.mtFuncionarioNuevo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtFuncionarioNuevo_KeyDown);
+            this.mtFuncionarioNuevo.Leave += new System.EventHandler(this.mtFuncionarioNuevo_Leave);
             // 
             // mtFuncionarioActual
             // 
             this.mtFuncionarioActual.AllowPromptAsInput = false;
             this.mtFuncionarioActual.BackColor = System.Drawing.Color.Bisque;
             this.mtFuncionarioActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtFuncionarioActual.Location = new System.Drawing.Point(26, 35);
+            this.mtFuncionarioActual.Location = new System.Drawing.Point(35, 43);
+            this.mtFuncionarioActual.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mtFuncionarioActual.Mask = "0000";
             this.mtFuncionarioActual.Name = "mtFuncionarioActual";
             this.mtFuncionarioActual.ReadOnly = true;
-            this.mtFuncionarioActual.Size = new System.Drawing.Size(44, 22);
+            this.mtFuncionarioActual.Size = new System.Drawing.Size(57, 25);
             this.mtFuncionarioActual.TabIndex = 13;
             // 
             // txtNombreFuncionarioNuevo
             // 
             this.txtNombreFuncionarioNuevo.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtNombreFuncionarioNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombreFuncionarioNuevo.Location = new System.Drawing.Point(76, 90);
+            this.txtNombreFuncionarioNuevo.Location = new System.Drawing.Point(101, 111);
+            this.txtNombreFuncionarioNuevo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNombreFuncionarioNuevo.Name = "txtNombreFuncionarioNuevo";
             this.txtNombreFuncionarioNuevo.ReadOnly = true;
-            this.txtNombreFuncionarioNuevo.Size = new System.Drawing.Size(290, 22);
+            this.txtNombreFuncionarioNuevo.Size = new System.Drawing.Size(385, 25);
             this.txtNombreFuncionarioNuevo.TabIndex = 15;
             this.txtNombreFuncionarioNuevo.TabStop = false;
             // 
@@ -76,10 +80,11 @@
             // 
             this.txtNombreFuncionarioActual.BackColor = System.Drawing.Color.Bisque;
             this.txtNombreFuncionarioActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombreFuncionarioActual.Location = new System.Drawing.Point(76, 36);
+            this.txtNombreFuncionarioActual.Location = new System.Drawing.Point(101, 44);
+            this.txtNombreFuncionarioActual.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNombreFuncionarioActual.Name = "txtNombreFuncionarioActual";
             this.txtNombreFuncionarioActual.ReadOnly = true;
-            this.txtNombreFuncionarioActual.Size = new System.Drawing.Size(290, 22);
+            this.txtNombreFuncionarioActual.Size = new System.Drawing.Size(385, 25);
             this.txtNombreFuncionarioActual.TabIndex = 16;
             this.txtNombreFuncionarioActual.TabStop = false;
             // 
@@ -87,9 +92,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(16, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 16);
+            this.label1.Size = new System.Drawing.Size(174, 20);
             this.label1.TabIndex = 17;
             this.label1.Text = "Cambiar Funcionario";
             // 
@@ -97,9 +103,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 66);
+            this.label2.Location = new System.Drawing.Point(16, 81);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 16);
+            this.label2.Size = new System.Drawing.Size(36, 20);
             this.label2.TabIndex = 18;
             this.label2.Text = "Por";
             // 
@@ -107,9 +114,10 @@
             // 
             this.btnAceptar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnAceptar.Enabled = false;
-            this.btnAceptar.Location = new System.Drawing.Point(88, 139);
+            this.btnAceptar.Location = new System.Drawing.Point(117, 171);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptar.Size = new System.Drawing.Size(100, 28);
             this.btnAceptar.TabIndex = 19;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -117,9 +125,10 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(208, 139);
+            this.btnCancelar.Location = new System.Drawing.Point(277, 171);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.Size = new System.Drawing.Size(100, 28);
             this.btnCancelar.TabIndex = 20;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -127,10 +136,10 @@
             // CambiarFuncionario
             // 
             this.AcceptButton = this.btnAceptar;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(384, 177);
+            this.ClientSize = new System.Drawing.Size(512, 218);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.label2);
@@ -139,9 +148,12 @@
             this.Controls.Add(this.mtFuncionarioActual);
             this.Controls.Add(this.txtNombreFuncionarioNuevo);
             this.Controls.Add(this.txtNombreFuncionarioActual);
+            this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "CambiarFuncionario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CambiarFuncionario";
+            this.Shown += new System.EventHandler(this.CambiarFuncionario_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

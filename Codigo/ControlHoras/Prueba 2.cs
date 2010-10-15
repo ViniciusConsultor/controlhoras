@@ -29,16 +29,17 @@ namespace ControlHoras
 
         private void Prueba_2_Load(object sender, EventArgs e)
         {
-            string aux = "";
+            string aux = "\tCliente:Servicio\tErrores\n";
             Dictionary<string, List<string>>.Enumerator iter = errores.GetEnumerator();
 
             while (iter.MoveNext())
             {
-                aux = aux + iter.Current.Key + "\n";
+                aux = aux + "\t" + iter.Current.Key + "\n";
                 foreach (string er in iter.Current.Value)
                 {
-                    aux = aux + "\t" + er + "\n ";
+                    aux = aux + "\t\t\t" + er + "\n ";
                 }
+                aux = aux + "\n";
             }
                
             erroresTB.Text = aux;
