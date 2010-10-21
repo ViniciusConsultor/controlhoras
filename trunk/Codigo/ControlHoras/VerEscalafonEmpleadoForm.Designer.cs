@@ -29,13 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -43,11 +36,26 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnBuscarFuncionario = new System.Windows.Forms.ToolStripButton();
             this.mtFuncionario = new System.Windows.Forms.MaskedTextBox();
             this.txtNombreFuncionario = new System.Windows.Forms.TextBox();
             this.dgvEscalafonEmpleado = new System.Windows.Forms.DataGridView();
             this.ClienteServicio = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Lunes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Martes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Miercoles = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Jueves = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Viernes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sabado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Domingo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,14 +64,6 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lunes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Martes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Miercoles = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Jueves = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Viernes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sabado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Domingo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnBuscarFuncionario = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEscalafonEmpleado)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -77,30 +77,41 @@
             this.btnBuscarFuncionario});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 36);
+            this.toolStrip1.Size = new System.Drawing.Size(1067, 40);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnBuscarFuncionario
+            // 
+            this.btnBuscarFuncionario.Image = global::ControlHoras.Imagenes.search_user_48x48;
+            this.btnBuscarFuncionario.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnBuscarFuncionario.Name = "btnBuscarFuncionario";
+            this.btnBuscarFuncionario.Size = new System.Drawing.Size(127, 37);
+            this.btnBuscarFuncionario.Text = "Buscar Funcionario";
+            this.btnBuscarFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnBuscarFuncionario.ToolTipText = "Buscar Funcionario";
             // 
             // mtFuncionario
             // 
             this.mtFuncionario.BackColor = System.Drawing.SystemColors.Window;
             this.mtFuncionario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtFuncionario.Location = new System.Drawing.Point(13, 14);
+            this.mtFuncionario.Location = new System.Drawing.Point(17, 17);
+            this.mtFuncionario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mtFuncionario.Mask = "9990";
             this.mtFuncionario.Name = "mtFuncionario";
-            this.mtFuncionario.Size = new System.Drawing.Size(44, 22);
+            this.mtFuncionario.Size = new System.Drawing.Size(57, 25);
             this.mtFuncionario.TabIndex = 19;
             this.mtFuncionario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtFuncionario_KeyDown);
-            this.mtFuncionario.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mtFuncionario_MaskInputRejected);
             // 
             // txtNombreFuncionario
             // 
             this.txtNombreFuncionario.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtNombreFuncionario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombreFuncionario.Location = new System.Drawing.Point(63, 14);
+            this.txtNombreFuncionario.Location = new System.Drawing.Point(84, 17);
+            this.txtNombreFuncionario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNombreFuncionario.Name = "txtNombreFuncionario";
             this.txtNombreFuncionario.ReadOnly = true;
-            this.txtNombreFuncionario.Size = new System.Drawing.Size(290, 22);
+            this.txtNombreFuncionario.Size = new System.Drawing.Size(385, 25);
             this.txtNombreFuncionario.TabIndex = 20;
             this.txtNombreFuncionario.TabStop = false;
             // 
@@ -133,12 +144,14 @@
             this.Domingo});
             this.dgvEscalafonEmpleado.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEscalafonEmpleado.Location = new System.Drawing.Point(0, 0);
+            this.dgvEscalafonEmpleado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvEscalafonEmpleado.MultiSelect = false;
             this.dgvEscalafonEmpleado.Name = "dgvEscalafonEmpleado";
             this.dgvEscalafonEmpleado.ReadOnly = true;
             this.dgvEscalafonEmpleado.RowHeadersVisible = false;
             this.dgvEscalafonEmpleado.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dgvEscalafonEmpleado.Size = new System.Drawing.Size(800, 279);
+            this.dgvEscalafonEmpleado.RowTemplate.Height = 24;
+            this.dgvEscalafonEmpleado.Size = new System.Drawing.Size(1067, 348);
             this.dgvEscalafonEmpleado.TabIndex = 21;
             // 
             // ClienteServicio
@@ -148,10 +161,75 @@
             this.ClienteServicio.Name = "ClienteServicio";
             this.ClienteServicio.ReadOnly = true;
             // 
+            // Lunes
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Lunes.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Lunes.Frozen = true;
+            this.Lunes.HeaderText = "Lunes";
+            this.Lunes.Name = "Lunes";
+            this.Lunes.ReadOnly = true;
+            this.Lunes.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Martes
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Martes.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Martes.Frozen = true;
+            this.Martes.HeaderText = "Martes";
+            this.Martes.Name = "Martes";
+            this.Martes.ReadOnly = true;
+            // 
+            // Miercoles
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Miercoles.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Miercoles.Frozen = true;
+            this.Miercoles.HeaderText = "Miercoles";
+            this.Miercoles.Name = "Miercoles";
+            this.Miercoles.ReadOnly = true;
+            // 
+            // Jueves
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Jueves.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Jueves.Frozen = true;
+            this.Jueves.HeaderText = "Jueves";
+            this.Jueves.Name = "Jueves";
+            this.Jueves.ReadOnly = true;
+            // 
+            // Viernes
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Viernes.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Viernes.Frozen = true;
+            this.Viernes.HeaderText = "Viernes";
+            this.Viernes.Name = "Viernes";
+            this.Viernes.ReadOnly = true;
+            // 
+            // Sabado
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Sabado.DefaultCellStyle = dataGridViewCellStyle7;
+            this.Sabado.Frozen = true;
+            this.Sabado.HeaderText = "Sabado";
+            this.Sabado.Name = "Sabado";
+            this.Sabado.ReadOnly = true;
+            // 
+            // Domingo
+            // 
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Domingo.DefaultCellStyle = dataGridViewCellStyle8;
+            this.Domingo.Frozen = true;
+            this.Domingo.HeaderText = "Domingo";
+            this.Domingo.Name = "Domingo";
+            this.Domingo.ReadOnly = true;
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 36);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 40);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -163,8 +241,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dgvEscalafonEmpleado);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 335);
-            this.splitContainer1.SplitterDistance = 52;
+            this.splitContainer1.Size = new System.Drawing.Size(1067, 417);
+            this.splitContainer1.SplitterDistance = 64;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 22;
             // 
             // dataGridViewTextBoxColumn1
@@ -231,87 +310,14 @@
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
             // 
-            // Lunes
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Lunes.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Lunes.Frozen = true;
-            this.Lunes.HeaderText = "Lunes";
-            this.Lunes.Name = "Lunes";
-            this.Lunes.ReadOnly = true;
-            this.Lunes.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Martes
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Martes.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Martes.Frozen = true;
-            this.Martes.HeaderText = "Martes";
-            this.Martes.Name = "Martes";
-            this.Martes.ReadOnly = true;
-            // 
-            // Miercoles
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Miercoles.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Miercoles.Frozen = true;
-            this.Miercoles.HeaderText = "Miercoles";
-            this.Miercoles.Name = "Miercoles";
-            this.Miercoles.ReadOnly = true;
-            // 
-            // Jueves
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Jueves.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Jueves.Frozen = true;
-            this.Jueves.HeaderText = "Jueves";
-            this.Jueves.Name = "Jueves";
-            this.Jueves.ReadOnly = true;
-            // 
-            // Viernes
-            // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Viernes.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Viernes.Frozen = true;
-            this.Viernes.HeaderText = "Viernes";
-            this.Viernes.Name = "Viernes";
-            this.Viernes.ReadOnly = true;
-            // 
-            // Sabado
-            // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Sabado.DefaultCellStyle = dataGridViewCellStyle7;
-            this.Sabado.Frozen = true;
-            this.Sabado.HeaderText = "Sabado";
-            this.Sabado.Name = "Sabado";
-            this.Sabado.ReadOnly = true;
-            // 
-            // Domingo
-            // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Domingo.DefaultCellStyle = dataGridViewCellStyle8;
-            this.Domingo.Frozen = true;
-            this.Domingo.HeaderText = "Domingo";
-            this.Domingo.Name = "Domingo";
-            this.Domingo.ReadOnly = true;
-            // 
-            // btnBuscarFuncionario
-            // 
-            this.btnBuscarFuncionario.Image = global::ControlHoras.Imagenes.search_user_48x48;
-            this.btnBuscarFuncionario.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnBuscarFuncionario.Name = "btnBuscarFuncionario";
-            this.btnBuscarFuncionario.Size = new System.Drawing.Size(101, 33);
-            this.btnBuscarFuncionario.Text = "Buscar Funcionario";
-            this.btnBuscarFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnBuscarFuncionario.ToolTipText = "Buscar Funcionario";
-            // 
             // VerEscalafonEmpleadoForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 371);
+            this.ClientSize = new System.Drawing.Size(1067, 457);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "VerEscalafonEmpleadoForm";
             this.Text = "VerEscalafonEmpleado";
             this.toolStrip1.ResumeLayout(false);

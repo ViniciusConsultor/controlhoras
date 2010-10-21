@@ -34,11 +34,11 @@ namespace ControlHoras
             {
                 try
                 {
+                    dgvEscalafonEmpleado.Rows.Clear();
                     EmPleadOs Funcionario = datos.obtenerEmpleado(int.Parse(mtFuncionario.Text));
                     mtFuncionario.Text = Funcionario.NroEmpleado.ToString();
                     txtNombreFuncionario.Text = Funcionario.Nombre + " " + Funcionario.Apellido;
                     cargarGrilla(Funcionario);
-
                 }
                 catch (Exception ex)
                 {
@@ -107,11 +107,8 @@ namespace ControlHoras
                     dgvEscalafonEmpleado.Rows.RemoveAt(n);
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
 
-        private void mtFuncionario_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
+            dgvEscalafonEmpleado.ClearSelection();
+        }       
     }
 }

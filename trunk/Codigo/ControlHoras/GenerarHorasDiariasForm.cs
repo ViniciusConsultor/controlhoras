@@ -22,7 +22,7 @@ namespace ControlHoras
             InitializeComponent();
             datos = ControladorDatos.getInstance();
             controladorClientes = ControladorClientesServicios.getInstance();
-            RichTextBoxMensaje.Text = "1-Seleccione los clientes\n2-Presione el botón Generar para iniciar el proceso de Generación de las Horas Diarias para todos los Servicios Activos de los Clientes Activos seleccionados, según el Escalafón armado para cada servicio. El proceso de Generación, antes de iniciar, corre una consolidación comprobando la consistencia del Escalafon de todos los servicios.";
+            RichTextBoxMensaje.Text = "1-Seleccione los servicios\n2-Presione el botón Generar para iniciar el proceso de Generación de las Horas Diarias para todos los Servicios Activos seleccionados, según el Escalafón armado para cada servicio. El proceso de Generación, antes de iniciar, corre una consolidación comprobando la consistencia del Escalafon de todos los servicios.";
         }
 
         private void GenerarHorasDiariasForm_Load(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace ControlHoras
 
             //*********CONTROL CURRERO
             fechaDesde = DateTime.Now;
-            fechaHasta = DateTime.ParseExact("26/10/2010", @"dd/MM/yyyy", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+            fechaHasta = DateTime.ParseExact("31/10/2010", @"dd/MM/yyyy", System.Globalization.DateTimeFormatInfo.InvariantInfo);
             if (fechaDesde < fechaHasta)
             {
 
@@ -79,7 +79,10 @@ namespace ControlHoras
                                     
                                     // Obtenemos la lista de clientes activos.
                                     //List<ClientEs> clientes = datos.obtenerClientes(true);
-                                    List<ClientEs> clientes = ucTreeClientesServicios.obtenerClientesSeleccionados();
+                                    //List<ClientEs> clientes = ucTreeClientesServicios.obtenerClientesSeleccionados();
+                                    Dictionary<int, List<int>> clientesServiciosSeleccionados = ucTreeClientesServicios.obtenerClientesServiciosSeleccionados();
+                                    Dictionary<int, List<int>>.Enumerator iter = clientesServiciosSeleccionados.GetEnumerator();
+                                    int nroCliente;
 
                                     bool sobrescribirHorasGeneradas = false;
                                     controladorClientes.iniciarGeneracionHoras();
@@ -88,7 +91,9 @@ namespace ControlHoras
                                         lblFecha.Text = dateAux.ToShortDateString();
                                         lblFecha.Refresh();
                                         progressBarGeneracion.Value = indice;
-
+                                        
+                                        
+                                        /*
                                         foreach (ClientEs cli in clientes)
                                         {
                                             lblNroCliente.Text = cli.NumeroCliente.ToString();
@@ -118,7 +123,44 @@ namespace ControlHoras
                                                     break;
                                                 }
                                             }
+                                        }*/
+
+
+                                        while (iter.MoveNext())
+                                        {
+                                            nroCliente = iter.Current.Key;
+
+                                            lblNroCliente.Text = nroCliente.ToString();
+                                            lblNroCliente.Refresh();
+                                            
+                                            foreach (int nroServicio in iter.Current.Value)
+                                            {
+                                                try
+                                                {
+                                                    controladorClientes.generarHorasDiaServicio(nroCliente, nroServicio, dateAux, sobrescribirHorasGeneradas);
+                                                }
+                                                catch (YaExistenHorasGeneradasParaLaFechaException)
+                                                {
+                                                    if (!sobrescribirHorasGeneradas)
+                                                    {
+                                                        DialogResult dg2 = MessageBox.Show(this, "Ya existen Horas Generadas en el periodo. Desea sobreescribirlas?", "Ya Existen Horas", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                                                        if (dg2 == DialogResult.Yes)
+                                                        {
+                                                            sobrescribirHorasGeneradas = true;
+                                                            controladorClientes.generarHorasDiaServicio(nroCliente, nroServicio, dateAux, sobrescribirHorasGeneradas);
+                                                        }
+                                                    }
+                                                }
+                                                catch (Exception exGen)
+                                                {
+                                                    huboErrores = true;
+                                                    listaErrores.Add(exGen.Message + ": " + exGen.InnerException.Message);
+                                                    break;
+                                                }
+                                            }                                           
                                         }
+                                        
+                                        iter = clientesServiciosSeleccionados.GetEnumerator();
                                         indice++;
                                         dateAux = dateAux.AddDays(1);
                                         if (huboErrores)
