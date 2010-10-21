@@ -742,7 +742,7 @@ namespace ControlHoras
                 {
                     ActualizarHporCubrir();
                     int n = dgEscalafon.Rows.Add();
-                    ((DataGridViewComboBoxCell)dgEscalafon.Rows[n].Cells[dgEscalafon.Columns.Count - 1]).Value = "Empresa";
+                    ((DataGridViewComboBoxCell)dgEscalafon.Rows[n].Cells[dgEscalafon.Columns.Count - 1]).Value = "Cliente";
                     
                     dgEscalafon.Focus();
                     dgEscalafon.CurrentCell = dgEscalafon.Rows[n].Cells[0];
@@ -754,7 +754,7 @@ namespace ControlHoras
             else
             {
                 int n = dgEscalafon.Rows.Add();
-                ((DataGridViewComboBoxCell)dgEscalafon.Rows[n].Cells[dgEscalafon.Columns.Count - 1]).Value = "Empresa";
+                ((DataGridViewComboBoxCell)dgEscalafon.Rows[n].Cells[dgEscalafon.Columns.Count - 1]).Value = "Cliente";
                 
                 dgEscalafon.Focus();
                 dgEscalafon.CurrentCell = dgEscalafon.Rows[n].Cells[0];
