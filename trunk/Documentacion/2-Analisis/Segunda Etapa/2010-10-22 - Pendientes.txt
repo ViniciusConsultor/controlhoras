@@ -1,0 +1,13 @@
+1-MotivosCambiosDiarios: Guardar la fecha del dia del cambio, no la de hoy.
+2-Listado MotivosCambiosDirios: Nombre antes del Apellido y Poner cliente y servicio como nombres.
+Pronto, Consulta:
+select DATE(mcd.Fecha) as Fecha,cli.Nombre as Cliente,ser.Nombre as Servicio,mcd.NroEmpleado,emp.Nombre,emp.Apellido,tmcd.descripcion,mcd.Observaciones from Clientes cli, Servicios ser, empleados emp, motivoscambiosdiarios mcd, tiposmotivocambiodiario tmcd where DATE(mcd.Fecha)='FECHA' and emp.NroEmpleado= mcd.NroEmpleado and tmcd.IdTipoMotivo=mcd.IdTipoMotivo and cli.NumeroCliente=mcd.NumeroCliente and ser.NumeroCliente = mcd.NumeroCliente and ser.NumeroServicio = mcd.NumeroServicio
+
+3-Agregar Columna de HsLlamada en el listado.
+Pronto, faltaba el join del empleado. Consulta: 
+select cli.Nombre as Cliente,ser.Nombre as Servicio,date_add(hge.HoraEntrada,INTERVAL -escemp.HsLlamadaAntesHoraInicio HOUR) as HoraLlamada, hge.HoraEntrada,hge.HoraSalida,emp.Nombre, emp.Apellido, emp.CelularenConvenio from EscalafonEmpleado escemp, Empleados emp, horasgeneradasescalafon hge, Clientes cli, Servicios ser where emp.NroEmpleado = hge.NroEmpleado and hge.FechaCorrespondiente='FECHA' and hge.HoraEntrada is not null and hge.HoraSalida is not null and escemp.NroEmpleado=hge.NroEmpleado and escemp.IdEscalafon=hge.NumeroCliente*1000+hge.NumeroServicio and cli.NumeroCliente=hge.NumeroCliente and ser.NumeroCliente = hge.NumeroCliente and ser.NumeroServicio = hge.NumeroServicio;
+
+
+4-Contrato y Escalafon aceptar vacios.
+5-Ver el tema de la generacion de horas con la sobreescritura.
+6-Eliminar la creacion del pdf
