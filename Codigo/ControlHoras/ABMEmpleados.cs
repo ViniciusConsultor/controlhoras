@@ -1152,7 +1152,7 @@ namespace ControlHoras
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message + " - " + ex.InnerException, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, ex.Message + " - " + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -2584,20 +2584,23 @@ namespace ControlHoras
 
         private void formularioDGIToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string pathdoc = Path.Combine(dirbase, dirRelativaDocs);
-            string pdftemplate = Path.Combine(pathdoc, "formulario 3100 DGI.pdf");
-            
-            //string nomEmpresa = "Trust";
+            string pathdoc;
+            // Obtengo el directorio temporal 
             try
             {
-                PdfReader pdfReader = new PdfReader(pdftemplate);
-
-                //saveFileEmpleados.Filter = "Acrobat Reader (*.pdf)|*.pdf";
-                //saveFileEmpleados.FileName = 
-                //DialogResult OKSave =  saveFileEmpleados.ShowDialog(this);
-                //if (OKSave == DialogResult.OK)
-                //{
-                string newFile = mtNumeroEmpleado.Text + "-" + txtNombre.Text + " " + txtApellido.Text + "-FormularioDGI.pdf";
+                pathdoc = Environment.GetEnvironmentVariable("temp");
+            }
+            catch
+            {
+                pathdoc = System.IO.Path.GetTempPath();
+            }
+            string pdftemplate = Path.Combine(pathdoc, "formulario 3100 DGI.pdf");
+            
+            string newFile = mtNumeroEmpleado.Text + "-" + txtNombre.Text + " " + txtApellido.Text + "-FormularioDGI.pdf";
+            
+            try
+            {
+                PdfReader pdfReader = new PdfReader(pdftemplate);                                
                 PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileStream(newFile, FileMode.Create));
                 AcroFields pdfFormFields = pdfStamper.AcroFields;
 
@@ -2633,22 +2636,24 @@ namespace ControlHoras
                 pdfFormFields.SetField("R6.CI", mtNumeroDocumento.Text);
 
                 pdfStamper.Close();
-                //DialogResult okOpen = MessageBox.Show("Documento creado correctamente. Desea abrirlo ahora?", "Abrir Formulario DGI 3100...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                //if (okOpen == DialogResult.Yes)
-                //{
-                // try forcing the window to be full-screen maximized
+                
                 System.Diagnostics.ProcessStartInfo defapp = new System.Diagnostics.ProcessStartInfo();
 
                 defapp.FileName = newFile;
                 defapp.WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized;
+                
                 System.Diagnostics.Process.Start(defapp);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar el documento para el funcionario.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            //finally
+            //{
+            //    if (docCreated)
+            //        File.Delete(newFile);
             //}
-            // }
+            
         }
 
         private void PruebaBtn_Click(object sender, EventArgs e)
