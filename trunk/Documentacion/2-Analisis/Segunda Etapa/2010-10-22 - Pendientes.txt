@@ -1,4 +1,6 @@
-1-MotivosCambiosDiarios: Guardar la fecha del dia del cambio, no la de hoy.
+1-MotivosCambiosDiarios: Guardar la fecha del dia del cambio, no la de hoy.  
+Pronto. Se modifico el MotivoCambioDiarioForm.cs para que el constructor acepte una fecha por parametro. Se utiliza esta fecha para guardar el registro.
+
 2-Listado MotivosCambiosDirios: Nombre antes del Apellido y Poner cliente y servicio como nombres.
 Pronto, Consulta:
 select DATE(mcd.Fecha) as Fecha,cli.Nombre as Cliente,ser.Nombre as Servicio,mcd.NroEmpleado,emp.Nombre,emp.Apellido,tmcd.descripcion,mcd.Observaciones from Clientes cli, Servicios ser, empleados emp, motivoscambiosdiarios mcd, tiposmotivocambiodiario tmcd where DATE(mcd.Fecha)='FECHA' and emp.NroEmpleado= mcd.NroEmpleado and tmcd.IdTipoMotivo=mcd.IdTipoMotivo and cli.NumeroCliente=mcd.NumeroCliente and ser.NumeroCliente = mcd.NumeroCliente and ser.NumeroServicio = mcd.NumeroServicio
@@ -9,5 +11,8 @@ select cli.Nombre as Cliente,ser.Nombre as Servicio,date_add(hge.HoraEntrada,INT
 
 
 4-Contrato y Escalafon aceptar vacios.
+
 5-Ver el tema de la generacion de horas con la sobreescritura.
+
 6-Eliminar la creacion del pdf
+Pronto. Se crea el archivo en el directorio temporal del usuario o de windows. Depende de como este definida la variable de ambiente "TEMP" del usuario.

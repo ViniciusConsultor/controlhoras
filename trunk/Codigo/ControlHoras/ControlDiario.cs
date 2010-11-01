@@ -149,7 +149,7 @@ namespace ControlHoras
 
                 if (dg == DialogResult.OK)
                 {
-                    MotivoCambioDiarioForm mcdf = new MotivoCambioDiarioForm();
+                    MotivoCambioDiarioForm mcdf = new MotivoCambioDiarioForm(DateTime.Parse(mtFecha.Text));
                     dg = mcdf.ShowDialog(this);
                     if (dg == DialogResult.OK)
                     {
@@ -212,7 +212,7 @@ namespace ControlHoras
 
                 if (dg == DialogResult.OK)
                 {
-                    MotivoCambioDiarioForm mcdf = new MotivoCambioDiarioForm();
+                    MotivoCambioDiarioForm mcdf = new MotivoCambioDiarioForm(DateTime.Parse(mtFecha.Text));
                     dg = mcdf.ShowDialog(this);
                     if (dg == DialogResult.OK)
                     {
@@ -338,7 +338,7 @@ namespace ControlHoras
 
                 if (dg == DialogResult.OK)
                 {
-                    MotivoCambioDiarioForm mcdf = new MotivoCambioDiarioForm();
+                    MotivoCambioDiarioForm mcdf = new MotivoCambioDiarioForm(DateTime.Parse(mtFecha.Text));
                     dg = mcdf.ShowDialog(this);
                     if (dg == DialogResult.OK)
                     {
