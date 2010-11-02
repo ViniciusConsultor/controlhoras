@@ -17,11 +17,13 @@ namespace ControlHoras
         public EmPleadOs funcionario { get; private set; }
         public DateTime HoraInicio { get; private set; }
         public DateTime HoraFin { get; private set; }
+        public DateTime FechaCorresponde { get; set; }
         public MotIVOsCamBiosDiARioS MotivoCambio { get; private set; }
 
-        public ControlDiarioAgregarFuncionario()
+        public ControlDiarioAgregarFuncionario(DateTime fecha)
         {
             InitializeComponent();
+            FechaCorresponde = fecha;
             controller = Datos.ControladorDatos.getInstance();
             btnAceptar.Enabled = false;
         }
@@ -122,7 +124,7 @@ namespace ControlHoras
                             DialogResult res = MessageBox.Show("La HoraFin es inferior a la HoraInicio. La HoraFin corresponde al dia de mañana?", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                             if (res == DialogResult.Yes)
                             {
-                                MotivoCambioDiarioForm mcdf = new MotivoCambioDiarioForm();
+                                MotivoCambioDiarioForm mcdf = new MotivoCambioDiarioForm(FechaCorresponde);
                                 DialogResult dr = mcdf.ShowDialog(this);
                                 if (dr == DialogResult.OK)
                                 {
@@ -137,7 +139,7 @@ namespace ControlHoras
                         }
                         else
                         {
-                            MotivoCambioDiarioForm mcdf = new MotivoCambioDiarioForm();
+                            MotivoCambioDiarioForm mcdf = new MotivoCambioDiarioForm(FechaCorresponde);
                             DialogResult dr = mcdf.ShowDialog(this);
                             if (dr == DialogResult.OK)
                             {
