@@ -267,7 +267,7 @@ namespace ControlHoras
         {
             try
             {
-                ControlDiarioAgregarFuncionario cdaf = new ControlDiarioAgregarFuncionario();
+                ControlDiarioAgregarFuncionario cdaf = new ControlDiarioAgregarFuncionario(DateTime.Parse(mtFecha.Text));
                 DialogResult res = cdaf.ShowDialog(this);
                 if (res == DialogResult.OK)
                 {

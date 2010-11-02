@@ -76,7 +76,7 @@ namespace ControlHoras
                 Info = new FileInfo(exefile);
                 //dirbase = Info.Directory.Parent.Parent.FullName;
                 dirbase = Info.DirectoryName;//System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
-                
+
                 try
                 {
                     dirRelativaDocs = ConfigurationManager.AppSettings["DirectorioRelativoDocs"].ToString();
@@ -103,7 +103,7 @@ namespace ControlHoras
         private void ABMEmpleados_Load(object sender, EventArgs e)
         {
             #region CargaCombos
-          
+
             // Combo Departamentos
             try
             {
@@ -208,9 +208,9 @@ namespace ControlHoras
 
             #endregion
 
-          //  btnCancelar.PerformClick();
+            //  btnCancelar.PerformClick();
             mtNumeroDocumento.ContextMenu = new ContextMenu();
-           
+
             mtNumeroDocumento.Focus();
         }
 
@@ -220,10 +220,10 @@ namespace ControlHoras
 
             BindingSource bs = new BindingSource();
             bs.DataSource = docs;
-           
+
             cmb.ValueMember = "Key";
             cmb.DisplayMember = "Value";
-           
+
             if (cmb.DataSource != null)
             {
                 cmb.BindingContext[cmb.DataSource].SuspendBinding();
@@ -232,7 +232,7 @@ namespace ControlHoras
             }
             else
                 cmb.DataSource = bs;
-            
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -396,7 +396,7 @@ namespace ControlHoras
                     else if (tipoDelControl == "System.Windows.Forms.PictureBox")
                     {
                         ((PictureBox)c).Image = null;
-                    }                    
+                    }
                 }
             }
         }
@@ -409,14 +409,14 @@ namespace ControlHoras
                 EmPleadOs empleado;
 
                 try
-                {                    
+                {
                     if (sistema.existeEmpleado(int.Parse(mtNumeroEmpleado.Text)))
                     {
                         empleado = datos.obtenerEmpleado(int.Parse(mtNumeroEmpleado.Text));
                         limpiarForm();
                         if (empleado.Activo == 1)
                         {
-                            
+
                             habilitarPermisosEmpleado(true);
                             //lblEstadoEmpleado.Visible = true;
                             //lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
@@ -768,7 +768,7 @@ namespace ControlHoras
             {
                 cmbMutualista.SelectedValue = (int)empleado.IDMutualista;
             }
-            catch (Exception e) { }           
+            catch (Exception e) { }
             try
             {
                 txtNombre.Text = empleado.Nombre;
@@ -983,10 +983,10 @@ namespace ControlHoras
             DateTime? dtpFechaNac;
             DateTime? dtpFechaEnCelu;
             DateTime? dtpFechaIng;
-            DateTime? dtpBaja = null; 
+            DateTime? dtpBaja = null;
             DateTime? dtpFechaIngRen;
             DateTime? dtpFechaAlBPS;
-            DateTime? dtpFechaBaBPS;            
+            DateTime? dtpFechaBaBPS;
             DateTime? dtpFechaEmCAJ;
             DateTime? dtpFechaEnCAJ;
             DateTime? dtpFechaIngPolMil;
@@ -1015,7 +1015,7 @@ namespace ControlHoras
                 }
                 bool combatiente = false; //cbCombatiente.Checked;
                 bool antecedentesPolicialesOMilitares = cbAntecedentePolicialoMilitar.Checked;
-                int idcargo=-1;
+                int idcargo = -1;
                 try
                 {
                     idcargo = (int)cmbTiposCargos.SelectedValue;
@@ -1042,7 +1042,7 @@ namespace ControlHoras
                 if (mtAcumulacionBPS.Text != "")
                     if (!int.TryParse(mtAcumulacionBPS.Text, out acumulacionLaboral))
                         throw new Exception("Error de parseo al obtener la AcumulacionLaboral.");
-                    
+
                 int cantMenoresACargo = 0;
                 if (mtCantidadHijos.Text != "")
                     if (!int.TryParse(mtCantidadHijos.Text, out cantMenoresACargo))
@@ -1065,12 +1065,12 @@ namespace ControlHoras
                     dtpFechaNac = null;
                 else
                     dtpFechaNac = DateTime.ParseExact(dtpFechaNacimiento.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-                
+
                 if (dtpFechaEntregaCelular.Text == fechaMask)
                     dtpFechaEnCelu = null;
                 else
                     dtpFechaEnCelu = DateTime.ParseExact(dtpFechaEntregaCelular.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-                
+
                 if (dtpFechaIngreso.Text == fechaMask)
                     dtpFechaIng = null;
                 else
@@ -1090,7 +1090,7 @@ namespace ControlHoras
                     dtpFechaBaBPS = null;
                 else
                     dtpFechaBaBPS = DateTime.ParseExact(dtpFechaBajaBPS.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-                
+
                 string ServicioActual = txtServicioActual.Text;
                 string Turno = cmbTurno.Text;
                 float valorHora = 0;
@@ -1105,7 +1105,7 @@ namespace ControlHoras
                     dtpFechaPagoEfectuado = null;
                 else
                     dtpFechaPagoEfectuado = DateTime.ParseExact(mtFechaPagoEfectuado.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-   
+
                 if (dtpFechaEmisionCAJ.Text == fechaMask)
                     dtpFechaEmCAJ = null;
                 else
@@ -1146,9 +1146,9 @@ namespace ControlHoras
                     datos.modificarEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, valorHora, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, idciudad, idbarrio, txtCodigoPostal.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, cbBajadoBPS.Checked, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTallePantalon.Text, txtTalleCamisa.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, cmbNivelEducativo.SelectedItem.ToString(), idcargo, dtpFechaPagoEfectuado, dtpFechaPagoPrevisto, ServicioActual, Turno, cbConstanciaDomicilio.Checked, dtpFechaEnCelu);
                     MessageBox.Show("Datos guardados correctamente.", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-              // JG. Se comenta para que al guardar permanezca cargado el funcionario.
-              //  btnCancelar.PerformClick();
-                
+                // JG. Se comenta para que al guardar permanezca cargado el funcionario.
+                //  btnCancelar.PerformClick();
+
             }
             catch (Exception ex)
             {
@@ -1160,7 +1160,7 @@ namespace ControlHoras
         {
             // Chequeo Campos Obligatorios
             if (checkDatosObligatorios())
-            {                
+            {
                 try
                 {
                     agregarOModificarEmpleado(true);
@@ -1217,7 +1217,7 @@ namespace ControlHoras
             }
 
         }
-       
+
 
         private int calcularEdad(DateTime fecha)
         {
@@ -1590,7 +1590,7 @@ namespace ControlHoras
 
                 // llenado de la grilla con estos datos
 
-                
+
                 foreach (CuOtAsExtrasLiquidAcIon cel in listaCuotas)
                 {
                     n = dgvExtrasLiquidacion.Rows.Add();
@@ -1641,8 +1641,8 @@ namespace ControlHoras
                 mtExtrasValor.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["Valor"].Value.ToString();
                 mtExtrasCantCuotas.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["CantidadCuotas"].Value.ToString();
                 btnExtrasAgregar.Enabled = false;
-              //  btnExtrasGuardar.Enabled = true;
-              //  btnExtrasEliminar.Enabled = true;
+                //  btnExtrasGuardar.Enabled = true;
+                //  btnExtrasEliminar.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -1845,7 +1845,7 @@ namespace ControlHoras
             if (ori.Length > 1)
             {
                 string dest = ori.Trim();
-                return dest.Substring(0, 1).ToUpper() + dest.Substring(1).ToLower();                
+                return dest.Substring(0, 1).ToUpper() + dest.Substring(1).ToLower();
             }
             else
                 return ori;
@@ -2128,8 +2128,8 @@ namespace ControlHoras
         private void dtpFechaBaja_Validated(object sender, EventArgs e)
         {
             errorProvider1.SetError(dtpFechaBaja, "");
-            cbBajadoBPS.Checked  = true;
-            dtpFechaBajaBPS.Text  = dtpFechaBaja.Text;
+            cbBajadoBPS.Checked = true;
+            dtpFechaBajaBPS.Text = dtpFechaBaja.Text;
         }
 
         private void dtpFechaEgresoPolicialMilitar_Validated(object sender, EventArgs e)
@@ -2168,7 +2168,7 @@ namespace ControlHoras
         private void mtFechaPagoEfectuado_Validated(object sender, EventArgs e)
         {
             errorProvider1.SetError(mtFechaPagoEfectuado, "");
-            
+
         }
 
         private void mtFechaPrevistaPago_Validated(object sender, EventArgs e)
@@ -2341,11 +2341,11 @@ namespace ControlHoras
 
             Word._Application oWord = null;
             Word._Document oDoc;
-            
+
             try
             {
                 oWord = new Word.Application();
-                
+
                 oDoc = oWord.Documents.Open(ref fileName,
                             ref missing, ref readOnly, ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing, ref missing, ref missing,
@@ -2393,9 +2393,9 @@ namespace ControlHoras
             }
             catch (Exception ex)
             {
-            //    if (oWord != null) 
-            //        oWord.Quit(Sa wdDoNotSaveChanges,
-                MessageBox.Show("Error al cargar el documento Movistar.doc desde la ruta "+ pathdoc + ".\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    if (oWord != null) 
+                //        oWord.Quit(Sa wdDoNotSaveChanges,
+                MessageBox.Show("Error al cargar el documento Movistar.doc desde la ruta " + pathdoc + ".\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -2584,24 +2584,32 @@ namespace ControlHoras
 
         private void formularioDGIToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string pathdoc;
-            // Obtengo el directorio temporal 
+            string pathdoc = Path.Combine(dirbase, dirRelativaDocs);
+            string pdftemplate = Path.Combine(pathdoc, "formulario_3100_DGI.pdf");
+            
+            //string nomEmpresa = "Trust";
             try
             {
-                pathdoc = Environment.GetEnvironmentVariable("temp");
-            }
-            catch
-            {
-                pathdoc = System.IO.Path.GetTempPath();
-            }
-            string pdftemplate = Path.Combine(pathdoc, "formulario 3100 DGI.pdf");
-            
-            string newFile = mtNumeroEmpleado.Text + "-" + txtNombre.Text + " " + txtApellido.Text + "-FormularioDGI.pdf";
-            
-            try
-            {
-                PdfReader pdfReader = new PdfReader(pdftemplate);                                
-                PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileStream(newFile, FileMode.Create));
+                string cp;
+                // Obtengo el directorio temporal 
+                try
+                {
+                    cp = Environment.GetEnvironmentVariable("temp");
+                }
+                catch
+                {
+                    cp = System.IO.Path.GetTempPath();
+                }
+                
+                cp = Path.Combine(cp, "formulario_3100_DGI.pdf");
+
+
+                PdfReader pdfReader = new PdfReader(pdftemplate);
+
+
+                
+                //string newFile = mtNumeroEmpleado.Text + "-" + txtNombre.Text + " " + txtApellido.Text + "-FormularioDGI.pdf";
+                PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileStream(cp, FileMode.Create));
                 AcroFields pdfFormFields = pdfStamper.AcroFields;
 
 
@@ -2636,72 +2644,69 @@ namespace ControlHoras
                 pdfFormFields.SetField("R6.CI", mtNumeroDocumento.Text);
 
                 pdfStamper.Close();
-                
+                //DialogResult okOpen = MessageBox.Show("Documento creado correctamente. Desea abrirlo ahora?", "Abrir Formulario DGI 3100...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //if (okOpen == DialogResult.Yes)
+                //{
+                // try forcing the window to be full-screen maximized
                 System.Diagnostics.ProcessStartInfo defapp = new System.Diagnostics.ProcessStartInfo();
 
-                defapp.FileName = newFile;
+                defapp.FileName = cp;
                 defapp.WindowStyle = System.Diagnostics.ProcessWindowStyle.Maximized;
-                
                 System.Diagnostics.Process.Start(defapp);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar el documento para el funcionario.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            //finally
-            //{
-            //    if (docCreated)
-            //        File.Delete(newFile);
-            //}
-            
+            }            
+
         }
 
-        private void PruebaBtn_Click(object sender, EventArgs e)
-        {
-            string pathdoc = Path.Combine(dirbase, dirRelativaDocs);
-            string pdftemplate = Path.Combine(pathdoc, "formulario 3100 DGI.pdf");
-            
-            PdfReader pdfReader = new PdfReader(pdftemplate);
-            string newFile = mtNumeroEmpleado.Text + "-" + txtNombre.Text + " " + txtApellido.Text + "-FormularioDGI.pdf";
-            PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileStream(newFile, FileMode.Create));
-            AcroFields pdfFormFields = pdfStamper.AcroFields;
+        //private void PruebaBtn_Click(object sender, EventArgs e)
+        //{
+        //    string pathdoc = Path.Combine(dirbase, dirRelativaDocs);
+        //    string pdftemplate = Path.Combine(pathdoc, "formulario_3100_DGI.pdf");
 
-            object oEndOfDoc = "\\endofdoc"; /* \endofdoc is a predefined bookmark */
+        //    PdfReader pdfReader = new PdfReader(pdftemplate);
+        //    string newFile = mtNumeroEmpleado.Text + "-" + txtNombre.Text + " " + txtApellido.Text + "-FormularioDGI.pdf";
+        //    PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileStream(newFile, FileMode.Create));
+        //    AcroFields pdfFormFields = pdfStamper.AcroFields;
 
-            //Start Word and create a new document.
-            Word._Application oWord;
-            Word._Document oDoc;
-            oWord = new Word.Application();
-            oWord.Visible = true;
-            try
-            {
-                oDoc = oWord.Documents.Add(ref missing, ref missing,
-                    ref missing, ref missing);
+        //    object oEndOfDoc = "\\endofdoc"; /* \endofdoc is a predefined bookmark */
+
+        //    //Start Word and create a new document.
+        //    Word._Application oWord;
+        //    Word._Document oDoc;
+        //    oWord = new Word.Application();
+        //    oWord.Visible = true;
+        //    try
+        //    {
+        //        oDoc = oWord.Documents.Add(ref missing, ref missing,
+        //            ref missing, ref missing);
 
 
-                //Insert a paragraph at the end of the document.
-                Word.Paragraph oPara2;
-                object oRng = null;
+        //        //Insert a paragraph at the end of the document.
+        //        Word.Paragraph oPara2;
+        //        object oRng = null;
 
-                System.Collections.Hashtable h = pdfFormFields.Fields;
+        //        System.Collections.Hashtable h = pdfFormFields.Fields;
 
-                foreach (System.Collections.DictionaryEntry d in h)
-                {
-                    oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
-                    oPara2 = oDoc.Content.Paragraphs.Add(ref oRng);
-                    oPara2.Range.Text = d.Key.ToString();
-                    oPara2.Format.SpaceAfter = 6;
-                    oPara2.Range.InsertParagraphAfter();
-                }
+        //        foreach (System.Collections.DictionaryEntry d in h)
+        //        {
+        //            oRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
+        //            oPara2 = oDoc.Content.Paragraphs.Add(ref oRng);
+        //            oPara2.Range.Text = d.Key.ToString();
+        //            oPara2.Format.SpaceAfter = 6;
+        //            oPara2.Range.InsertParagraphAfter();
+        //        }
 
-                pdfStamper.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar el documento para el funcionario.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            
-        }
+        //        pdfStamper.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error al cargar el documento para el funcionario.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+
+        //}
 
         private void carnetToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -2748,13 +2753,13 @@ namespace ControlHoras
                 if (pbFoto.Image != null)
                 {
                     System.Drawing.Image bi = ControladorUtilidades.imageResize(pbFoto.Image, 0.80);
-                    
-                    
+
+
                     Clipboard.SetDataObject(bi);
                     wrdRng.Paste();
-                    
+
                     wrdRng.Select();
-                    
+
                     oWord.Selection.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 }
 
@@ -2781,7 +2786,7 @@ namespace ControlHoras
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar el documento para el funcionario.\n"+ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al cargar el documento para el funcionario.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -2824,19 +2829,19 @@ namespace ControlHoras
             }
         }
 
-       
+
 
         private void BtnReactivar_Click(object sender, EventArgs e)
         {
             //string nroViejo = lblEmpleadoCargado.Text.Split('-').ElementAt(0);
             int nroNuevo = datos.obtenerMaxIdEmpleado() + 1;
-            DialogResult res = MessageBox.Show("Seguro que quiere reingresar el Empleado: " + txtNombre.Text + " " + txtApellido.Text + "?\nNúmero viejo: " + mtNumeroEmpleado.Text + "     Número nuevo: "  + nroNuevo.ToString(), "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult res = MessageBox.Show("Seguro que quiere reingresar el Empleado: " + txtNombre.Text + " " + txtApellido.Text + "?\nNúmero viejo: " + mtNumeroEmpleado.Text + "     Número nuevo: " + nroNuevo.ToString(), "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (res == DialogResult.Yes)
             {
                 try
                 {
                     datos.cambiarNumeroEmpleado(int.Parse(mtNumeroEmpleado.Text), nroNuevo);
-                    
+
                     mtNumeroEmpleado.Text = nroNuevo.ToString();
                     lblEstadoEmpleado.Text = "Activo";
                     lblEstadoEmpleado.ForeColor = Color.LimeGreen;
@@ -2885,7 +2890,7 @@ namespace ControlHoras
                 // Busco si existe un empleado con esta cédula
                 ListAnEGRa sujeto;
                 EmPleadOs empleado;
-                
+
                 try
                 {
                     limpiarForm3();
@@ -2911,13 +2916,13 @@ namespace ControlHoras
                             mtNumeroDocumento.Focus();
                             SendKeys.Send("{ENTER}");
 
-                            
-                            
+
+
                             //System.Threading.Thread.Sleep(3000);
-                            
-                            
-                            
-                            
+
+
+
+
                         }
                         else
                             btnCancelar.PerformClick();
@@ -2927,7 +2932,7 @@ namespace ControlHoras
                         if (datos.existeEmpleadoCI(mtNumeroDocumento.Text, out empleado))
                         {
                             //empleado = datos.obtenerEmpleado(int.Parse(mtNumeroEmpleado.Text));
-                            if (empleado.Activo ==1)
+                            if (empleado.Activo == 1)
                                 habilitarPermisosEmpleado(true);
                             else
                                 habilitarPermisosEmpleado(false);
@@ -3036,8 +3041,8 @@ namespace ControlHoras
 
         private void updateListOfCargos()
         {
-            Dictionary<int,string> listCargos = datosTipos.obtenerTiposCargos(true);
-            
+            Dictionary<int, string> listCargos = datosTipos.obtenerTiposCargos(true);
+
             cargos = datosTipos.obtenerTiposCargosList(true);
             CargarCombo(cmbTiposCargos, listCargos);
 
@@ -3052,10 +3057,9 @@ namespace ControlHoras
 
 
 
-        
-     
+
+
     }
 }
 
 
-      

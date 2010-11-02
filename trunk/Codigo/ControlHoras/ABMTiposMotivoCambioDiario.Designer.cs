@@ -226,6 +226,8 @@
             this.Name = "ABMTiposMotivoCambioDiario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ABMTiposMotivoCambioDiario";
+            this.Load += new System.EventHandler(this.ABMTiposMotivoCambioDiario_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ABMTiposMotivoCambioDiario_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTiposMotivoCambioDiario)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
