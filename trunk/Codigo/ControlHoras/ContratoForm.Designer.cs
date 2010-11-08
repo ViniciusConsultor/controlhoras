@@ -355,6 +355,7 @@
             this.FIniMTB.TabIndex = 2;
             this.FIniMTB.Validating += new System.ComponentModel.CancelEventHandler(this.FIniMTB_Validating);
             this.FIniMTB.Validated += new System.EventHandler(this.FIniMTB_Validated);
+            this.FIniMTB.Leave += new System.EventHandler(this.FIniMTB_Leave);
             // 
             // NombreTB
             // 

@@ -682,13 +682,16 @@ namespace ControlHoras
             //Validar Horarios
             for (int j = 4; j < 11; j++)
             {
-                if (f.Cells[j].Value == null || !ValidarHorario(f.Cells[j].Value.ToString()))
-                {
-                    dgEscalafon.Focus();
-                    dgEscalafon.CurrentCell = f.Cells[j];
-                    f.Cells[j].Selected = true;
-                    return false;
-                }
+                if (f.Cells[j].Value == null)
+                    f.Cells[j].Value = "EnOtroServ";
+                else
+                    if(!ValidarHorario(f.Cells[j].Value.ToString()))
+                    {
+                        dgEscalafon.Focus();
+                        dgEscalafon.CurrentCell = f.Cells[j];
+                        f.Cells[j].Selected = true;
+                        return false;
+                    }
             }           
 
             return true;

@@ -546,13 +546,16 @@ namespace ControlHoras
                 //Validar Horarios
                 for (int j = 4; j < 11; j++)
                 {
-                    if (f.Cells[j].Value == null || !ValidarHorario(f.Cells[j].Value.ToString()))
-                    {
-                        CargaHorariaDGV.Focus();
-                        CargaHorariaDGV.CurrentCell = f.Cells[j];
-                        f.Cells[j].Selected = true;
-                        return false;
-                    }                        
+                    if (f.Cells[j].Value == null)
+                        f.Cells[j].Value = @"N/T";
+                    else
+                        if (!ValidarHorario(f.Cells[j].Value.ToString()))
+                        {
+                            CargaHorariaDGV.Focus();
+                            CargaHorariaDGV.CurrentCell = f.Cells[j];
+                            f.Cells[j].Selected = true;
+                            return false;
+                        }                        
                 }
             }
 
@@ -659,6 +662,12 @@ namespace ControlHoras
             MontoTB.Text = "";
 
             CargaHorariaDGV.Rows.Clear();
+        }
+
+        private void FIniMTB_Leave(object sender, EventArgs e)
+        {
+            if (FIniMTB.Text == "  /  /")
+                FIniMTB.Text = DateTime.Now.ToString();
         }
         
     
