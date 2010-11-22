@@ -432,6 +432,7 @@ namespace ControlHoras
 
                     if (datos.existeContrato(nroCon))
                         sistema.modificarContrato(nroCon, con);
+                       
                     else
                         sistema.altaContrato(nroCon, con);
 

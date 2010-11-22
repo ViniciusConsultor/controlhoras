@@ -18,7 +18,7 @@ namespace ControlHoras
         public MotIVOsCamBiosDiARioS motivoCambio { set; get; }
         private DateTime FechaCorresponde;
         private List<TipOsMotIVOCamBIoDiARio> listaTiposMotivos = null; 
-        public MotivoCambioDiarioForm(DateTime FechaCorresponde)
+        public MotivoCambioDiarioForm(DateTime Fecha)
         {
             InitializeComponent();
             datos = ControladorDatos.getInstance();
@@ -30,6 +30,7 @@ namespace ControlHoras
             cmbMotivosCambio.DisplayMember = "Descripcion";
             cmbMotivosCambio.EndUpdate();
             botonAceptar = false;
+            FechaCorresponde = Fecha;
             //}
             
         }

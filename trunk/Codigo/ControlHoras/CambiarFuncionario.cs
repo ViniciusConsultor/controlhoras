@@ -32,11 +32,22 @@ namespace ControlHoras
             {
                 try
                 {
+                     
                     FuncionarioNuevo = Controller.obtenerEmpleado(int.Parse(mtFuncionarioNuevo.Text));
-                    mtFuncionarioNuevo.Text = FuncionarioNuevo.NroEmpleado.ToString();
-                    txtNombreFuncionarioNuevo.Text = FuncionarioNuevo.Nombre + " " + FuncionarioNuevo.Apellido;
-                    //SendKeys.Send("{TAB}");
-                    btnAceptar.Enabled = true;
+                    if (FuncionarioNuevo.Activo == 0)
+                    {
+                        // Funcionario Inactivo.
+                        FuncionarioNuevo = null;
+                        MessageBox.Show(this, "El Funcionario " + mtFuncionarioNuevo.Text + " esta Inactivo. No se puede agregar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+                    else
+                    {
+                        mtFuncionarioNuevo.Text = FuncionarioNuevo.NroEmpleado.ToString();
+                        txtNombreFuncionarioNuevo.Text = FuncionarioNuevo.Nombre + " " + FuncionarioNuevo.Apellido;
+                        SendKeys.Send("{TAB}");
+                        btnAceptar.Enabled = true;
+                    }
                 }
                 catch (Exception ex)
                 {
