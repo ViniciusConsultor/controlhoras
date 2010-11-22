@@ -16,6 +16,7 @@ namespace ControlHoras
         IClientesServicios sistema = ControladorClientesServicios.getInstance();
         public string NomCliente = "";
         public string NumCliente = "";
+        public string NomFantasia = "";
 
         public BuscarClientes()
         {
@@ -27,15 +28,9 @@ namespace ControlHoras
             if (e.KeyCode == Keys.Enter && NombreTB.Text != "")
             {
                 OKBTN.Enabled = false;
-                ClientesDGV.Rows.Clear();
-                List<Cliente> clies = sistema.buscarCliente(NombreTB.Text);
+                btnBuscar.PerformClick();
                  
-                foreach (Cliente c in clies)
-                {                
-                    ClientesDGV.Rows.Add(new object[] { c.getNombre(), c.getNumero().ToString(), "OK" } );
-                }               
-
-               
+                               
             }
         }
 
@@ -44,6 +39,29 @@ namespace ControlHoras
             OKBTN.Enabled = true;
             NomCliente = ClientesDGV.Rows[e.RowIndex].Cells["Nombre"].Value.ToString();
             NumCliente = ClientesDGV.Rows[e.RowIndex].Cells["Nro"].Value.ToString();
+            NomFantasia = ClientesDGV.Rows[e.RowIndex].Cells["NombreFantasia"].Value.ToString();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            ClientesDGV.Rows.Clear();
+            try
+            {
+                List<Cliente> clies = sistema.buscarCliente(NombreTB.Text);
+                foreach (Cliente c in clies)
+                {
+                    ClientesDGV.Rows.Add(new object[] { c.getNumero().ToString(),c.getNombre(),c.getNombreFantasia(), "OK" });
+                }
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show(er.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ClientesDGV_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            OKBTN.PerformClick();
         }
 
         

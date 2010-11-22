@@ -38,6 +38,7 @@ namespace ControlHoras
             this.btnCancelar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnServicios = new System.Windows.Forms.ToolStripButton();
+            this.btnBuscarCliente = new System.Windows.Forms.ToolStripButton();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -65,7 +66,6 @@ namespace ControlHoras
             this.txtNombreFantasia = new ControlHoras.TextBoxKeyDown();
             this.mtRUT = new ControlHoras.MaskedTextBoxKeyDown();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btnBuscarCliente = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -140,6 +140,16 @@ namespace ControlHoras
             this.btnServicios.Text = "Servicios";
             this.btnServicios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnServicios.Click += new System.EventHandler(this.btnServicios_Click);
+            // 
+            // btnBuscarCliente
+            // 
+            this.btnBuscarCliente.Image = global::ControlHoras.Imagenes.ClientsSearch42x42;
+            this.btnBuscarCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnBuscarCliente.Name = "btnBuscarCliente";
+            this.btnBuscarCliente.Size = new System.Drawing.Size(79, 33);
+            this.btnBuscarCliente.Text = "Buscar Cliente";
+            this.btnBuscarCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnBuscarCliente.Click += new System.EventHandler(this.btnBuscarCliente_Click);
             // 
             // label4
             // 
@@ -341,6 +351,7 @@ namespace ControlHoras
             // 
             // txtNombre
             // 
+            this.txtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombre.Location = new System.Drawing.Point(72, 76);
             this.txtNombre.Name = "txtNombre";
@@ -363,6 +374,7 @@ namespace ControlHoras
             // 
             // txtNombreFantasia
             // 
+            this.txtNombreFantasia.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombreFantasia.Location = new System.Drawing.Point(108, 104);
             this.txtNombreFantasia.Name = "txtNombreFantasia";
             this.txtNombreFantasia.Size = new System.Drawing.Size(253, 20);
@@ -379,16 +391,6 @@ namespace ControlHoras
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // btnBuscarCliente
-            // 
-            this.btnBuscarCliente.Image = global::ControlHoras.Imagenes.ClientsSearch42x42;
-            this.btnBuscarCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnBuscarCliente.Name = "btnBuscarCliente";
-            this.btnBuscarCliente.Size = new System.Drawing.Size(79, 33);
-            this.btnBuscarCliente.Text = "Buscar Cliente";
-            this.btnBuscarCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnBuscarCliente.Click += new System.EventHandler(this.btnBuscarCliente_Click);
             // 
             // ABMClientes
             // 

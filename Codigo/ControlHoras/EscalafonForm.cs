@@ -88,7 +88,7 @@ namespace ControlHoras
                         {
                             EmPleadOs emp = datos.obtenerEmpleado(busquedaEmps.idEmpleadoSeleccionado);
                             dgEscalafon.Rows[celdaSeleccionada.RowIndex].Cells[0].Value = emp.NroEmpleado.ToString();
-                            dgEscalafon.Rows[celdaSeleccionada.RowIndex].Cells[1].Value = emp.Nombre + " " + emp.Apellido;
+                            dgEscalafon.Rows[celdaSeleccionada.RowIndex].Cells[1].Value = emp.Apellido + " " + emp.Nombre;
                             
                             SendKeys.Send("{ENTER}");   
                         }
@@ -746,7 +746,7 @@ namespace ControlHoras
                     ActualizarHporCubrir();
                     int n = dgEscalafon.Rows.Add();
                     ((DataGridViewComboBoxCell)dgEscalafon.Rows[n].Cells[dgEscalafon.Columns.Count - 1]).Value = "Cliente";
-                    
+
                     dgEscalafon.Focus();
                     dgEscalafon.CurrentCell = dgEscalafon.Rows[n].Cells[0];
                     //dgEscalafon.Rows[n].Cells[2].Selected = true;

@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2010-10-10 14:06:31Z
+#region Auto-generated classes for trustdb database on 2010-11-20 12:18:22Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2010-10-10 14:06:31Z
+// Auto-generated from trustdb on 2010-11-20 12:18:22Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -1034,7 +1034,7 @@ namespace Datos
 
 		private string _query;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_query", Name = "query", DbType = "varchar(255)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		[Column(Storage = "_query", Name = "Query", DbType = "varchar(1500)", AutoSync = AutoSync.Never, CanBeNull = false)]
 		public string Query
 		{
 			get
@@ -1223,7 +1223,7 @@ namespace Datos
 
 		private string _query;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_query", Name = "Query", DbType = "varchar(500)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		[Column(Storage = "_query", Name = "Query", DbType = "varchar(1000)", AutoSync = AutoSync.Never)]
 		public string Query
 		{
 			get
@@ -1721,7 +1721,7 @@ namespace Datos
 		#region Children
 
 		private EntitySet<LineAshOrAs> _lineAshOrAs;
-		[Association(Storage = "_lineAshOrAs", OtherKey = "IDContrato", ThisKey = "IDContratos", Name = "FK_Con")]
+		[Association(Storage = "_lineAshOrAs", OtherKey = "IDContrato", ThisKey = "IDContratos", Name = "FK_Contratos")]
 		[DebuggerNonUserCode]
 		public EntitySet<LineAshOrAs> LineAshOrAs
 		{
@@ -5789,6 +5789,10 @@ namespace Datos
 			{
 				if (value != _nroLinea)
 				{
+					if (_lineAshOrAs.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					OnNroLineaChanging(value);
 					SendPropertyChanging();
 					_nroLinea = value;
@@ -5803,7 +5807,7 @@ namespace Datos
 		#region Parents
 
 		private EntityRef<LineAshOrAs> _lineAshOrAs;
-		[Association(Storage = "_lineAshOrAs", OtherKey = "IDContrato", ThisKey = "IDContrato", Name = "FK_IdContrato", IsForeignKey = true)]
+		[Association(Storage = "_lineAshOrAs", OtherKey = "IDContrato,NroLinea", ThisKey = "IDContrato,NroLinea", Name = "FK_ContratoNroLinea", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public LineAshOrAs LineAshOrAs
 		{
@@ -5826,10 +5830,12 @@ namespace Datos
 					{
 						value.HoRaRioDiA.Add(this);
 						_idcOntrato = value.IDContrato;
+						_nroLinea = value.NroLinea;
 					}
 					else
 					{
 						_idcOntrato = default(uint);
+						_nroLinea = default(sbyte);
 					}
 				}
 			}
@@ -6447,7 +6453,7 @@ namespace Datos
 		#region Children
 
 		private EntitySet<MotIVOsCamBiosDiARioS> _motIvoSCamBiosDiArIoS;
-		[Association(Storage = "_motIvoSCamBiosDiArIoS", OtherKey = "IDHorasGeneradasEscalafon", ThisKey = "IDHorasGeneradasEscalafon", Name = "mocamdia_fk4")]
+		[Association(Storage = "_motIvoSCamBiosDiArIoS", OtherKey = "IDHorasGeneradasEscalafon", ThisKey = "IDHorasGeneradasEscalafon", Name = "FK_motivoscambiosdiarios_4")]
 		[DebuggerNonUserCode]
 		public EntitySet<MotIVOsCamBiosDiARioS> MotIVOsCamBiosDiARioS
 		{
@@ -6500,7 +6506,7 @@ namespace Datos
 		}
 
 		private EntityRef<SERVicIoS> _servIcIoS;
-		[Association(Storage = "_servIcIoS", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "hsgenesc_FK2", IsForeignKey = true)]
+		[Association(Storage = "_servIcIoS", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "horasgeneradasescalafon_ibfk_2", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public SERVicIoS SERVicIoS
 		{
@@ -6831,7 +6837,7 @@ namespace Datos
 		#region Children
 
 		private EntitySet<HoRaRioDiA> _hoRaRioDiA;
-		[Association(Storage = "_hoRaRioDiA", OtherKey = "IDContrato", ThisKey = "IDContrato", Name = "FK_IdContrato")]
+		[Association(Storage = "_hoRaRioDiA", OtherKey = "IDContrato,NroLinea", ThisKey = "IDContrato,NroLinea", Name = "FK_ContratoNroLinea")]
 		[DebuggerNonUserCode]
 		public EntitySet<HoRaRioDiA> HoRaRioDiA
 		{
@@ -6851,7 +6857,7 @@ namespace Datos
 		#region Parents
 
 		private EntityRef<ContraToS> _contraToS;
-		[Association(Storage = "_contraToS", OtherKey = "IDContratos", ThisKey = "IDContrato", Name = "FK_Con", IsForeignKey = true)]
+		[Association(Storage = "_contraToS", OtherKey = "IDContratos", ThisKey = "IDContrato", Name = "FK_Contratos", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public ContraToS ContraToS
 		{
@@ -7436,7 +7442,7 @@ namespace Datos
 		#region Parents
 
 		private EntityRef<HoRaSGeneraDaSEScalaFOn> _hoRaSgEneraDaSesCalaFoN;
-		[Association(Storage = "_hoRaSgEneraDaSesCalaFoN", OtherKey = "IDHorasGeneradasEscalafon", ThisKey = "IDHorasGeneradasEscalafon", Name = "mocamdia_fk4", IsForeignKey = true)]
+		[Association(Storage = "_hoRaSgEneraDaSesCalaFoN", OtherKey = "IDHorasGeneradasEscalafon", ThisKey = "IDHorasGeneradasEscalafon", Name = "FK_motivoscambiosdiarios_4", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public HoRaSGeneraDaSEScalaFOn HoRaSGeneraDaSEScalaFOn
 		{
@@ -7502,7 +7508,7 @@ namespace Datos
 		}
 
 		private EntityRef<SERVicIoS> _servIcIoS;
-		[Association(Storage = "_servIcIoS", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "motivoscambiosdiarios_ibfk_2", IsForeignKey = true)]
+		[Association(Storage = "_servIcIoS", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "motivoscambiosdiarios_ibfk_2", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public SERVicIoS SERVicIoS
 		{
@@ -7524,13 +7530,13 @@ namespace Datos
 					if (value != null)
 					{
 						value.MotIVOsCamBiosDiARioS.Add(this);
-						_numeroCliente = value.NumeroCliente;
 						_numeroServicio = value.NumeroServicio;
+						_numeroCliente = value.NumeroCliente;
 					}
 					else
 					{
-						_numeroCliente = default(uint);
 						_numeroServicio = default(uint);
+						_numeroCliente = default(uint);
 					}
 				}
 			}
@@ -8185,7 +8191,7 @@ namespace Datos
 		#region Children
 
 		private EntitySet<HoRaSGeneraDaSEScalaFOn> _hoRaSgEneraDaSesCalaFoN;
-		[Association(Storage = "_hoRaSgEneraDaSesCalaFoN", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "hsgenesc_FK2")]
+		[Association(Storage = "_hoRaSgEneraDaSesCalaFoN", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "horasgeneradasescalafon_ibfk_2")]
 		[DebuggerNonUserCode]
 		public EntitySet<HoRaSGeneraDaSEScalaFOn> HoRaSGeneraDaSEScalaFOn
 		{
@@ -8200,7 +8206,7 @@ namespace Datos
 		}
 
 		private EntitySet<MotIVOsCamBiosDiARioS> _motIvoSCamBiosDiArIoS;
-		[Association(Storage = "_motIvoSCamBiosDiArIoS", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "motivoscambiosdiarios_ibfk_2")]
+		[Association(Storage = "_motIvoSCamBiosDiArIoS", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "motivoscambiosdiarios_ibfk_2")]
 		[DebuggerNonUserCode]
 		public EntitySet<MotIVOsCamBiosDiARioS> MotIVOsCamBiosDiARioS
 		{
@@ -9011,7 +9017,7 @@ namespace Datos
 
 		private string _desCrIpcIon;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_desCrIpcIon", Name = "descripcion", DbType = "varchar(50)", AutoSync = AutoSync.Never)]
+		[Column(Storage = "_desCrIpcIon", Name = "descripcion", DbType = "varchar(50)", AutoSync = AutoSync.Never, CanBeNull = false)]
 		public string DesCrIpcIon
 		{
 			get

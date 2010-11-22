@@ -237,7 +237,7 @@ namespace Datos
             try
             {
                 List<ClientEs> clies = (from varcli in database.GetTable<ClientEs>()
-                                        where varcli.Nombre.Contains(Nombre)
+                                        where varcli.Nombre.Contains(Nombre) || varcli.NombreFantasia.Contains(Nombre)
                                         select varcli).ToList<ClientEs>();
                 return clies;
             }
@@ -2492,6 +2492,7 @@ namespace Datos
                 database.Transaction.Commit();
                 if (conexion.State == System.Data.ConnectionState.Open)
                     conexion.Close();
+                recargarContexto();
                 //database.SubmitChanges();
             }
             catch (MySqlException ex)
@@ -2499,6 +2500,7 @@ namespace Datos
                 //database.Refresh(System.Data.Linq.RefreshMode.KeepCurrentValues);
                 // database.Connection.Close();
                 database.Transaction.Rollback();
+                recargarContexto();
                 if (conexion.State == System.Data.ConnectionState.Open)
                     conexion.Close();
                 if (ex.Number == 1062)
