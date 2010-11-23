@@ -1,0 +1,31 @@
+Requerimientos 2/11/2010
+
+Clientes:
+- Agregar Campo Referencia despues de la Direccion de cobro.
+- Label de Fecha de Ingreso.
+- Largo del Campo EMail. Que de posibilidad de agregar varios emails.
+
+Servicios:
+- Servicios, quedar parados en el NroServicio
+- Agregar campo Esquina
+- Cambiar label Nombre Para Cobrar a Nombre Responsable Servicios
+- Cambiar label Dia de Cobro por Dia y Hora de Cobro.
+- Mover campos de Dia de Cobro y Nombre para cobrar a Cliente.
+- Falta checkbox de Activo/Inactivo.
+- Agregar Campo Observaciones
+
+Contratos:
+- Poner de 00:00 a 24:00
+- Agrandar ventana de Contratos Completa
+- Automatico, costo variable (Por default?)
+
+Escalafon:
+- Funcionario: Apellidos, Nombre
+- Control -> Horas de mas de un dia, ver controles. Por ej 23:00 a 07:00
+
+Listados
+- Personal Mensual Activo: NroEmpleado antes que el Apellido.
+- Fecha Baja Desde - Hasta: Igual que Personal Mensual Activo  con filtros de Fecha Baja Desde y Hasta. 
+
+BusquedaCliente
+- docle click en la fila seleccionada, mismo comportamiento que el boton aceptar.
