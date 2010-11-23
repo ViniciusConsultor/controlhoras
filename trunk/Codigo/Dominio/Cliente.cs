@@ -13,7 +13,11 @@ namespace Logica
         private string RUT = null;
         private string Email = null;
         private string Direccion = null;
+        private string ContactoCobro;
+        private string DiaHoraCobro;
+        private string TelefonosCobro;
         private string DireccionCobro;
+        private string Referencia;
         private string Telefonos = null;
         private string Fax = null;
         private bool Activo;
@@ -49,6 +53,42 @@ namespace Logica
             ListaServicios = servicios;
         }
 
+        public Cliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime? fecAlta, DateTime? fecBaja, string motivo, string referencia, string diaHoraCobro, string contactoCobro, string telefonosCobro, List<Servicio> servicios)
+        {
+            Numero = num;
+            Nombre = nom;
+            NombreFantasia = nomFant;
+            RUT = rut;
+            Email = email;
+            Direccion = dir;
+            DireccionCobro = dirCobro;
+            Referencia = referencia;
+            Telefonos = telefono;
+            Fax = fax;
+            Activo = activo;
+            FechaAlta = fecAlta;
+            FechaBaja = fecBaja;
+            MotivoBaja = motivo;
+            ContactoCobro = contactoCobro;
+            DiaHoraCobro = diaHoraCobro;
+            TelefonosCobro = telefonosCobro; 
+            ListaServicios = servicios;
+        }
+
+        public string getDiaHoraCobro()
+        {
+            return DiaHoraCobro;
+        }
+            
+        public string getTelefonosCobro()
+        {
+            return TelefonosCobro;
+        }
+
+        public string getContactoCobro()
+        {
+            return ContactoCobro;
+        }
 
         public int getNumero()
         {
@@ -83,6 +123,11 @@ namespace Logica
         public string getDireccionCobro()
         {
             return DireccionCobro;
+        }
+
+        public string getReferencia()
+        {
+            return Referencia;
         }
 
         public string getTelefonos()

@@ -1,0 +1,12 @@
+-- Clientes
+alter table clientes add column Referencia varchar(100) after DireccionDeCobro;
+alter table clientes add column DiaHoraCobro varchar(100);
+alter table clientes add column NombrePersonaCobro varchar(100);
+alter table clientes modify column email varchar(100);
+alter table clientes add column DiaHoraCobro varchar(150), add column ContactoCobro varchar(100), add column TelefonosCobro varchar(150);
+
+
+-- Servicios
+alter table servicios drop column DiaCobro;
+alter table servicios add column EntreCalles varchar(150);
+alter table servicios add column Observaciones varchar(255);

@@ -53,8 +53,7 @@ namespace ControlHoras
             CelTB.Text = "";
             CelTrustTB.Text = "";
             TareasTB.Text = "";
-            DiaCobroTB.Text = "";
-            NombreCobrarTB.Text = "";
+            txtObservaciones.Text = "";
             
             NroMTB.Focus();
         }       
@@ -120,8 +119,7 @@ namespace ControlHoras
             DirTB.Text = ser.getDireccion();
             TelTB.Text = ser.getTelefonos();
             ContactTB.Text = ser.getContacto();
-            DiaCobroTB.Text = ser.getDiaCobro();
-            NombreCobrarTB.Text = ser.getNombreCobrar();
+            txtObservaciones.Text = ser.getObservaciones();
             emailTB.Text = ser.getemail();
             CelTB.Text = ser.getCelular();
             CelTrustTB.Text = ser.getCelularTrust();
@@ -198,6 +196,7 @@ namespace ControlHoras
             }
             else if (NroMTB.Text == "")
             {    // Obtengo el ultimo numero de cliente + 1;
+                //NroMTB.Focus();
             }
         }               
 
@@ -210,7 +209,7 @@ namespace ControlHoras
                 {
                     int numCli = int.Parse(bcUC.ClienteNRO);
                     int numSer = int.Parse(NroMTB.Text);
-                    sistema.altaServicioCliente(numCli, numSer, NombreTB.Text, DirTB.Text, TelTB.Text, ContactTB.Text, emailTB.Text, CelTB.Text, CelTrustTB.Text, TareasTB.Text, DiaCobroTB.Text, NombreCobrarTB.Text);
+                    sistema.altaServicioCliente(numCli, numSer, NombreTB.Text, DirTB.Text, TelTB.Text, ContactTB.Text, emailTB.Text, CelTB.Text, CelTrustTB.Text, TareasTB.Text, txtObservaciones.Text);
 
 
                     DialogResult res = MessageBox.Show(this, "Desea definir el contrato ahora?", "Contrato", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
@@ -247,6 +246,7 @@ namespace ControlHoras
 
             bcUC.Controls["ClienteMT"].Focus();
             SendKeys.Send("{ENTER}");
+            
         }
 
         private void GuardarBTN_Click(object sender, EventArgs e)
@@ -257,7 +257,7 @@ namespace ControlHoras
                 {
                     int numCli = int.Parse(bcUC.ClienteNRO);
                     int numSer = int.Parse(NroMTB.Text);
-                    sistema.modificarServicioCliente(numCli, numSer, NombreTB.Text, DirTB.Text, TelTB.Text, ContactTB.Text, emailTB.Text, CelTB.Text, CelTrustTB.Text, TareasTB.Text, DiaCobroTB.Text, NombreCobrarTB.Text);
+                    sistema.modificarServicioCliente(numCli, numSer, NombreTB.Text, DirTB.Text, TelTB.Text, ContactTB.Text, emailTB.Text, CelTB.Text, CelTrustTB.Text, TareasTB.Text, txtObservaciones.Text);
 
                     CancelarBTN.PerformClick();
 

@@ -67,8 +67,6 @@ namespace ControlHoras
         {
             dgEscalafon.Rows.Clear();
         }
-        // TAMANIO COLUMNAS
-        // Nº Emp: 40 |Funcionario: 120 |Codigo Puesto: 52 |Hora Confirma: 49 |Lunes: 75 |Martes: 100 |Miercoles: 100 |Jueves: 100 |Viernes: 100 |Sabado: 100 |Domingo: 100 |A Cargo De: 80
         
         private void dgEscalafon_KeyDown(object sender, KeyEventArgs e)
         {
@@ -450,6 +448,9 @@ namespace ControlHoras
 
         private void InicializardgEscalafon()
         {
+            // TAMANIO COLUMNAS
+            // Nº Emp: 40 |Funcionario: 120 |Codigo Puesto: 52 |Hora Confirma: 49 |Lunes: 75 |Martes: 100 |Miercoles: 100 |Jueves: 100 |Viernes: 100 |Sabado: 100 |Domingo: 100 |A Cargo De: 80
+        
             MaskedTextBoxColumn mtbc;
             DataGridViewColumn dgvc;
             DataGridViewCell cell;

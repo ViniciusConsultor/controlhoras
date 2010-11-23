@@ -38,11 +38,11 @@ namespace Logica
             return instancia;
         }
 
-        public void altaCliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime? fecAlta, DateTime? fecBaja, string motivo)
+        public void altaCliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime? fecAlta, DateTime? fecBaja, string motivo, string referencia, string diaHoraCobro, string contactoCobro, string telefonosCobro)
         {
             try
             {
-                datos.altaCliente(num, nom, nomFant, rut, email, dir, dirCobro, telefono, fax, activo, fecAlta, fecBaja, motivo);
+                datos.altaCliente(num, nom, nomFant, rut, email, dir, dirCobro, telefono, fax, activo, fecAlta, fecBaja, motivo, referencia, diaHoraCobro, contactoCobro,telefonosCobro);
             }
             catch (Exception ex)
             {
@@ -63,11 +63,11 @@ namespace Logica
             }
         }
 
-        public void modificarCliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime? fecAlta, DateTime? fecBaja, string motivo)
+        public void modificarCliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime? fecAlta, DateTime? fecBaja, string motivo, string referencia, string diaHoraCobro, string contactoCobro, string telefonosCobro)
         {
             try
             {
-                datos.modificarCliente(num, nom, nomFant, rut, email, dir, dirCobro, telefono, fax, activo, fecAlta, fecBaja, motivo);
+                datos.modificarCliente(num, nom, nomFant, rut, email, dir, dirCobro, telefono, fax, activo, fecAlta, fecBaja, motivo, referencia, diaHoraCobro,contactoCobro,telefonosCobro);
             }
             catch (Exception e)
             {
@@ -138,7 +138,7 @@ namespace Logica
             else
                 act = false;
 
-            Cliente tdcli = new Cliente((int)cliDatos.NumeroCliente, cliDatos.Nombre, cliDatos.NombreFantasia, cliDatos.Rut, cliDatos.Email, cliDatos.Direccion, cliDatos.DireccionDeCobro, cliDatos.Telefonos, cliDatos.Fax, act, cliDatos.FechaAlta, cliDatos.FechaBaja, cliDatos.MotivoBaja, listServs);
+            Cliente tdcli = new Cliente((int)cliDatos.NumeroCliente, cliDatos.Nombre, cliDatos.NombreFantasia, cliDatos.Rut, cliDatos.Email, cliDatos.Direccion, cliDatos.DireccionDeCobro, cliDatos.Telefonos, cliDatos.Fax, act, cliDatos.FechaAlta, cliDatos.FechaBaja, cliDatos.MotivoBaja, cliDatos.Referencia, cliDatos.DiaHoraCobro, cliDatos.ContactoCobro, cliDatos.TelefonosCobro, listServs);
             return tdcli;
         }
 
@@ -153,7 +153,7 @@ namespace Logica
                         act = true;
                     else
                         act = false;
-                    servicio = new Servicio((int)ser.NumeroServicio, ser.Nombre, ser.Direccion, ser.Telefonos, ser.PersonaContacto, ser.Email, ser.Celular, ser.CelularTrust, ser.TareasAsignadas, act, (DateTime) ser.FechaAlta, (DateTime)ser.FechaBaja, ser.MotivoBaja, ser.DiaCobro, ser.NombreCobrar);
+                servicio = new Servicio((int)ser.NumeroServicio, ser.Nombre, ser.Direccion, ser.Telefonos, ser.PersonaContacto, ser.Email, ser.Celular, ser.CelularTrust, ser.TareasAsignadas, act, (DateTime)ser.FechaAlta, (DateTime)ser.FechaBaja, ser.MotivoBaja, ser.Observaciones);
                     return servicio;
              }catch(Exception ex)
              {
@@ -161,11 +161,11 @@ namespace Logica
              }
         }
 
-        public void altaServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string DiaDeCobro, string NombreCobrar)
+        public void altaServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string Observaciones)
         {
             try
             {
-                datos.altaServicioCliente(numeroCliente, numeroServicio, Nombre, Direccion, Telefonos, Contacto, email, Celular, CelularTrust, Tareas, DiaDeCobro, NombreCobrar);
+                datos.altaServicioCliente(numeroCliente, numeroServicio, Nombre, Direccion, Telefonos, Contacto, email, Celular, CelularTrust, Tareas, Observaciones);
             }
             catch (Exception ex)
             {
@@ -175,11 +175,11 @@ namespace Logica
         }
 
 
-        public void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string DiaDeCobro, string NombreCobrar)
+        public void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string Observaciones)
         {
             try
             {
-                datos.modificarServicioCliente(numeroCliente, numeroServicio, Nombre, Direccion, Telefonos, Contacto, email, Celular, CelularTrust, Tareas, DiaDeCobro, NombreCobrar);
+                datos.modificarServicioCliente(numeroCliente, numeroServicio, Nombre, Direccion, Telefonos, Contacto, email, Celular, CelularTrust, Tareas, Observaciones);
             }
             catch (Exception ex)
             {
@@ -907,8 +907,9 @@ namespace Logica
             {
                 List<string> errores = new List<string>();
                 EScalaFOn escalafon = datos.obtenerEscalafon(CalcNroContrato(NumeroCliente, NumeroServicio));
-                if (escalafon.Cubierto == 0)
-                    errores.Add("El Contrato no esta Cubierto. No se cubren todas las horas contratadas.");
+                // 2010-11-22: JG: Se deshabilita hasta que quede arreglado el tema de las horas en dias diferentes en el escalafon.
+                //if (escalafon.Cubierto == 0)
+                //    errores.Add("El Contrato no esta Cubierto. No se cubren todas las horas contratadas.");
                 
                 return errores;
             }catch

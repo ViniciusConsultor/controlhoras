@@ -41,20 +41,19 @@
             this.lbErrores = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.ucTreeClientesServicios = new ControlHoras.TreeClientesServicios();
             this.mtFechaHasta = new ControlHoras.MaskedTextBoxKeyDown();
             this.mtFechaDesde = new ControlHoras.MaskedTextBoxKeyDown();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ucTreeClientesServicios = new ControlHoras.TreeClientesServicios();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGenerar
             // 
-            this.btnGenerar.Location = new System.Drawing.Point(251, 128);
-            this.btnGenerar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGenerar.Location = new System.Drawing.Point(188, 104);
             this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(100, 28);
+            this.btnGenerar.Size = new System.Drawing.Size(75, 23);
             this.btnGenerar.TabIndex = 2;
             this.btnGenerar.Text = "Generar";
             this.btnGenerar.UseVisualStyleBackColor = true;
@@ -62,29 +61,26 @@
             // 
             // RichTextBoxMensaje
             // 
-            this.RichTextBoxMensaje.Location = new System.Drawing.Point(17, 15);
-            this.RichTextBoxMensaje.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RichTextBoxMensaje.Location = new System.Drawing.Point(13, 12);
             this.RichTextBoxMensaje.Name = "RichTextBoxMensaje";
             this.RichTextBoxMensaje.ReadOnly = true;
-            this.RichTextBoxMensaje.Size = new System.Drawing.Size(1179, 56);
+            this.RichTextBoxMensaje.Size = new System.Drawing.Size(885, 46);
             this.RichTextBoxMensaje.TabIndex = 4;
             this.RichTextBoxMensaje.Text = resources.GetString("RichTextBoxMensaje.Text");
             // 
             // progressBarGeneracion
             // 
-            this.progressBarGeneracion.Location = new System.Drawing.Point(35, 93);
-            this.progressBarGeneracion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressBarGeneracion.Location = new System.Drawing.Point(26, 76);
             this.progressBarGeneracion.Name = "progressBarGeneracion";
-            this.progressBarGeneracion.Size = new System.Drawing.Size(548, 28);
+            this.progressBarGeneracion.Size = new System.Drawing.Size(411, 23);
             this.progressBarGeneracion.TabIndex = 9;
             // 
             // lblProcesando
             // 
             this.lblProcesando.AutoSize = true;
-            this.lblProcesando.Location = new System.Drawing.Point(335, 73);
-            this.lblProcesando.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblProcesando.Location = new System.Drawing.Point(251, 59);
             this.lblProcesando.Name = "lblProcesando";
-            this.lblProcesando.Size = new System.Drawing.Size(135, 17);
+            this.lblProcesando.Size = new System.Drawing.Size(102, 13);
             this.lblProcesando.TabIndex = 7;
             this.lblProcesando.Text = "Procesando Cliente:";
             this.lblProcesando.Visible = false;
@@ -92,50 +88,45 @@
             // lblNroCliente
             // 
             this.lblNroCliente.AutoSize = true;
-            this.lblNroCliente.Location = new System.Drawing.Point(460, 176);
-            this.lblNroCliente.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNroCliente.Location = new System.Drawing.Point(345, 143);
             this.lblNroCliente.Name = "lblNroCliente";
-            this.lblNroCliente.Size = new System.Drawing.Size(0, 17);
+            this.lblNroCliente.Size = new System.Drawing.Size(0, 13);
             this.lblNroCliente.TabIndex = 8;
             this.lblNroCliente.Visible = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(331, 29);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(248, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 17);
+            this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 12;
             this.label1.Text = "Hasta";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(95, 29);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(71, 24);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 17);
+            this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 11;
             this.label2.Text = "Desde";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(35, 73);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(26, 59);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(131, 17);
+            this.label3.Size = new System.Drawing.Size(100, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Procesando Fecha:";
             // 
             // lblFecha
             // 
             this.lblFecha.AutoSize = true;
-            this.lblFecha.Location = new System.Drawing.Point(157, 176);
-            this.lblFecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFecha.Location = new System.Drawing.Point(118, 143);
             this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(0, 17);
+            this.lblFecha.Size = new System.Drawing.Size(0, 13);
             this.lblFecha.TabIndex = 6;
             // 
             // lbErrores
@@ -143,20 +134,18 @@
             this.lbErrores.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbErrores.FormattingEnabled = true;
             this.lbErrores.HorizontalScrollbar = true;
-            this.lbErrores.ItemHeight = 17;
-            this.lbErrores.Location = new System.Drawing.Point(35, 179);
-            this.lbErrores.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lbErrores.ItemHeight = 15;
+            this.lbErrores.Location = new System.Drawing.Point(26, 145);
             this.lbErrores.Name = "lbErrores";
-            this.lbErrores.Size = new System.Drawing.Size(547, 157);
+            this.lbErrores.Size = new System.Drawing.Size(411, 184);
             this.lbErrores.TabIndex = 3;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(35, 159);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(26, 129);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(131, 17);
+            this.label4.Size = new System.Drawing.Size(97, 13);
             this.label4.TabIndex = 10;
             this.label4.Text = "Bitacora de Errores";
             // 
@@ -173,61 +162,62 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.210526F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(583, 83);
+            this.groupBox1.Location = new System.Drawing.Point(437, 67);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(614, 464);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(460, 377);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "2";
+            // 
+            // mtFechaHasta
+            // 
+            this.mtFechaHasta.Location = new System.Drawing.Point(290, 20);
+            this.mtFechaHasta.Mask = "00/00/0000";
+            this.mtFechaHasta.Name = "mtFechaHasta";
+            this.mtFechaHasta.Size = new System.Drawing.Size(70, 20);
+            this.mtFechaHasta.TabIndex = 14;
+            // 
+            // mtFechaDesde
+            // 
+            this.mtFechaDesde.Location = new System.Drawing.Point(116, 20);
+            this.mtFechaDesde.Mask = "00/00/0000";
+            this.mtFechaDesde.Name = "mtFechaDesde";
+            this.mtFechaDesde.Size = new System.Drawing.Size(70, 20);
+            this.mtFechaDesde.TabIndex = 13;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.ucTreeClientesServicios);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.210526F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(17, 83);
+            this.groupBox2.Location = new System.Drawing.Point(13, 67);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(545, 464);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Size = new System.Drawing.Size(409, 377);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "1";
             // 
             // ucTreeClientesServicios
             // 
-            this.ucTreeClientesServicios.Location = new System.Drawing.Point(3, 21);
-            this.ucTreeClientesServicios.Margin = new System.Windows.Forms.Padding(5);
+            this.ucTreeClientesServicios.Location = new System.Drawing.Point(2, 17);
+            this.ucTreeClientesServicios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ucTreeClientesServicios.Name = "ucTreeClientesServicios";
-            this.ucTreeClientesServicios.Size = new System.Drawing.Size(534, 435);
+            this.ucTreeClientesServicios.Size = new System.Drawing.Size(400, 353);
             this.ucTreeClientesServicios.TabIndex = 0;
-            // 
-            // mtFechaHasta
-            // 
-            this.mtFechaHasta.Location = new System.Drawing.Point(386, 25);
-            this.mtFechaHasta.Margin = new System.Windows.Forms.Padding(4);
-            this.mtFechaHasta.Mask = "00/00/0000";
-            this.mtFechaHasta.Name = "mtFechaHasta";
-            this.mtFechaHasta.Size = new System.Drawing.Size(92, 22);
-            this.mtFechaHasta.TabIndex = 14;
-            // 
-            // mtFechaDesde
-            // 
-            this.mtFechaDesde.Location = new System.Drawing.Point(154, 25);
-            this.mtFechaDesde.Margin = new System.Windows.Forms.Padding(4);
-            this.mtFechaDesde.Mask = "00/00/0000";
-            this.mtFechaDesde.Name = "mtFechaDesde";
-            this.mtFechaDesde.Size = new System.Drawing.Size(92, 22);
-            this.mtFechaDesde.TabIndex = 13;
             // 
             // GenerarHorasDiariasForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1209, 559);
+            this.ClientSize = new System.Drawing.Size(907, 454);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblFecha);
             this.Controls.Add(this.lblNroCliente);
             this.Controls.Add(this.RichTextBoxMensaje);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "GenerarHorasDiariasForm";
             this.Text = "GenerarHorasDiariasForm";
             this.Load += new System.EventHandler(this.GenerarHorasDiariasForm_Load);

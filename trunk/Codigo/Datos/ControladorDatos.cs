@@ -113,7 +113,7 @@ namespace Datos
         
 
         #region ABM_Cliente
-        public void altaCliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime? fecAlta, DateTime? fecBaja, string motivo)
+        public void altaCliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime? fecAlta, DateTime? fecBaja, string motivo, string referencia, string diaHoraCobro, string contactoCobro, string telefonosCobro)
         {
             ClientEs cliente = null;
             DbLinq.Data.Linq.Table<ClientEs> tablaCliente;
@@ -137,7 +137,12 @@ namespace Datos
                 cliente.Direccion = dir;
                 cliente.DireccionDeCobro = dirCobro;
                 cliente.Telefonos = telefono;
+                cliente.DiaHoraCobro = diaHoraCobro;
+                cliente.ContactoCobro = contactoCobro;
+                cliente.TelefonosCobro = telefonosCobro;
+                cliente.Referencia = referencia;
                 cliente.Fax = fax;
+                cliente.Referencia = referencia;
                 cliente.FechaAlta = fecAlta;
                 cliente.FechaBaja = fecBaja;
                 cliente.MotivoBaja = motivo;
@@ -248,7 +253,7 @@ namespace Datos
             }
 
         }
-        public void modificarCliente(int numeroCliente, string nombre, string nombreFantantasia, string rut, string email, string direccion, string direccionCobro, string telefono, string fax, bool activo, DateTime? fechaAlta, DateTime? fechaBaja, string motivoBaja)
+        public void modificarCliente(int numeroCliente, string nombre, string nombreFantantasia, string rut, string email, string direccion, string direccionCobro, string telefono, string fax, bool activo, DateTime? fechaAlta, DateTime? fechaBaja, string motivoBaja, string referencia, string diaHoraCobro, string contactoCobro, string telefonosCobro)
         {
             try
             {
@@ -265,6 +270,10 @@ namespace Datos
                 cli.Direccion = direccion;
                 cli.DireccionDeCobro = direccionCobro;
                 cli.Telefonos = telefono;
+                cli.DiaHoraCobro = diaHoraCobro;
+                cli.ContactoCobro = contactoCobro;
+                cli.TelefonosCobro = telefonosCobro;
+                cli.Referencia = referencia;
                 cli.Fax = fax;
                 cli.FechaAlta = fechaAlta;
                 cli.FechaBaja = fechaBaja;
@@ -284,7 +293,7 @@ namespace Datos
         #endregion
 
         #region ServicioCliente
-        public void altaServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string DiaDeCobro, string NombreCobrar)
+        public void altaServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string Observaciones)
         {
             SERVicIoS ser = null;
             try
@@ -299,11 +308,12 @@ namespace Datos
                 ser.Direccion = Direccion;
                 ser.Telefonos = Telefonos;
                 ser.PersonaContacto = Contacto;
-                ser.DiaCobro = DiaDeCobro;
-                ser.NombreCobrar = NombreCobrar;
+                //ser.DiaCobro = DiaDeCobro;
+                //ser.NombreCobrar = NombreCobrar;
                 ser.Celular = Celular;
                 ser.CelularTrust = CelularTrust;
                 ser.TareasAsignadas = Tareas;
+                ser.Observaciones = Observaciones;
                 ser.FechaAlta = DateTime.Now;
                 ser.FechaBaja = DateTime.MinValue.AddDays(1);
                 ser.MotivoBaja = null;
@@ -329,7 +339,7 @@ namespace Datos
                 throw ex;
             }
         }
-        public void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string DiaDeCobro, string NombreCobrar)
+        public void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string Observaciones)
         {
             try
             {
@@ -345,8 +355,7 @@ namespace Datos
                 ser.Direccion = Direccion;
                 ser.Telefonos = Telefonos;
                 ser.PersonaContacto = Contacto;
-                ser.DiaCobro = DiaDeCobro;
-                ser.NombreCobrar = NombreCobrar;
+                ser.Observaciones = Observaciones;
                 ser.Celular = Celular;
                 ser.CelularTrust = CelularTrust;
                 ser.TareasAsignadas = Tareas;
@@ -3057,14 +3066,14 @@ namespace Datos
 
 
 
-        public string getNombreServicio(int nroServicio)
+        public string getNombreServicio(int NroCliente,int nroServicio)
         {
             Table<SERVicIoS> tabla;
             try
             {
                 tabla = database.GetTable<SERVicIoS>();
                 var cli = (from clireg in tabla
-                           where clireg.NumeroServicio == nroServicio
+                           where clireg.NumeroServicio == nroServicio && clireg.NumeroCliente == NroCliente
                            select clireg);
                 if (cli.Count<SERVicIoS>() == 0)
                     return "";

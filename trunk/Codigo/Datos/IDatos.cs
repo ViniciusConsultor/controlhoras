@@ -24,8 +24,8 @@ namespace Datos
         #endregion
 
         #region Operaciones_De_Clientes
-        void altaCliente(int numeroCliente, string nombre, string nombreFantantasia, string rut, string email, string direccion, string direccionCobro, string telefono, string fax, bool activo, DateTime? fechaAlta, DateTime? fechaBaja, string motivoBaja);
-        void modificarCliente(int numeroCliente, string nombre, string nombreFantantasia, string rut, string email, string direccion, string direccionCobro, string telefono, string fax, bool activo, DateTime? fechaAlta, DateTime? fechaBaja, string motivoBaja);
+        void altaCliente(int numeroCliente, string nombre, string nombreFantantasia, string rut, string email, string direccion, string direccionCobro, string telefono, string fax, bool activo, DateTime? fechaAlta, DateTime? fechaBaja, string motivoBaja, string referencia, string diaHoraCobro, string contactoCobro, string telefonosCobro);
+        void modificarCliente(int numeroCliente, string nombre, string nombreFantantasia, string rut, string email, string direccion, string direccionCobro, string telefono, string fax, bool activo, DateTime? fechaAlta, DateTime? fechaBaja, string motivoBaja, string referencia, string diaHoraCobro, string contactoCobro, string telefonosCobro);
         //void bajaCliente(int idcliente);
         //List<Cliente> busquedaClientePorNombre(string nom);
         bool existeCliente(int numCliente);
@@ -35,10 +35,10 @@ namespace Datos
         #endregion
 
         #region Operaciones_De_Servicios
-        void altaServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string DiaDeCobro, string NombreCobrar);
+        void altaServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string Observaciones);
         List<SERVicIoS> obtenerServiciosCliente(int numeroCliente);
         SERVicIoS obtenerServicioCliente(int numeroCliente, int numeroServicio);
-        void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string DiaDeCobro, string NombreCobrar);
+        void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string Observaciones);
         #endregion
 
         #region Operaciones_De_Empleados
@@ -288,7 +288,7 @@ namespace Datos
 
         string getNombreCliente(int NroCliente);
 
-        string getNombreServicio(int NroServicio);
+        string getNombreServicio(int NroCliente, int NroServicio);
 
         EScalaFOn obtenerEscalafon(int NroEscalafon);
 

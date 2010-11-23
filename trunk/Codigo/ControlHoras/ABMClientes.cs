@@ -47,6 +47,11 @@ namespace ControlHoras
 
         private void limpiarForm()
         {
+            txtTelefonoCobro.Text = "";
+            txtReferencia.Text = "";
+            txtNombreParaCobrar.Text = "";
+            txtDiaHoraCobro.Text = "";
+            txtDireccionCobro.Text = "";
             lblEstadoCliente.Text = "";
             cbNoActivo.Checked = false;
             txtMotivoBaja.Text = "";
@@ -99,7 +104,7 @@ namespace ControlHoras
 
                 try
                 {
-                    sistema.altaCliente(int.Parse(mtCliente.Text), txtNombre.Text, txtNombreFantasia.Text, mtRUT.Text,txtEmail.Text,txtDireccion.Text,txtDireccionCobro.Text,txtTelefonos.Text,txtFax.Text,checkActivo, dtpAlta, dtpBaja, txtMotivoBaja.Text);
+                    sistema.altaCliente(int.Parse(mtCliente.Text), txtNombre.Text, txtNombreFantasia.Text, mtRUT.Text,txtEmail.Text,txtDireccion.Text,txtDireccionCobro.Text,txtTelefonos.Text,txtFax.Text,checkActivo, dtpAlta, dtpBaja, txtMotivoBaja.Text, txtReferencia.Text,txtDiaHoraCobro.Text,txtNombreParaCobrar.Text,txtTelefonoCobro.Text);
 
                     DialogResult res = MessageBox.Show(this, "Desea agregar servicios ahora?", "Servicios", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                     if (res == DialogResult.OK)
@@ -144,7 +149,7 @@ namespace ControlHoras
                 
                 try
                 {
-                    sistema.modificarCliente(int.Parse(mtCliente.Text), txtNombre.Text, txtNombreFantasia.Text, mtRUT.Text, txtEmail.Text, txtDireccion.Text, txtDireccionCobro.Text, txtTelefonos.Text, txtFax.Text, checkActivo, dtpAlta, dtpBaja, txtMotivoBaja.Text);
+                    sistema.modificarCliente(int.Parse(mtCliente.Text), txtNombre.Text, txtNombreFantasia.Text, mtRUT.Text, txtEmail.Text, txtDireccion.Text, txtDireccionCobro.Text, txtTelefonos.Text, txtFax.Text, checkActivo, dtpAlta, dtpBaja, txtMotivoBaja.Text, txtReferencia.Text, txtDiaHoraCobro.Text,txtNombreParaCobrar.Text,txtTelefonoCobro.Text);
                     btnCancelar.PerformClick();
                     
                 }
@@ -259,6 +264,10 @@ namespace ControlHoras
                 txtEmail.Text = cli.getEmail();
                 txtDireccion.Text = cli.getDireccion();
                 txtDireccionCobro.Text = cli.getDireccionCobro();
+                txtReferencia.Text = cli.getReferencia();
+                txtTelefonoCobro.Text = cli.getTelefonosCobro();
+                txtNombreParaCobrar.Text = cli.getContactoCobro();
+                txtDiaHoraCobro.Text = cli.getDiaHoraCobro();
                 txtTelefonos.Text = cli.getTelefonos();
                 txtFax.Text = cli.getFax();
                 dtpFechaAlta.Text = cli.getFechaAlta().ToString();

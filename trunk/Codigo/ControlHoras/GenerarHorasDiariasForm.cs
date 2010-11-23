@@ -64,6 +64,7 @@ namespace ControlHoras
                                 // 2- Que todos los empleados (no de licencia ni descanso, ni suspendios, trabaja las hs normales correspondientes a su cargo por jornada
                                 //    6 diasa  la semana, y que tiene un dia de descanso.
                                 // 3- Que no se solapan los horarios de los emplreados.
+
                                 TimeSpan diffTime = fechaHasta - fechaDesde;
                                 progressBarGeneracion.Minimum = 1;
                                 progressBarGeneracion.Maximum = diffTime.Days + 1;
