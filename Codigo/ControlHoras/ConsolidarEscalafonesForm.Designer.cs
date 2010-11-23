@@ -36,10 +36,9 @@
             // 
             // btnConsolidar
             // 
-            this.btnConsolidar.Location = new System.Drawing.Point(200, 442);
-            this.btnConsolidar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConsolidar.Location = new System.Drawing.Point(150, 359);
             this.btnConsolidar.Name = "btnConsolidar";
-            this.btnConsolidar.Size = new System.Drawing.Size(100, 28);
+            this.btnConsolidar.Size = new System.Drawing.Size(75, 23);
             this.btnConsolidar.TabIndex = 1;
             this.btnConsolidar.Text = "Consolidar";
             this.btnConsolidar.UseVisualStyleBackColor = true;
@@ -47,41 +46,38 @@
             // 
             // pbConsolidacion
             // 
-            this.pbConsolidacion.Location = new System.Drawing.Point(11, 481);
-            this.pbConsolidacion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbConsolidacion.Location = new System.Drawing.Point(8, 391);
             this.pbConsolidacion.Name = "pbConsolidacion";
-            this.pbConsolidacion.Size = new System.Drawing.Size(479, 28);
+            this.pbConsolidacion.Size = new System.Drawing.Size(359, 23);
             this.pbConsolidacion.TabIndex = 2;
             // 
             // RichTextBoxMensaje
             // 
-            this.RichTextBoxMensaje.Location = new System.Drawing.Point(11, 15);
-            this.RichTextBoxMensaje.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RichTextBoxMensaje.Location = new System.Drawing.Point(8, 12);
             this.RichTextBoxMensaje.Name = "RichTextBoxMensaje";
             this.RichTextBoxMensaje.ReadOnly = true;
-            this.RichTextBoxMensaje.Size = new System.Drawing.Size(477, 50);
+            this.RichTextBoxMensaje.Size = new System.Drawing.Size(359, 41);
             this.RichTextBoxMensaje.TabIndex = 5;
             this.RichTextBoxMensaje.Text = "Seleccione los Servicios y presione el boton Consolidar para comenzar con la Cons" +
                 "olidacion";
             // 
             // ucTreeClientesServicios
             // 
-            this.ucTreeClientesServicios.Location = new System.Drawing.Point(11, 73);
-            this.ucTreeClientesServicios.Margin = new System.Windows.Forms.Padding(5);
+            this.ucTreeClientesServicios.Location = new System.Drawing.Point(8, 58);
+            this.ucTreeClientesServicios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ucTreeClientesServicios.Name = "ucTreeClientesServicios";
-            this.ucTreeClientesServicios.Size = new System.Drawing.Size(479, 362);
+            this.ucTreeClientesServicios.Size = new System.Drawing.Size(359, 294);
             this.ucTreeClientesServicios.TabIndex = 0;
             // 
             // ConsolidarEscalafonesForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 524);
+            this.ClientSize = new System.Drawing.Size(374, 426);
             this.Controls.Add(this.RichTextBoxMensaje);
             this.Controls.Add(this.pbConsolidacion);
             this.Controls.Add(this.btnConsolidar);
             this.Controls.Add(this.ucTreeClientesServicios);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ConsolidarEscalafonesForm";
             this.Text = "ConsolidarEscalafonesForm";
             this.Load += new System.EventHandler(this.ConsolidarEscalafonesForm_Load);

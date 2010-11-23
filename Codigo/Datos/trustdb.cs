@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2010-11-20 12:18:22Z
+#region Auto-generated classes for trustdb database on 2010-11-23 01:43:18Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2010-11-20 12:18:22Z
+// Auto-generated from trustdb on 2010-11-23 01:43:18Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -466,6 +466,10 @@ namespace Datos
 		partial void OnCreated();
 		partial void OnActivoChanged();
 		partial void OnActivoChanging(sbyte? value);
+		partial void OnContactoCobroChanged();
+		partial void OnContactoCobroChanging(string value);
+		partial void OnDiaHoraCobroChanged();
+		partial void OnDiaHoraCobroChanging(string value);
 		partial void OnDireccionChanged();
 		partial void OnDireccionChanging(string value);
 		partial void OnDireccionDeCobroChanged();
@@ -486,10 +490,14 @@ namespace Datos
 		partial void OnNombreFantasiaChanging(string value);
 		partial void OnNumeroClienteChanged();
 		partial void OnNumeroClienteChanging(uint value);
+		partial void OnReferenciaChanged();
+		partial void OnReferenciaChanging(string value);
 		partial void OnRutChanged();
 		partial void OnRutChanging(string value);
 		partial void OnTelefonosChanged();
 		partial void OnTelefonosChanging(string value);
+		partial void OnTelefonosCobroChanged();
+		partial void OnTelefonosCobroChanging(string value);
 
 		#endregion
 
@@ -513,6 +521,58 @@ namespace Datos
 					_activo = value;
 					SendPropertyChanged("Activo");
 					OnActivoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string ContactoCobro
+
+		private string _contactoCobro;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_contactoCobro", Name = "ContactoCobro", DbType = "varchar(100)", AutoSync = AutoSync.Never)]
+		public string ContactoCobro
+		{
+			get
+			{
+				return _contactoCobro;
+			}
+			set
+			{
+				if (value != _contactoCobro)
+				{
+					OnContactoCobroChanging(value);
+					SendPropertyChanging();
+					_contactoCobro = value;
+					SendPropertyChanged("ContactoCobro");
+					OnContactoCobroChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string DiaHoraCobro
+
+		private string _diaHoraCobro;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_diaHoraCobro", Name = "DiaHoraCobro", DbType = "varchar(150)", AutoSync = AutoSync.Never)]
+		public string DiaHoraCobro
+		{
+			get
+			{
+				return _diaHoraCobro;
+			}
+			set
+			{
+				if (value != _diaHoraCobro)
+				{
+					OnDiaHoraCobroChanging(value);
+					SendPropertyChanging();
+					_diaHoraCobro = value;
+					SendPropertyChanged("DiaHoraCobro");
+					OnDiaHoraCobroChanged();
 				}
 			}
 		}
@@ -575,7 +635,7 @@ namespace Datos
 
 		private string _email;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_email", Name = "Email", DbType = "varchar(50)", AutoSync = AutoSync.Never)]
+		[Column(Storage = "_email", Name = "email", DbType = "varchar(100)", AutoSync = AutoSync.Never)]
 		public string Email
 		{
 			get
@@ -779,6 +839,32 @@ namespace Datos
 
 		#endregion
 
+		#region string Referencia
+
+		private string _referencia;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_referencia", Name = "Referencia", DbType = "varchar(100)", AutoSync = AutoSync.Never)]
+		public string Referencia
+		{
+			get
+			{
+				return _referencia;
+			}
+			set
+			{
+				if (value != _referencia)
+				{
+					OnReferenciaChanging(value);
+					SendPropertyChanging();
+					_referencia = value;
+					SendPropertyChanged("Referencia");
+					OnReferenciaChanged();
+				}
+			}
+		}
+
+		#endregion
+
 		#region string Rut
 
 		private string _rut;
@@ -825,6 +911,32 @@ namespace Datos
 					_telefonos = value;
 					SendPropertyChanged("Telefonos");
 					OnTelefonosChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string TelefonosCobro
+
+		private string _telefonosCobro;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_telefonosCobro", Name = "TelefonosCobro", DbType = "varchar(150)", AutoSync = AutoSync.Never)]
+		public string TelefonosCobro
+		{
+			get
+			{
+				return _telefonosCobro;
+			}
+			set
+			{
+				if (value != _telefonosCobro)
+				{
+					OnTelefonosCobroChanging(value);
+					SendPropertyChanging();
+					_telefonosCobro = value;
+					SendPropertyChanged("TelefonosCobro");
+					OnTelefonosCobroChanged();
 				}
 			}
 		}
@@ -7508,7 +7620,7 @@ namespace Datos
 		}
 
 		private EntityRef<SERVicIoS> _servIcIoS;
-		[Association(Storage = "_servIcIoS", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "motivoscambiosdiarios_ibfk_2", IsForeignKey = true)]
+		[Association(Storage = "_servIcIoS", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "motivoscambiosdiarios_ibfk_2", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public SERVicIoS SERVicIoS
 		{
@@ -7530,13 +7642,13 @@ namespace Datos
 					if (value != null)
 					{
 						value.MotIVOsCamBiosDiARioS.Add(this);
-						_numeroServicio = value.NumeroServicio;
 						_numeroCliente = value.NumeroCliente;
+						_numeroServicio = value.NumeroServicio;
 					}
 					else
 					{
-						_numeroServicio = default(uint);
 						_numeroCliente = default(uint);
+						_numeroServicio = default(uint);
 					}
 				}
 			}
@@ -7739,12 +7851,12 @@ namespace Datos
 		partial void OnCelularChanging(string value);
 		partial void OnCelularTrustChanged();
 		partial void OnCelularTrustChanging(string value);
-		partial void OnDiaCobroChanged();
-		partial void OnDiaCobroChanging(string value);
 		partial void OnDireccionChanged();
 		partial void OnDireccionChanging(string value);
 		partial void OnEmailChanged();
 		partial void OnEmailChanging(string value);
+		partial void OnEntreCallesChanged();
+		partial void OnEntreCallesChanging(string value);
 		partial void OnFechaAltaChanged();
 		partial void OnFechaAltaChanging(DateTime? value);
 		partial void OnFechaBajaChanged();
@@ -7753,12 +7865,12 @@ namespace Datos
 		partial void OnMotivoBajaChanging(string value);
 		partial void OnNombreChanged();
 		partial void OnNombreChanging(string value);
-		partial void OnNombreCobrarChanged();
-		partial void OnNombreCobrarChanging(string value);
 		partial void OnNumeroClienteChanged();
 		partial void OnNumeroClienteChanging(uint value);
 		partial void OnNumeroServicioChanged();
 		partial void OnNumeroServicioChanging(uint value);
+		partial void OnObservacionesChanged();
+		partial void OnObservacionesChanging(string value);
 		partial void OnPersonaContactoChanged();
 		partial void OnPersonaContactoChanging(string value);
 		partial void OnTareasAsignadasChanged();
@@ -7846,32 +7958,6 @@ namespace Datos
 
 		#endregion
 
-		#region string DiaCobro
-
-		private string _diaCobro;
-		[DebuggerNonUserCode]
-		[Column(Storage = "_diaCobro", Name = "DiaCobro", DbType = "varchar(50)", AutoSync = AutoSync.Never)]
-		public string DiaCobro
-		{
-			get
-			{
-				return _diaCobro;
-			}
-			set
-			{
-				if (value != _diaCobro)
-				{
-					OnDiaCobroChanging(value);
-					SendPropertyChanging();
-					_diaCobro = value;
-					SendPropertyChanged("DiaCobro");
-					OnDiaCobroChanged();
-				}
-			}
-		}
-
-		#endregion
-
 		#region string Direccion
 
 		private string _direccion;
@@ -7918,6 +8004,32 @@ namespace Datos
 					_email = value;
 					SendPropertyChanged("Email");
 					OnEmailChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string EntreCalles
+
+		private string _entreCalles;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_entreCalles", Name = "EntreCalles", DbType = "varchar(150)", AutoSync = AutoSync.Never)]
+		public string EntreCalles
+		{
+			get
+			{
+				return _entreCalles;
+			}
+			set
+			{
+				if (value != _entreCalles)
+				{
+					OnEntreCallesChanging(value);
+					SendPropertyChanging();
+					_entreCalles = value;
+					SendPropertyChanged("EntreCalles");
+					OnEntreCallesChanged();
 				}
 			}
 		}
@@ -8028,32 +8140,6 @@ namespace Datos
 
 		#endregion
 
-		#region string NombreCobrar
-
-		private string _nombreCobrar;
-		[DebuggerNonUserCode]
-		[Column(Storage = "_nombreCobrar", Name = "NombreCobrar", DbType = "varchar(50)", AutoSync = AutoSync.Never)]
-		public string NombreCobrar
-		{
-			get
-			{
-				return _nombreCobrar;
-			}
-			set
-			{
-				if (value != _nombreCobrar)
-				{
-					OnNombreCobrarChanging(value);
-					SendPropertyChanging();
-					_nombreCobrar = value;
-					SendPropertyChanged("NombreCobrar");
-					OnNombreCobrarChanged();
-				}
-			}
-		}
-
-		#endregion
-
 		#region uint NumeroCliente
 
 		private uint _numeroCliente;
@@ -8104,6 +8190,32 @@ namespace Datos
 					_numeroServicio = value;
 					SendPropertyChanged("NumeroServicio");
 					OnNumeroServicioChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string Observaciones
+
+		private string _observaciones;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_observaciones", Name = "Observaciones", DbType = "varchar(255)", AutoSync = AutoSync.Never)]
+		public string Observaciones
+		{
+			get
+			{
+				return _observaciones;
+			}
+			set
+			{
+				if (value != _observaciones)
+				{
+					OnObservacionesChanging(value);
+					SendPropertyChanging();
+					_observaciones = value;
+					SendPropertyChanged("Observaciones");
+					OnObservacionesChanged();
 				}
 			}
 		}
@@ -8206,7 +8318,7 @@ namespace Datos
 		}
 
 		private EntitySet<MotIVOsCamBiosDiARioS> _motIvoSCamBiosDiArIoS;
-		[Association(Storage = "_motIvoSCamBiosDiArIoS", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "motivoscambiosdiarios_ibfk_2")]
+		[Association(Storage = "_motIvoSCamBiosDiArIoS", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "motivoscambiosdiarios_ibfk_2")]
 		[DebuggerNonUserCode]
 		public EntitySet<MotIVOsCamBiosDiARioS> MotIVOsCamBiosDiARioS
 		{

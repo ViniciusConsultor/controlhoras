@@ -36,7 +36,7 @@ namespace ControlHoras
             try
             {
                 ClienteLBL.Text = NroCliente.ToString() + " - " + datos.getNombreCliente(NroCliente);
-                ServicioLBL.Text = NroServicio.ToString() + " - " + datos.getNombreServicio(NroServicio);                
+                ServicioLBL.Text = NroServicio.ToString() + " - " + datos.getNombreServicio(NroCliente,NroServicio);                
             }
             catch (Exception ex)
             {

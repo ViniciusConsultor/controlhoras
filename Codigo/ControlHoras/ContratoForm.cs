@@ -415,7 +415,7 @@ namespace ControlHoras
                         {
                             if (fila.Cells["Armado"].Value == null)
                                 fila.Cells["Armado"].Value = "0";
-                            precio = fila.Cells["PrecioXHora"].Value.ToString().Substring(3);
+                            precio = fila.Cells["PrecioXHora"].Value.ToString().Split(' ')[1];
                             linea = new LineaDeHoras(fila.Cells["Puesto"].Value.ToString(), (fila.Cells["Armado"].Value.ToString() == "1") ? true : false, float.Parse(precio), int.Parse(fila.Cells["Cantidad"].Value.ToString()), 0, 0);
                             for (int i = 0; i < 7; i++)
                             {
