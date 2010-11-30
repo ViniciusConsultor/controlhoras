@@ -39,9 +39,15 @@ namespace Logica
             DateTime dti, dtf;
             TimeSpan res;
 
-            dti = DateTime.ParseExact(HoraInicio, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
-            dtf = DateTime.ParseExact(HoraFin, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
-            if (dtf < dti)
+            //if (HoraInicio == "24:00")
+            //    dti = DateTime.Today.AddDays(1);
+            //else
+                dti = DateTime.ParseExact(HoraInicio, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+            if (HoraFin == "24:00")
+                dtf = DateTime.Today.AddDays(1);
+            else
+                dtf = DateTime.ParseExact(HoraFin, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+            if (dtf <= dti)
                 dtf = dtf.AddDays(1);
             res = dtf - dti;
             
