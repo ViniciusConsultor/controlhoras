@@ -579,7 +579,7 @@ namespace ControlHoras
 
             if (!DateTime.TryParseExact(hini, @"HH:mm", DateTimeFormatInfo.InvariantInfo, dts, out dti))
                 return false;
-            if (!DateTime.TryParseExact(hfin, @"HH:mm", DateTimeFormatInfo.InvariantInfo, dts, out dtf))
+            if (!DateTime.TryParseExact(hfin, @"HH:mm", DateTimeFormatInfo.InvariantInfo, dts, out dtf) && hfin != @"24:00")
                 return false;
             //if (dti > dtf)
             //    return false;
