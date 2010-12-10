@@ -17,6 +17,12 @@ namespace ControlHoras
         private ClientEs cliente;
         private SERVicIoS servicio;
 
+
+        IClientesServicios sistema = ControladorClientesServicios.getInstance();
+        int ind;
+        int cant;
+        int[] numerosSer;
+
         private IDatos datos;
         private string fechaMask = @"  /  /";
 
@@ -27,7 +33,10 @@ namespace ControlHoras
 
         private ControlDiario()
         {
-            datos = ControladorDatos.getInstance();
+            datos = ControladorDatos.getInstance();           
+            
+            ind = 0;
+            cant = 0;
             
             InitializeComponent();
             //controller = Controlador.getControlador();
@@ -68,6 +77,59 @@ namespace ControlHoras
             {
                 // Abrir ventana de busqueda de servicios de ese cliente.
             }
+        }
+
+        private void ucCliente_cliPronto(object sender, EventArgs e)
+        {
+            //AgregarBTN.Enabled = false;
+            //GuardarBTN.Enabled = false;
+            //ContratoBTN.Enabled = false;
+
+            AnteriorBTN.Visible = false;
+            PosteriorBTN.Visible = false;
+
+            if (ucCliente.find)
+            {
+                try
+                {
+                    int numCli = int.Parse(ucCliente.ClienteNRO);
+                    cliente = datos.obtenerCliente(numCli);
+                    Cliente cli = sistema.obtenerCliente(numCli);
+                    List<Servicio> servicios = cli.getListaServicios();
+                    if (servicios.Count != 0)
+                    {
+                        cant = servicios.Count;
+                        numerosSer = new int[cant];
+
+                        int i = 0;
+                        foreach (Servicio ser in servicios)
+                        {
+                            numerosSer[i] = ser.getNumero();
+                            i++;
+                        }
+
+                        servicio = datos.obtenerServicioCliente(numCli, numerosSer[ind]);
+                        mtServicio.Text = numerosSer[ind].ToString();
+                        txtServicio.Text = servicio.Nombre;
+
+                        mtFecha.Focus();
+                        mtFecha.Text = DateTime.Now.ToShortDateString();
+                        SendKeys.Send("{ENTER}");
+
+                        if (cant > 1)
+                        {
+                            AnteriorBTN.Visible = true;
+                            PosteriorBTN.Visible = true;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            //else
+            //    MessageBox.Show("No existe el Cliente "+ucCliente.ClienteNRO, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         
         private void mtFecha_KeyDown(object sender, KeyEventArgs e)
@@ -371,10 +433,42 @@ namespace ControlHoras
             ucCliente.ClienteMT_KeyDown(sender, kea);
         }
 
+        private void AnteriorBTN_Click(object sender, EventArgs e)
+        {
+            int numCli = int.Parse(ucCliente.ClienteNRO);
+            if ((ind - 1) < 0)
+                ind = cant - 1;
+            else
+                ind = ind - 1;
 
 
+            servicio = datos.obtenerServicioCliente(int.Parse(ucCliente.ClienteNRO), numerosSer[ind]);
+            mtServicio.Text = numerosSer[ind].ToString();
+            txtServicio.Text = servicio.Nombre;
 
+            mtFecha.Focus();
+            //mtFecha.Text = DateTime.Now.ToShortDateString();
+            SendKeys.Send("{ENTER}");
+        }
 
+        private void PosteriorBTN_Click(object sender, EventArgs e)
+        {
+            int numCli = int.Parse(ucCliente.ClienteNRO);
+            ind = (ind + 1) % cant;
+
+            servicio = datos.obtenerServicioCliente(int.Parse(ucCliente.ClienteNRO), numerosSer[ind]);
+            mtServicio.Text = numerosSer[ind].ToString();
+            txtServicio.Text = servicio.Nombre;
+
+            mtFecha.Focus();
+            //mtFecha.Text = DateTime.Now.ToShortDateString();
+            SendKeys.Send("{ENTER}");
+        }
+
+        private void ControlDiario_Shown(object sender, EventArgs e)
+        {
+            ucCliente.cliPronto += new EventHandler(ucCliente_cliPronto);
+        }    
        
     }
 }
