@@ -415,9 +415,13 @@ namespace ControlHoras
 
                     // Cargar las hs por dia del contrato en el dvg            
                     contrato = sistema.getContrato(CalcNroContrato(numCli, numSer));
-                    hporCubrir = contrato.getTotalesHoras();
-                    CargarHporCubrir();
-                    ActualizarHporCubrir();
+                    //try
+                    //{
+                        hporCubrir = contrato.getTotalesHoras();
+                        CargarHporCubrir();
+                        ActualizarHporCubrir();
+                    //}
+                    //catch { }
                     VerContratoBTN.Enabled = true;
                 }            
             }

@@ -261,7 +261,7 @@ namespace Datos
         int obtenerMaxIdCliente();
 
         #region TiposMotivoCambioDiario
-        List<TipOsMotIVOCamBIoDiARio> obtenerTiposMotivoCambioDiario();
+        List<TipOsMotIVOCamBIoDiARio> obtenerTiposMotivoCambioDiario(bool soloactivos);
         void altaTipoMotivoCambioDiario(TipOsMotIVOCamBIoDiARio t);
         void modificacionTipoMotivoCambioDiario(TipOsMotIVOCamBIoDiARio t);
         void bajaTipoMotivoCambioDiario(TipOsMotIVOCamBIoDiARio t);

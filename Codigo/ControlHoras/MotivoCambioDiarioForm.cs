@@ -22,7 +22,7 @@ namespace ControlHoras
         {
             InitializeComponent();
             datos = ControladorDatos.getInstance();
-            listaTiposMotivos = datos.obtenerTiposMotivoCambioDiario();
+            listaTiposMotivos = datos.obtenerTiposMotivoCambioDiario(true);
             cmbMotivosCambio.BeginUpdate();
             //foreach (TipOsMotIVOCamBIoDiARio tmcd in listaTiposMotivos)
             //{
