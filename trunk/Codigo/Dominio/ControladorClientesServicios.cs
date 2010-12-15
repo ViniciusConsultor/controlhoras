@@ -854,8 +854,10 @@ namespace Logica
                         }
                         if (esc.HoRaRioEScalaFOn[i].TipoDia == 0)  // Si el dia es Laborable
                         {
-                            hge.HoraEntrada = DateTime.Parse(Fecha.ToShortDateString() + " " + esc.HoRaRioEScalaFOn[i].HoRaInI);                            
+                            hge.HoraEntrada = DateTime.Parse(Fecha.ToShortDateString() + " " + esc.HoRaRioEScalaFOn[i].HoRaInI);
                             hge.HoraSalida = DateTime.Parse(Fecha.ToShortDateString() + " " + esc.HoRaRioEScalaFOn[i].HoRaFIn);
+                            if (hge.HoraSalida < hge.HoraEntrada)
+                                hge.HoraSalida = hge.HoraSalida.AddDays(1.0);
                             hge.NroEmpleado = esc.NroEmpleado;
                             hge.NumeroCliente = escalafon.NumeroCliente;
                             hge.NumeroServicio = escalafon.NumeroServicio;
@@ -907,9 +909,8 @@ namespace Logica
             {
                 List<string> errores = new List<string>();
                 EScalaFOn escalafon = datos.obtenerEscalafon(CalcNroContrato(NumeroCliente, NumeroServicio));
-                // 2010-11-22: JG: Se deshabilita hasta que quede arreglado el tema de las horas en dias diferentes en el escalafon.
-                //if (escalafon.Cubierto == 0)
-                //    errores.Add("El Contrato no esta Cubierto. No se cubren todas las horas contratadas.");
+                if (escalafon.Cubierto == 0)
+                    errores.Add("El Contrato no esta Cubierto. No se cubren todas las horas contratadas.");
                 
                 return errores;
             }catch

@@ -12,6 +12,8 @@ using System.Configuration;
 using System.Globalization;
 using System.IO;
 
+
+
 namespace Datos
 {
     public class ControladorDatos : IDatos
@@ -2711,11 +2713,14 @@ namespace Datos
         }
 
         #region TiposMotivoCambioDiario
-        public List<TipOsMotIVOCamBIoDiARio> obtenerTiposMotivoCambioDiario()
+        public List<TipOsMotIVOCamBIoDiARio> obtenerTiposMotivoCambioDiario(bool soloactivos)
         {
             try
             {
-                return database.TipOsMotIVOCamBIoDiARio.ToList<TipOsMotIVOCamBIoDiARio>();
+                if (soloactivos)
+                    return database.TipOsMotIVOCamBIoDiARio.Where(t => t.Activo == 1).ToList();
+                else
+                    return database.TipOsMotIVOCamBIoDiARio.ToList();
             }
             catch (Exception ex)
             {

@@ -47,7 +47,7 @@ namespace ControlHoras
             btnAgregar.Enabled = true;
             btnGuardar.Enabled = false;
 
-            List<TipOsMotIVOCamBIoDiARio> movs = datos.obtenerTiposMotivoCambioDiario();
+            List<TipOsMotIVOCamBIoDiARio> movs = datos.obtenerTiposMotivoCambioDiario(false);
             foreach (TipOsMotIVOCamBIoDiARio iter in movs)
             {
                 int n = -10;
