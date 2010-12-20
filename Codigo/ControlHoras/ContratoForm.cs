@@ -221,14 +221,13 @@ namespace ControlHoras
 
         private void llenarForm(int numCli, int numSer)
         {
-            Servicio ser = sistema.obtenerServicioCliente(numCli, numSer);            
-
-            NroMTB.Text = ser.getNumero().ToString();
-            NombreTB.Text = ser.getNombre();
-
-
             try
             {
+                Servicio ser = sistema.obtenerServicioCliente(numCli, numSer);            
+
+                NroMTB.Text = ser.getNumero().ToString();
+                NombreTB.Text = ser.getNombre();
+           
                 ConSeguridadFisica con = null;
                 int nroCon = CalcNroContrato(numCli, numSer);
                 if (datos.existeContrato(nroCon))
@@ -669,6 +668,19 @@ namespace ControlHoras
         {
             if (FIniMTB.Text == "  /  /")
                 FIniMTB.Text = DateTime.Now.ToString();
+        }
+
+        private void NroMTB_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && NroMTB.Text != "")
+            {
+                int numCli = int.Parse(bcUC.ClienteNRO);
+                LimpiarForm();
+                int ser;
+                if (int.TryParse(NroMTB.Text, out ser))
+                    llenarForm(numCli, ser);
+            }
+            
         }
         
     
