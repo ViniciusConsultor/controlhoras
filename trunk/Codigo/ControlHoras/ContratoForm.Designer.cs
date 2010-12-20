@@ -61,10 +61,10 @@
             this.ObsTB = new ControlHoras.TextBoxKeyDown();
             this.AjusteTB = new ControlHoras.TextBoxKeyDown();
             this.CargaHorariaDGV = new ControlHoras.DataGridTAB();
-            this.Puesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Armado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.MontoTB = new ControlHoras.TextBoxKeyDown();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Puesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
@@ -254,6 +254,7 @@
             this.NroMTB.Name = "NroMTB";
             this.NroMTB.Size = new System.Drawing.Size(44, 22);
             this.NroMTB.TabIndex = 6;
+            this.NroMTB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NroMTB_KeyDown);
             // 
             // label9
             // 
@@ -396,12 +397,6 @@
             this.CargaHorariaDGV.TabIndex = 5;
             this.CargaHorariaDGV.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CargaHorariaDGV_CellMouseClick);
             // 
-            // Puesto
-            // 
-            this.Puesto.HeaderText = "Tarea";
-            this.Puesto.Name = "Puesto";
-            this.Puesto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
             // Armado
             // 
             this.Armado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
@@ -426,6 +421,12 @@
             this.dataGridViewTextBoxColumn1.HeaderText = "Puesto";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Puesto
+            // 
+            this.Puesto.HeaderText = "Tarea";
+            this.Puesto.Name = "Puesto";
+            this.Puesto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // dataGridViewTextBoxColumn2
             // 

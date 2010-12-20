@@ -21,7 +21,7 @@ namespace Datos
         private static TrustDb database = null;
         private static IDatos instance = null;
         private static MySqlConnection conexion = null;
-
+        
         private ControladorDatos()
         {
             database = getContext();
@@ -100,7 +100,7 @@ namespace Datos
 
         internal static TrustDb createContext()
         {
-
+            
             TrustDb context = new TrustDb(getConexion(), new DbLinq.MySql.MySqlVendor());
             //context.Log = new StreamWriter("C:\\dblinq.log"); 
             return context;
