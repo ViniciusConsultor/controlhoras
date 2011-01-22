@@ -143,6 +143,16 @@ namespace ControlHoras
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             this.CargaHorariaDGV.Columns.Add(mtbc);
 
+            DataGridViewButtonColumn Eliminar = new DataGridViewButtonColumn();          
+            Eliminar.HeaderText = "";
+            Eliminar.Name = "Eliminar";
+            Eliminar.Text = "Borrar";
+            Eliminar.UseColumnTextForButtonValue = true;
+            Eliminar.Width = 50;
+            this.CargaHorariaDGV.Columns.Add(Eliminar);
+
+
+
             //CargaHorariaDGV.EditMode = DataGridViewEditMode.EditOnEnter;
         }
 
@@ -357,8 +367,21 @@ namespace ControlHoras
                 CargaHorariaDGV.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = true;*/
 
                 celda = CargaHorariaDGV.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                CargaHorariaCMS.Show(MousePosition);                
+                CargaHorariaCMS.Show(MousePosition);
             }
+            else
+                if (e.ColumnIndex == 11 && e.RowIndex != CargaHorariaDGV.RowCount - 1)
+                {
+                    AjusteTB.Text = e.RowIndex.ToString();
+
+                    int aux = e.RowIndex + 1;
+                    string msg = "Esta seguro que desea eliminar la fila " + aux.ToString() + "?";
+                    if (CargaHorariaDGV.Rows[e.RowIndex].Cells[0].Value != null)
+                        msg += "\nEn esta linea se encuentra asignada la tarea " + CargaHorariaDGV.Rows[e.RowIndex].Cells[0].Value;
+                    DialogResult dr = MessageBox.Show(msg, "Eliminar Linea Contrato", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                    if (dr == DialogResult.Yes)
+                        CargaHorariaDGV.Rows.RemoveAt(e.RowIndex);
+                }
         }
 
         private void copiarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -681,8 +704,6 @@ namespace ControlHoras
                     llenarForm(numCli, ser);
             }
             
-        }
-        
-    
+        }    
     }
 }
