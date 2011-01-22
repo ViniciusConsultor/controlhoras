@@ -903,10 +903,10 @@ namespace ControlHoras
                              else
                              {
                                  CargarHorarioCelda(j, oldvalor, dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString());
-                                 if (PisaHorario(dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[0].Value.ToString(), LastCellChanged.RowIndex, dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString()))
-                                     MessageBox.Show("El empleado " + dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[0].Value.ToString() + " ya trabaja dentro de ese horario en este cliente", "Solapamiento de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                 //if (PisaHorario(dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[0].Value.ToString(), LastCellChanged.RowIndex, dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString()))
+                                 //    MessageBox.Show("El empleado " + dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[0].Value.ToString() + " ya trabaja dentro de ese horario en este cliente", "Solapamiento de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                  //TimeSpan aux = ObtenerHoraString(dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString());
-                                 //hporCubrir[j-4] = hporCubrir[j-4] - aux;
+                                 //hporCubrir[j - 4] = hporCubrir[j - 4] - aux;
                                  //CargarHporCubrir();
                              }
 

@@ -61,10 +61,10 @@
             this.ObsTB = new ControlHoras.TextBoxKeyDown();
             this.AjusteTB = new ControlHoras.TextBoxKeyDown();
             this.CargaHorariaDGV = new ControlHoras.DataGridTAB();
+            this.Puesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Armado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.MontoTB = new ControlHoras.TextBoxKeyDown();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Puesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
@@ -92,7 +92,7 @@
             this.GuardarBTN});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(945, 36);
+            this.toolStrip1.Size = new System.Drawing.Size(995, 36);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -393,9 +393,15 @@
             this.CargaHorariaDGV.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.CargaHorariaDGV.RowTemplate.Height = 24;
             this.CargaHorariaDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.CargaHorariaDGV.Size = new System.Drawing.Size(926, 195);
+            this.CargaHorariaDGV.Size = new System.Drawing.Size(976, 195);
             this.CargaHorariaDGV.TabIndex = 5;
             this.CargaHorariaDGV.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CargaHorariaDGV_CellMouseClick);
+            // 
+            // Puesto
+            // 
+            this.Puesto.HeaderText = "Tarea";
+            this.Puesto.Name = "Puesto";
+            this.Puesto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Armado
             // 
@@ -422,12 +428,6 @@
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // Puesto
-            // 
-            this.Puesto.HeaderText = "Tarea";
-            this.Puesto.Name = "Puesto";
-            this.Puesto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
@@ -447,7 +447,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(945, 465);
+            this.ClientSize = new System.Drawing.Size(995, 465);
             this.Controls.Add(this.FFinMTB);
             this.Controls.Add(this.ServicioGB);
             this.Controls.Add(this.FIniMTB);
