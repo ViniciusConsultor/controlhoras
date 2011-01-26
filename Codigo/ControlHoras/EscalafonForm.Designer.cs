@@ -61,6 +61,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.PosteriorBTN = new System.Windows.Forms.Button();
             this.AnteriorBTN = new System.Windows.Forms.Button();
+            this.VerContratoBTN = new System.Windows.Forms.Button();
             this.mtServicio = new System.Windows.Forms.MaskedTextBox();
             this.mtCliente = new System.Windows.Forms.MaskedTextBox();
             this.txtServicio = new System.Windows.Forms.TextBox();
@@ -78,7 +79,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.VerContratoBTN = new System.Windows.Forms.Button();
             this.dgvHsPorCubrir = new System.Windows.Forms.DataGridView();
             this.EscalafonCMS = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copiarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,6 +88,7 @@
             this.enOtroServicioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.descansoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.licenciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnCancelar = new System.Windows.Forms.ToolStripButton();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -268,6 +269,19 @@
             this.AnteriorBTN.Visible = false;
             this.AnteriorBTN.Click += new System.EventHandler(this.AnteriorBTN_Click);
             // 
+            // VerContratoBTN
+            // 
+            this.VerContratoBTN.AutoSize = true;
+            this.VerContratoBTN.Enabled = false;
+            this.VerContratoBTN.Location = new System.Drawing.Point(550, 65);
+            this.VerContratoBTN.Margin = new System.Windows.Forms.Padding(2);
+            this.VerContratoBTN.Name = "VerContratoBTN";
+            this.VerContratoBTN.Size = new System.Drawing.Size(76, 23);
+            this.VerContratoBTN.TabIndex = 4;
+            this.VerContratoBTN.Text = "Ver Contrato";
+            this.VerContratoBTN.UseVisualStyleBackColor = true;
+            this.VerContratoBTN.Click += new System.EventHandler(this.VerContratoBTN_Click);
+            // 
             // mtServicio
             // 
             this.mtServicio.BackColor = System.Drawing.SystemColors.Window;
@@ -321,7 +335,8 @@
             this.toolStripSeparator2,
             this.btnBuscarClientes,
             this.toolStripSeparator3,
-            this.btnVerEscalafonFuncionario});
+            this.btnVerEscalafonFuncionario,
+            this.btnCancelar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(959, 36);
@@ -346,7 +361,7 @@
             // 
             // btnBuscarClientes
             // 
-            this.btnBuscarClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarClientes.Image")));
+            this.btnBuscarClientes.Image = global::ControlHoras.Imagenes.ClientsSearch42x42;
             this.btnBuscarClientes.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnBuscarClientes.Name = "btnBuscarClientes";
             this.btnBuscarClientes.Size = new System.Drawing.Size(79, 33);
@@ -448,19 +463,6 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(11, 13);
             this.label1.TabIndex = 5;
-            // 
-            // VerContratoBTN
-            // 
-            this.VerContratoBTN.AutoSize = true;
-            this.VerContratoBTN.Enabled = false;
-            this.VerContratoBTN.Location = new System.Drawing.Point(550, 65);
-            this.VerContratoBTN.Margin = new System.Windows.Forms.Padding(2);
-            this.VerContratoBTN.Name = "VerContratoBTN";
-            this.VerContratoBTN.Size = new System.Drawing.Size(76, 23);
-            this.VerContratoBTN.TabIndex = 4;
-            this.VerContratoBTN.Text = "Ver Contrato";
-            this.VerContratoBTN.UseVisualStyleBackColor = true;
-            this.VerContratoBTN.Click += new System.EventHandler(this.VerContratoBTN_Click);
             // 
             // dgvHsPorCubrir
             // 
@@ -573,6 +575,18 @@
             this.licenciaToolStripMenuItem.Text = "Licencia";
             this.licenciaToolStripMenuItem.Click += new System.EventHandler(this.licenciaToolStripMenuItem_Click);
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnCancelar.Image = global::ControlHoras.Imagenes.button_cancel;
+            this.btnCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(53, 33);
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCancelar.ToolTipText = "Limpia la pantalla";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // dataGridViewTextBoxColumn1
             // 
             dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -661,6 +675,9 @@
             // dgEscalafon
             // 
             this.dgEscalafon.AllowUserToAddRows = false;
+            this.dgEscalafon.AllowUserToDeleteRows = false;
+            this.dgEscalafon.AllowUserToResizeColumns = false;
+            this.dgEscalafon.AllowUserToResizeRows = false;
             this.dgEscalafon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgEscalafon.Location = new System.Drawing.Point(3, 3);
             this.dgEscalafon.Name = "dgEscalafon";
@@ -857,5 +874,6 @@
         private System.Windows.Forms.Panel GraficosPL;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton btnVerEscalafonFuncionario;
+        private System.Windows.Forms.ToolStripButton btnCancelar;
     }
 }

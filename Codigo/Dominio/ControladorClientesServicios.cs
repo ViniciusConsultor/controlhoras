@@ -756,6 +756,8 @@ namespace Logica
                 bool tienePlanificado6Dias = false;
 
                 int cantDiasPlanificados = 0;
+
+                
                 foreach (EScalaFOneMpLeadO escEmp in listaEscEmp)
                 {
                     foreach (HoRaRioEScalaFOn he in escEmp.HoRaRioEScalaFOn)
@@ -769,8 +771,15 @@ namespace Logica
                             if (he.TipOsDiAs.NoMbRe.Equals("Laborable", StringComparison.OrdinalIgnoreCase))
                             {
                                 cantDiasPlanificados++;
+                                // Revisamos si tiene horarios solapados.
+                                if (EsHorarioSolapado((int)he.IDEscalafon, nroEmpleado, he.DiA, he.HoRaInI, he.HoRaFIn))
+                                {
+                                    listaErrores.Add(nroEmpleado + " tiene horarios solapados en el Cliente: " + escEmp.EScalaFOn.NumeroCliente + " - Servicio: " + escEmp.EScalaFOn.NumeroServicio);
+                                }
                             }
-                        } 
+                        }
+                        
+                        
                     }
                 }
 
