@@ -1145,6 +1145,11 @@ namespace ControlHoras
             {
             }
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            limpiarForm();
+        }
         
     }
 }
