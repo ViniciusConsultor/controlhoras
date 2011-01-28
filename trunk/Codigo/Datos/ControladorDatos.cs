@@ -797,10 +797,17 @@ namespace Datos
             }
         }
         public int obtenerMaxIdEmpleado()
+        // Deuelve el maximo sin tener en cuenta los empleadosPivot
         {
+            int NroFuncionarioPivot=-1;
             try
             {
+                if (ConfigurationManager.AppSettings.AllKeys.Contains("NroFuncionarioPivot"))
+                    if (!int.TryParse(ConfigurationManager.AppSettings["NroFuncionarioPivot"].ToString(), out NroFuncionarioPivot))
+                        throw new Exception("El formato de la propiedad NroFuncionarioPivot no es correcto.");
+           
                 var maxId = (from reg in database.GetTable<EmPleadOs>()
+                             where reg.NroEmpleado != NroFuncionarioPivot
                              select (int)reg.NroEmpleado).Max<int>();
 
                 return maxId;
