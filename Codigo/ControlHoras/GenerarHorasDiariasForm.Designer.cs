@@ -31,27 +31,33 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GenerarHorasDiariasForm));
             this.btnGenerar = new System.Windows.Forms.Button();
             this.RichTextBoxMensaje = new System.Windows.Forms.RichTextBox();
-            this.progressBarGeneracion = new System.Windows.Forms.ProgressBar();
-            this.lblProcesando = new System.Windows.Forms.Label();
             this.lblNroCliente = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
-            this.lbErrores = new System.Windows.Forms.ListBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.mtFechaHasta = new ControlHoras.MaskedTextBoxKeyDown();
-            this.mtFechaDesde = new ControlHoras.MaskedTextBoxKeyDown();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.panelGeneracion = new System.Windows.Forms.Panel();
+            this.lblGenerando = new System.Windows.Forms.Label();
+            this.generandoPicBox = new System.Windows.Forms.PictureBox();
+            this.panelConsolidacion = new System.Windows.Forms.Panel();
+            this.lblConsolidando = new System.Windows.Forms.Label();
+            this.ConsolidandoPicBox = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ucTreeClientesServicios = new ControlHoras.TreeClientesServicios();
+            this.mtFechaHasta = new ControlHoras.MaskedTextBoxKeyDown();
+            this.mtFechaDesde = new ControlHoras.MaskedTextBoxKeyDown();
             this.groupBox1.SuspendLayout();
+            this.panelGeneracion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.generandoPicBox)).BeginInit();
+            this.panelConsolidacion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ConsolidandoPicBox)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGenerar
             // 
-            this.btnGenerar.Location = new System.Drawing.Point(188, 104);
+            this.btnGenerar.Location = new System.Drawing.Point(347, 18);
             this.btnGenerar.Name = "btnGenerar";
             this.btnGenerar.Size = new System.Drawing.Size(75, 23);
             this.btnGenerar.TabIndex = 2;
@@ -68,23 +74,6 @@
             this.RichTextBoxMensaje.TabIndex = 4;
             this.RichTextBoxMensaje.Text = resources.GetString("RichTextBoxMensaje.Text");
             // 
-            // progressBarGeneracion
-            // 
-            this.progressBarGeneracion.Location = new System.Drawing.Point(26, 76);
-            this.progressBarGeneracion.Name = "progressBarGeneracion";
-            this.progressBarGeneracion.Size = new System.Drawing.Size(411, 23);
-            this.progressBarGeneracion.TabIndex = 9;
-            // 
-            // lblProcesando
-            // 
-            this.lblProcesando.AutoSize = true;
-            this.lblProcesando.Location = new System.Drawing.Point(251, 59);
-            this.lblProcesando.Name = "lblProcesando";
-            this.lblProcesando.Size = new System.Drawing.Size(102, 13);
-            this.lblProcesando.TabIndex = 7;
-            this.lblProcesando.Text = "Procesando Cliente:";
-            this.lblProcesando.Visible = false;
-            // 
             // lblNroCliente
             // 
             this.lblNroCliente.AutoSize = true;
@@ -97,7 +86,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(248, 24);
+            this.label1.Location = new System.Drawing.Point(198, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 12;
@@ -106,20 +95,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(71, 24);
+            this.label2.Location = new System.Drawing.Point(21, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 11;
             this.label2.Text = "Desde";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(26, 59);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Procesando Fecha:";
             // 
             // lblFecha
             // 
@@ -129,72 +109,100 @@
             this.lblFecha.Size = new System.Drawing.Size(0, 13);
             this.lblFecha.TabIndex = 6;
             // 
-            // lbErrores
-            // 
-            this.lbErrores.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbErrores.FormattingEnabled = true;
-            this.lbErrores.HorizontalScrollbar = true;
-            this.lbErrores.ItemHeight = 15;
-            this.lbErrores.Location = new System.Drawing.Point(26, 145);
-            this.lbErrores.Name = "lbErrores";
-            this.lbErrores.Size = new System.Drawing.Size(411, 184);
-            this.lbErrores.TabIndex = 3;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(26, 129);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Bitacora de Errores";
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.progressBarGeneracion);
+            this.groupBox1.Controls.Add(this.progressBar);
+            this.groupBox1.Controls.Add(this.panelGeneracion);
+            this.groupBox1.Controls.Add(this.panelConsolidacion);
             this.groupBox1.Controls.Add(this.mtFechaHasta);
             this.groupBox1.Controls.Add(this.btnGenerar);
             this.groupBox1.Controls.Add(this.mtFechaDesde);
-            this.groupBox1.Controls.Add(this.lblProcesando);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.lbErrores);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.210526F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(437, 67);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(460, 377);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "2";
             // 
-            // mtFechaHasta
+            // progressBar
             // 
-            this.mtFechaHasta.Location = new System.Drawing.Point(290, 20);
-            this.mtFechaHasta.Mask = "00/00/0000";
-            this.mtFechaHasta.Name = "mtFechaHasta";
-            this.mtFechaHasta.Size = new System.Drawing.Size(70, 20);
-            this.mtFechaHasta.TabIndex = 14;
+            this.progressBar.Location = new System.Drawing.Point(66, 212);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(356, 23);
+            this.progressBar.TabIndex = 1;
+            this.progressBar.Visible = false;
             // 
-            // mtFechaDesde
+            // panelGeneracion
             // 
-            this.mtFechaDesde.Location = new System.Drawing.Point(116, 20);
-            this.mtFechaDesde.Mask = "00/00/0000";
-            this.mtFechaDesde.Name = "mtFechaDesde";
-            this.mtFechaDesde.Size = new System.Drawing.Size(70, 20);
-            this.mtFechaDesde.TabIndex = 13;
+            this.panelGeneracion.Controls.Add(this.lblGenerando);
+            this.panelGeneracion.Controls.Add(this.generandoPicBox);
+            this.panelGeneracion.Location = new System.Drawing.Point(66, 157);
+            this.panelGeneracion.Name = "panelGeneracion";
+            this.panelGeneracion.Size = new System.Drawing.Size(356, 49);
+            this.panelGeneracion.TabIndex = 4;
+            this.panelGeneracion.Visible = false;
+            // 
+            // lblGenerando
+            // 
+            this.lblGenerando.AutoSize = true;
+            this.lblGenerando.Location = new System.Drawing.Point(36, 17);
+            this.lblGenerando.Name = "lblGenerando";
+            this.lblGenerando.Size = new System.Drawing.Size(69, 13);
+            this.lblGenerando.TabIndex = 2;
+            this.lblGenerando.Text = "Generando...";
+            // 
+            // generandoPicBox
+            // 
+            this.generandoPicBox.Image = global::ControlHoras.Imagenes.procesando_2;
+            this.generandoPicBox.Location = new System.Drawing.Point(5, 4);
+            this.generandoPicBox.Name = "generandoPicBox";
+            this.generandoPicBox.Size = new System.Drawing.Size(25, 39);
+            this.generandoPicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.generandoPicBox.TabIndex = 0;
+            this.generandoPicBox.TabStop = false;
+            // 
+            // panelConsolidacion
+            // 
+            this.panelConsolidacion.Controls.Add(this.lblConsolidando);
+            this.panelConsolidacion.Controls.Add(this.ConsolidandoPicBox);
+            this.panelConsolidacion.Location = new System.Drawing.Point(66, 102);
+            this.panelConsolidacion.Name = "panelConsolidacion";
+            this.panelConsolidacion.Size = new System.Drawing.Size(356, 49);
+            this.panelConsolidacion.TabIndex = 3;
+            this.panelConsolidacion.Visible = false;
+            // 
+            // lblConsolidando
+            // 
+            this.lblConsolidando.AutoSize = true;
+            this.lblConsolidando.Location = new System.Drawing.Point(36, 17);
+            this.lblConsolidando.Name = "lblConsolidando";
+            this.lblConsolidando.Size = new System.Drawing.Size(80, 13);
+            this.lblConsolidando.TabIndex = 2;
+            this.lblConsolidando.Text = "Consolidando...";
+            // 
+            // ConsolidandoPicBox
+            // 
+            this.ConsolidandoPicBox.Image = global::ControlHoras.Imagenes.procesando_2;
+            this.ConsolidandoPicBox.Location = new System.Drawing.Point(5, 4);
+            this.ConsolidandoPicBox.Name = "ConsolidandoPicBox";
+            this.ConsolidandoPicBox.Size = new System.Drawing.Size(25, 39);
+            this.ConsolidandoPicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ConsolidandoPicBox.TabIndex = 0;
+            this.ConsolidandoPicBox.TabStop = false;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.ucTreeClientesServicios);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.210526F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(13, 67);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(409, 377);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
@@ -203,10 +211,26 @@
             // ucTreeClientesServicios
             // 
             this.ucTreeClientesServicios.Location = new System.Drawing.Point(2, 17);
-            this.ucTreeClientesServicios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ucTreeClientesServicios.Margin = new System.Windows.Forms.Padding(4);
             this.ucTreeClientesServicios.Name = "ucTreeClientesServicios";
             this.ucTreeClientesServicios.Size = new System.Drawing.Size(400, 353);
             this.ucTreeClientesServicios.TabIndex = 0;
+            // 
+            // mtFechaHasta
+            // 
+            this.mtFechaHasta.Location = new System.Drawing.Point(240, 18);
+            this.mtFechaHasta.Mask = "00/00/0000";
+            this.mtFechaHasta.Name = "mtFechaHasta";
+            this.mtFechaHasta.Size = new System.Drawing.Size(70, 20);
+            this.mtFechaHasta.TabIndex = 14;
+            // 
+            // mtFechaDesde
+            // 
+            this.mtFechaDesde.Location = new System.Drawing.Point(66, 18);
+            this.mtFechaDesde.Mask = "00/00/0000";
+            this.mtFechaDesde.Name = "mtFechaDesde";
+            this.mtFechaDesde.Size = new System.Drawing.Size(70, 20);
+            this.mtFechaDesde.TabIndex = 13;
             // 
             // GenerarHorasDiariasForm
             // 
@@ -223,6 +247,12 @@
             this.Load += new System.EventHandler(this.GenerarHorasDiariasForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panelGeneracion.ResumeLayout(false);
+            this.panelGeneracion.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.generandoPicBox)).EndInit();
+            this.panelConsolidacion.ResumeLayout(false);
+            this.panelConsolidacion.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ConsolidandoPicBox)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -233,20 +263,22 @@
 
         private System.Windows.Forms.Button btnGenerar;
         private System.Windows.Forms.RichTextBox RichTextBoxMensaje;
-        private System.Windows.Forms.ProgressBar progressBarGeneracion;
-        private System.Windows.Forms.Label lblProcesando;
         private System.Windows.Forms.Label lblNroCliente;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblFecha;
-        private System.Windows.Forms.ListBox lbErrores;
-        private System.Windows.Forms.Label label4;
         private MaskedTextBoxKeyDown mtFechaDesde;
         private MaskedTextBoxKeyDown mtFechaHasta;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private TreeClientesServicios ucTreeClientesServicios;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.Panel panelGeneracion;
+        private System.Windows.Forms.Label lblGenerando;
+        private System.Windows.Forms.PictureBox generandoPicBox;
+        private System.Windows.Forms.Panel panelConsolidacion;
+        private System.Windows.Forms.Label lblConsolidando;
+        private System.Windows.Forms.PictureBox ConsolidandoPicBox;
 
     }
 }
