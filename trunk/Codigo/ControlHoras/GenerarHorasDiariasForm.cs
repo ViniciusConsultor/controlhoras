@@ -17,6 +17,11 @@ namespace ControlHoras
     {
         IDatos datos;
         IClientesServicios controladorClientes;
+
+        private Image ImagenOK = Imagenes.check_ok;
+        private Image ImagenError = Imagenes.check_error;
+        private Image ImagenProcesando = Imagenes.procesando_2;
+
         public GenerarHorasDiariasForm()
         {
             InitializeComponent();
@@ -37,12 +42,173 @@ namespace ControlHoras
             }
         }
 
+
+        private Dictionary<string,List<string>> consolidar()
+        {
+            Dictionary<string, List<string>> listaErroresConsolidacion = new Dictionary<string, List<string>>();
+            List<string> errores;
+            int nroCliente;
+            try
+            {
+                setConsolidacionImageProcesando();
+                
+                //List<string> listaErrores = new List<string>();
+                Dictionary<int, List<int>> clientesServiciosSeleccionados = ucTreeClientesServicios.obtenerClientesServiciosSeleccionados();
+                Dictionary<int, List<int>>.Enumerator iter = clientesServiciosSeleccionados.GetEnumerator();
+                progressBarReset(0, clientesServiciosSeleccionados.Count());
+                
+                List<string> listaAux;
+                while (iter.MoveNext())
+                {
+                    nroCliente = iter.Current.Key;
+                    
+                    foreach (int nroServicio in iter.Current.Value)
+                    {
+                        setLabelConsolidacion("Consolidando " + nroCliente + " - " + nroServicio);
+                        // Corremos la consolidacion para el cliente servicio
+                        errores = new List<string>();
+
+                        try
+                        {
+                            listaAux = controladorClientes.ejecutarControlesEscalafonServicio(nroCliente, nroServicio);
+                            errores = concatenar(errores, listaAux);
+                            //if (errores.Count > 0)
+                            //    listaErroresConsolidacion.Add(nroCliente + ":" + nroServicio, errores);
+                        }
+                        catch (ControlEscalafonServicioException ces)
+                        {
+                            errores.Add(ces.Message);
+                            //listaErroresConsolidacion.Add(nroCliente + ":" + nroServicio, new List<string> { ces.Message } );
+                        }
+
+                        try
+                        {
+                            listaAux = controladorClientes.ejecutarControlesEscalafonEmpleado(nroCliente, nroServicio);
+                            errores = concatenar(errores, listaAux);
+                       
+                        }
+                        catch (ControlEscalafonEmpleadoException ces)
+                        {
+                            errores.Add(ces.Message);
+                           
+                        }
+                        listaErroresConsolidacion.Add(nroCliente + ":" + nroServicio, errores);
+                    }
+                    progressBarAvanzar();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return listaErroresConsolidacion;        
+                                                        
+        }
+
+
+        private Dictionary<string,List<string>> generarHoras(DateTime fechaDesde,DateTime fechaHasta)
+        {
+            
+            lblNroCliente.Visible = true;
+            int indice = 1;
+            bool huboErrores = false;
+            bool sobrescribirHorasGeneradas = false;
+            List<string> listaErrores = new List<string>();
+                
+            try
+            {
+                TimeSpan diffTime = fechaHasta - fechaDesde;
+                DateTime dateAux = fechaDesde;
+                
+                // Obtenemos la lista de clientes activos.
+                Dictionary<int, List<int>> clientesServiciosSeleccionados = ucTreeClientesServicios.obtenerClientesServiciosSeleccionados();
+                Dictionary<int, List<int>>.Enumerator iter = clientesServiciosSeleccionados.GetEnumerator();
+                int nroCliente;
+                string clienteServicioError="";
+
+                controladorClientes.iniciarGeneracionHoras();
+                while (dateAux <= fechaHasta)
+                {
+                    lblFecha.Text = dateAux.ToShortDateString();
+                    lblFecha.Refresh();
+                    
+                    while (iter.MoveNext())
+                    {
+                        nroCliente = iter.Current.Key;
+
+                        lblNroCliente.Text = nroCliente.ToString();
+                        lblNroCliente.Refresh();
+
+                        foreach (int nroServicio in iter.Current.Value)
+                        {
+                            try
+                            {
+                                controladorClientes.generarHorasDiaServicio(nroCliente, nroServicio, dateAux, sobrescribirHorasGeneradas);
+                            }
+                            catch (YaExistenHorasGeneradasParaLaFechaException)
+                            {
+                                if (!sobrescribirHorasGeneradas)
+                                {
+                                    DialogResult dg2 = MessageBox.Show(this, "Ya existen Horas Generadas en el periodo. Desea sobreescribirlas?", "Ya Existen Horas", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                                    if (dg2 == DialogResult.Yes)
+                                    {
+                                        sobrescribirHorasGeneradas = true;
+                                        controladorClientes.generarHorasDiaServicio(nroCliente, nroServicio, dateAux, sobrescribirHorasGeneradas);
+                                    }
+                                }
+                            }
+                            catch (Exception exGen)
+                            {
+                                huboErrores = true;
+                                clienteServicioError = nroCliente + ":" + nroServicio;
+                                listaErrores.Add(exGen.Message + ": " + exGen.InnerException.Message);
+                                break;
+                            }
+                        }
+                    }       
+                    iter = clientesServiciosSeleccionados.GetEnumerator();
+                    indice++;
+                    dateAux = dateAux.AddDays(1);                
+                }
+                if (!huboErrores)
+                {
+                    controladorClientes.finalizarGeneracionHoras(true, sobrescribirHorasGeneradas);
+                    MessageBox.Show(this, "Proceso Finalizado Correctamente.", "Generacion Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return new Dictionary<string, List<string>>();
+                }
+                else
+                {
+                    controladorClientes.finalizarGeneracionHoras(false, false);
+                    Dictionary<string, List<string>> errores = new Dictionary<string, List<string>>();
+                    errores.Add(clienteServicioError, listaErrores);
+                    return errores;
+                    //MessageBox.Show(this, "Generacion Cancelada." + "\n" + listaErrores.First(), "Error al Generar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }    
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                // MessageBox.Show(this, "Error al Generar. " + ex.Message, "Generacion Cancelada.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                lblNroCliente.Visible = false;
+            }
+            
+            //else
+            //    MessageBox.Show(this, "La Fecha Desde debe ser menor a la Fecha Hasta.", "Datos Incorrectos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
         
+
+
         private void btnGenerar_Click(object sender, EventArgs e)
         {
             DateTime fechaDesde;
             DateTime fechaHasta;
-            List<string> listaErrores = new List<string>();
+            bool errorConsolidacion = false;
+            //List<string> listaErrores = new List<string>();
             
             if (DateTime.TryParse(mtFechaDesde.Text, out fechaDesde))
             {
@@ -54,181 +220,71 @@ namespace ControlHoras
 
                         if (dg == DialogResult.Yes)
                         {
+                            ucTreeClientesServicios.Enabled = false;
+                            Dictionary<string, List<string>> listaErrores;
                             try
                             {
-                                lbErrores.Text = "";
-                                lbErrores.DataSource = null;
-                                lblProcesando.Visible = true;
-                                lblNroCliente.Visible = true;
-                                // Consolidar todos los escalafones
-                                // 1- Que se cumple el contrato de todos los serivicios
-                                // 2- Que todos los empleados (no de licencia ni descanso, ni suspendios, trabaja las hs normales correspondientes a su cargo por jornada
-                                //    6 diasa  la semana, y que tiene un dia de descanso.
-                                // 3- Que no se solapan los horarios de los emplreados.
-
-                                TimeSpan diffTime = fechaHasta - fechaDesde;
-                                progressBarGeneracion.Minimum = 1;
-                                progressBarGeneracion.Maximum = diffTime.Days + 1;
-                                DateTime dateAux = fechaDesde;
-                                int indice = 1;
-                                bool huboErrores = false;
-                                bool huboErroresConsolidacion = false;
-                                
-                                // Obtenemos la lista de clientes activos.
-                                //List<ClientEs> clientes = datos.obtenerClientes(true);
-                                //List<ClientEs> clientes = ucTreeClientesServicios.obtenerClientesSeleccionados();
-                                Dictionary<int, List<int>> clientesServiciosSeleccionados = ucTreeClientesServicios.obtenerClientesServiciosSeleccionados();
-                                Dictionary<int, List<int>>.Enumerator iter = clientesServiciosSeleccionados.GetEnumerator();
-                                Dictionary<string, List<string>> listaErroresConsolidacion =  new Dictionary<string,List<string>>();
-                                List<string> errores;
-                                
-                                int nroCliente;
-
-                                
-
-                                bool sobrescribirHorasGeneradas = false;
-                                controladorClientes.iniciarGeneracionHoras();
-                                while (dateAux <= fechaHasta)
+                                // Primero consolidamos
+                                panelConsolidacion.Visible = true;
+                                progressBar.Visible = true;
+                                listaErrores = consolidar();
+                                if (listaErrores.Count > 0)
                                 {
-                                    lblFecha.Text = dateAux.ToShortDateString();
-                                    lblFecha.Refresh();
-                                    progressBarGeneracion.Value = indice;
-
-                                    while (iter.MoveNext())
-                                    {
-                                        nroCliente = iter.Current.Key;
-
-                                        lblNroCliente.Text = nroCliente.ToString();
-                                        lblNroCliente.Refresh();
-
-                                        foreach (int nroServicio in iter.Current.Value)
-                                        {
-                                            // Corremos la consolidacion para el cliente servicio
-                                            try
-                                            {
-                                                errores = controladorClientes.ejecutarControlesEscalafonServicio(nroCliente, nroServicio);
-                                                if (errores.Count > 0)
-                                                    listaErroresConsolidacion.Add(nroCliente + ":" + nroServicio, errores);
-                                            }
-                                            catch (ControlEscalafonServicioException ces)
-                                            {
-                                                listaErroresConsolidacion.Add(nroCliente + ":" + nroServicio, new List<string> { ces.Message } );
-                                            }
-                                            
-                                            try
-                                            {
-                                                errores = controladorClientes.ejecutarControlesEscalafonEmpleado(nroCliente, nroServicio);
-                                                if (errores.Count > 0)
-                                                {
-                                                    if (!listaErroresConsolidacion.ContainsKey(nroCliente + ":" + nroServicio))
-                                                        listaErroresConsolidacion.Add(nroCliente + ":" + nroServicio, errores);
-                                                    else
-                                                    {
-                                                        //errores = (List<string>)listaErrores[nroCliente + ":" + nroServicio].Concat(errores);
-                                                        errores = concatenar(listaErroresConsolidacion[nroCliente + ":" + nroServicio], errores);
-                                                        listaErrores.Remove(nroCliente + ":" + nroServicio);
-                                                        listaErroresConsolidacion.Add(nroCliente + ":" + nroServicio, errores);
-                                                    }
-                                                }                            
-                                            }
-                                            catch (ControlEscalafonEmpleadoException ces)
-                                            {                            
-                                                if (!listaErroresConsolidacion.ContainsKey(nroCliente + ":" + nroServicio))
-                                                    listaErroresConsolidacion.Add(nroCliente + ":" + nroServicio, new List<string> { ces.Message });
-                                                else
-                                                {
-                                                    //errores = (List<string>)listaErrores[nroCliente + ":" + nroServicio].Concat(new List<string> { ces.Message });
-                                                    errores = concatenar(listaErroresConsolidacion[nroCliente + ":" + nroServicio], new List<string> { ces.Message });
-                                                    listaErrores.Remove(nroCliente + ":" + nroServicio);
-                                                    listaErroresConsolidacion.Add(nroCliente + ":" + nroServicio, errores);
-                                                }
-                                            }
-
-                                            if (listaErroresConsolidacion.Count > 0)
-                                            {
-                                                // Si la consolidacion da errores
-                                                // Despliego el conjunto de errores.
-                                                huboErroresConsolidacion = true;
-                                               
-                                            }
-                                            else
-                                            {
-                                                try
-                                                {
-                                                    controladorClientes.generarHorasDiaServicio(nroCliente, nroServicio, dateAux, sobrescribirHorasGeneradas);
-                                                }
-                                                catch (YaExistenHorasGeneradasParaLaFechaException)
-                                                {
-                                                    if (!sobrescribirHorasGeneradas)
-                                                    {
-                                                        DialogResult dg2 = MessageBox.Show(this, "Ya existen Horas Generadas en el periodo. Desea sobreescribirlas?", "Ya Existen Horas", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                                                        if (dg2 == DialogResult.Yes)
-                                                        {
-                                                            sobrescribirHorasGeneradas = true;
-                                                            controladorClientes.generarHorasDiaServicio(nroCliente, nroServicio, dateAux, sobrescribirHorasGeneradas);
-                                                        }
-                                                    }
-                                                }
-                                                catch (Exception exGen)
-                                                {
-                                                    huboErrores = true;
-                                                    listaErrores.Add(exGen.Message + ": " + exGen.InnerException.Message);
-                                                    break;
-                                                }
-                                            }
-                                        }                                           
-                                    }
-                                    
-                                    iter = clientesServiciosSeleccionados.GetEnumerator();
-                                    indice++;
-                                    dateAux = dateAux.AddDays(1);
-                                    if (huboErrores || huboErroresConsolidacion)
-                                        break;
-                                }
-                                if (huboErroresConsolidacion)
-                                {
-                                    MessageBox.Show(this, "Consolidacion Finalizada Con Errores.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    controladorClientes.finalizarGeneracionHoras(false, false);
-                                    //lbErrores.DataSource = listaErroresConsolidacion;
-                                    //MessageBox.Show(this, "Generacion Cancelada." + "\n" + listaErrores.First(), "Error al Generar", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                                    AbroWordConErrores(listaErroresConsolidacion);
+                                    // Si la consolidacion da errores
+                                    // Despliego el conjunto de errores.
+                                    setConsolidacionImageError();
+                                    errorConsolidacion = true;
+                                    AbroWordConErrores(listaErrores);
                                 }
                                 else
                                 {
-                                    if (!huboErrores)
+                                    // Si la consolidacion estuvo OK, GENERAMOS
+                                    setConsolidacionImageOK();
+                                    setGeneracionImageProcesando();
+                                    panelGeneracion.Visible = true;
+                                    listaErrores=generarHoras(fechaDesde, fechaHasta);
+                                    if (listaErrores.Count > 0)
                                     {
-                                        controladorClientes.finalizarGeneracionHoras(true, sobrescribirHorasGeneradas);
-                                        MessageBox.Show(this, "Proceso Finalizado Correctamente.", "Generacion Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        setGeneracionImageError();
+                                        AbroWordConErrores(listaErrores);
                                     }
                                     else
-                                    {
-                                        controladorClientes.finalizarGeneracionHoras(false, false);
-                                        lbErrores.DataSource = listaErrores;
-                                        MessageBox.Show(this, "Generacion Cancelada." + "\n" + listaErrores.First(), "Error al Generar", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    }
+                                        setGeneracionImageOK();
                                 }
                             }
-                            catch (Exception ex)
+                            catch (Exception exx)
                             {
-                                MessageBox.Show(this, "Generacion Cancelada." + "\n", "Error al Generar. " + ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                if (errorConsolidacion)
+                                {
+                                    setConsolidacionImageError();
+                                    MessageBox.Show(this, "Consolidacion Finalizada Con Errores.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                else
+                                {
+                                    setGeneracionImageError();
+                                    MessageBox.Show(this, exx.Message, "Error en la Generacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                }
                             }
                             finally
                             {
-                                lblProcesando.Visible = false;
-                                lblNroCliente.Visible = false;
+                                ucTreeClientesServicios.Enabled = true;
                             }
                         }
-                        //else
-                        //    MessageBox.Show(this, "La Fecha Desde debe ser menor a la Fecha Hasta.", "Datos Incorrectos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
-                        MessageBox.Show(this, "FechaHasta debe ser mayor o igual a FechaDesde.", "Datos Incorrectos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                    MessageBox.Show(this, "El formato de la fecha Desde ingresada no es correcto.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    {
+                            MessageBox.Show(this, "FechaHasta debe ser mayor o igual a FechaDesde.", "Datos Incorrectos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                 }     
+                 else
+                       MessageBox.Show(this, "El formato de la fecha Hasta ingresada no es correcto.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else
+                MessageBox.Show(this, "El formato de la fecha Desde ingresada no es correcto.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
         
+        
+            
         }
 
 
@@ -240,49 +296,81 @@ namespace ControlHoras
             return aux;
         }
 
+
+        public void setGeneracionShowImage()
+        {
+            generandoPicBox.Visible = true;
+            generandoPicBox.Refresh();
+        }
+
+        public void setGeneracionImageOK()
+        {
+            generandoPicBox.Image = ImagenOK;
+            generandoPicBox.Refresh();
+        }
+
+        public void setGeneracionImageError()
+        {
+            generandoPicBox.Image = ImagenError;
+            generandoPicBox.Refresh();
+        }
+
+        public void setGeneracionImageProcesando()
+        {
+            generandoPicBox.Image = ImagenProcesando;
+            generandoPicBox.Refresh();
+        }
+
+        public void setLabelGeneracion(string text)
+        {
+            lblGenerando.Text = text;
+            lblGenerando.Refresh();
+            this.Refresh();
+        }
+
+        public void setConsolidacionImageOK()
+        {
+            ConsolidandoPicBox.Image = ImagenOK;
+            ConsolidandoPicBox.Refresh();
+        }
+
+        public void setConsolidacionImageError()
+        {
+            ConsolidandoPicBox.Image = ImagenError;
+            ConsolidandoPicBox.Refresh();
+        }
+
+        public void setConsolidacionImageProcesando()
+        {
+            ConsolidandoPicBox.Image = ImagenProcesando;
+            ConsolidandoPicBox.Refresh();
+        }
+
+        public void setLabelConsolidacion(string text)
+        {
+            lblConsolidando.Text = text;
+            lblConsolidando.Refresh();
+            this.Refresh();
+        }
+
+        public void progressBarReset(int valorInicio, int valorFin)
+        {
+            progressBar.Minimum = valorInicio;
+            progressBar.Maximum = valorFin;
+            progressBar.Value = progressBar.Minimum;
+            progressBar.Refresh();
+        }
+        public void progressBarAvanzar()
+        {
+            progressBar.Value += 1;
+            progressBar.Refresh();
+        }
+
         private void AbroWordConErrores(Dictionary<string, List<string>> listaErrores)
         {
             Prueba_2 p = new Prueba_2(listaErrores);
             p.Show();
 
-            //Dictionary<string, List<string>>.Enumerator iter = listaErrores.GetEnumerator();
-
-            //object missing = null;
-
-            //Word._Application oWord;
-            //oWord = new Word.ApplicationClass();
-            //Word._Document oDoc;
-            //oDoc = new Word.DocumentClass();
-
-            //oWord.Visible = true;
-
-            //// Acá Try
-            //try
-            //{
-
-            //    oDoc = oWord.Documents.Add(ref missing, ref missing, ref missing, ref missing);
-
-            //    object ini = 0;
-            //    object fin = 40;
-            //    Word.Range rng;
-
-            //    iter.MoveNext();
-
-            //    rng = oDoc.Range(ref ini, ref fin);
-            //    rng.Text = iter.Current.Key.ToString();
-
-            //    ini = (int)ini + 40;
-            //    fin = (int)fin + 40;
-
-            //    rng = oDoc.Range(ref ini, ref fin);
-            //    rng.Text = iter.Current.Value[0].ToString();
-            //}
-            //catch (Exception ex)
-            //{
-
-            //    throw ex;
-            //}
         }
-
     }
 }
