@@ -92,7 +92,8 @@ namespace ControlHoras
                             errores.Add(ces.Message);
                            
                         }
-                        listaErroresConsolidacion.Add(nroCliente + ":" + nroServicio, errores);
+                        if (errores.Count > 0)
+                            listaErroresConsolidacion.Add(nroCliente + ":" + nroServicio, errores);
                     }
                     progressBarAvanzar();
                 }
@@ -175,7 +176,6 @@ namespace ControlHoras
                 if (!huboErrores)
                 {
                     controladorClientes.finalizarGeneracionHoras(true, sobrescribirHorasGeneradas);
-                    MessageBox.Show(this, "Proceso Finalizado Correctamente.", "Generacion Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return new Dictionary<string, List<string>>();
                 }
                 else
@@ -184,7 +184,6 @@ namespace ControlHoras
                     Dictionary<string, List<string>> errores = new Dictionary<string, List<string>>();
                     errores.Add(clienteServicioError, listaErrores);
                     return errores;
-                    //MessageBox.Show(this, "Generacion Cancelada." + "\n" + listaErrores.First(), "Error al Generar", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }    
             }
             catch (Exception ex)
@@ -220,6 +219,9 @@ namespace ControlHoras
 
                         if (dg == DialogResult.Yes)
                         {
+                            panelConsolidacion.Visible = false;
+                            panelGeneracion.Visible = false;
+
                             ucTreeClientesServicios.Enabled = false;
                             Dictionary<string, List<string>> listaErrores;
                             try
@@ -234,6 +236,7 @@ namespace ControlHoras
                                     // Despliego el conjunto de errores.
                                     setConsolidacionImageError();
                                     errorConsolidacion = true;
+                                    MessageBox.Show(this, "Generacion Cancelada.", "Error al Generar", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     AbroWordConErrores(listaErrores);
                                 }
                                 else
@@ -249,7 +252,10 @@ namespace ControlHoras
                                         AbroWordConErrores(listaErrores);
                                     }
                                     else
+                                    {
                                         setGeneracionImageOK();
+                                        MessageBox.Show(this, "Proceso Finalizado Correctamente.", "Generacion Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
                                 }
                             }
                             catch (Exception exx)
