@@ -5,6 +5,7 @@ using DbLinq.Data.Linq;
 using System.Text;
 using System.Globalization;
 using Datos;
+using System.Configuration;
 
 namespace Logica
 {
@@ -930,18 +931,26 @@ namespace Logica
 
         public List<string> ejecutarControlesEscalafonEmpleado(int NumeroCliente, int NumeroServicio)
         {
-
+            int nroFuncPivot=-1;
             try
             {
+                if (ConfigurationManager.AppSettings.AllKeys.Contains("NroFuncionarioPivot"))
+                    int.TryParse(ConfigurationManager.AppSettings["NroFuncionarioPivot"], out nroFuncPivot);
+                
                 List<string> errores = new List<string>();
                 EScalaFOn escalafon = datos.obtenerEscalafon(CalcNroContrato(NumeroCliente, NumeroServicio));
                 List<string> erroresControlEmpleado;
                 foreach (EScalaFOneMpLeadO escEmp in escalafon.EScalaFOneMpLeadO)
                 {
-                    erroresControlEmpleado = controlarPlanificacionEscalafonEmpleado((int)escEmp.NroEmpleado);
-                    //errores.Concat(erroresControlEmpleado);
-                    erroresControlEmpleado.Concat(errores);
-                    errores = erroresControlEmpleado;
+                    if (escEmp.NroEmpleado == nroFuncPivot)
+                        errores.Add("El servicio No puede tener asignado el Funcionario Pivot en el Escalafon. NroEmpleado: " + nroFuncPivot);
+                    else
+                    {
+                        erroresControlEmpleado = controlarPlanificacionEscalafonEmpleado((int)escEmp.NroEmpleado);
+                        //errores.Concat(erroresControlEmpleado);
+                        erroresControlEmpleado.Concat(errores);
+                        errores = erroresControlEmpleado;
+                    }
                 }
                 
                 return errores;
