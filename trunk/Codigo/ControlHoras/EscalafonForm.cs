@@ -1174,7 +1174,10 @@ namespace ControlHoras
                     GuardarBTN.PerformClick();
                 }
             }
+            
             nroClienteCargado = null;
+            GuardarBTN.Enabled = false;
+
             mtCliente.Text = "";
             txtCliente.Text = "";
             mtServicio.Text = "";
