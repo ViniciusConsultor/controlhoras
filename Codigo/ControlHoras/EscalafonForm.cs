@@ -18,7 +18,8 @@ namespace ControlHoras
         IClientesServicios sistema;// = ControladorClientesServicios.getInstance();
         IEmpleados sistemaEmp;// = ControladorEmpleados.getInstance();
         IDatos datos;
-        ClientEs cliente = null;        
+        ClientEs cliente = null;
+        int? nroClienteCargado = null;
         ContraToS con;
         ConSeguridadFisica contrato = null;
 
@@ -66,6 +67,8 @@ namespace ControlHoras
         private void limpiarForm()
         {
             dgEscalafon.Rows.Clear();
+            //nroClienteCargado = null;
+            
         }
         
         private void dgEscalafon_KeyDown(object sender, KeyEventArgs e)
@@ -150,6 +153,14 @@ namespace ControlHoras
         {            
             if (mtCliente.Text != "" && (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab))
             {
+                if (nroClienteCargado != null)
+                {
+                    DialogResult dg = MessageBox.Show(this, "Desea Guardar el Escalafon actual?", "Guardar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dg == DialogResult.Yes)
+                    {
+                        GuardarBTN.PerformClick();
+                    }
+                }
                 // traigo el cliente.                
                 try
                 {
@@ -190,6 +201,8 @@ namespace ControlHoras
                             }
                             
                             cargarVentana(numCli, numerosSer[ind]);
+                            nroClienteCargado = numCli;
+
                         }
                         else
                         {
@@ -961,7 +974,7 @@ namespace ControlHoras
              {
                  if (ValidarEscalafon())
                  {
-                     int numCli = int.Parse(mtCliente.Text);
+                     int numCli = nroClienteCargado.Value;
                      int numSer = int.Parse(mtServicio.Text);
                      int nroCon = CalcNroContrato(numCli, numSer);
                      Escalafon es = new Escalafon();
@@ -1148,7 +1161,37 @@ namespace ControlHoras
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            limpiarForm();
+            ResetearForm();
+        }
+
+        private void ResetearForm()
+        {
+            if (mtCliente.Text != "" && mtServicio.Text != "" && dgEscalafon.Rows.Count > 0)
+            {
+                DialogResult dg = MessageBox.Show(this, "Guardar antes de cancelar?", "Guardar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dg == DialogResult.Yes)
+                {
+                    GuardarBTN.PerformClick();
+                }
+            }
+            nroClienteCargado = null;
+            mtCliente.Text = "";
+            txtCliente.Text = "";
+            mtServicio.Text = "";
+            txtServicio.Text = "";
+            dgEscalafon.Rows.Clear();
+        }
+
+        private void EscalafonForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (mtCliente.Text != "" && mtServicio.Text != "" && dgEscalafon.Rows.Count > 0)
+            {
+                DialogResult dg = MessageBox.Show(this, "Desea Guardar antes de salir?","Guardar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dg == DialogResult.Yes)
+                {
+                    GuardarBTN.PerformClick();
+                }
+            }
         }
         
     }
