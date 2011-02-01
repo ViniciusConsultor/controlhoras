@@ -154,7 +154,7 @@ namespace ControlHoras
             {
                 try
                 {
-                    if (!sistema.SustituirEmpleado((int)FuncionarioNuevo.NroEmpleado, (int)FuncionarioViejo.NroEmpleado))
+                    if (!sistema.SustituirEmpleadoEnEscalafon((int)FuncionarioNuevo.NroEmpleado, (int)FuncionarioViejo.NroEmpleado))
                         MessageBox.Show("No se pudo realizar el cambio porque\nel empleado: " + FuncionarioViejo.NroEmpleado.ToString() + " - " + FuncionarioViejo.Nombre + " " + FuncionarioViejo.Apellido + "\n y el empleado: " + FuncionarioNuevo.NroEmpleado.ToString() + " - " + FuncionarioNuevo.Nombre + " " + FuncionarioNuevo.Apellido + "\n solapan horarios.", "Error al sustituir", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                         MessageBox.Show("El empleado: " + FuncionarioViejo.NroEmpleado.ToString() + " - " + FuncionarioViejo.Nombre + " " + FuncionarioViejo.Apellido + " ha sido sustituido en el escalafón\n por el empleado: " + FuncionarioNuevo.NroEmpleado.ToString() + " - " + FuncionarioNuevo.Nombre + " " + FuncionarioNuevo.Apellido + " con éxito.", "Sustitución con éxito", MessageBoxButtons.OK, MessageBoxIcon.None);

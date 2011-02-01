@@ -18,20 +18,27 @@ namespace ControlHoras
         public MotIVOsCamBiosDiARioS motivoCambio { set; get; }
         private DateTime FechaCorresponde;
         private List<TipOsMotIVOCamBIoDiARio> listaTiposMotivos = null; 
+        
         public MotivoCambioDiarioForm(DateTime Fecha)
         {
             InitializeComponent();
-            datos = ControladorDatos.getInstance();
-            listaTiposMotivos = datos.obtenerTiposMotivoCambioDiario(true);
-            cmbMotivosCambio.BeginUpdate();
-            //foreach (TipOsMotIVOCamBIoDiARio tmcd in listaTiposMotivos)
-            //{
-            cmbMotivosCambio.DataSource = listaTiposMotivos;
-            cmbMotivosCambio.DisplayMember = "Descripcion";
-            cmbMotivosCambio.EndUpdate();
-            botonAceptar = false;
-            FechaCorresponde = Fecha;
-            //}
+            try
+            {
+                datos = ControladorDatos.getInstance();
+
+                listaTiposMotivos = datos.obtenerTiposMotivoCambioDiario(true);
+                cmbMotivosCambio.BeginUpdate();
+
+                cmbMotivosCambio.DataSource = listaTiposMotivos;
+                cmbMotivosCambio.DisplayMember = "Descripcion";
+                cmbMotivosCambio.EndUpdate();
+                botonAceptar = false;
+                FechaCorresponde = Fecha;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             
         }
 
