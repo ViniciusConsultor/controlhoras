@@ -220,7 +220,7 @@ namespace ControlHoras
                         long idhge = (long)dgvHoras.Rows[numFila].Cells["IdHorasGeneradasEscalafon"].Value;
                         motivoCambio.IDHorasGeneradasEscalafon = idhge;
                         motivoCambio.NumeroCliente = uint.Parse(ucCliente.ClienteNRO);
-                        //motivoCambio.SERVicIoS = servicio;                        
+                        motivoCambio.NroEmpleado = (uint) idFuncSeleccionado;
                         motivoCambio.NumeroServicio = servicio.NumeroServicio;                        
                         datos.cambiarFuncionarioControlDiario(idhge, (int)change.FuncionarioNuevo.NroEmpleado, motivoCambio);
                         dgvHoras.Rows[numFila].Cells["NroEmpleado"].Value = change.FuncionarioNuevo.NroEmpleado;

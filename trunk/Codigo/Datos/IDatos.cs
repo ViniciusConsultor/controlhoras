@@ -89,6 +89,14 @@ namespace Datos
         List<EventOsHistOrIalEmPleadO> obtenerEventosHistorialEmpleado(int idEmpleado);
 
         /// <summary>
+        /// Devuelve True si el empleado tiene algun evento que tenga FechaInicio anterior o igual a Fecha y FechaFin mayor o igual a Fecha.
+        /// </summary>
+        /// <param name="NroEmpleado">Nro del Empleado.</param>
+        /// <param name="Fecha">Fecha a consultar.</param>
+        /// <returns>Devuelve TRUE si el empleado tiene algun evento en el historial que caiga en esta Fecha. FALSE en otro caso.</returns>
+        bool empleadoTieneEventosHistorialEnFecha(int NroEmpleado, DateTime Fecha);
+
+        /// <summary>
         /// Agrega un nuevo extra a la liquidacion del empleado para la fecha correspondiente
         /// </summary>
         /// <param name="idEmpleado">Numero del Empleado a modificar el extra</param>
@@ -280,6 +288,7 @@ namespace Datos
         void altaMotivosCambiosDiarios(MotIVOsCamBiosDiARioS t);
         void modificacionMotivosCambiosDiarios(MotIVOsCamBiosDiARioS t);
         #endregion
+        
         bool existeEscalafon(int nroCon);
 
         void altaEscalafon(EScalaFOn esc, List<EScalaFOneMpLeadO> lhs);

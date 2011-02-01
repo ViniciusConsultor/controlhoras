@@ -800,14 +800,18 @@ namespace Datos
         // Deuelve el maximo sin tener en cuenta los empleadosPivot
         {
             int NroFuncionarioPivot=-1;
+            int NroFuncionarioVacanteTemporal = -1;
             try
             {
                 if (ConfigurationManager.AppSettings.AllKeys.Contains("NroFuncionarioPivot"))
                     if (!int.TryParse(ConfigurationManager.AppSettings["NroFuncionarioPivot"].ToString(), out NroFuncionarioPivot))
                         throw new Exception("El formato de la propiedad NroFuncionarioPivot no es correcto.");
+                if (ConfigurationManager.AppSettings.AllKeys.Contains("NroFuncionarioVacanteTemporal"))
+                    if (!int.TryParse(ConfigurationManager.AppSettings["NroFuncionarioVacanteTemporal"].ToString(), out NroFuncionarioVacanteTemporal))
+                        throw new Exception("El formato de la propiedad NroFuncionarioVacanteTemporal no es correcto.");
            
                 var maxId = (from reg in database.GetTable<EmPleadOs>()
-                             where reg.NroEmpleado != NroFuncionarioPivot
+                             where reg.NroEmpleado != NroFuncionarioPivot && reg.NroEmpleado != NroFuncionarioVacanteTemporal
                              select (int)reg.NroEmpleado).Max<int>();
 
                 return maxId;
@@ -1189,6 +1193,20 @@ namespace Datos
             }
 
         }
+
+        public bool empleadoTieneEventosHistorialEnFecha(int NroEmpleado, DateTime Fecha)
+        {
+            try
+            {
+               int res = database.EventOsHistOrIalEmPleadO.Where(reg => reg.IDEmpleado == NroEmpleado && reg.FechaInicio <= Fecha && reg.FechaFin >= Fecha).Count();
+               return (res > 0);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #endregion
 
         #region ExtrasLiquidacionEmpleado
@@ -2865,16 +2883,9 @@ namespace Datos
                 HoRaSGeneraDaSEScalaFOn hs = database.HoRaSGeneraDaSEScalaFOn.Single(p => p.IDHorasGeneradasEscalafon == IdHorasGeneragasEscalafon);
                 EmPleadOs emp = database.EmPleadOs.Single(e => e.NroEmpleado == NroEmpleadoNuevo);
 
-                mtcd.NroEmpleado = (uint)NroEmpleadoNuevo;
-                
-                //hs.EmPleadOs = emp;
                 hs.NroEmpleado = (uint) NroEmpleadoNuevo;
                 hs.MotIVOsCamBiosDiARioS.Add(mtcd);
-                //string query = "UPDATE HorasGeneradasEscalafon SET NroEmpleado=" + NroEmpleadoNuevo.ToString() + " WHERE IdHorasGeneragasEscalafon=" + IdHorasGeneragasEscalafon.ToString() + ";";
-                //database.ExecuteQuery<HoRaSGeneraDaSEScalaFOn>(query, null);
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
-
-                
             }
             catch (Exception e)
             {

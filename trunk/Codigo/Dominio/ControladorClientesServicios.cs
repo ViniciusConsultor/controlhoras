@@ -14,6 +14,9 @@ namespace Logica
 
         private static ControladorClientesServicios instancia = null;
         private IDatos datos;
+        int nroFuncPivot = -1;
+        int nroFuncVacanteTemporal = -1;
+            
 
         // Variable para la generacion de horas. Se inicializa, se genera cada cliente y se confirma. 
         // Es una forma de generar un estilo de transaccion a nivel logico
@@ -25,6 +28,13 @@ namespace Logica
             try
             {
                 datos = ControladorDatos.getInstance();
+
+                // Leemos los numeros de FuncionarioPivot y de Vacante Temporal del archivo de configuracion
+                if (ConfigurationManager.AppSettings.AllKeys.Contains("NroFuncionarioPivot"))
+                    int.TryParse(ConfigurationManager.AppSettings["NroFuncionarioPivot"], out nroFuncPivot);
+                if (ConfigurationManager.AppSettings.AllKeys.Contains("NroFuncionarioVacanteTemporal"))
+                    int.TryParse(ConfigurationManager.AppSettings["NroFuncionarioVacanteTemporal"], out nroFuncVacanteTemporal);
+                
             }
             catch (Exception ex)
             {
@@ -635,17 +645,18 @@ namespace Logica
         }
 
 
-        public bool SustituirEmpleado(int NroNuevoEmp, int NroViejoEmp)
+        public bool SustituirEmpleadoEnEscalafon(int NroNuevoEmp, int NroViejoEmp)
         {            
             try
             {
-                if (HorariosCruzados(NroNuevoEmp, NroViejoEmp))
-                    return false;
-                else
+                if (NroNuevoEmp != nroFuncPivot && NroNuevoEmp != nroFuncVacanteTemporal)
                 {
-                    datos.SustituirEmpleado(NroNuevoEmp, NroViejoEmp);
-                    return true;
+                    if (HorariosCruzados(NroNuevoEmp, NroViejoEmp))
+                        return false;
                 }
+                datos.SustituirEmpleado(NroNuevoEmp, NroViejoEmp);
+                return true;
+                   
             }
             catch (Exception ex)
             {
@@ -754,13 +765,11 @@ namespace Logica
                 List<EScalaFOneMpLeadO> listaEscEmp = datos.getHorariosEmpleado(nroEmpleado);
 
                 bool tieneDescanso = false;
-                bool tienePlanificado6Dias = false;
-
                 int cantDiasPlanificados = 0;
 
-                
                 foreach (EScalaFOneMpLeadO escEmp in listaEscEmp)
                 {
+                    // Hacemos chequeos sobre los tipos de dias y horarios.
                     foreach (HoRaRioEScalaFOn he in escEmp.HoRaRioEScalaFOn)
                     {
                         if (he.TipOsDiAs.NoMbRe.Equals("Descanso", StringComparison.OrdinalIgnoreCase))
@@ -784,8 +793,6 @@ namespace Logica
                     }
                 }
 
-                //if (cantDiasPlanificados < 6)
-                //    listaErrores.Add(nroEmpleado + " tiene planificados " + cantDiasPlanificados + " dias. Debe completar los 6 dias.");
                 if (!tieneDescanso)
                     listaErrores.Add(nroEmpleado + " no tiene un descanso planificado.");
                 return listaErrores;
@@ -855,6 +862,10 @@ namespace Logica
                     HoRaSGeneraDaSEScalaFOn hge;
                     foreach(EScalaFOneMpLeadO esc in escalafon.EScalaFOneMpLeadO)
                     {
+                        // Chequeamos que el empleado no este durante ningun evente en el EventoHistorialEmpleado en esta fecha
+                        if (datos.empleadoTieneEventosHistorialEnFecha((int)esc.NroEmpleado, Fecha))
+                            throw new GenerarHorasDiaException("El empleado " + esc.NroEmpleado + " tiene eventos en el Historial en la Ficha del empleado para la Fecha: " + Fecha.ToShortDateString());
+
                         hge = new HoRaSGeneraDaSEScalaFOn();
                         hge.FechaCorrespondiente = Fecha;
                         int i=0;
@@ -931,25 +942,26 @@ namespace Logica
 
         public List<string> ejecutarControlesEscalafonEmpleado(int NumeroCliente, int NumeroServicio)
         {
-            int nroFuncPivot=-1;
+            
             try
             {
-                if (ConfigurationManager.AppSettings.AllKeys.Contains("NroFuncionarioPivot"))
-                    int.TryParse(ConfigurationManager.AppSettings["NroFuncionarioPivot"], out nroFuncPivot);
-                
                 List<string> errores = new List<string>();
                 EScalaFOn escalafon = datos.obtenerEscalafon(CalcNroContrato(NumeroCliente, NumeroServicio));
                 List<string> erroresControlEmpleado;
                 foreach (EScalaFOneMpLeadO escEmp in escalafon.EScalaFOneMpLeadO)
                 {
-                    if (escEmp.NroEmpleado == nroFuncPivot)
-                        errores.Add("El servicio No puede tener asignado el Funcionario Pivot en el Escalafon. NroEmpleado: " + nroFuncPivot);
-                    else
+                    if (escEmp.NroEmpleado != nroFuncVacanteTemporal)
                     {
-                        erroresControlEmpleado = controlarPlanificacionEscalafonEmpleado((int)escEmp.NroEmpleado);
-                        //errores.Concat(erroresControlEmpleado);
-                        erroresControlEmpleado.Concat(errores);
-                        errores = erroresControlEmpleado;
+                        if (escEmp.NroEmpleado == nroFuncPivot)
+                            errores.Add("El servicio No puede tener asignado el Funcionario Pivot en el Escalafon. NroEmpleado: " + nroFuncPivot);
+
+                        else
+                        {
+                            erroresControlEmpleado = controlarPlanificacionEscalafonEmpleado((int)escEmp.NroEmpleado);
+                            //errores.Concat(erroresControlEmpleado);
+                            erroresControlEmpleado.Concat(errores);
+                            errores = erroresControlEmpleado;
+                        }
                     }
                 }
                 

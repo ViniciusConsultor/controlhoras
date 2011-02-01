@@ -28,6 +28,7 @@ namespace ControlHoras
         private IDatos datos;
         private IDatosABMTipos datosTipos;
         private IABMTipos tipos;
+        private IClientesServicios controllerClienteServicios;
 
 
         // Lista de datos que se mantienen para su posterior consulta
@@ -43,7 +44,9 @@ namespace ControlHoras
         private FileInfo Info = null;//new FileInfo(exefile);
         private string dirbase = null;//Info.Directory.Parent.Parent.FullName;
         private string dirRelativaDocs = "Docs";
-
+        
+        // NroFuncionarioPivot default.
+        private int nroFuncPivot = -1;
 
 
         static ABMEmpleados ventana = null;
@@ -64,6 +67,10 @@ namespace ControlHoras
                 datos = ControladorDatos.getInstance();
                 datosTipos = DatosABMTipos.getInstance();
                 tipos = ControladorABMTipos.getInstance();
+                controllerClienteServicios = ControladorClientesServicios.getInstance();
+                // Leemos el NroFuncionarioPivot del archivo de configuracion
+                if (ConfigurationManager.AppSettings.AllKeys.Contains("NroFuncionarioPivot"))
+                    int.TryParse(ConfigurationManager.AppSettings["NroFuncionarioPivot"], out nroFuncPivot);
             }
             catch (Exception ex1)
             {
@@ -961,6 +968,13 @@ namespace ControlHoras
                 try
                 {
                     agregarOModificarEmpleado(false);
+                    if (cbNoActivo.Checked)
+                    {
+                        if (nroFuncPivot == -1)
+                            throw new Exception("No se pudo sustituir el Escalafon del Funcionario Dado de baja debido a que no hay definido un Nro de Funcionario Pivot.");
+                        controllerClienteServicios.SustituirEmpleadoEnEscalafon(nroFuncPivot,int.Parse(mtNumeroEmpleado.Text));
+                        MessageBox.Show(this, "Fue sustituido correctamente el funcionario dado de baja por el Nro de Funcionario Vacante (" + nroFuncPivot + ")", "Funcionario Sustituido en Escalafon", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 catch (Exception ex)
                 {
