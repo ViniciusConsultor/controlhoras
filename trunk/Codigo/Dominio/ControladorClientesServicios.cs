@@ -164,7 +164,7 @@ namespace Logica
                         act = true;
                     else
                         act = false;
-                servicio = new Servicio((int)ser.NumeroServicio, ser.Nombre, ser.Direccion, ser.Telefonos, ser.PersonaContacto, ser.Email, ser.Celular, ser.CelularTrust, ser.TareasAsignadas, act, (DateTime)ser.FechaAlta, (DateTime)ser.FechaBaja, ser.MotivoBaja, ser.Observaciones);
+                servicio = new Servicio((int)ser.NumeroServicio, ser.Nombre, ser.Direccion, ser.Telefonos, ser.PersonaContacto, ser.Email, ser.Celular, ser.CelularTrust, ser.TareasAsignadas, act, ser.FechaAlta.Value, ser.FechaBaja, ser.MotivoBaja, ser.Observaciones);
                     return servicio;
              }catch(Exception ex)
              {
@@ -172,11 +172,11 @@ namespace Logica
              }
         }
 
-        public void altaServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string Observaciones)
+        public void altaServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string Observaciones, bool activo, DateTime? FechaBaja, string MotivoBaja)
         {
             try
             {
-                datos.altaServicioCliente(numeroCliente, numeroServicio, Nombre, Direccion, Telefonos, Contacto, email, Celular, CelularTrust, Tareas, Observaciones);
+                datos.altaServicioCliente(numeroCliente, numeroServicio, Nombre, Direccion, Telefonos, Contacto, email, Celular, CelularTrust, Tareas, Observaciones, activo, FechaBaja, MotivoBaja);
             }
             catch (Exception ex)
             {
@@ -186,11 +186,11 @@ namespace Logica
         }
 
 
-        public void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string Observaciones)
+        public void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string Observaciones, bool activo, DateTime? FechaBaja, string MotivoBaja)
         {
             try
             {
-                datos.modificarServicioCliente(numeroCliente, numeroServicio, Nombre, Direccion, Telefonos, Contacto, email, Celular, CelularTrust, Tareas, Observaciones);
+                datos.modificarServicioCliente(numeroCliente, numeroServicio, Nombre, Direccion, Telefonos, Contacto, email, Celular, CelularTrust, Tareas, Observaciones, activo, FechaBaja, MotivoBaja);
             }
             catch (Exception ex)
             {

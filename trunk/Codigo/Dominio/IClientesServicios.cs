@@ -22,9 +22,9 @@ namespace Logica
         
         #region Servicios
         //// Servicios
-        void altaServicioCliente(int numeroCliente, int numeroServicio, string nombre,string direccion, string telefonos, string personaContacto, string email, string celular, string celularTrust, string tareasAsignadas, string observaciones);//, bool activo);
+        void altaServicioCliente(int numeroCliente, int numeroServicio, string nombre,string direccion, string telefonos, string personaContacto, string email, string celular, string celularTrust, string tareasAsignadas, string observaciones, bool activo, DateTime? FechaBaja, string MotivoBaja);
         Servicio obtenerServicioCliente(int numeroCliente, int numeroServicio);
-        void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string observaciones);
+        void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string observaciones, bool activo, DateTime? FechaBaja, string MotivoBaja);
         
         //void bajaServicioCliente(int numCliente, int numServicio);                
         //List<Servicio> busquedaServicioClientePorNombre(int numCliente, string wildcardNombre);        

@@ -281,6 +281,9 @@ namespace ControlHoras
                 }
                 else
                 {
+                    cbNoActivo.Checked = false;
+                    dtpFechaBaja.Text = "";
+                    txtMotivoBaja.Text = "";
                     lblEstadoCliente.ForeColor = Color.LimeGreen;
                     lblEstadoCliente.Text = "Activo";
                 }

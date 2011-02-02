@@ -35,10 +35,10 @@ namespace Datos
         #endregion
 
         #region Operaciones_De_Servicios
-        void altaServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string Observaciones);
+        void altaServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string Observaciones, bool Activo, DateTime? FechaBaja, string MotivoBaja);
         List<SERVicIoS> obtenerServiciosCliente(int numeroCliente);
         SERVicIoS obtenerServicioCliente(int numeroCliente, int numeroServicio);
-        void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string Observaciones);
+        void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string Observaciones, bool activo, DateTime? FechaBaja, string MotivoBaja);
         #endregion
 
         #region Operaciones_De_Empleados

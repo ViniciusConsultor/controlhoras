@@ -295,7 +295,7 @@ namespace Datos
         #endregion
 
         #region ServicioCliente
-        public void altaServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string Observaciones)
+        public void altaServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string Observaciones, bool Activo, DateTime? FechaBaja, string MotivoBaja)
         {
             SERVicIoS ser = null;
             try
@@ -317,12 +317,13 @@ namespace Datos
                 ser.TareasAsignadas = Tareas;
                 ser.Observaciones = Observaciones;
                 ser.FechaAlta = DateTime.Now;
-                ser.FechaBaja = DateTime.MinValue.AddDays(1);
-                ser.MotivoBaja = null;
-                //if (activo)
-                ser.Activo = 1;
-                //else
-                //    ser.Activo = 0;
+                                
+                if (Activo)
+                    ser.Activo = 1;
+                else
+                    ser.Activo = 0;
+                ser.FechaBaja = FechaBaja;
+                ser.MotivoBaja = MotivoBaja;                
 
                 tablaServicios.InsertOnSubmit(ser);
 
@@ -341,7 +342,7 @@ namespace Datos
                 throw ex;
             }
         }
-        public void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string Observaciones)
+        public void modificarServicioCliente(int numeroCliente, int numeroServicio, string Nombre, string Direccion, string Telefonos, string Contacto, string email, string Celular, string CelularTrust, string Tareas, string Observaciones, bool activo, DateTime? FechaBaja, string MotivoBaja)
         {
             try
             {
@@ -361,6 +362,13 @@ namespace Datos
                 ser.Celular = Celular;
                 ser.CelularTrust = CelularTrust;
                 ser.TareasAsignadas = Tareas;
+
+                if (activo)
+                    ser.Activo = 1;
+                else
+                    ser.Activo = 0;
+                ser.FechaBaja = FechaBaja;
+                ser.MotivoBaja = MotivoBaja;  
 
                 database.SubmitChanges();
             }
