@@ -21,7 +21,7 @@ namespace Logica
         private bool Activo;
         //private Contrato Contrato;
         private DateTime FechaAlta;
-        private DateTime FechaBaja;
+        private DateTime? FechaBaja;
         private string MotivoBaja;
         
 
@@ -33,7 +33,7 @@ namespace Logica
             Activo = true;
         }
 
-        public Servicio(int num, string nombre, string dir, string tel, string con, string mail, string cel, string celt, string tareas, bool activo, DateTime fechaalta, DateTime fechabaja, string motivobaja, string observaciones)
+        public Servicio(int num, string nombre, string dir, string tel, string con, string mail, string cel, string celt, string tareas, bool activo, DateTime fechaalta, DateTime? fechabaja, string motivobaja, string observaciones)
         {
             Numero = num;            
             Nombre = nombre;
@@ -117,5 +117,15 @@ namespace Logica
         //    Contrato = con;
         //}
 
+
+        public DateTime? getFechaBaja()
+        {
+            return FechaBaja;
+        }
+
+        public string getMotivoBaja()
+        {
+            return MotivoBaja;
+        }
     }
 }

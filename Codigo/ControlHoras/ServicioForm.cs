@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Logica;
+using System.Globalization;
 
 namespace ControlHoras
 {
@@ -17,6 +18,8 @@ namespace ControlHoras
         int cant;
         int[] numerosSer;
         String LlenarCamposObligatorios = "Debe llenar todos los campos obligatorios.";
+
+        private string fechaMask = @"  /  /";
                 
 
         public ServicioForm()
@@ -54,6 +57,13 @@ namespace ControlHoras
             CelTrustTB.Text = "";
             TareasTB.Text = "";
             txtObservaciones.Text = "";
+
+            lblEstadoServicio.Text = "";
+            cbNoActivo.Checked = false;
+            txtMotivoBaja.Text = "";
+            dtpFechaBaja.Text = "";
+
+
             
             NroMTB.Focus();
         }       
@@ -113,7 +123,23 @@ namespace ControlHoras
         private void llenarForm(int numCli, int numSer)
         {
             Servicio ser = sistema.obtenerServicioCliente(numCli, numSer);
-            
+
+            if (!ser.getActivo())
+            {
+                cbNoActivo.Checked = true;
+                dtpFechaBaja.Text = ser.getFechaBaja().ToString();
+                txtMotivoBaja.Text = ser.getMotivoBaja();
+                lblEstadoServicio.ForeColor = Color.Red;
+                lblEstadoServicio.Text = "Inactivo";
+            }
+            else
+            {
+                cbNoActivo.Checked = false;
+                dtpFechaBaja.Text = "";
+                txtMotivoBaja.Text = "";
+                lblEstadoServicio.ForeColor = Color.LimeGreen;
+                lblEstadoServicio.Text = "Activo";
+            }
             NroMTB.Text = ser.getNumero().ToString();
             NombreTB.Text = ser.getNombre();
             DirTB.Text = ser.getDireccion();
@@ -205,11 +231,22 @@ namespace ControlHoras
             // Chequeo Campos Obligatorios
             if (checkDatosObligatorios())
             {
+                bool checkActivo = true;                
+                DateTime? dtpBaja = null;                
+
+                if (cbNoActivo.Checked)
+                {
+                    checkActivo = false;
+                    if (dtpFechaBaja.Text == fechaMask)
+                        dtpBaja = null;
+                    else
+                        dtpBaja = DateTime.ParseExact(dtpFechaBaja.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+                }
                 try
                 {
                     int numCli = int.Parse(bcUC.ClienteNRO);
                     int numSer = int.Parse(NroMTB.Text);
-                    sistema.altaServicioCliente(numCli, numSer, NombreTB.Text, DirTB.Text, TelTB.Text, ContactTB.Text, emailTB.Text, CelTB.Text, CelTrustTB.Text, TareasTB.Text, txtObservaciones.Text);
+                    sistema.altaServicioCliente(numCli, numSer, NombreTB.Text, DirTB.Text, TelTB.Text, ContactTB.Text, emailTB.Text, CelTB.Text, CelTrustTB.Text, TareasTB.Text, txtObservaciones.Text, checkActivo, dtpBaja, txtMotivoBaja.Text);
 
 
                     DialogResult res = MessageBox.Show(this, "Desea definir el contrato ahora?", "Contrato", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
@@ -233,9 +270,9 @@ namespace ControlHoras
         private bool checkDatosObligatorios()
         {
             if (NroMTB.Text != "" && NombreTB.Text != "")
-                return true;
-            else
-                return false;
+                if (!cbNoActivo.Checked || txtMotivoBaja.Text != "")
+                    return true;
+            return false;
         }
 
         private void CancelarBTN_Click(object sender, EventArgs e)
@@ -253,11 +290,23 @@ namespace ControlHoras
         {
             if (checkDatosObligatorios())
             {
+                bool checkActivo = true;
+                DateTime? dtpBaja = null;
+
+                if (cbNoActivo.Checked)
+                {
+                    checkActivo = false;
+                    if (dtpFechaBaja.Text == fechaMask)
+                        dtpBaja = null;
+                    else
+                        dtpBaja = DateTime.ParseExact(dtpFechaBaja.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+                }
+
                 try
                 {
                     int numCli = int.Parse(bcUC.ClienteNRO);
                     int numSer = int.Parse(NroMTB.Text);
-                    sistema.modificarServicioCliente(numCli, numSer, NombreTB.Text, DirTB.Text, TelTB.Text, ContactTB.Text, emailTB.Text, CelTB.Text, CelTrustTB.Text, TareasTB.Text, txtObservaciones.Text);
+                    sistema.modificarServicioCliente(numCli, numSer, NombreTB.Text, DirTB.Text, TelTB.Text, ContactTB.Text, emailTB.Text, CelTB.Text, CelTrustTB.Text, TareasTB.Text, txtObservaciones.Text, checkActivo, dtpBaja, txtMotivoBaja.Text);
 
                     CancelarBTN.PerformClick();
 
@@ -277,6 +326,21 @@ namespace ControlHoras
             ContratoForm contrato = new ContratoForm(bcUC.ClienteNRO, NroMTB.Text);
             contrato.ShowDialog(this);
         
+        }
+
+        private void cbNoActivo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbNoActivo.Checked)
+            {
+                dtpFechaBaja.Enabled = true;
+                dtpFechaBaja.Text = DateTime.Today.ToString(); ;
+                txtMotivoBaja.Enabled = true;
+            }
+            else
+            {
+                dtpFechaBaja.Enabled = false;
+                txtMotivoBaja.Enabled = false;
+            }
         }
 
        
