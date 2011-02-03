@@ -3562,7 +3562,25 @@ namespace Datos
             }
         }
 
-        
+        public bool esServicioActivo(int nroCliente, int nroServicio)
+        {
+            Table<SERVicIoS> tabla;
+            try
+            {
+                tabla = database.GetTable<SERVicIoS>();
+                var ser = (from serreg in tabla
+                           where serreg.NumeroServicio == nroServicio && serreg.NumeroCliente == nroCliente
+                           select serreg);
+
+                return (ser.Single<SERVicIoS>().Activo == 1);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
     }
 
 }
