@@ -333,5 +333,7 @@ namespace Datos
         void MarcarNoSolapados(List<HoRaRioEScalaFOn> HorsNOSolap);
 
         List<HoRaRioEScalaFOn> getHorariosEmpleadoDia(int NroEmpleado, string dia, int IdEscalafon);
+
+        bool esServicioActivo(int nroCliente, int nroServicio);
     }
 }

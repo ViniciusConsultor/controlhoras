@@ -216,7 +216,9 @@ namespace ControlHoras
                             //CubiertoLBL.Visible = false;
                             LimpiarHporCubrir();
                             GuardarBTN.Enabled = false;
+                            VerContratoBTN.Enabled = false;
                             splitContainer1.Panel2.Enabled = false;
+                            
                             MessageBox.Show("El cliente numero " + mtCliente.Text + " no tiene servicios asociados.", "Cliente sin Servicios", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
@@ -233,7 +235,9 @@ namespace ControlHoras
                         //CubiertoLBL.Visible = false;
                         LimpiarHporCubrir();
                         GuardarBTN.Enabled = false;
+                        VerContratoBTN.Enabled = false;
                         splitContainer1.Panel2.Enabled = false;
+                        
                         MessageBox.Show("No existe el cliente numero " + mtCliente.Text, "No existe cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
@@ -361,7 +365,8 @@ namespace ControlHoras
                     //CubiertoLBL.Visible = false;
                     LimpiarHporCubrir();
                     GuardarBTN.Enabled = false;
-                    splitContainer1.Panel2.Enabled = false;                    
+                    splitContainer1.Panel2.Enabled = false;
+                    VerContratoBTN.Enabled = false;
                     MessageBox.Show("Este servicio no tiene contrato.\nNo se puede generar escalafón.", "Servicio sin Contrato", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
@@ -372,6 +377,7 @@ namespace ControlHoras
                     //CubiertoLBL.Visible = true;                    
                     GuardarBTN.Enabled = true;
                     splitContainer1.Panel2.Enabled = true;
+                    VerContratoBTN.Enabled = true;
 
                     Escalafon esc = null;
                     int nroEsc = CalcNroContrato(numCli, numSer);

@@ -581,16 +581,23 @@ namespace Logica
 
         public bool EsHorarioSolapado(int IdEscalafon, int NroEmpleado, string dia, string HoraIni, string HoraFin)
         {
+            int  nrocliente, nroservicio;
             try
             {
                 List<HoRaRioEScalaFOn> horarios = datos.getHorariosEmpleadoDia(NroEmpleado, dia, IdEscalafon);
                 
                 foreach (HoRaRioEScalaFOn h in horarios)
                 {
-                    if (h.TipoDia == 0)
+                    nrocliente = ObtenerNroCliente(h.IDEscalafon);
+                    nroservicio = ObtenerNroServicio(h.IDEscalafon);
+
+                    if (datos.esServicioActivo(nrocliente, nroservicio))
                     {
-                        if (HorariosSolapados(HoraIni, HoraFin, h.HoRaInI, h.HoRaFIn))
-                            return true;
+                        if (h.TipoDia == 0)
+                        {
+                            if (HorariosSolapados(HoraIni, HoraFin, h.HoRaInI, h.HoRaFIn))
+                                return true;
+                        }
                     }
                 }
                 return false;
@@ -599,6 +606,16 @@ namespace Logica
             {                
                 throw ex;
             }
+        }
+
+        private int ObtenerNroCliente(uint p)
+        {
+            return (int)p / 1000;
+        }
+
+        private int ObtenerNroServicio(uint p)
+        {
+            return (int)p % 1000;           
         }
 
         private bool HorariosSolapados(string hi1, string hf1, string hi2, string hf2)
@@ -767,29 +784,34 @@ namespace Logica
                 bool tieneDescanso = false;
                 int cantDiasPlanificados = 0;
 
+                int nroCli, nroSer;
+
                 foreach (EScalaFOneMpLeadO escEmp in listaEscEmp)
                 {
-                    // Hacemos chequeos sobre los tipos de dias y horarios.
-                    foreach (HoRaRioEScalaFOn he in escEmp.HoRaRioEScalaFOn)
+                    nroCli = ObtenerNroCliente(escEmp.IDEscalafon);
+                    nroSer = ObtenerNroServicio(escEmp.IDEscalafon);
+                    if (datos.esServicioActivo(nroCli,nroSer))
                     {
-                        if (he.TipOsDiAs.NoMbRe.Equals("Descanso", StringComparison.OrdinalIgnoreCase))
+                        // Hacemos chequeos sobre los tipos de dias y horarios.
+                        foreach (HoRaRioEScalaFOn he in escEmp.HoRaRioEScalaFOn)
                         {
-                            tieneDescanso = true;
-                        }
-                        else
-                        {
-                            if (he.TipOsDiAs.NoMbRe.Equals("Laborable", StringComparison.OrdinalIgnoreCase))
+                            if (he.TipOsDiAs.NoMbRe.Equals("Descanso", StringComparison.OrdinalIgnoreCase))
                             {
-                                cantDiasPlanificados++;
-                                // Revisamos si tiene horarios solapados.
-                                if (EsHorarioSolapado((int)he.IDEscalafon, nroEmpleado, he.DiA, he.HoRaInI, he.HoRaFIn))
-                                {
-                                    listaErrores.Add(nroEmpleado + " tiene horarios solapados en el Cliente: " + escEmp.EScalaFOn.NumeroCliente + " - Servicio: " + escEmp.EScalaFOn.NumeroServicio);
-                                }
+                                tieneDescanso = true;
                             }
+                            else
+                            {
+                                if (he.TipOsDiAs.NoMbRe.Equals("Laborable", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    cantDiasPlanificados++;
+                                    // Revisamos si tiene horarios solapados.
+                                    if (EsHorarioSolapado((int)he.IDEscalafon, nroEmpleado, he.DiA, he.HoRaInI, he.HoRaFIn))
+                                    {
+                                        listaErrores.Add(nroEmpleado + " tiene horarios solapados en el Cliente: " + escEmp.EScalaFOn.NumeroCliente + " - Servicio: " + escEmp.EScalaFOn.NumeroServicio);
+                                    }
+                                }
+                            }                            
                         }
-                        
-                        
                     }
                 }
 
