@@ -176,12 +176,6 @@
     <Compile Include="ABMTiposDocumento.designer.cs">
       <DependentUpon>ABMTiposDocumento.cs</DependentUpon>
     </Compile>
-    <Compile Include="AvanceConsolidacionYGeneracionHoras.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AvanceConsolidacionYGeneracionHoras.Designer.cs">
-      <DependentUpon>AvanceConsolidacionYGeneracionHoras.cs</DependentUpon>
-    </Compile>
     <Compile Include="BuscarEmpleados.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -434,9 +428,6 @@
     <EmbeddedResource Include="ABMTiposDocumento.resx">
       <DependentUpon>ABMTiposDocumento.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AvanceConsolidacionYGeneracionHoras.resx">
-      <DependentUpon>AvanceConsolidacionYGeneracionHoras.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BuscarEmpleados.resx">
       <DependentUpon>BuscarEmpleados.cs</DependentUpon>

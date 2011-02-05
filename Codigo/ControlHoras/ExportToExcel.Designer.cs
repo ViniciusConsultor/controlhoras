@@ -63,14 +63,19 @@
             this.txtConsultasEmpleadosDescripcion = new ControlHoras.TextBoxKeyDown();
             this.cmbEmpleadosConsultas = new ControlHoras.ComboBoxKeyDown();
             this.tbClientes = new System.Windows.Forms.TabPage();
+            this.clientesPanelFecha = new System.Windows.Forms.Panel();
+            this.clientePanelFechaMT = new ControlHoras.MaskedTextBoxKeyDown();
+            this.label9 = new System.Windows.Forms.Label();
             this.btnClientesConsultar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtClientesDescripcionConsulta = new ControlHoras.TextBoxKeyDown();
             this.cmbClientesConsultas = new ControlHoras.ComboBoxKeyDown();
             this.dgvResultados = new System.Windows.Forms.DataGridView();
-            this.clientesPanelFecha = new System.Windows.Forms.Panel();
-            this.clientePanelFechaMT = new ControlHoras.MaskedTextBoxKeyDown();
-            this.label9 = new System.Windows.Forms.Label();
+            this.panelClienteServicio = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.mtNroServicio = new System.Windows.Forms.MaskedTextBox();
+            this.mtNroCliente = new System.Windows.Forms.MaskedTextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -82,8 +87,9 @@
             this.panelConsultasEmpleadoFecha.SuspendLayout();
             this.panelConsultasEmpleadosNumeroEmpleado.SuspendLayout();
             this.tbClientes.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvResultados)).BeginInit();
             this.clientesPanelFecha.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResultados)).BeginInit();
+            this.panelClienteServicio.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -152,7 +158,7 @@
             this.tcConsultas.Name = "tcConsultas";
             this.tcConsultas.SelectedIndex = 0;
             this.tcConsultas.Size = new System.Drawing.Size(655, 212);
-            this.tcConsultas.TabIndex = 6;
+            this.tcConsultas.TabIndex = 0;
             this.tcConsultas.TabIndexChanged += new System.EventHandler(this.tcConsultas_TabIndexChanged);
             // 
             // tbPorTablas
@@ -166,7 +172,7 @@
             this.tbPorTablas.Controls.Add(this.cmbTablas);
             this.tbPorTablas.Location = new System.Drawing.Point(4, 22);
             this.tbPorTablas.Name = "tbPorTablas";
-            this.tbPorTablas.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbPorTablas.Padding = new System.Windows.Forms.Padding(3);
             this.tbPorTablas.Size = new System.Drawing.Size(647, 186);
             this.tbPorTablas.TabIndex = 0;
             this.tbPorTablas.Text = "Por Tablas";
@@ -309,7 +315,7 @@
             this.tbEmpleados.Controls.Add(this.cmbEmpleadosConsultas);
             this.tbEmpleados.Location = new System.Drawing.Point(4, 22);
             this.tbEmpleados.Name = "tbEmpleados";
-            this.tbEmpleados.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbEmpleados.Padding = new System.Windows.Forms.Padding(3);
             this.tbEmpleados.Size = new System.Drawing.Size(647, 186);
             this.tbEmpleados.TabIndex = 1;
             this.tbEmpleados.Text = "Empleados";
@@ -328,7 +334,7 @@
             // mtConsultasEmpleadoFecha
             // 
             this.mtConsultasEmpleadoFecha.Location = new System.Drawing.Point(124, 18);
-            this.mtConsultasEmpleadoFecha.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mtConsultasEmpleadoFecha.Margin = new System.Windows.Forms.Padding(2);
             this.mtConsultasEmpleadoFecha.Mask = "00/00/0000";
             this.mtConsultasEmpleadoFecha.Name = "mtConsultasEmpleadoFecha";
             this.mtConsultasEmpleadoFecha.Size = new System.Drawing.Size(76, 20);
@@ -337,7 +343,7 @@
             // lblFechaGenerica
             // 
             this.lblFechaGenerica.AutoSize = true;
-            this.lblFechaGenerica.Location = new System.Drawing.Point(14, 20);
+            this.lblFechaGenerica.Location = new System.Drawing.Point(14, 22);
             this.lblFechaGenerica.Name = "lblFechaGenerica";
             this.lblFechaGenerica.Size = new System.Drawing.Size(106, 13);
             this.lblFechaGenerica.TabIndex = 0;
@@ -360,7 +366,7 @@
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(107, 11);
+            this.label10.Location = new System.Drawing.Point(105, 14);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(38, 13);
             this.label10.TabIndex = 10;
@@ -370,7 +376,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 11);
+            this.label1.Location = new System.Drawing.Point(14, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 0;
@@ -397,7 +403,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(216, 11);
+            this.label2.Location = new System.Drawing.Point(216, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 1;
@@ -416,15 +422,16 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 11);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(87, 8);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
+            this.label3.Size = new System.Drawing.Size(127, 13);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Consultas";
+            this.label3.Text = "Consultas Empleados";
             // 
             // txtConsultasEmpleadosDescripcion
             // 
-            this.txtConsultasEmpleadosDescripcion.Location = new System.Drawing.Point(319, 11);
+            this.txtConsultasEmpleadosDescripcion.Location = new System.Drawing.Point(319, 8);
             this.txtConsultasEmpleadosDescripcion.Multiline = true;
             this.txtConsultasEmpleadosDescripcion.Name = "txtConsultasEmpleadosDescripcion";
             this.txtConsultasEmpleadosDescripcion.Size = new System.Drawing.Size(320, 55);
@@ -443,6 +450,7 @@
             // 
             // tbClientes
             // 
+            this.tbClientes.Controls.Add(this.panelClienteServicio);
             this.tbClientes.Controls.Add(this.clientesPanelFecha);
             this.tbClientes.Controls.Add(this.btnClientesConsultar);
             this.tbClientes.Controls.Add(this.label4);
@@ -450,18 +458,46 @@
             this.tbClientes.Controls.Add(this.cmbClientesConsultas);
             this.tbClientes.Location = new System.Drawing.Point(4, 22);
             this.tbClientes.Name = "tbClientes";
-            this.tbClientes.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbClientes.Padding = new System.Windows.Forms.Padding(3);
             this.tbClientes.Size = new System.Drawing.Size(647, 186);
             this.tbClientes.TabIndex = 2;
             this.tbClientes.Text = "Clientes";
             this.tbClientes.UseVisualStyleBackColor = true;
             // 
+            // clientesPanelFecha
+            // 
+            this.clientesPanelFecha.Controls.Add(this.clientePanelFechaMT);
+            this.clientesPanelFecha.Controls.Add(this.label9);
+            this.clientesPanelFecha.Location = new System.Drawing.Point(44, 55);
+            this.clientesPanelFecha.Name = "clientesPanelFecha";
+            this.clientesPanelFecha.Size = new System.Drawing.Size(142, 28);
+            this.clientesPanelFecha.TabIndex = 1;
+            this.clientesPanelFecha.Visible = false;
+            // 
+            // clientePanelFechaMT
+            // 
+            this.clientePanelFechaMT.Location = new System.Drawing.Point(59, 5);
+            this.clientePanelFechaMT.Margin = new System.Windows.Forms.Padding(2);
+            this.clientePanelFechaMT.Mask = "00/00/0000";
+            this.clientePanelFechaMT.Name = "clientePanelFechaMT";
+            this.clientePanelFechaMT.Size = new System.Drawing.Size(76, 20);
+            this.clientePanelFechaMT.TabIndex = 0;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(11, 8);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(37, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Fecha";
+            // 
             // btnClientesConsultar
             // 
-            this.btnClientesConsultar.Location = new System.Drawing.Point(49, 131);
+            this.btnClientesConsultar.Location = new System.Drawing.Point(290, 157);
             this.btnClientesConsultar.Name = "btnClientesConsultar";
             this.btnClientesConsultar.Size = new System.Drawing.Size(75, 23);
-            this.btnClientesConsultar.TabIndex = 9;
+            this.btnClientesConsultar.TabIndex = 2;
             this.btnClientesConsultar.Text = "Consultar";
             this.btnClientesConsultar.UseVisualStyleBackColor = true;
             this.btnClientesConsultar.Click += new System.EventHandler(this.btnClientesConsultar_Click);
@@ -469,26 +505,28 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 3);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(89, 7);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 13);
+            this.label4.Size = new System.Drawing.Size(111, 13);
             this.label4.TabIndex = 1;
-            this.label4.Text = "Consultas";
+            this.label4.Text = "Consultas Clientes";
             // 
             // txtClientesDescripcionConsulta
             // 
-            this.txtClientesDescripcionConsulta.Location = new System.Drawing.Point(286, 12);
+            this.txtClientesDescripcionConsulta.Location = new System.Drawing.Point(290, 7);
             this.txtClientesDescripcionConsulta.Multiline = true;
             this.txtClientesDescripcionConsulta.Name = "txtClientesDescripcionConsulta";
-            this.txtClientesDescripcionConsulta.Size = new System.Drawing.Size(350, 102);
+            this.txtClientesDescripcionConsulta.ReadOnly = true;
+            this.txtClientesDescripcionConsulta.Size = new System.Drawing.Size(350, 76);
             this.txtClientesDescripcionConsulta.TabIndex = 2;
             // 
             // cmbClientesConsultas
             // 
-            this.cmbClientesConsultas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.cmbClientesConsultas.BackColor = System.Drawing.Color.White;
             this.cmbClientesConsultas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbClientesConsultas.FormattingEnabled = true;
-            this.cmbClientesConsultas.Location = new System.Drawing.Point(8, 19);
+            this.cmbClientesConsultas.Location = new System.Drawing.Point(8, 28);
             this.cmbClientesConsultas.Name = "cmbClientesConsultas";
             this.cmbClientesConsultas.Size = new System.Drawing.Size(272, 21);
             this.cmbClientesConsultas.TabIndex = 0;
@@ -507,33 +545,53 @@
             this.dgvResultados.Size = new System.Drawing.Size(655, 213);
             this.dgvResultados.TabIndex = 1;
             // 
-            // clientesPanelFecha
+            // panelClienteServicio
             // 
-            this.clientesPanelFecha.Controls.Add(this.clientePanelFechaMT);
-            this.clientesPanelFecha.Controls.Add(this.label9);
-            this.clientesPanelFecha.Location = new System.Drawing.Point(8, 55);
-            this.clientesPanelFecha.Name = "clientesPanelFecha";
-            this.clientesPanelFecha.Size = new System.Drawing.Size(157, 59);
-            this.clientesPanelFecha.TabIndex = 12;
-            this.clientesPanelFecha.Visible = false;
+            this.panelClienteServicio.Controls.Add(this.mtNroCliente);
+            this.panelClienteServicio.Controls.Add(this.label6);
+            this.panelClienteServicio.Controls.Add(this.mtNroServicio);
+            this.panelClienteServicio.Controls.Add(this.label5);
+            this.panelClienteServicio.Location = new System.Drawing.Point(44, 98);
+            this.panelClienteServicio.Name = "panelClienteServicio";
+            this.panelClienteServicio.Size = new System.Drawing.Size(142, 62);
+            this.panelClienteServicio.TabIndex = 1;
+            this.panelClienteServicio.Visible = false;
             // 
-            // clientePanelFechaMT
+            // label5
             // 
-            this.clientePanelFechaMT.Location = new System.Drawing.Point(56, 17);
-            this.clientePanelFechaMT.Margin = new System.Windows.Forms.Padding(2);
-            this.clientePanelFechaMT.Mask = "00/00/0000";
-            this.clientePanelFechaMT.Name = "clientePanelFechaMT";
-            this.clientePanelFechaMT.Size = new System.Drawing.Size(76, 20);
-            this.clientePanelFechaMT.TabIndex = 6;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(11, 36);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(45, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Servicio";
             // 
-            // label9
+            // mtNroServicio
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(14, 20);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(37, 13);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "Fecha";
+            this.mtNroServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mtNroServicio.Location = new System.Drawing.Point(59, 31);
+            this.mtNroServicio.Mask = "9990";
+            this.mtNroServicio.Name = "mtNroServicio";
+            this.mtNroServicio.Size = new System.Drawing.Size(44, 22);
+            this.mtNroServicio.TabIndex = 1;
+            // 
+            // mtNroCliente
+            // 
+            this.mtNroCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mtNroCliente.Location = new System.Drawing.Point(59, 3);
+            this.mtNroCliente.Mask = "9990";
+            this.mtNroCliente.Name = "mtNroCliente";
+            this.mtNroCliente.Size = new System.Drawing.Size(44, 22);
+            this.mtNroCliente.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 8);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(39, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Cliente";
             // 
             // ExportToExcel
             // 
@@ -563,9 +621,11 @@
             this.panelConsultasEmpleadosNumeroEmpleado.PerformLayout();
             this.tbClientes.ResumeLayout(false);
             this.tbClientes.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvResultados)).EndInit();
             this.clientesPanelFecha.ResumeLayout(false);
             this.clientesPanelFecha.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResultados)).EndInit();
+            this.panelClienteServicio.ResumeLayout(false);
+            this.panelClienteServicio.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -617,5 +677,10 @@
         private System.Windows.Forms.Panel clientesPanelFecha;
         private MaskedTextBoxKeyDown clientePanelFechaMT;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Panel panelClienteServicio;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.MaskedTextBox mtNroServicio;
+        private System.Windows.Forms.MaskedTextBox mtNroCliente;
+        private System.Windows.Forms.Label label6;
     }
 }
