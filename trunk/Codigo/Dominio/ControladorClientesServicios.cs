@@ -915,7 +915,7 @@ namespace Logica
             }
             catch (Exception e)
             {
-                throw new GenerarHorasDiaException("Error en la generacion de horas. Cliente: " + NumeroCliente + " - Servicio: "+NumeroServicio + " - Fecha: " + Fecha.ToShortDateString(),e);
+                throw new GenerarHorasDiaException("Error en la generacion de horas. Cliente: " + NumeroCliente + " - Servicio: "+NumeroServicio + " - Fecha: " + Fecha.ToShortDateString() + "\n"+e.Message);
             }
         }
 

@@ -313,7 +313,6 @@ namespace ControlHoras
                 else
                     panelConsultasEmpleadoFecha.Visible = false;
                 
-                
             }
         }
 
@@ -335,7 +334,12 @@ namespace ControlHoras
                 else
                     clientesPanelFecha.Visible = false;
 
-
+                if (cons.Query.Contains("NROSERVICIO") && cons.Query.Contains("NROCLIENTE"))
+                {
+                    panelClienteServicio.Visible = true;
+                }
+                else
+                    panelClienteServicio.Visible = false;
             }
         }
 
@@ -398,7 +402,8 @@ namespace ControlHoras
         private void btnClientesConsultar_Click(object sender, EventArgs e)
         {
             Dictionary<string, string> parametrosQuery = new Dictionary<string, string>();
-            if (consultasClientes[consultasClientes.IndexOf((ConsultAsClientEs)cmbClientesConsultas.SelectedItem)].Query.Contains("FECHA") && clientesPanelFecha.Visible)
+            ConsultAsClientEs cquery = consultasClientes[consultasClientes.IndexOf((ConsultAsClientEs)cmbClientesConsultas.SelectedItem)];
+            if (cquery.Query.Contains("FECHA") && clientesPanelFecha.Visible)
             {
                 if (clientePanelFechaMT.Text == fechaMask)
                     MessageBox.Show("Debe llenar el campo fecha para la consulta.", "Llenar Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -406,6 +411,22 @@ namespace ControlHoras
                     try
                     {
                         parametrosQuery.Add("FECHA", clientePanelFechaMT.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+            }
+            if (cquery.Query.Contains("NROSERVICIO") && cquery.Query.Contains("NROCLIENTE") && panelClienteServicio.Visible)
+            {
+                if (! mtNroCliente.MaskCompleted || ! mtNroServicio.MaskCompleted)
+                    MessageBox.Show("Debe llenar los campos requeridos para la consulta.", "Llenar Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    try
+                    {
+                        parametrosQuery.Add("NROCLIENTE", mtNroCliente.Text);
+                        parametrosQuery.Add("NROSERVICIO", mtNroServicio.Text);
                     }
                     catch (Exception ex)
                     {

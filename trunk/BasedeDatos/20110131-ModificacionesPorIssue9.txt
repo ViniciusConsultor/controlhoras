@@ -1,0 +1,41 @@
+-- Se agrega FK de eventoshistorialempleado a empleados.
+alter table eventoshistorialempleado add foreign key FK_IdEmpleado_Empleados (IdEmpleado) references Empleados(NroEmpleado);
+
+-- Se agrega indice en eventoshistorialempleado por NroEmpleado.
+create index IX_IdEmpleadoFechaInicioFechaFin on eventoshistorialempleado(IdEmpleado,FechaInicio,FechaFin);
+
+
+-- Cambios en MotivosCambiosDiarios
+/* VERSION ANTERIOR
+| motivoscambiosdiarios | CREATE TABLE `motivoscambiosdiarios` (
+  `IdMotivoCambioDiario` int(11) NOT NULL AUTO_INCREMENT,
+  `IdTipoMotivo` mediumint(8) unsigned NOT NULL,
+  `Fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Observaciones` varchar(1000) DEFAULT NULL,
+  `NumeroCliente` mediumint(8) unsigned NOT NULL,
+  `NumeroServicio` mediumint(8) unsigned NOT NULL,
+  `NroEmpleado` mediumint(8) unsigned NOT NULL,
+  `IdHorasGeneradasEscalafon` bigint(20) NOT NULL,
+  PRIMARY KEY (`IdMotivoCambioDiario`),
+  KEY `IdTipoMotivo` (`IdTipoMotivo`),
+  KEY `NumeroCliente` (`NumeroCliente`,`NumeroServicio`),
+  KEY `NroEmpleado` (`NroEmpleado`),
+  KEY `ix_hsgenesc` (`IdHorasGeneradasEscalafon`),
+  CONSTRAINT `FK_motivoscambiosdiarios_4` FOREIGN KEY (`IdHorasGeneradasEscalafon`) REFERENCES `horasgeneradasescalafon` (`IdHorasGeneradasEscalafon`),
+  CONSTRAINT `motivoscambiosdiarios_ibfk_1` FOREIGN KEY (`IdTipoMotivo`) REFERENCES `tiposmotivocambiodiario` (`IdTipoMotivo`),
+  CONSTRAINT `motivoscambiosdiarios_ibfk_2` FOREIGN KEY (`NumeroCliente`, `NumeroServicio`) REFERENCES `servicios` (`NumeroCliente`, `NumeroServicio`),
+  CONSTRAINT `motivoscambiosdiarios_ibfk_3` FOREIGN KEY (`NroEmpleado`) REFERENCES `empleados` (`NroEmpleado`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1
+*/
+
+-- 1) Eliminamos la FK FK_motivoscambiosdiarios_4
+alter table motivoscambiosdiarios drop FOREIGN KEY FK_motivoscambiosdiarios_4;
+-- 2) Eliminamos el campo IdHorasGeneradasEscalafon
+alter table motivoscambiosdiarios drop column IdHorasGeneradasEscalafon;
+-- 3) Agregamos una Fecha, FechaCorresponde que vendria a ser la Fecha del registro que se hizo el cambio
+alter table motivoscambiosdiarios add column FechaCorresponde Date not null;
+-- 4) Cambiamos el nombre de la columna Fecha.
+alter table motivoscambiosdiarios change column Fecha FechaCambio datetime not null;
+
+-- Con el cambio de nombre del campo Fecha a FechaCambio, hay que cambiar una consulta de clientes;
+update consultasclientes set Query=replace(Query,"mcd.Fecha","mcd.FechaCambio") where idConsultaCliente=4;

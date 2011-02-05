@@ -47,7 +47,8 @@ namespace ControlHoras
             if (txtObservaciones.Text != "")
             {
                 motivoCambio = new MotIVOsCamBiosDiARioS();
-                motivoCambio.Fecha = FechaCorresponde;
+                motivoCambio.FechaCambio = DateTime.Now;
+                motivoCambio.FechaCorresponde = FechaCorresponde.Date;
                 motivoCambio.Observaciones = txtObservaciones.Text;
                 motivoCambio.TipOsMotIVOCamBIoDiARio = ((TipOsMotIVOCamBIoDiARio)cmbMotivosCambio.SelectedValue);
                 

@@ -81,7 +81,8 @@ namespace Datos
                 //};
 
 
-                var conn = new MySqlConnection(builder.ToString());
+                MySqlConnection conn = new MySqlConnection(builder.ToString());
+                
                 return conn;
             
             }
@@ -1073,13 +1074,15 @@ namespace Datos
             MySqlConnection conexion2;
             try
             {
-                ConsultAsClientEs consEmp = (from reg in database.GetTable<ConsultAsClientEs>()
+               
+                ConsultAsClientEs consCli = (from reg in database.GetTable<ConsultAsClientEs>()
                                              where reg.IDConsultaCliente == numeroConsultaCliente
                                               select reg).Single();
-                if (consEmp != null)
+                if (consCli != null)
                 {
-                    string sql = consEmp.Query;
-                    if (consEmp.Query.Contains("FECHA"))
+                    string sql = consCli.Query;
+                    if (consCli.Query.Contains("FECHA"))
+                    {
                         if (parametrosConsulta.ContainsKey("FECHA"))
                         {
                             string[] fecha = parametrosConsulta["FECHA"].Split('/');
@@ -1087,12 +1090,26 @@ namespace Datos
                             string fecha2 = String.Format("{0:yyyy-MM-dd}", dt);
                             sql = sql.Replace("FECHA", fecha2);
                         }
+                        else
+                            throw new Exception("No se obtuvieron los parametros necesarios FECHA para ejecutar la consulta");
+
+                    }
+                    if (consCli.Query.Contains("NROCLIENTE") && consCli.Query.Contains("NROSERVICIO"))
+                    {
+                        if (parametrosConsulta.ContainsKey("NROCLIENTE") && parametrosConsulta.ContainsKey("NROSERVICIO"))
+                        {
+                            sql = sql.Replace("NROCLIENTE", parametrosConsulta["NROCLIENTE"]);
+                            sql = sql.Replace("NROSERVICIO",parametrosConsulta["NROSERVICIO"]);
+                        }
+                        else
+                            throw new Exception("No se obtuvieron los parametros necesarios FECHA para ejecutar la consulta");
+                    }
 
 
                     conexion2 = (MySqlConnection)database.Connection;
-
+                    
                     MySqlDataAdapter mysqlAdapter = new MySqlDataAdapter(sql, conexion2);
-
+                    
                     DataSet sd = new DataSet();
                     mysqlAdapter.Fill(sd);
                     //conexion.Close();
@@ -2131,6 +2148,7 @@ namespace Datos
 
         #endregion
 
+        #region Contratos
         public void altaContratoServicioCliente(int NumeroCliente, int NumeroServicio, int NumeroContrato, DateTime FechaInicio, DateTime? FechaFin, bool CostoFijo, bool HorasExtras, string Ajuste, string Observaciones, float Monto)
         {
 
@@ -2201,7 +2219,6 @@ namespace Datos
                 throw me;
             }
         }
-
         public ContraToS obtenerContrato(int NumeroContrato)
         {
             try
@@ -2229,7 +2246,6 @@ namespace Datos
                 throw me;
             }
         }
-        
         public void modificarContrato(int numeroContrato, DateTime FechaInicial, DateTime? FechaFinal, bool Costo, bool HorasExtras, string Ajuste, string Observaciones, float Monto)
         {
             try
@@ -2260,7 +2276,6 @@ namespace Datos
                 throw e;
             }
         }        
-
         public void altaContrato(ContraToS Contrato, List<LineAshOrAs> Lineas)
         {
             System.Data.Common.DbConnection conexion = database.Connection;
@@ -2391,7 +2406,6 @@ namespace Datos
                 throw ex;
             } 
         }
-
         public void eliminarLineasContrato(int NumeroContrato)
         {
             System.Data.Common.DbConnection conexion = database.Connection;
@@ -2471,8 +2485,7 @@ namespace Datos
                 throw ex;
             }
             */
-        }
-                  
+        }    
         public void guardarLineasContrato(List<LineAshOrAs> Lineas)
         {
             System.Data.Common.DbConnection conexion = database.Connection;
@@ -2563,7 +2576,7 @@ namespace Datos
                 throw ex;
             }
         }
-
+        #endregion
         public bool existeEmpleadoCI(string CI, out EmPleadOs empleado)
         {   
             empleado = null;
@@ -2586,6 +2599,7 @@ namespace Datos
             }
         }
 
+        #region ListaNegra
         public void altaListaNegra(string CI, string apellidos, string nombres, string motivo)
         {
             Table<ListAnEGRa> tablaListaNegra;
@@ -2706,9 +2720,9 @@ namespace Datos
             catch (Exception ex)
             {
                 throw ex;
-            }            
+            }
         }
-        
+        #endregion
         public int obtenerMaxIdCliente()
         {
             try
@@ -2835,7 +2849,7 @@ namespace Datos
                 else
                 {
                     motivosServicio = (from reg in database.MotIVOsCamBiosDiARioS
-                                                                   where reg.NumeroCliente == numeroCliente & reg.NumeroServicio == numeroServicio & reg.Fecha == fecha & reg.NroEmpleado == nroEmpleado
+                                                                   where reg.NumeroCliente == numeroCliente & reg.NumeroServicio == numeroServicio & reg.FechaCambio == fecha & reg.NroEmpleado == nroEmpleado
                                                                    select reg).ToList<MotIVOsCamBiosDiARioS>();
                 }
                 return motivosServicio;
@@ -2892,7 +2906,7 @@ namespace Datos
                 EmPleadOs emp = database.EmPleadOs.Single(e => e.NroEmpleado == NroEmpleadoNuevo);
 
                 hs.NroEmpleado = (uint) NroEmpleadoNuevo;
-                hs.MotIVOsCamBiosDiARioS.Add(mtcd);
+                //hs.MotIVOsCamBiosDiARioS.Add(mtcd);
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
             }
             catch (Exception e)
@@ -2913,8 +2927,9 @@ namespace Datos
                 else
                     hs.HoraSalida = DateTime.Parse(horanueva); 
                 
-                mtcd.IDHorasGeneradasEscalafon = IdHorasGeneragasEscalafon;                
-                
+                //mtcd.IDHorasGeneradasEscalafon = IdHorasGeneragasEscalafon;                
+                mtcd.FechaCorresponde = hs.FechaCorrespondiente;
+                mtcd.FechaCambio = DateTime.Now;
                 database.MotIVOsCamBiosDiARioS.InsertOnSubmit(mtcd);
                 
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
@@ -3436,7 +3451,9 @@ namespace Datos
             try
             {
                 Table<HoRaSGeneraDaSEScalaFOn> tabla = database.HoRaSGeneraDaSEScalaFOn;
-                motivoCambio.HoRaSGeneraDaSEScalaFOn = horaGeneradaEscalafon;
+                //motivoCambio.HoRaSGeneraDaSEScalaFOn = horaGeneradaEscalafon;
+                motivoCambio.FechaCorresponde = horaGeneradaEscalafon.FechaCorrespondiente;
+                motivoCambio.FechaCambio = DateTime.Now;
                 tabla.InsertOnSubmit(horaGeneradaEscalafon);
                // database.MotIVOsCamBiosDiARioS.InsertOnSubmit(motivoCambio);
 
@@ -3496,6 +3513,8 @@ namespace Datos
                 }
                 database.HoRaSGeneraDaSEScalaFOn.InsertAllOnSubmit(listaHorasGeneradas);
                 database.SubmitChanges();
+                recargarContexto();
+
             }
             catch (MySql.Data.MySqlClient.MySqlException myex)
             {

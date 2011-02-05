@@ -156,7 +156,17 @@ namespace ControlHoras
                                     if (dg2 == DialogResult.Yes)
                                     {
                                         sobrescribirHorasGeneradas = true;
-                                        controladorClientes.generarHorasDiaServicio(nroCliente, nroServicio, dateAux, sobrescribirHorasGeneradas);
+                                        try
+                                        {
+                                            controladorClientes.generarHorasDiaServicio(nroCliente, nroServicio, dateAux, sobrescribirHorasGeneradas);
+
+                                        }
+                                        catch(Exception ex)
+                                        {
+                                            huboErrores = true;
+                                            clienteServicioError = nroCliente + ":" + nroServicio;
+                                            listaErrores.Add(ex.Message);
+                                        }
                                     }
                                 }
                             }
@@ -164,7 +174,7 @@ namespace ControlHoras
                             {
                                 huboErrores = true;
                                 clienteServicioError = nroCliente + ":" + nroServicio;
-                                listaErrores.Add(exGen.Message + ": " + exGen.InnerException.Message);
+                                listaErrores.Add(exGen.Message);
                                 break;
                             }
                         }
@@ -176,6 +186,7 @@ namespace ControlHoras
                 if (!huboErrores)
                 {
                     controladorClientes.finalizarGeneracionHoras(true, sobrescribirHorasGeneradas);
+                    
                     return new Dictionary<string, List<string>>();
                 }
                 else
