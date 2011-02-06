@@ -754,6 +754,11 @@ namespace Logica
             }
         }
 
+        private string obtenerStringHoraMinuto(DateTime fecha)
+        {
+            return fecha.ToShortTimeString().Substring(0, 5);
+        }
+
         private void aplicarControlesAltaHoraGeneradaEscalafon(DateTime fechaCorresponde, HoRaSGeneraDaSEScalaFOn horaGeneradaEscalafon)
         {
             try
@@ -763,7 +768,7 @@ namespace Logica
                 foreach (HoRaSGeneraDaSEScalaFOn linea in horarios)
                 {
                     //DayOfWeek day = (DayOfWeek) DayOfWeek.Parse(typeof(DayOfWeek), h.DiA, true);
-                    if (HorariosSolapados(horaGeneradaEscalafon.HoraEntrada.ToLongTimeString(), horaGeneradaEscalafon.HoraSalida.ToLongTimeString(), linea.HoraEntrada.ToLongTimeString(), linea.HoraSalida.ToLongTimeString()))
+                    if (HorariosSolapados(obtenerStringHoraMinuto(horaGeneradaEscalafon.HoraEntrada), obtenerStringHoraMinuto(horaGeneradaEscalafon.HoraSalida), obtenerStringHoraMinuto(linea.HoraEntrada), obtenerStringHoraMinuto(linea.HoraSalida)))
                         throw new Exception("Error de solapamiento de horarios. (" + horaGeneradaEscalafon.HoraEntrada.ToLongTimeString() + "-" + horaGeneradaEscalafon.HoraSalida.ToLongTimeString() + ") con " + "(" + linea.HoraEntrada.ToLongTimeString() + " - " + linea.HoraSalida.ToLongTimeString() + "). Dia: " + fechaCorresponde.ToShortDateString());
                                        
                 }

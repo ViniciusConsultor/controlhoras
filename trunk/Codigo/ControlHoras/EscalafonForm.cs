@@ -270,7 +270,7 @@ namespace ControlHoras
 
         private void mtServicio_KeyDown(object sender, KeyEventArgs e)
         {
-            if (mtCliente!= null && mtServicio.Text != "" && (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab))
+           if (mtCliente!= null && mtServicio.Text != "" && (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab))
             {
                 // seteo el servicio.                
                 SERVicIoS servicio;

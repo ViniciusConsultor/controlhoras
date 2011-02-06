@@ -220,10 +220,15 @@ namespace Datos
         void bajaTipoDocumento(int idTipoDocumento);
         #endregion
 
-        #region HorasGeneradasEscalafon
-        List<HoRaSGeneraDaSEScalaFOn> obtenerHorasGeneradasServicio(int NumeroCliente, int NumeroServicio, DateTime fecha);
+        #region ControlDiario
+        void quitarFuncionarioControlDiario(long IdHorasGeneragasEscalafon, MotIVOsCamBiosDiARioS mtcd);
         void cambiarFuncionarioControlDiario(long IdHorasGeneragasEscalafon,int NroEmpleado, MotIVOsCamBiosDiARioS mtcd);
         void cambiarHoraFuncionarioControlDiario(long IdHorasGeneragasEscalafon,int NroEmpleado, string horanueva, bool Entrada, MotIVOsCamBiosDiARioS mtcd);
+        
+        #endregion
+
+        #region HorasGeneradasEscalafon
+        List<HoRaSGeneraDaSEScalaFOn> obtenerHorasGeneradasServicio(int NumeroCliente, int NumeroServicio, DateTime fecha);
          /// <summary>
         /// Agrega un nuevo funcionario con un horario determinado a un HorasGeneradasEscalafon de un cliente servicio de un dia determinado aplicando los controles necesarios para su alta.
         /// </summary>

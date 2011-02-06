@@ -420,7 +420,8 @@ namespace ControlHoras
             }
             if (cquery.Query.Contains("NROSERVICIO") && cquery.Query.Contains("NROCLIENTE") && panelClienteServicio.Visible)
             {
-                if (! mtNroCliente.MaskCompleted || ! mtNroServicio.MaskCompleted)
+                mtNroServicio.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+                if ( mtNroCliente.Text == "" || mtNroServicio.Text == "")
                     MessageBox.Show("Debe llenar los campos requeridos para la consulta.", "Llenar Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                     try

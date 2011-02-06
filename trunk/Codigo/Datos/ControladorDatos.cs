@@ -1417,42 +1417,31 @@ namespace Datos
             //}
         }
         
-        public void eliminarExtraLiquidacionEmpleado(int idEmpleado, int idExtraLiquidacionEmpleado, DateTime mesSeleccionado)
+        public void eliminarExtraLiquidacionEmpleado(int idEmpleado, int idExtraLiquidacion, DateTime mesSeleccionado)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
             // REstricciones: - NO se puede eliminar los extras que sean de mas de 1 cuota y tenga alguna cuota liquidada.
-            //try
-            //{
-            //    Table<ExtrasLiquidAcIonEmPleadO> tabla = database.GetTable<ExtrasLiquidAcIonEmPleadO>();
+            try
+            {
+                // Verificamos si tiene alguna cuota paga.
+                int cantLiquidadas = (from reg in database.CuOtAsExtrasLiquidAcIon
+                                      where reg.IDExtraLiquidacion == idExtraLiquidacion && reg.Liquidado == 1
+                                      select reg).Count();
+                if (cantLiquidadas > 0) // Si tiene alguna cuota liquidad no se puede eliminar
+                    throw new Exception("No se puede eliminar un ExtraLiquidacion con Cuotas ya liquidadas.");
                 
-            //    // Chequeo que no esten editando un extra que ya se ha liquidado alguna cuota anterior.
-            //    var CantCuotasLiquidadas = (from reg in tabla
-            //                           where reg.IDEmpleado == idEmpleado && reg.IDExtraLiquidacionEmpleado == idExtraLiquidacionEmpleado
-            //                           //&& reg.Liquidado == 1
-            //                           select 1).Count();
-            //    if (CantCuotasLiquidadas >= 1)
-            //        throw new Exception("No se puede eliminar un extra con alguna cuota liquidada.");
-
-            //    var ListExtras = from reg in tabla 
-            //                     where reg.IDEmpleado == idEmpleado && reg.IDExtraLiquidacionEmpleado==idExtraLiquidacionEmpleado
-            //                     select reg;
-
-            //    // Chequeo que solo se pueda eliminar un extra desde el mes correspondiente a la primer cuota.
-            //    int cuota = 1; //(int)((from reg in tabla
-            //    //                      where reg.IDEmpleado == idEmpleado && reg.IDExtraLiquidacionEmpleado == idExtraLiquidacionEmpleado && reg.Fecha.Month == mesSeleccionado.Month && reg.Fecha.Year == mesSeleccionado.Year
-            //    //                      select reg.CuotaActual).Single());
-            //    if (cuota != 1)
-            //        throw new Exception("Para eliminar todas las cuotas del extra debe eliminarlo desde el Mes de la Primer Cuota.");
-
-
-            //    tabla.DeleteAllOnSubmit(ListExtras);
-            //    database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
+                // Si no tiene una cuota paga procedemos con la eliminacion.
+                ExtrasLiquidAcIon extras = (from reg in database.ExtrasLiquidAcIon
+                                            where reg.IDExtraLiquidacion == idExtraLiquidacion
+                                            select reg).Single();
+                database.CuOtAsExtrasLiquidAcIon.DeleteAllOnSubmit(extras.CuOtAsExtrasLiquidAcIon);
+                database.ExtrasLiquidAcIon.DeleteOnSubmit(extras);
+                database.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }        
 
         //public List<ExtrasLiquidAcIonEmPleadO> obtenerExtrasLiquidacionEmpleado(int idEmpleado, DateTime mesCorrespondiente)
@@ -2898,6 +2887,10 @@ namespace Datos
                 throw e;
             }
         }
+        #endregion
+
+        #region ControlDiario
+
         public void cambiarFuncionarioControlDiario(long IdHorasGeneragasEscalafon, int NroEmpleadoNuevo, MotIVOsCamBiosDiARioS mtcd)
         {            
             try
@@ -2908,6 +2901,7 @@ namespace Datos
                 hs.NroEmpleado = (uint) NroEmpleadoNuevo;
                 //hs.MotIVOsCamBiosDiARioS.Add(mtcd);
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+                recargarContexto();
             }
             catch (Exception e)
             {
@@ -2917,7 +2911,7 @@ namespace Datos
 
         public void cambiarHoraFuncionarioControlDiario(long IdHorasGeneragasEscalafon, int NroEmpleado, string horanueva, bool Entrada, MotIVOsCamBiosDiARioS mtcd)
         {
-            Table<HoRaSGeneraDaSEScalaFOn> horasGen = database.HoRaSGeneraDaSEScalaFOn;
+           // Table<HoRaSGeneraDaSEScalaFOn> horasGen = database.HoRaSGeneraDaSEScalaFOn;
             try
             {
                 HoRaSGeneraDaSEScalaFOn hs = database.HoRaSGeneraDaSEScalaFOn.Single(p => p.IDHorasGeneradasEscalafon == IdHorasGeneragasEscalafon);
@@ -2932,6 +2926,23 @@ namespace Datos
                 mtcd.FechaCambio = DateTime.Now;
                 database.MotIVOsCamBiosDiARioS.InsertOnSubmit(mtcd);
                 
+                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+                recargarContexto();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        
+        public void quitarFuncionarioControlDiario(long IdHorasGeneragasEscalafon, MotIVOsCamBiosDiARioS mtcd)
+        {
+            try
+            {
+                HoRaSGeneraDaSEScalaFOn hs = database.HoRaSGeneraDaSEScalaFOn.Single(p => p.IDHorasGeneradasEscalafon == IdHorasGeneragasEscalafon);
+
+                database.MotIVOsCamBiosDiARioS.InsertOnSubmit(mtcd);
+                database.HoRaSGeneraDaSEScalaFOn.DeleteOnSubmit(hs);
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
             }
             catch (Exception e)
