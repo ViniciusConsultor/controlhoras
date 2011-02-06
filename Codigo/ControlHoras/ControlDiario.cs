@@ -468,6 +468,44 @@ namespace ControlHoras
         private void ControlDiario_Shown(object sender, EventArgs e)
         {
             ucCliente.cliPronto += new EventHandler(ucCliente_cliPronto);
+        }
+
+        private void quitarFuncionarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int idFuncSeleccionado = int.Parse(dgvHoras.SelectedRows[0].Cells["NroEmpleado"].Value.ToString());
+                string nombreFunc = dgvHoras.SelectedRows[0].Cells["Funcionario"].Value.ToString();
+
+                DialogResult res = MessageBox.Show("Seguro que quiere quitar el Funcionario: " + idFuncSeleccionado + " - " + nombreFunc, "Quitar Funcionario?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (res == DialogResult.Yes)
+                {
+                    DateTime fechaCorresponde = DateTime.Parse(mtFecha.Text);
+                    MotivoCambioDiarioForm mcdf = new MotivoCambioDiarioForm(fechaCorresponde);
+                    res = mcdf.ShowDialog(this);
+                    if (res == DialogResult.OK)
+                    {
+                        int numFila = dgvHoras.SelectedRows[0].Index;
+
+                        long idhge = (long)dgvHoras.Rows[numFila].Cells["IdHorasGeneradasEscalafon"].Value;
+                        int nroEmp = int.Parse(dgvHoras.Rows[numFila].Cells["NroEmpleado"].Value.ToString());
+                        //string HoraNueva = changeHourForm.getHoraNueva();
+                        mcdf.motivoCambio.NroEmpleado = (uint)nroEmp;
+                        mcdf.motivoCambio.NumeroCliente = uint.Parse(ucCliente.ClienteNRO);
+                        mcdf.motivoCambio.NumeroServicio = servicio.NumeroServicio;
+
+                        datos.quitarFuncionarioControlDiario(idhge, mcdf.motivoCambio);
+
+                        dgvHoras.Rows.RemoveAt(numFila);
+                    }
+                    
+               
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }    
        
     }

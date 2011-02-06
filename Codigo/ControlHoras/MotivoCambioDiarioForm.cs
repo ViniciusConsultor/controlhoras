@@ -19,7 +19,7 @@ namespace ControlHoras
         private DateTime FechaCorresponde;
         private List<TipOsMotIVOCamBIoDiARio> listaTiposMotivos = null; 
         
-        public MotivoCambioDiarioForm(DateTime Fecha)
+        public MotivoCambioDiarioForm(DateTime fechaCorresponde)
         {
             InitializeComponent();
             try
@@ -33,7 +33,7 @@ namespace ControlHoras
                 cmbMotivosCambio.DisplayMember = "Descripcion";
                 cmbMotivosCambio.EndUpdate();
                 botonAceptar = false;
-                FechaCorresponde = Fecha;
+                FechaCorresponde = fechaCorresponde;
             }
             catch (Exception ex)
             {

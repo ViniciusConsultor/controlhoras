@@ -262,7 +262,7 @@ namespace ControlHoras
             dtpFechaIngreso.Text = DateTime.Now.ToString();
             dtpFechaAltaBPS.Text = DateTime.Now.ToString();
             tcEmpleado.SelectedIndex = 0;
-            //mtNumeroEmpleado.Focus();
+            
             mtNumeroDocumento.Focus();
         }
 
@@ -1266,45 +1266,52 @@ namespace ControlHoras
 
         private void btnAgregarHistorial_Click(object sender, EventArgs e)
         {
-            DateTime FechaIni = DateTime.ParseExact(dtpFechaInicioHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-            DateTime FechaFin = DateTime.ParseExact(dtpFechaFinHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-
-            if (FechaIni > FechaFin)
-                MessageBox.Show("La Fecha Fin tiene que ser mayor que la Fecha Inicio.");
-            else if (cmbTipoEventoHistorial.SelectedIndex >= 0 && txtDescripcionHistorial.Text != "")
+            DateTime FechaIni;
+            DateTime FechaFin;
+            if (DateTime.TryParseExact(dtpFechaInicioHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo, DateTimeStyles.AssumeLocal, out FechaIni))
             {
-                int n = -10;
-                try
+                if (DateTime.TryParseExact(dtpFechaFinHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo, DateTimeStyles.AssumeLocal, out FechaFin))
                 {
+                    if (FechaIni > FechaFin)
+                        MessageBox.Show("La Fecha Fin tiene que ser mayor que la Fecha Inicio.");
+                    else if (cmbTipoEventoHistorial.SelectedIndex >= 0 && txtDescripcionHistorial.Text != "")
+                    {
+                        int n = -10;
+                        try
+                        {
 
-                    int idTipoEventoSelected = ((ComboBoxValue)cmbTipoEventoHistorial.Items[cmbTipoEventoHistorial.SelectedIndex]).Value;
-                    int numEventoNuevo = datos.agregarEventoHistorialEmpleado(int.Parse(mtNumeroEmpleado.Text), FechaIni, FechaFin, idTipoEventoSelected, txtDescripcionHistorial.Text);
-                    // Una vez agregado el registro, insertamos una nueva fila en el datagrid
-                    n = dgvHistorialEmpleado.Rows.Add();
-                    dgvHistorialEmpleado.Rows[n].Cells["IdEventoHistorialEmpleado"].Value = numEventoNuevo.ToString();
-                    dgvHistorialEmpleado.Rows[n].Cells["FechaInicio"].Value = FechaIni.ToShortDateString();
-                    dgvHistorialEmpleado.Rows[n].Cells["FechaFin"].Value = FechaFin.ToShortDateString();
+                            int idTipoEventoSelected = ((ComboBoxValue)cmbTipoEventoHistorial.Items[cmbTipoEventoHistorial.SelectedIndex]).Value;
+                            int numEventoNuevo = datos.agregarEventoHistorialEmpleado(int.Parse(mtNumeroEmpleado.Text), FechaIni, FechaFin, idTipoEventoSelected, txtDescripcionHistorial.Text);
+                            // Una vez agregado el registro, insertamos una nueva fila en el datagrid
+                            n = dgvHistorialEmpleado.Rows.Add();
+                            dgvHistorialEmpleado.Rows[n].Cells["IdEventoHistorialEmpleado"].Value = numEventoNuevo.ToString();
+                            dgvHistorialEmpleado.Rows[n].Cells["FechaInicio"].Value = FechaIni.ToShortDateString();
+                            dgvHistorialEmpleado.Rows[n].Cells["FechaFin"].Value = FechaFin.ToShortDateString();
 
-                    dgvHistorialEmpleado.Rows[n].Cells["Descripcion"].Value = txtDescripcionHistorial.Text;
-                    dgvHistorialEmpleado.Rows[n].Cells["IdTipoEvento"].Value = idTipoEventoSelected;
-                    dgvHistorialEmpleado.Rows[n].Cells["TipoEvento"].Value = cmbTipoEventoHistorial.Text;
+                            dgvHistorialEmpleado.Rows[n].Cells["Descripcion"].Value = txtDescripcionHistorial.Text;
+                            dgvHistorialEmpleado.Rows[n].Cells["IdTipoEvento"].Value = idTipoEventoSelected;
+                            dgvHistorialEmpleado.Rows[n].Cells["TipoEvento"].Value = cmbTipoEventoHistorial.Text;
 
-                    limpiarTabHistorial();
+                            limpiarTabHistorial();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                        MessageBox.Show("Debe llenar todos los datos.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-                MessageBox.Show("Debe llenar todos los datos.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                else
+                    MessageBox.Show("El Formato de la FechaFin no es Correcto", "Formato Fecha Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }else
+                MessageBox.Show("El Formato de la FechaInicio no es Correcto", "Formato Fecha Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void limpiarTabHistorial()
         {
-            dtpFechaInicioHistorial.Text = DateTime.Today.ToString();
-            dtpFechaFinHistorial.Text = DateTime.Today.ToString();
+            dtpFechaInicioHistorial.Text = "";
+            dtpFechaFinHistorial.Text = "";
             //cmbTipoEventoHistorial.SelectedIndex = 0;
             txtDescripcionHistorial.Text = "";
             btnAddTipoEvento.Enabled = true;
@@ -1314,52 +1321,13 @@ namespace ControlHoras
 
         private void btnGuardarHistorial_Click(object sender, EventArgs e)
         {
-            DateTime FechaIni = DateTime.ParseExact(dtpFechaInicioHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-            DateTime FechaFin = DateTime.ParseExact(dtpFechaFinHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-
-            int numFila = 0;
-            while (dgvHistorialEmpleado.RowCount > numFila && lblIdEventoHistorialEmpleado.Text != dgvHistorialEmpleado.Rows[numFila].Cells["IdEventoHistorialEmpleado"].Value.ToString())
+            DateTime FechaIni;
+            DateTime FechaFin;
+            if (DateTime.TryParseExact(dtpFechaInicioHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo, DateTimeStyles.AssumeLocal, out FechaIni))
             {
-                numFila++;
-            }
-            if (numFila != dgvHistorialEmpleado.RowCount)
-            {
-
-                if (FechaIni > FechaFin)
-                    MessageBox.Show("La Fecha Fin tiene que ser mayor que la Fecha Inicio.");
-                else if (cmbTipoEventoHistorial.SelectedIndex >= 0 && txtDescripcionHistorial.Text != "")
+                if (DateTime.TryParseExact(dtpFechaFinHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo, DateTimeStyles.AssumeLocal, out FechaFin))
                 {
-                    int idEvento = ((ComboBoxValue)cmbTipoEventoHistorial.SelectedItem).Value;
-                    datos.modificarEventoHistorialEmpleado(int.Parse(lblIdEventoHistorialEmpleado.Text), int.Parse(mtNumeroEmpleado.Text), FechaIni, FechaFin, idEvento, txtDescripcionHistorial.Text);
-                    dgvHistorialEmpleado.Rows[numFila].Cells["IdEventoHistorialEmpleado"].Value = lblIdEventoHistorialEmpleado.Text;
-                    dgvHistorialEmpleado.Rows[numFila].Cells["FechaInicio"].Value = FechaIni.ToShortDateString();
-                    dgvHistorialEmpleado.Rows[numFila].Cells["FechaFin"].Value = FechaFin.ToShortDateString();
 
-                    dgvHistorialEmpleado.Rows[numFila].Cells["Descripcion"].Value = txtDescripcionHistorial.Text;
-                    dgvHistorialEmpleado.Rows[numFila].Cells["IdTipoEvento"].Value = idEvento;
-                    dgvHistorialEmpleado.Rows[numFila].Cells["TipoEvento"].Value = cmbTipoEventoHistorial.Text;
-
-                    limpiarTabHistorial();
-                    btnAgregarHistorial.Enabled = true;
-                }
-                else
-                    MessageBox.Show("Debe llenar todos los datos.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-        }
-
-        private void btnEliminarHistorial_Click(object sender, EventArgs e)
-        {
-            DateTime FechaIni = DateTime.ParseExact(dtpFechaInicioHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-            DateTime FechaFin = DateTime.ParseExact(dtpFechaFinHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-
-            if (FechaIni > FechaFin)
-                MessageBox.Show("La Fecha Fin tiene que ser mayor que la Fecha Inicio.", "Error Fechas", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else if (cmbTipoEventoHistorial.SelectedIndex >= 0 && txtDescripcionHistorial.Text != "")
-            {
-                DialogResult dr = MessageBox.Show("Seguro que desea eliminar el Evento del Empleado?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dr == DialogResult.Yes)
-                {
                     int numFila = 0;
                     while (dgvHistorialEmpleado.RowCount > numFila && lblIdEventoHistorialEmpleado.Text != dgvHistorialEmpleado.Rows[numFila].Cells["IdEventoHistorialEmpleado"].Value.ToString())
                     {
@@ -1367,24 +1335,82 @@ namespace ControlHoras
                     }
                     if (numFila != dgvHistorialEmpleado.RowCount)
                     {
-                        try
-                        {
-                            datos.eliminarEventoHistorialEmpleado(int.Parse(lblIdEventoHistorialEmpleado.Text), int.Parse(mtNumeroEmpleado.Text));
-                            dgvHistorialEmpleado.Rows.RemoveAt(numFila);
 
-                            MessageBox.Show("Evento eliminado correctamente.", "Eliminacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (FechaIni > FechaFin)
+                            MessageBox.Show("La Fecha Fin tiene que ser mayor que la Fecha Inicio.");
+                        else if (cmbTipoEventoHistorial.SelectedIndex >= 0 && txtDescripcionHistorial.Text != "")
+                        {
+                            int idEvento = ((ComboBoxValue)cmbTipoEventoHistorial.SelectedItem).Value;
+                            datos.modificarEventoHistorialEmpleado(int.Parse(lblIdEventoHistorialEmpleado.Text), int.Parse(mtNumeroEmpleado.Text), FechaIni, FechaFin, idEvento, txtDescripcionHistorial.Text);
+                            dgvHistorialEmpleado.Rows[numFila].Cells["IdEventoHistorialEmpleado"].Value = lblIdEventoHistorialEmpleado.Text;
+                            dgvHistorialEmpleado.Rows[numFila].Cells["FechaInicio"].Value = FechaIni.ToShortDateString();
+                            dgvHistorialEmpleado.Rows[numFila].Cells["FechaFin"].Value = FechaFin.ToShortDateString();
+
+                            dgvHistorialEmpleado.Rows[numFila].Cells["Descripcion"].Value = txtDescripcionHistorial.Text;
+                            dgvHistorialEmpleado.Rows[numFila].Cells["IdTipoEvento"].Value = idEvento;
+                            dgvHistorialEmpleado.Rows[numFila].Cells["TipoEvento"].Value = cmbTipoEventoHistorial.Text;
+
                             limpiarTabHistorial();
                             btnAgregarHistorial.Enabled = true;
                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        else
+                            MessageBox.Show("Debe llenar todos los datos.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                else
+                    MessageBox.Show("El Formato de la FechaFin no es Correcto", "Formato Fecha Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-                MessageBox.Show("Debe llenar todos los datos.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El Formato de la FechaInicio no es Correcto", "Formato Fecha Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btnEliminarHistorial_Click(object sender, EventArgs e)
+        {
+            DateTime FechaIni;
+            DateTime FechaFin;
+            if (DateTime.TryParseExact(dtpFechaInicioHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo, DateTimeStyles.AssumeLocal, out FechaIni))
+            {
+                if (DateTime.TryParseExact(dtpFechaFinHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo, DateTimeStyles.AssumeLocal, out FechaFin))
+                {
+                    if (FechaIni > FechaFin)
+                        MessageBox.Show("La Fecha Fin tiene que ser mayor que la Fecha Inicio.", "Error Fechas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else if (cmbTipoEventoHistorial.SelectedIndex >= 0 && txtDescripcionHistorial.Text != "")
+                    {
+                        DialogResult dr = MessageBox.Show("Seguro que desea eliminar el Evento del Empleado?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dr == DialogResult.Yes)
+                        {
+                            int numFila = 0;
+                            while (dgvHistorialEmpleado.RowCount > numFila && lblIdEventoHistorialEmpleado.Text != dgvHistorialEmpleado.Rows[numFila].Cells["IdEventoHistorialEmpleado"].Value.ToString())
+                            {
+                                numFila++;
+                            }
+                            if (numFila != dgvHistorialEmpleado.RowCount)
+                            {
+                                try
+                                {
+                                    datos.eliminarEventoHistorialEmpleado(int.Parse(lblIdEventoHistorialEmpleado.Text), int.Parse(mtNumeroEmpleado.Text));
+                                    dgvHistorialEmpleado.Rows.RemoveAt(numFila);
+
+                                    MessageBox.Show("Evento eliminado correctamente.", "Eliminacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    limpiarTabHistorial();
+                                    btnAgregarHistorial.Enabled = true;
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                        }
+                    }
+                    else
+                        MessageBox.Show("Debe llenar todos los datos.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                    MessageBox.Show("El Formato de la FechaFin no es Correcto", "Formato Fecha Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+                MessageBox.Show("El Formato de la FechaInicio no es Correcto", "Formato Fecha Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        
         }
 
         private void cargarHistorialEmpleado(int idEmpleado)
@@ -1440,15 +1466,17 @@ namespace ControlHoras
 
         private void dgvHistorialEmpleado_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            DateTime FechaIni = DateTime.ParseExact(dtpFechaInicioHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-            DateTime FechaFin = DateTime.ParseExact(dtpFechaFinHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-
+            
             if (e.RowIndex == -1)
             {
                 return;
             }
             try
             {
+                
+                //DateTime FechaIni = DateTime.ParseExact(dtpFechaInicioHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+                //DateTime FechaFin = DateTime.ParseExact(dtpFechaFinHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+
                 lblIdEventoHistorialEmpleado.Text = dgvHistorialEmpleado.Rows[e.RowIndex].Cells["IdEventoHistorialEmpleado"].Value.ToString();
                 dtpFechaInicioHistorial.Text = dgvHistorialEmpleado.Rows[e.RowIndex].Cells["FechaInicio"].Value.ToString();
                 dtpFechaFinHistorial.Text = dgvHistorialEmpleado.Rows[e.RowIndex].Cells["FechaFin"].Value.ToString();
@@ -1572,6 +1600,7 @@ namespace ControlHoras
                     {
                         datos.eliminarExtraLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), int.Parse(lblIdExtraLiquidacion.Text), dtpExtrasFecha.Value);
                         limpiarTabExtrasLiquidacion();
+                        cargarGrillaExtraLiquidacionEmpleado();
                     }
                     catch (Exception ex)
                     {
@@ -1656,7 +1685,7 @@ namespace ControlHoras
                 mtExtrasCantCuotas.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["CantidadCuotas"].Value.ToString();
                 btnExtrasAgregar.Enabled = false;
                 //  btnExtrasGuardar.Enabled = true;
-                //  btnExtrasEliminar.Enabled = true;
+                btnExtrasEliminar.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -3067,6 +3096,14 @@ namespace ControlHoras
             ABMCargos abmcargos = ABMCargos.getVentana();
             abmcargos.ShowDialog(this);
             updateListOfCargos();
+        }
+
+        private void dgvHistorialEmpleado_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && e.Clicks == 2)
+            {
+
+            }
         }
 
 
