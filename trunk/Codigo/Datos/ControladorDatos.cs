@@ -21,6 +21,7 @@ namespace Datos
         private static TrustDb database = null;
         private static IDatos instance = null;
         private static MySqlConnection conexion = null;
+        private int? IdUsuarioLogueado = null;
         
         private ControladorDatos()
         {
@@ -42,7 +43,7 @@ namespace Datos
             return instance;
         }
 
-        private void recargarContexto()
+        protected void recargarContexto()
         {
             try
             {
@@ -114,7 +115,7 @@ namespace Datos
             return database;    
         }
         
-
+        
         #region ABM_Cliente
         public void altaCliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime? fecAlta, DateTime? fecBaja, string motivo, string referencia, string diaHoraCobro, string contactoCobro, string telefonosCobro)
         {
@@ -2952,6 +2953,92 @@ namespace Datos
         }
         #endregion
 
+        #region Usuarios
+        private string encriptarStringToMD5(string str)
+        {
+            try
+            {
+                
+                System.Security.Cryptography.MD5CryptoServiceProvider x = new System.Security.Cryptography.MD5CryptoServiceProvider();
+                byte[] data = System.Text.Encoding.ASCII.GetBytes(str);
+                data = x.ComputeHash(data);
+                string aaa = System.Text.Encoding.ASCII.GetString(data);
+                
+                StringBuilder sBuilder = new StringBuilder();
+
+                // Loop through each byte of the hashed data 
+                // and format each one as a hexadecimal string.
+                for (int i = 0; i < data.Length; i++)
+                {
+                    sBuilder.Append(data[i].ToString("x2"));
+                }
+
+                // Return the hexadecimal string.
+                return sBuilder.ToString();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+
+        public UsUarIoS login(string UserName, string Password)
+        {
+            string PassEncriptada;
+            try
+            {
+                PassEncriptada = encriptarStringToMD5(Password);
+                var user = (from reg in database.UsUarIoS
+                                 where reg.UserName == UserName && reg.Password == PassEncriptada
+                                 select reg);
+                if (user.Count() == 0)
+                {
+                    throw new Exception("Usuario o Password incorrecto");
+                }
+                
+                IdUsuarioLogueado = user.Single().IDUsuario;
+                return user.Single();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public int obtenerIdUsuarioLogueado()
+        {
+            if (IdUsuarioLogueado == null)
+                throw new Exception("No hay ningun usuario logueado");
+
+            return (int)IdUsuarioLogueado;
+
+        }
+
+        public void cambiarPasswordUsuario(int IdUsuario, string NewPassword, string OldPassword, bool force)
+        {
+            // Si force esta en true, no tiene en cuenta que OldPassword sea igual a la password actual. 
+            // Directamente se setea la NewPassword.
+            try
+            {
+                UsUarIoS user = (from reg in database.UsUarIoS
+                                 where reg.IDUsuario == IdUsuario
+                                 select reg).Single();
+                if (user == null)
+                    throw new Exception("No existe el Usuario con Id: "+IdUsuario);
+
+                if (!force && !encriptarStringToMD5(OldPassword).Equals(user.Password))
+                    throw new Exception("La password actual no coincide.");
+
+                user.Password = encriptarStringToMD5(NewPassword);
+                database.SubmitChanges();
+            }catch
+            {
+                throw;
+            }
+        }
+        #endregion
+
         public bool existeEscalafon(int nroEsc)
         {
             try
@@ -3610,7 +3697,27 @@ namespace Datos
             }
         }
 
+        #region PermisosUsuarios_PantallasWinForms_PermisoControl
 
+        public List<PantAllAwInForm> obtenerPantallasWinForms(bool soloactivos)
+        {
+            List<PantAllAwInForm> retornar;
+            try
+            {
+                if (soloactivos)
+                    retornar = database.PantAllAwInForm.Where(p => p.Activo == 1).ToList();
+                else
+                    retornar = database.PantAllAwInForm.ToList();
+                return retornar;
+            }
+            catch
+            {
+                throw;
+            }
+
+
+        }
+        #endregion
     }
 
 }

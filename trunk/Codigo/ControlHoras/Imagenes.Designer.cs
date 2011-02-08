@@ -179,6 +179,13 @@ namespace ControlHoras {
             }
         }
         
+        internal static System.Drawing.Bitmap blacklist {
+            get {
+                object obj = ResourceManager.GetObject("blacklist", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap button_cancel {
             get {
                 object obj = ResourceManager.GetObject("button_cancel", resourceCulture);
@@ -270,6 +277,13 @@ namespace ControlHoras {
             }
         }
         
+        internal static System.Drawing.Bitmap Groups {
+            get {
+                object obj = ResourceManager.GetObject("Groups", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap icon_query_reporting {
             get {
                 object obj = ResourceManager.GetObject("icon_query_reporting", resourceCulture);
@@ -294,6 +308,20 @@ namespace ControlHoras {
         internal static System.Drawing.Bitmap list_remove_user {
             get {
                 object obj = ResourceManager.GetObject("list_remove_user", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Login_Manager {
+            get {
+                object obj = ResourceManager.GetObject("Login_Manager", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap pgp_signature {
+            get {
+                object obj = ResourceManager.GetObject("pgp_signature", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -340,9 +368,37 @@ namespace ControlHoras {
             }
         }
         
+        internal static System.Drawing.Bitmap system_login {
+            get {
+                object obj = ResourceManager.GetObject("system_login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap user_contact_list {
+            get {
+                object obj = ResourceManager.GetObject("user_contact_list", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap user_group_new {
             get {
                 object obj = ResourceManager.GetObject("user_group_new", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap user_info {
+            get {
+                object obj = ResourceManager.GetObject("user_info", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap user_password {
+            get {
+                object obj = ResourceManager.GetObject("user_password", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

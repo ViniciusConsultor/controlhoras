@@ -84,5 +84,20 @@ namespace Datos
         List<TipOsEventOHistOrIal> obtenerTiposEventoHistorial(bool soloactivos);
 
         #endregion
+
+        #region ABM_UsuariosYGrupos
+        int altaUsuario(string NombreUsuario,string Password, string Nombre, string Apellido, DateTime FechaNacimiento,bool Estado);
+        void modificarUsuario(int idUsuario,string NombreUsuario, string Nombre, string Apellido, bool Estado);
+        List<UsUarIoS> obtenerListaUsuarios(bool soloactivos);
+        List<string> obtenerListaUserNames(bool soloactivos);
+        Dictionary<int, List<int>> obtenerPermisosUsuario(string UserName);
+        void modificarPermisosUsuario(string UserName, Dictionary<int, List<int>> listaPermisos);
+        List<PerMisOControl> obtenerListaPermisosUsuarioPantalla(string UserName, string NombrePantalla);
+
+        int altaGrupo(string Nombre, string Descripcion, bool estado, List<string> usuarios, Dictionary<int, List<int>> ListaIdPantallas_Controles);
+        void modificarGrupo(int IdGrupo, string Nombre, string Descripcion, bool estado, List<string> usuarios, Dictionary<int, List<int>> ListaIdPantallas_Controles);
+        List<GRuPOs> obtenerListaGrupos(bool soloactivos);
+
+        #endregion
     }
 }

@@ -122,6 +122,12 @@
     <Compile Include="ABMCiudades.Designer.cs">
       <DependentUpon>ABMCiudades.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABMGrupos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMGrupos.Designer.cs">
+      <DependentUpon>ABMGrupos.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABMLNegra.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +181,12 @@
     </Compile>
     <Compile Include="ABMTiposDocumento.designer.cs">
       <DependentUpon>ABMTiposDocumento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMUsuarios.Designer.cs">
+      <DependentUpon>ABMUsuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="BuscarEmpleados.cs">
       <SubType>Form</SubType>
@@ -255,12 +267,6 @@
     <Compile Include="ControlDiarioAgregarFuncionario.Designer.cs">
       <DependentUpon>ControlDiarioAgregarFuncionario.cs</DependentUpon>
     </Compile>
-    <Compile Include="CRErroresConsolidacionEscalafones.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CRErroresConsolidacionEscalafones.Designer.cs">
-      <DependentUpon>CRErroresConsolidacionEscalafones.cs</DependentUpon>
-    </Compile>
     <Compile Include="DataGridTAB.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -296,12 +302,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Imagenes.resx</DependentUpon>
     </Compile>
-    <Compile Include="ListaErroresConsolidacion.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ListaErroresConsolidacion.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="ListaNegra.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -326,11 +326,17 @@
     <Compile Include="MotivoCambioDiarioForm.Designer.cs">
       <DependentUpon>MotivoCambioDiarioForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Prueba 2.cs">
+    <Compile Include="PermisosUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Prueba 2.Designer.cs">
-      <DependentUpon>Prueba 2.cs</DependentUpon>
+    <Compile Include="PermisosUsuario.Designer.cs">
+      <DependentUpon>PermisosUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerErroresGeneracionEnPantalla.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerErroresGeneracionEnPantalla.Designer.cs">
+      <DependentUpon>VerErroresGeneracionEnPantalla.cs</DependentUpon>
     </Compile>
     <Compile Include="ServicioForm.cs">
       <SubType>Form</SubType>
@@ -393,6 +399,9 @@
       <DependentUpon>ABMCiudades.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABMGrupos.resx">
+      <DependentUpon>ABMGrupos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABMLNegra.resx">
       <DependentUpon>ABMLNegra.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -428,6 +437,9 @@
     <EmbeddedResource Include="ABMTiposDocumento.resx">
       <DependentUpon>ABMTiposDocumento.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMUsuarios.resx">
+      <DependentUpon>ABMUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BuscarEmpleados.resx">
       <DependentUpon>BuscarEmpleados.cs</DependentUpon>
@@ -473,10 +485,6 @@
       <DependentUpon>ControlDiarioAgregarFuncionario.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="CRErroresConsolidacionEscalafones.resx">
-      <DependentUpon>CRErroresConsolidacionEscalafones.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="EscalafonForm.resx">
       <DependentUpon>EscalafonForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -498,10 +506,6 @@
       <LastGenOutput>Imagenes.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ListaErroresConsolidacion.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ListaErroresConsolidacion.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="ListaNegra.resx">
       <DependentUpon>ListaNegra.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -514,8 +518,11 @@
       <DependentUpon>MotivoCambioDiarioForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Prueba 2.resx">
-      <DependentUpon>Prueba 2.cs</DependentUpon>
+    <EmbeddedResource Include="PermisosUsuario.resx">
+      <DependentUpon>PermisosUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerErroresGeneracionEnPantalla.resx">
+      <DependentUpon>VerErroresGeneracionEnPantalla.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ServicioForm.resx">
@@ -551,10 +558,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Prueba.resx">
-      <DependentUpon>Prueba.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Selección de Recurso.resx">
       <DependentUpon>Selección de Recurso.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -562,6 +565,12 @@
     <EmbeddedResource Include="TreeClientesServicios.resx">
       <DependentUpon>TreeClientesServicios.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucPermisosUsuarios.resx">
+      <DependentUpon>ucPermisosUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsuariosGruposForm.resx">
+      <DependentUpon>UsuariosGruposForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VentanaPrincipal.resx">
       <DependentUpon>VentanaPrincipal.cs</DependentUpon>
@@ -585,12 +594,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Prueba.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Prueba.Designer.cs">
-      <DependentUpon>Prueba.cs</DependentUpon>
-    </Compile>
     <Compile Include="Selección de Recurso.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -602,6 +605,18 @@
     </Compile>
     <Compile Include="TreeClientesServicios.Designer.cs">
       <DependentUpon>TreeClientesServicios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucPermisosUsuarios.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucPermisosUsuarios.Designer.cs">
+      <DependentUpon>ucPermisosUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UsuariosGruposForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UsuariosGruposForm.Designer.cs">
+      <DependentUpon>UsuariosGruposForm.cs</DependentUpon>
     </Compile>
     <Compile Include="VentanaPrincipal.cs">
       <SubType>Form</SubType>
@@ -800,6 +815,8 @@
     <None Include="Resources\report_icon.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="Properties\app.manifest" />
     <None Include="Resources\report_icon.png" />
   </ItemGroup>
@@ -811,6 +828,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\check ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blacklist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-contact-list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login Manager.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pgp-signature.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\system-login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Groups.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />

@@ -22,7 +22,7 @@ namespace Logica
             return instancia;
         }
 
-        #region Miembros de IABMTipos
+        #region Miembros de ABMTipoEmpleado
 
         public int altaTipoEmpleado()
         {
@@ -44,9 +44,7 @@ namespace Logica
             throw new NotImplementedException();
         }
 
-        #endregion
-
-        
+        #endregion 
 
         #region ABM_Departamentos
         public int altaDepartamento(string nombreDepartamento, bool activo)
@@ -334,6 +332,23 @@ namespace Logica
 
         public void bajaTipoDocumento(int idTipoDocumento)
         { }
+        #endregion
+
+        #region ABMEmpleado
+
+        public void login(string UserName, string Password)
+        {
+
+        }
+
+        public string obtenerUsuarioLogueado()
+        {
+            return "";
+        }
+
+        public void cambiarPasswordUsuario(int IdUsuario, string NewPassword)
+        {
+        }
         #endregion
     }
 }

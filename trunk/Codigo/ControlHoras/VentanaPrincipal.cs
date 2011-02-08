@@ -11,6 +11,7 @@ namespace ControlHoras
 {
     public partial class VentanaPrincipal : Form
     {
+        List<string> listaControles;
         public VentanaPrincipal()
         {
             InitializeComponent();
@@ -73,8 +74,87 @@ namespace ControlHoras
     
         private void VentanaPrincipal_Load(object sender, EventArgs e)
         {
-            
+            try
+            {
+                Login login = new Login();
+                login.StartPosition = FormStartPosition.CenterParent;
+                DialogResult res = login.ShowDialog(this);
+                if (res == DialogResult.OK)
+                {
+                    tsslUsuario.Text = login.username;
+                    tsslIdUsuarioLogueado.Text = login.idUsuarioLogueado.ToString();
+                    cargarPermisos(tsslUsuario.Text);
+                }
+                else
+                    Application.Exit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        private void cargarPermisos(string UserName)
+        {
+            try
+            {
+                
+                List<Datos.PerMisOControl> listapermisos = Datos.DatosABMTipos.getInstance().obtenerListaPermisosUsuarioPantalla(UserName,this.Name);
+                listaControles = new List<string>();
+                bool encontrado;
+                foreach(Datos.PerMisOControl pc in listapermisos)
+                {
+                    encontrado = false;
+                    foreach (ToolStripItem c in menuBotones.Items)
+                    {
+                        if (c.GetType().ToString() == pc.NettYpe && c.Name == pc.Nombre)
+                        {
+                            c.Enabled = true;
+                            encontrado = true;
+                            break;
+                        }
+                        //else
+                        //    c.Enabled = false;
+                    }
+                    if (!encontrado)
+                        foreach (ToolStripItem c in menuStripSuperior.Items)
+                        {
+                            if (c.GetType().ToString() == pc.NettYpe && c.Name == pc.Nombre)
+                            {
+                                encontrado = true;
+                                c.Enabled = true;
+                                break;
+                            }
+                            if (!encontrado)
+                            {
+                                if (c.GetType() == typeof(ToolStripMenuItem))
+                                    foreach (ToolStripItem cc in ((ToolStripMenuItem)c).DropDownItems)
+                                    {
+                                        if (cc.GetType().ToString() == pc.NettYpe && cc.Name == pc.Nombre)
+                                        {
+                                            encontrado = true;
+                                            cc.Enabled = true;
+                                            break;
+                                        }
+
+                                    }
+                            }
+                           
+                        }
+
+                }
+                
+                
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+        
+        
 
 
         private void serviciosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -401,8 +481,43 @@ namespace ControlHoras
 
         private void consolidarEscalafonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConsolidarEscalafonesForm cef = new ConsolidarEscalafonesForm();
-            cef.ShowDialog(this);
+            try
+            {
+                ConsolidarEscalafonesForm cef = new ConsolidarEscalafonesForm();
+                cef.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ABMUsuarios cef = new ABMUsuarios();
+                cef.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cambiarContraseñaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CambiarPasswordUsuario cpu = new CambiarPasswordUsuario(int.Parse(tsslIdUsuarioLogueado.Text));
+                cpu.StartPosition = FormStartPosition.CenterParent;
+                cpu.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
 }
