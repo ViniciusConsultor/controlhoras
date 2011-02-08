@@ -90,9 +90,6 @@
     <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\DataSources\Cliente.datasource" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Datos\Datos.csproj">
       <Project>{3BBD3DD3-954B-48C1-93D6-6D32309233E2}</Project>
       <Name>Datos</Name>

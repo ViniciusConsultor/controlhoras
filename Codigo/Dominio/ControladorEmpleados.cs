@@ -131,7 +131,7 @@ namespace Logica
 
         #endregion
 
-       
+        
 
 
         #region Funciones_Auxiliares_Locales

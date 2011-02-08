@@ -80,6 +80,10 @@ namespace ControlHoras
                             errores.Add(ces.Message);
                             //listaErroresConsolidacion.Add(nroCliente + ":" + nroServicio, new List<string> { ces.Message } );
                         }
+                        catch (Exception ex)
+                        {
+                            errores.Add(ex.Message);
+                        }
 
                         try
                         {
@@ -91,6 +95,10 @@ namespace ControlHoras
                         {
                             errores.Add(ces.Message);
                            
+                        }
+                        catch (Exception ex)
+                        {
+                            errores.Add(ex.Message);
                         }
                         if (errores.Count > 0)
                             listaErroresConsolidacion.Add(nroCliente + ":" + nroServicio, errores);

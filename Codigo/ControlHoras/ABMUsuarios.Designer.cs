@@ -32,10 +32,14 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnAgregar = new System.Windows.Forms.ToolStripButton();
             this.btnModificar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnCancelar = new System.Windows.Forms.ToolStripButton();
+            this.btnCambiarPassword = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnGrupos = new System.Windows.Forms.ToolStripButton();
+            this.btnPermisos = new System.Windows.Forms.ToolStripButton();
             this.lbNombre = new System.Windows.Forms.Label();
             this.lbApellido = new System.Windows.Forms.Label();
-            this.lbNacimiento = new System.Windows.Forms.Label();
             this.mtNombre = new System.Windows.Forms.MaskedTextBox();
             this.mtApellido = new System.Windows.Forms.MaskedTextBox();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
@@ -43,23 +47,26 @@
             this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Contraseña = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaCreacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Activo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmbGrupos = new System.Windows.Forms.ComboBox();
-            this.lbGrupo = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.mtFecha = new System.Windows.Forms.MaskedTextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.lblidUsuario = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cbEstado = new System.Windows.Forms.CheckBox();
-            this.mtNacimiento = new System.Windows.Forms.DateTimePicker();
             this.mtContraseña = new System.Windows.Forms.MaskedTextBox();
             this.lbPassword = new System.Windows.Forms.Label();
             this.mtUsuario = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnCambiarPassword = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -72,7 +79,10 @@
             this.btnModificar,
             this.toolStripSeparator2,
             this.btnCancelar,
-            this.btnCambiarPassword});
+            this.btnCambiarPassword,
+            this.toolStripSeparator1,
+            this.btnGrupos,
+            this.btnPermisos});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(474, 36);
@@ -99,6 +109,11 @@
             this.btnModificar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 36);
+            // 
             // btnCancelar
             // 
             this.btnCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -110,10 +125,46 @@
             this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // btnCambiarPassword
+            // 
+            this.btnCambiarPassword.Image = global::ControlHoras.Imagenes.user_password;
+            this.btnCambiarPassword.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCambiarPassword.Name = "btnCambiarPassword";
+            this.btnCambiarPassword.Size = new System.Drawing.Size(109, 33);
+            this.btnCambiarPassword.Text = "Cambiar Contraseña";
+            this.btnCambiarPassword.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCambiarPassword.Click += new System.EventHandler(this.btnCambiarPassword_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 36);
+            // 
+            // btnGrupos
+            // 
+            this.btnGrupos.Image = global::ControlHoras.Imagenes.Groups;
+            this.btnGrupos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnGrupos.Name = "btnGrupos";
+            this.btnGrupos.Size = new System.Drawing.Size(45, 33);
+            this.btnGrupos.Text = "Grupos";
+            this.btnGrupos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnGrupos.Visible = false;
+            this.btnGrupos.Click += new System.EventHandler(this.btnGrupos_Click);
+            // 
+            // btnPermisos
+            // 
+            this.btnPermisos.Image = global::ControlHoras.Imagenes.pgp_signature;
+            this.btnPermisos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPermisos.Name = "btnPermisos";
+            this.btnPermisos.Size = new System.Drawing.Size(53, 33);
+            this.btnPermisos.Text = "Permisos";
+            this.btnPermisos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPermisos.Click += new System.EventHandler(this.btnPermisos_Click);
+            // 
             // lbNombre
             // 
             this.lbNombre.AutoSize = true;
-            this.lbNombre.Location = new System.Drawing.Point(27, 27);
+            this.lbNombre.Location = new System.Drawing.Point(27, 15);
             this.lbNombre.Name = "lbNombre";
             this.lbNombre.Size = new System.Drawing.Size(44, 13);
             this.lbNombre.TabIndex = 1;
@@ -122,25 +173,16 @@
             // lbApellido
             // 
             this.lbApellido.AutoSize = true;
-            this.lbApellido.Location = new System.Drawing.Point(28, 56);
+            this.lbApellido.Location = new System.Drawing.Point(28, 45);
             this.lbApellido.Name = "lbApellido";
             this.lbApellido.Size = new System.Drawing.Size(44, 13);
             this.lbApellido.TabIndex = 2;
             this.lbApellido.Text = "Apellido";
             // 
-            // lbNacimiento
-            // 
-            this.lbNacimiento.AutoSize = true;
-            this.lbNacimiento.Location = new System.Drawing.Point(233, 56);
-            this.lbNacimiento.Name = "lbNacimiento";
-            this.lbNacimiento.Size = new System.Drawing.Size(60, 13);
-            this.lbNacimiento.TabIndex = 3;
-            this.lbNacimiento.Text = "Nacimiento";
-            // 
             // mtNombre
             // 
             this.mtNombre.AsciiOnly = true;
-            this.mtNombre.Location = new System.Drawing.Point(88, 20);
+            this.mtNombre.Location = new System.Drawing.Point(77, 11);
             this.mtNombre.Name = "mtNombre";
             this.mtNombre.Size = new System.Drawing.Size(124, 20);
             this.mtNombre.TabIndex = 4;
@@ -148,7 +190,7 @@
             // mtApellido
             // 
             this.mtApellido.AsciiOnly = true;
-            this.mtApellido.Location = new System.Drawing.Point(88, 49);
+            this.mtApellido.Location = new System.Drawing.Point(77, 41);
             this.mtApellido.Name = "mtApellido";
             this.mtApellido.Size = new System.Drawing.Size(124, 20);
             this.mtApellido.TabIndex = 5;
@@ -164,19 +206,17 @@
             this.Usuario,
             this.Nombre,
             this.Apellido,
-            this.Rol,
-            this.Nacimiento,
-            this.Contraseña,
+            this.FechaCreacion,
             this.Activo});
-            this.dgvUsuarios.Location = new System.Drawing.Point(12, 190);
+            this.dgvUsuarios.Location = new System.Drawing.Point(12, 145);
             this.dgvUsuarios.MultiSelect = false;
             this.dgvUsuarios.Name = "dgvUsuarios";
             this.dgvUsuarios.ReadOnly = true;
             this.dgvUsuarios.RowHeadersVisible = false;
             this.dgvUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvUsuarios.Size = new System.Drawing.Size(450, 186);
+            this.dgvUsuarios.Size = new System.Drawing.Size(450, 244);
             this.dgvUsuarios.TabIndex = 7;
-            this.dgvUsuarios.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellContentDoubleClick);
+            this.dgvUsuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellDoubleClick);
             // 
             // idUsuario
             // 
@@ -203,24 +243,11 @@
             this.Apellido.Name = "Apellido";
             this.Apellido.ReadOnly = true;
             // 
-            // Rol
+            // FechaCreacion
             // 
-            this.Rol.HeaderText = "Rol";
-            this.Rol.Name = "Rol";
-            this.Rol.ReadOnly = true;
-            // 
-            // Nacimiento
-            // 
-            this.Nacimiento.HeaderText = "Nacimiento";
-            this.Nacimiento.Name = "Nacimiento";
-            this.Nacimiento.ReadOnly = true;
-            // 
-            // Contraseña
-            // 
-            this.Contraseña.HeaderText = "Contraseña";
-            this.Contraseña.Name = "Contraseña";
-            this.Contraseña.ReadOnly = true;
-            this.Contraseña.Visible = false;
+            this.FechaCreacion.HeaderText = "FechaCreacion";
+            this.FechaCreacion.Name = "FechaCreacion";
+            this.FechaCreacion.ReadOnly = true;
             // 
             // Activo
             // 
@@ -229,49 +256,46 @@
             this.Activo.ReadOnly = true;
             this.Activo.Width = 40;
             // 
-            // cmbGrupos
-            // 
-            this.cmbGrupos.FormattingEnabled = true;
-            this.cmbGrupos.Items.AddRange(new object[] {
-            "Administrador",
-            "Usuario"});
-            this.cmbGrupos.Location = new System.Drawing.Point(299, 19);
-            this.cmbGrupos.Name = "cmbGrupos";
-            this.cmbGrupos.Size = new System.Drawing.Size(121, 21);
-            this.cmbGrupos.TabIndex = 8;
-            // 
-            // lbGrupo
-            // 
-            this.lbGrupo.AutoSize = true;
-            this.lbGrupo.Location = new System.Drawing.Point(233, 27);
-            this.lbGrupo.Name = "lbGrupo";
-            this.lbGrupo.Size = new System.Drawing.Size(23, 13);
-            this.lbGrupo.TabIndex = 9;
-            this.lbGrupo.Text = "Rol";
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.mtFecha);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.lblidUsuario);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.cbEstado);
-            this.groupBox1.Controls.Add(this.mtNacimiento);
             this.groupBox1.Controls.Add(this.mtContraseña);
             this.groupBox1.Controls.Add(this.lbPassword);
             this.groupBox1.Controls.Add(this.mtUsuario);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.lbGrupo);
-            this.groupBox1.Controls.Add(this.cmbGrupos);
             this.groupBox1.Controls.Add(this.mtApellido);
             this.groupBox1.Controls.Add(this.mtNombre);
-            this.groupBox1.Controls.Add(this.lbNacimiento);
             this.groupBox1.Controls.Add(this.lbApellido);
             this.groupBox1.Controls.Add(this.lbNombre);
-            this.groupBox1.Location = new System.Drawing.Point(12, 41);
+            this.groupBox1.Location = new System.Drawing.Point(12, 37);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(450, 143);
+            this.groupBox1.Size = new System.Drawing.Size(450, 102);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
-            
+            // 
+            // mtFecha
+            // 
+            this.mtFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mtFecha.Location = new System.Drawing.Point(298, 40);
+            this.mtFecha.Mask = "00/00/0000";
+            this.mtFecha.Name = "mtFecha";
+            this.mtFecha.ReadOnly = true;
+            this.mtFecha.Size = new System.Drawing.Size(70, 22);
+            this.mtFecha.TabIndex = 19;
+            this.mtFecha.ValidatingType = typeof(System.DateTime);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(219, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 13);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "Fecha Creado";
             // 
             // lblidUsuario
             // 
@@ -285,7 +309,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(233, 113);
+            this.label2.Location = new System.Drawing.Point(253, 74);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 16;
@@ -294,25 +318,17 @@
             // cbEstado
             // 
             this.cbEstado.AutoSize = true;
-            this.cbEstado.Location = new System.Drawing.Point(299, 112);
+            this.cbEstado.Location = new System.Drawing.Point(298, 73);
             this.cbEstado.Name = "cbEstado";
             this.cbEstado.Size = new System.Drawing.Size(90, 17);
             this.cbEstado.TabIndex = 15;
             this.cbEstado.Text = "Deshabilitado";
             this.cbEstado.UseVisualStyleBackColor = true;
             // 
-            // mtNacimiento
-            // 
-            this.mtNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.mtNacimiento.Location = new System.Drawing.Point(299, 52);
-            this.mtNacimiento.Name = "mtNacimiento";
-            this.mtNacimiento.Size = new System.Drawing.Size(121, 20);
-            this.mtNacimiento.TabIndex = 14;
-            // 
             // mtContraseña
             // 
             this.mtContraseña.BackColor = System.Drawing.SystemColors.Window;
-            this.mtContraseña.Location = new System.Drawing.Point(299, 82);
+            this.mtContraseña.Location = new System.Drawing.Point(298, 11);
             this.mtContraseña.Mask = "CCCCCCCCCCCC";
             this.mtContraseña.Name = "mtContraseña";
             this.mtContraseña.PasswordChar = '*';
@@ -324,7 +340,7 @@
             // lbPassword
             // 
             this.lbPassword.AutoSize = true;
-            this.lbPassword.Location = new System.Drawing.Point(233, 86);
+            this.lbPassword.Location = new System.Drawing.Point(232, 15);
             this.lbPassword.Name = "lbPassword";
             this.lbPassword.Size = new System.Drawing.Size(61, 13);
             this.lbPassword.TabIndex = 12;
@@ -333,7 +349,7 @@
             // mtUsuario
             // 
             this.mtUsuario.BackColor = System.Drawing.SystemColors.Window;
-            this.mtUsuario.Location = new System.Drawing.Point(88, 79);
+            this.mtUsuario.Location = new System.Drawing.Point(77, 71);
             this.mtUsuario.Name = "mtUsuario";
             this.mtUsuario.Size = new System.Drawing.Size(124, 20);
             this.mtUsuario.TabIndex = 11;
@@ -341,32 +357,73 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 85);
+            this.label1.Location = new System.Drawing.Point(28, 75);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 10;
             this.label1.Text = "Usuario";
             // 
-            // btnCambiarPassword
+            // checkBox1
             // 
-            this.btnCambiarPassword.Image = ((System.Drawing.Image)(resources.GetObject("btnCambiarPassword.Image")));
-            this.btnCambiarPassword.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCambiarPassword.Name = "btnCambiarPassword";
-            this.btnCambiarPassword.Size = new System.Drawing.Size(99, 33);
-            this.btnCambiarPassword.Text = "Cambiar Password";
-            this.btnCambiarPassword.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnCambiarPassword.Click += new System.EventHandler(this.btnCambiarPassword_Click);
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(355, 395);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(107, 17);
+            this.checkBox1.TabIndex = 11;
+            this.checkBox1.Text = "Mostrar Inactivos";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // toolStripSeparator2
+            // dataGridViewTextBoxColumn1
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 36);
+            this.dataGridViewTextBoxColumn1.HeaderText = "idUsuario";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Usuario";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Nombre";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Apellido";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Nacimiento";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Contraseña";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Visible = false;
+            this.dataGridViewTextBoxColumn6.Width = 40;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Activo";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.Width = 40;
             // 
             // ABMUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(474, 388);
+            this.ClientSize = new System.Drawing.Size(474, 419);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvUsuarios);
             this.Controls.Add(this.toolStrip1);
@@ -391,32 +448,39 @@
         private System.Windows.Forms.ToolStripButton btnModificar;
         private System.Windows.Forms.Label lbNombre;
         private System.Windows.Forms.Label lbApellido;
-        private System.Windows.Forms.Label lbNacimiento;
         private System.Windows.Forms.MaskedTextBox mtNombre;
         private System.Windows.Forms.MaskedTextBox mtApellido;
         private System.Windows.Forms.DataGridView dgvUsuarios;
-        private System.Windows.Forms.ComboBox cmbGrupos;
-        private System.Windows.Forms.Label lbGrupo;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox mtUsuario;
         private System.Windows.Forms.MaskedTextBox mtContraseña;
         private System.Windows.Forms.Label lbPassword;
         private System.Windows.Forms.ToolStripButton btnCancelar;
-        private System.Windows.Forms.DateTimePicker mtNacimiento;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox cbEstado;
+        private System.Windows.Forms.Label lblidUsuario;
+        private System.Windows.Forms.ToolStripButton btnCambiarPassword;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.DataGridViewTextBoxColumn idUsuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn Usuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Rol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nacimiento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Contraseña;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaCreacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Activo;
-        private System.Windows.Forms.Label lblidUsuario;
-        private System.Windows.Forms.ToolStripButton btnCambiarPassword;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.MaskedTextBox mtFecha;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton btnGrupos;
+        private System.Windows.Forms.ToolStripButton btnPermisos;
     }
 }
 

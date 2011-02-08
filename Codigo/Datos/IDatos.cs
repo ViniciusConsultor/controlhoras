@@ -340,5 +340,40 @@ namespace Datos
         List<HoRaRioEScalaFOn> getHorariosEmpleadoDia(int NroEmpleado, string dia, int IdEscalafon);
 
         bool esServicioActivo(int nroCliente, int nroServicio);
+
+        #region Usuarios
+        /// <summary>
+        /// Realiza el logueo de un usuario
+        /// </summary>
+        /// <param name="UserName">Nombre de Usuario</param>
+        /// <param name="Password">Contrasena del Usuario</param>
+        /// <returns>IdUsuario del Usuario logueado.</returns>
+        UsUarIoS login(string UserName, string Password);
+
+        /// <summary>
+        /// Devuelve el IdUsuario del Usuario Logueado. Si no hay ningun usuario logueado lanza una excepcion.
+        /// </summary>
+        /// <returns>IdUsuario del Usuario logueado.</returns>
+        int obtenerIdUsuarioLogueado();
+
+        /// <summary>
+        /// Realiza el cambio de Contrasena del Usuario con identificado IdUsuario.
+        /// </summary>
+        /// <param name="IdUsuario">Identificador del Usuario</param>
+        /// <param name="NewPassword">Contrasena nueva</param>
+        /// <param name="OldPassword">Contrasena actual</param>
+        /// <param name="force">Boolean. Si es True, no se chequea que la OldPassword sea igual a la que esta en la BD</param>
+        void cambiarPasswordUsuario(int IdUsuario, string NewPassword, string OldPassword, bool force);
+        #endregion
+
+        #region PermisosUsuarios_PantallasWinForms_PermisoControl
+        /// <summary>
+        /// Devuelve una Lista de PantallaWinForm
+        /// </summary>
+        /// <param name="soloactivos">Si es True, solo devuelve las Activas, de lo contrario devuelve todas.</param>
+        /// <returns></returns>
+        List<PantAllAwInForm> obtenerPantallasWinForms(bool soloactivos);
+        
+        #endregion
     }
 }

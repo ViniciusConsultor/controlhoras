@@ -40,6 +40,8 @@ namespace ControlHoras
             this.btnBuscarCliente = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnServicios = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnServicios = new System.Windows.Forms.ToolStripButton();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -51,11 +53,14 @@ namespace ControlHoras
             this.lblEstadoCliente = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtMotivoBaja = new ControlHoras.TextBoxKeyDown();
             this.label12 = new System.Windows.Forms.Label();
+            this.dtpFechaBaja = new ControlHoras.MaskedTextBoxKeyDown();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label13 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtTelefonoCobro = new ControlHoras.TextBoxKeyDown();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -63,14 +68,16 @@ namespace ControlHoras
             this.dtpFechaAlta = new ControlHoras.MaskedTextBoxKeyDown();
             this.txtTelefonoCobro = new ControlHoras.TextBoxKeyDown();
             this.txtNombreParaCobrar = new ControlHoras.TextBoxKeyDown();
+            this.label15 = new System.Windows.Forms.Label();
             this.txtDiaHoraCobro = new ControlHoras.TextBoxKeyDown();
+            this.label14 = new System.Windows.Forms.Label();
             this.txtReferencia = new ControlHoras.TextBoxKeyDown();
             this.txtDireccionCobro = new ControlHoras.TextBoxKeyDown();
+            this.label10 = new System.Windows.Forms.Label();
+            this.dtpFechaAlta = new ControlHoras.MaskedTextBoxKeyDown();
             this.txtFax = new ControlHoras.TextBoxKeyDown();
             this.txtTelefonos = new ControlHoras.TextBoxKeyDown();
             this.mtCliente = new ControlHoras.MaskedTextBoxKeyDown();
-            this.txtMotivoBaja = new ControlHoras.TextBoxKeyDown();
-            this.dtpFechaBaja = new ControlHoras.MaskedTextBoxKeyDown();
             this.txtEmail = new ControlHoras.TextBoxKeyDown();
             this.txtNombre = new ControlHoras.TextBoxKeyDown();
             this.txtDireccion = new ControlHoras.TextBoxKeyDown();
@@ -142,6 +149,31 @@ namespace ControlHoras
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 40);
+            // 
+            // btnBuscarCliente
+            // 
+            this.btnBuscarCliente.Image = global::ControlHoras.Imagenes.ClientsSearch42x42;
+            this.btnBuscarCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnBuscarCliente.Name = "btnBuscarCliente";
+            this.btnBuscarCliente.Size = new System.Drawing.Size(79, 33);
+            this.btnBuscarCliente.Text = "Buscar Cliente";
+            this.btnBuscarCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnBuscarCliente.Click += new System.EventHandler(this.btnBuscarCliente_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 36);
+            // 
+            // btnServicios
+            // 
+            this.btnServicios.Image = ((System.Drawing.Image)(resources.GetObject("btnServicios.Image")));
+            this.btnServicios.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnServicios.Name = "btnServicios";
+            this.btnServicios.Size = new System.Drawing.Size(53, 33);
+            this.btnServicios.Text = "Servicios";
+            this.btnServicios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnServicios.Click += new System.EventHandler(this.btnServicios_Click);
             // 
             // btnBuscarCliente
             // 
@@ -276,6 +308,14 @@ namespace ControlHoras
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Estado";
             // 
+            // txtMotivoBaja
+            // 
+            this.txtMotivoBaja.Enabled = false;
+            this.txtMotivoBaja.Location = new System.Drawing.Point(52, 48);
+            this.txtMotivoBaja.Name = "txtMotivoBaja";
+            this.txtMotivoBaja.Size = new System.Drawing.Size(288, 20);
+            this.txtMotivoBaja.TabIndex = 2;
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -284,6 +324,17 @@ namespace ControlHoras
             this.label12.Size = new System.Drawing.Size(58, 17);
             this.label12.TabIndex = 20;
             this.label12.Text = "Motivo *";
+            // 
+            // dtpFechaBaja
+            // 
+            this.dtpFechaBaja.Enabled = false;
+            this.dtpFechaBaja.Location = new System.Drawing.Point(190, 19);
+            this.dtpFechaBaja.Mask = "00/00/0000";
+            this.dtpFechaBaja.Name = "dtpFechaBaja";
+            this.dtpFechaBaja.Size = new System.Drawing.Size(70, 20);
+            this.dtpFechaBaja.TabIndex = 1;
+            this.dtpFechaBaja.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFechaBaja_Validating);
+            this.dtpFechaBaja.Validated += new System.EventHandler(this.dtpFechaBaja_Validated);
             // 
             // errorProvider1
             // 
@@ -303,9 +354,10 @@ namespace ControlHoras
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(6, 22);
             this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(98, 13);
             this.label7.Size = new System.Drawing.Size(134, 17);
             this.label7.TabIndex = 21;
-            this.label7.Text = "Dirección de Crobro";
+            this.label7.Text = "Dirección de Cobro";
             // 
             // groupBox2
             // 
@@ -326,8 +378,13 @@ namespace ControlHoras
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cobranza";
             // 
+            // txtTelefonoCobro
             // label16
             // 
+            this.txtTelefonoCobro.Location = new System.Drawing.Point(109, 122);
+            this.txtTelefonoCobro.Name = "txtTelefonoCobro";
+            this.txtTelefonoCobro.Size = new System.Drawing.Size(231, 20);
+            this.txtTelefonoCobro.TabIndex = 4;
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(22, 126);
             this.label16.Name = "label16";
@@ -385,12 +442,30 @@ namespace ControlHoras
             this.txtNombreParaCobrar.Size = new System.Drawing.Size(231, 22);
             this.txtNombreParaCobrar.TabIndex = 3;
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(26, 100);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(81, 13);
+            this.label15.TabIndex = 26;
+            this.label15.Text = "Contacto Cobro";
+            // 
             // txtDiaHoraCobro
             // 
             this.txtDiaHoraCobro.Location = new System.Drawing.Point(109, 70);
             this.txtDiaHoraCobro.Name = "txtDiaHoraCobro";
             this.txtDiaHoraCobro.Size = new System.Drawing.Size(231, 22);
             this.txtDiaHoraCobro.TabIndex = 2;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(25, 74);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(82, 13);
+            this.label14.TabIndex = 24;
+            this.label14.Text = "Dia/Hora Cobro";
             // 
             // txtReferencia
             // 
@@ -405,6 +480,24 @@ namespace ControlHoras
             this.txtDireccionCobro.Name = "txtDireccionCobro";
             this.txtDireccionCobro.Size = new System.Drawing.Size(231, 22);
             this.txtDireccionCobro.TabIndex = 0;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(209, 133);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(75, 13);
+            this.label10.TabIndex = 26;
+            this.label10.Text = "Fecha Ingreso";
+            this.label10.Visible = false;
+            // 
+            // dtpFechaAlta
+            // 
+            this.dtpFechaAlta.Location = new System.Drawing.Point(292, 130);
+            this.dtpFechaAlta.Mask = "00/00/0000";
+            this.dtpFechaAlta.Name = "dtpFechaAlta";
+            this.dtpFechaAlta.Size = new System.Drawing.Size(70, 20);
+            this.dtpFechaAlta.TabIndex = 4;
             // 
             // txtFax
             // 

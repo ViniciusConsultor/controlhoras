@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2011-02-05 08:09:45Z
+#region Auto-generated classes for trustdb database on 2011-02-06 20:55:09Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2011-02-05 08:09:45Z
+// Auto-generated from trustdb on 2011-02-06 20:55:09Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -4912,7 +4912,7 @@ namespace Datos
 		#region Children
 
 		private EntitySet<HoRaRioEScalaFOn> _hoRaRioEsCalaFoN;
-		[Association(Storage = "_hoRaRioEsCalaFoN", OtherKey = "IDEscalafon,IDEscalafonEmpleado", ThisKey = "IDEscalafon,IDEscalafonEmpleado", Name = "FK_horasEscalEmpleados")]
+		[Association(Storage = "_hoRaRioEsCalaFoN", OtherKey = "IDEscalafonEmpleado,IDEscalafon", ThisKey = "IDEscalafonEmpleado,IDEscalafon", Name = "FK_horasEscalEmpleados")]
 		[DebuggerNonUserCode]
 		public EntitySet<HoRaRioEScalaFOn> HoRaRioEScalaFOn
 		{
@@ -6529,7 +6529,7 @@ namespace Datos
 		#region Parents
 
 		private EntityRef<EScalaFOneMpLeadO> _esCalaFoNeMpLeadO;
-		[Association(Storage = "_esCalaFoNeMpLeadO", OtherKey = "IDEscalafon,IDEscalafonEmpleado", ThisKey = "IDEscalafon,IDEscalafonEmpleado", Name = "FK_horasEscalEmpleados", IsForeignKey = true)]
+		[Association(Storage = "_esCalaFoNeMpLeadO", OtherKey = "IDEscalafonEmpleado,IDEscalafon", ThisKey = "IDEscalafonEmpleado,IDEscalafon", Name = "FK_horasEscalEmpleados", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public EScalaFOneMpLeadO EScalaFOneMpLeadO
 		{
@@ -6551,13 +6551,13 @@ namespace Datos
 					if (value != null)
 					{
 						value.HoRaRioEScalaFOn.Add(this);
-						_ideScalafon = value.IDEscalafon;
 						_ideScalafonEmpleado = value.IDEscalafonEmpleado;
+						_ideScalafon = value.IDEscalafon;
 					}
 					else
 					{
-						_ideScalafon = default(uint);
 						_ideScalafonEmpleado = default(uint);
+						_ideScalafon = default(uint);
 					}
 				}
 			}
@@ -8511,7 +8511,7 @@ namespace Datos
 
 		private int _idcOntrol;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_idcOntrol", Name = "idControl", DbType = "int", AutoSync = AutoSync.Never, CanBeNull = false)]
+		[Column(Storage = "_idcOntrol", Name = "idControl", DbType = "int", IsPrimaryKey = true, AutoSync = AutoSync.Never, CanBeNull = false)]
 		public int IDControl
 		{
 			get
@@ -8537,7 +8537,7 @@ namespace Datos
 
 		private int _idpErmiso;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_idpErmiso", Name = "idPermiso", DbType = "int", AutoSync = AutoSync.Never, CanBeNull = false)]
+		[Column(Storage = "_idpErmiso", Name = "idPermiso", DbType = "int", IsPrimaryKey = true, AutoSync = AutoSync.Never, CanBeNull = false)]
 		public int IDPermiso
 		{
 			get
@@ -8563,7 +8563,7 @@ namespace Datos
 
 		private string _usuarioOrgRupo;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_usuarioOrgRupo", Name = "Usuario_OR_Grupo", DbType = "char(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		[Column(Storage = "_usuarioOrgRupo", Name = "Usuario_OR_Grupo", DbType = "char(1)", IsPrimaryKey = true, AutoSync = AutoSync.Never, CanBeNull = false)]
 		public string UsuarioOrgRupo
 		{
 			get
@@ -8589,7 +8589,7 @@ namespace Datos
 
 		private string _winFormOrcOntrol;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_winFormOrcOntrol", Name = "WinForm_OR_Control", DbType = "char(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		[Column(Storage = "_winFormOrcOntrol", Name = "WinForm_OR_Control", DbType = "char(1)", IsPrimaryKey = true, AutoSync = AutoSync.Never, CanBeNull = false)]
 		public string WinFormOrcOntrol
 		{
 			get
@@ -10683,7 +10683,7 @@ namespace Datos
 
 		private string _password;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_password", Name = "Password", DbType = "varchar(15)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		[Column(Storage = "_password", Name = "Password", DbType = "char(32)", AutoSync = AutoSync.Never, CanBeNull = false)]
 		public string Password
 		{
 			get
