@@ -62,8 +62,9 @@
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(70, 52);
+            this.txtNombre.MaxLength = 255;
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(197, 20);
+            this.txtNombre.Size = new System.Drawing.Size(313, 20);
             this.txtNombre.TabIndex = 2;
             // 
             // dgvTiposMotivoCambioDiario
@@ -84,7 +85,7 @@
             this.dgvTiposMotivoCambioDiario.RowHeadersVisible = false;
             this.dgvTiposMotivoCambioDiario.RowTemplate.Height = 24;
             this.dgvTiposMotivoCambioDiario.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTiposMotivoCambioDiario.Size = new System.Drawing.Size(261, 156);
+            this.dgvTiposMotivoCambioDiario.Size = new System.Drawing.Size(377, 156);
             this.dgvTiposMotivoCambioDiario.TabIndex = 4;
             this.dgvTiposMotivoCambioDiario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTiposMotivoCambioDiario_CellContentDoubleClick);
             // 
@@ -116,7 +117,7 @@
             this.btnCancelar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(285, 36);
+            this.toolStrip1.Size = new System.Drawing.Size(401, 36);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -177,7 +178,7 @@
             this.groupBox1.Controls.Add(this.lblIdTiposMotivoCambioDiario);
             this.groupBox1.Location = new System.Drawing.Point(12, 40);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(261, 68);
+            this.groupBox1.Size = new System.Drawing.Size(377, 68);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             // 
@@ -216,7 +217,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(285, 292);
+            this.ClientSize = new System.Drawing.Size(401, 292);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dgvTiposMotivoCambioDiario);
             this.Controls.Add(this.txtNombre);

@@ -1039,13 +1039,13 @@ namespace Datos
                 if (consEmp != null)
                 {
                     string sql = consEmp.Query;
-                    if (consEmp.Query.Contains("FECHA"))
-                        if (parametrosConsulta.ContainsKey("FECHA"))
+                    if (consEmp.Query.Contains("FECHASOLA"))
+                        if (parametrosConsulta.ContainsKey("FECHASOLA"))
                         {
-                            string[] fecha = parametrosConsulta["FECHA"].Split('/');
+                            string[] fecha = parametrosConsulta["FECHASOLA"].Split('/');
                             DateTime dt = new DateTime(int.Parse(fecha[2]), int.Parse(fecha[1]), int.Parse(fecha[0]));
                             string fecha2 = String.Format("{0:yyyy-MM-dd}", dt);
-                            sql = sql.Replace("FECHA", fecha2);
+                            sql = sql.Replace("FECHASOLA", fecha2);
                         }
 
 
@@ -1082,30 +1082,56 @@ namespace Datos
                 if (consCli != null)
                 {
                     string sql = consCli.Query;
-                    if (consCli.Query.Contains("FECHA"))
+                    if (consCli.Query.Contains("FECHASOLA"))
                     {
-                        if (parametrosConsulta.ContainsKey("FECHA"))
+                        if (parametrosConsulta.ContainsKey("FECHASOLA"))
                         {
-                            string[] fecha = parametrosConsulta["FECHA"].Split('/');
+                            string[] fecha = parametrosConsulta["FECHASOLA"].Split('/');
                             DateTime dt = new DateTime(int.Parse(fecha[2]), int.Parse(fecha[1]), int.Parse(fecha[0]));
                             string fecha2 = String.Format("{0:yyyy-MM-dd}", dt);
-                            sql = sql.Replace("FECHA", fecha2);
+                            sql = sql.Replace("FECHASOLA", fecha2);
                         }
                         else
                             throw new Exception("No se obtuvieron los parametros necesarios FECHA para ejecutar la consulta");
 
                     }
-                    if (consCli.Query.Contains("NROCLIENTE") && consCli.Query.Contains("NROSERVICIO"))
+                    if (consCli.Query.Contains("NROCLIENTE"))
                     {
-                        if (parametrosConsulta.ContainsKey("NROCLIENTE") && parametrosConsulta.ContainsKey("NROSERVICIO"))
+                        if (parametrosConsulta.ContainsKey("NROCLIENTE"))
                         {
                             sql = sql.Replace("NROCLIENTE", parametrosConsulta["NROCLIENTE"]);
-                            sql = sql.Replace("NROSERVICIO",parametrosConsulta["NROSERVICIO"]);
+                            if(consCli.Query.Contains("NROSERVICIO"))
+                            {
+                                if (parametrosConsulta.ContainsKey("NROSERVICIO"))
+                                {
+                                    sql = sql.Replace("NROSERVICIO", parametrosConsulta["NROSERVICIO"]);
+                                }
+                                else
+                                    throw new Exception("No se obtuvieron los parametros necesarios NROSERVICIO para ejecutar la consulta");
+                            }
                         }
                         else
-                            throw new Exception("No se obtuvieron los parametros necesarios FECHA para ejecutar la consulta");
+                            throw new Exception("No se obtuvieron los parametros necesarios NROCLIENTE para ejecutar la consulta");
                     }
-
+                    if (consCli.Query.Contains("NROEMPLEADO"))
+                    {
+                        if (parametrosConsulta.ContainsKey("NROEMPLEADO"))
+                        {
+                            sql = sql.Replace("NROEMPLEADO", parametrosConsulta["NROEMPLEADO"]);
+                        }
+                        else
+                            throw new Exception("No se obtuvieron los parametros necesarios NROEMPLEADO para ejecutar la consulta");
+                    }
+                    if (consCli.Query.Contains("FECHADESDE") && consCli.Query.Contains("FECHAHASTA"))
+                    {
+                        if (parametrosConsulta.ContainsKey("FECHADESDE") && parametrosConsulta.ContainsKey("FECHAHASTA"))
+                        {
+                            sql = sql.Replace("FECHADESDE", parametrosConsulta["FECHADESDE"]);
+                            sql = sql.Replace("FECHAHASTA", parametrosConsulta["FECHAHASTA"]);
+                        }
+                        else
+                            throw new Exception("No se obtuvieron los parametros necesarios NROEMPLEADO para ejecutar la consulta");
+                    }
 
                     conexion2 = (MySqlConnection)database.Connection;
                     

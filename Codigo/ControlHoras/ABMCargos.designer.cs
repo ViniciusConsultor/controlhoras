@@ -309,6 +309,7 @@
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(77, 12);
+            this.txtNombre.MaxLength = 100;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(177, 20);
             this.txtNombre.TabIndex = 2;
@@ -316,8 +317,9 @@
             // txtDescripcion
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(77, 38);
+            this.txtDescripcion.MaxLength = 200;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(276, 20);
+            this.txtDescripcion.Size = new System.Drawing.Size(303, 20);
             this.txtDescripcion.TabIndex = 3;
             // 
             // lblIdTipoCargo
