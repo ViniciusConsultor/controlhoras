@@ -40,8 +40,6 @@
             this.btnPermisos = new System.Windows.Forms.ToolStripButton();
             this.lbNombre = new System.Windows.Forms.Label();
             this.lbApellido = new System.Windows.Forms.Label();
-            this.mtNombre = new System.Windows.Forms.MaskedTextBox();
-            this.mtApellido = new System.Windows.Forms.MaskedTextBox();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
             this.idUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,9 +53,7 @@
             this.lblidUsuario = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cbEstado = new System.Windows.Forms.CheckBox();
-            this.mtContraseña = new System.Windows.Forms.MaskedTextBox();
             this.lbPassword = new System.Windows.Forms.Label();
-            this.mtUsuario = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,6 +63,10 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mtNombre = new ControlHoras.TextBoxKeyDown();
+            this.mtApellido = new ControlHoras.TextBoxKeyDown();
+            this.mtUsuario = new ControlHoras.TextBoxKeyDown();
+            this.mtContraseña = new ControlHoras.TextBoxKeyDown();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -179,22 +179,6 @@
             this.lbApellido.TabIndex = 2;
             this.lbApellido.Text = "Apellido";
             // 
-            // mtNombre
-            // 
-            this.mtNombre.AsciiOnly = true;
-            this.mtNombre.Location = new System.Drawing.Point(77, 11);
-            this.mtNombre.Name = "mtNombre";
-            this.mtNombre.Size = new System.Drawing.Size(124, 20);
-            this.mtNombre.TabIndex = 4;
-            // 
-            // mtApellido
-            // 
-            this.mtApellido.AsciiOnly = true;
-            this.mtApellido.Location = new System.Drawing.Point(77, 41);
-            this.mtApellido.Name = "mtApellido";
-            this.mtApellido.Size = new System.Drawing.Size(124, 20);
-            this.mtApellido.TabIndex = 5;
-            // 
             // dgvUsuarios
             // 
             this.dgvUsuarios.AllowUserToAddRows = false;
@@ -258,17 +242,17 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.mtContraseña);
+            this.groupBox1.Controls.Add(this.mtUsuario);
+            this.groupBox1.Controls.Add(this.mtApellido);
+            this.groupBox1.Controls.Add(this.mtNombre);
             this.groupBox1.Controls.Add(this.mtFecha);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.lblidUsuario);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.cbEstado);
-            this.groupBox1.Controls.Add(this.mtContraseña);
             this.groupBox1.Controls.Add(this.lbPassword);
-            this.groupBox1.Controls.Add(this.mtUsuario);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.mtApellido);
-            this.groupBox1.Controls.Add(this.mtNombre);
             this.groupBox1.Controls.Add(this.lbApellido);
             this.groupBox1.Controls.Add(this.lbNombre);
             this.groupBox1.Location = new System.Drawing.Point(12, 37);
@@ -325,18 +309,6 @@
             this.cbEstado.Text = "Deshabilitado";
             this.cbEstado.UseVisualStyleBackColor = true;
             // 
-            // mtContraseña
-            // 
-            this.mtContraseña.BackColor = System.Drawing.SystemColors.Window;
-            this.mtContraseña.Location = new System.Drawing.Point(298, 11);
-            this.mtContraseña.Mask = "CCCCCCCCCCCC";
-            this.mtContraseña.Name = "mtContraseña";
-            this.mtContraseña.PasswordChar = '*';
-            this.mtContraseña.PromptChar = ' ';
-            this.mtContraseña.Size = new System.Drawing.Size(121, 20);
-            this.mtContraseña.TabIndex = 13;
-            this.mtContraseña.UseSystemPasswordChar = true;
-            // 
             // lbPassword
             // 
             this.lbPassword.AutoSize = true;
@@ -345,14 +317,6 @@
             this.lbPassword.Size = new System.Drawing.Size(61, 13);
             this.lbPassword.TabIndex = 12;
             this.lbPassword.Text = "Contraseña";
-            // 
-            // mtUsuario
-            // 
-            this.mtUsuario.BackColor = System.Drawing.SystemColors.Window;
-            this.mtUsuario.Location = new System.Drawing.Point(77, 71);
-            this.mtUsuario.Name = "mtUsuario";
-            this.mtUsuario.Size = new System.Drawing.Size(124, 20);
-            this.mtUsuario.TabIndex = 11;
             // 
             // label1
             // 
@@ -418,6 +382,38 @@
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.Width = 40;
             // 
+            // mtNombre
+            // 
+            this.mtNombre.Location = new System.Drawing.Point(78, 10);
+            this.mtNombre.MaxLength = 100;
+            this.mtNombre.Name = "mtNombre";
+            this.mtNombre.Size = new System.Drawing.Size(123, 20);
+            this.mtNombre.TabIndex = 20;
+            // 
+            // mtApellido
+            // 
+            this.mtApellido.Location = new System.Drawing.Point(78, 42);
+            this.mtApellido.MaxLength = 100;
+            this.mtApellido.Name = "mtApellido";
+            this.mtApellido.Size = new System.Drawing.Size(123, 20);
+            this.mtApellido.TabIndex = 21;
+            // 
+            // mtUsuario
+            // 
+            this.mtUsuario.Location = new System.Drawing.Point(78, 73);
+            this.mtUsuario.MaxLength = 100;
+            this.mtUsuario.Name = "mtUsuario";
+            this.mtUsuario.Size = new System.Drawing.Size(123, 20);
+            this.mtUsuario.TabIndex = 22;
+            // 
+            // textBoxKeyDown1
+            // 
+            this.mtContraseña.Location = new System.Drawing.Point(298, 10);
+            this.mtContraseña.MaxLength = 15;
+            this.mtContraseña.Name = "textBoxKeyDown1";
+            this.mtContraseña.Size = new System.Drawing.Size(128, 20);
+            this.mtContraseña.TabIndex = 23;
+            // 
             // ABMUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -448,13 +444,9 @@
         private System.Windows.Forms.ToolStripButton btnModificar;
         private System.Windows.Forms.Label lbNombre;
         private System.Windows.Forms.Label lbApellido;
-        private System.Windows.Forms.MaskedTextBox mtNombre;
-        private System.Windows.Forms.MaskedTextBox mtApellido;
         private System.Windows.Forms.DataGridView dgvUsuarios;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.MaskedTextBox mtUsuario;
-        private System.Windows.Forms.MaskedTextBox mtContraseña;
         private System.Windows.Forms.Label lbPassword;
         private System.Windows.Forms.ToolStripButton btnCancelar;
         private System.Windows.Forms.Label label2;
@@ -481,6 +473,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btnGrupos;
         private System.Windows.Forms.ToolStripButton btnPermisos;
+        private TextBoxKeyDown mtUsuario;
+        private TextBoxKeyDown mtApellido;
+        private TextBoxKeyDown mtNombre;
+        private TextBoxKeyDown mtContraseña;
     }
 }
 

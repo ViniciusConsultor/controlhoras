@@ -29,29 +29,29 @@
         private void InitializeComponent()
         {
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnAgregar = new System.Windows.Forms.ToolStripButton();
+            this.btnGuardar = new System.Windows.Forms.ToolStripButton();
+            this.btnCancelar = new System.Windows.Forms.ToolStripButton();
             this.lblIdGrupo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.btnAgregar = new System.Windows.Forms.ToolStripButton();
-            this.btnGuardar = new System.Windows.Forms.ToolStripButton();
-            this.btnCancelar = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.checkListUsuarios = new System.Windows.Forms.CheckedListBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dgvGrupos = new System.Windows.Forms.DataGridView();
             this.cbEstado = new System.Windows.Forms.CheckBox();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label3 = new System.Windows.Forms.Label();
+            this.checkListUsuarios = new System.Windows.Forms.CheckedListBox();
             this.ucPermisosUsuarios1 = new ControlHoras.ucPermisosUsuarios();
+            this.dgvGrupos = new System.Windows.Forms.DataGridView();
             this.IdGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Activo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -73,6 +73,36 @@
             this.toolStrip1.Size = new System.Drawing.Size(635, 36);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Image = global::ControlHoras.Imagenes.document_new;
+            this.btnAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(50, 33);
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Image = global::ControlHoras.Properties.Resources.filesave;
+            this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(50, 33);
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnCancelar.Image = global::ControlHoras.Properties.Resources.button_cancel;
+            this.btnCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(53, 33);
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // lblIdGrupo
             // 
@@ -104,6 +134,7 @@
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(88, 5);
+            this.txtNombre.MaxLength = 45;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(174, 20);
             this.txtNombre.TabIndex = 2;
@@ -111,40 +142,11 @@
             // txtDescripcion
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(88, 31);
+            this.txtDescripcion.MaxLength = 45;
             this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(174, 42);
             this.txtDescripcion.TabIndex = 3;
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Image = global::ControlHoras.Imagenes.document_new;
-            this.btnAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(50, 33);
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Image = global::ControlHoras.Properties.Resources.filesave;
-            this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(50, 33);
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btnCancelar.Image = global::ControlHoras.Properties.Resources.button_cancel;
-            this.btnCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(53, 33);
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // splitContainer1
             // 
@@ -188,14 +190,16 @@
             this.splitContainer2.SplitterDistance = 290;
             this.splitContainer2.TabIndex = 8;
             // 
-            // checkListUsuarios
+            // cbEstado
             // 
-            this.checkListUsuarios.FormattingEnabled = true;
-            this.checkListUsuarios.Location = new System.Drawing.Point(3, 120);
-            this.checkListUsuarios.MultiColumn = true;
-            this.checkListUsuarios.Name = "checkListUsuarios";
-            this.checkListUsuarios.Size = new System.Drawing.Size(282, 139);
-            this.checkListUsuarios.TabIndex = 4;
+            this.cbEstado.AutoSize = true;
+            this.cbEstado.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cbEstado.Location = new System.Drawing.Point(172, 82);
+            this.cbEstado.Name = "cbEstado";
+            this.cbEstado.Size = new System.Drawing.Size(90, 17);
+            this.cbEstado.TabIndex = 6;
+            this.cbEstado.Text = "Deshabilitado";
+            this.cbEstado.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -206,6 +210,22 @@
             this.label3.Size = new System.Drawing.Size(201, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Usuarios Pertenecientes al Grupo:";
+            // 
+            // checkListUsuarios
+            // 
+            this.checkListUsuarios.FormattingEnabled = true;
+            this.checkListUsuarios.Location = new System.Drawing.Point(3, 120);
+            this.checkListUsuarios.MultiColumn = true;
+            this.checkListUsuarios.Name = "checkListUsuarios";
+            this.checkListUsuarios.Size = new System.Drawing.Size(282, 139);
+            this.checkListUsuarios.TabIndex = 4;
+            // 
+            // ucPermisosUsuarios1
+            // 
+            this.ucPermisosUsuarios1.Location = new System.Drawing.Point(10, 0);
+            this.ucPermisosUsuarios1.Name = "ucPermisosUsuarios1";
+            this.ucPermisosUsuarios1.Size = new System.Drawing.Size(321, 259);
+            this.ucPermisosUsuarios1.TabIndex = 0;
             // 
             // dgvGrupos
             // 
@@ -227,49 +247,6 @@
             this.dgvGrupos.Size = new System.Drawing.Size(633, 160);
             this.dgvGrupos.TabIndex = 0;
             this.dgvGrupos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrupos_CellDoubleClick);
-            // 
-            // cbEstado
-            // 
-            this.cbEstado.AutoSize = true;
-            this.cbEstado.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cbEstado.Location = new System.Drawing.Point(172, 82);
-            this.cbEstado.Name = "cbEstado";
-            this.cbEstado.Size = new System.Drawing.Size(90, 17);
-            this.cbEstado.TabIndex = 6;
-            this.cbEstado.Text = "Deshabilitado";
-            this.cbEstado.UseVisualStyleBackColor = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "IdGrupo";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Nombre";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Descripcion";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Activo";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // ucPermisosUsuarios1
-            // 
-            this.ucPermisosUsuarios1.Location = new System.Drawing.Point(10, 0);
-            this.ucPermisosUsuarios1.Name = "ucPermisosUsuarios1";
-            this.ucPermisosUsuarios1.Size = new System.Drawing.Size(321, 259);
-            this.ucPermisosUsuarios1.TabIndex = 0;
             // 
             // IdGrupo
             // 
@@ -295,6 +272,31 @@
             this.Activo.HeaderText = "Activo";
             this.Activo.Name = "Activo";
             this.Activo.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "IdGrupo";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Nombre";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Descripcion";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Activo";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
             // ABMGrupos
             // 

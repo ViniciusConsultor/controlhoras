@@ -302,7 +302,7 @@ namespace ControlHoras
                 ConsultAsEmPleadOs cons = consultasEmpleados[consultasEmpleados.IndexOf((ConsultAsEmPleadOs)cmbEmpleadosConsultas.SelectedItem)];
                
                 txtConsultasEmpleadosDescripcion.Text = cons.Descripcion;
-                if (cons.Query.Contains("FECHA"))
+                if (cons.Query.Contains("FECHASOLA"))
                 {
                     lblFechaGenerica.Text = "Fecha Pago Prevista";
                     if (cons.Nombre.Contains("BAJAS SIN FECHA DE PAGO PREVISTO"))
@@ -325,7 +325,7 @@ namespace ControlHoras
                 ConsultAsClientEs cons = consultasClientes[consultasClientes.IndexOf((ConsultAsClientEs)cmbClientesConsultas.SelectedItem)];
 
                 txtClientesDescripcionConsulta.Text = cons.Descripcion;
-                if (cons.Query.Contains("FECHA"))
+                if (cons.Query.Contains("FECHASOLA"))
                 {
                     lblFechaGenerica.Text = "Fecha";
                     clientesPanelFecha.Visible = true;
@@ -334,12 +334,27 @@ namespace ControlHoras
                 else
                     clientesPanelFecha.Visible = false;
 
-                if (cons.Query.Contains("NROSERVICIO") && cons.Query.Contains("NROCLIENTE"))
+                if (cons.Query.Contains("NROCLIENTE"))
                 {
-                    panelClienteServicio.Visible = true;
+                    panelCliente.Visible = true;
+                    if (cons.Query.Contains("NROSERVICIO"))
+                        panelServicio.Visible = true;
+                    else
+                        panelServicio.Visible = false;
                 }
                 else
-                    panelClienteServicio.Visible = false;
+                {
+                    panelCliente.Visible = false;
+                    panelServicio.Visible = false;
+                }
+                if (cons.Query.Contains("FECHADESDE") && cons.Query.Contains("FECHAHASTA"))
+                    panelFechaDesdeHasta.Visible=true;
+                else
+                    panelFechaDesdeHasta.Visible = false;
+                if (cons.Query.Contains("NROEMPLEADO"))
+                    panelEmpleado.Visible = true;
+                else
+                    panelEmpleado.Visible = false;
             }
         }
 
@@ -357,7 +372,26 @@ namespace ControlHoras
 
         private void mtConsultasEmpleadoFecha_Validating(object sender, CancelEventArgs e)
         {
-            if (!ValidarFecha(mtConsultasEmpleadoFecha.Text))
+            if (panelFechaDesdeHasta.Visible)
+            {
+                if (!ValidarFecha(mtFechaDesde.Text))
+                {
+                    e.Cancel = true;
+                    errorProvider1.SetError(mtFechaDesde, "No es una fecha válida");
+                }
+                if (!ValidarFecha(mtFechaHasta.Text))
+                {
+                    e.Cancel = true;
+                    errorProvider1.SetError(mtFechaHasta, "No es una fecha válida");
+                }
+            }
+
+            if (clientePanelFechaMT.Visible && !ValidarFecha(clientePanelFechaMT.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(clientePanelFechaMT, "No es una fecha válida");
+            }
+            if (mtConsultasEmpleadoFecha.Visible && !ValidarFecha(mtConsultasEmpleadoFecha.Text))
             {
                 e.Cancel = true;
                 errorProvider1.SetError(mtConsultasEmpleadoFecha, "No es una fecha válida");
@@ -372,14 +406,14 @@ namespace ControlHoras
         private void btnEmpleadosConsultar_Click(object sender, EventArgs e)
         {
             Dictionary<string, string> parametrosQuery = new Dictionary<string, string>();
-            if (consultasEmpleados[consultasEmpleados.IndexOf((ConsultAsEmPleadOs)cmbEmpleadosConsultas.SelectedItem)].Query.Contains("FECHA") && panelConsultasEmpleadoFecha.Visible)
+            if (consultasEmpleados[consultasEmpleados.IndexOf((ConsultAsEmPleadOs)cmbEmpleadosConsultas.SelectedItem)].Query.Contains("FECHASOLA") && panelConsultasEmpleadoFecha.Visible)
             {
                 if (mtConsultasEmpleadoFecha.Text == fechaMask)
                     MessageBox.Show("Debe llenar el campo fecha para la consulta.", "Llenar Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                     try
                     {
-                        parametrosQuery.Add("FECHA", mtConsultasEmpleadoFecha.Text);
+                        parametrosQuery.Add("FECHASOLA", mtConsultasEmpleadoFecha.Text);
                     }
                     catch (Exception ex)
                     {
@@ -401,45 +435,106 @@ namespace ControlHoras
 
         private void btnClientesConsultar_Click(object sender, EventArgs e)
         {
+            bool error = false;
             Dictionary<string, string> parametrosQuery = new Dictionary<string, string>();
-            ConsultAsClientEs cquery = consultasClientes[consultasClientes.IndexOf((ConsultAsClientEs)cmbClientesConsultas.SelectedItem)];
-            if (cquery.Query.Contains("FECHA") && clientesPanelFecha.Visible)
-            {
-                if (clientePanelFechaMT.Text == fechaMask)
-                    MessageBox.Show("Debe llenar el campo fecha para la consulta.", "Llenar Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else
-                    try
-                    {
-                        parametrosQuery.Add("FECHA", clientePanelFechaMT.Text);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-            }
-            if (cquery.Query.Contains("NROSERVICIO") && cquery.Query.Contains("NROCLIENTE") && panelClienteServicio.Visible)
-            {
-                mtNroServicio.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-                if ( mtNroCliente.Text == "" || mtNroServicio.Text == "")
-                    MessageBox.Show("Debe llenar los campos requeridos para la consulta.", "Llenar Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else
-                    try
-                    {
-                        parametrosQuery.Add("NROCLIENTE", mtNroCliente.Text);
-                        parametrosQuery.Add("NROSERVICIO", mtNroServicio.Text);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-            }
             try
             {
-                DataSet ds = datos.ejecutarConsultaCliente(int.Parse(cmbClientesConsultas.SelectedValue.ToString()), parametrosQuery);
-                dgvResultados.DataSource = ds.Tables[0];
-                btnExportToExcel.Enabled = true;
+                ConsultAsClientEs cquery = consultasClientes[consultasClientes.IndexOf((ConsultAsClientEs)cmbClientesConsultas.SelectedItem)];
+                
+                if (cquery.Query.Contains("FECHASOLA") && clientesPanelFecha.Visible)
+                {
+                    if (clientePanelFechaMT.Text == fechaMask)
+                    {
+                        error = true;
+                        MessageBox.Show("Debe llenar el campo fecha para la consulta.", "Llenar Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            parametrosQuery.Add("FECHASOLA", clientePanelFechaMT.Text);
+                        }
+                        catch (Exception ex)
+                        {
+                            error = true;
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                if (cquery.Query.Contains("NROCLIENTE") && panelCliente.Visible)
+                {
+                    if (mtNroCliente.Text == "")
+                    {
+                        error = true;
+                        MessageBox.Show("Debe llenar los campos requeridos para la consulta.", "Llenar Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            parametrosQuery.Add("NROCLIENTE", mtNroCliente.Text);
+                        }
+                        catch (Exception ex)
+                        {
+                            error = true;
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                        if (cquery.Query.Contains("NROSERVICIO"))
+                        {
+                            mtNroServicio.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+                            if (mtNroServicio.Text == "")
+                            {
+                                error = true;
+                                MessageBox.Show("Debe llenar los campos requeridos para la consulta.", "Llenar Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            else
+                                try
+                                {
+                                    parametrosQuery.Add("NROSERVICIO", mtNroServicio.Text);
+                                }
+                                catch (Exception ex)
+                                {
+                                    error = true;
+                                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+
+                        }
+                    }
+                }
+                if (panelFechaDesdeHasta.Visible)
+                {
+                    try
+                    {
+                        parametrosQuery.Add("FECHADESDE", mtFechaDesde.Text);
+                        parametrosQuery.Add("FECHAHASTA", mtFechaHasta.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        error = true;
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+                if (panelEmpleado.Visible)
+                {
+                    try
+                    {
+                    parametrosQuery.Add("NROEMPLEADO", mtNumeroEmpleado.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        error = true;
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                
+                if (!error)
+                {
+                    DataSet ds = datos.ejecutarConsultaCliente(int.Parse(cmbClientesConsultas.SelectedValue.ToString()), parametrosQuery);
+                    dgvResultados.DataSource = ds.Tables[0];
+                    btnExportToExcel.Enabled = true;
+                }
             }
             catch (Exception ex)
             {

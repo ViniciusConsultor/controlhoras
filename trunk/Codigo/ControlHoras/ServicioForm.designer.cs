@@ -91,7 +91,7 @@
             // 
             this.bcUC.ClienteNRO = "";
             this.bcUC.Location = new System.Drawing.Point(38, 14);
-            this.bcUC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bcUC.Margin = new System.Windows.Forms.Padding(2);
             this.bcUC.Name = "bcUC";
             this.bcUC.Size = new System.Drawing.Size(431, 41);
             this.bcUC.TabIndex = 0;
@@ -211,6 +211,7 @@
             // 
             this.txtEntreCalles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEntreCalles.Location = new System.Drawing.Point(161, 97);
+            this.txtEntreCalles.MaxLength = 150;
             this.txtEntreCalles.Name = "txtEntreCalles";
             this.txtEntreCalles.Size = new System.Drawing.Size(362, 22);
             this.txtEntreCalles.TabIndex = 3;
@@ -229,6 +230,7 @@
             // 
             this.txtObservaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtObservaciones.Location = new System.Drawing.Point(161, 287);
+            this.txtObservaciones.MaxLength = 255;
             this.txtObservaciones.Multiline = true;
             this.txtObservaciones.Name = "txtObservaciones";
             this.txtObservaciones.Size = new System.Drawing.Size(362, 40);
@@ -261,6 +263,7 @@
             // 
             this.TareasTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TareasTB.Location = new System.Drawing.Point(161, 241);
+            this.TareasTB.MaxLength = 255;
             this.TareasTB.Multiline = true;
             this.TareasTB.Name = "TareasTB";
             this.TareasTB.Size = new System.Drawing.Size(362, 40);
@@ -331,6 +334,7 @@
             // 
             this.emailTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.emailTB.Location = new System.Drawing.Point(161, 183);
+            this.emailTB.MaxLength = 50;
             this.emailTB.Name = "emailTB";
             this.emailTB.Size = new System.Drawing.Size(362, 22);
             this.emailTB.TabIndex = 5;
@@ -349,6 +353,7 @@
             // 
             this.ContactTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ContactTB.Location = new System.Drawing.Point(161, 155);
+            this.ContactTB.MaxLength = 50;
             this.ContactTB.Name = "ContactTB";
             this.ContactTB.Size = new System.Drawing.Size(362, 22);
             this.ContactTB.TabIndex = 4;
@@ -367,6 +372,7 @@
             // 
             this.TelTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TelTB.Location = new System.Drawing.Point(161, 126);
+            this.TelTB.MaxLength = 50;
             this.TelTB.Name = "TelTB";
             this.TelTB.Size = new System.Drawing.Size(362, 22);
             this.TelTB.TabIndex = 3;
@@ -385,6 +391,7 @@
             // 
             this.DirTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DirTB.Location = new System.Drawing.Point(161, 68);
+            this.DirTB.MaxLength = 100;
             this.DirTB.Name = "DirTB";
             this.DirTB.Size = new System.Drawing.Size(362, 22);
             this.DirTB.TabIndex = 2;
@@ -413,6 +420,7 @@
             // 
             this.NombreTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NombreTB.Location = new System.Drawing.Point(161, 39);
+            this.NombreTB.MaxLength = 100;
             this.NombreTB.Name = "NombreTB";
             this.NombreTB.Size = new System.Drawing.Size(362, 22);
             this.NombreTB.TabIndex = 1;
@@ -447,9 +455,9 @@
             this.groupBox1.Controls.Add(this.dtpFechaBaja);
             this.groupBox1.Controls.Add(this.cbNoActivo);
             this.groupBox1.Location = new System.Drawing.Point(11, 447);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(534, 67);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
@@ -460,7 +468,8 @@
             this.txtMotivoBaja.Enabled = false;
             this.txtMotivoBaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMotivoBaja.Location = new System.Drawing.Point(60, 38);
-            this.txtMotivoBaja.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMotivoBaja.Margin = new System.Windows.Forms.Padding(2);
+            this.txtMotivoBaja.MaxLength = 255;
             this.txtMotivoBaja.Name = "txtMotivoBaja";
             this.txtMotivoBaja.Size = new System.Drawing.Size(463, 22);
             this.txtMotivoBaja.TabIndex = 2;
@@ -490,7 +499,7 @@
             this.dtpFechaBaja.Enabled = false;
             this.dtpFechaBaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpFechaBaja.Location = new System.Drawing.Point(441, 7);
-            this.dtpFechaBaja.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpFechaBaja.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFechaBaja.Mask = "00/00/0000";
             this.dtpFechaBaja.Name = "dtpFechaBaja";
             this.dtpFechaBaja.Size = new System.Drawing.Size(83, 22);
@@ -500,7 +509,7 @@
             // 
             this.cbNoActivo.AutoSize = true;
             this.cbNoActivo.Location = new System.Drawing.Point(60, 18);
-            this.cbNoActivo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbNoActivo.Margin = new System.Windows.Forms.Padding(2);
             this.cbNoActivo.Name = "cbNoActivo";
             this.cbNoActivo.Size = new System.Drawing.Size(73, 17);
             this.cbNoActivo.TabIndex = 0;

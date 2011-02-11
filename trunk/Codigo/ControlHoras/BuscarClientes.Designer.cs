@@ -31,14 +31,14 @@
             this.label7 = new System.Windows.Forms.Label();
             this.NombreTB = new System.Windows.Forms.TextBox();
             this.ClientesDGV = new System.Windows.Forms.DataGridView();
+            this.Nro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreFantasia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OKBTN = new System.Windows.Forms.Button();
             this.CancelBTN = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.Nro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreFantasia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ClientesDGV)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,6 +56,7 @@
             // 
             this.NombreTB.Location = new System.Drawing.Point(156, 9);
             this.NombreTB.Margin = new System.Windows.Forms.Padding(2);
+            this.NombreTB.MaxLength = 50;
             this.NombreTB.Name = "NombreTB";
             this.NombreTB.Size = new System.Drawing.Size(151, 20);
             this.NombreTB.TabIndex = 0;
@@ -81,6 +82,29 @@
             this.ClientesDGV.TabIndex = 21;
             this.ClientesDGV.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ClientesDGV_CellDoubleClick);
             this.ClientesDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ClientesDGV_CellClick);
+            // 
+            // Nro
+            // 
+            this.Nro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Nro.HeaderText = "Número";
+            this.Nro.Name = "Nro";
+            this.Nro.ReadOnly = true;
+            this.Nro.Width = 69;
+            // 
+            // Nombre
+            // 
+            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 69;
+            // 
+            // NombreFantasia
+            // 
+            this.NombreFantasia.HeaderText = "Nombre Fantasia";
+            this.NombreFantasia.Name = "NombreFantasia";
+            this.NombreFantasia.ReadOnly = true;
+            this.NombreFantasia.Width = 112;
             // 
             // OKBTN
             // 
@@ -128,29 +152,6 @@
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-            // 
-            // Nro
-            // 
-            this.Nro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Nro.HeaderText = "Número";
-            this.Nro.Name = "Nro";
-            this.Nro.ReadOnly = true;
-            this.Nro.Width = 69;
-            // 
-            // Nombre
-            // 
-            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 69;
-            // 
-            // NombreFantasia
-            // 
-            this.NombreFantasia.HeaderText = "Nombre Fantasia";
-            this.NombreFantasia.Name = "NombreFantasia";
-            this.NombreFantasia.ReadOnly = true;
-            this.NombreFantasia.Width = 112;
             // 
             // BuscarClientes
             // 

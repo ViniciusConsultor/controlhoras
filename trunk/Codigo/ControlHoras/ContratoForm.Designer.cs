@@ -365,6 +365,7 @@
             // 
             this.ObsTB.Location = new System.Drawing.Point(328, 411);
             this.ObsTB.Margin = new System.Windows.Forms.Padding(2);
+            this.ObsTB.MaxLength = 255;
             this.ObsTB.Multiline = true;
             this.ObsTB.Name = "ObsTB";
             this.ObsTB.Size = new System.Drawing.Size(525, 36);
@@ -374,6 +375,7 @@
             // 
             this.AjusteTB.Location = new System.Drawing.Point(328, 384);
             this.AjusteTB.Margin = new System.Windows.Forms.Padding(2);
+            this.AjusteTB.MaxLength = 255;
             this.AjusteTB.Multiline = true;
             this.AjusteTB.Name = "AjusteTB";
             this.AjusteTB.Size = new System.Drawing.Size(525, 21);
