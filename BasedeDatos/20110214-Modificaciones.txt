@@ -1,0 +1,22 @@
+-- Se agrega campo de nombre Visual para la pantalla de Permisos, para ver nombres amigables.
+alter table permisocontrol add column NombreVisual varchar(100) not null;
+
+update permisocontrol set NombreVisual="Menu->Clientes" where idPermisoControl=1;
+update permisocontrol set NombreVisual="Menu->Codigueras" where idPermisoControl=2;
+update permisocontrol set NombreVisual="Menu->Servicios" where idPermisoControl=3;
+update permisocontrol set NombreVisual="Menu->Cambiar Numero Empleado" where idPermisoControl=4;
+update permisocontrol set NombreVisual="Menu->Sustituir En Escalafon" where idPermisoControl=5;
+update permisocontrol set NombreVisual="Menu->Generar Horas Diarias" where idPermisoControl=6;
+update permisocontrol set NombreVisual="Boton Escalafon" where idPermisoControl=7;
+update permisocontrol set NombreVisual="Boton Clientes" where idPermisoControl=8;
+update permisocontrol set NombreVisual="Boton Empleados" where idPermisoControl=9;
+update permisocontrol set NombreVisual="Boton Control Diario" where idPermisoControl=10;
+update permisocontrol set NombreVisual="Boton Consultas" where idPermisoControl=11;
+update permisocontrol set NombreVisual="Menu->Usuarios" where idPermisoControl=12;
+update permisocontrol set NombreVisual="Menu->Empleados" where idPermisoControl=13;
+update permisocontrol set NombreVisual="Menu->Lista Negra" where idPermisoControl=14;
+
+-- Cambio el algoritmo de encriptacion de las claves. Setear esta clave al admin para entrar (Clave admin).
+update usuarios set Password="e0b96bcdeef1e4dd5dddc383653884af" where UserName="admin";
+
+
