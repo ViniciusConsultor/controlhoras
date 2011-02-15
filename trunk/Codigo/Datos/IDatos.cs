@@ -156,8 +156,9 @@ namespace Datos
         /// </summary>
         /// <param name="CampoBusqueda">Define el atributo del Empleado por el cual buscar. Valores Posibles: Nombre, Apellido, Documento, Telefono y Direccion</param>
         /// <param name="patronBusqueda">Define el patron de busqueda</param>
+        /// <param name="incluirIncativos">True para incluir los inactivos en la busqueda.</param>
         /// <returns>Devuelve una lista de los empleados que matchean con el patron en el campo especificado.</returns>
-        List<EmPleadOs> buscarEmpleaos(string CampoBusqueda, string patronBusqueda);
+        List<EmPleadOs> buscarEmpleaos(string CampoBusqueda, string patronBusqueda, bool incluirIncativos);
 
         /// <summary>
         /// Cambia el Numero del Empleado identificado por el NumeroActual por el Numero NumeroEmpleadoNuevo

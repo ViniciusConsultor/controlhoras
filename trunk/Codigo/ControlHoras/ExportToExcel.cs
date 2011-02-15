@@ -169,7 +169,7 @@ namespace ControlHoras
                 string tablaSelected = cmbTablas.SelectedItem.ToString();
                 if (tablasMuestroGroupBox.Contains(tablaSelected))
                 {
-                    gbPorTablasFiltros.Visible = true;
+                    //gbPorTablasFiltros.Visible = true;
                     lblPorTablaNombre.Text = tablaSelected;
                     if (listBoxCampos.Items.Contains("Activo"))
                         cbPorTablasInactivos.Visible = true;

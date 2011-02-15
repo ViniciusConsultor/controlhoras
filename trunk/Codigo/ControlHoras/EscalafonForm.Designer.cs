@@ -140,7 +140,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Panel2.Enabled = false;
-            this.splitContainer1.Size = new System.Drawing.Size(959, 484);
+            this.splitContainer1.Size = new System.Drawing.Size(990, 484);
             this.splitContainer1.SplitterDistance = 103;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -155,7 +155,7 @@
             this.GraficosPL.Controls.Add(this.label8);
             this.GraficosPL.Controls.Add(this.cubiertoTB);
             this.GraficosPL.Controls.Add(this.label6);
-            this.GraficosPL.Location = new System.Drawing.Point(670, 35);
+            this.GraficosPL.Location = new System.Drawing.Point(707, 36);
             this.GraficosPL.Name = "GraficosPL";
             this.GraficosPL.Size = new System.Drawing.Size(280, 65);
             this.GraficosPL.TabIndex = 19;
@@ -289,7 +289,6 @@
             this.mtServicio.Location = new System.Drawing.Point(12, 65);
             this.mtServicio.Mask = "9990";
             this.mtServicio.Name = "mtServicio";
-            this.mtServicio.ReadOnly = true;
             this.mtServicio.Size = new System.Drawing.Size(44, 22);
             this.mtServicio.TabIndex = 14;
             this.mtServicio.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtServicio_KeyDown);
@@ -339,7 +338,7 @@
             this.btnCancelar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(959, 36);
+            this.toolStrip1.Size = new System.Drawing.Size(990, 36);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -416,14 +415,14 @@
             this.splitContainer2.Panel2.Controls.Add(this.label2);
             this.splitContainer2.Panel2.Controls.Add(this.label1);
             this.splitContainer2.Panel2.Controls.Add(this.dgvHsPorCubrir);
-            this.splitContainer2.Size = new System.Drawing.Size(959, 377);
+            this.splitContainer2.Size = new System.Drawing.Size(990, 377);
             this.splitContainer2.SplitterDistance = 297;
             this.splitContainer2.TabIndex = 0;
             // 
             // btnEliminarLineaEscalafon
             // 
             this.btnEliminarLineaEscalafon.BackColor = System.Drawing.Color.LightYellow;
-            this.btnEliminarLineaEscalafon.Location = new System.Drawing.Point(928, 33);
+            this.btnEliminarLineaEscalafon.Location = new System.Drawing.Point(965, 33);
             this.btnEliminarLineaEscalafon.Name = "btnEliminarLineaEscalafon";
             this.btnEliminarLineaEscalafon.Size = new System.Drawing.Size(22, 23);
             this.btnEliminarLineaEscalafon.TabIndex = 2;
@@ -434,7 +433,7 @@
             // btnAgregarLineaEscalafon
             // 
             this.btnAgregarLineaEscalafon.BackColor = System.Drawing.Color.LightYellow;
-            this.btnAgregarLineaEscalafon.Location = new System.Drawing.Point(928, 3);
+            this.btnAgregarLineaEscalafon.Location = new System.Drawing.Point(965, 3);
             this.btnAgregarLineaEscalafon.Name = "btnAgregarLineaEscalafon";
             this.btnAgregarLineaEscalafon.Size = new System.Drawing.Size(22, 23);
             this.btnAgregarLineaEscalafon.TabIndex = 1;
@@ -464,7 +463,7 @@
             this.dgEscalafon.RowHeadersVisible = false;
             this.dgEscalafon.RowTemplate.Height = 24;
             this.dgEscalafon.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgEscalafon.Size = new System.Drawing.Size(919, 297);
+            this.dgEscalafon.Size = new System.Drawing.Size(956, 297);
             this.dgEscalafon.TabIndex = 0;
             this.dgEscalafon.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgEscalafon_CellMouseClick);
             this.dgEscalafon.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEscalafon_CellEndEdit);
@@ -790,7 +789,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(959, 484);
+            this.ClientSize = new System.Drawing.Size(990, 484);
             this.Controls.Add(this.splitContainer1);
             this.Name = "EscalafonForm";
             this.Text = "Escalafon";

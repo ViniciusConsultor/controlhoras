@@ -26,10 +26,10 @@ namespace ControlHoras
         {
             if (txtBusqueda.Text != "" & e.KeyCode == Keys.Enter)
             {
-
                 btnBuscar.PerformClick();
             }
         }
+
         private void cargarGrillaResultados(List<EmPleadOs> res)
         {
             dgvResultado.Rows.Clear();
@@ -51,8 +51,10 @@ namespace ControlHoras
         {
             try
             {
-                List<EmPleadOs> listEmps = datos.buscarEmpleaos(cmbCampoBusqueda.SelectedItem.ToString(), txtBusqueda.Text);
+                List<EmPleadOs> listEmps = datos.buscarEmpleaos(cmbCampoBusqueda.SelectedItem.ToString(), txtBusqueda.Text,cbInactivos.Checked);
                 cargarGrillaResultados(listEmps);
+                if (listEmps.Count == 0)
+                    MessageBox.Show(this,"No se han encontrado datos con estos filtros.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

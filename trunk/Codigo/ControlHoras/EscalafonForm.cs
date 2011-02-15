@@ -27,7 +27,7 @@ namespace ControlHoras
         int idser;
         int ind;
         int cant;
-        int[] numerosSer;
+        List<int> numerosSer;
         DataGridViewCell celda, LastCellChanged = null;
         string stbuffer;
         string oldvalor;
@@ -178,11 +178,11 @@ namespace ControlHoras
                         if (servicios.Count != 0)
                         {                            
                             cant = servicios.Count;
-                            numerosSer = new int[cant];
+                            numerosSer = new List<int>();
                             int i = 0;
                             foreach (Servicio ser in servicios)
                             {
-                                numerosSer[i] = ser.getNumero();
+                                numerosSer.Add(ser.getNumero());
                                 if (ser.getNumero() == idser)
                                     ind = i;
 
@@ -277,16 +277,19 @@ namespace ControlHoras
 
                 try
                 {
-                    if (datos.existeCliente(int.Parse(mtCliente.Text)))
+                    int nroCliente=int.Parse(mtCliente.Text);
+                    if (datos.existeCliente(nroCliente))
                     {
-                        servicio = getServicioCliente(int.Parse(mtCliente.Text),int.Parse(mtServicio.Text));
-                        
+                        int nroServicio=int.Parse(mtServicio.Text);
                         limpiarForm();
+                        
+                        servicio = getServicioCliente(nroCliente,nroServicio);
                         txtServicio.Text = servicio.Nombre;
-                        //Falta traer el contrato.
-                        con = datos.obtenerContrato(int.Parse(mtCliente.Text), int.Parse(mtServicio.Text));
+                        
+                        // TRAEMOS EL CONTRATO
+                        con = datos.obtenerContrato(nroCliente,nroServicio);
 
-                        cargarVentana(int.Parse(mtCliente.Text), int.Parse(mtServicio.Text));
+                        cargarVentana(nroCliente, nroServicio);
                     }
                     else
                     {
@@ -307,25 +310,25 @@ namespace ControlHoras
 
         private SERVicIoS getServicioCliente(int nroCli, int nroServicio)
         {
-            SERVicIoS ser = null;
-            
-            foreach (SERVicIoS s in datos.obtenerServiciosCliente(nroCli))
+            try
             {
-                
-                if (s.NumeroServicio == (uint)nroServicio)
+                if (datos.existeClienteServicio(nroCli, nroServicio))
                 {
-                    ser = s;
-                    break;
+                    SERVicIoS ser = datos.obtenerServicioCliente(nroCli, nroServicio);
+                    return ser;
                 }
+                else
+                    throw new Exception("No existe el servicio número " + nroServicio + " en el cliente " + nroCli);
+            }catch
+            {
+                throw;
             }
-            if (ser == null)
-                throw new Exception("No existe el servicio número " + nroServicio + " en el cliente " + cliente.NumeroCliente);
-            return ser;
         }
 
         private void AnteriorBTN_Click(object sender, EventArgs e)
         {
             int numCli = int.Parse(mtCliente.Text);
+            ind = numerosSer.IndexOf(int.Parse(mtServicio.Text));
             if ((ind - 1) < 0)
                 ind = cant - 1;
             else
@@ -339,6 +342,7 @@ namespace ControlHoras
         private void PosteriorBTN_Click(object sender, EventArgs e)
         {
             int numCli = int.Parse(mtCliente.Text);
+            ind = numerosSer.IndexOf(int.Parse(mtServicio.Text));
             ind = (ind + 1) % cant;
 
             limpiarForm();           
@@ -351,7 +355,8 @@ namespace ControlHoras
         {
             try
             {
-                Servicio serv = sistema.obtenerServicioCliente(numCli, numerosSer[ind]);
+                //Servicio serv = sistema.obtenerServicioCliente(numCli, numerosSer[ind]);
+                Servicio serv = sistema.obtenerServicioCliente(numCli, numSer);
 
                 mtServicio.Text = serv.getNumero().ToString();
                 txtServicio.Text = serv.getNombre();

@@ -519,5 +519,17 @@ namespace ControlHoras
             }
 
         }
+
+        private void consultasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult res = ofdCargarArchivoImportacionConsultas.ShowDialog(this);
+            if (res == DialogResult.OK)
+            {
+                
+              //   = ofdCargarArchivoImportacionConsultas.FileName.ToString();
+              //  Bitmap imgAchicada = new Bitmap(img, pbFoto.Width, pbFoto.Height);
+              //  pbFoto.Image = (System.Drawing.Image)imgAchicada;
+            }
+        }
     }
 }

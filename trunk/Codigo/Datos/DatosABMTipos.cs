@@ -5,6 +5,7 @@ using System.Text;
 using DbLinq;
 using DbLinq.MySql;
 using DbLinq.Data.Linq;
+using Utilidades;
 
 namespace Datos
 {
@@ -350,7 +351,7 @@ namespace Datos
             user.Apellido = Apellido;
             user.UserName = NombreUsuario;
             user.FechaCreacion = DateTime.Today;
-            user.Password = Password;
+            user.Password = ControladorUtilidades.encriptarStringToMD5(Password);
             if (!Estado)
                     user.Activo = 1;
                 else

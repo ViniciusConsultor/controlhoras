@@ -156,8 +156,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dgvResultados);
-            this.splitContainer1.Size = new System.Drawing.Size(655, 429);
-            this.splitContainer1.SplitterDistance = 212;
+            this.splitContainer1.Size = new System.Drawing.Size(655, 474);
+            this.splitContainer1.SplitterDistance = 234;
             this.splitContainer1.TabIndex = 5;
             // 
             // tcConsultas
@@ -169,7 +169,8 @@
             this.tcConsultas.Location = new System.Drawing.Point(0, 0);
             this.tcConsultas.Name = "tcConsultas";
             this.tcConsultas.SelectedIndex = 0;
-            this.tcConsultas.Size = new System.Drawing.Size(655, 212);
+            this.tcConsultas.Size = new System.Drawing.Size(655, 234);
+            this.tcConsultas.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tcConsultas.TabIndex = 0;
             this.tcConsultas.TabIndexChanged += new System.EventHandler(this.tcConsultas_TabIndexChanged);
             // 
@@ -185,7 +186,7 @@
             this.tbPorTablas.Location = new System.Drawing.Point(4, 22);
             this.tbPorTablas.Name = "tbPorTablas";
             this.tbPorTablas.Padding = new System.Windows.Forms.Padding(3);
-            this.tbPorTablas.Size = new System.Drawing.Size(647, 186);
+            this.tbPorTablas.Size = new System.Drawing.Size(647, 208);
             this.tbPorTablas.TabIndex = 0;
             this.tbPorTablas.Text = "Por Tablas";
             this.tbPorTablas.UseVisualStyleBackColor = true;
@@ -193,9 +194,10 @@
             // lblOrdenResultado
             // 
             this.lblOrdenResultado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblOrdenResultado.Location = new System.Drawing.Point(8, 129);
+            this.lblOrdenResultado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrdenResultado.Location = new System.Drawing.Point(8, 148);
             this.lblOrdenResultado.Name = "lblOrdenResultado";
-            this.lblOrdenResultado.Size = new System.Drawing.Size(538, 18);
+            this.lblOrdenResultado.Size = new System.Drawing.Size(538, 25);
             this.lblOrdenResultado.TabIndex = 12;
             // 
             // gbPorTablasFiltros
@@ -206,9 +208,9 @@
             this.gbPorTablasFiltros.Controls.Add(this.label7);
             this.gbPorTablasFiltros.Controls.Add(this.lblPorTablaNombre);
             this.gbPorTablasFiltros.Controls.Add(this.cbPorTablasInactivos);
-            this.gbPorTablasFiltros.Location = new System.Drawing.Point(8, 148);
+            this.gbPorTablasFiltros.Location = new System.Drawing.Point(7, 168);
             this.gbPorTablasFiltros.Name = "gbPorTablasFiltros";
-            this.gbPorTablasFiltros.Size = new System.Drawing.Size(539, 37);
+            this.gbPorTablasFiltros.Size = new System.Drawing.Size(539, 35);
             this.gbPorTablasFiltros.TabIndex = 11;
             this.gbPorTablasFiltros.TabStop = false;
             this.gbPorTablasFiltros.Visible = false;
@@ -293,13 +295,13 @@
             this.listBoxCampos.Location = new System.Drawing.Point(8, 32);
             this.listBoxCampos.MultiColumn = true;
             this.listBoxCampos.Name = "listBoxCampos";
-            this.listBoxCampos.Size = new System.Drawing.Size(539, 64);
+            this.listBoxCampos.Size = new System.Drawing.Size(539, 109);
             this.listBoxCampos.TabIndex = 7;
             this.listBoxCampos.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.listBoxCampos_ItemCheck);
             // 
             // btnCargar
             // 
-            this.btnCargar.Location = new System.Drawing.Point(557, 148);
+            this.btnCargar.Location = new System.Drawing.Point(557, 178);
             this.btnCargar.Name = "btnCargar";
             this.btnCargar.Size = new System.Drawing.Size(75, 23);
             this.btnCargar.TabIndex = 8;
@@ -328,7 +330,7 @@
             this.tbEmpleados.Location = new System.Drawing.Point(4, 22);
             this.tbEmpleados.Name = "tbEmpleados";
             this.tbEmpleados.Padding = new System.Windows.Forms.Padding(3);
-            this.tbEmpleados.Size = new System.Drawing.Size(647, 186);
+            this.tbEmpleados.Size = new System.Drawing.Size(647, 208);
             this.tbEmpleados.TabIndex = 1;
             this.tbEmpleados.Text = "Empleados";
             this.tbEmpleados.UseVisualStyleBackColor = true;
@@ -474,7 +476,7 @@
             this.tbClientes.Location = new System.Drawing.Point(4, 22);
             this.tbClientes.Name = "tbClientes";
             this.tbClientes.Padding = new System.Windows.Forms.Padding(3);
-            this.tbClientes.Size = new System.Drawing.Size(647, 186);
+            this.tbClientes.Size = new System.Drawing.Size(647, 208);
             this.tbClientes.TabIndex = 2;
             this.tbClientes.Text = "Clientes";
             this.tbClientes.UseVisualStyleBackColor = true;
@@ -697,14 +699,14 @@
             this.dgvResultados.Name = "dgvResultados";
             this.dgvResultados.ReadOnly = true;
             this.dgvResultados.RowTemplate.Height = 24;
-            this.dgvResultados.Size = new System.Drawing.Size(655, 213);
+            this.dgvResultados.Size = new System.Drawing.Size(655, 236);
             this.dgvResultados.TabIndex = 1;
             // 
             // ExportToExcel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(655, 465);
+            this.ClientSize = new System.Drawing.Size(655, 510);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "ExportToExcel";
