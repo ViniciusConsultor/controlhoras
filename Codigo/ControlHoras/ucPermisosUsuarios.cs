@@ -45,7 +45,7 @@ namespace ControlHoras
                 tnParent = new TreeNode("Pantalla:"+pant.IDPantallaWinForm+" | "+ pant.Nombre);
                 foreach (PerMisOControl pc in pant.PerMisOControl)
                 {
-                    tnChild = new TreeNode("Control:"+pc.IDPermisoControl+" | " + pc.Nombre + " | " + pc.NettYpe);
+                    tnChild = new TreeNode("Control:"+pc.IDPermisoControl+" | " + pc.NombreVisual);
                     tnParent.Nodes.Add(tnChild);
                     
                 }

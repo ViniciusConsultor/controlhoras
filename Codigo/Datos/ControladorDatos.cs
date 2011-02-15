@@ -11,6 +11,7 @@ using System.Data;
 using System.Configuration;
 using System.Globalization;
 using System.IO;
+using Utilidades;
 
 
 
@@ -428,10 +429,12 @@ namespace Datos
         {
             try
             {
+
                 SERVicIoS servsCli = (from servreg in database.GetTable<SERVicIoS>()
                                             where servreg.NumeroCliente == numeroCliente && servreg.NumeroServicio == numeroServicio
                                             select servreg).Single<SERVicIoS>();
                 return servsCli;
+                
             }
             catch (Exception ex)
             {
@@ -936,42 +939,50 @@ namespace Datos
                 throw ex;
             }
         }
-        public List<EmPleadOs> buscarEmpleaos(string CampoBusqueda, string patronBusqueda)
+        public List<EmPleadOs> buscarEmpleaos(string CampoBusqueda, string patronBusqueda, bool incluirInactivos)
         {
             try
             {
+                
                 List<EmPleadOs> emps;
-
+                
+                uint estado = 1;
+                if (incluirInactivos)
+                    estado = 0;
                 switch (CampoBusqueda)
                 {
                     case "Nombre":
                         emps = (from varemp in database.GetTable<EmPleadOs>()
-                                where varemp.Nombre.Contains(patronBusqueda)
+                                where varemp.Nombre.Contains(patronBusqueda) && varemp.Activo == estado
                                 select varemp).ToList<EmPleadOs>();
                         break;
                     case "Apellido":
                         emps = (from varemp in database.GetTable<EmPleadOs>()
-                                where varemp.Apellido.Contains(patronBusqueda)
+                                where varemp.Apellido.Contains(patronBusqueda) && varemp.Activo == estado
                                 select varemp).ToList<EmPleadOs>();
                         break;
                     case "Direccion":
                         emps = (from varemp in database.GetTable<EmPleadOs>()
-                                where varemp.Direccion.Contains(patronBusqueda)
+                                where varemp.Direccion.Contains(patronBusqueda) && varemp.Activo == estado
                                 select varemp).ToList<EmPleadOs>();
                         break;
                     case "Telefono":
                         emps = (from varemp in database.GetTable<EmPleadOs>()
-                                where varemp.Telefonos.Contains(patronBusqueda)
+                                where varemp.Telefonos.Contains(patronBusqueda) && varemp.Activo == estado
                                 select varemp).ToList<EmPleadOs>();
                         break;
                     case "Documento":
                         emps = (from varemp in database.GetTable<EmPleadOs>()
-                                where varemp.NumeroDocumento.Contains(patronBusqueda)
+                                where varemp.NumeroDocumento.Contains(patronBusqueda) && varemp.Activo == estado
                                 select varemp).ToList<EmPleadOs>();
                         break;
                     default:
                         throw new NoExisteException("No existe el Campo de Busqueda " + CampoBusqueda);
+                        
+
                 }
+                
+                        
                 return emps;
             }
             catch (Exception ex)
@@ -1126,8 +1137,16 @@ namespace Datos
                     {
                         if (parametrosConsulta.ContainsKey("FECHADESDE") && parametrosConsulta.ContainsKey("FECHAHASTA"))
                         {
-                            sql = sql.Replace("FECHADESDE", parametrosConsulta["FECHADESDE"]);
-                            sql = sql.Replace("FECHAHASTA", parametrosConsulta["FECHAHASTA"]);
+                            string[] fecha = parametrosConsulta["FECHADESDE"].Split('/');
+                            DateTime dt = new DateTime(int.Parse(fecha[2]), int.Parse(fecha[1]), int.Parse(fecha[0]));
+                            string fecha2 = String.Format("{0:yyyy-MM-dd}", dt);
+                            sql = sql.Replace("FECHADESDE", fecha2);
+
+                            fecha = parametrosConsulta["FECHAHASTA"].Split('/');
+                            dt = new DateTime(int.Parse(fecha[2]), int.Parse(fecha[1]), int.Parse(fecha[0]));
+                            fecha2 = String.Format("{0:yyyy-MM-dd}", dt);
+                            sql = sql.Replace("FECHAHASTA", fecha2);
+                         
                         }
                         else
                             throw new Exception("No se obtuvieron los parametros necesarios NROEMPLEADO para ejecutar la consulta");
@@ -2980,41 +2999,13 @@ namespace Datos
         #endregion
 
         #region Usuarios
-        private string encriptarStringToMD5(string str)
-        {
-            try
-            {
-                
-                System.Security.Cryptography.MD5CryptoServiceProvider x = new System.Security.Cryptography.MD5CryptoServiceProvider();
-                byte[] data = System.Text.Encoding.ASCII.GetBytes(str);
-                data = x.ComputeHash(data);
-                string aaa = System.Text.Encoding.ASCII.GetString(data);
-                
-                StringBuilder sBuilder = new StringBuilder();
-
-                // Loop through each byte of the hashed data 
-                // and format each one as a hexadecimal string.
-                for (int i = 0; i < data.Length; i++)
-                {
-                    sBuilder.Append(data[i].ToString("x2"));
-                }
-
-                // Return the hexadecimal string.
-                return sBuilder.ToString();
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
-
+        
         public UsUarIoS login(string UserName, string Password)
         {
             string PassEncriptada;
             try
             {
-                PassEncriptada = encriptarStringToMD5(Password);
+                PassEncriptada = ControladorUtilidades.encriptarStringToMD5(Password);
                 var user = (from reg in database.UsUarIoS
                                  where reg.UserName == UserName && reg.Password == PassEncriptada
                                  select reg);
@@ -3053,10 +3044,10 @@ namespace Datos
                 if (user == null)
                     throw new Exception("No existe el Usuario con Id: "+IdUsuario);
 
-                if (!force && !encriptarStringToMD5(OldPassword).Equals(user.Password))
+                if (!force && !ControladorUtilidades.encriptarStringToMD5(OldPassword).Equals(user.Password))
                     throw new Exception("La password actual no coincide.");
 
-                user.Password = encriptarStringToMD5(NewPassword);
+                user.Password = ControladorUtilidades.encriptarStringToMD5(NewPassword);
                 database.SubmitChanges();
             }catch
             {

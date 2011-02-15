@@ -48,9 +48,14 @@ namespace ControlHoras
             try
             {
                 List<Cliente> clies = sistema.buscarCliente(NombreTB.Text);
-                foreach (Cliente c in clies)
+                if (clies.Count == 0)
+                    MessageBox.Show("No se han encontrado datos con estos filtros.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
                 {
-                    ClientesDGV.Rows.Add(new object[] { c.getNumero().ToString(),c.getNombre(),c.getNombreFantasia(), "OK" });
+                    foreach (Cliente c in clies)
+                    {
+                        ClientesDGV.Rows.Add(new object[] { c.getNumero().ToString(), c.getNombre(), c.getNombreFantasia(), "OK" });
+                    }
                 }
             }
             catch (Exception er)

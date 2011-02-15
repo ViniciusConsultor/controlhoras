@@ -58,7 +58,7 @@
             this.NombreTB.Margin = new System.Windows.Forms.Padding(2);
             this.NombreTB.MaxLength = 50;
             this.NombreTB.Name = "NombreTB";
-            this.NombreTB.Size = new System.Drawing.Size(151, 20);
+            this.NombreTB.Size = new System.Drawing.Size(194, 20);
             this.NombreTB.TabIndex = 0;
             this.NombreTB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NombreTB_KeyDown);
             // 
@@ -66,6 +66,7 @@
             // 
             this.ClientesDGV.AllowUserToAddRows = false;
             this.ClientesDGV.AllowUserToDeleteRows = false;
+            this.ClientesDGV.AllowUserToResizeRows = false;
             this.ClientesDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.ClientesDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Nro,
@@ -76,9 +77,11 @@
             this.ClientesDGV.MultiSelect = false;
             this.ClientesDGV.Name = "ClientesDGV";
             this.ClientesDGV.ReadOnly = true;
+            this.ClientesDGV.RowHeadersVisible = false;
+            this.ClientesDGV.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.ClientesDGV.RowTemplate.Height = 24;
             this.ClientesDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ClientesDGV.Size = new System.Drawing.Size(376, 169);
+            this.ClientesDGV.Size = new System.Drawing.Size(441, 241);
             this.ClientesDGV.TabIndex = 21;
             this.ClientesDGV.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ClientesDGV_CellDoubleClick);
             this.ClientesDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ClientesDGV_CellClick);
@@ -110,10 +113,10 @@
             // 
             this.OKBTN.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.OKBTN.Enabled = false;
-            this.OKBTN.Location = new System.Drawing.Point(312, 216);
+            this.OKBTN.Location = new System.Drawing.Point(384, 288);
             this.OKBTN.Margin = new System.Windows.Forms.Padding(2);
             this.OKBTN.Name = "OKBTN";
-            this.OKBTN.Size = new System.Drawing.Size(56, 23);
+            this.OKBTN.Size = new System.Drawing.Size(66, 27);
             this.OKBTN.TabIndex = 22;
             this.OKBTN.Text = "Aceptar";
             this.OKBTN.UseVisualStyleBackColor = true;
@@ -121,10 +124,10 @@
             // CancelBTN
             // 
             this.CancelBTN.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelBTN.Location = new System.Drawing.Point(9, 216);
+            this.CancelBTN.Location = new System.Drawing.Point(9, 290);
             this.CancelBTN.Margin = new System.Windows.Forms.Padding(2);
             this.CancelBTN.Name = "CancelBTN";
-            this.CancelBTN.Size = new System.Drawing.Size(62, 23);
+            this.CancelBTN.Size = new System.Drawing.Size(66, 27);
             this.CancelBTN.TabIndex = 23;
             this.CancelBTN.Text = "Cancelar";
             this.CancelBTN.UseVisualStyleBackColor = true;
@@ -145,7 +148,7 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(312, 7);
+            this.btnBuscar.Location = new System.Drawing.Point(355, 7);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(56, 23);
             this.btnBuscar.TabIndex = 24;
@@ -157,7 +160,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 244);
+            this.ClientSize = new System.Drawing.Size(461, 321);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.CancelBTN);
             this.Controls.Add(this.OKBTN);

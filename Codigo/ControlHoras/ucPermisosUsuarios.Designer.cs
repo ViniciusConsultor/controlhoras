@@ -65,6 +65,7 @@
             this.tvWinForms_Controls.Name = "tvWinForms_Controls";
             this.tvWinForms_Controls.Size = new System.Drawing.Size(321, 266);
             this.tvWinForms_Controls.TabIndex = 0;
+            this.tvWinForms_Controls.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvWinForms_Controls_NodeMouseClick);
             // 
             // btnDeseleccionarTodos
             // 
@@ -76,6 +77,7 @@
             this.btnDeseleccionarTodos.TabIndex = 1;
             this.btnDeseleccionarTodos.Text = "Deseleccionar Todos";
             this.btnDeseleccionarTodos.UseVisualStyleBackColor = false;
+            this.btnDeseleccionarTodos.Click += new System.EventHandler(this.btnDeseleccionarTodos_Click);
             // 
             // btnSeleccionarTodos
             // 

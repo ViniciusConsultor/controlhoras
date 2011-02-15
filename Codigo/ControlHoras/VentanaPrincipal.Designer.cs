@@ -37,12 +37,12 @@
             this.btnConsultas = new System.Windows.Forms.ToolStripButton();
             this.menuStripSuperior = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mantenimientoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serviciosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.empleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listaNegraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.codiguerasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,6 +57,8 @@
             this.cargosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tiposMotivosCambioDiarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarNumeroEmpleadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sustituirEnEscalafonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -64,10 +66,11 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslUsuario = new System.Windows.Forms.ToolStripStatusLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsslIdUsuarioLogueado = new System.Windows.Forms.ToolStripStatusLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.consultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ofdCargarArchivoImportacionConsultas = new System.Windows.Forms.OpenFileDialog();
             this.menuBotones.SuspendLayout();
             this.menuStripSuperior.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -164,6 +167,13 @@
             this.archivoToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.archivoToolStripMenuItem.Text = "Archivo";
             // 
+            // cambiarContraseñaToolStripMenuItem
+            // 
+            this.cambiarContraseñaToolStripMenuItem.Name = "cambiarContraseñaToolStripMenuItem";
+            this.cambiarContraseñaToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.cambiarContraseñaToolStripMenuItem.Text = "Cambiar Contraseña";
+            this.cambiarContraseñaToolStripMenuItem.Click += new System.EventHandler(this.cambiarContraseñaToolStripMenuItem_Click);
+            // 
             // salirToolStripMenuItem1
             // 
             this.salirToolStripMenuItem1.Name = "salirToolStripMenuItem1";
@@ -213,15 +223,6 @@
             this.empleadosToolStripMenuItem.Text = "Empleados";
             this.empleadosToolStripMenuItem.Click += new System.EventHandler(this.empleadosToolStripMenuItem_Click);
             // 
-            // usuariosToolStripMenuItem
-            // 
-            this.usuariosToolStripMenuItem.Enabled = false;
-            this.usuariosToolStripMenuItem.Image = global::ControlHoras.Imagenes.add_user;
-            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.usuariosToolStripMenuItem.Text = "Usuarios";
-            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
-            // 
             // listaNegraToolStripMenuItem
             // 
             this.listaNegraToolStripMenuItem.Enabled = false;
@@ -248,7 +249,9 @@
             this.tiposDeDocumentosToolStripMenuItem,
             this.tiposDeEventosToolStripMenuItem,
             this.cargosToolStripMenuItem,
-            this.tiposMotivosCambioDiarioToolStripMenuItem});
+            this.tiposMotivosCambioDiarioToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.consultasToolStripMenuItem});
             this.codiguerasToolStripMenuItem.Enabled = false;
             this.codiguerasToolStripMenuItem.Name = "codiguerasToolStripMenuItem";
             this.codiguerasToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
@@ -301,6 +304,7 @@
             this.tiposDeDocumentosToolStripMenuItem.Name = "tiposDeDocumentosToolStripMenuItem";
             this.tiposDeDocumentosToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.tiposDeDocumentosToolStripMenuItem.Text = "Tipos de Documentos";
+            this.tiposDeDocumentosToolStripMenuItem.Visible = false;
             this.tiposDeDocumentosToolStripMenuItem.Click += new System.EventHandler(this.tiposDeDocumentosToolStripMenuItem_Click);
             // 
             // tiposDeEventosToolStripMenuItem
@@ -331,6 +335,20 @@
             this.cambiarNumeroEmpleadoToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.cambiarNumeroEmpleadoToolStripMenuItem.Text = "Cambiar Número Empleado";
             this.cambiarNumeroEmpleadoToolStripMenuItem.Click += new System.EventHandler(this.cambiarNúmeroEmpleadoToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(210, 6);
+            // 
+            // usuariosToolStripMenuItem
+            // 
+            this.usuariosToolStripMenuItem.Enabled = false;
+            this.usuariosToolStripMenuItem.Image = global::ControlHoras.Imagenes.add_user;
+            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.usuariosToolStripMenuItem.Text = "Usuarios";
+            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
             // administracionToolStripMenuItem
             // 
@@ -387,6 +405,12 @@
             this.tsslUsuario.Name = "tsslUsuario";
             this.tsslUsuario.Size = new System.Drawing.Size(0, 17);
             // 
+            // tsslIdUsuarioLogueado
+            // 
+            this.tsslIdUsuarioLogueado.Name = "tsslIdUsuarioLogueado";
+            this.tsslIdUsuarioLogueado.Size = new System.Drawing.Size(0, 17);
+            this.tsslIdUsuarioLogueado.Visible = false;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
@@ -397,23 +421,22 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // cambiarContraseñaToolStripMenuItem
+            // toolStripSeparator4
             // 
-            this.cambiarContraseñaToolStripMenuItem.Name = "cambiarContraseñaToolStripMenuItem";
-            this.cambiarContraseñaToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.cambiarContraseñaToolStripMenuItem.Text = "Cambiar Contraseña";
-            this.cambiarContraseñaToolStripMenuItem.Click += new System.EventHandler(this.cambiarContraseñaToolStripMenuItem_Click);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(215, 6);
             // 
-            // toolStripSeparator3
+            // consultasToolStripMenuItem
             // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(210, 6);
+            this.consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
+            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.consultasToolStripMenuItem.Text = "Consultas";
+            this.consultasToolStripMenuItem.Visible = false;
+            this.consultasToolStripMenuItem.Click += new System.EventHandler(this.consultasToolStripMenuItem_Click);
             // 
-            // tsslIdUsuarioLogueado
+            // ofdCargarArchivoImportacionConsultas
             // 
-            this.tsslIdUsuarioLogueado.Name = "tsslIdUsuarioLogueado";
-            this.tsslIdUsuarioLogueado.Size = new System.Drawing.Size(0, 17);
-            this.tsslIdUsuarioLogueado.Visible = false;
+            this.ofdCargarArchivoImportacionConsultas.FileName = "openFileDialog1";
             // 
             // VentanaPrincipal
             // 
@@ -482,5 +505,8 @@
         private System.Windows.Forms.ToolStripMenuItem cambiarContraseñaToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripStatusLabel tsslIdUsuarioLogueado;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem consultasToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog ofdCargarArchivoImportacionConsultas;
     }
 }
