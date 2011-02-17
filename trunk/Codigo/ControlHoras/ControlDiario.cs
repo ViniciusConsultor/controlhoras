@@ -62,6 +62,7 @@ namespace ControlHoras
                         txtServicio.Text = servicio.Nombre;
                         cliente = datos.obtenerCliente(int.Parse(ucCliente.ClienteNRO));
                         mtFecha.Focus();
+                        MessageBox.Show(DateTime.Now.ToShortDateString());
                         mtFecha.Text = DateTime.Now.ToShortDateString();
                         SendKeys.Send("{ENTER}");
                     }
@@ -92,6 +93,7 @@ namespace ControlHoras
             {
                 try
                 {
+                    //DateTime tmpFecha = DateTime.Now;
                     int numCli = int.Parse(ucCliente.ClienteNRO);
                     cliente = datos.obtenerCliente(numCli);
                     Cliente cli = sistema.obtenerCliente(numCli);
@@ -113,7 +115,11 @@ namespace ControlHoras
                         txtServicio.Text = servicio.Nombre;
 
                         mtFecha.Focus();
-                        mtFecha.Text = DateTime.Now.ToShortDateString();
+                        //MessageBox.Show(DateTime.Now.ToShortDateString());
+                        //tmpFecha.Kind = DateTimeKind.Local;
+                        //MessageBox.Show(tmpFecha.ToShortDateString());
+                        string temp = DateTime.Now.ToShortDateString();
+                        mtFecha.Text = temp;
                         SendKeys.Send("{ENTER}");
 
                         if (cant > 1)

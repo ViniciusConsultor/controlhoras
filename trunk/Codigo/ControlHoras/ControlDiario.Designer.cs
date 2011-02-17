@@ -50,7 +50,9 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.cambiarHoraEntrada = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarHoraSalida = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.agregarFuncionario = new System.Windows.Forms.ToolStripMenuItem();
+            this.quitarFuncionarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mtFecha = new System.Windows.Forms.MaskedTextBox();
             this.btnDiaSiguiente = new System.Windows.Forms.Button();
             this.btnDiaAnterior = new System.Windows.Forms.Button();
@@ -65,8 +67,6 @@
             this.lblDia = new System.Windows.Forms.Label();
             this.PosteriorBTN = new System.Windows.Forms.Button();
             this.AnteriorBTN = new System.Windows.Forms.Button();
-            this.quitarFuncionarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHoras)).BeginInit();
             this.menuStripdgvHoras.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -74,7 +74,7 @@
             // 
             // txtServicio
             // 
-            this.txtServicio.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtServicio.BackColor = System.Drawing.SystemColors.Window;
             this.txtServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtServicio.Location = new System.Drawing.Point(62, 77);
             this.txtServicio.Name = "txtServicio";
@@ -199,7 +199,7 @@
             this.quitarFuncionarioToolStripMenuItem});
             this.menuStripdgvHoras.Name = "menuStripdgvHoras";
             this.menuStripdgvHoras.ShowImageMargin = false;
-            this.menuStripdgvHoras.Size = new System.Drawing.Size(167, 148);
+            this.menuStripdgvHoras.Size = new System.Drawing.Size(167, 126);
             // 
             // cambiarFuncionario
             // 
@@ -227,12 +227,24 @@
             this.cambiarHoraSalida.Text = "Cambiar Hora Salida";
             this.cambiarHoraSalida.Click += new System.EventHandler(this.cambiarHoraSalida_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(163, 6);
+            // 
             // agregarFuncionario
             // 
             this.agregarFuncionario.Name = "agregarFuncionario";
             this.agregarFuncionario.Size = new System.Drawing.Size(166, 22);
             this.agregarFuncionario.Text = "Agregar Funcionario";
             this.agregarFuncionario.Click += new System.EventHandler(this.agregarFuncionario_Click);
+            // 
+            // quitarFuncionarioToolStripMenuItem
+            // 
+            this.quitarFuncionarioToolStripMenuItem.Name = "quitarFuncionarioToolStripMenuItem";
+            this.quitarFuncionarioToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.quitarFuncionarioToolStripMenuItem.Text = "Quitar Funcionario";
+            this.quitarFuncionarioToolStripMenuItem.Click += new System.EventHandler(this.quitarFuncionarioToolStripMenuItem_Click);
             // 
             // mtFecha
             // 
@@ -355,7 +367,7 @@
             // 
             this.ucCliente.ClienteNRO = "";
             this.ucCliente.Location = new System.Drawing.Point(12, 34);
-            this.ucCliente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ucCliente.Margin = new System.Windows.Forms.Padding(2);
             this.ucCliente.Name = "ucCliente";
             this.ucCliente.Size = new System.Drawing.Size(418, 40);
             this.ucCliente.TabIndex = 0;
@@ -394,18 +406,6 @@
             this.AnteriorBTN.UseVisualStyleBackColor = true;
             this.AnteriorBTN.Visible = false;
             this.AnteriorBTN.Click += new System.EventHandler(this.AnteriorBTN_Click);
-            // 
-            // quitarFuncionarioToolStripMenuItem
-            // 
-            this.quitarFuncionarioToolStripMenuItem.Name = "quitarFuncionarioToolStripMenuItem";
-            this.quitarFuncionarioToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.quitarFuncionarioToolStripMenuItem.Text = "Quitar Funcionario";
-            this.quitarFuncionarioToolStripMenuItem.Click += new System.EventHandler(this.quitarFuncionarioToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(163, 6);
             // 
             // ControlDiario
             // 

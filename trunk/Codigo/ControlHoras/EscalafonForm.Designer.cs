@@ -307,7 +307,7 @@
             // 
             // txtServicio
             // 
-            this.txtServicio.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtServicio.BackColor = System.Drawing.SystemColors.Window;
             this.txtServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtServicio.Location = new System.Drawing.Point(62, 66);
             this.txtServicio.Name = "txtServicio";
@@ -318,7 +318,7 @@
             // 
             // txtCliente
             // 
-            this.txtCliente.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtCliente.BackColor = System.Drawing.SystemColors.Window;
             this.txtCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCliente.Location = new System.Drawing.Point(62, 39);
             this.txtCliente.Name = "txtCliente";

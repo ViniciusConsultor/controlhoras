@@ -48,7 +48,7 @@
             // 
             // ClienteTB
             // 
-            this.ClienteTB.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ClienteTB.BackColor = System.Drawing.SystemColors.Window;
             this.ClienteTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ClienteTB.Location = new System.Drawing.Point(50, 10);
             this.ClienteTB.Name = "ClienteTB";
