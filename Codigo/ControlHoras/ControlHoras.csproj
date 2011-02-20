@@ -194,11 +194,11 @@
     <Compile Include="BúsquedaCliente.Designer.cs">
       <DependentUpon>BúsquedaCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="CambiarFuncionario.cs">
+    <Compile Include="ControlDiarioCambiarFuncionario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CambiarFuncionario.Designer.cs">
-      <DependentUpon>CambiarFuncionario.cs</DependentUpon>
+    <Compile Include="ControlDiarioCambiarFuncionario.Designer.cs">
+      <DependentUpon>ControlDiarioCambiarFuncionario.cs</DependentUpon>
     </Compile>
     <Compile Include="CambiarHoraFuncionario.cs">
       <SubType>Form</SubType>
@@ -443,8 +443,8 @@
       <DependentUpon>BúsquedaCliente.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="CambiarFuncionario.resx">
-      <DependentUpon>CambiarFuncionario.cs</DependentUpon>
+    <EmbeddedResource Include="ControlDiarioCambiarFuncionario.resx">
+      <DependentUpon>ControlDiarioCambiarFuncionario.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CambiarHoraFuncionario.resx">

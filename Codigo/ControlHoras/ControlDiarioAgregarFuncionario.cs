@@ -35,9 +35,9 @@ namespace ControlHoras
                 try
                 {
                     funcionario = controller.obtenerEmpleado(int.Parse(mtFuncionario.Text));
-                    if (funcionario.Activo == 0)
+                    if (funcionario.Activo == 0 && FechaCorresponde >= funcionario.FechaBaja)
                     {
-                        // Funcionario Inactivo.
+                        // Funcionario Inactivo y la FechaCorresponde es mayor o igual a la fecha de baja.
                         funcionario = null;
                         MessageBox.Show(this, "El Funcionario " + mtFuncionario.Text + " esta Inactivo. No se puede agregar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                        

@@ -212,7 +212,8 @@ namespace ControlHoras
                 MotIVOsCamBiosDiARioS motivoCambio = null;
                 int idFuncSeleccionado = int.Parse(dgvHoras.SelectedRows[0].Cells["NroEmpleado"].Value.ToString() );
                 string nombreFunc = dgvHoras.SelectedRows[0].Cells["Funcionario"].Value.ToString();
-                CambiarFuncionario change = new CambiarFuncionario(idFuncSeleccionado,nombreFunc);
+                DateTime fecha = DateTime.Parse(mtFecha.Text);
+                ControlDiarioCambiarFuncionario change = new ControlDiarioCambiarFuncionario(idFuncSeleccionado,nombreFunc, fecha);
                 DialogResult dg = change.ShowDialog(this);
 
                 if (dg == DialogResult.OK)
@@ -293,8 +294,9 @@ namespace ControlHoras
                         mcdf.motivoCambio.NroEmpleado = (uint)nroEmp;
                         mcdf.motivoCambio.NumeroCliente = uint.Parse(ucCliente.ClienteNRO);
                         mcdf.motivoCambio.NumeroServicio = servicio.NumeroServicio;
+                        DateTime DateNueva = DateTime.Parse(mtFecha.Text + " " + HoraNueva);
                         
-                        datos.cambiarHoraFuncionarioControlDiario(idhge,nroEmp, HoraNueva, true, mcdf.motivoCambio);
+                        datos.cambiarHoraFuncionarioControlDiario(idhge,nroEmp, DateNueva, true, mcdf.motivoCambio);
 
                         dgvHoras.Rows[numFila].Cells["HoraEntrada"].Value = HoraNueva;
                     }
@@ -419,8 +421,8 @@ namespace ControlHoras
                         mcdf.motivoCambio.NroEmpleado = (uint)nroEmp;
                         mcdf.motivoCambio.NumeroCliente = uint.Parse(ucCliente.ClienteNRO);
                         mcdf.motivoCambio.NumeroServicio = servicio.NumeroServicio;
-
-                        datos.cambiarHoraFuncionarioControlDiario(idhge,nroEmp, HoraNueva, false, mcdf.motivoCambio);
+                        DateTime DateNueva = DateTime.Parse(mtFecha.Text + " " + HoraNueva);
+                        datos.cambiarHoraFuncionarioControlDiario(idhge,nroEmp, DateNueva, false, mcdf.motivoCambio);
 
                         dgvHoras.Rows[numFila].Cells["HoraSalida"].Value = HoraNueva;
                     }
