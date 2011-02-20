@@ -1049,17 +1049,8 @@ namespace Datos
                                               select reg).Single();
                 if (consEmp != null)
                 {
-                    string sql = consEmp.Query;
-                    if (consEmp.Query.Contains("FECHASOLA"))
-                        if (parametrosConsulta.ContainsKey("FECHASOLA"))
-                        {
-                            string[] fecha = parametrosConsulta["FECHASOLA"].Split('/');
-                            DateTime dt = new DateTime(int.Parse(fecha[2]), int.Parse(fecha[1]), int.Parse(fecha[0]));
-                            string fecha2 = String.Format("{0:yyyy-MM-dd}", dt);
-                            sql = sql.Replace("FECHASOLA", fecha2);
-                        }
-
-
+                    string sql = makeSQLSentencies(consEmp.Query,parametrosConsulta);
+                    
                     conexion2 = (MySqlConnection)database.Connection;
 
                     MySqlDataAdapter mysqlAdapter = new MySqlDataAdapter(sql, conexion2);
@@ -1081,6 +1072,86 @@ namespace Datos
             }
         }
 
+        private string makeSQLSentencies(string sql,Dictionary<string,string> parametrosConsulta)
+        {
+            if (sql.Contains("FECHASOLA"))
+            {
+                if (parametrosConsulta.ContainsKey("FECHASOLA"))
+                {
+                    string[] fecha = parametrosConsulta["FECHASOLA"].Split('/');
+                    DateTime dt = new DateTime(int.Parse(fecha[2]), int.Parse(fecha[1]), int.Parse(fecha[0]));
+                    string fecha2 = String.Format("{0:yyyy-MM-dd}", dt);
+                    sql = sql.Replace("FECHASOLA", fecha2);
+                }
+                else
+                    throw new Exception("No se obtuvieron los parametros necesarios FECHA para ejecutar la consulta");
+
+            }
+            if (sql.Contains("NROCLIENTE"))
+            {
+                if (parametrosConsulta.ContainsKey("NROCLIENTE"))
+                {
+                    sql = sql.Replace("NROCLIENTE", parametrosConsulta["NROCLIENTE"]);
+                    if (sql.Contains("NROSERVICIO"))
+                    {
+                        if (parametrosConsulta.ContainsKey("NROSERVICIO"))
+                        {
+                            sql = sql.Replace("NROSERVICIO", parametrosConsulta["NROSERVICIO"]);
+                        }
+                        else
+                            throw new Exception("No se obtuvieron los parametros necesarios NROSERVICIO para ejecutar la consulta");
+                    }
+                }
+                else
+                    throw new Exception("No se obtuvieron los parametros necesarios NROCLIENTE para ejecutar la consulta");
+            }
+            if (sql.Contains("NROEMPLEADO"))
+            {
+                if (sql.Contains("IFNROEMPLEADO"))
+                {
+                    if (parametrosConsulta.ContainsKey("NROEMPLEADO"))
+                    {
+                        // Reemplazamos el IFNROEMPLEADO por el and NroEmpleado-
+                        string paraReemp = " and NroEmpleado=" + parametrosConsulta["NROEMPLEADO"];
+                        sql = sql.Replace("IFNROEMPLEADO", paraReemp);
+                    }
+                    else
+                    {
+                        // Reemplazamos el IFNROEMPLEADO por vacio.
+                        sql = sql.Replace("IFNROEMPLEADO", "");
+                    }
+                }
+                else
+                {
+                    if (parametrosConsulta.ContainsKey("NROEMPLEADO"))
+                    {
+                        sql = sql.Replace("NROEMPLEADO", parametrosConsulta["NROEMPLEADO"]);
+                    }
+                    else
+                        throw new Exception("No se obtuvieron los parametros necesarios NROEMPLEADO para ejecutar la consulta");
+                }
+            }
+            if (sql.Contains("FECHADESDE") && sql.Contains("FECHAHASTA"))
+            {
+                if (parametrosConsulta.ContainsKey("FECHADESDE") && parametrosConsulta.ContainsKey("FECHAHASTA"))
+                {
+                    string[] fecha = parametrosConsulta["FECHADESDE"].Split('/');
+                    DateTime dt = new DateTime(int.Parse(fecha[2]), int.Parse(fecha[1]), int.Parse(fecha[0]));
+                    string fecha2 = String.Format("{0:yyyy-MM-dd}", dt);
+                    sql = sql.Replace("FECHADESDE", fecha2);
+
+                    fecha = parametrosConsulta["FECHAHASTA"].Split('/');
+                    dt = new DateTime(int.Parse(fecha[2]), int.Parse(fecha[1]), int.Parse(fecha[0]));
+                    fecha2 = String.Format("{0:yyyy-MM-dd}", dt);
+                    sql = sql.Replace("FECHAHASTA", fecha2);
+
+                }
+                else
+                    throw new Exception("No se obtuvieron los parametros necesarios NROEMPLEADO para ejecutar la consulta");
+            }
+            return sql;
+        }
+
         public DataSet ejecutarConsultaCliente(int numeroConsultaCliente, Dictionary<string, string> parametrosConsulta)
         {
             MySqlConnection conexion2;
@@ -1092,73 +1163,15 @@ namespace Datos
                                               select reg).Single();
                 if (consCli != null)
                 {
-                    string sql = consCli.Query;
-                    if (consCli.Query.Contains("FECHASOLA"))
-                    {
-                        if (parametrosConsulta.ContainsKey("FECHASOLA"))
-                        {
-                            string[] fecha = parametrosConsulta["FECHASOLA"].Split('/');
-                            DateTime dt = new DateTime(int.Parse(fecha[2]), int.Parse(fecha[1]), int.Parse(fecha[0]));
-                            string fecha2 = String.Format("{0:yyyy-MM-dd}", dt);
-                            sql = sql.Replace("FECHASOLA", fecha2);
-                        }
-                        else
-                            throw new Exception("No se obtuvieron los parametros necesarios FECHA para ejecutar la consulta");
-
-                    }
-                    if (consCli.Query.Contains("NROCLIENTE"))
-                    {
-                        if (parametrosConsulta.ContainsKey("NROCLIENTE"))
-                        {
-                            sql = sql.Replace("NROCLIENTE", parametrosConsulta["NROCLIENTE"]);
-                            if(consCli.Query.Contains("NROSERVICIO"))
-                            {
-                                if (parametrosConsulta.ContainsKey("NROSERVICIO"))
-                                {
-                                    sql = sql.Replace("NROSERVICIO", parametrosConsulta["NROSERVICIO"]);
-                                }
-                                else
-                                    throw new Exception("No se obtuvieron los parametros necesarios NROSERVICIO para ejecutar la consulta");
-                            }
-                        }
-                        else
-                            throw new Exception("No se obtuvieron los parametros necesarios NROCLIENTE para ejecutar la consulta");
-                    }
-                    if (consCli.Query.Contains("NROEMPLEADO"))
-                    {
-                        if (parametrosConsulta.ContainsKey("NROEMPLEADO"))
-                        {
-                            sql = sql.Replace("NROEMPLEADO", parametrosConsulta["NROEMPLEADO"]);
-                        }
-                        else
-                            throw new Exception("No se obtuvieron los parametros necesarios NROEMPLEADO para ejecutar la consulta");
-                    }
-                    if (consCli.Query.Contains("FECHADESDE") && consCli.Query.Contains("FECHAHASTA"))
-                    {
-                        if (parametrosConsulta.ContainsKey("FECHADESDE") && parametrosConsulta.ContainsKey("FECHAHASTA"))
-                        {
-                            string[] fecha = parametrosConsulta["FECHADESDE"].Split('/');
-                            DateTime dt = new DateTime(int.Parse(fecha[2]), int.Parse(fecha[1]), int.Parse(fecha[0]));
-                            string fecha2 = String.Format("{0:yyyy-MM-dd}", dt);
-                            sql = sql.Replace("FECHADESDE", fecha2);
-
-                            fecha = parametrosConsulta["FECHAHASTA"].Split('/');
-                            dt = new DateTime(int.Parse(fecha[2]), int.Parse(fecha[1]), int.Parse(fecha[0]));
-                            fecha2 = String.Format("{0:yyyy-MM-dd}", dt);
-                            sql = sql.Replace("FECHAHASTA", fecha2);
-                         
-                        }
-                        else
-                            throw new Exception("No se obtuvieron los parametros necesarios NROEMPLEADO para ejecutar la consulta");
-                    }
-
+                    string sql = makeSQLSentencies(consCli.Query,parametrosConsulta);
+                    
                     conexion2 = (MySqlConnection)database.Connection;
                     
                     MySqlDataAdapter mysqlAdapter = new MySqlDataAdapter(sql, conexion2);
                     
                     DataSet sd = new DataSet();
                     mysqlAdapter.Fill(sd);
-                    //conexion.Close();
+                    
                     return sd;
                 }
                 throw new Exception("Error al ejecutar la consulta para obtener el query");
@@ -2955,7 +2968,7 @@ namespace Datos
             }
         }
 
-        public void cambiarHoraFuncionarioControlDiario(long IdHorasGeneragasEscalafon, int NroEmpleado, string horanueva, bool Entrada, MotIVOsCamBiosDiARioS mtcd)
+        public void cambiarHoraFuncionarioControlDiario(long IdHorasGeneragasEscalafon, int NroEmpleado, DateTime Horanueva, bool Entrada, MotIVOsCamBiosDiARioS mtcd)
         {
            // Table<HoRaSGeneraDaSEScalaFOn> horasGen = database.HoRaSGeneraDaSEScalaFOn;
             try
@@ -2963,9 +2976,9 @@ namespace Datos
                 HoRaSGeneraDaSEScalaFOn hs = database.HoRaSGeneraDaSEScalaFOn.Single(p => p.IDHorasGeneradasEscalafon == IdHorasGeneragasEscalafon);
 
                 if (Entrada)
-                    hs.HoraEntrada = DateTime.Parse(horanueva);
+                    hs.HoraEntrada = Horanueva;
                 else
-                    hs.HoraSalida = DateTime.Parse(horanueva); 
+                    hs.HoraSalida = Horanueva; 
                 
                 //mtcd.IDHorasGeneradasEscalafon = IdHorasGeneragasEscalafon;                
                 mtcd.FechaCorresponde = hs.FechaCorrespondiente;

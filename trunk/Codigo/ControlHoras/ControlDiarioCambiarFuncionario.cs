@@ -9,19 +9,21 @@ using System.Windows.Forms;
 using Datos;
 namespace ControlHoras
 {
-    public partial class CambiarFuncionario : Form
+    public partial class ControlDiarioCambiarFuncionario : Form
     {
 
         private IDatos Controller;
         public EmPleadOs FuncionarioNuevo { get; private set; }
         public string HoraInicio { get; private set; }
         public string HoraFin { get; private set; }
+        private DateTime FechaCorresponde;
 
-        public CambiarFuncionario(int idFunc, string nombre)
+        public ControlDiarioCambiarFuncionario(int idFunc, string nombre, DateTime Fecha)
         {
             InitializeComponent();
             mtFuncionarioActual.Text = idFunc.ToString();
             txtNombreFuncionarioActual.Text = nombre;
+            FechaCorresponde = Fecha;
             Controller = ControladorDatos.getInstance();            
         }       
 
@@ -32,9 +34,8 @@ namespace ControlHoras
             {
                 try
                 {
-                     
                     FuncionarioNuevo = Controller.obtenerEmpleado(int.Parse(mtFuncionarioNuevo.Text));
-                    if (FuncionarioNuevo.Activo == 0)
+                    if (FuncionarioNuevo.Activo == 0 && FechaCorresponde >= FuncionarioNuevo.FechaBaja)
                     {
                         // Funcionario Inactivo.
                         FuncionarioNuevo = null;

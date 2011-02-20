@@ -259,6 +259,7 @@ namespace ControlHoras
             btnExtrasEliminar.Enabled = false;
             btnExtrasGuardar.Enabled = false;
             ImprimirTSB.Enabled = false;
+            btnVerEnEstalafon.Enabled = false;
             dtpFechaIngreso.Text = DateTime.Now.ToString();
             dtpFechaAltaBPS.Text = DateTime.Now.ToString();
             tcEmpleado.SelectedIndex = 0;
@@ -423,28 +424,11 @@ namespace ControlHoras
                         limpiarForm();
                         if (empleado.Activo == 1)
                         {
-
                             habilitarPermisosEmpleado(true);
-                            //lblEstadoEmpleado.Visible = true;
-                            //lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
-                            //btnAgregar.Enabled = false;
-                            //btnGuardar.Enabled = true;
-                            //BtnReactivar.Visible = false;
-                            //btnExtrasAgregar.Enabled = true;
-                            //btnAgregarHistorial.Enabled = true;
-                            //ImprimirTSB.Enabled = true;
                         }
                         else
                         {
                             habilitarPermisosEmpleado(false);
-                            //lblEstadoEmpleado.Visible = true;
-                            //lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
-                            //btnAgregar.Enabled = false;
-                            //btnGuardar.Enabled = false;
-                            //BtnReactivar.Visible = true;
-                            //btnExtrasAgregar.Enabled = false;
-                            //btnAgregarHistorial.Enabled = false;
-                            //ImprimirTSB.Enabled = false;
                         }
                         cargarEmpleado(empleado);
                     }
@@ -1473,10 +1457,6 @@ namespace ControlHoras
             }
             try
             {
-                
-                //DateTime FechaIni = DateTime.ParseExact(dtpFechaInicioHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-                //DateTime FechaFin = DateTime.ParseExact(dtpFechaFinHistorial.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-
                 lblIdEventoHistorialEmpleado.Text = dgvHistorialEmpleado.Rows[e.RowIndex].Cells["IdEventoHistorialEmpleado"].Value.ToString();
                 dtpFechaInicioHistorial.Text = dgvHistorialEmpleado.Rows[e.RowIndex].Cells["FechaInicio"].Value.ToString();
                 dtpFechaFinHistorial.Text = dgvHistorialEmpleado.Rows[e.RowIndex].Cells["FechaFin"].Value.ToString();
@@ -2904,19 +2884,6 @@ namespace ControlHoras
                     btnGuardar.PerformClick();
                     BtnReactivar.Visible = false;
 
-                    //MessageBox.Show("El empleado a sido reingresado con exito.", "Modifacion con exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //mtNumeroEmpleado.Text = nroNuevo.ToString();
-                    //SendKeys.Send("{ENTER}");
-
-
-                    /*
-                    btnAgregar.Enabled = false;
-                    btnGuardar.Enabled = true;
-                    BtnReactivar.Visible = false;
-                    btnExtrasAgregar.Enabled = true;
-                    btnAgregarHistorial.Enabled = true;
-                    ImprimirTSB.Enabled = true;
-                     */
                 }
                 catch (Exception ex)
                 {
@@ -3003,6 +2970,7 @@ namespace ControlHoras
                 btnExtrasAgregar.Enabled = true;
                 btnAgregarHistorial.Enabled = true;
                 ImprimirTSB.Enabled = true;
+                btnVerEnEstalafon.Enabled = true;
             }
             else
             {
@@ -3014,95 +2982,186 @@ namespace ControlHoras
                 btnExtrasAgregar.Enabled = false;
                 btnAgregarHistorial.Enabled = false;
                 ImprimirTSB.Enabled = true;
+                btnVerEnEstalafon.Enabled = true;
             }
         }
 
         private void updateListOfDepartamentos()
         {
-            Dictionary<int, string> docs = tipos.obtenerDepartamentos(false);
-            CargarCombo(cmbDepartamento, docs);
+            try
+            {
+                Dictionary<int, string> docs = tipos.obtenerDepartamentos(false);
+                CargarCombo(cmbDepartamento, docs);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void updateListOfCiudades()
         {
-            Dictionary<int, string> docs = tipos.obtenerCiudades(false);
-            CargarCombo(cmbCiudades, docs);
+            try
+            {
+                Dictionary<int, string> docs = tipos.obtenerCiudades(false);
+                CargarCombo(cmbCiudades, docs);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void updateListOfBarrios()
         {
-            Dictionary<int, string> docs = tipos.obtenerBarrios(false);
-            CargarCombo(cmbBarrios, docs);
+            try
+            {
+                Dictionary<int, string> docs = tipos.obtenerBarrios(false);
+                CargarCombo(cmbBarrios, docs);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnAgregarDepartamento_Click(object sender, EventArgs e)
         {
-            ABMDepartamentos dptos = ABMDepartamentos.getVentana();
-            dptos.ShowDialog(this);
-            updateListOfDepartamentos();
+            try
+            {
+                ABMDepartamentos dptos = ABMDepartamentos.getVentana();
+                dptos.ShowDialog(this);
+                updateListOfDepartamentos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnAgregarCiudad_Click(object sender, EventArgs e)
         {
-            ABMCiudades dptos = ABMCiudades.getVentana();
-            dptos.ShowDialog(this);
-            updateListOfCiudades();
+            try
+            {
+                ABMCiudades dptos = ABMCiudades.getVentana();
+                dptos.ShowDialog(this);
+                updateListOfCiudades();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnAgregarBarrio_Click(object sender, EventArgs e)
         {
-            ABMBarrios dptos = ABMBarrios.getVentana();
-            dptos.ShowDialog(this);
-            updateListOfBarrios();
+            try
+            {
+                ABMBarrios dptos = ABMBarrios.getVentana();
+                dptos.ShowDialog(this);
+                updateListOfBarrios();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void updateListOfMutualistas()
         {
-            Dictionary<int, string> docs = tipos.obtenerMutualistas(false);
-            CargarCombo(cmbMutualista, docs);
+            try
+            {
+                Dictionary<int, string> docs = tipos.obtenerMutualistas(false);
+                CargarCombo(cmbMutualista, docs);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnAgregarMutualista_Click(object sender, EventArgs e)
         {
-            ABMMutualistas muts = ABMMutualistas.getVentana();
-            muts.ShowDialog(this);
-            updateListOfMutualistas();
+            try
+            {
+                ABMMutualistas muts = ABMMutualistas.getVentana();
+                muts.ShowDialog(this);
+                updateListOfMutualistas();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void updateListOfEmergenciaMedica()
         {
-            Dictionary<int, string> docs = tipos.obtenerEmergenciaMedicas(false);
-            CargarCombo(cmbEmergenciaMedica, docs);
+            try
+            {
+                Dictionary<int, string> docs = tipos.obtenerEmergenciaMedicas(false);
+                CargarCombo(cmbEmergenciaMedica, docs);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnAgregarEmergenciaMedica_Click(object sender, EventArgs e)
         {
-            ABMEmergenciasMedica emrgs = ABMEmergenciasMedica.getVentana();
-            emrgs.ShowDialog(this);
-            updateListOfEmergenciaMedica();
+            try
+            {
+                ABMEmergenciasMedica emrgs = ABMEmergenciasMedica.getVentana();
+                emrgs.ShowDialog(this);
+                updateListOfEmergenciaMedica();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void updateListOfCargos()
         {
             Dictionary<int, string> listCargos = datosTipos.obtenerTiposCargos(true);
-
-            cargos = datosTipos.obtenerTiposCargosList(true);
-            CargarCombo(cmbTiposCargos, listCargos);
-
+            try
+            {
+                cargos = datosTipos.obtenerTiposCargosList(true);
+                CargarCombo(cmbTiposCargos, listCargos);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnAgregarCargo_Click(object sender, EventArgs e)
         {
-            ABMCargos abmcargos = ABMCargos.getVentana();
-            abmcargos.ShowDialog(this);
-            updateListOfCargos();
+            try
+            {
+                ABMCargos abmcargos = ABMCargos.getVentana();
+                abmcargos.ShowDialog(this);
+                updateListOfCargos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void dgvHistorialEmpleado_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left && e.Clicks == 2)
-            {
 
+        private void btnVerEnEstalafon_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                VerEscalafonEmpleadoForm esc = new VerEscalafonEmpleadoForm();
+                esc.setNroFuncionario(int.Parse(mtNumeroEmpleado.Text));
+                esc.ShowDialog(this);
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

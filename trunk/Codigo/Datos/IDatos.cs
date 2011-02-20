@@ -224,7 +224,7 @@ namespace Datos
         #region ControlDiario
         void quitarFuncionarioControlDiario(long IdHorasGeneragasEscalafon, MotIVOsCamBiosDiARioS mtcd);
         void cambiarFuncionarioControlDiario(long IdHorasGeneragasEscalafon,int NroEmpleado, MotIVOsCamBiosDiARioS mtcd);
-        void cambiarHoraFuncionarioControlDiario(long IdHorasGeneragasEscalafon,int NroEmpleado, string horanueva, bool Entrada, MotIVOsCamBiosDiARioS mtcd);
+        void cambiarHoraFuncionarioControlDiario(long IdHorasGeneragasEscalafon,int NroEmpleado, DateTime horanueva, bool Entrada, MotIVOsCamBiosDiARioS mtcd);
         
         #endregion
 

@@ -27,6 +27,12 @@ namespace ControlHoras
             }
         }
 
+        public void setNroFuncionario(int NroFuncionario)
+        {
+            mtFuncionario.Text = NroFuncionario.ToString();
+            mtFuncionario_KeyDown(this, new KeyEventArgs(Keys.Enter));
+        }
+
         private void mtFuncionario_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -74,10 +80,13 @@ namespace ControlHoras
             try
             {
                 List<EScalaFOneMpLeadO> listaEscs = datos.getHorariosEmpleado((int)Funcionario.NroEmpleado);
+                ClientEs cli;
                 foreach (EScalaFOneMpLeadO l in listaEscs)
                 {
                     n = dgvEscalafonEmpleado.Rows.Add();
-                    dgvEscalafonEmpleado.Rows[n].Cells["ClienteServicio"].Value = l.EScalaFOn.NumeroCliente.ToString() + "/" + l.EScalaFOn.NumeroServicio.ToString();
+                    cli = datos.obtenerCliente((int)l.EScalaFOn.NumeroCliente);
+                    dgvEscalafonEmpleado.Rows[n].Cells["ClienteServicio"].Value = cli.Nombre ;
+                    dgvEscalafonEmpleado.Rows[n].Cells["Servicio"].Value = l.EScalaFOn.NumeroServicio.ToString();
                     foreach (HoRaRioEScalaFOn h in l.HoRaRioEScalaFOn)
                     {
 

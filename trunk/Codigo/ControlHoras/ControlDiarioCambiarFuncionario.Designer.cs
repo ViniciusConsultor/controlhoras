@@ -1,6 +1,6 @@
 ﻿namespace ControlHoras
 {
-    partial class CambiarFuncionario
+    partial class ControlDiarioCambiarFuncionario
     {
         /// <summary>
         /// Required designer variable.
