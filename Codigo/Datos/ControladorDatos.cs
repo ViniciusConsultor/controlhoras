@@ -2955,10 +2955,11 @@ namespace Datos
             try
             {
                 HoRaSGeneraDaSEScalaFOn hs = database.HoRaSGeneraDaSEScalaFOn.Single(p => p.IDHorasGeneradasEscalafon == IdHorasGeneragasEscalafon);
-                EmPleadOs emp = database.EmPleadOs.Single(e => e.NroEmpleado == NroEmpleadoNuevo);
+                //EmPleadOs emp = database.EmPleadOs.Single(e => e.NroEmpleado == NroEmpleadoNuevo);
 
+                database.MotIVOsCamBiosDiARioS.InsertOnSubmit(mtcd);
                 hs.NroEmpleado = (uint) NroEmpleadoNuevo;
-                //hs.MotIVOsCamBiosDiARioS.Add(mtcd);
+                
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
                 recargarContexto();
             }

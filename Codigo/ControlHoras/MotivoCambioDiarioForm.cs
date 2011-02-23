@@ -44,29 +44,22 @@ namespace ControlHoras
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (txtObservaciones.Text != "")
-            {
-                motivoCambio = new MotIVOsCamBiosDiARioS();
-                motivoCambio.FechaCambio = DateTime.Now;
-                motivoCambio.FechaCorresponde = FechaCorresponde.Date;
-                motivoCambio.Observaciones = txtObservaciones.Text;
-                motivoCambio.TipOsMotIVOCamBIoDiARio = ((TipOsMotIVOCamBIoDiARio)cmbMotivosCambio.SelectedValue);
-                
-            }
-            else
-            {
-                MessageBox.Show(this, "Debe ingresar una observacion.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
-            }
-            botonAceptar = true;
+            
+            motivoCambio = new MotIVOsCamBiosDiARioS();
+            motivoCambio.FechaCambio = DateTime.Now;
+            motivoCambio.FechaCorresponde = FechaCorresponde.Date;
+            motivoCambio.Observaciones = txtObservaciones.Text;
+            motivoCambio.TipOsMotIVOCamBIoDiARio = ((TipOsMotIVOCamBIoDiARio)cmbMotivosCambio.SelectedValue);
+            
+            //botonAceptar = true;
         }
 
         private void MotivoCambioDiarioForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (botonAceptar && txtObservaciones.Text == "")
-            {
-                e.Cancel = true;
-            }
+            //if (botonAceptar)
+            //{
+            //    e.Cancel = true;
+            //}
 
         }
 
