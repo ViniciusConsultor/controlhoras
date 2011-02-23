@@ -24,7 +24,14 @@ namespace ControlHoras
             mtFuncionarioActual.Text = idFunc.ToString();
             txtNombreFuncionarioActual.Text = nombre;
             FechaCorresponde = Fecha;
-            Controller = ControladorDatos.getInstance();            
+            try
+            {
+                Controller = ControladorDatos.getInstance();
+            }
+            catch
+            {
+                throw;
+            }
         }       
 
         private void mtFuncionarioNuevo_KeyDown(object sender, KeyEventArgs e)
