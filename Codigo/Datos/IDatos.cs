@@ -376,5 +376,9 @@ namespace Datos
         List<PantAllAwInForm> obtenerPantallasWinForms(bool soloactivos);
         
         #endregion
+
+        void LiquidarEmpleados(DateTime inicio, DateTime fin);
+
+        void empleadosLiquidados(out DataTable empleados);
     }
 }

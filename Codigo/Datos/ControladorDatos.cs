@@ -3728,6 +3728,87 @@ namespace Datos
             }
         }
 
+
+        public void LiquidarEmpleados(DateTime inicio, DateTime fin)
+        {
+            System.Data.Common.DbConnection conexion = database.Connection;
+            try
+            {                
+                string nombreTabla = database.Connection.Database + ".liquidacionempleados";                
+                string st = "TRUNCATE " + nombreTabla;
+                //st += "'" + string.Format("{0:yyyy-MM-dd}", Contrato.FechaFin) + "', ";
+
+                if (conexion.State != System.Data.ConnectionState.Open)
+                    conexion.Open();
+                System.Data.Common.DbTransaction tran = conexion.BeginTransaction();
+                database.Transaction = tran;
+                database.ExecuteCommand(st, null);
+
+                string sql = "INSERT INTO liquidacionempleados (Fecha, NroEmpleado, NroServicio, NroCliente, Horas)" +
+                             "SELECT hg.FechaCorrespondiente, hg.NroEmpleado, hg.NumeroServicio, hg.NumeroCliente, sec_to_time(sum(time_to_sec(hg.HoraSalida) - time_to_sec(hg.HoraEntrada)))" +
+                             "FROM horasgeneradasescalafon hg WHERE hg.FechaCorrespondiente BETWEEN '" + string.Format("{0:yyyy-MM-dd}", inicio) + "' AND '" + string.Format("{0:yyyy-MM-dd}", fin) + "'" +
+                             "GROUP BY hg.FechaCorrespondiente, hg.NroEmpleado, hg.NumeroServicio, hg.NumeroCliente";
+
+                database.ExecuteCommand(sql, null);                
+                database.Transaction.Commit();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                //database.SubmitChanges();
+            }
+            catch (MySqlException ex)
+            {
+                //database.Refresh(System.Data.Linq.RefreshMode.KeepCurrentValues);
+                // database.Connection.Close();
+                database.Transaction.Rollback();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                if (ex.Number == 1062)
+                {
+                    // int index = database.GetChangeSet().Inserts.IndexOf(cliente);
+                    // database.GetChangeSet().Inserts.RemoveAt(index);
+                    database.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues);
+                }
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                database.Transaction.Rollback();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                throw ex;
+            }
+        }
+
+        public void empleadosLiquidados(out DataTable empleados)
+        {
+            MySqlConnection conexion2;
+            try
+            {
+                string sql = "Select distinct NroEmpleado "+
+                             "FROM liquidacionempleados "+
+                             @"Where NroEmpleado != 9999 and NroEmpleado != 9998 "+
+                             "order by NroEmpleado";
+
+                conexion2 = (MySqlConnection)database.Connection;
+
+                MySqlDataAdapter mysqlAdapter = new MySqlDataAdapter(sql, conexion2);
+
+                DataTable dt = new DataTable();
+                mysqlAdapter.Fill(dt);
+                empleados = dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+
+        }
+
+
         #region PermisosUsuarios_PantallasWinForms_PermisoControl
 
         public List<PantAllAwInForm> obtenerPantallasWinForms(bool soloactivos)

@@ -531,5 +531,19 @@ namespace ControlHoras
               //  pbFoto.Image = (System.Drawing.Image)imgAchicada;
             }
         }
+
+        private void empleadosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LiquidaciónEmpleados cef = new LiquidaciónEmpleados();
+                cef.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
     }
 }
