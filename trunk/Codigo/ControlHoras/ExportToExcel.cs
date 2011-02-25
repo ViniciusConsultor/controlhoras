@@ -26,7 +26,7 @@ namespace ControlHoras
         {
            InitializeComponent();
            try
-           {
+           {               
                datos = ControladorDatos.getInstance();
                columnasSeleccionadas = new List<string>();
            }

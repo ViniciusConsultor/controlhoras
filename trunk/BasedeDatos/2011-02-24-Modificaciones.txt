@@ -1,0 +1,8 @@
+--Crea la tabla auxiliar para la liquidación de los empleados
+CREATE  TABLE IF NOT EXISTS `trustdb`.`liquidacionempleados` (
+  `Fecha` DATE NOT NULL ,
+  `NroEmpleado` MEDIUMINT(8) UNSIGNED NOT NULL ,
+  `NroServicio` MEDIUMINT(8) UNSIGNED NOT NULL ,
+  `NroCliente` MEDIUMINT(8) UNSIGNED NOT NULL ,
+  `Horas` TIME NOT NULL ,
+  PRIMARY KEY (`Fecha`, `NroEmpleado`, `NroServicio`, `NroCliente`) );

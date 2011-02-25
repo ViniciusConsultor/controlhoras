@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FC8B86E8-A818-4987-B135-16FD6B039E53}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -296,6 +296,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Imagenes.resx</DependentUpon>
     </Compile>
+    <Compile Include="LiquidaciónEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LiquidaciónEmpleados.Designer.cs">
+      <DependentUpon>LiquidaciónEmpleados.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListaNegra.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -395,6 +401,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABMGrupos.resx">
       <DependentUpon>ABMGrupos.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ABMLNegra.resx">
       <DependentUpon>ABMLNegra.cs</DependentUpon>
@@ -434,6 +441,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABMUsuarios.resx">
       <DependentUpon>ABMUsuarios.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="BuscarEmpleados.resx">
       <DependentUpon>BuscarEmpleados.cs</DependentUpon>
@@ -500,6 +508,10 @@
       <LastGenOutput>Imagenes.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="LiquidaciónEmpleados.resx">
+      <DependentUpon>LiquidaciónEmpleados.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListaNegra.resx">
       <DependentUpon>ListaNegra.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -514,6 +526,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PermisosUsuario.resx">
       <DependentUpon>PermisosUsuario.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="VerErroresGeneracionEnPantalla.resx">
       <DependentUpon>VerErroresGeneracionEnPantalla.cs</DependentUpon>
@@ -562,9 +575,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucPermisosUsuarios.resx">
       <DependentUpon>ucPermisosUsuarios.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UsuariosGruposForm.resx">
       <DependentUpon>UsuariosGruposForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="VentanaPrincipal.resx">
       <DependentUpon>VentanaPrincipal.cs</DependentUpon>
