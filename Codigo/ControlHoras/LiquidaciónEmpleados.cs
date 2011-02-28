@@ -13,7 +13,7 @@ namespace ControlHoras
     public partial class LiquidaciónEmpleados : Form
     {
         IDatos datos;
-        DataTable empleados;
+        DataTable empleados, liq;
         int cant, ind;
 
         public LiquidaciónEmpleados()
@@ -37,7 +37,9 @@ namespace ControlHoras
 
         private void LiquidarBTN_Click(object sender, EventArgs e)
         {
+            int nroEmp;
             DateTime inicio, fin, aux;
+            
             inicio = new DateTime(MesDTP.Value.Year, MesDTP.Value.Month, 1);
             aux = new DateTime(MesDTP.Value.Year, MesDTP.Value.AddMonths(1).Month, 1);
             fin = aux.AddDays(-1);
@@ -47,8 +49,22 @@ namespace ControlHoras
             ind = 0;
             datos.empleadosLiquidados(out empleados);
 
-            int aux2 = int.Parse(empleados.Rows[ind].ItemArray[0].ToString());
-            
+            nroEmp = int.Parse(empleados.Rows[ind].ItemArray[0].ToString());
+
+            EmPleadOs emp = datos.obtenerEmpleado(nroEmp);
+
+            EmpleadoLBL.Text = emp.NroEmpleado.ToString() + " - " + emp.Apellido + ", " + emp.Nombre;
+
+            TipOscarGoS tc = datos.obtenerCargo((int)emp.IDCargo);
+
+            CargoLBL.Text = tc.Nombre;
+
+            List<DateTime> feriados = datos.ObtenerFeriados();
+
+            liq = datos.LiquidarunEmpleado(nroEmp);
+
+
+
 
         }
 

@@ -380,5 +380,11 @@ namespace Datos
         void LiquidarEmpleados(DateTime inicio, DateTime fin);
 
         void empleadosLiquidados(out DataTable empleados);
+
+        TipOscarGoS obtenerCargo(int idCargo);
+
+        List<DateTime> ObtenerFeriados();
+
+        DataTable LiquidarunEmpleado(int nroEmp);
     }
 }

@@ -33,13 +33,18 @@
             this.LiquidarBTN = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.EmpleadoLBL = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.CargoLBL = new System.Windows.Forms.Label();
+            this.LiquidacionDGV = new System.Windows.Forms.DataGridView();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LiquidacionDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // label3
@@ -100,11 +105,27 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.CargoLBL);
             this.splitContainer2.Panel1.Controls.Add(this.label1);
+            this.splitContainer2.Panel1.Controls.Add(this.EmpleadoLBL);
             this.splitContainer2.Panel1.Controls.Add(this.label12);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.LiquidacionDGV);
             this.splitContainer2.Size = new System.Drawing.Size(753, 433);
             this.splitContainer2.SplitterDistance = 85;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // EmpleadoLBL
+            // 
+            this.EmpleadoLBL.AutoSize = true;
+            this.EmpleadoLBL.Location = new System.Drawing.Point(105, 22);
+            this.EmpleadoLBL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.EmpleadoLBL.Name = "EmpleadoLBL";
+            this.EmpleadoLBL.Size = new System.Drawing.Size(79, 17);
+            this.EmpleadoLBL.TabIndex = 25;
+            this.EmpleadoLBL.Text = "Empleado: ";
             // 
             // label12
             // 
@@ -119,12 +140,32 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(105, 22);
+            this.label1.Location = new System.Drawing.Point(498, 22);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 17);
-            this.label1.TabIndex = 25;
-            this.label1.Text = "Empleado: ";
+            this.label1.Size = new System.Drawing.Size(60, 17);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Puesto: ";
+            // 
+            // CargoLBL
+            // 
+            this.CargoLBL.AutoSize = true;
+            this.CargoLBL.Location = new System.Drawing.Point(566, 22);
+            this.CargoLBL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.CargoLBL.Name = "CargoLBL";
+            this.CargoLBL.Size = new System.Drawing.Size(79, 17);
+            this.CargoLBL.TabIndex = 27;
+            this.CargoLBL.Text = "Empleado: ";
+            // 
+            // LiquidacionDGV
+            // 
+            this.LiquidacionDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.LiquidacionDGV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LiquidacionDGV.Location = new System.Drawing.Point(0, 0);
+            this.LiquidacionDGV.Name = "LiquidacionDGV";
+            this.LiquidacionDGV.RowTemplate.Height = 24;
+            this.LiquidacionDGV.Size = new System.Drawing.Size(753, 344);
+            this.LiquidacionDGV.TabIndex = 0;
             // 
             // LiquidaciónEmpleados
             // 
@@ -140,7 +181,9 @@
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.PerformLayout();
+            this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.LiquidacionDGV)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -153,6 +196,9 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label EmpleadoLBL;
+        private System.Windows.Forms.Label CargoLBL;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView LiquidacionDGV;
     }
 }

@@ -3830,6 +3830,108 @@ namespace Datos
 
         }
         #endregion
+
+        public TipOscarGoS obtenerCargo(int idCargo)
+        {
+            try
+            {
+
+                Table<TipOscarGoS> tabla = database.GetTable<EmPleadOs>();
+                var cli = (from clireg in tabla
+                           where clireg.IDCargo == idCargo
+                           select clireg);
+                if (cli.Count<TipOscarGoS>() == 0)
+                    throw new NoExisteException("No existe el cargo con IdCargo" + idCargo);
+
+                return cli.Single<TipOscarGoS>();
+            }
+            catch (ArgumentNullException anex)
+            {
+                throw new NoExisteException(anex.Message, anex.InnerException);
+            }
+            catch (InvalidOperationException ioex)
+            {
+                throw ioex;
+            }
+            catch (Exception me)
+            {
+                throw me;
+            }
+            
+        }
+
+        public List<DateTime> ObtenerFeriados()
+        {            
+            Table<FeRiAdoS> tabla;
+
+            try
+            {
+                tabla = database.GetTable<FeRiAdoS>();
+                List<FeRiAdoS> listFeriados;
+                List<DateTime> ListFechas = new List<DateTime>();
+                
+                listFeriados = tabla.ToList<FeRiAdoS>();
+
+                foreach (FeRiAdoS f in listFeriados)
+                {
+                    ListFechas.Add(f.FeCHa);
+                }
+                return ListFechas;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
+        }
+
+        public DataTable LiquidarunEmpleado2(int nroEmp)
+        {
+            MySqlConnection conexion2;
+            Dictionary<DateTime, TimeSpan> tabla = new Dictionary<DateTime, TimeSpan>();
+            try
+            {
+                string sql = "SELECT DAY(Fecha) as dia, sec_to_time(SUM(time_to_sec(Horas)))" +
+                             "FROM liquidacionempleados" +
+                             "WHERE NroEmpleado = " + nroEmp.ToString() +
+                             "GROUP BY dia";
+
+                conexion2 = (MySqlConnection)database.Connection;
+
+                MySqlDataAdapter mysqlAdapter = new MySqlDataAdapter(sql, conexion2);
+
+                DataTable dt = new DataTable();
+                mysqlAdapter.Fill(dt);
+                
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+        public List<HoRaRioEScalaFOn> LiquidarunEmpleado(int nroEmp)
+        {
+            try
+            {
+                var hors = (from varcli in database.GetTable<LiquidAcIonEmPleadOs>()
+                            where varcli.NroEmpleado == (uint)nroEmp
+                            select varcli).GroupBy(LiquidAcIonEmPleadOs => LiquidAcIonEmPleadOs.Fecha);
+                return hors;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+        }
+
     }
 
 }
