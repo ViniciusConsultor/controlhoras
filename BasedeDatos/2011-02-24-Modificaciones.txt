@@ -4,7 +4,7 @@ CREATE  TABLE IF NOT EXISTS `trustdb`.`liquidacionempleados` (
   `NroEmpleado` MEDIUMINT(8) UNSIGNED NOT NULL ,
   `NroServicio` MEDIUMINT(8) UNSIGNED NOT NULL ,
   `NroCliente` MEDIUMINT(8) UNSIGNED NOT NULL ,
-  `Horas` TIME NOT NULL ,
+  `Horas` DATETIME NOT NULL ,
   PRIMARY KEY (`Fecha`, `NroEmpleado`, `NroServicio`, `NroCliente`) );
 
 --Crea la tabal de los feriado

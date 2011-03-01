@@ -385,6 +385,6 @@ namespace Datos
 
         List<DateTime> ObtenerFeriados();
 
-        DataTable LiquidarunEmpleado(int nroEmp);
+        Dictionary<DateTime, TimeSpan> LiquidarunEmpleado(int nroEmp);
     }
 }

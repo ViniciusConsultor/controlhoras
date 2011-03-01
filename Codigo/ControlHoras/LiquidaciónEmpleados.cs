@@ -61,7 +61,9 @@ namespace ControlHoras
 
             List<DateTime> feriados = datos.ObtenerFeriados();
 
-            liq = datos.LiquidarunEmpleado(nroEmp);
+            Dictionary<DateTime, TimeSpan> liq = datos.LiquidarunEmpleado(9999);
+
+            tc = tc;
 
 
 

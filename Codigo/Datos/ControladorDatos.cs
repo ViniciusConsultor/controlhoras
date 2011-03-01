@@ -3745,7 +3745,7 @@ namespace Datos
                 database.ExecuteCommand(st, null);
 
                 string sql = "INSERT INTO liquidacionempleados (Fecha, NroEmpleado, NroServicio, NroCliente, Horas)" +
-                             "SELECT hg.FechaCorrespondiente, hg.NroEmpleado, hg.NumeroServicio, hg.NumeroCliente, sec_to_time(sum(time_to_sec(hg.HoraSalida) - time_to_sec(hg.HoraEntrada)))" +
+                             "SELECT hg.FechaCorrespondiente, hg.NroEmpleado, hg.NumeroServicio, hg.NumeroCliente, addtime('2011-01-01 0:0:0', sec_to_time(sum(time_to_sec(time(hg.HoraSalida)) - time_to_sec(time(hg.HoraEntrada)))))" +
                              "FROM horasgeneradasescalafon hg WHERE hg.FechaCorrespondiente BETWEEN '" + string.Format("{0:yyyy-MM-dd}", inicio) + "' AND '" + string.Format("{0:yyyy-MM-dd}", fin) + "'" +
                              "GROUP BY hg.FechaCorrespondiente, hg.NroEmpleado, hg.NumeroServicio, hg.NumeroCliente";
 
@@ -3836,7 +3836,7 @@ namespace Datos
             try
             {
 
-                Table<TipOscarGoS> tabla = database.GetTable<EmPleadOs>();
+                Table<TipOscarGoS> tabla = database.GetTable<TipOscarGoS>();
                 var cli = (from clireg in tabla
                            where clireg.IDCargo == idCargo
                            select clireg);
@@ -3903,6 +3903,8 @@ namespace Datos
 
                 DataTable dt = new DataTable();
                 mysqlAdapter.Fill(dt);
+
+                return dt;
                 
 
             }
@@ -3916,14 +3918,34 @@ namespace Datos
             }
         }
 
-        public List<HoRaRioEScalaFOn> LiquidarunEmpleado(int nroEmp)
+        public Dictionary<DateTime, TimeSpan> LiquidarunEmpleado(int nroEmp)
         {
             try
             {
-                var hors = (from varcli in database.GetTable<LiquidAcIonEmPleadOs>()
-                            where varcli.NroEmpleado == (uint)nroEmp
-                            select varcli).GroupBy(LiquidAcIonEmPleadOs => LiquidAcIonEmPleadOs.Fecha);
-                return hors;
+                IEnumerable<IGrouping<DateTime, LiquidAcIonEmPleadOs>> hors = from varcli in database.GetTable<LiquidAcIonEmPleadOs>()
+                           where varcli.NroEmpleado == (uint)nroEmp
+                           group varcli by varcli.Fecha;
+
+                
+                            //select varcli).GroupBy(LiquidAcIonEmPleadOs => LiquidAcIonEmPleadOs.Fecha);
+
+                Dictionary<DateTime, TimeSpan> liqui = new Dictionary<DateTime, TimeSpan>();
+                DateTime fecha;
+                TimeSpan horas;
+                foreach (var dia in hors)
+                {
+                    fecha = dia.Key;
+                    //dia.
+                    horas = new TimeSpan(0);
+                    foreach (LiquidAcIonEmPleadOs l in dia)
+                    {
+                        horas = horas + l.Horas.Value.TimeOfDay;
+                    }
+                    liqui.Add(fecha, horas);
+                }
+
+                return liqui;
+
             }
             catch (Exception ex)
             {
