@@ -69,6 +69,8 @@
             this.tbClientes = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.dgvResultados = new System.Windows.Forms.DataGridView();
+            this.maskedTextBoxKeyDown5 = new ControlHoras.MaskedTextBoxKeyDown();
+            this.maskedTextBoxKeyDown4 = new ControlHoras.MaskedTextBoxKeyDown();
             this.maskedTextBoxKeyDown1 = new ControlHoras.MaskedTextBoxKeyDown();
             this.mtEmpleadosDesde = new ControlHoras.MaskedTextBoxKeyDown();
             this.mtFechaHasta = new ControlHoras.MaskedTextBoxKeyDown();
@@ -77,8 +79,6 @@
             this.mtFecha = new ControlHoras.MaskedTextBoxKeyDown();
             this.mtNroServicio = new ControlHoras.MaskedTextBoxKeyDown();
             this.mtNroCliente = new ControlHoras.MaskedTextBoxKeyDown();
-            this.maskedTextBoxKeyDown5 = new ControlHoras.MaskedTextBoxKeyDown();
-            this.maskedTextBoxKeyDown4 = new ControlHoras.MaskedTextBoxKeyDown();
             this.cmbTablas = new ControlHoras.ComboBoxKeyDown();
             this.txtConsultasEmpleadosDescripcion = new ControlHoras.TextBoxKeyDown();
             this.cmbEmpleadosConsultas = new ControlHoras.ComboBoxKeyDown();
@@ -151,8 +151,8 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.panelFiltros);
             this.splitContainer1.Panel1.Controls.Add(this.panelPorTablas);
+            this.splitContainer1.Panel1.Controls.Add(this.panelFiltros);
             this.splitContainer1.Panel1.Controls.Add(this.tcConsultas);
             // 
             // splitContainer1.Panel2
@@ -441,6 +441,7 @@
             this.listBoxCampos.Name = "listBoxCampos";
             this.listBoxCampos.Size = new System.Drawing.Size(539, 109);
             this.listBoxCampos.TabIndex = 13;
+            this.listBoxCampos.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.listBoxCampos_ItemCheck);
             // 
             // btnCargar
             // 
@@ -548,6 +549,20 @@
             this.dgvResultados.Size = new System.Drawing.Size(656, 255);
             this.dgvResultados.TabIndex = 1;
             // 
+            // maskedTextBoxKeyDown5
+            // 
+            this.maskedTextBoxKeyDown5.Location = new System.Drawing.Point(314, 12);
+            this.maskedTextBoxKeyDown5.Name = "maskedTextBoxKeyDown5";
+            this.maskedTextBoxKeyDown5.Size = new System.Drawing.Size(61, 20);
+            this.maskedTextBoxKeyDown5.TabIndex = 22;
+            // 
+            // maskedTextBoxKeyDown4
+            // 
+            this.maskedTextBoxKeyDown4.Location = new System.Drawing.Point(198, 12);
+            this.maskedTextBoxKeyDown4.Name = "maskedTextBoxKeyDown4";
+            this.maskedTextBoxKeyDown4.Size = new System.Drawing.Size(62, 20);
+            this.maskedTextBoxKeyDown4.TabIndex = 21;
+            // 
             // maskedTextBoxKeyDown1
             // 
             this.maskedTextBoxKeyDown1.BackColor = System.Drawing.Color.White;
@@ -636,20 +651,6 @@
             this.mtNroCliente.Name = "mtNroCliente";
             this.mtNroCliente.Size = new System.Drawing.Size(44, 22);
             this.mtNroCliente.TabIndex = 4;
-            // 
-            // maskedTextBoxKeyDown5
-            // 
-            this.maskedTextBoxKeyDown5.Location = new System.Drawing.Point(314, 12);
-            this.maskedTextBoxKeyDown5.Name = "maskedTextBoxKeyDown5";
-            this.maskedTextBoxKeyDown5.Size = new System.Drawing.Size(61, 20);
-            this.maskedTextBoxKeyDown5.TabIndex = 22;
-            // 
-            // maskedTextBoxKeyDown4
-            // 
-            this.maskedTextBoxKeyDown4.Location = new System.Drawing.Point(198, 12);
-            this.maskedTextBoxKeyDown4.Name = "maskedTextBoxKeyDown4";
-            this.maskedTextBoxKeyDown4.Size = new System.Drawing.Size(62, 20);
-            this.maskedTextBoxKeyDown4.TabIndex = 21;
             // 
             // cmbTablas
             // 
