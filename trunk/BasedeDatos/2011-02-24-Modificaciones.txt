@@ -7,7 +7,7 @@ CREATE  TABLE IF NOT EXISTS `trustdb`.`liquidacionempleados` (
   `Horas` DATETIME NOT NULL ,
   PRIMARY KEY (`Fecha`, `NroEmpleado`, `NroServicio`, `NroCliente`) );
 
---Crea la tabal de los feriado
+--Crea la tabla de los feriado
 CREATE  TABLE IF NOT EXISTS `trustdb`.`feriados` (
   `fecha` DATE NOT NULL ,
   `descripcion` VARCHAR(45) NULL ,
