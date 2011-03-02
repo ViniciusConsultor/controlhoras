@@ -56,19 +56,47 @@ namespace ControlHoras
             EmpleadoLBL.Text = emp.NroEmpleado.ToString() + " - " + emp.Apellido + ", " + emp.Nombre;
 
             TipOscarGoS tc = datos.obtenerCargo((int)emp.IDCargo);
-
+            bool cobraextra = (tc.CobraHsExtras == 1);
             CargoLBL.Text = tc.Nombre;
 
             List<DateTime> feriados = datos.ObtenerFeriados();
 
-            Dictionary<DateTime, TimeSpan> liq = datos.LiquidarunEmpleado(9999);
+            TimeSpan hc, he;
+            DateTime auxdt = DateTime.Today;
+            int numf, sep=0;
+            Dictionary<DateTime, TimeSpan> liq = datos.LiquidarunEmpleado(nroEmp);
+            Dictionary<DateTime, TimeSpan>.Enumerator iter = liq.GetEnumerator();
 
-            tc = tc;
-
-
-
-
+            while (iter.MoveNext())
+            {
+                numf = LiquidacionDGV.Rows.Add();
+                if (feriados.Contains(iter.Current.Key))
+                    sep = 2;
+                else
+                    sep = 0;
+                //sep = (feriados.Contains(iter.Current.Key))?2:0;
+                CalcularHsExtras(cobraextra, (int)tc.CantidadHsComunes, iter.Current.Value, out hc, out he);
+                LiquidacionDGV.Rows[numf].Cells[0].Value = iter.Current.Key.Day.ToString();
+                LiquidacionDGV.Rows[numf].Cells[1 + sep].Value = (auxdt + hc).ToString("HH:mm");
+                LiquidacionDGV.Rows[numf].Cells[2 + sep].Value = (auxdt + he).ToString("HH:mm");
+            }
         }
+
+
+        
+
+        private void CalcularHsExtras(bool cobraextras, int cantHscomun, TimeSpan HsTotal, out TimeSpan HsComun, out TimeSpan HsExtras)
+        {
+            HsComun = HsTotal;
+            HsExtras = new TimeSpan(0);
+            TimeSpan aux = new TimeSpan(cantHscomun,0,0);
+            if (cobraextras && HsTotal > aux)
+            {
+                HsComun = aux;
+                HsExtras = HsTotal - aux;
+            }
+        }
+          
 
         
     }

@@ -3920,9 +3920,12 @@ namespace Datos
 
         public Dictionary<DateTime, TimeSpan> LiquidarunEmpleado(int nroEmp)
         {
+            Table<LiquidAcIonEmPleadOs> tabla;
             try
             {
-                IEnumerable<IGrouping<DateTime, LiquidAcIonEmPleadOs>> hors = from varcli in database.GetTable<LiquidAcIonEmPleadOs>()
+                tabla = database.GetTable<LiquidAcIonEmPleadOs>();
+
+                var hors = from varcli in tabla
                            where varcli.NroEmpleado == (uint)nroEmp
                            group varcli by varcli.Fecha;
 
@@ -3932,15 +3935,24 @@ namespace Datos
                 Dictionary<DateTime, TimeSpan> liqui = new Dictionary<DateTime, TimeSpan>();
                 DateTime fecha;
                 TimeSpan horas;
+                //foreach (var dia in hors)
+                //{
+                //    fecha = dia.Key;                    
+                //    horas = new TimeSpan(0);
+                //    foreach (LiquidAcIonEmPleadOs l in dia)
+                //        horas = horas + l.Horas.TimeOfDay;                  
+                //    liqui.Add(fecha, horas);
+                //}
+
                 foreach (var dia in hors)
                 {
                     fecha = dia.Key;
-                    //dia.
                     horas = new TimeSpan(0);
-                    foreach (LiquidAcIonEmPleadOs l in dia)
-                    {
-                        horas = horas + l.Horas.Value.TimeOfDay;
-                    }
+                    List<LiquidAcIonEmPleadOs> horsdia = (from reg in tabla
+                                                          where reg.NroEmpleado == (uint)nroEmp && reg.Fecha == fecha
+                                                          select reg).ToList<LiquidAcIonEmPleadOs>();
+                    foreach (LiquidAcIonEmPleadOs l in horsdia)
+                        horas = horas + l.Horas.TimeOfDay;
                     liqui.Add(fecha, horas);
                 }
 
