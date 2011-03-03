@@ -33,26 +33,11 @@
             this.btnCancelar = new System.Windows.Forms.ToolStripButton();
             this.saveExcelFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panelFiltros = new System.Windows.Forms.Panel();
-            this.btnConsultar = new System.Windows.Forms.Button();
-            this.panelNroEmpleadoDesdeHasta = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panelFechaDesdeHasta = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.panelEmpleado = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.panelFecha = new System.Windows.Forms.Panel();
-            this.lblmtFecha = new System.Windows.Forms.Label();
-            this.panelServicio = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.panelCliente = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
             this.panelPorTablas = new System.Windows.Forms.Panel();
             this.lblOrdenResultado = new System.Windows.Forms.Label();
             this.gbPorTablasFiltros = new System.Windows.Forms.GroupBox();
+            this.maskedTextBoxKeyDown5 = new ControlHoras.MaskedTextBoxKeyDown();
+            this.maskedTextBoxKeyDown4 = new ControlHoras.MaskedTextBoxKeyDown();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lblPorTablaNombre = new System.Windows.Forms.Label();
@@ -61,33 +46,50 @@
             this.btnSeleccionarTodos = new System.Windows.Forms.Button();
             this.listBoxCampos = new System.Windows.Forms.CheckedListBox();
             this.btnCargar = new System.Windows.Forms.Button();
+            this.panelFiltros = new System.Windows.Forms.Panel();
+            this.btnConsultar = new System.Windows.Forms.Button();
+            this.panelNroEmpleadoDesdeHasta = new System.Windows.Forms.Panel();
+            this.maskedTextBoxKeyDown1 = new ControlHoras.MaskedTextBoxKeyDown();
+            this.mtEmpleadosDesde = new ControlHoras.MaskedTextBoxKeyDown();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panelFechaDesdeHasta = new System.Windows.Forms.Panel();
+            this.mtFechaHasta = new ControlHoras.MaskedTextBoxKeyDown();
+            this.label13 = new System.Windows.Forms.Label();
+            this.mtFechaDesde = new ControlHoras.MaskedTextBoxKeyDown();
+            this.label12 = new System.Windows.Forms.Label();
+            this.panelEmpleado = new System.Windows.Forms.Panel();
+            this.mtNumeroEmpleado = new ControlHoras.MaskedTextBoxKeyDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.panelFecha = new System.Windows.Forms.Panel();
+            this.mtFecha = new ControlHoras.MaskedTextBoxKeyDown();
+            this.lblmtFecha = new System.Windows.Forms.Label();
+            this.panelServicio = new System.Windows.Forms.Panel();
+            this.mtNroServicio = new ControlHoras.MaskedTextBoxKeyDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.panelCliente = new System.Windows.Forms.Panel();
+            this.mtNroCliente = new ControlHoras.MaskedTextBoxKeyDown();
+            this.label6 = new System.Windows.Forms.Label();
             this.tcConsultas = new System.Windows.Forms.TabControl();
             this.tbPorTablas = new System.Windows.Forms.TabPage();
+            this.cmbTablas = new ControlHoras.ComboBoxKeyDown();
             this.tbEmpleados = new System.Windows.Forms.TabPage();
             this.btnEmpleadosConsultar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.tbClientes = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dgvResultados = new System.Windows.Forms.DataGridView();
-            this.maskedTextBoxKeyDown5 = new ControlHoras.MaskedTextBoxKeyDown();
-            this.maskedTextBoxKeyDown4 = new ControlHoras.MaskedTextBoxKeyDown();
-            this.maskedTextBoxKeyDown1 = new ControlHoras.MaskedTextBoxKeyDown();
-            this.mtEmpleadosDesde = new ControlHoras.MaskedTextBoxKeyDown();
-            this.mtFechaHasta = new ControlHoras.MaskedTextBoxKeyDown();
-            this.mtFechaDesde = new ControlHoras.MaskedTextBoxKeyDown();
-            this.mtNumeroEmpleado = new ControlHoras.MaskedTextBoxKeyDown();
-            this.mtFecha = new ControlHoras.MaskedTextBoxKeyDown();
-            this.mtNroServicio = new ControlHoras.MaskedTextBoxKeyDown();
-            this.mtNroCliente = new ControlHoras.MaskedTextBoxKeyDown();
-            this.cmbTablas = new ControlHoras.ComboBoxKeyDown();
             this.txtConsultasEmpleadosDescripcion = new ControlHoras.TextBoxKeyDown();
             this.cmbEmpleadosConsultas = new ControlHoras.ComboBoxKeyDown();
+            this.tbClientes = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
             this.txtClientesDescripcionConsulta = new ControlHoras.TextBoxKeyDown();
             this.cmbClientesConsultas = new ControlHoras.ComboBoxKeyDown();
+            this.dgvResultados = new System.Windows.Forms.DataGridView();
             this.toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.panelPorTablas.SuspendLayout();
+            this.gbPorTablasFiltros.SuspendLayout();
             this.panelFiltros.SuspendLayout();
             this.panelNroEmpleadoDesdeHasta.SuspendLayout();
             this.panelFechaDesdeHasta.SuspendLayout();
@@ -95,8 +97,6 @@
             this.panelFecha.SuspendLayout();
             this.panelServicio.SuspendLayout();
             this.panelCliente.SuspendLayout();
-            this.panelPorTablas.SuspendLayout();
-            this.gbPorTablasFiltros.SuspendLayout();
             this.tcConsultas.SuspendLayout();
             this.tbPorTablas.SuspendLayout();
             this.tbEmpleados.SuspendLayout();
@@ -162,180 +162,6 @@
             this.splitContainer1.SplitterDistance = 273;
             this.splitContainer1.TabIndex = 5;
             // 
-            // panelFiltros
-            // 
-            this.panelFiltros.Controls.Add(this.btnConsultar);
-            this.panelFiltros.Controls.Add(this.panelNroEmpleadoDesdeHasta);
-            this.panelFiltros.Controls.Add(this.panelFechaDesdeHasta);
-            this.panelFiltros.Controls.Add(this.panelEmpleado);
-            this.panelFiltros.Controls.Add(this.panelFecha);
-            this.panelFiltros.Controls.Add(this.panelServicio);
-            this.panelFiltros.Controls.Add(this.panelCliente);
-            this.panelFiltros.Location = new System.Drawing.Point(7, 89);
-            this.panelFiltros.Name = "panelFiltros";
-            this.panelFiltros.Size = new System.Drawing.Size(631, 179);
-            this.panelFiltros.TabIndex = 7;
-            // 
-            // btnConsultar
-            // 
-            this.btnConsultar.Location = new System.Drawing.Point(244, 153);
-            this.btnConsultar.Name = "btnConsultar";
-            this.btnConsultar.Size = new System.Drawing.Size(75, 23);
-            this.btnConsultar.TabIndex = 3;
-            this.btnConsultar.Text = "Consultar";
-            this.btnConsultar.UseVisualStyleBackColor = true;
-            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
-            // 
-            // panelNroEmpleadoDesdeHasta
-            // 
-            this.panelNroEmpleadoDesdeHasta.Controls.Add(this.maskedTextBoxKeyDown1);
-            this.panelNroEmpleadoDesdeHasta.Controls.Add(this.mtEmpleadosDesde);
-            this.panelNroEmpleadoDesdeHasta.Controls.Add(this.label10);
-            this.panelNroEmpleadoDesdeHasta.Controls.Add(this.label1);
-            this.panelNroEmpleadoDesdeHasta.Controls.Add(this.label2);
-            this.panelNroEmpleadoDesdeHasta.Location = new System.Drawing.Point(278, 45);
-            this.panelNroEmpleadoDesdeHasta.Name = "panelNroEmpleadoDesdeHasta";
-            this.panelNroEmpleadoDesdeHasta.Size = new System.Drawing.Size(287, 35);
-            this.panelNroEmpleadoDesdeHasta.TabIndex = 11;
-            this.panelNroEmpleadoDesdeHasta.Visible = false;
-            // 
-            // label10
-            // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(90, 9);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(38, 13);
-            this.label10.TabIndex = 10;
-            this.label10.Text = "Desde";
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nro Empleado";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(189, 8);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Hasta";
-            // 
-            // panelFechaDesdeHasta
-            // 
-            this.panelFechaDesdeHasta.Controls.Add(this.mtFechaHasta);
-            this.panelFechaDesdeHasta.Controls.Add(this.label13);
-            this.panelFechaDesdeHasta.Controls.Add(this.mtFechaDesde);
-            this.panelFechaDesdeHasta.Controls.Add(this.label12);
-            this.panelFechaDesdeHasta.Location = new System.Drawing.Point(278, 3);
-            this.panelFechaDesdeHasta.Name = "panelFechaDesdeHasta";
-            this.panelFechaDesdeHasta.Size = new System.Drawing.Size(332, 30);
-            this.panelFechaDesdeHasta.TabIndex = 2;
-            this.panelFechaDesdeHasta.Visible = false;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(171, 8);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(68, 13);
-            this.label13.TabIndex = 1;
-            this.label13.Text = "Fecha Hasta";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(4, 8);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(71, 13);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "Fecha Desde";
-            // 
-            // panelEmpleado
-            // 
-            this.panelEmpleado.Controls.Add(this.mtNumeroEmpleado);
-            this.panelEmpleado.Controls.Add(this.label11);
-            this.panelEmpleado.Location = new System.Drawing.Point(23, 34);
-            this.panelEmpleado.Name = "panelEmpleado";
-            this.panelEmpleado.Size = new System.Drawing.Size(163, 30);
-            this.panelEmpleado.TabIndex = 6;
-            this.panelEmpleado.Visible = false;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(30, 9);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(71, 13);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "NroEmpleado";
-            // 
-            // panelFecha
-            // 
-            this.panelFecha.Controls.Add(this.mtFecha);
-            this.panelFecha.Controls.Add(this.lblmtFecha);
-            this.panelFecha.Location = new System.Drawing.Point(3, 3);
-            this.panelFecha.Name = "panelFecha";
-            this.panelFecha.Size = new System.Drawing.Size(183, 30);
-            this.panelFecha.TabIndex = 1;
-            this.panelFecha.Visible = false;
-            // 
-            // lblmtFecha
-            // 
-            this.lblmtFecha.AutoSize = true;
-            this.lblmtFecha.Location = new System.Drawing.Point(17, 8);
-            this.lblmtFecha.Name = "lblmtFecha";
-            this.lblmtFecha.Size = new System.Drawing.Size(37, 13);
-            this.lblmtFecha.TabIndex = 0;
-            this.lblmtFecha.Text = "Fecha";
-            this.lblmtFecha.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // panelServicio
-            // 
-            this.panelServicio.Controls.Add(this.mtNroServicio);
-            this.panelServicio.Controls.Add(this.label5);
-            this.panelServicio.Location = new System.Drawing.Point(51, 97);
-            this.panelServicio.Name = "panelServicio";
-            this.panelServicio.Size = new System.Drawing.Size(135, 30);
-            this.panelServicio.TabIndex = 3;
-            this.panelServicio.Visible = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(28, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Servicio";
-            // 
-            // panelCliente
-            // 
-            this.panelCliente.Controls.Add(this.mtNroCliente);
-            this.panelCliente.Controls.Add(this.label6);
-            this.panelCliente.Location = new System.Drawing.Point(51, 65);
-            this.panelCliente.Name = "panelCliente";
-            this.panelCliente.Size = new System.Drawing.Size(135, 30);
-            this.panelCliente.TabIndex = 2;
-            this.panelCliente.Visible = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(34, 9);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(39, 13);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Cliente";
-            // 
             // panelPorTablas
             // 
             this.panelPorTablas.Controls.Add(this.lblOrdenResultado);
@@ -343,6 +169,7 @@
             this.panelPorTablas.Controls.Add(this.btnDeseleccionarTodos);
             this.panelPorTablas.Controls.Add(this.btnSeleccionarTodos);
             this.panelPorTablas.Controls.Add(this.listBoxCampos);
+            this.panelPorTablas.Controls.Add(this.cbPorTablasInactivos);
             this.panelPorTablas.Controls.Add(this.btnCargar);
             this.panelPorTablas.Location = new System.Drawing.Point(4, 90);
             this.panelPorTablas.Name = "panelPorTablas";
@@ -353,9 +180,9 @@
             // 
             this.lblOrdenResultado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblOrdenResultado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOrdenResultado.Location = new System.Drawing.Point(8, 123);
+            this.lblOrdenResultado.Location = new System.Drawing.Point(8, 124);
             this.lblOrdenResultado.Name = "lblOrdenResultado";
-            this.lblOrdenResultado.Size = new System.Drawing.Size(538, 25);
+            this.lblOrdenResultado.Size = new System.Drawing.Size(539, 25);
             this.lblOrdenResultado.TabIndex = 18;
             // 
             // gbPorTablasFiltros
@@ -365,13 +192,26 @@
             this.gbPorTablasFiltros.Controls.Add(this.label8);
             this.gbPorTablasFiltros.Controls.Add(this.label7);
             this.gbPorTablasFiltros.Controls.Add(this.lblPorTablaNombre);
-            this.gbPorTablasFiltros.Controls.Add(this.cbPorTablasInactivos);
             this.gbPorTablasFiltros.Location = new System.Drawing.Point(7, 143);
             this.gbPorTablasFiltros.Name = "gbPorTablasFiltros";
-            this.gbPorTablasFiltros.Size = new System.Drawing.Size(539, 35);
+            this.gbPorTablasFiltros.Size = new System.Drawing.Size(430, 35);
             this.gbPorTablasFiltros.TabIndex = 17;
             this.gbPorTablasFiltros.TabStop = false;
             this.gbPorTablasFiltros.Visible = false;
+            // 
+            // maskedTextBoxKeyDown5
+            // 
+            this.maskedTextBoxKeyDown5.Location = new System.Drawing.Point(314, 12);
+            this.maskedTextBoxKeyDown5.Name = "maskedTextBoxKeyDown5";
+            this.maskedTextBoxKeyDown5.Size = new System.Drawing.Size(61, 20);
+            this.maskedTextBoxKeyDown5.TabIndex = 22;
+            // 
+            // maskedTextBoxKeyDown4
+            // 
+            this.maskedTextBoxKeyDown4.Location = new System.Drawing.Point(198, 12);
+            this.maskedTextBoxKeyDown4.Name = "maskedTextBoxKeyDown4";
+            this.maskedTextBoxKeyDown4.Size = new System.Drawing.Size(62, 20);
+            this.maskedTextBoxKeyDown4.TabIndex = 21;
             // 
             // label8
             // 
@@ -403,7 +243,7 @@
             // cbPorTablasInactivos
             // 
             this.cbPorTablasInactivos.AutoSize = true;
-            this.cbPorTablasInactivos.Location = new System.Drawing.Point(412, 14);
+            this.cbPorTablasInactivos.Location = new System.Drawing.Point(447, 157);
             this.cbPorTablasInactivos.Name = "cbPorTablasInactivos";
             this.cbPorTablasInactivos.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cbPorTablasInactivos.Size = new System.Drawing.Size(100, 17);
@@ -453,6 +293,269 @@
             this.btnCargar.UseVisualStyleBackColor = true;
             this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
             // 
+            // panelFiltros
+            // 
+            this.panelFiltros.Controls.Add(this.btnConsultar);
+            this.panelFiltros.Controls.Add(this.panelNroEmpleadoDesdeHasta);
+            this.panelFiltros.Controls.Add(this.panelFechaDesdeHasta);
+            this.panelFiltros.Controls.Add(this.panelEmpleado);
+            this.panelFiltros.Controls.Add(this.panelFecha);
+            this.panelFiltros.Controls.Add(this.panelServicio);
+            this.panelFiltros.Controls.Add(this.panelCliente);
+            this.panelFiltros.Location = new System.Drawing.Point(7, 89);
+            this.panelFiltros.Name = "panelFiltros";
+            this.panelFiltros.Size = new System.Drawing.Size(631, 179);
+            this.panelFiltros.TabIndex = 7;
+            // 
+            // btnConsultar
+            // 
+            this.btnConsultar.Location = new System.Drawing.Point(244, 153);
+            this.btnConsultar.Name = "btnConsultar";
+            this.btnConsultar.Size = new System.Drawing.Size(75, 23);
+            this.btnConsultar.TabIndex = 3;
+            this.btnConsultar.Text = "Consultar";
+            this.btnConsultar.UseVisualStyleBackColor = true;
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
+            // 
+            // panelNroEmpleadoDesdeHasta
+            // 
+            this.panelNroEmpleadoDesdeHasta.Controls.Add(this.maskedTextBoxKeyDown1);
+            this.panelNroEmpleadoDesdeHasta.Controls.Add(this.mtEmpleadosDesde);
+            this.panelNroEmpleadoDesdeHasta.Controls.Add(this.label10);
+            this.panelNroEmpleadoDesdeHasta.Controls.Add(this.label1);
+            this.panelNroEmpleadoDesdeHasta.Controls.Add(this.label2);
+            this.panelNroEmpleadoDesdeHasta.Location = new System.Drawing.Point(278, 45);
+            this.panelNroEmpleadoDesdeHasta.Name = "panelNroEmpleadoDesdeHasta";
+            this.panelNroEmpleadoDesdeHasta.Size = new System.Drawing.Size(287, 35);
+            this.panelNroEmpleadoDesdeHasta.TabIndex = 11;
+            this.panelNroEmpleadoDesdeHasta.Visible = false;
+            // 
+            // maskedTextBoxKeyDown1
+            // 
+            this.maskedTextBoxKeyDown1.BackColor = System.Drawing.Color.White;
+            this.maskedTextBoxKeyDown1.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.maskedTextBoxKeyDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBoxKeyDown1.HidePromptOnLeave = true;
+            this.maskedTextBoxKeyDown1.Location = new System.Drawing.Point(230, 4);
+            this.maskedTextBoxKeyDown1.Mask = "0999";
+            this.maskedTextBoxKeyDown1.Name = "maskedTextBoxKeyDown1";
+            this.maskedTextBoxKeyDown1.Size = new System.Drawing.Size(44, 21);
+            this.maskedTextBoxKeyDown1.TabIndex = 14;
+            this.maskedTextBoxKeyDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.maskedTextBoxKeyDown1.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
+            // mtEmpleadosDesde
+            // 
+            this.mtEmpleadosDesde.BackColor = System.Drawing.Color.White;
+            this.mtEmpleadosDesde.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtEmpleadosDesde.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mtEmpleadosDesde.HidePromptOnLeave = true;
+            this.mtEmpleadosDesde.Location = new System.Drawing.Point(134, 4);
+            this.mtEmpleadosDesde.Mask = "0999";
+            this.mtEmpleadosDesde.Name = "mtEmpleadosDesde";
+            this.mtEmpleadosDesde.Size = new System.Drawing.Size(44, 21);
+            this.mtEmpleadosDesde.TabIndex = 13;
+            this.mtEmpleadosDesde.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.mtEmpleadosDesde.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(90, 9);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(38, 13);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "Desde";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Nro Empleado";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(189, 8);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Hasta";
+            // 
+            // panelFechaDesdeHasta
+            // 
+            this.panelFechaDesdeHasta.Controls.Add(this.mtFechaHasta);
+            this.panelFechaDesdeHasta.Controls.Add(this.label13);
+            this.panelFechaDesdeHasta.Controls.Add(this.mtFechaDesde);
+            this.panelFechaDesdeHasta.Controls.Add(this.label12);
+            this.panelFechaDesdeHasta.Location = new System.Drawing.Point(278, 3);
+            this.panelFechaDesdeHasta.Name = "panelFechaDesdeHasta";
+            this.panelFechaDesdeHasta.Size = new System.Drawing.Size(332, 30);
+            this.panelFechaDesdeHasta.TabIndex = 2;
+            this.panelFechaDesdeHasta.Visible = false;
+            // 
+            // mtFechaHasta
+            // 
+            this.mtFechaHasta.Location = new System.Drawing.Point(244, 5);
+            this.mtFechaHasta.Margin = new System.Windows.Forms.Padding(2);
+            this.mtFechaHasta.Mask = "00/00/0000";
+            this.mtFechaHasta.Name = "mtFechaHasta";
+            this.mtFechaHasta.Size = new System.Drawing.Size(76, 20);
+            this.mtFechaHasta.TabIndex = 2;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(171, 8);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(68, 13);
+            this.label13.TabIndex = 1;
+            this.label13.Text = "Fecha Hasta";
+            // 
+            // mtFechaDesde
+            // 
+            this.mtFechaDesde.Location = new System.Drawing.Point(80, 5);
+            this.mtFechaDesde.Margin = new System.Windows.Forms.Padding(2);
+            this.mtFechaDesde.Mask = "00/00/0000";
+            this.mtFechaDesde.Name = "mtFechaDesde";
+            this.mtFechaDesde.Size = new System.Drawing.Size(76, 20);
+            this.mtFechaDesde.TabIndex = 0;
+            this.mtFechaDesde.Validating += new System.ComponentModel.CancelEventHandler(this.mtConsultasEmpleadoFecha_Validating);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(4, 8);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(71, 13);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Fecha Desde";
+            // 
+            // panelEmpleado
+            // 
+            this.panelEmpleado.Controls.Add(this.mtNumeroEmpleado);
+            this.panelEmpleado.Controls.Add(this.label11);
+            this.panelEmpleado.Location = new System.Drawing.Point(23, 34);
+            this.panelEmpleado.Name = "panelEmpleado";
+            this.panelEmpleado.Size = new System.Drawing.Size(163, 30);
+            this.panelEmpleado.TabIndex = 6;
+            this.panelEmpleado.Visible = false;
+            // 
+            // mtNumeroEmpleado
+            // 
+            this.mtNumeroEmpleado.BackColor = System.Drawing.Color.White;
+            this.mtNumeroEmpleado.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtNumeroEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mtNumeroEmpleado.HidePromptOnLeave = true;
+            this.mtNumeroEmpleado.Location = new System.Drawing.Point(107, 4);
+            this.mtNumeroEmpleado.Mask = "0999";
+            this.mtNumeroEmpleado.Name = "mtNumeroEmpleado";
+            this.mtNumeroEmpleado.Size = new System.Drawing.Size(44, 21);
+            this.mtNumeroEmpleado.TabIndex = 2;
+            this.mtNumeroEmpleado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.mtNumeroEmpleado.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(30, 9);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(71, 13);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "NroEmpleado";
+            // 
+            // panelFecha
+            // 
+            this.panelFecha.Controls.Add(this.mtFecha);
+            this.panelFecha.Controls.Add(this.lblmtFecha);
+            this.panelFecha.Location = new System.Drawing.Point(3, 3);
+            this.panelFecha.Name = "panelFecha";
+            this.panelFecha.Size = new System.Drawing.Size(183, 30);
+            this.panelFecha.TabIndex = 1;
+            this.panelFecha.Visible = false;
+            // 
+            // mtFecha
+            // 
+            this.mtFecha.Location = new System.Drawing.Point(95, 5);
+            this.mtFecha.Margin = new System.Windows.Forms.Padding(2);
+            this.mtFecha.Mask = "00/00/0000";
+            this.mtFecha.Name = "mtFecha";
+            this.mtFecha.Size = new System.Drawing.Size(76, 20);
+            this.mtFecha.TabIndex = 0;
+            this.mtFecha.Validating += new System.ComponentModel.CancelEventHandler(this.mtConsultasEmpleadoFecha_Validating);
+            // 
+            // lblmtFecha
+            // 
+            this.lblmtFecha.AutoSize = true;
+            this.lblmtFecha.Location = new System.Drawing.Point(17, 8);
+            this.lblmtFecha.Name = "lblmtFecha";
+            this.lblmtFecha.Size = new System.Drawing.Size(37, 13);
+            this.lblmtFecha.TabIndex = 0;
+            this.lblmtFecha.Text = "Fecha";
+            this.lblmtFecha.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // panelServicio
+            // 
+            this.panelServicio.Controls.Add(this.mtNroServicio);
+            this.panelServicio.Controls.Add(this.label5);
+            this.panelServicio.Location = new System.Drawing.Point(51, 97);
+            this.panelServicio.Name = "panelServicio";
+            this.panelServicio.Size = new System.Drawing.Size(135, 30);
+            this.panelServicio.TabIndex = 3;
+            this.panelServicio.Visible = false;
+            // 
+            // mtNroServicio
+            // 
+            this.mtNroServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.mtNroServicio.Location = new System.Drawing.Point(79, 4);
+            this.mtNroServicio.Mask = "9990";
+            this.mtNroServicio.Name = "mtNroServicio";
+            this.mtNroServicio.Size = new System.Drawing.Size(44, 22);
+            this.mtNroServicio.TabIndex = 5;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(28, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(45, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Servicio";
+            // 
+            // panelCliente
+            // 
+            this.panelCliente.Controls.Add(this.mtNroCliente);
+            this.panelCliente.Controls.Add(this.label6);
+            this.panelCliente.Location = new System.Drawing.Point(51, 65);
+            this.panelCliente.Name = "panelCliente";
+            this.panelCliente.Size = new System.Drawing.Size(135, 30);
+            this.panelCliente.TabIndex = 2;
+            this.panelCliente.Visible = false;
+            // 
+            // mtNroCliente
+            // 
+            this.mtNroCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.mtNroCliente.Location = new System.Drawing.Point(79, 4);
+            this.mtNroCliente.Mask = "9990";
+            this.mtNroCliente.Name = "mtNroCliente";
+            this.mtNroCliente.Size = new System.Drawing.Size(44, 22);
+            this.mtNroCliente.TabIndex = 4;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(34, 9);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(39, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Cliente";
+            // 
             // tcConsultas
             // 
             this.tcConsultas.Controls.Add(this.tbPorTablas);
@@ -477,6 +580,16 @@
             this.tbPorTablas.TabIndex = 0;
             this.tbPorTablas.Text = "Por Tablas";
             this.tbPorTablas.UseVisualStyleBackColor = true;
+            // 
+            // cmbTablas
+            // 
+            this.cmbTablas.BackColor = System.Drawing.Color.White;
+            this.cmbTablas.FormattingEnabled = true;
+            this.cmbTablas.Location = new System.Drawing.Point(235, 4);
+            this.cmbTablas.Name = "cmbTablas";
+            this.cmbTablas.Size = new System.Drawing.Size(174, 21);
+            this.cmbTablas.TabIndex = 6;
+            this.cmbTablas.SelectedIndexChanged += new System.EventHandler(this.cmbTablas_SelectedIndexChanged);
             // 
             // tbEmpleados
             // 
@@ -512,6 +625,25 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Consultas Empleados";
             // 
+            // txtConsultasEmpleadosDescripcion
+            // 
+            this.txtConsultasEmpleadosDescripcion.Location = new System.Drawing.Point(298, 8);
+            this.txtConsultasEmpleadosDescripcion.Multiline = true;
+            this.txtConsultasEmpleadosDescripcion.Name = "txtConsultasEmpleadosDescripcion";
+            this.txtConsultasEmpleadosDescripcion.Size = new System.Drawing.Size(341, 48);
+            this.txtConsultasEmpleadosDescripcion.TabIndex = 6;
+            // 
+            // cmbEmpleadosConsultas
+            // 
+            this.cmbEmpleadosConsultas.BackColor = System.Drawing.Color.White;
+            this.cmbEmpleadosConsultas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEmpleadosConsultas.FormattingEnabled = true;
+            this.cmbEmpleadosConsultas.Location = new System.Drawing.Point(8, 27);
+            this.cmbEmpleadosConsultas.Name = "cmbEmpleadosConsultas";
+            this.cmbEmpleadosConsultas.Size = new System.Drawing.Size(284, 21);
+            this.cmbEmpleadosConsultas.TabIndex = 4;
+            this.cmbEmpleadosConsultas.SelectedIndexChanged += new System.EventHandler(this.cmbEmpleadosConsultas_SelectedIndexChanged);
+            // 
             // tbClientes
             // 
             this.tbClientes.Controls.Add(this.label4);
@@ -535,152 +667,6 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "Consultas Clientes";
             // 
-            // dgvResultados
-            // 
-            this.dgvResultados.AllowUserToAddRows = false;
-            this.dgvResultados.AllowUserToDeleteRows = false;
-            this.dgvResultados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.dgvResultados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvResultados.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvResultados.Location = new System.Drawing.Point(0, 0);
-            this.dgvResultados.Name = "dgvResultados";
-            this.dgvResultados.ReadOnly = true;
-            this.dgvResultados.RowTemplate.Height = 24;
-            this.dgvResultados.Size = new System.Drawing.Size(656, 255);
-            this.dgvResultados.TabIndex = 1;
-            // 
-            // maskedTextBoxKeyDown5
-            // 
-            this.maskedTextBoxKeyDown5.Location = new System.Drawing.Point(314, 12);
-            this.maskedTextBoxKeyDown5.Name = "maskedTextBoxKeyDown5";
-            this.maskedTextBoxKeyDown5.Size = new System.Drawing.Size(61, 20);
-            this.maskedTextBoxKeyDown5.TabIndex = 22;
-            // 
-            // maskedTextBoxKeyDown4
-            // 
-            this.maskedTextBoxKeyDown4.Location = new System.Drawing.Point(198, 12);
-            this.maskedTextBoxKeyDown4.Name = "maskedTextBoxKeyDown4";
-            this.maskedTextBoxKeyDown4.Size = new System.Drawing.Size(62, 20);
-            this.maskedTextBoxKeyDown4.TabIndex = 21;
-            // 
-            // maskedTextBoxKeyDown1
-            // 
-            this.maskedTextBoxKeyDown1.BackColor = System.Drawing.Color.White;
-            this.maskedTextBoxKeyDown1.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.maskedTextBoxKeyDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBoxKeyDown1.HidePromptOnLeave = true;
-            this.maskedTextBoxKeyDown1.Location = new System.Drawing.Point(230, 4);
-            this.maskedTextBoxKeyDown1.Mask = "0999";
-            this.maskedTextBoxKeyDown1.Name = "maskedTextBoxKeyDown1";
-            this.maskedTextBoxKeyDown1.Size = new System.Drawing.Size(44, 21);
-            this.maskedTextBoxKeyDown1.TabIndex = 14;
-            this.maskedTextBoxKeyDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.maskedTextBoxKeyDown1.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            // 
-            // mtEmpleadosDesde
-            // 
-            this.mtEmpleadosDesde.BackColor = System.Drawing.Color.White;
-            this.mtEmpleadosDesde.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.mtEmpleadosDesde.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtEmpleadosDesde.HidePromptOnLeave = true;
-            this.mtEmpleadosDesde.Location = new System.Drawing.Point(134, 4);
-            this.mtEmpleadosDesde.Mask = "0999";
-            this.mtEmpleadosDesde.Name = "mtEmpleadosDesde";
-            this.mtEmpleadosDesde.Size = new System.Drawing.Size(44, 21);
-            this.mtEmpleadosDesde.TabIndex = 13;
-            this.mtEmpleadosDesde.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.mtEmpleadosDesde.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            // 
-            // mtFechaHasta
-            // 
-            this.mtFechaHasta.Location = new System.Drawing.Point(244, 5);
-            this.mtFechaHasta.Margin = new System.Windows.Forms.Padding(2);
-            this.mtFechaHasta.Mask = "00/00/0000";
-            this.mtFechaHasta.Name = "mtFechaHasta";
-            this.mtFechaHasta.Size = new System.Drawing.Size(76, 20);
-            this.mtFechaHasta.TabIndex = 2;
-            // 
-            // mtFechaDesde
-            // 
-            this.mtFechaDesde.Location = new System.Drawing.Point(80, 5);
-            this.mtFechaDesde.Margin = new System.Windows.Forms.Padding(2);
-            this.mtFechaDesde.Mask = "00/00/0000";
-            this.mtFechaDesde.Name = "mtFechaDesde";
-            this.mtFechaDesde.Size = new System.Drawing.Size(76, 20);
-            this.mtFechaDesde.TabIndex = 0;
-            this.mtFechaDesde.Validating += new System.ComponentModel.CancelEventHandler(this.mtConsultasEmpleadoFecha_Validating);
-            // 
-            // mtNumeroEmpleado
-            // 
-            this.mtNumeroEmpleado.BackColor = System.Drawing.Color.White;
-            this.mtNumeroEmpleado.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.mtNumeroEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtNumeroEmpleado.HidePromptOnLeave = true;
-            this.mtNumeroEmpleado.Location = new System.Drawing.Point(107, 4);
-            this.mtNumeroEmpleado.Mask = "0999";
-            this.mtNumeroEmpleado.Name = "mtNumeroEmpleado";
-            this.mtNumeroEmpleado.Size = new System.Drawing.Size(44, 21);
-            this.mtNumeroEmpleado.TabIndex = 2;
-            this.mtNumeroEmpleado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.mtNumeroEmpleado.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            // 
-            // mtFecha
-            // 
-            this.mtFecha.Location = new System.Drawing.Point(95, 5);
-            this.mtFecha.Margin = new System.Windows.Forms.Padding(2);
-            this.mtFecha.Mask = "00/00/0000";
-            this.mtFecha.Name = "mtFecha";
-            this.mtFecha.Size = new System.Drawing.Size(76, 20);
-            this.mtFecha.TabIndex = 0;
-            this.mtFecha.Validating += new System.ComponentModel.CancelEventHandler(this.mtConsultasEmpleadoFecha_Validating);
-            // 
-            // mtNroServicio
-            // 
-            this.mtNroServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.mtNroServicio.Location = new System.Drawing.Point(79, 4);
-            this.mtNroServicio.Mask = "9990";
-            this.mtNroServicio.Name = "mtNroServicio";
-            this.mtNroServicio.Size = new System.Drawing.Size(44, 22);
-            this.mtNroServicio.TabIndex = 5;
-            // 
-            // mtNroCliente
-            // 
-            this.mtNroCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.mtNroCliente.Location = new System.Drawing.Point(79, 4);
-            this.mtNroCliente.Mask = "9990";
-            this.mtNroCliente.Name = "mtNroCliente";
-            this.mtNroCliente.Size = new System.Drawing.Size(44, 22);
-            this.mtNroCliente.TabIndex = 4;
-            // 
-            // cmbTablas
-            // 
-            this.cmbTablas.BackColor = System.Drawing.Color.White;
-            this.cmbTablas.FormattingEnabled = true;
-            this.cmbTablas.Location = new System.Drawing.Point(235, 4);
-            this.cmbTablas.Name = "cmbTablas";
-            this.cmbTablas.Size = new System.Drawing.Size(174, 21);
-            this.cmbTablas.TabIndex = 6;
-            this.cmbTablas.SelectedIndexChanged += new System.EventHandler(this.cmbTablas_SelectedIndexChanged);
-            // 
-            // txtConsultasEmpleadosDescripcion
-            // 
-            this.txtConsultasEmpleadosDescripcion.Location = new System.Drawing.Point(298, 8);
-            this.txtConsultasEmpleadosDescripcion.Multiline = true;
-            this.txtConsultasEmpleadosDescripcion.Name = "txtConsultasEmpleadosDescripcion";
-            this.txtConsultasEmpleadosDescripcion.Size = new System.Drawing.Size(341, 48);
-            this.txtConsultasEmpleadosDescripcion.TabIndex = 6;
-            // 
-            // cmbEmpleadosConsultas
-            // 
-            this.cmbEmpleadosConsultas.BackColor = System.Drawing.Color.White;
-            this.cmbEmpleadosConsultas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEmpleadosConsultas.FormattingEnabled = true;
-            this.cmbEmpleadosConsultas.Location = new System.Drawing.Point(8, 27);
-            this.cmbEmpleadosConsultas.Name = "cmbEmpleadosConsultas";
-            this.cmbEmpleadosConsultas.Size = new System.Drawing.Size(284, 21);
-            this.cmbEmpleadosConsultas.TabIndex = 4;
-            this.cmbEmpleadosConsultas.SelectedIndexChanged += new System.EventHandler(this.cmbEmpleadosConsultas_SelectedIndexChanged);
-            // 
             // txtClientesDescripcionConsulta
             // 
             this.txtClientesDescripcionConsulta.Location = new System.Drawing.Point(290, 7);
@@ -701,6 +687,20 @@
             this.cmbClientesConsultas.TabIndex = 0;
             this.cmbClientesConsultas.SelectedIndexChanged += new System.EventHandler(this.cmbClientesConsultas_SelectedIndexChanged);
             // 
+            // dgvResultados
+            // 
+            this.dgvResultados.AllowUserToAddRows = false;
+            this.dgvResultados.AllowUserToDeleteRows = false;
+            this.dgvResultados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgvResultados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvResultados.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvResultados.Location = new System.Drawing.Point(0, 0);
+            this.dgvResultados.Name = "dgvResultados";
+            this.dgvResultados.ReadOnly = true;
+            this.dgvResultados.RowTemplate.Height = 24;
+            this.dgvResultados.Size = new System.Drawing.Size(656, 255);
+            this.dgvResultados.TabIndex = 1;
+            // 
             // ExportToExcel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -717,6 +717,10 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
+            this.panelPorTablas.ResumeLayout(false);
+            this.panelPorTablas.PerformLayout();
+            this.gbPorTablasFiltros.ResumeLayout(false);
+            this.gbPorTablasFiltros.PerformLayout();
             this.panelFiltros.ResumeLayout(false);
             this.panelNroEmpleadoDesdeHasta.ResumeLayout(false);
             this.panelNroEmpleadoDesdeHasta.PerformLayout();
@@ -730,9 +734,6 @@
             this.panelServicio.PerformLayout();
             this.panelCliente.ResumeLayout(false);
             this.panelCliente.PerformLayout();
-            this.panelPorTablas.ResumeLayout(false);
-            this.gbPorTablasFiltros.ResumeLayout(false);
-            this.gbPorTablasFiltros.PerformLayout();
             this.tcConsultas.ResumeLayout(false);
             this.tbPorTablas.ResumeLayout(false);
             this.tbEmpleados.ResumeLayout(false);
