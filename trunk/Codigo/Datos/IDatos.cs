@@ -386,5 +386,7 @@ namespace Datos
         List<DateTime> ObtenerFeriados();
 
         Dictionary<DateTime, TimeSpan> LiquidarunEmpleado(int nroEmp);
+
+        bool existeEmpleadoLiquidado(int NroEmpleado);
     }
 }

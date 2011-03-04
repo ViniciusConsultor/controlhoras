@@ -6,7 +6,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
+using System.Configuration;
+using Excel = Microsoft.Office.Interop.Excel;
 using Datos;
+
 
 namespace ControlHoras
 {
@@ -15,7 +19,14 @@ namespace ControlHoras
         IDatos datos;
         DataTable empleados;
         List<DateTime> feriados;
+        DateTime mesAct;
         int cant, ind;
+
+        object missing = null;
+        string exefile = null;
+        FileInfo Info = null;
+        string dirbase = null;
+        string dirRelativaDocs = null;
 
         public LiquidaciónEmpleados()
         {
@@ -25,6 +36,15 @@ namespace ControlHoras
             {
                 datos = ControladorDatos.getInstance();
                 feriados = datos.ObtenerFeriados();
+                
+                missing = System.Reflection.Missing.Value;
+                exefile = Application.ExecutablePath;
+                Info = new FileInfo(exefile);
+                //dirbase = Info.Directory.Parent.Parent.FullName;
+                dirbase = Info.DirectoryName;//System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
+                dirRelativaDocs = ConfigurationManager.AppSettings["DirectorioRelativoDocs"].ToString();
+                                      
+                
             }
             catch (Exception ex)
             {
@@ -32,7 +52,7 @@ namespace ControlHoras
                 MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            MesDTP.CustomFormat = @"MMMM/yyyy";
+            MesDTP.CustomFormat = @"MMMM,yyyy";
             MesDTP.Format = DateTimePickerFormat.Custom;
             MesDTP.Value = DateTime.Now.AddMonths(-1);
         }
@@ -55,7 +75,12 @@ namespace ControlHoras
             {
                 MessageBox.Show("Error al efectuar la liquidación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);                
             }
-            
+
+            splitContainer2.Visible = true;
+            mesAct = MesDTP.Value;
+            string auxst = MesDTP.Value.ToString(@"MMMM' del 'yyyy");
+            MesTB.Text = auxst.Substring(0,1).ToUpper()+auxst.Substring(1);
+
             cant = empleados.Rows.Count;
             if (cant == 0)
                 MessageBox.Show("No existen horas registradas para: " + MesDTP.Value.ToString(@"MMMM/yyyy"), "No hay datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -81,6 +106,7 @@ namespace ControlHoras
             LiquidacionDGV.Rows.Clear();
             
             nroEmp = int.Parse(empleados.Rows[ind].ItemArray[0].ToString());
+            mtNumeroEmpleado.Text = nroEmp.ToString();
 
             try
             {
@@ -172,6 +198,102 @@ namespace ControlHoras
         {
             return System.Math.Abs(System.Math.Truncate(h.TotalHours)).ToString() + ":" + System.Math.Abs(h.Minutes).ToString();
         }
+
+        private void ExcelBTN_Click(object sender, EventArgs e)
+        {
+            string pathdoc = Path.Combine(dirbase, dirRelativaDocs);
+            string fileName = Path.Combine(pathdoc, "LiquiEmpleado.xls");
+            object readOnly = true;
+            object falso = false;
+            DateTime auxdt;
+
+            Excel.Application ExApp;
+            Excel._Workbook oWBook;
+            Excel._Worksheet oSheet;
+            //Excel.Range oRng;
+            try
+            {
+                //Start Excel and get Application object.
+                ExApp = new Excel.Application();
+                ExApp.Visible = true;
+                //Get a new workbook.
+                //oWB = (Excel._Workbook)(oXL.Workbooks.Add(Missing.Value));
+                oWBook = ExApp.Workbooks.Open(fileName, missing, readOnly, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing);
+                oSheet = (Excel._Worksheet)oWBook.ActiveSheet;
+
+                // Mes
+                oSheet.Cells[2, 3] = MesTB.Text;
+                // Nombre
+                oSheet.Cells[4, 4] = EmpleadoLBL.Text;
+                // Cargo
+                oSheet.Cells[5, 4] = CargoLBL.Text;
+
+                auxdt = new DateTime(mesAct.Year, mesAct.Month, 1);
+                for (int i = 0; i < DateTime.DaysInMonth(mesAct.Year, mesAct.Month); i++)
+                {
+                    oSheet.Cells[8 + i, 2] = auxdt.ToString(@"dd/MM/yyyy");
+                    auxdt = auxdt.AddDays(1);
+                }
+
+                int auxInt;
+                for (int i = 0; i < LiquidacionDGV.Rows.Count; i++)
+                {
+                    auxInt = int.Parse(LiquidacionDGV.Rows[i].Cells[0].Value.ToString());
+                    oSheet.Cells[7 + auxInt, 3] = (LiquidacionDGV.Rows[i].Cells[1].Value??"00:00").ToString();
+                    oSheet.Cells[7 + auxInt, 4] = (LiquidacionDGV.Rows[i].Cells[2].Value??"00:00").ToString();
+                    oSheet.Cells[7 + auxInt, 5] = (LiquidacionDGV.Rows[i].Cells[3].Value??"00:00").ToString();
+                    oSheet.Cells[7 + auxInt, 6] = (LiquidacionDGV.Rows[i].Cells[4].Value??"00:00").ToString();
+                }
+
+                //oWBook.PrintPreview(falso);
+
+                
+            }
+            catch (Exception theException)
+            {
+                String errorMessage;
+                errorMessage = "Error: ";
+                errorMessage = String.Concat(errorMessage, theException.Message);
+                errorMessage = String.Concat(errorMessage, " Line: ");
+                errorMessage = String.Concat(errorMessage, theException.Source);
+                MessageBox.Show(errorMessage, "Error");
+            }
+        }
+
+        private void mtNumeroEmpleado_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (mtNumeroEmpleado.Text != "" && (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab))
+            {
+                int aux = int.Parse(mtNumeroEmpleado.Text);
+                if (datos.existeEmpleadoLiquidado(aux))
+                {
+                    buscarIndice(aux);
+                    CargarEmpleado();
+                }
+                else                
+                    MessageBox.Show("No existen datos para el empleado Nro: "+mtNumeroEmpleado.Text+" para: "+mesAct.ToString(@"MMMM,yyyy"), "No Hay Datos", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+            }
+        }
+
+        private void buscarIndice(int nroEmpleado)
+        {
+            bool f = false;
+            int aux = 0;
+            while(aux<empleados.Rows.Count && !f)
+            {
+                f = (empleados.Rows[aux].ItemArray.ElementAt(0).ToString()==nroEmpleado.ToString());
+                if (f)
+                    ind = aux;
+                else
+                    aux++;
+            }            
+        }
+
+        private void mtNumeroEmpleado_Click(object sender, EventArgs e)
+        {
+            mtNumeroEmpleado.Text = "";
+        }
+               
         
     }
 }

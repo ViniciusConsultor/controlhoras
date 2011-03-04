@@ -3966,6 +3966,30 @@ namespace Datos
             }
         }
 
+
+        public bool existeEmpleadoLiquidado(int nroEmpleado)
+        {
+            Table<LiquidAcIonEmPleadOs> tabla;
+            try
+            {
+
+                tabla = database.GetTable<LiquidAcIonEmPleadOs>();
+                var cli = (from clireg in tabla
+                           where clireg.NroEmpleado == nroEmpleado
+                           select clireg);
+                if (cli.Count<LiquidAcIonEmPleadOs>() == 0)
+                    return false;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                // MySQLException = Access Denied  Codigo = 1045
+            }
+        }
+
+      
     }
 
 }
