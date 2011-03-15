@@ -27,7 +27,7 @@ namespace ControlHoras
         FileInfo Info = null;
         string dirbase = null;
         string dirRelativaDocs = null;
-
+        ProgressBarShow progress = null;
         public LiquidaciónEmpleados()
         {
             InitializeComponent();
@@ -93,6 +93,7 @@ namespace ControlHoras
                 }
                 ind = 0;
                 CargarEmpleado();
+                btnExportarTodos.Enabled = true;
             }
         }
 
@@ -201,62 +202,83 @@ namespace ControlHoras
 
         private void ExcelBTN_Click(object sender, EventArgs e)
         {
+            generarExcel(true,"");   
+        }
+
+        private void generarExcel(bool abrirExcel, string outputDirectory)
+        {
             string pathdoc = Path.Combine(dirbase, dirRelativaDocs);
             string fileName = Path.Combine(pathdoc, "LiquiEmpleado.xls");
-            object readOnly = true;
-            object falso = false;
-            DateTime auxdt;
-
-            Excel.Application ExApp;
-            Excel._Workbook oWBook;
-            Excel._Worksheet oSheet;
-            //Excel.Range oRng;
-            try
+            if (File.Exists(fileName))
             {
-                //Start Excel and get Application object.
-                ExApp = new Excel.Application();
-                ExApp.Visible = true;
-                //Get a new workbook.
-                //oWB = (Excel._Workbook)(oXL.Workbooks.Add(Missing.Value));
-                oWBook = ExApp.Workbooks.Open(fileName, missing, readOnly, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing);
-                oSheet = (Excel._Worksheet)oWBook.ActiveSheet;
+                object readOnly = true;
+                object falso = false;
+                DateTime auxdt;
 
-                // Mes
-                oSheet.Cells[2, 3] = MesTB.Text;
-                // Nombre
-                oSheet.Cells[4, 4] = EmpleadoLBL.Text;
-                // Cargo
-                oSheet.Cells[5, 4] = CargoLBL.Text;
+                Excel.Application ExApp;
+                Excel._Workbook oWBook;
+                Excel._Worksheet oSheet;
 
-                auxdt = new DateTime(mesAct.Year, mesAct.Month, 1);
-                for (int i = 0; i < DateTime.DaysInMonth(mesAct.Year, mesAct.Month); i++)
+                try
                 {
-                    oSheet.Cells[8 + i, 2] = auxdt.ToString(@"dd/MM/yyyy");
-                    auxdt = auxdt.AddDays(1);
-                }
+                    // Iniciar Excel y obtener el objeto Aplicacion.
+                    ExApp = new Excel.Application();
+                    
+                    //Get a new workbook.
+                    //oWB = (Excel._Workbook)(oXL.Workbooks.Add(Missing.Value));
+                    oWBook = ExApp.Workbooks.Open(fileName, missing, readOnly, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing);
+                    oSheet = (Excel._Worksheet)oWBook.ActiveSheet;
 
-                int auxInt;
-                for (int i = 0; i < LiquidacionDGV.Rows.Count; i++)
+                    // Mes
+                    oSheet.Cells[2, 3] = MesTB.Text;
+                    // Nombre
+                    oSheet.Cells[4, 4] = EmpleadoLBL.Text;
+                    // Cargo
+                    oSheet.Cells[5, 4] = CargoLBL.Text;
+
+                    auxdt = new DateTime(mesAct.Year, mesAct.Month, 1);
+                    for (int i = 0; i < DateTime.DaysInMonth(mesAct.Year, mesAct.Month); i++)
+                    {
+                        oSheet.Cells[8 + i, 2] = auxdt.ToString(@"dd/MM/yyyy");
+                        auxdt = auxdt.AddDays(1);
+                    }
+
+                    int auxInt;
+                    for (int i = 0; i < LiquidacionDGV.Rows.Count; i++)
+                    {
+                        auxInt = int.Parse(LiquidacionDGV.Rows[i].Cells[0].Value.ToString());
+                        oSheet.Cells[7 + auxInt, 3] = (LiquidacionDGV.Rows[i].Cells[1].Value ?? "00:00").ToString();
+                        oSheet.Cells[7 + auxInt, 4] = (LiquidacionDGV.Rows[i].Cells[2].Value ?? "00:00").ToString();
+                        oSheet.Cells[7 + auxInt, 5] = (LiquidacionDGV.Rows[i].Cells[3].Value ?? "00:00").ToString();
+                        oSheet.Cells[7 + auxInt, 6] = (LiquidacionDGV.Rows[i].Cells[4].Value ?? "00:00").ToString();
+                    }
+
+                    
+
+                    //oWBook.PrintPreview(falso);
+                    object a = Path.Combine(outputDirectory, MesTB.Text + " - " + EmpleadoLBL.Text + ".xls");
+                    if (!abrirExcel)
+                    {
+                        ExApp.Visible = false;
+                        oWBook.SaveAs(a, missing, missing, missing, missing, missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Microsoft.Office.Interop.Excel.XlSaveConflictResolution.xlLocalSessionChanges, missing, missing, missing, true);
+                        ExApp.Quit();
+                    }
+                    else
+                        ExApp.Visible = true;
+                }
+                catch (Exception theException)
                 {
-                    auxInt = int.Parse(LiquidacionDGV.Rows[i].Cells[0].Value.ToString());
-                    oSheet.Cells[7 + auxInt, 3] = (LiquidacionDGV.Rows[i].Cells[1].Value??"00:00").ToString();
-                    oSheet.Cells[7 + auxInt, 4] = (LiquidacionDGV.Rows[i].Cells[2].Value??"00:00").ToString();
-                    oSheet.Cells[7 + auxInt, 5] = (LiquidacionDGV.Rows[i].Cells[3].Value??"00:00").ToString();
-                    oSheet.Cells[7 + auxInt, 6] = (LiquidacionDGV.Rows[i].Cells[4].Value??"00:00").ToString();
+                    String errorMessage;
+                    errorMessage = "Error: ";
+                    errorMessage = String.Concat(errorMessage, theException.Message);
+                    errorMessage = String.Concat(errorMessage, " Line: ");
+                    errorMessage = String.Concat(errorMessage, theException.Source);
+                    throw theException;
                 }
-
-                //oWBook.PrintPreview(falso);
-
-                
             }
-            catch (Exception theException)
+            else
             {
-                String errorMessage;
-                errorMessage = "Error: ";
-                errorMessage = String.Concat(errorMessage, theException.Message);
-                errorMessage = String.Concat(errorMessage, " Line: ");
-                errorMessage = String.Concat(errorMessage, theException.Source);
-                MessageBox.Show(errorMessage, "Error");
+                throw new NoExisteException("No existe el archivo template: " + fileName);
             }
         }
 
@@ -292,6 +314,62 @@ namespace ControlHoras
         private void mtNumeroEmpleado_Click(object sender, EventArgs e)
         {
             mtNumeroEmpleado.Text = "";
+        }
+
+        private void btnExportTodos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                splitContainer1.Panel2.Enabled = false;
+                int indice = 0;
+                DialogResult result = folderBrowserDialog1.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    progress = new ProgressBarShow(1, empleados.Rows.Count);
+                    progress.StartPosition = FormStartPosition.CenterParent;
+                    progress.Show(this);
+                    LiquidarBTN.Enabled = false;
+                    while (indice <= empleados.Rows.Count - 1)
+                    {
+                        try
+                        {
+                            PosteriorBTN_Click(null, EventArgs.Empty);
+                            generarExcel(false, folderBrowserDialog1.SelectedPath);
+                            indice++;
+                            progress.aumentar();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
+                    }
+                    MessageBox.Show("Liquidacion Finalizada con Exito.", "Liquidacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error Liquidacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                splitContainer1.Panel2.Enabled = true;
+                if (progress != null)
+                {
+                    progress.Close();
+                    progress.Dispose();
+                    progress = null;
+                }
+                LiquidarBTN.Enabled = true;
+            }
+        }
+
+        private void LiquidaciónEmpleados_Enter(object sender, EventArgs e)
+        {
+            if (progress != null)
+            {
+                progress.Focus();
+                progress.BringToFront();
+            }
         }
                
         

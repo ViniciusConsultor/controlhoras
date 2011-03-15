@@ -1,4 +1,4 @@
---Crea la tabla auxiliar para la liquidación de los empleados
+-- Crea la tabla auxiliar para la liquidación de los empleados
 CREATE  TABLE IF NOT EXISTS `trustdb`.`liquidacionempleados` (
   `Fecha` DATE NOT NULL ,
   `NroEmpleado` MEDIUMINT(8) UNSIGNED NOT NULL ,
@@ -6,9 +6,14 @@ CREATE  TABLE IF NOT EXISTS `trustdb`.`liquidacionempleados` (
   `NroCliente` MEDIUMINT(8) UNSIGNED NOT NULL ,
   `Horas` DATETIME NOT NULL ,
   PRIMARY KEY (`Fecha`, `NroEmpleado`, `NroServicio`, `NroCliente`) );
+  
+-- Se precisan permisos de DROP table para poder ejecutar el TRUNCATE de esta tabla. 
+GRANT DROP ON `trustdb`.`liquidacionempleados` TO 'usrtrust'@'%';
 
---Crea la tabla de los feriado
+-- Crea la tabla de los feriado
 CREATE  TABLE IF NOT EXISTS `trustdb`.`feriados` (
   `fecha` DATE NOT NULL ,
   `descripcion` VARCHAR(45) NULL ,
   PRIMARY KEY (`fecha`) );
+-- Se agrega registro para manejar los permisos del boton.
+insert into permisocontrol values (0,"System.Windows.Forms.ToolStripMenuItem","liquidacionToolStripMenuItem",1,"Menu->Liquidacion");
