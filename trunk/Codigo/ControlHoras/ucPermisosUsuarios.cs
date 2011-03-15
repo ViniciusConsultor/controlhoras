@@ -100,32 +100,7 @@ namespace ControlHoras
        
         private void tvWinForms_Controls_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (e.Node.Text.StartsWith("Pantalla:"))
-            {
-                foreach (TreeNode tn in e.Node.Nodes)
-                {
-                    tn.Checked = e.Node.Checked;
-                }
-            }
-            else if (e.Node.Text.StartsWith("Control:"))
-            {
-                if (e.Node.Checked && !e.Node.Parent.Checked)
-                    e.Node.Parent.Checked = true;
-                else if (!e.Node.Checked)
-                {
-                    bool ningunoSeleccionado = true;
-                    foreach (TreeNode tnc in e.Node.Parent.Nodes)
-                    {
-                        if (tnc.Checked)
-                        {
-                            ningunoSeleccionado = false;
-                            break;
-                        }
-                    }
-                    if (ningunoSeleccionado)
-                        e.Node.Parent.Checked = false;
-                }
-            }
+            
 
 
         }
@@ -213,6 +188,36 @@ namespace ControlHoras
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        private void tvWinForms_Controls_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node.Text.StartsWith("Pantalla:"))
+            {
+                foreach (TreeNode tn in e.Node.Nodes)
+                {
+                    tn.Checked = e.Node.Checked;
+                }
+            }
+            else if (e.Node.Text.StartsWith("Control:"))
+            {
+                if (e.Node.Checked && !e.Node.Parent.Checked)
+                    e.Node.Parent.Checked = true;
+                else if (!e.Node.Checked)
+                {
+                    bool ningunoSeleccionado = true;
+                    foreach (TreeNode tnc in e.Node.Parent.Nodes)
+                    {
+                        if (tnc.Checked)
+                        {
+                            ningunoSeleccionado = false;
+                            break;
+                        }
+                    }
+                    if (ningunoSeleccionado)
+                        e.Node.Parent.Checked = false;
+                }
             }
         }
     }

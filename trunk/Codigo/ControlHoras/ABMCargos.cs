@@ -114,18 +114,18 @@ namespace ControlHoras
                         dgvCargos.Rows[numFila].Cells["Descripcion"].Value = txtDescripcion.Text;
                         dgvCargos.Rows[numFila].Cells["HsComunes"].Value = mtHsComunes.Text;
                         dgvCargos.Rows[numFila].Cells["TipoFacturacion"].Value = cmbTipoFacturacion.SelectedItem.ToString();
-                        if (cbFulltime.Checked)
-                            dgvCargos.Rows[numFila].Cells["Fulltime"].Value = cbFulltime.Checked;
-                        else
-                            dgvCargos.Rows[numFila].Cells["Fulltime"].Value = cbFulltime.Checked;
-                        if (cbCobraExtras.Checked)
-                            dgvCargos.Rows[numFila].Cells["CobraHsExtras"].Value = cbCobraExtras.Checked;
-                        else
-                            dgvCargos.Rows[numFila].Cells["CobraHsExtras"].Value = cbCobraExtras.Checked;
-                        if (cbEstado.Checked)
-                            dgvCargos.Rows[numFila].Cells["Activo"].Value = cbEstado.Checked;
-                        else
-                            dgvCargos.Rows[numFila].Cells["Activo"].Value = cbEstado.Checked;
+                        //if (cbFulltime.Checked)
+                        //    dgvCargos.Rows[numFila].Cells["Fulltime"].Value = cbFulltime.Checked;
+                        //else
+                        dgvCargos.Rows[numFila].Cells["Fulltime"].Value = cbFulltime.Checked;
+                        //if (cbCobraExtras.Checked)
+                        //    dgvCargos.Rows[numFila].Cells["CobraHsExtras"].Value = cbCobraExtras.Checked;
+                        //else
+                        dgvCargos.Rows[numFila].Cells["CobraHsExtras"].Value = cbCobraExtras.Checked;
+                        //if (cbEstado.Checked)
+                        //    dgvCargos.Rows[numFila].Cells["Activo"].Value = cbEstado.Checked;
+                        //else
+                        dgvCargos.Rows[numFila].Cells["Activo"].Value = cbEstado.Checked;
                         btnAgregar.Enabled = true;
                         btnGuardar.Enabled = false;
                         limpiarForm();

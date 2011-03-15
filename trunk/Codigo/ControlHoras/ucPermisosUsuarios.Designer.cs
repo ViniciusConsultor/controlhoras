@@ -65,6 +65,7 @@
             this.tvWinForms_Controls.Name = "tvWinForms_Controls";
             this.tvWinForms_Controls.Size = new System.Drawing.Size(321, 266);
             this.tvWinForms_Controls.TabIndex = 0;
+            this.tvWinForms_Controls.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvWinForms_Controls_AfterCheck);
             this.tvWinForms_Controls.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvWinForms_Controls_NodeMouseClick);
             // 
             // btnDeseleccionarTodos

@@ -28,21 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label3 = new System.Windows.Forms.Label();
             this.MesDTP = new System.Windows.Forms.DateTimePicker();
             this.LiquidarBTN = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.label4 = new System.Windows.Forms.Label();
-            this.mtNumeroEmpleado = new ControlHoras.MaskedTextBoxKeyDown();
             this.MesTB = new System.Windows.Forms.Label();
             this.PosteriorBTN = new System.Windows.Forms.Button();
             this.AnteriorBTN = new System.Windows.Forms.Button();
@@ -57,16 +56,20 @@
             this.HsComunesTB = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.LiquidacionDGV = new System.Windows.Forms.DataGridView();
-            this.Dia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Hs_Comunes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Hs_Extras = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Hs_Feriado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Hs_FeriadoEx = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.btnExportarTodos = new System.Windows.Forms.ToolStripButton();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mtNumeroEmpleado = new ControlHoras.MaskedTextBoxKeyDown();
+            this.Dia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Hs_Comunes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Hs_Extras = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Hs_Feriado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Hs_FeriadoEx = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -74,13 +77,14 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LiquidacionDGV)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.210526F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(14, 23);
+            this.label3.Location = new System.Drawing.Point(14, 44);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(170, 13);
             this.label3.TabIndex = 27;
@@ -88,7 +92,7 @@
             // 
             // MesDTP
             // 
-            this.MesDTP.Location = new System.Drawing.Point(188, 19);
+            this.MesDTP.Location = new System.Drawing.Point(189, 40);
             this.MesDTP.Margin = new System.Windows.Forms.Padding(2);
             this.MesDTP.Name = "MesDTP";
             this.MesDTP.ShowUpDown = true;
@@ -97,7 +101,7 @@
             // 
             // LiquidarBTN
             // 
-            this.LiquidarBTN.Location = new System.Drawing.Point(471, 18);
+            this.LiquidarBTN.Location = new System.Drawing.Point(348, 39);
             this.LiquidarBTN.Name = "LiquidarBTN";
             this.LiquidarBTN.Size = new System.Drawing.Size(75, 23);
             this.LiquidarBTN.TabIndex = 29;
@@ -109,6 +113,7 @@
             // 
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer1.Name = "splitContainer1";
@@ -116,6 +121,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.toolStrip1);
             this.splitContainer1.Panel1.Controls.Add(this.MesDTP);
             this.splitContainer1.Panel1.Controls.Add(this.LiquidarBTN);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
@@ -123,14 +129,15 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(565, 491);
-            this.splitContainer1.SplitterDistance = 59;
+            this.splitContainer1.Size = new System.Drawing.Size(565, 548);
+            this.splitContainer1.SplitterDistance = 73;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 30;
             // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.IsSplitterFixed = true;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer2.Name = "splitContainer2";
@@ -157,8 +164,8 @@
             this.splitContainer2.Panel2.Controls.Add(this.HsComunesTB);
             this.splitContainer2.Panel2.Controls.Add(this.label2);
             this.splitContainer2.Panel2.Controls.Add(this.LiquidacionDGV);
-            this.splitContainer2.Size = new System.Drawing.Size(563, 427);
-            this.splitContainer2.SplitterDistance = 80;
+            this.splitContainer2.Size = new System.Drawing.Size(563, 470);
+            this.splitContainer2.SplitterDistance = 79;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 0;
             this.splitContainer2.Visible = false;
@@ -172,22 +179,6 @@
             this.label4.Size = new System.Drawing.Size(30, 15);
             this.label4.TabIndex = 32;
             this.label4.Text = "Nro:";
-            // 
-            // mtNumeroEmpleado
-            // 
-            this.mtNumeroEmpleado.BackColor = System.Drawing.Color.White;
-            this.mtNumeroEmpleado.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.mtNumeroEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtNumeroEmpleado.HidePromptOnLeave = true;
-            this.mtNumeroEmpleado.Location = new System.Drawing.Point(429, 54);
-            this.mtNumeroEmpleado.Mask = "0999";
-            this.mtNumeroEmpleado.Name = "mtNumeroEmpleado";
-            this.mtNumeroEmpleado.Size = new System.Drawing.Size(44, 21);
-            this.mtNumeroEmpleado.TabIndex = 31;
-            this.mtNumeroEmpleado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.mtNumeroEmpleado.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.mtNumeroEmpleado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtNumeroEmpleado_KeyDown);
-            this.mtNumeroEmpleado.Click += new System.EventHandler(this.mtNumeroEmpleado_Click);
             // 
             // MesTB
             // 
@@ -267,7 +258,7 @@
             // 
             // ExcelBTN
             // 
-            this.ExcelBTN.Location = new System.Drawing.Point(471, 303);
+            this.ExcelBTN.Location = new System.Drawing.Point(471, 352);
             this.ExcelBTN.Name = "ExcelBTN";
             this.ExcelBTN.Size = new System.Drawing.Size(75, 23);
             this.ExcelBTN.TabIndex = 30;
@@ -277,7 +268,7 @@
             // 
             // HsFerExtTB
             // 
-            this.HsFerExtTB.Location = new System.Drawing.Point(382, 306);
+            this.HsFerExtTB.Location = new System.Drawing.Point(382, 355);
             this.HsFerExtTB.Margin = new System.Windows.Forms.Padding(2);
             this.HsFerExtTB.Name = "HsFerExtTB";
             this.HsFerExtTB.Size = new System.Drawing.Size(49, 20);
@@ -286,7 +277,7 @@
             // 
             // HsFeriadoTB
             // 
-            this.HsFeriadoTB.Location = new System.Drawing.Point(292, 306);
+            this.HsFeriadoTB.Location = new System.Drawing.Point(292, 355);
             this.HsFeriadoTB.Margin = new System.Windows.Forms.Padding(2);
             this.HsFeriadoTB.Name = "HsFeriadoTB";
             this.HsFeriadoTB.Size = new System.Drawing.Size(49, 20);
@@ -295,7 +286,7 @@
             // 
             // HsExtraTB
             // 
-            this.HsExtraTB.Location = new System.Drawing.Point(209, 306);
+            this.HsExtraTB.Location = new System.Drawing.Point(209, 355);
             this.HsExtraTB.Margin = new System.Windows.Forms.Padding(2);
             this.HsExtraTB.Name = "HsExtraTB";
             this.HsExtraTB.Size = new System.Drawing.Size(49, 20);
@@ -304,7 +295,7 @@
             // 
             // HsComunesTB
             // 
-            this.HsComunesTB.Location = new System.Drawing.Point(126, 306);
+            this.HsComunesTB.Location = new System.Drawing.Point(126, 355);
             this.HsComunesTB.Margin = new System.Windows.Forms.Padding(2);
             this.HsComunesTB.Name = "HsComunesTB";
             this.HsComunesTB.Size = new System.Drawing.Size(49, 20);
@@ -315,7 +306,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(44, 308);
+            this.label2.Location = new System.Drawing.Point(44, 357);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 5;
@@ -338,54 +329,29 @@
             this.LiquidacionDGV.Name = "LiquidacionDGV";
             this.LiquidacionDGV.RowHeadersVisible = false;
             this.LiquidacionDGV.RowTemplate.Height = 24;
-            this.LiquidacionDGV.Size = new System.Drawing.Size(421, 288);
+            this.LiquidacionDGV.Size = new System.Drawing.Size(421, 345);
             this.LiquidacionDGV.TabIndex = 0;
             // 
-            // Dia
+            // toolStrip1
             // 
-            this.Dia.HeaderText = "Día";
-            this.Dia.Name = "Dia";
-            this.Dia.Width = 50;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnExportarTodos});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(563, 36);
+            this.toolStrip1.TabIndex = 30;
+            this.toolStrip1.Text = "toolStrip1";
             // 
-            // Hs_Comunes
+            // btnExportarTodos
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.Format = "00:00";
-            dataGridViewCellStyle1.NullValue = "00:00";
-            this.Hs_Comunes.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Hs_Comunes.HeaderText = "Hs Comunes";
-            this.Hs_Comunes.Name = "Hs_Comunes";
-            this.Hs_Comunes.Width = 92;
-            // 
-            // Hs_Extras
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Format = "00:00";
-            dataGridViewCellStyle2.NullValue = "00:00";
-            this.Hs_Extras.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Hs_Extras.HeaderText = "Hs Extras";
-            this.Hs_Extras.Name = "Hs_Extras";
-            this.Hs_Extras.Width = 77;
-            // 
-            // Hs_Feriado
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "00:00";
-            dataGridViewCellStyle3.NullValue = "00:00";
-            this.Hs_Feriado.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Hs_Feriado.HeaderText = "Hs Feriado";
-            this.Hs_Feriado.Name = "Hs_Feriado";
-            this.Hs_Feriado.Width = 83;
-            // 
-            // Hs_FeriadoEx
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Format = "00:00";
-            dataGridViewCellStyle4.NullValue = "00:00";
-            this.Hs_FeriadoEx.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Hs_FeriadoEx.HeaderText = "Hs FeriadoExt";
-            this.Hs_FeriadoEx.Name = "Hs_FeriadoEx";
-            this.Hs_FeriadoEx.Width = 98;
+            this.btnExportarTodos.Enabled = false;
+            this.btnExportarTodos.Image = global::ControlHoras.Imagenes.application_vnd_ms_excel;
+            this.btnExportarTodos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExportarTodos.Name = "btnExportarTodos";
+            this.btnExportarTodos.Size = new System.Drawing.Size(85, 33);
+            this.btnExportarTodos.Text = "Exportar Todos";
+            this.btnExportarTodos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnExportarTodos.Click += new System.EventHandler(this.btnExportTodos_Click);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -395,49 +361,112 @@
             // 
             // dataGridViewTextBoxColumn2
             // 
-            dataGridViewCellStyle5.Format = "00:00";
-            dataGridViewCellStyle5.NullValue = null;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.Format = "00:00";
+            dataGridViewCellStyle9.NullValue = null;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewTextBoxColumn2.HeaderText = "Hs Comunes";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.Width = 92;
             // 
             // dataGridViewTextBoxColumn3
             // 
-            dataGridViewCellStyle6.Format = "00:00";
-            dataGridViewCellStyle6.NullValue = null;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle10.Format = "00:00";
+            dataGridViewCellStyle10.NullValue = null;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridViewTextBoxColumn3.HeaderText = "Hs Extras";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.Width = 77;
             // 
             // dataGridViewTextBoxColumn4
             // 
-            dataGridViewCellStyle7.Format = "00:00";
-            dataGridViewCellStyle7.NullValue = null;
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle11.Format = "00:00";
+            dataGridViewCellStyle11.NullValue = null;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridViewTextBoxColumn4.HeaderText = "Hs Feriado";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.Width = 83;
             // 
             // dataGridViewTextBoxColumn5
             // 
-            dataGridViewCellStyle8.Format = "00:00";
-            dataGridViewCellStyle8.NullValue = null;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle12.Format = "00:00";
+            dataGridViewCellStyle12.NullValue = null;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridViewTextBoxColumn5.HeaderText = "Hs FeriadoExt";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.Width = 98;
+            // 
+            // mtNumeroEmpleado
+            // 
+            this.mtNumeroEmpleado.BackColor = System.Drawing.Color.White;
+            this.mtNumeroEmpleado.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtNumeroEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mtNumeroEmpleado.HidePromptOnLeave = true;
+            this.mtNumeroEmpleado.Location = new System.Drawing.Point(429, 54);
+            this.mtNumeroEmpleado.Mask = "0999";
+            this.mtNumeroEmpleado.Name = "mtNumeroEmpleado";
+            this.mtNumeroEmpleado.Size = new System.Drawing.Size(44, 21);
+            this.mtNumeroEmpleado.TabIndex = 31;
+            this.mtNumeroEmpleado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.mtNumeroEmpleado.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtNumeroEmpleado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtNumeroEmpleado_KeyDown);
+            this.mtNumeroEmpleado.Click += new System.EventHandler(this.mtNumeroEmpleado_Click);
+            // 
+            // Dia
+            // 
+            this.Dia.HeaderText = "Día";
+            this.Dia.Name = "Dia";
+            this.Dia.Width = 50;
+            // 
+            // Hs_Comunes
+            // 
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.Format = "00:00";
+            dataGridViewCellStyle13.NullValue = "00:00";
+            this.Hs_Comunes.DefaultCellStyle = dataGridViewCellStyle13;
+            this.Hs_Comunes.HeaderText = "Hs Comunes";
+            this.Hs_Comunes.Name = "Hs_Comunes";
+            this.Hs_Comunes.Width = 92;
+            // 
+            // Hs_Extras
+            // 
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.Format = "00:00";
+            dataGridViewCellStyle14.NullValue = "00:00";
+            this.Hs_Extras.DefaultCellStyle = dataGridViewCellStyle14;
+            this.Hs_Extras.HeaderText = "Hs Extras";
+            this.Hs_Extras.Name = "Hs_Extras";
+            this.Hs_Extras.Width = 77;
+            // 
+            // Hs_Feriado
+            // 
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.Format = "00:00";
+            dataGridViewCellStyle15.NullValue = "00:00";
+            this.Hs_Feriado.DefaultCellStyle = dataGridViewCellStyle15;
+            this.Hs_Feriado.HeaderText = "Hs Feriado";
+            this.Hs_Feriado.Name = "Hs_Feriado";
+            this.Hs_Feriado.Width = 83;
+            // 
+            // Hs_FeriadoEx
+            // 
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.Format = "00:00";
+            dataGridViewCellStyle16.NullValue = "00:00";
+            this.Hs_FeriadoEx.DefaultCellStyle = dataGridViewCellStyle16;
+            this.Hs_FeriadoEx.HeaderText = "Hs FeriadoExt";
+            this.Hs_FeriadoEx.Name = "Hs_FeriadoEx";
+            this.Hs_FeriadoEx.Width = 98;
             // 
             // LiquidaciónEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(565, 491);
+            this.ClientSize = new System.Drawing.Size(565, 548);
             this.Controls.Add(this.splitContainer1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LiquidaciónEmpleados";
             this.Text = "Liquidación de Empleados";
+            this.Enter += new System.EventHandler(this.LiquidaciónEmpleados_Enter);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -448,6 +477,8 @@
             this.splitContainer2.Panel2.PerformLayout();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LiquidacionDGV)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -485,5 +516,8 @@
         private System.Windows.Forms.Button ExcelBTN;
         private System.Windows.Forms.Label label4;
         private MaskedTextBoxKeyDown mtNumeroEmpleado;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.ToolStripButton btnExportarTodos;
     }
 }

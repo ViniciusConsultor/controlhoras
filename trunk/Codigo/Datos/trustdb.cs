@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2011-02-28 11:44:23Z
+#region Auto-generated classes for trustdb database on 2011-03-03 18:15:20Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2011-02-28 11:44:23Z
+// Auto-generated from trustdb on 2011-03-03 18:15:20Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -6477,7 +6477,7 @@ namespace Datos
 		#region Parents
 
 		private EntityRef<LineAshOrAs> _lineAshOrAs;
-		[Association(Storage = "_lineAshOrAs", OtherKey = "NroLinea,IDContrato", ThisKey = "NroLinea,IDContrato", Name = "FK_IdContratoNroLinea", IsForeignKey = true)]
+		[Association(Storage = "_lineAshOrAs", OtherKey = "IDContrato,NroLinea", ThisKey = "IDContrato,NroLinea", Name = "FK_IdContratoNroLinea", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public LineAshOrAs LineAshOrAs
 		{
@@ -6499,13 +6499,13 @@ namespace Datos
 					if (value != null)
 					{
 						value.HoRaRioDiA.Add(this);
-						_nroLinea = value.NroLinea;
 						_idcOntrato = value.IDContrato;
+						_nroLinea = value.NroLinea;
 					}
 					else
 					{
-						_nroLinea = default(sbyte);
 						_idcOntrato = default(uint);
+						_nroLinea = default(sbyte);
 					}
 				}
 			}
@@ -7509,7 +7509,7 @@ namespace Datos
 		#region Children
 
 		private EntitySet<HoRaRioDiA> _hoRaRioDiA;
-		[Association(Storage = "_hoRaRioDiA", OtherKey = "NroLinea,IDContrato", ThisKey = "NroLinea,IDContrato", Name = "FK_IdContratoNroLinea")]
+		[Association(Storage = "_hoRaRioDiA", OtherKey = "IDContrato,NroLinea", ThisKey = "IDContrato,NroLinea", Name = "FK_IdContratoNroLinea")]
 		[DebuggerNonUserCode]
 		public EntitySet<HoRaRioDiA> HoRaRioDiA
 		{
@@ -7630,7 +7630,7 @@ namespace Datos
 		partial void OnFechaChanged();
 		partial void OnFechaChanging(DateTime value);
 		partial void OnHorasChanged();
-		partial void OnHorasChanging(DateTime? value);
+		partial void OnHorasChanging(DateTime value);
 		partial void OnNroClienteChanged();
 		partial void OnNroClienteChanging(uint value);
 		partial void OnNroEmpleadoChanged();
@@ -7666,12 +7666,12 @@ namespace Datos
 
 		#endregion
 
-		#region DateTime? Horas
+		#region DateTime Horas
 
-		private DateTime? _horas;
+		private DateTime _horas;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_horas", Name = "Horas", DbType = "time", AutoSync = AutoSync.Never)]
-		public DateTime? Horas
+		[Column(Storage = "_horas", Name = "Horas", DbType = "datetime", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public DateTime Horas
 		{
 			get
 			{
@@ -8336,7 +8336,7 @@ namespace Datos
 		}
 
 		private EntityRef<SERVicIoS> _servIcIoS;
-		[Association(Storage = "_servIcIoS", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "motivoscambiosdiarios_ibfk_2", IsForeignKey = true)]
+		[Association(Storage = "_servIcIoS", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "motivoscambiosdiarios_ibfk_2", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public SERVicIoS SERVicIoS
 		{
@@ -8358,13 +8358,13 @@ namespace Datos
 					if (value != null)
 					{
 						value.MotIVOsCamBiosDiARioS.Add(this);
-						_numeroCliente = value.NumeroCliente;
 						_numeroServicio = value.NumeroServicio;
+						_numeroCliente = value.NumeroCliente;
 					}
 					else
 					{
-						_numeroCliente = default(uint);
 						_numeroServicio = default(uint);
+						_numeroCliente = default(uint);
 					}
 				}
 			}
@@ -9675,7 +9675,7 @@ namespace Datos
 		}
 
 		private EntitySet<MotIVOsCamBiosDiARioS> _motIvoSCamBiosDiArIoS;
-		[Association(Storage = "_motIvoSCamBiosDiArIoS", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "motivoscambiosdiarios_ibfk_2")]
+		[Association(Storage = "_motIvoSCamBiosDiArIoS", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "motivoscambiosdiarios_ibfk_2")]
 		[DebuggerNonUserCode]
 		public EntitySet<MotIVOsCamBiosDiARioS> MotIVOsCamBiosDiARioS
 		{
