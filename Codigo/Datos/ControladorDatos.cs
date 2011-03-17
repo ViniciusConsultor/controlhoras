@@ -3989,7 +3989,90 @@ namespace Datos
             }
         }
 
-      
+
+        public DataFacturacion facturarClienteServicio(int NumeroCliente, int NroServicio, DateTime DiaInicioFacturacion, DateTime DiaFinFacturacion)
+        {
+            try
+            {
+                // Si el cliente paga hs extras, hay que ir a ver el contrato y obtener la cantidad de hs que se deberian cubrir el dia, si se cubren mas, 
+                // la diferencia son hs extras.
+
+                // Si DiaInicioFacturacion del Cliente es mayor a DiaFinFacturacion se le resta un mes al diaInicio
+                if (DiaInicioFacturacion.Day > DiaFinFacturacion.Day)
+                    DiaInicioFacturacion = DiaInicioFacturacion.AddMonths(-1);
+
+                DataDiaFacturacion diafact;
+                var listahoras = (from reg in database.HoRaSGeneraDaSEScalaFOn
+                                  where reg.NumeroCliente == NumeroCliente && reg.NumeroServicio == NroServicio && reg.FechaCorrespondiente >= DiaInicioFacturacion && reg.FechaCorrespondiente <= DiaFinFacturacion
+                                  group reg by new { Fecha = reg.FechaCorrespondiente, HoraEnt = reg.HoraEntrada, HoraSal = reg.HoraSalida } into grp
+                                  select grp.Key);
+
+                ContraToS con = obtenerContrato(NumeroCliente, NroServicio);
+                bool pagaExtras = (con.HorasExtras == 1);
+                List<DataDiaFacturacion> listaDias = new List<DataDiaFacturacion>();
+               
+                TimeSpan totalHsComunes = new TimeSpan(0);
+                TimeSpan totalHsExtras = new TimeSpan(0);
+                TimeSpan tempComunes;
+                TimeSpan tempExtras;
+                TimeSpan tempHsTotales;
+                foreach(var v in listahoras)
+                {
+                    if (pagaExtras)
+                    {
+                        // OBTENER EL DIA DE LA LINEAHORA DEL CONTRATO Y COMPARAR CON EL DIA DE V.
+                        tempComunes = getCantHsContrato(con, v.Fecha);
+                        tempHsTotales = v.HoraSal - v.HoraEnt;
+                        tempComunes = (tempHsTotales > tempComunes ? tempComunes : tempHsTotales);
+                        tempExtras = tempHsTotales - tempComunes;
+
+                        diafact = new DataDiaFacturacion(v.Fecha, tempComunes, tempExtras);
+                    }
+                    else
+                    {
+                        tempExtras = new TimeSpan(0);
+                        tempComunes = v.HoraSal - v.HoraEnt; ;
+                        diafact = new DataDiaFacturacion(v.Fecha, tempComunes, tempExtras);
+                    }
+                    listaDias.Add(diafact);
+                    totalHsComunes += tempComunes;
+                    totalHsExtras += tempExtras;
+                }
+                DataFacturacion df = new DataFacturacion(NumeroCliente,NroServicio,listaDias,totalHsComunes,totalHsExtras);
+                return df;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private TimeSpan getCantHsContrato(ContraToS con, DateTime dia)//, bool Comunes)
+        {
+            TimeSpan ret = new TimeSpan(0);
+            TimeSpan hini;
+            TimeSpan hfin;
+            
+            foreach (LineAshOrAs lh in con.LineAshOrAs)
+            {
+                foreach (HoRaRioDiA hd in lh.HoRaRioDiA)
+                {
+                    if (hd.Dia == dia.DayOfWeek.ToString())
+                    {
+                        hini = TimeSpan.Parse(hd.HoraIni);
+                        hfin = TimeSpan.Parse(hd.HoraFin);
+                        if (hfin <= hini)
+                            ret += hfin + new TimeSpan(TimeSpan.TicksPerDay) - hini;
+                        else
+                            ret += hfin - hini;
+                    }
+                }
+            }
+           
+            return ret;
+        }
+
+       
     }
 
 }

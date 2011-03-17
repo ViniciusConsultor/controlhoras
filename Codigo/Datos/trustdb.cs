@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2011-03-03 18:15:20Z
+#region Auto-generated classes for trustdb database on 2011-03-16 01:24:36Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2011-03-03 18:15:20Z
+// Auto-generated from trustdb on 2011-03-16 01:24:36Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -476,8 +476,12 @@ namespace Datos
 		partial void OnActivoChanging(sbyte? value);
 		partial void OnContactoCobroChanged();
 		partial void OnContactoCobroChanging(string value);
+		partial void OnDiaFinFacturacionChanged();
+		partial void OnDiaFinFacturacionChanging(short value);
 		partial void OnDiaHoraCobroChanged();
 		partial void OnDiaHoraCobroChanging(string value);
+		partial void OnDiaInicioFacturacionChanged();
+		partial void OnDiaInicioFacturacionChanging(short value);
 		partial void OnDireccionChanged();
 		partial void OnDireccionChanging(string value);
 		partial void OnDireccionDeCobroChanged();
@@ -563,6 +567,32 @@ namespace Datos
 
 		#endregion
 
+		#region short DiaFinFacturacion
+
+		private short _diaFinFacturacion;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_diaFinFacturacion", Name = "DiaFinFacturacion", DbType = "smallint(6)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public short DiaFinFacturacion
+		{
+			get
+			{
+				return _diaFinFacturacion;
+			}
+			set
+			{
+				if (value != _diaFinFacturacion)
+				{
+					OnDiaFinFacturacionChanging(value);
+					SendPropertyChanging();
+					_diaFinFacturacion = value;
+					SendPropertyChanged("DiaFinFacturacion");
+					OnDiaFinFacturacionChanged();
+				}
+			}
+		}
+
+		#endregion
+
 		#region string DiaHoraCobro
 
 		private string _diaHoraCobro;
@@ -583,6 +613,32 @@ namespace Datos
 					_diaHoraCobro = value;
 					SendPropertyChanged("DiaHoraCobro");
 					OnDiaHoraCobroChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region short DiaInicioFacturacion
+
+		private short _diaInicioFacturacion;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_diaInicioFacturacion", Name = "DiaInicioFacturacion", DbType = "smallint(6)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public short DiaInicioFacturacion
+		{
+			get
+			{
+				return _diaInicioFacturacion;
+			}
+			set
+			{
+				if (value != _diaInicioFacturacion)
+				{
+					OnDiaInicioFacturacionChanging(value);
+					SendPropertyChanging();
+					_diaInicioFacturacion = value;
+					SendPropertyChanged("DiaInicioFacturacion");
+					OnDiaInicioFacturacionChanged();
 				}
 			}
 		}
@@ -8336,7 +8392,7 @@ namespace Datos
 		}
 
 		private EntityRef<SERVicIoS> _servIcIoS;
-		[Association(Storage = "_servIcIoS", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "motivoscambiosdiarios_ibfk_2", IsForeignKey = true)]
+		[Association(Storage = "_servIcIoS", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "motivoscambiosdiarios_ibfk_2", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public SERVicIoS SERVicIoS
 		{
@@ -8358,13 +8414,13 @@ namespace Datos
 					if (value != null)
 					{
 						value.MotIVOsCamBiosDiARioS.Add(this);
-						_numeroServicio = value.NumeroServicio;
 						_numeroCliente = value.NumeroCliente;
+						_numeroServicio = value.NumeroServicio;
 					}
 					else
 					{
-						_numeroServicio = default(uint);
 						_numeroCliente = default(uint);
+						_numeroServicio = default(uint);
 					}
 				}
 			}
@@ -9675,7 +9731,7 @@ namespace Datos
 		}
 
 		private EntitySet<MotIVOsCamBiosDiARioS> _motIvoSCamBiosDiArIoS;
-		[Association(Storage = "_motIvoSCamBiosDiArIoS", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "motivoscambiosdiarios_ibfk_2")]
+		[Association(Storage = "_motIvoSCamBiosDiArIoS", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "motivoscambiosdiarios_ibfk_2")]
 		[DebuggerNonUserCode]
 		public EntitySet<MotIVOsCamBiosDiARioS> MotIVOsCamBiosDiARioS
 		{

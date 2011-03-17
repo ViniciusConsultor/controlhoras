@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using Utilidades;
 
 namespace Datos
 {
@@ -245,10 +246,30 @@ namespace Datos
         /// <param name="fechaCorresponde">Fecha Correspondiente al dia que se quieren los datos.</param>
         /// <returns>Lista de HorasGeneradasEscalafon</returns>
         List<HoRaSGeneraDaSEScalaFOn> obtenerHorasGeneradasEscalafonEmpleado(uint nroEmpleado,DateTime fechaCorresponde);
+
+        /// <summary>
+        /// Crea los registros de HorasGeneradasEscalafon
+        /// </summary>
+        /// <param name="listaHorasGeneradas">Lista de HorasGeneradasEscalafon a guardar</param>
+        /// <param name="sobreescribir">True para sobreescribir las Horas Generadas existentes con las nuevas.</param>
+        void guardarGeneracionHorasEscalafon(List<HoRaSGeneraDaSEScalaFOn> listaHorasGeneradas, bool sobreescribir);
+        
         #endregion
 
-        bool existeClienteServicio(int NumeroCliente, int NumeroServicio);
 
+        #region ClientesServicios
+        
+        bool existeClienteServicio(int NumeroCliente, int NumeroServicio);
+        int obtenerMaxIdCliente();
+        string getNombreCliente(int NroCliente);
+        string getNombreServicio(int NroCliente, int NroServicio);
+        bool ClienteActivo(int NroCliente);
+        bool esServicioActivo(int nroCliente, int nroServicio);
+        
+        DataFacturacion facturarClienteServicio(int NumeroCliente, int NroServicio,DateTime DiaInicioFacturacion,DateTime DiaFinFacturacion);
+        
+        #endregion
+        
         void altaContratoServicioCliente(int NumeroCliente, int NumeroServicio, int NumeroContrato, DateTime FechaInicio, DateTime? FechaFin, bool CostoFijo, bool HorasExtras, string Ajuste, string Observaciones, float Monto);
         bool existeContrato(int NumeroContrato);
         ContraToS obtenerContrato(int NumeroContrato);
@@ -271,8 +292,6 @@ namespace Datos
         void BajaListaNegra(string CI);
         void altaEmpleadoDesdeListaNegra(string CI, string nroEmpleado, string apellidos, string nombres, string observaciones);
         #endregion
-
-        int obtenerMaxIdCliente();
 
         #region TiposMotivoCambioDiario
         List<TipOsMotIVOCamBIoDiARio> obtenerTiposMotivoCambioDiario(bool soloactivos);
@@ -301,10 +320,6 @@ namespace Datos
 
         string getNombreEmpleado(int NroEmpleado);
 
-        string getNombreCliente(int NroCliente);
-
-        string getNombreServicio(int NroCliente, int NroServicio);
-
         EScalaFOn obtenerEscalafon(int NroEscalafon);
 
         void eliminarLineasEscalafon(int NroEscalafon);
@@ -321,26 +336,18 @@ namespace Datos
 
         List<HoRaRioEScalaFOn> getHorEmpleado(int NroEmpleado, string dia, int IdEscalafon);
 
-        bool ClienteActivo(int NroCliente);
-
         void SetearCubierto(int NroEscalafon, bool ContCubierto);
 
         void SustituirEmpleado(int NroNuevoEmpleado, int NroViejoEmpleado);
 
         void MarcarSolapados(List<HoRaRioEScalaFOn> HorsSolapados);
 
-        /// <summary>
-        /// Crea los registros de HorasGeneradasEscalafon
-        /// </summary>
-        /// <param name="listaHorasGeneradas">Lista de HorasGeneradasEscalafon a guardar</param>
-        /// <param name="sobreescribir">True para sobreescribir las Horas Generadas existentes con las nuevas.</param>
-        void guardarGeneracionHorasEscalafon(List<HoRaSGeneraDaSEScalaFOn> listaHorasGeneradas, bool sobreescribir);
         
         void MarcarNoSolapados(List<HoRaRioEScalaFOn> HorsNOSolap);
 
         List<HoRaRioEScalaFOn> getHorariosEmpleadoDia(int NroEmpleado, string dia, int IdEscalafon);
 
-        bool esServicioActivo(int nroCliente, int nroServicio);
+       
 
         #region Usuarios
         /// <summary>

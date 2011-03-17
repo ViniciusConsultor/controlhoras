@@ -30,12 +30,20 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentanaPrincipal));
             this.menuBotones = new System.Windows.Forms.ToolStrip();
+            this.btnClientes = new System.Windows.Forms.ToolStripButton();
+            this.btnEmpleados = new System.Windows.Forms.ToolStripButton();
+            this.btnEscalafon = new System.Windows.Forms.ToolStripButton();
+            this.btnControlDiario = new System.Windows.Forms.ToolStripButton();
+            this.btnConsultas = new System.Windows.Forms.ToolStripButton();
             this.menuStripSuperior = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mantenimientoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serviciosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.empleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listaNegraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.codiguerasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.emergenciasMedicaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,6 +60,7 @@
             this.consultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarNumeroEmpleadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sustituirEnEscalafonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -66,15 +75,6 @@
             this.tsslIdUsuarioLogueado = new System.Windows.Forms.ToolStripStatusLabel();
             this.ofdCargarArchivoImportacionConsultas = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnClientes = new System.Windows.Forms.ToolStripButton();
-            this.btnEmpleados = new System.Windows.Forms.ToolStripButton();
-            this.btnEscalafon = new System.Windows.Forms.ToolStripButton();
-            this.btnControlDiario = new System.Windows.Forms.ToolStripButton();
-            this.btnConsultas = new System.Windows.Forms.ToolStripButton();
-            this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.empleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listaNegraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBotones.SuspendLayout();
             this.menuStripSuperior.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -94,6 +94,61 @@
             this.menuBotones.Size = new System.Drawing.Size(400, 36);
             this.menuBotones.TabIndex = 0;
             this.menuBotones.Text = "toolStrip1";
+            // 
+            // btnClientes
+            // 
+            this.btnClientes.Enabled = false;
+            this.btnClientes.Image = global::ControlHoras.Imagenes.client;
+            this.btnClientes.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnClientes.Name = "btnClientes";
+            this.btnClientes.Size = new System.Drawing.Size(49, 33);
+            this.btnClientes.Text = "Clientes";
+            this.btnClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnClientes.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // btnEmpleados
+            // 
+            this.btnEmpleados.Enabled = false;
+            this.btnEmpleados.Image = global::ControlHoras.Imagenes._1254703516_userconfig;
+            this.btnEmpleados.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEmpleados.Name = "btnEmpleados";
+            this.btnEmpleados.Size = new System.Drawing.Size(62, 33);
+            this.btnEmpleados.Text = "Empleados";
+            this.btnEmpleados.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnEmpleados.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // btnEscalafon
+            // 
+            this.btnEscalafon.Enabled = false;
+            this.btnEscalafon.Image = global::ControlHoras.Imagenes.Escalafon;
+            this.btnEscalafon.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEscalafon.Name = "btnEscalafon";
+            this.btnEscalafon.Size = new System.Drawing.Size(57, 33);
+            this.btnEscalafon.Text = "Escalafon";
+            this.btnEscalafon.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnEscalafon.Click += new System.EventHandler(this.btnEscalafon_Click);
+            // 
+            // btnControlDiario
+            // 
+            this.btnControlDiario.Enabled = false;
+            this.btnControlDiario.Image = global::ControlHoras.Imagenes.CheckIcon;
+            this.btnControlDiario.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnControlDiario.Name = "btnControlDiario";
+            this.btnControlDiario.Size = new System.Drawing.Size(76, 33);
+            this.btnControlDiario.Text = "Control Diario";
+            this.btnControlDiario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnControlDiario.Click += new System.EventHandler(this.toolStripButton4_Click);
+            // 
+            // btnConsultas
+            // 
+            this.btnConsultas.Enabled = false;
+            this.btnConsultas.Image = global::ControlHoras.Imagenes.icon_query_reporting;
+            this.btnConsultas.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnConsultas.Name = "btnConsultas";
+            this.btnConsultas.Size = new System.Drawing.Size(58, 33);
+            this.btnConsultas.Text = "Consultas";
+            this.btnConsultas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnConsultas.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // menuStripSuperior
             // 
@@ -146,6 +201,15 @@
             this.mantenimientoToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
             this.mantenimientoToolStripMenuItem.Text = "Mantenimiento";
             // 
+            // clientesToolStripMenuItem
+            // 
+            this.clientesToolStripMenuItem.Enabled = false;
+            this.clientesToolStripMenuItem.Image = global::ControlHoras.Imagenes.client;
+            this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.clientesToolStripMenuItem.Text = "Clientes";
+            this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
+            // 
             // serviciosToolStripMenuItem
             // 
             this.serviciosToolStripMenuItem.Enabled = false;
@@ -153,6 +217,24 @@
             this.serviciosToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.serviciosToolStripMenuItem.Text = "Servicios";
             this.serviciosToolStripMenuItem.Click += new System.EventHandler(this.serviciosToolStripMenuItem_Click);
+            // 
+            // empleadosToolStripMenuItem
+            // 
+            this.empleadosToolStripMenuItem.Enabled = false;
+            this.empleadosToolStripMenuItem.Image = global::ControlHoras.Imagenes._1254703516_userconfig;
+            this.empleadosToolStripMenuItem.Name = "empleadosToolStripMenuItem";
+            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.empleadosToolStripMenuItem.Text = "Empleados";
+            this.empleadosToolStripMenuItem.Click += new System.EventHandler(this.empleadosToolStripMenuItem_Click);
+            // 
+            // listaNegraToolStripMenuItem
+            // 
+            this.listaNegraToolStripMenuItem.Enabled = false;
+            this.listaNegraToolStripMenuItem.Image = global::ControlHoras.Imagenes.blacklist;
+            this.listaNegraToolStripMenuItem.Name = "listaNegraToolStripMenuItem";
+            this.listaNegraToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.listaNegraToolStripMenuItem.Text = "Lista Negra";
+            this.listaNegraToolStripMenuItem.Click += new System.EventHandler(this.listaNegraToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -276,6 +358,15 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(210, 6);
             // 
+            // usuariosToolStripMenuItem
+            // 
+            this.usuariosToolStripMenuItem.Enabled = false;
+            this.usuariosToolStripMenuItem.Image = global::ControlHoras.Imagenes.add_user;
+            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.usuariosToolStripMenuItem.Text = "Usuarios";
+            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
+            // 
             // administracionToolStripMenuItem
             // 
             this.administracionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -329,6 +420,7 @@
             this.clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
             this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.clientesToolStripMenuItem1.Text = "Clientes";
+            this.clientesToolStripMenuItem1.Click += new System.EventHandler(this.clientesToolStripMenuItem1_Click);
             // 
             // empleadosToolStripMenuItem1
             // 
@@ -380,97 +472,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            // 
-            // btnClientes
-            // 
-            this.btnClientes.Enabled = false;
-            this.btnClientes.Image = global::ControlHoras.Imagenes.client;
-            this.btnClientes.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnClientes.Name = "btnClientes";
-            this.btnClientes.Size = new System.Drawing.Size(49, 33);
-            this.btnClientes.Text = "Clientes";
-            this.btnClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnClientes.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // btnEmpleados
-            // 
-            this.btnEmpleados.Enabled = false;
-            this.btnEmpleados.Image = global::ControlHoras.Imagenes._1254703516_userconfig;
-            this.btnEmpleados.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEmpleados.Name = "btnEmpleados";
-            this.btnEmpleados.Size = new System.Drawing.Size(62, 33);
-            this.btnEmpleados.Text = "Empleados";
-            this.btnEmpleados.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnEmpleados.Click += new System.EventHandler(this.toolStripButton2_Click);
-            // 
-            // btnEscalafon
-            // 
-            this.btnEscalafon.Enabled = false;
-            this.btnEscalafon.Image = global::ControlHoras.Imagenes.Escalafon;
-            this.btnEscalafon.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEscalafon.Name = "btnEscalafon";
-            this.btnEscalafon.Size = new System.Drawing.Size(57, 33);
-            this.btnEscalafon.Text = "Escalafon";
-            this.btnEscalafon.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnEscalafon.Click += new System.EventHandler(this.btnEscalafon_Click);
-            // 
-            // btnControlDiario
-            // 
-            this.btnControlDiario.Enabled = false;
-            this.btnControlDiario.Image = global::ControlHoras.Imagenes.CheckIcon;
-            this.btnControlDiario.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnControlDiario.Name = "btnControlDiario";
-            this.btnControlDiario.Size = new System.Drawing.Size(76, 33);
-            this.btnControlDiario.Text = "Control Diario";
-            this.btnControlDiario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnControlDiario.Click += new System.EventHandler(this.toolStripButton4_Click);
-            // 
-            // btnConsultas
-            // 
-            this.btnConsultas.Enabled = false;
-            this.btnConsultas.Image = global::ControlHoras.Imagenes.icon_query_reporting;
-            this.btnConsultas.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnConsultas.Name = "btnConsultas";
-            this.btnConsultas.Size = new System.Drawing.Size(58, 33);
-            this.btnConsultas.Text = "Consultas";
-            this.btnConsultas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnConsultas.Click += new System.EventHandler(this.toolStripButton3_Click);
-            // 
-            // clientesToolStripMenuItem
-            // 
-            this.clientesToolStripMenuItem.Enabled = false;
-            this.clientesToolStripMenuItem.Image = global::ControlHoras.Imagenes.client;
-            this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.clientesToolStripMenuItem.Text = "Clientes";
-            this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
-            // 
-            // empleadosToolStripMenuItem
-            // 
-            this.empleadosToolStripMenuItem.Enabled = false;
-            this.empleadosToolStripMenuItem.Image = global::ControlHoras.Imagenes._1254703516_userconfig;
-            this.empleadosToolStripMenuItem.Name = "empleadosToolStripMenuItem";
-            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.empleadosToolStripMenuItem.Text = "Empleados";
-            this.empleadosToolStripMenuItem.Click += new System.EventHandler(this.empleadosToolStripMenuItem_Click);
-            // 
-            // listaNegraToolStripMenuItem
-            // 
-            this.listaNegraToolStripMenuItem.Enabled = false;
-            this.listaNegraToolStripMenuItem.Image = global::ControlHoras.Imagenes.blacklist;
-            this.listaNegraToolStripMenuItem.Name = "listaNegraToolStripMenuItem";
-            this.listaNegraToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.listaNegraToolStripMenuItem.Text = "Lista Negra";
-            this.listaNegraToolStripMenuItem.Click += new System.EventHandler(this.listaNegraToolStripMenuItem_Click);
-            // 
-            // usuariosToolStripMenuItem
-            // 
-            this.usuariosToolStripMenuItem.Enabled = false;
-            this.usuariosToolStripMenuItem.Image = global::ControlHoras.Imagenes.add_user;
-            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.usuariosToolStripMenuItem.Text = "Usuarios";
-            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
             // VentanaPrincipal
             // 
