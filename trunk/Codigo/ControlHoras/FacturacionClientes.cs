@@ -1,0 +1,175 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using Datos;
+using Utilidades;
+using System.IO;
+using System.Configuration;
+using Excel = Microsoft.Office.Interop.Excel;
+
+namespace ControlHoras
+{
+    public partial class FacturacionClientes : Form
+    {
+
+        IDatos datos;
+        object missing = null;
+        string exefile = null;
+        FileInfo Info = null;
+        string dirbase = null;
+        string dirRelativaDocs = null;                      
+
+        public FacturacionClientes()
+        {
+            InitializeComponent();
+            try
+            {
+                tcClientesServicios.cargarDatos();
+                datos = Datos.ControladorDatos.getInstance();
+                missing = System.Reflection.Missing.Value;
+                exefile = Application.ExecutablePath;
+                Info = new FileInfo(exefile);
+                
+                dirbase = Info.DirectoryName;
+                dirRelativaDocs = ConfigurationManager.AppSettings["DirectorioRelativoDocs"].ToString();
+        
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        private void btnFacturar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dr = fbdFolder.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    string DirPath = fbdFolder.SelectedPath;
+                    Dictionary<int, List<int>> cliServsSeleccionados = tcClientesServicios.obtenerClientesServiciosSeleccionados();
+                    if (cliServsSeleccionados.Count > 0)
+                    {
+                        //int nroCli;
+                        ClientEs cliente;
+                        Dictionary<int, List<int>>.Enumerator iter = cliServsSeleccionados.GetEnumerator();
+                        progressBar.Minimum = 0;
+                        progressBar.Maximum = cliServsSeleccionados.Count;
+                        while (iter.MoveNext())
+                        {
+                            progressBar.Increment(1);
+
+                            cliente = datos.obtenerCliente(iter.Current.Key);
+
+                            lblEstado.Text = iter.Current.Key.ToString() + " - " + cliente.NombreFantasia;
+                            Application.DoEvents();
+
+                            DateTime DiaInicioFact = new DateTime(dtpMesFacturacion.Value.Year, dtpMesFacturacion.Value.Month, cliente.DiaInicioFacturacion);
+                            DateTime DiaFinFact;
+                            try
+                            {
+                                DiaFinFact = new DateTime(dtpMesFacturacion.Value.Year, dtpMesFacturacion.Value.Month, cliente.DiaFinFacturacion);
+                            }
+                            catch (Exception exD)
+                            {
+                                // Si tira exception es porque el DiaFin no es correcto para el mes. En este caso obtenemos el ultimo dia del mes.
+                                // Obtengo el ultimo dia del mes.
+                                DiaFinFact = new DateTime(dtpMesFacturacion.Value.Year, dtpMesFacturacion.Value.Month, DateTime.DaysInMonth(dtpMesFacturacion.Value.Year, dtpMesFacturacion.Value.Month));
+                            }
+                            foreach (int serv in iter.Current.Value)
+                            {
+                                DataFacturacion factCliente = datos.facturarClienteServicio((int)cliente.NumeroCliente, serv, DiaInicioFact, DiaFinFact);
+                                generarExcelFacturacionCliente(DirPath, dtpMesFacturacion.Value.Year + dtpMesFacturacion.Value.Month + cliente.NombreFantasia + "-" + serv, factCliente, false);
+                            }
+                        }
+                    }
+                    else
+                        MessageBox.Show("Debe seleccionar por lo menos un Cliente/Servicio a Facturar", "Facturacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Proces de Facturacion termiando con Exito", "Facturacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        
+        }
+
+        public void generarExcelFacturacionCliente(string outputDirectory, string nombreArchivo, DataFacturacion facturacion, bool abrirExcel)
+        {
+            string dirbase = Info.DirectoryName;//System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
+            string dirRelativaDocs = ConfigurationManager.AppSettings["DirectorioRelativoDocs"].ToString();
+            string pathdoc = Path.Combine(dirbase,dirRelativaDocs);
+            string fileName = Path.Combine(pathdoc, "FacturaCliente.xls");
+            if (File.Exists(fileName))
+            {
+                object readOnly = true;
+                object falso = false;
+                DateTime auxdt;
+
+                Excel.Application ExApp;
+                Excel._Workbook oWBook;
+                Excel._Worksheet oSheet;
+
+                try
+                {
+                    // Iniciar Excel y obtener el objeto Aplicacion.
+                    ExApp = new Excel.Application();
+
+                    //Get a new workbook.
+                    //oWB = (Excel._Workbook)(oXL.Workbooks.Add(Missing.Value));
+                    oWBook = ExApp.Workbooks.Open(fileName, missing, readOnly, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing);
+                    oSheet = (Excel._Worksheet)oWBook.ActiveSheet;
+
+                    // Mes
+                    oSheet.Cells[1, 5] = dtpMesFacturacion.Value.Month + "/" + dtpMesFacturacion.Value.Year;
+                    oSheet.Cells[2, 3] = facturacion.NroCliente + "/" + datos.getNombreCliente(facturacion.NroCliente);
+                    // Nombre
+                    oSheet.Cells[3, 3] = facturacion.NroServicio;
+
+                    int i = 0;
+                    foreach (DataDiaFacturacion ddf in facturacion.ListaDiaFacturacion) 
+                    {
+                        oSheet.Cells[6 + i, 2] = ddf.Dia.ToString(@"dd/MM/yyyy");
+                        oSheet.Cells[6 + i, 3] = ddf.HsComunes.ToString();
+                        oSheet.Cells[6 + i, 4] = ddf.HsExtras.ToString();
+                        i++;
+                    }
+
+                    oSheet.Cells[31 + 6, 3] = facturacion.TotalHsComunes.ToString();
+                    oSheet.Cells[31 + 6, 3] = facturacion.TotalHsExtras.ToString();
+
+                    //oWBook.PrintPreview(falso);
+                    object a = Path.Combine(outputDirectory, nombreArchivo + ".xls");
+                    if (!abrirExcel)
+                    {
+                        ExApp.Visible = false;
+                        oWBook.SaveAs(a, missing, missing, missing, missing, missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Microsoft.Office.Interop.Excel.XlSaveConflictResolution.xlLocalSessionChanges, missing, missing, missing, true);
+                        ExApp.Quit();
+                    }
+                    else
+                        ExApp.Visible = true;
+                }
+                catch (Exception theException)
+                {
+                    String errorMessage;
+                    errorMessage = "Error: ";
+                    errorMessage = String.Concat(errorMessage, theException.Message);
+                    errorMessage = String.Concat(errorMessage, " Line: ");
+                    errorMessage = String.Concat(errorMessage, theException.Source);
+                    throw theException;
+                }
+            }
+            else
+            {
+                throw new NoExisteException("No existe el archivo template: " + fileName);
+            }
+        }
+    }
+}

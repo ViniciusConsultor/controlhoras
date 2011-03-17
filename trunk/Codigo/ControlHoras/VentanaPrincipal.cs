@@ -545,5 +545,18 @@ namespace ControlHoras
             }
 
         }
+
+        private void clientesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FacturacionClientes cef = new FacturacionClientes();
+                cef.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

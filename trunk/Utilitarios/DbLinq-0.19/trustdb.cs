@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2011-02-06 20:55:09Z
+#region Auto-generated classes for trustdb database on 2011-03-16 01:24:36Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2011-02-06 20:55:09Z
+// Auto-generated from trustdb on 2011-03-16 01:24:36Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -96,11 +96,13 @@ namespace Datos
 		public Table<EventOsHistOrIalEmPleadO> EventOsHistOrIalEmPleadO { get { return GetTable<EventOsHistOrIalEmPleadO>(); } }
 		public Table<ExtrasLiquidAcIon> ExtrasLiquidAcIon { get { return GetTable<ExtrasLiquidAcIon>(); } }
 		public Table<ExtrasLiquidAcIonEmPleadO> ExtrasLiquidAcIonEmPleadO { get { return GetTable<ExtrasLiquidAcIonEmPleadO>(); } }
+		public Table<FeRiAdoS> FeRiAdoS { get { return GetTable<FeRiAdoS>(); } }
 		public Table<GRuPOs> GRuPOs { get { return GetTable<GRuPOs>(); } }
 		public Table<HoRaRioDiA> HoRaRioDiA { get { return GetTable<HoRaRioDiA>(); } }
 		public Table<HoRaRioEScalaFOn> HoRaRioEScalaFOn { get { return GetTable<HoRaRioEScalaFOn>(); } }
 		public Table<HoRaSGeneraDaSEScalaFOn> HoRaSGeneraDaSEScalaFOn { get { return GetTable<HoRaSGeneraDaSEScalaFOn>(); } }
 		public Table<LineAshOrAs> LineAshOrAs { get { return GetTable<LineAshOrAs>(); } }
+		public Table<LiquidAcIonEmPleadOs> LiquidAcIonEmPleadOs { get { return GetTable<LiquidAcIonEmPleadOs>(); } }
 		public Table<ListAnEGRa> ListAnEGRa { get { return GetTable<ListAnEGRa>(); } }
 		public Table<MotIVOsCamBiosDiARioS> MotIVOsCamBiosDiARioS { get { return GetTable<MotIVOsCamBiosDiARioS>(); } }
 		public Table<MutualIsTAs> MutualIsTAs { get { return GetTable<MutualIsTAs>(); } }
@@ -474,8 +476,12 @@ namespace Datos
 		partial void OnActivoChanging(sbyte? value);
 		partial void OnContactoCobroChanged();
 		partial void OnContactoCobroChanging(string value);
+		partial void OnDiaFinFacturacionChanged();
+		partial void OnDiaFinFacturacionChanging(short value);
 		partial void OnDiaHoraCobroChanged();
 		partial void OnDiaHoraCobroChanging(string value);
+		partial void OnDiaInicioFacturacionChanged();
+		partial void OnDiaInicioFacturacionChanging(short value);
 		partial void OnDireccionChanged();
 		partial void OnDireccionChanging(string value);
 		partial void OnDireccionDeCobroChanged();
@@ -561,6 +567,32 @@ namespace Datos
 
 		#endregion
 
+		#region short DiaFinFacturacion
+
+		private short _diaFinFacturacion;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_diaFinFacturacion", Name = "DiaFinFacturacion", DbType = "smallint(6)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public short DiaFinFacturacion
+		{
+			get
+			{
+				return _diaFinFacturacion;
+			}
+			set
+			{
+				if (value != _diaFinFacturacion)
+				{
+					OnDiaFinFacturacionChanging(value);
+					SendPropertyChanging();
+					_diaFinFacturacion = value;
+					SendPropertyChanged("DiaFinFacturacion");
+					OnDiaFinFacturacionChanged();
+				}
+			}
+		}
+
+		#endregion
+
 		#region string DiaHoraCobro
 
 		private string _diaHoraCobro;
@@ -581,6 +613,32 @@ namespace Datos
 					_diaHoraCobro = value;
 					SendPropertyChanged("DiaHoraCobro");
 					OnDiaHoraCobroChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region short DiaInicioFacturacion
+
+		private short _diaInicioFacturacion;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_diaInicioFacturacion", Name = "DiaInicioFacturacion", DbType = "smallint(6)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public short DiaInicioFacturacion
+		{
+			get
+			{
+				return _diaInicioFacturacion;
+			}
+			set
+			{
+				if (value != _diaInicioFacturacion)
+				{
+					OnDiaInicioFacturacionChanging(value);
+					SendPropertyChanging();
+					_diaInicioFacturacion = value;
+					SendPropertyChanged("DiaInicioFacturacion");
+					OnDiaInicioFacturacionChanged();
 				}
 			}
 		}
@@ -4304,6 +4362,21 @@ namespace Datos
 
 		#region Children
 
+		private EntitySet<EScalaFOneMpLeadO> _esCalaFoNeMpLeadO;
+		[Association(Storage = "_esCalaFoNeMpLeadO", OtherKey = "NroEmpleado", ThisKey = "NroEmpleado", Name = "escalafonempleado_ibfk_1")]
+		[DebuggerNonUserCode]
+		public EntitySet<EScalaFOneMpLeadO> EScalaFOneMpLeadO
+		{
+			get
+			{
+				return _esCalaFoNeMpLeadO;
+			}
+			set
+			{
+				_esCalaFoNeMpLeadO = value;
+			}
+		}
+
 		private EntitySet<EventOsHistOrIalEmPleadO> _eventOsHistOrIalEmPleadO;
 		[Association(Storage = "_eventOsHistOrIalEmPleadO", OtherKey = "IDEmpleado", ThisKey = "NroEmpleado", Name = "eventoshistorialempleado_ibfk_1")]
 		[DebuggerNonUserCode]
@@ -4319,8 +4392,38 @@ namespace Datos
 			}
 		}
 
+		private EntitySet<ExtrasLiquidAcIon> _extrasLiquidAcIon;
+		[Association(Storage = "_extrasLiquidAcIon", OtherKey = "IDEmpleado", ThisKey = "NroEmpleado", Name = "extrasliquidacion_ibfk_1")]
+		[DebuggerNonUserCode]
+		public EntitySet<ExtrasLiquidAcIon> ExtrasLiquidAcIon
+		{
+			get
+			{
+				return _extrasLiquidAcIon;
+			}
+			set
+			{
+				_extrasLiquidAcIon = value;
+			}
+		}
+
+		private EntitySet<HoRaRioEScalaFOn> _hoRaRioEsCalaFoN;
+		[Association(Storage = "_hoRaRioEsCalaFoN", OtherKey = "NroEmpleado", ThisKey = "NroEmpleado", Name = "horarioescalafon_ibfk_2")]
+		[DebuggerNonUserCode]
+		public EntitySet<HoRaRioEScalaFOn> HoRaRioEScalaFOn
+		{
+			get
+			{
+				return _hoRaRioEsCalaFoN;
+			}
+			set
+			{
+				_hoRaRioEsCalaFoN = value;
+			}
+		}
+
 		private EntitySet<HoRaSGeneraDaSEScalaFOn> _hoRaSgEneraDaSesCalaFoN;
-		[Association(Storage = "_hoRaSgEneraDaSesCalaFoN", OtherKey = "NroEmpleado", ThisKey = "NroEmpleado", Name = "horasgeneradasescalafon_ibfk_1")]
+		[Association(Storage = "_hoRaSgEneraDaSesCalaFoN", OtherKey = "NroEmpleado", ThisKey = "NroEmpleado", Name = "horasgeneradasescalafon_ibfk_3")]
 		[DebuggerNonUserCode]
 		public EntitySet<HoRaSGeneraDaSEScalaFOn> HoRaSGeneraDaSEScalaFOn
 		{
@@ -4354,12 +4457,42 @@ namespace Datos
 
 		#region Attachement handlers
 
+		private void EScalaFOneMpLeadO_Attach(EScalaFOneMpLeadO entity)
+		{
+			entity.EmPleadOs = this;
+		}
+
+		private void EScalaFOneMpLeadO_Detach(EScalaFOneMpLeadO entity)
+		{
+			entity.EmPleadOs = null;
+		}
+
 		private void EventOsHistOrIalEmPleadO_Attach(EventOsHistOrIalEmPleadO entity)
 		{
 			entity.EmPleadOs = this;
 		}
 
 		private void EventOsHistOrIalEmPleadO_Detach(EventOsHistOrIalEmPleadO entity)
+		{
+			entity.EmPleadOs = null;
+		}
+
+		private void ExtrasLiquidAcIon_Attach(ExtrasLiquidAcIon entity)
+		{
+			entity.EmPleadOs = this;
+		}
+
+		private void ExtrasLiquidAcIon_Detach(ExtrasLiquidAcIon entity)
+		{
+			entity.EmPleadOs = null;
+		}
+
+		private void HoRaRioEScalaFOn_Attach(HoRaRioEScalaFOn entity)
+		{
+			entity.EmPleadOs = this;
+		}
+
+		private void HoRaRioEScalaFOn_Detach(HoRaRioEScalaFOn entity)
 		{
 			entity.EmPleadOs = null;
 		}
@@ -4391,7 +4524,10 @@ namespace Datos
 
 		public EmPleadOs()
 		{
+			_esCalaFoNeMpLeadO = new EntitySet<EScalaFOneMpLeadO>(EScalaFOneMpLeadO_Attach, EScalaFOneMpLeadO_Detach);
 			_eventOsHistOrIalEmPleadO = new EntitySet<EventOsHistOrIalEmPleadO>(EventOsHistOrIalEmPleadO_Attach, EventOsHistOrIalEmPleadO_Detach);
+			_extrasLiquidAcIon = new EntitySet<ExtrasLiquidAcIon>(ExtrasLiquidAcIon_Attach, ExtrasLiquidAcIon_Detach);
+			_hoRaRioEsCalaFoN = new EntitySet<HoRaRioEScalaFOn>(HoRaRioEScalaFOn_Attach, HoRaRioEScalaFOn_Detach);
 			_hoRaSgEneraDaSesCalaFoN = new EntitySet<HoRaSGeneraDaSEScalaFOn>(HoRaSGeneraDaSEScalaFOn_Attach, HoRaSGeneraDaSEScalaFOn_Detach);
 			_motIvoSCamBiosDiArIoS = new EntitySet<MotIVOsCamBiosDiARioS>(MotIVOsCamBiosDiARioS_Attach, MotIVOsCamBiosDiARioS_Detach);
 			OnCreated();
@@ -4898,6 +5034,10 @@ namespace Datos
 			{
 				if (value != _nroEmpleado)
 				{
+					if (_emPleadOs.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					OnNroEmpleadoChanging(value);
 					SendPropertyChanging();
 					_nroEmpleado = value;
@@ -4912,7 +5052,7 @@ namespace Datos
 		#region Children
 
 		private EntitySet<HoRaRioEScalaFOn> _hoRaRioEsCalaFoN;
-		[Association(Storage = "_hoRaRioEsCalaFoN", OtherKey = "IDEscalafonEmpleado,IDEscalafon", ThisKey = "IDEscalafonEmpleado,IDEscalafon", Name = "FK_horasEscalEmpleados")]
+		[Association(Storage = "_hoRaRioEsCalaFoN", OtherKey = "IDEscalafon,IDEscalafonEmpleado", ThisKey = "IDEscalafon,IDEscalafonEmpleado", Name = "FK_horasEscalEmpleados")]
 		[DebuggerNonUserCode]
 		public EntitySet<HoRaRioEScalaFOn> HoRaRioEScalaFOn
 		{
@@ -4930,6 +5070,39 @@ namespace Datos
 		#endregion
 
 		#region Parents
+
+		private EntityRef<EmPleadOs> _emPleadOs;
+		[Association(Storage = "_emPleadOs", OtherKey = "NroEmpleado", ThisKey = "NroEmpleado", Name = "escalafonempleado_ibfk_1", IsForeignKey = true)]
+		[DebuggerNonUserCode]
+		public EmPleadOs EmPleadOs
+		{
+			get
+			{
+				return _emPleadOs.Entity;
+			}
+			set
+			{
+				if (value != _emPleadOs.Entity)
+				{
+					if (_emPleadOs.Entity != null)
+					{
+						var previousEmPleadOs = _emPleadOs.Entity;
+						_emPleadOs.Entity = null;
+						previousEmPleadOs.EScalaFOneMpLeadO.Remove(this);
+					}
+					_emPleadOs.Entity = value;
+					if (value != null)
+					{
+						value.EScalaFOneMpLeadO.Add(this);
+						_nroEmpleado = value.NroEmpleado;
+					}
+					else
+					{
+						_nroEmpleado = default(uint);
+					}
+				}
+			}
+		}
 
 		private EntityRef<EScalaFOn> _esCalaFoN;
 		[Association(Storage = "_esCalaFoN", OtherKey = "IDEscalafon", ThisKey = "IDEscalafon", Name = "FK_LineasEscalafon", IsForeignKey = true)]
@@ -4987,6 +5160,7 @@ namespace Datos
 		public EScalaFOneMpLeadO()
 		{
 			_hoRaRioEsCalaFoN = new EntitySet<HoRaRioEScalaFOn>(HoRaRioEScalaFOn_Attach, HoRaRioEScalaFOn_Detach);
+			_emPleadOs = new EntityRef<EmPleadOs>();
 			_esCalaFoN = new EntityRef<EScalaFOn>();
 			OnCreated();
 		}
@@ -5505,6 +5679,44 @@ namespace Datos
 
 		#endregion
 
+		#region Parents
+
+		private EntityRef<EmPleadOs> _emPleadOs;
+		[Association(Storage = "_emPleadOs", OtherKey = "NroEmpleado", ThisKey = "IDEmpleado", Name = "extrasliquidacion_ibfk_1", IsForeignKey = true)]
+		[DebuggerNonUserCode]
+		public EmPleadOs EmPleadOs
+		{
+			get
+			{
+				return _emPleadOs.Entity;
+			}
+			set
+			{
+				if (value != _emPleadOs.Entity)
+				{
+					if (_emPleadOs.Entity != null)
+					{
+						var previousEmPleadOs = _emPleadOs.Entity;
+						_emPleadOs.Entity = null;
+						previousEmPleadOs.ExtrasLiquidAcIon.Remove(this);
+					}
+					_emPleadOs.Entity = value;
+					if (value != null)
+					{
+						value.ExtrasLiquidAcIon.Add(this);
+						_ideMpleado = value.NroEmpleado;
+					}
+					else
+					{
+						_ideMpleado = default(uint);
+					}
+				}
+			}
+		}
+
+
+		#endregion
+
 		#region Attachement handlers
 
 		private void CuOtAsExtrasLiquidAcIon_Attach(CuOtAsExtrasLiquidAcIon entity)
@@ -5525,6 +5737,7 @@ namespace Datos
 		public ExtrasLiquidAcIon()
 		{
 			_cuOtAsExtrasLiquidAcIon = new EntitySet<CuOtAsExtrasLiquidAcIon>(CuOtAsExtrasLiquidAcIon_Attach, CuOtAsExtrasLiquidAcIon_Detach);
+			_emPleadOs = new EntityRef<EmPleadOs>();
 			OnCreated();
 		}
 
@@ -5825,6 +6038,111 @@ namespace Datos
 		#region ctor
 
 		public ExtrasLiquidAcIonEmPleadO()
+		{
+			OnCreated();
+		}
+
+		#endregion
+
+	}
+
+	[Table(Name = "trustdb.feriados")]
+	public partial class FeRiAdoS : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		#region INotifyPropertyChanging handling
+
+		public event PropertyChangingEventHandler PropertyChanging;
+
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs("");
+		protected virtual void SendPropertyChanging()
+		{
+			if (PropertyChanging != null)
+			{
+				PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+
+		#endregion
+
+		#region INotifyPropertyChanged handling
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected virtual void SendPropertyChanged(string propertyName)
+		{
+			if (PropertyChanged != null)
+			{
+				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		#endregion
+
+		#region Extensibility Method Definitions
+
+		partial void OnCreated();
+		partial void OnDesCrIpcIonChanged();
+		partial void OnDesCrIpcIonChanging(string value);
+		partial void OnFeCHaChanged();
+		partial void OnFeCHaChanging(DateTime value);
+
+		#endregion
+
+		#region string DesCrIpcIon
+
+		private string _desCrIpcIon;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_desCrIpcIon", Name = "descripcion", DbType = "varchar(45)", AutoSync = AutoSync.Never)]
+		public string DesCrIpcIon
+		{
+			get
+			{
+				return _desCrIpcIon;
+			}
+			set
+			{
+				if (value != _desCrIpcIon)
+				{
+					OnDesCrIpcIonChanging(value);
+					SendPropertyChanging();
+					_desCrIpcIon = value;
+					SendPropertyChanged("DesCrIpcIon");
+					OnDesCrIpcIonChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region DateTime FeCHa
+
+		private DateTime _feChA;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_feChA", Name = "fecha", DbType = "date", IsPrimaryKey = true, AutoSync = AutoSync.Never, CanBeNull = false)]
+		public DateTime FeCHa
+		{
+			get
+			{
+				return _feChA;
+			}
+			set
+			{
+				if (value != _feChA)
+				{
+					OnFeCHaChanging(value);
+					SendPropertyChanging();
+					_feChA = value;
+					SendPropertyChanged("FeCHa");
+					OnFeCHaChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region ctor
+
+		public FeRiAdoS()
 		{
 			OnCreated();
 		}
@@ -6463,6 +6781,10 @@ namespace Datos
 			{
 				if (value != _nroEmpleado)
 				{
+					if (_emPleadOs.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					OnNroEmpleadoChanging(value);
 					SendPropertyChanging();
 					_nroEmpleado = value;
@@ -6529,7 +6851,7 @@ namespace Datos
 		#region Parents
 
 		private EntityRef<EScalaFOneMpLeadO> _esCalaFoNeMpLeadO;
-		[Association(Storage = "_esCalaFoNeMpLeadO", OtherKey = "IDEscalafonEmpleado,IDEscalafon", ThisKey = "IDEscalafonEmpleado,IDEscalafon", Name = "FK_horasEscalEmpleados", IsForeignKey = true)]
+		[Association(Storage = "_esCalaFoNeMpLeadO", OtherKey = "IDEscalafon,IDEscalafonEmpleado", ThisKey = "IDEscalafon,IDEscalafonEmpleado", Name = "FK_horasEscalEmpleados", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public EScalaFOneMpLeadO EScalaFOneMpLeadO
 		{
@@ -6551,13 +6873,13 @@ namespace Datos
 					if (value != null)
 					{
 						value.HoRaRioEScalaFOn.Add(this);
-						_ideScalafonEmpleado = value.IDEscalafonEmpleado;
 						_ideScalafon = value.IDEscalafon;
+						_ideScalafonEmpleado = value.IDEscalafonEmpleado;
 					}
 					else
 					{
-						_ideScalafonEmpleado = default(uint);
 						_ideScalafon = default(uint);
+						_ideScalafonEmpleado = default(uint);
 					}
 				}
 			}
@@ -6596,6 +6918,39 @@ namespace Datos
 			}
 		}
 
+		private EntityRef<EmPleadOs> _emPleadOs;
+		[Association(Storage = "_emPleadOs", OtherKey = "NroEmpleado", ThisKey = "NroEmpleado", Name = "horarioescalafon_ibfk_2", IsForeignKey = true)]
+		[DebuggerNonUserCode]
+		public EmPleadOs EmPleadOs
+		{
+			get
+			{
+				return _emPleadOs.Entity;
+			}
+			set
+			{
+				if (value != _emPleadOs.Entity)
+				{
+					if (_emPleadOs.Entity != null)
+					{
+						var previousEmPleadOs = _emPleadOs.Entity;
+						_emPleadOs.Entity = null;
+						previousEmPleadOs.HoRaRioEScalaFOn.Remove(this);
+					}
+					_emPleadOs.Entity = value;
+					if (value != null)
+					{
+						value.HoRaRioEScalaFOn.Add(this);
+						_nroEmpleado = value.NroEmpleado;
+					}
+					else
+					{
+						_nroEmpleado = default(uint);
+					}
+				}
+			}
+		}
+
 
 		#endregion
 
@@ -6605,6 +6960,7 @@ namespace Datos
 		{
 			_esCalaFoNeMpLeadO = new EntityRef<EScalaFOneMpLeadO>();
 			_tipOsDiAs = new EntityRef<TipOsDiAs>();
+			_emPleadOs = new EntityRef<EmPleadOs>();
 			OnCreated();
 		}
 
@@ -6860,39 +7216,6 @@ namespace Datos
 
 		#region Parents
 
-		private EntityRef<EmPleadOs> _emPleadOs;
-		[Association(Storage = "_emPleadOs", OtherKey = "NroEmpleado", ThisKey = "NroEmpleado", Name = "horasgeneradasescalafon_ibfk_1", IsForeignKey = true)]
-		[DebuggerNonUserCode]
-		public EmPleadOs EmPleadOs
-		{
-			get
-			{
-				return _emPleadOs.Entity;
-			}
-			set
-			{
-				if (value != _emPleadOs.Entity)
-				{
-					if (_emPleadOs.Entity != null)
-					{
-						var previousEmPleadOs = _emPleadOs.Entity;
-						_emPleadOs.Entity = null;
-						previousEmPleadOs.HoRaSGeneraDaSEScalaFOn.Remove(this);
-					}
-					_emPleadOs.Entity = value;
-					if (value != null)
-					{
-						value.HoRaSGeneraDaSEScalaFOn.Add(this);
-						_nroEmpleado = value.NroEmpleado;
-					}
-					else
-					{
-						_nroEmpleado = default(uint);
-					}
-				}
-			}
-		}
-
 		private EntityRef<SERVicIoS> _servIcIoS;
 		[Association(Storage = "_servIcIoS", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "horasgeneradasescalafon_ibfk_2", IsForeignKey = true)]
 		[DebuggerNonUserCode]
@@ -6928,6 +7251,39 @@ namespace Datos
 			}
 		}
 
+		private EntityRef<EmPleadOs> _emPleadOs;
+		[Association(Storage = "_emPleadOs", OtherKey = "NroEmpleado", ThisKey = "NroEmpleado", Name = "horasgeneradasescalafon_ibfk_3", IsForeignKey = true)]
+		[DebuggerNonUserCode]
+		public EmPleadOs EmPleadOs
+		{
+			get
+			{
+				return _emPleadOs.Entity;
+			}
+			set
+			{
+				if (value != _emPleadOs.Entity)
+				{
+					if (_emPleadOs.Entity != null)
+					{
+						var previousEmPleadOs = _emPleadOs.Entity;
+						_emPleadOs.Entity = null;
+						previousEmPleadOs.HoRaSGeneraDaSEScalaFOn.Remove(this);
+					}
+					_emPleadOs.Entity = value;
+					if (value != null)
+					{
+						value.HoRaSGeneraDaSEScalaFOn.Add(this);
+						_nroEmpleado = value.NroEmpleado;
+					}
+					else
+					{
+						_nroEmpleado = default(uint);
+					}
+				}
+			}
+		}
+
 
 		#endregion
 
@@ -6935,8 +7291,8 @@ namespace Datos
 
 		public HoRaSGeneraDaSEScalaFOn()
 		{
-			_emPleadOs = new EntityRef<EmPleadOs>();
 			_servIcIoS = new EntityRef<SERVicIoS>();
+			_emPleadOs = new EntityRef<EmPleadOs>();
 			OnCreated();
 		}
 
@@ -7285,6 +7641,195 @@ namespace Datos
 		{
 			_hoRaRioDiA = new EntitySet<HoRaRioDiA>(HoRaRioDiA_Attach, HoRaRioDiA_Detach);
 			_contraToS = new EntityRef<ContraToS>();
+			OnCreated();
+		}
+
+		#endregion
+
+	}
+
+	[Table(Name = "trustdb.liquidacionempleados")]
+	public partial class LiquidAcIonEmPleadOs : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		#region INotifyPropertyChanging handling
+
+		public event PropertyChangingEventHandler PropertyChanging;
+
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs("");
+		protected virtual void SendPropertyChanging()
+		{
+			if (PropertyChanging != null)
+			{
+				PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+
+		#endregion
+
+		#region INotifyPropertyChanged handling
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected virtual void SendPropertyChanged(string propertyName)
+		{
+			if (PropertyChanged != null)
+			{
+				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		#endregion
+
+		#region Extensibility Method Definitions
+
+		partial void OnCreated();
+		partial void OnFechaChanged();
+		partial void OnFechaChanging(DateTime value);
+		partial void OnHorasChanged();
+		partial void OnHorasChanging(DateTime value);
+		partial void OnNroClienteChanged();
+		partial void OnNroClienteChanging(uint value);
+		partial void OnNroEmpleadoChanged();
+		partial void OnNroEmpleadoChanging(uint value);
+		partial void OnNroServicioChanged();
+		partial void OnNroServicioChanging(uint value);
+
+		#endregion
+
+		#region DateTime Fecha
+
+		private DateTime _fecha;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_fecha", Name = "Fecha", DbType = "date", IsPrimaryKey = true, AutoSync = AutoSync.Never, CanBeNull = false)]
+		public DateTime Fecha
+		{
+			get
+			{
+				return _fecha;
+			}
+			set
+			{
+				if (value != _fecha)
+				{
+					OnFechaChanging(value);
+					SendPropertyChanging();
+					_fecha = value;
+					SendPropertyChanged("Fecha");
+					OnFechaChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region DateTime Horas
+
+		private DateTime _horas;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_horas", Name = "Horas", DbType = "datetime", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public DateTime Horas
+		{
+			get
+			{
+				return _horas;
+			}
+			set
+			{
+				if (value != _horas)
+				{
+					OnHorasChanging(value);
+					SendPropertyChanging();
+					_horas = value;
+					SendPropertyChanged("Horas");
+					OnHorasChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region uint NroCliente
+
+		private uint _nroCliente;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_nroCliente", Name = "NroCliente", DbType = "mediumint unsigned", IsPrimaryKey = true, AutoSync = AutoSync.Never, CanBeNull = false)]
+		public uint NroCliente
+		{
+			get
+			{
+				return _nroCliente;
+			}
+			set
+			{
+				if (value != _nroCliente)
+				{
+					OnNroClienteChanging(value);
+					SendPropertyChanging();
+					_nroCliente = value;
+					SendPropertyChanged("NroCliente");
+					OnNroClienteChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region uint NroEmpleado
+
+		private uint _nroEmpleado;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_nroEmpleado", Name = "NroEmpleado", DbType = "mediumint unsigned", IsPrimaryKey = true, AutoSync = AutoSync.Never, CanBeNull = false)]
+		public uint NroEmpleado
+		{
+			get
+			{
+				return _nroEmpleado;
+			}
+			set
+			{
+				if (value != _nroEmpleado)
+				{
+					OnNroEmpleadoChanging(value);
+					SendPropertyChanging();
+					_nroEmpleado = value;
+					SendPropertyChanged("NroEmpleado");
+					OnNroEmpleadoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region uint NroServicio
+
+		private uint _nroServicio;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_nroServicio", Name = "NroServicio", DbType = "mediumint unsigned", IsPrimaryKey = true, AutoSync = AutoSync.Never, CanBeNull = false)]
+		public uint NroServicio
+		{
+			get
+			{
+				return _nroServicio;
+			}
+			set
+			{
+				if (value != _nroServicio)
+				{
+					OnNroServicioChanging(value);
+					SendPropertyChanging();
+					_nroServicio = value;
+					SendPropertyChanged("NroServicio");
+					OnNroServicioChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region ctor
+
+		public LiquidAcIonEmPleadOs()
+		{
 			OnCreated();
 		}
 
@@ -8276,6 +8821,8 @@ namespace Datos
 		partial void OnNettYpeChanging(string value);
 		partial void OnNombreChanged();
 		partial void OnNombreChanging(string value);
+		partial void OnNombreVisualChanged();
+		partial void OnNombreVisualChanging(string value);
 
 		#endregion
 
@@ -8377,6 +8924,32 @@ namespace Datos
 					_nombre = value;
 					SendPropertyChanged("Nombre");
 					OnNombreChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string NombreVisual
+
+		private string _nombreVisual;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_nombreVisual", Name = "NombreVisual", DbType = "varchar(100)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string NombreVisual
+		{
+			get
+			{
+				return _nombreVisual;
+			}
+			set
+			{
+				if (value != _nombreVisual)
+				{
+					OnNombreVisualChanging(value);
+					SendPropertyChanging();
+					_nombreVisual = value;
+					SendPropertyChanged("NombreVisual");
+					OnNombreVisualChanged();
 				}
 			}
 		}

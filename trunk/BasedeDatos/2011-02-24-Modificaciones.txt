@@ -17,3 +17,6 @@ CREATE  TABLE IF NOT EXISTS `trustdb`.`feriados` (
   PRIMARY KEY (`fecha`) );
 -- Se agrega registro para manejar los permisos del boton.
 insert into permisocontrol values (0,"System.Windows.Forms.ToolStripMenuItem","liquidacionToolStripMenuItem",1,"Menu->Liquidacion");
+
+-- Se agregan campos DiaInicioFacturacion y DiaFinFacturacion a la tabla clientes
+alter table clientes add column DiaInicioFacturacion smallint not null default 1, add column DiaFinFacturacion smallint not null default 31;

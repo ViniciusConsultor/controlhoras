@@ -156,7 +156,6 @@ namespace Utilidades
                 throw ex;
             }
         }
-
         public static Image convertByteArrayToImage(byte[] byteArray)
         {
             if (byteArray != null)
