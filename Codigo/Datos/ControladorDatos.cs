@@ -118,7 +118,7 @@ namespace Datos
         
         
         #region ABM_Cliente
-        public void altaCliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime? fecAlta, DateTime? fecBaja, string motivo, string referencia, string diaHoraCobro, string contactoCobro, string telefonosCobro)
+        public void altaCliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime? fecAlta, DateTime? fecBaja, string motivo, string referencia, string diaHoraCobro, string contactoCobro, string telefonosCobro, int diaInicioFacturacion, int diaFinFacturacion)
         {
             ClientEs cliente = null;
             DbLinq.Data.Linq.Table<ClientEs> tablaCliente;
@@ -151,6 +151,8 @@ namespace Datos
                 cliente.FechaAlta = fecAlta;
                 cliente.FechaBaja = fecBaja;
                 cliente.MotivoBaja = motivo;
+                cliente.DiaInicioFacturacion = (short)diaInicioFacturacion;
+                cliente.DiaFinFacturacion = (short)diaFinFacturacion;
                 if (activo)
                     cliente.Activo = 1;
                 else
@@ -258,7 +260,7 @@ namespace Datos
             }
 
         }
-        public void modificarCliente(int numeroCliente, string nombre, string nombreFantantasia, string rut, string email, string direccion, string direccionCobro, string telefono, string fax, bool activo, DateTime? fechaAlta, DateTime? fechaBaja, string motivoBaja, string referencia, string diaHoraCobro, string contactoCobro, string telefonosCobro)
+        public void modificarCliente(int numeroCliente, string nombre, string nombreFantantasia, string rut, string email, string direccion, string direccionCobro, string telefono, string fax, bool activo, DateTime? fechaAlta, DateTime? fechaBaja, string motivoBaja, string referencia, string diaHoraCobro, string contactoCobro, string telefonosCobro, int diaInicioFacturacion, int diaFinFacturacion)
         {
             try
             {
@@ -283,6 +285,8 @@ namespace Datos
                 cli.FechaAlta = fechaAlta;
                 cli.FechaBaja = fechaBaja;
                 cli.MotivoBaja = motivoBaja;
+                cli.DiaInicioFacturacion = (short)diaInicioFacturacion;
+                cli.DiaFinFacturacion = (short)diaFinFacturacion;
                 if (activo)
                     cli.Activo = 1;
                 else
@@ -3992,6 +3996,8 @@ namespace Datos
 
         public DataFacturacion facturarClienteServicio(int NumeroCliente, int NroServicio, DateTime DiaInicioFacturacion, DateTime DiaFinFacturacion)
         {
+            MySqlConnection conexion2 = null;
+            MySqlDataReader mydata = null;
             try
             {
                 // Si el cliente paga hs extras, hay que ir a ver el contrato y obtener la cantidad de hs que se deberian cubrir el dia, si se cubren mas, 
@@ -4001,38 +4007,58 @@ namespace Datos
                 if (DiaInicioFacturacion.Day > DiaFinFacturacion.Day)
                     DiaInicioFacturacion = DiaInicioFacturacion.AddMonths(-1);
 
-                DataDiaFacturacion diafact;
-                var listahoras = (from reg in database.HoRaSGeneraDaSEScalaFOn
-                                  where reg.NumeroCliente == NumeroCliente && reg.NumeroServicio == NroServicio && reg.FechaCorrespondiente >= DiaInicioFacturacion && reg.FechaCorrespondiente <= DiaFinFacturacion
-                                  group reg by new { Fecha = reg.FechaCorrespondiente, HoraEnt = reg.HoraEntrada, HoraSal = reg.HoraSalida } into grp
-                                  select grp.Key);
-
                 ContraToS con = obtenerContrato(NumeroCliente, NroServicio);
                 bool pagaExtras = (con.HorasExtras == 1);
                 List<DataDiaFacturacion> listaDias = new List<DataDiaFacturacion>();
-               
+
                 TimeSpan totalHsComunes = new TimeSpan(0);
                 TimeSpan totalHsExtras = new TimeSpan(0);
                 TimeSpan tempComunes;
                 TimeSpan tempExtras;
                 TimeSpan tempHsTotales;
-                foreach(var v in listahoras)
+
+                DataDiaFacturacion diafact;
+                //var listahoras = (from reg in database.HoRaSGeneraDaSEScalaFOn
+                //                  where reg.NumeroCliente == NumeroCliente && reg.NumeroServicio == NroServicio && reg.FechaCorrespondiente >= DiaInicioFacturacion && reg.FechaCorrespondiente <= DiaFinFacturacion
+                //                  group reg by reg.FechaCorrespondiente into g
+                //                  select  g.Key);
+
+
+                string sql = "SELECT FechaCorrespondiente, TIMEDIFF(HoraSalida,HoraEntrada) " +
+                                 "FROM horasgeneradasescalafon " +
+                                 "WHERE (NumeroCliente = " + NumeroCliente + ") AND (NumeroServicio = "+NroServicio+") AND (FechaCorrespondiente BETWEEN '"+string.Format("{0:yyyy-MM-dd}", DiaInicioFacturacion)+"' AND '"+string.Format("{0:yyyy-MM-dd}", DiaFinFacturacion)+"') " +
+                                 "GROUP BY FechaCorrespondiente";
+
+                conexion2 = (MySqlConnection)database.Connection;
+                conexion2.Open();               
+                MySqlDataAdapter mysqlAdapter = new MySqlDataAdapter(sql, conexion2);
+                mydata = mysqlAdapter.SelectCommand.ExecuteReader(CommandBehavior.Default);
+
+                
+                //foreach(var v in listahoras)
+                DateTime FechaCorresponde;
+                TimeSpan HoraEnt;
+                TimeSpan HoraSal;
+                while(mydata.Read())
                 {
+                    FechaCorresponde = mydata.GetDateTime(0);
+                    HoraEnt = mydata.GetTimeSpan(1);
+                   // HoraSal = mydata.GetTimeSpan(2);
                     if (pagaExtras)
                     {
                         // OBTENER EL DIA DE LA LINEAHORA DEL CONTRATO Y COMPARAR CON EL DIA DE V.
-                        tempComunes = getCantHsContrato(con, v.Fecha);
-                        tempHsTotales = v.HoraSal - v.HoraEnt;
+                        tempComunes = getCantHsContrato(con, FechaCorresponde);
+                        tempHsTotales = HoraEnt;
                         tempComunes = (tempHsTotales > tempComunes ? tempComunes : tempHsTotales);
                         tempExtras = tempHsTotales - tempComunes;
 
-                        diafact = new DataDiaFacturacion(v.Fecha, tempComunes, tempExtras);
+                        diafact = new DataDiaFacturacion(FechaCorresponde, tempComunes, tempExtras);
                     }
                     else
                     {
                         tempExtras = new TimeSpan(0);
-                        tempComunes = v.HoraSal - v.HoraEnt; ;
-                        diafact = new DataDiaFacturacion(v.Fecha, tempComunes, tempExtras);
+                        tempComunes = HoraEnt;
+                        diafact = new DataDiaFacturacion(FechaCorresponde, tempComunes, tempExtras);
                     }
                     listaDias.Add(diafact);
                     totalHsComunes += tempComunes;
@@ -4045,6 +4071,15 @@ namespace Datos
             {
                 throw ex;
             }
+
+            finally
+            {
+                if (mydata != null)
+                    mydata.Close();
+                if (conexion2 != null && conexion2.State != ConnectionState.Closed)
+                    conexion2.Close();
+            }
+
         }
 
         private TimeSpan getCantHsContrato(ContraToS con, DateTime dia)//, bool Comunes)

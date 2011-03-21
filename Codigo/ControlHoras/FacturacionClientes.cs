@@ -84,14 +84,16 @@ namespace ControlHoras
                             }
                             foreach (int serv in iter.Current.Value)
                             {
+                                
                                 DataFacturacion factCliente = datos.facturarClienteServicio((int)cliente.NumeroCliente, serv, DiaInicioFact, DiaFinFact);
-                                generarExcelFacturacionCliente(DirPath, dtpMesFacturacion.Value.Year + dtpMesFacturacion.Value.Month + cliente.NombreFantasia + "-" + serv, factCliente, false);
+                                generarExcelFacturacionCliente(DirPath, dtpMesFacturacion.Value.Year.ToString() + dtpMesFacturacion.Value.Month.ToString() +"-"+ cliente.NombreFantasia + "-" + serv, factCliente, false);
                             }
                         }
+                        MessageBox.Show("Proces de Facturacion termiando con Exito", "Facturacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                         MessageBox.Show("Debe seleccionar por lo menos un Cliente/Servicio a Facturar", "Facturacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    MessageBox.Show("Proces de Facturacion termiando con Exito", "Facturacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
                 }
             }
             catch
@@ -99,6 +101,24 @@ namespace ControlHoras
                 throw;
             }
         
+        }
+
+        private bool esFeriado(DateTime d)
+        {
+            try
+            {
+                List<DateTime> feriados = datos.ObtenerFeriados();
+                foreach (DateTime dia in feriados)
+                {
+                    if (dia.Day == d.Day && dia.Month == d.Month)
+                        return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void generarExcelFacturacionCliente(string outputDirectory, string nombreArchivo, DataFacturacion facturacion, bool abrirExcel)
@@ -116,7 +136,7 @@ namespace ControlHoras
                 Excel.Application ExApp;
                 Excel._Workbook oWBook;
                 Excel._Worksheet oSheet;
-
+                bool tieneFeriados = false;
                 try
                 {
                     // Iniciar Excel y obtener el objeto Aplicacion.
@@ -126,6 +146,7 @@ namespace ControlHoras
                     //oWB = (Excel._Workbook)(oXL.Workbooks.Add(Missing.Value));
                     oWBook = ExApp.Workbooks.Open(fileName, missing, readOnly, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing);
                     oSheet = (Excel._Worksheet)oWBook.ActiveSheet;
+                   
 
                     // Mes
                     oSheet.Cells[1, 5] = dtpMesFacturacion.Value.Month + "/" + dtpMesFacturacion.Value.Year;
@@ -137,13 +158,27 @@ namespace ControlHoras
                     foreach (DataDiaFacturacion ddf in facturacion.ListaDiaFacturacion) 
                     {
                         oSheet.Cells[6 + i, 2] = ddf.Dia.ToString(@"dd/MM/yyyy");
-                        oSheet.Cells[6 + i, 3] = ddf.HsComunes.ToString();
-                        oSheet.Cells[6 + i, 4] = ddf.HsExtras.ToString();
+                        oSheet.Cells[6 + i, 3] = String.Format("{0}:{1}",ddf.HsComunes.Days*24+ddf.HsComunes.Hours,ddf.HsComunes.Minutes);
+                        oSheet.Cells[6 + i, 4] = String.Format("{0}:{1}", ddf.HsExtras.Days * 24 + ddf.HsExtras.Hours, ddf.HsExtras.Minutes); ;
+                        if (esFeriado(ddf.Dia))
+                        {
+                            Excel.Range MyRange;
+                            MyRange = (Excel.Range)oSheet.get_Range(
+                                oSheet.Cells[6 + i,2], oSheet.Cells[6+i,4]);
+                            MyRange.Interior.Color = System.Drawing.Color.YellowGreen.ToArgb();
+                            tieneFeriados = true;
+                        }
                         i++;
                     }
 
-                    oSheet.Cells[31 + 6, 3] = facturacion.TotalHsComunes.ToString();
-                    oSheet.Cells[31 + 6, 3] = facturacion.TotalHsExtras.ToString();
+                    oSheet.Cells[31 + 6, 3] = String.Format("{0}:{1}:{2}", facturacion.TotalHsComunes.Days*24+facturacion.TotalHsComunes.Hours, facturacion.TotalHsComunes.Minutes, facturacion.TotalHsComunes.Seconds);
+                    oSheet.Cells[31 + 6, 4] = String.Format("{0}:{1}:{2}", facturacion.TotalHsExtras.Days * 24 + facturacion.TotalHsExtras.Hours, facturacion.TotalHsExtras.Minutes, facturacion.TotalHsExtras.Seconds);
+
+                    if (tieneFeriados)
+                    {
+                        oSheet.Cells[40, 3] = "Dias Feriados";
+                        oSheet.get_Range(oSheet.Cells[40, 2], oSheet.Cells[40, 2]).Interior.Color = System.Drawing.Color.YellowGreen.ToArgb();
+                    }
 
                     //oWBook.PrintPreview(falso);
                     object a = Path.Combine(outputDirectory, nombreArchivo + ".xls");

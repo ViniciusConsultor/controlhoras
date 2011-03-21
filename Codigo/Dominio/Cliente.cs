@@ -20,6 +20,8 @@ namespace Logica
         private string Referencia;
         private string Telefonos = null;
         private string Fax = null;
+        private int DiaInicioFacturacion;
+        private int DiaFinFacturacion;
         private bool Activo;
         private DateTime? FechaAlta;
         private DateTime? FechaBaja;
@@ -51,9 +53,31 @@ namespace Logica
             FechaBaja = fecBaja;
             MotivoBaja = motivo;
             ListaServicios = servicios;
+            DiaInicioFacturacion = 0;// diaInicioFacturacion;
+            DiaFinFacturacion = 31;// diaFinFacturacion;
         }
 
-        public Cliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime? fecAlta, DateTime? fecBaja, string motivo, string referencia, string diaHoraCobro, string contactoCobro, string telefonosCobro, List<Servicio> servicios)
+        public Cliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime? fecAlta, DateTime? fecBaja, string motivo, List<Servicio> servicios, int diaInicioFacturacion, int diaFinFacturacion)
+        {
+            Numero = num;
+            Nombre = nom;
+            NombreFantasia = nomFant;
+            RUT = rut;
+            Email = email;
+            Direccion = dir;
+            DireccionCobro = dirCobro;
+            Telefonos = telefono;
+            Fax = fax;
+            Activo = activo;
+            FechaAlta = fecAlta;
+            FechaBaja = fecBaja;
+            MotivoBaja = motivo;
+            ListaServicios = servicios;
+            DiaInicioFacturacion = diaInicioFacturacion;
+            DiaFinFacturacion = diaFinFacturacion;
+        }
+
+        public Cliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime? fecAlta, DateTime? fecBaja, string motivo, string referencia, string diaHoraCobro, string contactoCobro, string telefonosCobro, List<Servicio> servicios,int diaInicioFacturacion, int diaFinFacturacion)
         {
             Numero = num;
             Nombre = nom;
@@ -73,8 +97,19 @@ namespace Logica
             DiaHoraCobro = diaHoraCobro;
             TelefonosCobro = telefonosCobro; 
             ListaServicios = servicios;
+            DiaInicioFacturacion = diaInicioFacturacion;
+            DiaFinFacturacion = diaFinFacturacion;
         }
 
+        public int getDiaInicioFacturacion()
+        {
+            return DiaInicioFacturacion;
+        }
+
+        public int getDiaFinFacturacion()
+        {
+            return DiaFinFacturacion;
+        }
         public string getDiaHoraCobro()
         {
             return DiaHoraCobro;

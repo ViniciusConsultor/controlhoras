@@ -49,11 +49,11 @@ namespace Logica
             return instancia;
         }
 
-        public void altaCliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime? fecAlta, DateTime? fecBaja, string motivo, string referencia, string diaHoraCobro, string contactoCobro, string telefonosCobro)
+        public void altaCliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime? fecAlta, DateTime? fecBaja, string motivo, string referencia, string diaHoraCobro, string contactoCobro, string telefonosCobro, int diaInicioFacturacion, int diaFinFacturacion)
         {
             try
             {
-                datos.altaCliente(num, nom, nomFant, rut, email, dir, dirCobro, telefono, fax, activo, fecAlta, fecBaja, motivo, referencia, diaHoraCobro, contactoCobro,telefonosCobro);
+                datos.altaCliente(num, nom, nomFant, rut, email, dir, dirCobro, telefono, fax, activo, fecAlta, fecBaja, motivo, referencia, diaHoraCobro, contactoCobro,telefonosCobro, diaInicioFacturacion,diaFinFacturacion);
             }
             catch (Exception ex)
             {
@@ -74,11 +74,11 @@ namespace Logica
             }
         }
 
-        public void modificarCliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime? fecAlta, DateTime? fecBaja, string motivo, string referencia, string diaHoraCobro, string contactoCobro, string telefonosCobro)
+        public void modificarCliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime? fecAlta, DateTime? fecBaja, string motivo, string referencia, string diaHoraCobro, string contactoCobro, string telefonosCobro, int diaInicioFacturacion, int diaFinFacturacion)
         {
             try
             {
-                datos.modificarCliente(num, nom, nomFant, rut, email, dir, dirCobro, telefono, fax, activo, fecAlta, fecBaja, motivo, referencia, diaHoraCobro,contactoCobro,telefonosCobro);
+                datos.modificarCliente(num, nom, nomFant, rut, email, dir, dirCobro, telefono, fax, activo, fecAlta, fecBaja, motivo, referencia, diaHoraCobro,contactoCobro,telefonosCobro,diaInicioFacturacion,diaFinFacturacion);
             }
             catch (Exception e)
             {
@@ -149,7 +149,8 @@ namespace Logica
             else
                 act = false;
 
-            Cliente tdcli = new Cliente((int)cliDatos.NumeroCliente, cliDatos.Nombre, cliDatos.NombreFantasia, cliDatos.Rut, cliDatos.Email, cliDatos.Direccion, cliDatos.DireccionDeCobro, cliDatos.Telefonos, cliDatos.Fax, act, cliDatos.FechaAlta, cliDatos.FechaBaja, cliDatos.MotivoBaja, cliDatos.Referencia, cliDatos.DiaHoraCobro, cliDatos.ContactoCobro, cliDatos.TelefonosCobro, listServs);
+            Cliente tdcli = new Cliente((int)cliDatos.NumeroCliente, cliDatos.Nombre, cliDatos.NombreFantasia, cliDatos.Rut, cliDatos.Email, cliDatos.Direccion, cliDatos.DireccionDeCobro, cliDatos.Telefonos, cliDatos.Fax, act, cliDatos.FechaAlta, cliDatos.FechaBaja, cliDatos.MotivoBaja, cliDatos.Referencia, cliDatos.DiaHoraCobro, cliDatos.ContactoCobro, cliDatos.TelefonosCobro, listServs,cliDatos.DiaInicioFacturacion,cliDatos.DiaFinFacturacion);
+            
             return tdcli;
         }
 
