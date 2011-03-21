@@ -89,7 +89,7 @@ namespace ControlHoras
                                 generarExcelFacturacionCliente(DirPath, dtpMesFacturacion.Value.Year.ToString() + dtpMesFacturacion.Value.Month.ToString() +"-"+ cliente.NombreFantasia + "-" + serv, factCliente, false);
                             }
                         }
-                        MessageBox.Show("Proces de Facturacion termiando con Exito", "Facturacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Proceso de Facturacion terminado con Exito", "Facturacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                         MessageBox.Show("Debe seleccionar por lo menos un Cliente/Servicio a Facturar", "Facturacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
