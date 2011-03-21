@@ -76,10 +76,16 @@ namespace ControlHoras
             this.txtDireccion = new ControlHoras.TextBoxKeyDown();
             this.txtNombreFantasia = new ControlHoras.TextBoxKeyDown();
             this.mtRUT = new ControlHoras.MaskedTextBoxKeyDown();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.mtDiaInicioFacturacion = new System.Windows.Forms.MaskedTextBox();
+            this.mtDiaFinFacturacion = new System.Windows.Forms.MaskedTextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -269,7 +275,7 @@ namespace ControlHoras
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.dtpFechaBaja);
             this.groupBox1.Controls.Add(this.cbNoActivo);
-            this.groupBox1.Location = new System.Drawing.Point(12, 392);
+            this.groupBox1.Location = new System.Drawing.Point(12, 452);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(350, 83);
             this.groupBox1.TabIndex = 10;
@@ -501,11 +507,61 @@ namespace ControlHoras
             this.mtRUT.Size = new System.Drawing.Size(89, 20);
             this.mtRUT.TabIndex = 3;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.mtDiaFinFacturacion);
+            this.groupBox3.Controls.Add(this.label18);
+            this.groupBox3.Controls.Add(this.mtDiaInicioFacturacion);
+            this.groupBox3.Controls.Add(this.label17);
+            this.groupBox3.Location = new System.Drawing.Point(12, 393);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(350, 53);
+            this.groupBox3.TabIndex = 27;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Facturación";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(6, 25);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(92, 13);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "Dia de Mes Inicio:";
+            // 
+            // mtDiaInicioFacturacion
+            // 
+            this.mtDiaInicioFacturacion.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtDiaInicioFacturacion.Location = new System.Drawing.Point(104, 22);
+            this.mtDiaInicioFacturacion.Mask = "99";
+            this.mtDiaInicioFacturacion.Name = "mtDiaInicioFacturacion";
+            this.mtDiaInicioFacturacion.Size = new System.Drawing.Size(25, 20);
+            this.mtDiaInicioFacturacion.TabIndex = 1;
+            // 
+            // mtDiaFinFacturacion
+            // 
+            this.mtDiaFinFacturacion.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtDiaFinFacturacion.Location = new System.Drawing.Point(266, 22);
+            this.mtDiaFinFacturacion.Mask = "99";
+            this.mtDiaFinFacturacion.Name = "mtDiaFinFacturacion";
+            this.mtDiaFinFacturacion.Size = new System.Drawing.Size(25, 20);
+            this.mtDiaFinFacturacion.TabIndex = 3;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(168, 25);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(81, 13);
+            this.label18.TabIndex = 2;
+            this.label18.Text = "Dia de Mes Fin:";
+            // 
             // ABMClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(374, 483);
+            this.ClientSize = new System.Drawing.Size(374, 545);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.dtpFechaAlta);
             this.Controls.Add(this.groupBox2);
@@ -542,6 +598,8 @@ namespace ControlHoras
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -598,5 +656,10 @@ namespace ControlHoras
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.Label label10;
         private MaskedTextBoxKeyDown dtpFechaAlta;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.MaskedTextBox mtDiaInicioFacturacion;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.MaskedTextBox mtDiaFinFacturacion;
+        private System.Windows.Forms.Label label18;
     }
 }

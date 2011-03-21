@@ -55,7 +55,8 @@ namespace ControlHoras
             lblEstadoCliente.Text = "";
             cbNoActivo.Checked = false;
             txtMotivoBaja.Text = "";
-
+            mtDiaFinFacturacion.Text = "";
+            mtDiaInicioFacturacion.Text = "";
             // Para los controles fuera del GroupBox, los recorro todos y si son tipo TextBox o MaskedTextBox los limpio.
             int iter = 0;
             string tipoDelControl;
@@ -104,16 +105,29 @@ namespace ControlHoras
 
                 try
                 {
-                    sistema.altaCliente(int.Parse(mtCliente.Text), txtNombre.Text, txtNombreFantasia.Text, mtRUT.Text,txtEmail.Text,txtDireccion.Text,txtDireccionCobro.Text,txtTelefonos.Text,txtFax.Text,checkActivo, dtpAlta, dtpBaja, txtMotivoBaja.Text, txtReferencia.Text,txtDiaHoraCobro.Text,txtNombreParaCobrar.Text,txtTelefonoCobro.Text);
-
-                    DialogResult res = MessageBox.Show(this, "Desea agregar servicios ahora?", "Servicios", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-                    if (res == DialogResult.OK)
-                    {
-                        ServicioForm ser = new ServicioForm(mtCliente.Text);
-                        ser.ShowDialog(this);
-                    }
+                    if (mtDiaInicioFacturacion.Text == "")
+                        mtDiaInicioFacturacion.Text = "1";
+                    if (mtDiaFinFacturacion.Text == "")
+                        mtDiaFinFacturacion.Text = "31";
+                    int diaInicio = int.Parse(mtDiaInicioFacturacion.Text);
+                    int diaFin = int.Parse(mtDiaFinFacturacion.Text);
+                    if (diaInicio > 31 || diaInicio < 1)
+                        MessageBox.Show(this, "Dia Inicio de Facturacion debe ser entre 1 y 31", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else if (diaFin > 31 || diaInicio < 1)
+                        MessageBox.Show(this, "Dia Fin de Facturacion debe ser entre 1 y 31", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
-                        btnCancelar.PerformClick();
+                    {
+                        sistema.altaCliente(int.Parse(mtCliente.Text), txtNombre.Text, txtNombreFantasia.Text, mtRUT.Text, txtEmail.Text, txtDireccion.Text, txtDireccionCobro.Text, txtTelefonos.Text, txtFax.Text, checkActivo, dtpAlta, dtpBaja, txtMotivoBaja.Text, txtReferencia.Text, txtDiaHoraCobro.Text, txtNombreParaCobrar.Text, txtTelefonoCobro.Text, diaInicio, diaFin);
+
+                        DialogResult res = MessageBox.Show(this, "Desea agregar servicios ahora?", "Servicios", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                        if (res == DialogResult.OK)
+                        {
+                            ServicioForm ser = new ServicioForm(mtCliente.Text);
+                            ser.ShowDialog(this);
+                        }
+                        else
+                            btnCancelar.PerformClick();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -149,7 +163,7 @@ namespace ControlHoras
                 
                 try
                 {
-                    sistema.modificarCliente(int.Parse(mtCliente.Text), txtNombre.Text, txtNombreFantasia.Text, mtRUT.Text, txtEmail.Text, txtDireccion.Text, txtDireccionCobro.Text, txtTelefonos.Text, txtFax.Text, checkActivo, dtpAlta, dtpBaja, txtMotivoBaja.Text, txtReferencia.Text, txtDiaHoraCobro.Text,txtNombreParaCobrar.Text,txtTelefonoCobro.Text);
+                    sistema.modificarCliente(int.Parse(mtCliente.Text), txtNombre.Text, txtNombreFantasia.Text, mtRUT.Text, txtEmail.Text, txtDireccion.Text, txtDireccionCobro.Text, txtTelefonos.Text, txtFax.Text, checkActivo, dtpAlta, dtpBaja, txtMotivoBaja.Text, txtReferencia.Text, txtDiaHoraCobro.Text, txtNombreParaCobrar.Text, txtTelefonoCobro.Text, int.Parse(mtDiaInicioFacturacion.Text), int.Parse(mtDiaFinFacturacion.Text));
                     btnCancelar.PerformClick();
                     
                 }
@@ -271,6 +285,8 @@ namespace ControlHoras
                 txtTelefonos.Text = cli.getTelefonos();
                 txtFax.Text = cli.getFax();
                 dtpFechaAlta.Text = cli.getFechaAlta().ToString();
+                mtDiaInicioFacturacion.Text = cli.getDiaInicioFacturacion().ToString();
+                mtDiaFinFacturacion.Text = cli.getDiaFinFacturacion().ToString();
                 if (!cli.getActivo())
                 {
                     cbNoActivo.Checked = true;
