@@ -37,6 +37,7 @@
             this.mtHoraNueva = new System.Windows.Forms.MaskedTextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.dtpFechaNueva = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label1
@@ -75,12 +76,13 @@
             // mtHoraActual
             // 
             this.mtHoraActual.BackColor = System.Drawing.Color.Bisque;
-            this.mtHoraActual.Location = new System.Drawing.Point(91, 97);
-            this.mtHoraActual.Mask = "00:00";
+            this.mtHoraActual.Location = new System.Drawing.Point(26, 97);
+            this.mtHoraActual.Mask = "00/00/0000 90:00";
             this.mtHoraActual.Name = "mtHoraActual";
             this.mtHoraActual.ReadOnly = true;
-            this.mtHoraActual.Size = new System.Drawing.Size(37, 20);
+            this.mtHoraActual.Size = new System.Drawing.Size(102, 20);
             this.mtHoraActual.TabIndex = 21;
+            this.mtHoraActual.ValidatingType = typeof(System.DateTime);
             // 
             // lblHora
             // 
@@ -96,7 +98,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(151, 98);
+            this.label2.Location = new System.Drawing.Point(144, 99);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 16);
             this.label2.TabIndex = 23;
@@ -104,7 +106,7 @@
             // 
             // mtHoraNueva
             // 
-            this.mtHoraNueva.Location = new System.Drawing.Point(204, 97);
+            this.mtHoraNueva.Location = new System.Drawing.Point(282, 97);
             this.mtHoraNueva.Mask = "00:00";
             this.mtHoraNueva.Name = "mtHoraNueva";
             this.mtHoraNueva.Size = new System.Drawing.Size(37, 20);
@@ -132,12 +134,24 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
+            // dtpFechaNueva
+            // 
+            this.dtpFechaNueva.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dtpFechaNueva.CustomFormat = "dd/MM/yyyy";
+            this.dtpFechaNueva.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaNueva.Location = new System.Drawing.Point(189, 97);
+            this.dtpFechaNueva.Name = "dtpFechaNueva";
+            this.dtpFechaNueva.ShowUpDown = true;
+            this.dtpFechaNueva.Size = new System.Drawing.Size(87, 20);
+            this.dtpFechaNueva.TabIndex = 27;
+            // 
             // CambiarHoraFuncionario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(340, 174);
+            this.Controls.Add(this.dtpFechaNueva);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.mtHoraNueva);
@@ -166,5 +180,6 @@
         private System.Windows.Forms.MaskedTextBox mtHoraNueva;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.DateTimePicker dtpFechaNueva;
     }
 }

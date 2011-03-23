@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-
-using Logica;
+using System.Threading;
+using System.Globalization;
+//using Logica;
 
 namespace ControlHoras
 {
@@ -17,6 +18,9 @@ namespace ControlHoras
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            // Seteamos la Cultura para formatear las fechas y moneadas.
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("es-UY");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-UY");
             Application.Run(new VentanaPrincipal());   
         }
     }

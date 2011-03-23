@@ -12,6 +12,7 @@ using System.Configuration;
 using System.Globalization;
 using System.IO;
 using Utilidades;
+using System.Threading;
 
 
 
@@ -99,6 +100,11 @@ namespace Datos
             if (conexion == null)
                 conexion = createConexion();
             return conexion;
+        }
+
+        private MySqlConnection createNewConnection()
+        {
+            return createConexion();
         }
 
         internal static TrustDb createContext()
@@ -4029,7 +4035,7 @@ namespace Datos
                                  "WHERE (NumeroCliente = " + NumeroCliente + ") AND (NumeroServicio = "+NroServicio+") AND (FechaCorrespondiente BETWEEN '"+string.Format("{0:yyyy-MM-dd}", DiaInicioFacturacion)+"' AND '"+string.Format("{0:yyyy-MM-dd}", DiaFinFacturacion)+"') " +
                                  "GROUP BY FechaCorrespondiente";
 
-                conexion2 = (MySqlConnection)database.Connection;
+                conexion2 = createNewConnection();
                 conexion2.Open();               
                 MySqlDataAdapter mysqlAdapter = new MySqlDataAdapter(sql, conexion2);
                 mydata = mysqlAdapter.SelectCommand.ExecuteReader(CommandBehavior.Default);
@@ -4071,7 +4077,6 @@ namespace Datos
             {
                 throw ex;
             }
-
             finally
             {
                 if (mydata != null)
@@ -4079,7 +4084,6 @@ namespace Datos
                 if (conexion2 != null && conexion2.State != ConnectionState.Closed)
                     conexion2.Close();
             }
-
         }
 
         private TimeSpan getCantHsContrato(ContraToS con, DateTime dia)//, bool Comunes)
@@ -4092,7 +4096,8 @@ namespace Datos
             {
                 foreach (HoRaRioDiA hd in lh.HoRaRioDiA)
                 {
-                    if (hd.Dia == dia.DayOfWeek.ToString())
+                    
+                    if (hd.Dia.ToLower()==Thread.CurrentThread.CurrentCulture.DateTimeFormat.GetDayName(dia.DayOfWeek))
                     {
                         hini = TimeSpan.Parse(hd.HoraIni);
                         hfin = TimeSpan.Parse(hd.HoraFin);
