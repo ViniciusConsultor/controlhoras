@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Datos;
+
 namespace ControlHoras
 {
     public partial class ControlDiarioCambiarFuncionario : Form
@@ -94,6 +95,7 @@ namespace ControlHoras
                     FuncionarioNuevo = Controller.obtenerEmpleado(int.Parse(mtFuncionarioNuevo.Text));
                     mtFuncionarioNuevo.Text = FuncionarioNuevo.NroEmpleado.ToString();
                     txtNombreFuncionarioNuevo.Text = FuncionarioNuevo.Nombre + " " + FuncionarioNuevo.Apellido;
+                    
                     //SendKeys.Send("{TAB}");
                     btnAceptar.Enabled = true;
                 }
@@ -107,6 +109,11 @@ namespace ControlHoras
         private void CambiarFuncionario_Shown(object sender, EventArgs e)
         {
             mtFuncionarioNuevo.Focus();
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

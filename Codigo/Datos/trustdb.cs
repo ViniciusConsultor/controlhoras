@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2011-03-16 01:24:36Z
+#region Auto-generated classes for trustdb database on 2011-03-25 02:17:20Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2011-03-16 01:24:36Z
+// Auto-generated from trustdb on 2011-03-25 02:17:20Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -7003,6 +7003,8 @@ namespace Datos
 		#region Extensibility Method Definitions
 
 		partial void OnCreated();
+		partial void OnDiaHoraLlamadaAntesHoraEntradaChanged();
+		partial void OnDiaHoraLlamadaAntesHoraEntradaChanging(DateTime value);
 		partial void OnFechaCorrespondienteChanged();
 		partial void OnFechaCorrespondienteChanging(DateTime value);
 		partial void OnHoraEntradaChanged();
@@ -7017,6 +7019,32 @@ namespace Datos
 		partial void OnNumeroClienteChanging(uint value);
 		partial void OnNumeroServicioChanged();
 		partial void OnNumeroServicioChanging(uint value);
+
+		#endregion
+
+		#region DateTime DiaHoraLlamadaAntesHoraEntrada
+
+		private DateTime _diaHoraLlamadaAntesHoraEntrada;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_diaHoraLlamadaAntesHoraEntrada", Name = "DiaHoraLlamadaAntesHoraEntrada", DbType = "datetime", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public DateTime DiaHoraLlamadaAntesHoraEntrada
+		{
+			get
+			{
+				return _diaHoraLlamadaAntesHoraEntrada;
+			}
+			set
+			{
+				if (value != _diaHoraLlamadaAntesHoraEntrada)
+				{
+					OnDiaHoraLlamadaAntesHoraEntradaChanging(value);
+					SendPropertyChanging();
+					_diaHoraLlamadaAntesHoraEntrada = value;
+					SendPropertyChanged("DiaHoraLlamadaAntesHoraEntrada");
+					OnDiaHoraLlamadaAntesHoraEntradaChanged();
+				}
+			}
+		}
 
 		#endregion
 

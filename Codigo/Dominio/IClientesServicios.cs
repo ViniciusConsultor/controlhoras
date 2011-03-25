@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Datos;
 
 namespace Logica
 {
@@ -62,7 +63,15 @@ namespace Logica
 
         void marcarSolapados(int NroEscalafon, Escalafon EscSolapados);
 
-        
+        void aplicarControlesAltaHoraGeneradaEscalafon(DateTime fechaCorresponde, HoRaSGeneraDaSEScalaFOn horaGeneradaEscalafon);
+
+        /// <summary>
+        /// Aplica controles de HorasGeneradas entre la horageneradaTemp y todos los horarios donde se encuentra planificado el funcionario. Se pasa ademas, el Id de HorasGeneradasEscalafon actual que se esta modificando.
+        /// </summary>
+        /// <param name="FechaCorrespondiente">Fecha del dia en que se quiere hacer el chequeo</param>
+        /// <param name="IdHoraGeneradaActual">No se realizan chequeos contra el HoraGeneradasEscalafon identificado por este id.</param>
+        /// <param name="HoraGeneradaTemp">HorasGeneradasEscalafon temporal que se chequea contra el resto de los planificado.</param>
+        void aplicarControlesAltaHoraGeneradaEscalafon(DateTime FechaCorrespondiente, long IdHoraGeneradaActual, HoRaSGeneraDaSEScalaFOn HoraGeneradaTemp);
         #region GeneracionHorasDiarias
         /// <summary>
         /// Inicia una generacion de horas. Finalizar invocando finalizarGeneracionHoras

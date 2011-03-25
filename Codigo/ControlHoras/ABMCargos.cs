@@ -30,7 +30,14 @@ namespace ControlHoras
 
             btnAgregar.Enabled = true;
             btnGuardar.Enabled = false;
-            datos = DatosABMTipos.getInstance();
+            try
+            {
+                datos = DatosABMTipos.getInstance();
+            }
+            catch
+            {
+                throw;
+            }
             
         }
 
@@ -68,7 +75,7 @@ namespace ControlHoras
                         dgvCargos.Rows[n].Cells["Fulltime"].Value = true;
                     else
                         dgvCargos.Rows[n].Cells["Fulltime"].Value = false;
-                    if (cat.CobraHsExtras == 0)
+                    if (cat.CobraHsExtras == 1)
                         dgvCargos.Rows[n].Cells["CobraHsExtras"].Value = true;
                     else
                         dgvCargos.Rows[n].Cells["CobraHsExtras"].Value = false;

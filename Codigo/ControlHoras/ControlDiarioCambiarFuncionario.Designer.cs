@@ -114,6 +114,7 @@
             this.btnAceptar.TabIndex = 19;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnCancelar
             // 
@@ -125,7 +126,7 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // CambiarFuncionario
+            // ControlDiarioCambiarFuncionario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -140,7 +141,7 @@
             this.Controls.Add(this.txtNombreFuncionarioNuevo);
             this.Controls.Add(this.txtNombreFuncionarioActual);
             this.KeyPreview = true;
-            this.Name = "CambiarFuncionario";
+            this.Name = "ControlDiarioCambiarFuncionario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CambiarFuncionario";
             this.Shown += new System.EventHandler(this.CambiarFuncionario_Shown);
