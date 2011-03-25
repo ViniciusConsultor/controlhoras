@@ -580,6 +580,7 @@ namespace Logica
             return aux;
         }
 
+
         public bool EsHorarioSolapado(int IdEscalafon, int NroEmpleado, string dia, string HoraIni, string HoraFin)
         {
             int  nrocliente, nroservicio;
@@ -619,6 +620,13 @@ namespace Logica
             return (int)p % 1000;           
         }
 
+        private bool HorariosSolapados(DateTime HoraInicio1, DateTime HoraFin1, DateTime HoraInicio2, DateTime HoraFin2)
+        {
+            if (HoraInicio2 < HoraFin1 && HoraFin2 > HoraInicio1) //- Con este IF se controla solo un caso
+                return true;
+            else
+                return false;
+        }
         private bool HorariosSolapados(string hi1, string hf1, string hi2, string hf2)
         {
             DateTime dti1, dtf1, dti2, dtf2;
@@ -757,10 +765,11 @@ namespace Logica
 
         private string obtenerStringHoraMinuto(DateTime fecha)
         {
-            return fecha.ToShortTimeString().Substring(0, 5);
+            string str = fecha.Hour+":"+fecha.Minute;
+            return str;
         }
 
-        private void aplicarControlesAltaHoraGeneradaEscalafon(DateTime fechaCorresponde, HoRaSGeneraDaSEScalaFOn horaGeneradaEscalafon)
+        public void aplicarControlesAltaHoraGeneradaEscalafon(DateTime fechaCorresponde, HoRaSGeneraDaSEScalaFOn horaGeneradaEscalafon)
         {
             try
             {
@@ -769,8 +778,8 @@ namespace Logica
                 foreach (HoRaSGeneraDaSEScalaFOn linea in horarios)
                 {
                     //DayOfWeek day = (DayOfWeek) DayOfWeek.Parse(typeof(DayOfWeek), h.DiA, true);
-                    if (HorariosSolapados(obtenerStringHoraMinuto(horaGeneradaEscalafon.HoraEntrada), obtenerStringHoraMinuto(horaGeneradaEscalafon.HoraSalida), obtenerStringHoraMinuto(linea.HoraEntrada), obtenerStringHoraMinuto(linea.HoraSalida)))
-                        throw new Exception("Error de solapamiento de horarios. (" + horaGeneradaEscalafon.HoraEntrada.ToLongTimeString() + "-" + horaGeneradaEscalafon.HoraSalida.ToLongTimeString() + ") con " + "(" + linea.HoraEntrada.ToLongTimeString() + " - " + linea.HoraSalida.ToLongTimeString() + "). Dia: " + fechaCorresponde.ToShortDateString());
+                    if (HorariosSolapados(horaGeneradaEscalafon.HoraEntrada, horaGeneradaEscalafon.HoraSalida, linea.HoraEntrada, linea.HoraSalida))
+                        throw new Exception("Error de solapamiento de horarios. (" + horaGeneradaEscalafon.HoraEntrada.ToLongTimeString() + "-" + horaGeneradaEscalafon.HoraSalida.ToLongTimeString() + ") con " + "(Cliente: " + linea.NumeroCliente + " - Servicio: " + linea.NumeroServicio + ". Hs: "+ linea.HoraEntrada.ToLongTimeString() + " - " + linea.HoraSalida.ToLongTimeString() + "). Dia: " + fechaCorresponde.ToShortDateString());
                                        
                 }
             }
@@ -778,6 +787,30 @@ namespace Logica
             {
                 throw ex;
             }
+        }
+
+
+        public void aplicarControlesAltaHoraGeneradaEscalafon(DateTime FechaCorrespondiente, long IdHoraGeneradaActual, HoRaSGeneraDaSEScalaFOn HoraGeneradaTemp)
+        {
+            try
+            {
+                List<HoRaSGeneraDaSEScalaFOn> horarios = datos.obtenerHorasGeneradasEscalafonEmpleado(HoraGeneradaTemp.NroEmpleado,FechaCorrespondiente);
+
+                foreach (HoRaSGeneraDaSEScalaFOn linea in horarios)
+                {
+                    if (linea.IDHorasGeneradasEscalafon != IdHoraGeneradaActual)
+                    {
+                        //DayOfWeek day = (DayOfWeek) DayOfWeek.Parse(typeof(DayOfWeek), h.DiA, true);
+                        if (HorariosSolapados(HoraGeneradaTemp.HoraEntrada, HoraGeneradaTemp.HoraSalida, linea.HoraEntrada, linea.HoraSalida))
+                            throw new Exception("Error de solapamiento de horarios. (" + HoraGeneradaTemp.HoraEntrada.ToLongTimeString() + "-" + HoraGeneradaTemp.HoraSalida.ToLongTimeString() + ") con " + "(Cliente: " + linea.NumeroCliente + " - Servicio: " + linea.NumeroServicio + ". Hs: " + linea.HoraEntrada.ToLongTimeString() + " - " + linea.HoraSalida.ToLongTimeString() + "). Dia: " + FechaCorrespondiente.ToShortDateString());
+                    }                  
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
         private List<string> controlarPlanificacionEscalafonEmpleado(int nroEmpleado)
@@ -910,6 +943,7 @@ namespace Logica
                             hge.NroEmpleado = esc.NroEmpleado;
                             hge.NumeroCliente = escalafon.NumeroCliente;
                             hge.NumeroServicio = escalafon.NumeroServicio;
+                            hge.DiaHoraLlamadaAntesHoraEntrada = hge.HoraEntrada.AddHours(-(double)esc.HsLlamadaAntesHoraInicio);
                             listaHorasGeneradas.Add(hge);
                         }
                     }

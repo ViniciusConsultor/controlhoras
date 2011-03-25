@@ -1260,7 +1260,7 @@ namespace Datos
 
                 if (eventHist == null)
                     throw new NoExisteException("No existe el Evento en el Historial del Empleado " + idEmpleado.ToString());
-                //eventHist.BoRrAdo = 1;
+                eventHist.BoRrAdo = 1;
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
 
             }
@@ -1276,7 +1276,7 @@ namespace Datos
             {
                 Table<EventOsHistOrIalEmPleadO> tabla = database.GetTable<EventOsHistOrIalEmPleadO>();
                 List<EventOsHistOrIalEmPleadO> eventList = (from reg in tabla
-                                 where reg.IDEmpleado == idEmpleado //&& reg.BoRrAdo == 0
+                                 where reg.IDEmpleado == idEmpleado && reg.BoRrAdo == 0
                                  select reg).ToList<EventOsHistOrIalEmPleadO>();
 
                 return eventList;

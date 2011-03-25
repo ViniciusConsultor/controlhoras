@@ -273,6 +273,7 @@ namespace ControlHoras
                                     else
                                     {
                                         setGeneracionImageOK();
+                                        setLabelGeneracion("Generacion Terminada Correctamente.");
                                         MessageBox.Show(this, "Proceso Finalizado Correctamente.", "Generacion Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
                                 }
