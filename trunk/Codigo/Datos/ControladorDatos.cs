@@ -1559,6 +1559,7 @@ namespace Datos
         {
             try
             {
+                recargarContexto();
                 Table<ExtrasLiquidAcIon> tabla = database.GetTable<ExtrasLiquidAcIon>();
                 Table<CuOtAsExtrasLiquidAcIon> tablaCuotas = database.GetTable<CuOtAsExtrasLiquidAcIon>();
                 var opts = new DbLinq.Data.Linq.DataLoadOptions();
@@ -3759,7 +3760,11 @@ namespace Datos
                              "FROM horasgeneradasescalafon hg WHERE hg.FechaCorrespondiente BETWEEN '" + string.Format("{0:yyyy-MM-dd}", inicio) + "' AND '" + string.Format("{0:yyyy-MM-dd}", fin) + "'" +
                              "GROUP BY hg.FechaCorrespondiente, hg.NroEmpleado, hg.NumeroServicio, hg.NumeroCliente";
 
-                database.ExecuteCommand(sql, null);                
+                database.ExecuteCommand(sql, null);
+
+                sql = "UPDATE cuotasextrasliquidacion SET Liquidado=1 WHERE Fecha BETWEEN '" + string.Format("{0:yyyy-MM-dd}", inicio) + "' AND '" + string.Format("{0:yyyy-MM-dd}", fin) + "'";
+                database.ExecuteCommand(sql, null);
+
                 database.Transaction.Commit();
                 if (conexion.State == System.Data.ConnectionState.Open)
                     conexion.Close();

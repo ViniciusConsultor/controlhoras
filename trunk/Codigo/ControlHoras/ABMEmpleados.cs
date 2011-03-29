@@ -2857,6 +2857,7 @@ namespace ControlHoras
         private void BtnReactivar_Click(object sender, EventArgs e)
         {
             //string nroViejo = lblEmpleadoCargado.Text.Split('-').ElementAt(0);
+            string nroViejo = mtNumeroEmpleado.Text;
             int nroNuevo = datos.obtenerMaxIdEmpleado() + 1;
             DialogResult res = MessageBox.Show("Seguro que quiere reingresar el Empleado: " + txtNombre.Text + " " + txtApellido.Text + "?\nNúmero viejo: " + mtNumeroEmpleado.Text + "     Número nuevo: " + nroNuevo.ToString(), "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (res == DialogResult.Yes)
@@ -2872,7 +2873,7 @@ namespace ControlHoras
                     fechaIngreso = dtpFechaIngreso.Text;
                     fechaBaja = dtpFechaBaja.Text;
                     motivo = txtMotivoBaja.Text;
-                    txtObservaciones.Text = txtObservaciones.Text + "\r\n" + "INGRESÓ: " + fechaIngreso + "\r\nBAJA: " + fechaBaja + "    MOTIVO: " + motivo;
+                    txtObservaciones.Text = txtObservaciones.Text + "\r\n" + "INGRESÓ: " + fechaIngreso + " con Nro: " + nroViejo + "\r\nBAJA: " + fechaBaja + "    MOTIVO: " + motivo;
                     dtpFechaIngreso.Text = DateTime.Now.ToString();
                     dtpFechaAltaBPS.Text = DateTime.Now.ToString();
                     cbNoActivo.Checked = false;
