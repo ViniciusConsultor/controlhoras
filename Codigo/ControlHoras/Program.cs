@@ -19,8 +19,8 @@ namespace ControlHoras
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             // Seteamos la Cultura para formatear las fechas y moneadas.
-            Thread.CurrentThread.CurrentCulture.DateTimeFormat = CultureInfo.GetCultureInfo("es-UY").DateTimeFormat;
-            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-UY");
+            //Thread.CurrentThread.CurrentCulture.DateTimeFormat = CultureInfo.GetCultureInfo("es-UY").DateTimeFormat;
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-UY");
             Application.Run(new VentanaPrincipal());   
         }
     }

@@ -10,6 +10,7 @@ using System.IO;
 using System.Configuration;
 using Excel = Microsoft.Office.Interop.Excel;
 using Datos;
+using System.Globalization;
 
 
 namespace ControlHoras
@@ -219,11 +220,26 @@ namespace ControlHoras
                 Excel._Workbook oWBook;
                 Excel._Worksheet oSheet;
 
+                CultureInfo CultOriginal = System.Threading.Thread.CurrentThread.CurrentCulture;
+
                 try
                 {
                     // Iniciar Excel y obtener el objeto Aplicacion.
                     ExApp = new Excel.Application();
+
+                    //****AGREGADO POR EL TEMA DE LA CULTURA*****
                     
+                    //CultureInfo cSystemCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                    //CultureInfo cExcelCulture = new CultureInfo(ExAppLanguageSettings.get_LanguageID(Microsoft.Office.Core.MsoAppLanguageID.msoLanguageIDUI));
+                    //System.Threading.Thread.CurrentThread.CurrentCulture = cExcelCulture;
+                    
+                    //object ob = ExApp.LanguageSettings;
+                    //CultureInfo cExcelCulture = new CultureInfo
+
+                    
+                    //System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+
+
                     //Get a new workbook.
                     //oWB = (Excel._Workbook)(oXL.Workbooks.Add(Missing.Value));
                     oWBook = ExApp.Workbooks.Open(fileName, missing, readOnly, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing);
@@ -253,7 +269,7 @@ namespace ControlHoras
                         oSheet.Cells[7 + auxInt, 6] = (LiquidacionDGV.Rows[i].Cells[4].Value ?? "00:00").ToString();
                     }
 
-                    
+
 
                     //oWBook.PrintPreview(falso);
                     object a = Path.Combine(outputDirectory, MesTB.Text + " - " + EmpleadoLBL.Text + ".xls");
@@ -274,6 +290,10 @@ namespace ControlHoras
                     errorMessage = String.Concat(errorMessage, " Line: ");
                     errorMessage = String.Concat(errorMessage, theException.Source);
                     throw theException;
+                }
+                finally
+                {
+                    System.Threading.Thread.CurrentThread.CurrentCulture = CultOriginal;
                 }
             }
             else
