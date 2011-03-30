@@ -10,6 +10,7 @@ using System.IO;
 using System.Configuration;
 using Excel = Microsoft.Office.Interop.Excel;
 using Datos;
+using Utilidades;
 using System.Globalization;
 
 
@@ -144,7 +145,52 @@ namespace ControlHoras
             catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }            
+            }
+            
+            //EXTRAS LIQUIDACIÓN
+
+            ExtraLiquidaciónLB.DataSource = null;
+            ExtraLiquidaciónLB.Items.Clear();
+            ExtraLiquidaciónLB.Visible = false;
+
+            
+            DataEmpleadoExLiquidacion exLiqui = datos.obtenerExLiquidacionEmpleado(nroEmp, mesAct);
+
+            if (exLiqui.listaExLiqui.Count > 0)
+            {
+                ExtraLiquidaciónLB.Visible = true;
+                
+                Dictionary<int, string> exsliqs = new Dictionary<int,string>();
+                int i=0;
+                foreach(DataExtraLiquidacion el in exLiqui.listaExLiqui)
+                {
+                    
+                    exsliqs.Add(i,@"$U "+el.valor.ToString()+ " (" + el.descripcion+" "+el.cuota+")");
+                    i++;
+                }
+
+                BindingSource bs = new BindingSource();
+                bs.DataSource = exsliqs;
+                
+                ExtraLiquidaciónLB.ValueMember = "Key";
+                ExtraLiquidaciónLB.DisplayMember = "Value";
+
+                if (ExtraLiquidaciónLB.DataSource != null)
+                {
+                    //cmb.BindingContext[cmb.DataSource].SuspendBinding();
+                    ExtraLiquidaciónLB.BeginUpdate();
+                    ExtraLiquidaciónLB.DataSource = exsliqs;
+                    ExtraLiquidaciónLB.EndUpdate();
+                    //cmb.BindingContext[cmb.DataSource].ResumeBinding();
+                }
+                else
+                    ExtraLiquidaciónLB.DataSource = bs;
+
+                ExtraLiquidaciónLB.SelectedIndex = -1;
+
+            }
+           
+
         }
 
         private void CalcularTotales()

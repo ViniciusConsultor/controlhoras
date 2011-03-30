@@ -395,5 +395,7 @@ namespace Datos
         Dictionary<DateTime, TimeSpan> LiquidarunEmpleado(int nroEmp);
 
         bool existeEmpleadoLiquidado(int NroEmpleado);
+
+        DataEmpleadoExLiquidacion obtenerExLiquidacionEmpleado(int NroEmpleado, DateTime Mes);
     }
 }
