@@ -4117,6 +4117,74 @@ namespace Datos
             return ret;
         }
 
+
+        public DataEmpleadoExLiquidacion obtenerExLiquidacionEmpleado(int NroEmpleado, DateTime Mes)
+        {
+            DateTime inicio, fin, aux;
+
+            inicio = new DateTime(Mes.Year, Mes.Month, 1);
+            aux = new DateTime(Mes.Year, Mes.AddMonths(1).Month, 1);
+            fin = aux.AddDays(-1);
+            
+            MySqlConnection conexion2 = null;
+            MySqlDataReader mydata = null;
+
+
+            try
+            {
+                List<DataExtraLiquidacion> listaEx = new List<DataExtraLiquidacion>();
+
+                DataExtraLiquidacion exLiqui;
+                
+
+                string sql = "SELECT e.Descripcion, c.NumeroCuota, e.CantidadCuotas, e.Signo, c.ValorCuota "+
+                             "FROM extrasliquidacion e, cuotasextrasliquidacion c "+
+                             "WHERE "+
+                             "e.IdEmpleado="+ NroEmpleado.ToString() + " AND "+
+                             "e.IdExtraLiquidacion=c.IdExtraLiquidacion AND "+
+                             "c.Fecha BETWEEN '" + string.Format("{0:yyyy-MM-dd}", inicio) + "' AND '" + string.Format("{0:yyyy-MM-dd}", fin) + "'";
+
+                conexion2 = createNewConnection();
+                conexion2.Open();
+                MySqlDataAdapter mysqlAdapter = new MySqlDataAdapter(sql, conexion2);
+                mydata = mysqlAdapter.SelectCommand.ExecuteReader(CommandBehavior.Default);
+
+                string desc;
+                int nc, tc, s, valor;
+                
+                while (mydata.Read())
+                {
+                    desc = mydata.GetString(0);
+                    nc = mydata.GetInt32(1);
+                    tc = mydata.GetInt32(2);
+                    s = mydata.GetInt32(3);
+                    valor = mydata.GetInt32(4);
+                    
+                    valor = (s == 0 ? valor * -1 : valor);
+
+                    exLiqui = new DataExtraLiquidacion(desc, nc.ToString() + @"/" + tc.ToString(), valor);
+
+                    listaEx.Add(exLiqui);                    
+                }
+
+                DataEmpleadoExLiquidacion deel = new DataEmpleadoExLiquidacion(NroEmpleado, Mes, listaEx);
+                return deel;                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (mydata != null)
+                    mydata.Close();
+                if (conexion2 != null && conexion2.State != ConnectionState.Closed)
+                    conexion2.Close();
+            }
+
+            
+        }
+
        
     }
 
