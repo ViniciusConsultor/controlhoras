@@ -107,6 +107,8 @@ namespace ControlHoras
             DateTime aux2;
 
             LiquidacionDGV.Rows.Clear();
+
+            //DataGridViewButtonColumn
             
             nroEmp = int.Parse(empleados.Rows[ind].ItemArray[0].ToString());
             mtNumeroEmpleado.Text = nroEmp.ToString();
@@ -480,6 +482,32 @@ namespace ControlHoras
                 progress.Focus();
                 progress.BringToFront();
             }
+        }
+
+        private void LiquidacionDGV_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (LiquidacionDGV.Columns[e.ColumnIndex].Name == "Observaciones")
+            {                
+                DateTime fecha = new DateTime(mesAct.Year, mesAct.Month, int.Parse(LiquidacionDGV.Rows[e.RowIndex].Cells["Dia"].Value.ToString()));
+                string nroEmp = EmpleadoLBL.Text.Substring(0,EmpleadoLBL.Text.IndexOf('-')-1);
+                try
+                {
+                    List<MotIVOsCamBiosDiARioS> mot = datos.obtenerMotivosCambiosDiarios2(int.Parse(nroEmp), fecha);
+
+                    if (mot.Count > 0)
+                    {
+                        VerObservaciones obs = new VerObservaciones(mot);
+                        obs.ShowDialog(this);
+                    }
+
+                }
+                catch (Exception ex)
+                {                    
+                    MessageBox.Show(ex.Message, "Error al obtener los motivos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+            } 
+
         }
                
         

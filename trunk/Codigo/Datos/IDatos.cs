@@ -397,5 +397,7 @@ namespace Datos
         bool existeEmpleadoLiquidado(int NroEmpleado);
 
         DataEmpleadoExLiquidacion obtenerExLiquidacionEmpleado(int NroEmpleado, DateTime Mes);
+
+        List<MotIVOsCamBiosDiARioS> obtenerMotivosCambiosDiarios2(int NroEmpleado, DateTime Fecha);
     }
 }

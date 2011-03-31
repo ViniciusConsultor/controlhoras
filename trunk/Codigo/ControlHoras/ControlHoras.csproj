@@ -609,6 +609,10 @@
       <DependentUpon>VerEscalafonEmpleadoForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="VerObservaciones.resx">
+      <DependentUpon>VerObservaciones.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -658,6 +662,12 @@
     </Compile>
     <Compile Include="VerEscalafonEmpleadoForm.Designer.cs">
       <DependentUpon>VerEscalafonEmpleadoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerObservaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerObservaciones.Designer.cs">
+      <DependentUpon>VerObservaciones.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
