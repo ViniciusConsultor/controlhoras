@@ -4150,7 +4150,7 @@ namespace Datos
                 mydata = mysqlAdapter.SelectCommand.ExecuteReader(CommandBehavior.Default);
 
                 string desc;
-                int nc, tc, s, valor;
+                int nc, tc, s, valor, tot=0;
                 
                 while (mydata.Read())
                 {
@@ -4164,10 +4164,11 @@ namespace Datos
 
                     exLiqui = new DataExtraLiquidacion(desc, nc.ToString() + @"/" + tc.ToString(), valor);
 
-                    listaEx.Add(exLiqui);                    
+                    listaEx.Add(exLiqui);
+                    tot += valor;
                 }
 
-                DataEmpleadoExLiquidacion deel = new DataEmpleadoExLiquidacion(NroEmpleado, Mes, listaEx);
+                DataEmpleadoExLiquidacion deel = new DataEmpleadoExLiquidacion(NroEmpleado, Mes, listaEx, tot);
                 return deel;                
             }
             catch (Exception ex)

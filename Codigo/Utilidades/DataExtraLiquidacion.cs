@@ -28,17 +28,19 @@ namespace Utilidades
         public int NroEmpleado { get; private set; }
         public DateTime mes { get; private set; }
         public List<DataExtraLiquidacion> listaExLiqui { get; private set; }
+        public int total { get; private set; }
 
         public DataEmpleadoExLiquidacion()
         {
             listaExLiqui = new List<DataExtraLiquidacion>();
         }
 
-        public DataEmpleadoExLiquidacion(int nroEmp, DateTime Mes, List<DataExtraLiquidacion> lisExLiqui)
+        public DataEmpleadoExLiquidacion(int nroEmp, DateTime Mes, List<DataExtraLiquidacion> lisExLiqui, int Total)
         {
             NroEmpleado = nroEmp;
             mes = Mes;
             listaExLiqui = lisExLiqui;
+            total = Total;
         }
     }
 }
