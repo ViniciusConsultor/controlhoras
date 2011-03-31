@@ -41,7 +41,6 @@
             this.LiquidarBTN = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnExportarTodos = new System.Windows.Forms.ToolStripButton();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.label4 = new System.Windows.Forms.Label();
             this.MesTB = new System.Windows.Forms.Label();
@@ -63,6 +62,8 @@
             this.ExtraLiquiGB = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.ExLiquiTotTB = new System.Windows.Forms.Label();
+            this.btnExportarTodos = new System.Windows.Forms.ToolStripButton();
+            this.Observaciones = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -149,17 +150,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(1117, 40);
             this.toolStrip1.TabIndex = 30;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // btnExportarTodos
-            // 
-            this.btnExportarTodos.Enabled = false;
-            this.btnExportarTodos.Image = global::ControlHoras.Imagenes.application_vnd_ms_excel;
-            this.btnExportarTodos.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnExportarTodos.Name = "btnExportarTodos";
-            this.btnExportarTodos.Size = new System.Drawing.Size(108, 37);
-            this.btnExportarTodos.Text = "Exportar Todos";
-            this.btnExportarTodos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnExportarTodos.Click += new System.EventHandler(this.btnExportTodos_Click);
             // 
             // splitContainer2
             // 
@@ -365,6 +355,8 @@
             // 
             this.LiquidacionDGV.AllowUserToAddRows = false;
             this.LiquidacionDGV.AllowUserToDeleteRows = false;
+            this.LiquidacionDGV.AllowUserToResizeColumns = false;
+            this.LiquidacionDGV.AllowUserToResizeRows = false;
             this.LiquidacionDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.LiquidacionDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.LiquidacionDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -372,7 +364,8 @@
             this.Hs_Comunes,
             this.Hs_Extras,
             this.Hs_Feriado,
-            this.Hs_FeriadoEx});
+            this.Hs_FeriadoEx,
+            this.Observaciones});
             this.LiquidacionDGV.Location = new System.Drawing.Point(69, 2);
             this.LiquidacionDGV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LiquidacionDGV.Name = "LiquidacionDGV";
@@ -380,6 +373,7 @@
             this.LiquidacionDGV.RowTemplate.Height = 24;
             this.LiquidacionDGV.Size = new System.Drawing.Size(561, 425);
             this.LiquidacionDGV.TabIndex = 0;
+            this.LiquidacionDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LiquidacionDGV_CellClick);
             // 
             // ExtraLiquiGB
             // 
@@ -414,6 +408,25 @@
             this.ExLiquiTotTB.Size = new System.Drawing.Size(93, 18);
             this.ExLiquiTotTB.TabIndex = 33;
             this.ExLiquiTotTB.Text = "Empleado: ";
+            // 
+            // btnExportarTodos
+            // 
+            this.btnExportarTodos.Enabled = false;
+            this.btnExportarTodos.Image = global::ControlHoras.Imagenes.application_vnd_ms_excel;
+            this.btnExportarTodos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExportarTodos.Name = "btnExportarTodos";
+            this.btnExportarTodos.Size = new System.Drawing.Size(108, 37);
+            this.btnExportarTodos.Text = "Exportar Todos";
+            this.btnExportarTodos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnExportarTodos.Click += new System.EventHandler(this.btnExportTodos_Click);
+            // 
+            // Observaciones
+            // 
+            this.Observaciones.HeaderText = "Observaciones";
+            this.Observaciones.Name = "Observaciones";
+            this.Observaciones.Text = "Ver";
+            this.Observaciones.UseColumnTextForButtonValue = true;
+            this.Observaciones.Width = 109;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -566,11 +579,6 @@
         private System.Windows.Forms.TextBox HsFeriadoTB;
         private System.Windows.Forms.TextBox HsExtraTB;
         private System.Windows.Forms.TextBox HsComunesTB;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Dia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Hs_Comunes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Hs_Extras;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Hs_Feriado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Hs_FeriadoEx;
         private System.Windows.Forms.Label MesTB;
         private System.Windows.Forms.Button ExcelBTN;
         private System.Windows.Forms.Label label4;   
@@ -582,5 +590,11 @@
         private System.Windows.Forms.GroupBox ExtraLiquiGB;
         private System.Windows.Forms.Label ExLiquiTotTB;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Dia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Hs_Comunes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Hs_Extras;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Hs_Feriado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Hs_FeriadoEx;
+        private System.Windows.Forms.DataGridViewButtonColumn Observaciones;
     }
 }

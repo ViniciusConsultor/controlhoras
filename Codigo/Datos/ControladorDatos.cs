@@ -4186,7 +4186,27 @@ namespace Datos
             
         }
 
-       
+
+        public List<MotIVOsCamBiosDiARioS> obtenerMotivosCambiosDiarios2(int NroEmpleado, DateTime Fecha)
+        {
+            try
+            {
+                List<MotIVOsCamBiosDiARioS> motivosServicio = null;
+                
+                motivosServicio = (from reg in database.MotIVOsCamBiosDiARioS
+                                   where reg.FechaCorresponde == Fecha & reg.NroEmpleado == NroEmpleado
+                                   select reg).ToList<MotIVOsCamBiosDiARioS>();
+                            
+                return motivosServicio;
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
     }
 
 }
