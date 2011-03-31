@@ -149,16 +149,26 @@ namespace ControlHoras
             
             //EXTRAS LIQUIDACIÓN
 
+            ExtraLiquiGB.Visible = false;
             ExtraLiquidaciónLB.DataSource = null;
             ExtraLiquidaciónLB.Items.Clear();
-            ExtraLiquidaciónLB.Visible = false;
-
             
-            DataEmpleadoExLiquidacion exLiqui = datos.obtenerExLiquidacionEmpleado(nroEmp, mesAct);
+
+            DataEmpleadoExLiquidacion exLiqui = null;
+
+            try
+            {
+                exLiqui = datos.obtenerExLiquidacionEmpleado(nroEmp, mesAct);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
             if (exLiqui.listaExLiqui.Count > 0)
             {
-                ExtraLiquidaciónLB.Visible = true;
+                ExtraLiquiGB.Visible = true;
                 
                 Dictionary<int, string> exsliqs = new Dictionary<int,string>();
                 int i=0;
@@ -178,8 +188,8 @@ namespace ControlHoras
                 if (ExtraLiquidaciónLB.DataSource != null)
                 {
                     //cmb.BindingContext[cmb.DataSource].SuspendBinding();
-                    ExtraLiquidaciónLB.BeginUpdate();
                     ExtraLiquidaciónLB.DataSource = exsliqs;
+                    ExtraLiquidaciónLB.BeginUpdate();                    
                     ExtraLiquidaciónLB.EndUpdate();
                     //cmb.BindingContext[cmb.DataSource].ResumeBinding();
                 }
@@ -188,6 +198,7 @@ namespace ControlHoras
 
                 ExtraLiquidaciónLB.SelectedIndex = -1;
 
+                ExLiquiTotTB.Text = "$U " + exLiqui.total.ToString();
             }
            
 
@@ -289,7 +300,8 @@ namespace ControlHoras
                     //Get a new workbook.
                     //oWB = (Excel._Workbook)(oXL.Workbooks.Add(Missing.Value));
                     oWBook = ExApp.Workbooks.Open(fileName, missing, readOnly, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing);
-                    oSheet = (Excel._Worksheet)oWBook.ActiveSheet;
+                    //oSheet = (Excel._Worksheet)oWBook.ActiveSheet;
+                    oSheet = (Excel._Worksheet)oWBook.Worksheets.get_Item(1);
 
                     // Mes
                     oSheet.Cells[2, 3] = MesTB.Text;
@@ -315,10 +327,42 @@ namespace ControlHoras
                         oSheet.Cells[7 + auxInt, 6] = (LiquidacionDGV.Rows[i].Cells[4].Value ?? "00:00").ToString();
                     }
 
+                    //EXTRAS LIQUIDACION
+                    if (ExtraLiquidaciónLB.Items.Count > 0)
+                    {
+                        oSheet = (Excel._Worksheet)oWBook.Worksheets.get_Item(2);
 
+                        // Mes
+                        oSheet.Cells[2, 3] = MesTB.Text;
+                        // Nombre
+                        oSheet.Cells[4, 4] = EmpleadoLBL.Text;
+                        // Cargo
+                        oSheet.Cells[5, 4] = CargoLBL.Text;
+
+                        string st;
+                        int u, p1, b, p2, i=0; 
+                            
+                        foreach (object item in ExtraLiquidaciónLB.Items)
+                        {
+                            st = item.ToString();
+                            u = st.IndexOf('U')+2;
+                            p1 = st.IndexOf('(');
+                            b = st.IndexOf('/');
+                            p2 = st.IndexOf(')');
+
+                            oSheet.Cells[9 + i, 3] = st.Substring(u, p1 - u - 1);
+                            oSheet.Cells[9 + i, 4] = st.Substring(p1 + 1, b - p1 - 2);
+                            oSheet.Cells[9 + i, 5] = st.Substring(b - 2, 2) + " de " + ((b + 2 == p2) ? st.Substring(b + 1, 1) : st.Substring(b + 1, 2));
+                            i++;
+                        }
+                        i++;
+                        oSheet.Cells[9 + i, 2] = @"Total($U):";
+                        oSheet.Cells[9 + i, 3] = ExLiquiTotTB.Text.Substring(3);
+                        
+                    }
 
                     //oWBook.PrintPreview(falso);
-                    object a = Path.Combine(outputDirectory, MesTB.Text + " - " + EmpleadoLBL.Text + ".xls");
+                    object a = Path.Combine(outputDirectory, EmpleadoLBL.Text + ".xls");
                     if (!abrirExcel)
                     {
                         ExApp.Visible = false;
