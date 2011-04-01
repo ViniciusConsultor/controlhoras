@@ -62,6 +62,9 @@ namespace ControlHoras
         private void LiquidarBTN_Click(object sender, EventArgs e)
         {            
             DateTime inicio, fin, aux;
+
+            AnteriorBTN.Visible = false;
+            PosteriorBTN.Visible = false;
             
             inicio = new DateTime(MesDTP.Value.Year, MesDTP.Value.Month, 1);
             aux = new DateTime(MesDTP.Value.Year, MesDTP.Value.AddMonths(1).Month, 1);
@@ -72,31 +75,31 @@ namespace ControlHoras
                 datos.LiquidarEmpleados(inicio, fin);
                 datos.empleadosLiquidados(out empleados);
 
+                splitContainer2.Visible = true;
+                mesAct = MesDTP.Value;
+                string auxst = MesDTP.Value.ToString(@"MMMM' del 'yyyy");
+                MesTB.Text = auxst.Substring(0, 1).ToUpper() + auxst.Substring(1);
+
+                cant = empleados.Rows.Count;
+                if (cant == 0)
+                    MessageBox.Show("No existen horas registradas para: " + MesDTP.Value.ToString(@"MMMM/yyyy"), "No hay datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                else
+                {
+                    if (cant > 1)
+                    {
+                        AnteriorBTN.Visible = true;
+                        PosteriorBTN.Visible = true;
+                    }
+                    ind = 0;
+                    CargarEmpleado();
+                    btnExportarTodos.Enabled = true;
+                }
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al efectuar la liquidación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);                
-            }
-
-            splitContainer2.Visible = true;
-            mesAct = MesDTP.Value;
-            string auxst = MesDTP.Value.ToString(@"MMMM' del 'yyyy");
-            MesTB.Text = auxst.Substring(0,1).ToUpper()+auxst.Substring(1);
-
-            cant = empleados.Rows.Count;
-            if (cant == 0)
-                MessageBox.Show("No existen horas registradas para: " + MesDTP.Value.ToString(@"MMMM/yyyy"), "No hay datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            else
-            {
-                if (cant > 1)
-                {
-                    AnteriorBTN.Visible = true;
-                    PosteriorBTN.Visible = true;
-                }
-                ind = 0;
-                CargarEmpleado();
-                btnExportarTodos.Enabled = true;
-            }
+            }            
         }
 
         private void CargarEmpleado()
@@ -126,6 +129,8 @@ namespace ControlHoras
                 Dictionary<DateTime, TimeSpan> liq = datos.LiquidarunEmpleado(nroEmp);
                 Dictionary<DateTime, TimeSpan>.Enumerator iter = liq.GetEnumerator();
 
+                List<int> obs = datos.obtenerObsCambios(nroEmp, mesAct);                
+
                 while (iter.MoveNext())
                 {
                     numf = LiquidacionDGV.Rows.Add();
@@ -139,6 +144,8 @@ namespace ControlHoras
                     LiquidacionDGV.Rows[numf].Cells[0].Value = iter.Current.Key.Day.ToString();
                     LiquidacionDGV.Rows[numf].Cells[1 + sep].Value = (auxdt + hc).ToString("HH:mm");
                     LiquidacionDGV.Rows[numf].Cells[2 + sep].Value = (auxdt + he).ToString("HH:mm");
+                    if (obs.Contains(iter.Current.Key.Day))
+                        LiquidacionDGV.Rows[numf].Cells[5].Value = "*";
                 }
 
                 CalcularTotales();
@@ -319,14 +326,28 @@ namespace ControlHoras
                         auxdt = auxdt.AddDays(1);
                     }
 
-                    int auxInt;
+                    int auxInt, nroEmp = int.Parse(empleados.Rows[ind].ItemArray[0].ToString());
+                    string st;
+                    List<MotIVOsCamBiosDiARioS> obs;
+
                     for (int i = 0; i < LiquidacionDGV.Rows.Count; i++)
                     {
                         auxInt = int.Parse(LiquidacionDGV.Rows[i].Cells[0].Value.ToString());
+                        auxdt = auxdt = new DateTime(mesAct.Year, mesAct.Month, auxInt);
                         oSheet.Cells[7 + auxInt, 3] = (LiquidacionDGV.Rows[i].Cells[1].Value ?? "00:00").ToString();
                         oSheet.Cells[7 + auxInt, 4] = (LiquidacionDGV.Rows[i].Cells[2].Value ?? "00:00").ToString();
                         oSheet.Cells[7 + auxInt, 5] = (LiquidacionDGV.Rows[i].Cells[3].Value ?? "00:00").ToString();
                         oSheet.Cells[7 + auxInt, 6] = (LiquidacionDGV.Rows[i].Cells[4].Value ?? "00:00").ToString();
+
+                        obs = datos.obtenerMotivosCambiosDiarios2(nroEmp, auxdt);
+                        if (obs.Count > 0)
+                        {
+                            st = "";
+                            foreach (MotIVOsCamBiosDiARioS m in obs)
+                                st = st + "*" + m.Observaciones + "\n";
+                            oSheet.Cells[7 + auxInt, 7] = st;
+                        }
+
                     }
 
                     //EXTRAS LIQUIDACION
@@ -341,7 +362,7 @@ namespace ControlHoras
                         // Cargo
                         oSheet.Cells[5, 4] = CargoLBL.Text;
 
-                        string st;
+                        //string st;
                         int u, p1, b, p2, i=0; 
                             
                         foreach (object item in ExtraLiquidaciónLB.Items)
