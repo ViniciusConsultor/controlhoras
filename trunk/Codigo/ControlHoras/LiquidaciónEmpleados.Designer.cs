@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -64,11 +65,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.ExLiquiTotTB = new System.Windows.Forms.Label();
             this.btnExportarTodos = new System.Windows.Forms.ToolStripButton();
+            this.Observaciones = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mtNumeroEmpleado = new ControlHoras.MaskedTextBoxKeyDown();
             this.Dia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Hs_Comunes = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,7 +79,8 @@
             this.Hs_Feriado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Hs_FeriadoEx = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Aster = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Observaciones = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.EventosGB = new System.Windows.Forms.GroupBox();
+            this.EventosTB = new System.Windows.Forms.RichTextBox();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -86,6 +90,7 @@
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LiquidacionDGV)).BeginInit();
             this.ExtraLiquiGB.SuspendLayout();
+            this.EventosGB.SuspendLayout();
             this.SuspendLayout();
             // 
             // label3
@@ -176,6 +181,7 @@
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.EventosGB);
             this.splitContainer2.Panel2.Controls.Add(this.ExtraLiquiGB);
             this.splitContainer2.Panel2.Controls.Add(this.ExcelBTN);
             this.splitContainer2.Panel2.Controls.Add(this.HsFerExtTB);
@@ -383,7 +389,7 @@
             this.ExtraLiquiGB.Controls.Add(this.ExLiquiTotTB);
             this.ExtraLiquiGB.Controls.Add(this.label5);
             this.ExtraLiquiGB.Controls.Add(this.ExtraLiquidaciónLB);
-            this.ExtraLiquiGB.Location = new System.Drawing.Point(692, 65);
+            this.ExtraLiquiGB.Location = new System.Drawing.Point(692, 122);
             this.ExtraLiquiGB.Name = "ExtraLiquiGB";
             this.ExtraLiquiGB.Size = new System.Drawing.Size(463, 167);
             this.ExtraLiquiGB.TabIndex = 32;
@@ -422,6 +428,14 @@
             this.btnExportarTodos.Text = "Exportar Todos";
             this.btnExportarTodos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExportarTodos.Click += new System.EventHandler(this.btnExportTodos_Click);
+            // 
+            // Observaciones
+            // 
+            this.Observaciones.HeaderText = "Observaciones";
+            this.Observaciones.Name = "Observaciones";
+            this.Observaciones.Text = "Ver";
+            this.Observaciones.UseColumnTextForButtonValue = true;
+            this.Observaciones.Width = 109;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -464,6 +478,16 @@
             this.dataGridViewTextBoxColumn5.HeaderText = "Hs FeriadoExt";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.Width = 98;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle10;
+            this.dataGridViewTextBoxColumn6.HeaderText = "*";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 38;
             // 
             // mtNumeroEmpleado
             // 
@@ -532,13 +556,26 @@
             this.Aster.ReadOnly = true;
             this.Aster.Width = 38;
             // 
-            // Observaciones
+            // EventosGB
             // 
-            this.Observaciones.HeaderText = "Observaciones";
-            this.Observaciones.Name = "Observaciones";
-            this.Observaciones.Text = "Ver";
-            this.Observaciones.UseColumnTextForButtonValue = true;
-            this.Observaciones.Width = 109;
+            this.EventosGB.Controls.Add(this.EventosTB);
+            this.EventosGB.Location = new System.Drawing.Point(692, 3);
+            this.EventosGB.Name = "EventosGB";
+            this.EventosGB.Size = new System.Drawing.Size(463, 98);
+            this.EventosGB.TabIndex = 33;
+            this.EventosGB.TabStop = false;
+            this.EventosGB.Text = "Eventos";
+            this.EventosGB.Visible = false;
+            // 
+            // EventosTB
+            // 
+            this.EventosTB.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.EventosTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.210526F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EventosTB.Location = new System.Drawing.Point(20, 21);
+            this.EventosTB.Name = "EventosTB";
+            this.EventosTB.Size = new System.Drawing.Size(423, 58);
+            this.EventosTB.TabIndex = 0;
+            this.EventosTB.Text = "";
             // 
             // LiquidaciónEmpleados
             // 
@@ -564,6 +601,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.LiquidacionDGV)).EndInit();
             this.ExtraLiquiGB.ResumeLayout(false);
             this.ExtraLiquiGB.PerformLayout();
+            this.EventosGB.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -610,5 +648,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Hs_FeriadoEx;
         private System.Windows.Forms.DataGridViewTextBoxColumn Aster;
         private System.Windows.Forms.DataGridViewButtonColumn Observaciones;
+        private System.Windows.Forms.GroupBox EventosGB;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.RichTextBox EventosTB;
     }
 }

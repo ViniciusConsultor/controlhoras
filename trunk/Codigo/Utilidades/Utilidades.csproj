@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControladorUtilidades.cs" />
+    <Compile Include="DataEventoHistEmpleado.cs" />
     <Compile Include="DataExtraLiquidacion.cs" />
     <Compile Include="DataFacturacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

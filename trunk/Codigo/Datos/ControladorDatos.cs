@@ -4233,6 +4233,69 @@ namespace Datos
             }
         }
 
+        public DataEventosHE obtenerEventosHistEmpleado(int NroEmpleado, DateTime Mes)
+        {
+            DateTime inicio, fin, aux;
+
+            inicio = new DateTime(Mes.Year, Mes.Month, 1);
+            aux = new DateTime(Mes.Year, Mes.AddMonths(1).Month, 1);
+            fin = aux.AddDays(-1);
+
+            MySqlConnection conexion2 = null;
+            MySqlDataReader mydata = null;
+
+
+            try
+            {
+                List<DataEventoHistEmpleado> listaEvs = new List<DataEventoHistEmpleado>();
+
+                DataEventoHistEmpleado evento;
+
+                string sql = "SELECT e.FechaInicio, e.FechaFin, t.Nombre, e.Descripcion " +
+                             "FROM eventoshistorialempleado e, tiposeventohistorial t " +
+                             "WHERE " +
+                             "e.IdEmpleado=" + NroEmpleado.ToString() + " AND " +
+                             "e.IdTipoEvento=t.IdTipoEventoHistorial AND " +
+                             "e.FechaInicio < '" + string.Format("{0:yyyy-MM-dd}", fin) + "' AND " + 
+                             "e.FechaFin > '" + string.Format("{0:yyyy-MM-dd}", inicio) + "'";
+
+                conexion2 = createNewConnection();
+                conexion2.Open();
+                MySqlDataAdapter mysqlAdapter = new MySqlDataAdapter(sql, conexion2);
+                mydata = mysqlAdapter.SelectCommand.ExecuteReader(CommandBehavior.Default);
+
+                DateTime FIni, FFin;
+                string tipo, desc;
+                
+                while (mydata.Read())
+                {
+                    FIni = mydata.GetDateTime(0);
+                    FFin = mydata.GetDateTime(1);
+                    tipo = mydata.GetString(2);
+                    desc = mydata.GetString(3);
+
+                    evento = new DataEventoHistEmpleado(FIni, FFin, tipo, desc);
+
+                    listaEvs.Add(evento);                   
+                }
+
+                DataEventosHE dehe = new DataEventosHE(NroEmpleado, listaEvs);
+                return dehe;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (mydata != null)
+                    mydata.Close();
+                if (conexion2 != null && conexion2.State != ConnectionState.Closed)
+                    conexion2.Close();
+            }
+        }
+
+
     }
 
 }

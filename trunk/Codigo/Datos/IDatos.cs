@@ -400,6 +400,8 @@ namespace Datos
 
         List<MotIVOsCamBiosDiARioS> obtenerMotivosCambiosDiarios2(int NroEmpleado, DateTime Fecha);
 
-        List<int> obtenerObsCambios(int nroEmp, DateTime mesAct);
+        List<int> obtenerObsCambios(int NroEmpleado, DateTime Mes);
+
+        DataEventosHE obtenerEventosHistEmpleado(int NroEmpleado, DateTime Mes);
     }
 }

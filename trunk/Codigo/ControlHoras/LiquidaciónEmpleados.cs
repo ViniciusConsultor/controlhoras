@@ -211,6 +211,36 @@ namespace ControlHoras
             }
            
 
+            //EVENTOS
+
+            EventosGB.Visible = false;
+            EventosTB.Text = "";
+
+            DataEventosHE eventos = null;
+
+            try
+            {
+                eventos = datos.obtenerEventosHistEmpleado(nroEmp, mesAct);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            if (eventos.listaEventos.Count > 0)
+            {
+                EventosGB.Visible = true;
+
+                string aux = "";
+                foreach (DataEventoHistEmpleado e in eventos.listaEventos)
+                {
+                    aux = aux + "* " + e.inicio.ToString(@"dd/MM/yyyy") + " a " + e.fin.ToString(@"dd/MM/yyyy") + " - " + e.tipo + " (" + e.desc + ")" + "\n";
+                }
+
+                EventosTB.Text = aux;
+            }
+
         }
 
         private void CalcularTotales()
@@ -319,6 +349,10 @@ namespace ControlHoras
                     // Cargo
                     oSheet.Cells[5, 4] = CargoLBL.Text;
 
+                    //Eventos Historial
+                    if (EventosTB.Text != "")
+                        oSheet.Cells[7, 7] = EventosTB.Text;
+
                     auxdt = new DateTime(mesAct.Year, mesAct.Month, 1);
                     for (int i = 0; i < DateTime.DaysInMonth(mesAct.Year, mesAct.Month); i++)
                     {
@@ -344,7 +378,7 @@ namespace ControlHoras
                         {
                             st = "";
                             foreach (MotIVOsCamBiosDiARioS m in obs)
-                                st = st + "*" + m.Observaciones + "\n";
+                                st = st + "*" + m.Observaciones + "* ";
                             oSheet.Cells[7 + auxInt, 7] = st;
                         }
 
