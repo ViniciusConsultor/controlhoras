@@ -399,5 +399,7 @@ namespace Datos
         DataEmpleadoExLiquidacion obtenerExLiquidacionEmpleado(int NroEmpleado, DateTime Mes);
 
         List<MotIVOsCamBiosDiARioS> obtenerMotivosCambiosDiarios2(int NroEmpleado, DateTime Fecha);
+
+        List<int> obtenerObsCambios(int nroEmp, DateTime mesAct);
     }
 }

@@ -4206,6 +4206,32 @@ namespace Datos
             }
         }
 
+        public List<int> obtenerObsCambios(int nroEmp, DateTime Mes)
+        {
+            DateTime inicio, fin, aux;
+
+            inicio = new DateTime(Mes.Year, Mes.Month, 1);
+            aux = new DateTime(Mes.Year, Mes.AddMonths(1).Month, 1);
+            fin = aux.AddDays(-1);
+
+            List<DateTime> fechas = null;
+            List<int> dias = new List<int>();
+            try
+            {                
+                fechas = (from reg in database.MotIVOsCamBiosDiARioS
+                           where reg.NroEmpleado == (uint)nroEmp && reg.FechaCorresponde >= inicio && reg.FechaCorresponde <= fin
+                           select reg.FechaCorresponde).ToList<DateTime>();
+
+                foreach (DateTime d in fechas)
+                    dias.Add(d.Day);
+
+                return dias;                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 
