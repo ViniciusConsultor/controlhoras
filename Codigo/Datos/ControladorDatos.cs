@@ -1260,7 +1260,9 @@ namespace Datos
 
                 if (eventHist == null)
                     throw new NoExisteException("No existe el Evento en el Historial del Empleado " + idEmpleado.ToString());
-                eventHist.BoRrAdo = 1;
+                //El Borrado Logico en el historial del empleado no tiene mucho sentido. 
+                //eventHist.BoRrAdo = 1;
+                database.EventOsHistOrIalEmPleadO.DeleteOnSubmit(eventHist);
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
 
             }
@@ -1292,7 +1294,7 @@ namespace Datos
         {
             try
             {
-               int res = database.EventOsHistOrIalEmPleadO.Where(reg => reg.IDEmpleado == NroEmpleado && reg.FechaInicio <= Fecha && reg.FechaFin >= Fecha).Count();
+               int res = database.EventOsHistOrIalEmPleadO.Where(reg => reg.IDEmpleado == NroEmpleado && reg.BoRrAdo == 0 &&reg.FechaInicio <= Fecha && reg.FechaFin >= Fecha).Count();
                return (res > 0);
             }
             catch (Exception ex)

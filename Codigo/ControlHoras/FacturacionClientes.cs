@@ -58,6 +58,7 @@ namespace ControlHoras
                     {
                         //int nroCli;
                         ClientEs cliente;
+                        SERVicIoS servicio;
                         Dictionary<int, List<int>>.Enumerator iter = cliServsSeleccionados.GetEnumerator();
                         progressBar.Minimum = 0;
                         progressBar.Maximum = cliServsSeleccionados.Count;
@@ -66,7 +67,7 @@ namespace ControlHoras
                             progressBar.Increment(1);
 
                             cliente = datos.obtenerCliente(iter.Current.Key);
-
+                            
                             lblEstado.Text = iter.Current.Key.ToString() + " - " + cliente.NombreFantasia;
                             Application.DoEvents();
 
@@ -84,9 +85,9 @@ namespace ControlHoras
                             }
                             foreach (int serv in iter.Current.Value)
                             {
-                                
+                                servicio = datos.obtenerServicioCliente((int)cliente.NumeroCliente, serv);
                                 DataFacturacion factCliente = datos.facturarClienteServicio((int)cliente.NumeroCliente, serv, DiaInicioFact, DiaFinFact);
-                                generarExcelFacturacionCliente(DirPath, dtpMesFacturacion.Value.Year.ToString() + dtpMesFacturacion.Value.Month.ToString() +"-"+ cliente.NombreFantasia + "-" + serv, factCliente, false);
+                                generarExcelFacturacionCliente(DirPath, dtpMesFacturacion.Value.Year.ToString() + dtpMesFacturacion.Value.Month.ToString() +"-"+ cliente.Nombre + "-" + servicio.Nombre, factCliente, false);
                             }
                         }
                         MessageBox.Show("Proceso de Facturacion terminado con Exito", "Facturacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
