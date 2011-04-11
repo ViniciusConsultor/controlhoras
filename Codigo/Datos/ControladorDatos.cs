@@ -45,7 +45,7 @@ namespace Datos
             return instance;
         }
 
-        protected void recargarContexto()
+        public void recargarContexto()
         {
             try
             {
@@ -2987,6 +2987,7 @@ namespace Datos
            // Table<HoRaSGeneraDaSEScalaFOn> horasGen = database.HoRaSGeneraDaSEScalaFOn;
             try
             {
+                recargarContexto();
                 HoRaSGeneraDaSEScalaFOn hs = database.HoRaSGeneraDaSEScalaFOn.Single(p => p.IDHorasGeneradasEscalafon == IdHorasGeneragasEscalafon);
 
                 if (Entrada)
@@ -3000,7 +3001,7 @@ namespace Datos
                 database.MotIVOsCamBiosDiARioS.InsertOnSubmit(mtcd);
                 
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
-                recargarContexto();
+                
             }
             catch (Exception e)
             {
@@ -3012,11 +3013,13 @@ namespace Datos
         {
             try
             {
+                recargarContexto();
                 HoRaSGeneraDaSEScalaFOn hs = database.HoRaSGeneraDaSEScalaFOn.Single(p => p.IDHorasGeneradasEscalafon == IdHorasGeneragasEscalafon);
 
                 database.MotIVOsCamBiosDiARioS.InsertOnSubmit(mtcd);
                 database.HoRaSGeneraDaSEScalaFOn.DeleteOnSubmit(hs);
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+                
             }
             catch (Exception e)
             {
@@ -4037,7 +4040,7 @@ namespace Datos
                 //                  select  g.Key);
 
 
-                string sql = "SELECT FechaCorrespondiente, TIMEDIFF(HoraSalida,HoraEntrada) " +
+                string sql = "SELECT FechaCorrespondiente, SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(HoraSalida,HoraEntrada)))) " +
                                  "FROM horasgeneradasescalafon " +
                                  "WHERE (NumeroCliente = " + NumeroCliente + ") AND (NumeroServicio = "+NroServicio+") AND (FechaCorrespondiente BETWEEN '"+string.Format("{0:yyyy-MM-dd}", DiaInicioFacturacion)+"' AND '"+string.Format("{0:yyyy-MM-dd}", DiaFinFacturacion)+"') " +
                                  "GROUP BY FechaCorrespondiente";
