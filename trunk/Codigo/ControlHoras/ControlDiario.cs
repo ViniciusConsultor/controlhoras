@@ -44,6 +44,7 @@ namespace ControlHoras
             {
                 sistema = ControladorClientesServicios.getInstance();
                 datos = ControladorDatos.getInstance();
+                datos.recargarContexto();
             }
             catch (Exception ex)
             {

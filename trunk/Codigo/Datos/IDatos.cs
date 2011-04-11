@@ -330,7 +330,7 @@ namespace Datos
         /// <summary>
         /// Recarga el Contexto del ORM
         /// </summary>
-        //public void recargarContexto();
+        void recargarContexto();
 
         List<EScalaFOneMpLeadO> getHorariosEmpleado(int NroEmpleado);
 
