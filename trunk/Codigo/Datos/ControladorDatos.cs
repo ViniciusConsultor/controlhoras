@@ -2991,9 +2991,17 @@ namespace Datos
                 HoRaSGeneraDaSEScalaFOn hs = database.HoRaSGeneraDaSEScalaFOn.Single(p => p.IDHorasGeneradasEscalafon == IdHorasGeneragasEscalafon);
 
                 if (Entrada)
+                {
+                    if (Horanueva >= hs.HoraSalida)
+                        throw new Exception("Control en Datos.dll: la hora entrada no puede ser mayor a la HoraSalida");
                     hs.HoraEntrada = Horanueva;
+                }
                 else
-                    hs.HoraSalida = Horanueva; 
+                {
+                    if (Horanueva <= hs.HoraEntrada)
+                        throw new Exception("Control en Datos.dll: la hora Salida no puede ser menor a la Hora Entrada");
+                    hs.HoraSalida = Horanueva;
+                }
                 
                 //mtcd.IDHorasGeneradasEscalafon = IdHorasGeneragasEscalafon;                
                 mtcd.FechaCorresponde = hs.FechaCorrespondiente;
@@ -4034,10 +4042,6 @@ namespace Datos
                 TimeSpan tempHsTotales;
 
                 DataDiaFacturacion diafact;
-                //var listahoras = (from reg in database.HoRaSGeneraDaSEScalaFOn
-                //                  where reg.NumeroCliente == NumeroCliente && reg.NumeroServicio == NroServicio && reg.FechaCorrespondiente >= DiaInicioFacturacion && reg.FechaCorrespondiente <= DiaFinFacturacion
-                //                  group reg by reg.FechaCorrespondiente into g
-                //                  select  g.Key);
 
 
                 string sql = "SELECT FechaCorrespondiente, SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(HoraSalida,HoraEntrada)))) " +
@@ -4050,8 +4054,7 @@ namespace Datos
                 MySqlDataAdapter mysqlAdapter = new MySqlDataAdapter(sql, conexion2);
                 mydata = mysqlAdapter.SelectCommand.ExecuteReader(CommandBehavior.Default);
 
-                
-                //foreach(var v in listahoras)
+               
                 DateTime FechaCorresponde;
                 TimeSpan HoraEnt;
                 TimeSpan HoraSal;
@@ -4059,7 +4062,7 @@ namespace Datos
                 {
                     FechaCorresponde = mydata.GetDateTime(0);
                     HoraEnt = mydata.GetTimeSpan(1);
-                   // HoraSal = mydata.GetTimeSpan(2);
+
                     if (pagaExtras)
                     {
                         // OBTENER EL DIA DE LA LINEAHORA DEL CONTRATO Y COMPARAR CON EL DIA DE V.
