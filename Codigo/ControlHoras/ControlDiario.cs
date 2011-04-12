@@ -462,7 +462,7 @@ namespace ControlHoras
         {
             try
             {
-                cambiarHora(false, "Cambio de Hora de Entrada");
+                cambiarHora(false, "Cambio de Hora de Salida");
                 //int idFuncSeleccionado = int.Parse(dgvHoras.SelectedRows[0].Cells["NroEmpleado"].Value.ToString());
                 //string nombreFunc = dgvHoras.SelectedRows[0].Cells["NroEmpleado"].Value.ToString();
                 //string horasal = dgvHoras.SelectedRows[0].Cells["HoraSalida"].Value.ToString();
