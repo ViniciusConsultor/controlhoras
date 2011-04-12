@@ -123,6 +123,7 @@
             this.btnAceptar.TabIndex = 1;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnCancelar
             // 
@@ -133,6 +134,7 @@
             this.btnCancelar.TabIndex = 26;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // dtpFechaNueva
             // 
@@ -164,6 +166,7 @@
             this.Name = "CambiarHoraFuncionario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CambiarHoraFuncionario";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CambiarHoraFuncionario_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
