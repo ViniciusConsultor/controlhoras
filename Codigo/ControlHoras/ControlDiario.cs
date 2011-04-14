@@ -402,7 +402,7 @@ namespace ControlHoras
                     EmPleadOs emp = cdaf.funcionario;
                     DateTime fechaCorresponde = DateTime.Parse(mtFecha.Text);
                     DateTime horaInicio = DateTime.Parse(fechaCorresponde.ToShortDateString()+ " " + cdaf.HoraInicio.ToShortTimeString());
-                    DateTime horaFin = DateTime.Parse(fechaCorresponde.ToShortDateString() + " " + cdaf.HoraFin.ToShortTimeString());
+                    DateTime horaFin = cdaf.HoraFin;
                     // Genero una nueva HoraGeneradasEscalafon
                     HoRaSGeneraDaSEScalaFOn hgeNew = new HoRaSGeneraDaSEScalaFOn();
                     hgeNew.FechaCorrespondiente = fechaCorresponde;
@@ -411,6 +411,7 @@ namespace ControlHoras
                     hgeNew.NroEmpleado = emp.NroEmpleado;
                     hgeNew.NumeroCliente = cliente.NumeroCliente;
                     hgeNew.NumeroServicio = servicio.NumeroServicio;
+                    hgeNew.DiaHoraLlamadaAntesHoraEntrada = hgeNew.HoraEntrada.Subtract(TimeSpan.FromHours(2));
 
                     // Chequeamos que no se solapen hs.
                     sistema.aplicarControlesAltaHoraGeneradaEscalafon(fechaCorresponde, hgeNew);
