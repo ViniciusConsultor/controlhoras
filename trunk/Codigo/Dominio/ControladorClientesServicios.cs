@@ -347,43 +347,50 @@ namespace Logica
 
         public void modificarContrato(int NumeroContrato, ConSeguridadFisica Contrato)
         {
-            datos.modificarContrato(NumeroContrato, Contrato.getFechaIni(), Contrato.getFechaFin(), Contrato.GetCostoFijo(), Contrato.getHorasExtras(), Contrato.getAjuste(), Contrato.getObservaciones(), Contrato.getMonto());
-
-            datos.eliminarLineasContrato(NumeroContrato);
-
-            List<LineAshOrAs> lhs = new List<LineAshOrAs>();
-            LineAshOrAs lh = null;
-            int i = 0;
-            foreach (LineaDeHoras ldh in Contrato.getLineas())
+            try
             {
-                lh = new LineAshOrAs();
-                lh.IDContrato = (uint)NumeroContrato;
-                lh.NroLinea = (sbyte)i;
-                lh.Puesto = ldh.getPuesto();
-                lh.Armado = (ldh.getArmado()) ? (sbyte)1 : (sbyte)0;
-                lh.Cantidad = (sbyte)ldh.getCantEmp();
-                lh.PrecioXhOra = ldh.getCostoH();
+                datos.modificarContrato(NumeroContrato, Contrato.getFechaIni(), Contrato.getFechaFin(), Contrato.GetCostoFijo(), Contrato.getHorasExtras(), Contrato.getAjuste(), Contrato.getObservaciones(), Contrato.getMonto());
 
-                //pasar los horarios por dia
-                HoRaRioDiA hd = null;
-                foreach (HorarioXDia hpd in ldh.getHorario())
+                datos.eliminarLineasContrato(NumeroContrato);
+
+                List<LineAshOrAs> lhs = new List<LineAshOrAs>();
+                LineAshOrAs lh = null;
+                int i = 0;
+                foreach (LineaDeHoras ldh in Contrato.getLineas())
                 {
-                    hd = new HoRaRioDiA();
-                    hd.IDContrato = (uint)NumeroContrato;
-                    hd.NroLinea = (sbyte)i;
-                    hd.Dia = hpd.getDia();
-                    hd.HoraIni = hpd.getHoraIni();
-                    hd.HoraFin = hpd.getHoraFin();
+                    lh = new LineAshOrAs();
+                    lh.IDContrato = (uint)NumeroContrato;
+                    lh.NroLinea = (sbyte)i;
+                    lh.Puesto = ldh.getPuesto();
+                    lh.Armado = (ldh.getArmado()) ? (sbyte)1 : (sbyte)0;
+                    lh.Cantidad = (sbyte)ldh.getCantEmp();
+                    lh.PrecioXhOra = ldh.getCostoH();
 
-                    lh.HoRaRioDiA.Add(hd);
+                    //pasar los horarios por dia
+                    HoRaRioDiA hd = null;
+                    foreach (HorarioXDia hpd in ldh.getHorario())
+                    {
+                        hd = new HoRaRioDiA();
+                        hd.IDContrato = (uint)NumeroContrato;
+                        hd.NroLinea = (sbyte)i;
+                        hd.Dia = hpd.getDia();
+                        hd.HoraIni = hpd.getHoraIni();
+                        hd.HoraFin = hpd.getHoraFin();
+
+                        lh.HoRaRioDiA.Add(hd);
+                    }
+
+                    lhs.Add(lh);
+                    //con.LineAshOrAs.Add(lh);
+                    i++;
                 }
 
-                lhs.Add(lh);
-                //con.LineAshOrAs.Add(lh);
-                i++;
+                datos.guardarLineasContrato(lhs);
             }
-
-            datos.guardarLineasContrato(lhs);
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }       
 
         public void altaEscalafon(int numCli, int numSer, int nroCon, Escalafon es)
@@ -620,6 +627,7 @@ namespace Logica
             return (int)p % 1000;           
         }
 
+
         private bool HorariosSolapados(DateTime HoraInicio1, DateTime HoraFin1, DateTime HoraInicio2, DateTime HoraFin2)
         {
             if (HoraInicio2 < HoraFin1 && HoraFin2 > HoraInicio1) //- Con este IF se controla solo un caso
@@ -789,7 +797,12 @@ namespace Logica
             }
         }
 
-
+        /// <summary>
+        /// Aplica controles pero no teniendo en cuenta la linea IdHoraGeneradaActual de HorasGeneradas
+        /// </summary>
+        /// <param name="FechaCorrespondiente"></param>
+        /// <param name="IdHoraGeneradaActual"></param>
+        /// <param name="HoraGeneradaTemp"></param>
         public void aplicarControlesAltaHoraGeneradaEscalafon(DateTime FechaCorrespondiente, long IdHoraGeneradaActual, HoRaSGeneraDaSEScalaFOn HoraGeneradaTemp)
         {
             try

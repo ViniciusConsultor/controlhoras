@@ -111,10 +111,10 @@ namespace ControlHoras
             if (mtFuncionario.Text != "" && mtHoraFin.MaskCompleted && mtHoraInicio.MaskCompleted)
             {
                 DateTime aux;
-                if (DateTime.TryParse(mtHoraInicio.Text, out aux))
+                if (DateTime.TryParse(FechaCorresponde.ToShortDateString() + " " + mtHoraInicio.Text, out aux))
                 {
                     HoraInicio = aux;
-                    if (DateTime.TryParse(mtHoraFin.Text, out aux))
+                    if (DateTime.TryParse(FechaCorresponde.ToShortDateString() + " " + mtHoraFin.Text, out aux))
                     {
                         HoraFin = aux;
 
