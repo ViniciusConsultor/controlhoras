@@ -401,7 +401,7 @@ namespace ControlHoras
                 {
                     EmPleadOs emp = cdaf.funcionario;
                     DateTime fechaCorresponde = DateTime.Parse(mtFecha.Text);
-                    DateTime horaInicio = DateTime.Parse(fechaCorresponde.ToShortDateString()+ " " + cdaf.HoraInicio.ToShortTimeString());
+                    DateTime horaInicio = cdaf.HoraInicio;
                     DateTime horaFin = cdaf.HoraFin;
                     // Genero una nueva HoraGeneradasEscalafon
                     HoRaSGeneraDaSEScalaFOn hgeNew = new HoRaSGeneraDaSEScalaFOn();
@@ -414,7 +414,7 @@ namespace ControlHoras
                     hgeNew.DiaHoraLlamadaAntesHoraEntrada = hgeNew.HoraEntrada.Subtract(TimeSpan.FromHours(2));
 
                     // Chequeamos que no se solapen hs.
-                    sistema.aplicarControlesAltaHoraGeneradaEscalafon(fechaCorresponde, hgeNew);
+                    //sistema.aplicarControlesAltaHoraGeneradaEscalafon(fechaCorresponde, hgeNew);
 
                     cdaf.MotivoCambio.EmPleadOs = emp;
                     cdaf.MotivoCambio.FechaCorresponde = fechaCorresponde;
@@ -464,32 +464,6 @@ namespace ControlHoras
             try
             {
                 cambiarHora(false, "Cambio de Hora de Salida");
-                //int idFuncSeleccionado = int.Parse(dgvHoras.SelectedRows[0].Cells["NroEmpleado"].Value.ToString());
-                //string nombreFunc = dgvHoras.SelectedRows[0].Cells["NroEmpleado"].Value.ToString();
-                //string horasal = dgvHoras.SelectedRows[0].Cells["HoraSalida"].Value.ToString();
-                //CambiarHoraFuncionario changeHourForm = new CambiarHoraFuncionario(idFuncSeleccionado, nombreFunc, "Cambio de Hora de Entrada", horasal);
-                //DialogResult dg = changeHourForm.ShowDialog(this);
-
-                //if (dg == DialogResult.OK)
-                //{
-                //    MotivoCambioDiarioForm mcdf = new MotivoCambioDiarioForm(DateTime.Parse(mtFecha.Text));
-                //    dg = mcdf.ShowDialog(this);
-                //    if (dg == DialogResult.OK)
-                //    {
-                //        int numFila = dgvHoras.SelectedRows[0].Index;
-
-                //        long idhge = (long)dgvHoras.Rows[numFila].Cells["IdHorasGeneradasEscalafon"].Value;
-                //        int nroEmp = int.Parse(dgvHoras.Rows[numFila].Cells["NroEmpleado"].Value.ToString());
-                //        string HoraNueva = changeHourForm.getHoraNueva();
-                //        mcdf.motivoCambio.NroEmpleado = (uint)nroEmp;
-                //        mcdf.motivoCambio.NumeroCliente = uint.Parse(ucCliente.ClienteNRO);
-                //        mcdf.motivoCambio.NumeroServicio = servicio.NumeroServicio;
-                //        DateTime DateNueva = DateTime.Parse(mtFecha.Text + " " + HoraNueva);
-                //        datos.cambiarHoraFuncionarioControlDiario(idhge,nroEmp, DateNueva, false, mcdf.motivoCambio);
-
-                //        dgvHoras.Rows[numFila].Cells["HoraSalida"].Value = HoraNueva;
-                //    }
-                //}
             }
             catch (Exception ex)
             {
