@@ -28,7 +28,7 @@ namespace ControlHoras
         {
             try
             {
-                ucTreeClientesServicios.cargarDatos();
+                ucTreeClientesServicios.cargarDatos(true);
                 datos = ControladorDatos.getInstance();
                 dominio = ControladorClientesServicios.getInstance();
             }

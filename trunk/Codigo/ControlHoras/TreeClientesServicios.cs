@@ -26,7 +26,10 @@ namespace ControlHoras
 
         }
 
-        public void cargarDatos()
+        /// <summary>
+        /// Carga los datos en el UserControl con la lista de clientes activos.
+        /// </summary>
+        public void cargarDatos(bool soloactivos)
         {
             try
             {
@@ -39,25 +42,61 @@ namespace ControlHoras
             {
                 throw;
             }
-
-            List<ClientEs> clientes = datos.obtenerClientes(true);
-            TreeNode tnParent;
-            TreeNode tnChild;
-            tvClientesServicios.BeginUpdate();
-            foreach (ClientEs cli in clientes)
+            try
             {
-                tnParent = new TreeNode("Cliente: " + cli.NumeroCliente + " | " + cli.Nombre);
-                foreach (SERVicIoS ser in cli.SERVicIoS)
+                List<ClientEs> clientes = datos.obtenerClientes(soloactivos);
+                TreeNode tnParent;
+                TreeNode tnChild;
+                tvClientesServicios.BeginUpdate();
+                foreach (ClientEs cli in clientes)
                 {
-                    if (ser.Activo == 1)
+                    tnParent = new TreeNode("Cliente: " + cli.NumeroCliente + " | " + cli.Nombre);
+                    foreach (SERVicIoS ser in cli.SERVicIoS)
+                    {
+                        if (ser.Activo == 1)
+                        {
+                            tnChild = new TreeNode("Servicio: " + ser.NumeroServicio + " | " + ser.Nombre);
+                            tnParent.Nodes.Add(tnChild);
+                        }
+                    }
+                    tvClientesServicios.Nodes.Add(tnParent);
+                }
+                tvClientesServicios.EndUpdate();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        /// <summary>
+        /// Carga los datos en el UserControl con la lista de cliente pasada por parametros.
+        /// </summary>
+        /// <param name="listaClientes">Lista de ClientEs con la cual se cargara el Control.</param>
+        public void cargarDatos(List<ClientEs> listaClientes)
+        {
+           
+            try
+            {
+                TreeNode tnParent;
+                TreeNode tnChild;
+                tvClientesServicios.BeginUpdate();
+                tvClientesServicios.Nodes.Clear();
+                foreach (ClientEs cli in listaClientes)
+                {
+                    tnParent = new TreeNode("Cliente: " + cli.NumeroCliente + " | " + cli.Nombre);
+                    foreach (SERVicIoS ser in cli.SERVicIoS)
                     {
                         tnChild = new TreeNode("Servicio: " + ser.NumeroServicio + " | " + ser.Nombre);
                         tnParent.Nodes.Add(tnChild);
                     }
+                    tvClientesServicios.Nodes.Add(tnParent);
                 }
-                tvClientesServicios.Nodes.Add(tnParent);
+                tvClientesServicios.EndUpdate();
             }
-            tvClientesServicios.EndUpdate();
+            catch
+            {
+                throw;
+            }
         }
 
         public Dictionary<int, List<int>> obtenerClientesServiciosSeleccionados()

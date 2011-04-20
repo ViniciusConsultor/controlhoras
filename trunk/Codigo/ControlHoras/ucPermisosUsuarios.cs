@@ -40,6 +40,7 @@ namespace ControlHoras
             TreeNode tnParent;
             TreeNode tnChild;
             tvWinForms_Controls.BeginUpdate();
+            tvWinForms_Controls.Nodes.Clear();
             foreach (PantAllAwInForm pant in listaPantallasCargadas)
             {
                 tnParent = new TreeNode("Pantalla:"+pant.IDPantallaWinForm+" | "+ pant.Nombre);
@@ -49,6 +50,7 @@ namespace ControlHoras
                     tnParent.Nodes.Add(tnChild);
                     
                 }
+                tnParent.Expand();
                 tvWinForms_Controls.Nodes.Add(tnParent);
                 pantallasCargadas.Add(pant.IDPantallaWinForm,pant);
             }
@@ -100,9 +102,36 @@ namespace ControlHoras
        
         private void tvWinForms_Controls_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            
-
-
+            if (e.Node.Text.StartsWith("Pantalla:"))
+            {
+                foreach (TreeNode tn in e.Node.Nodes)
+                {
+                    tn.Checked = e.Node.Checked;
+                }
+            }
+            else if (e.Node.Text.StartsWith("Control:"))
+            {
+                if (e.Node.Checked && !e.Node.Parent.Checked)
+                    e.Node.Parent.Checked = true;
+                else if (!e.Node.Checked)
+                {
+                    bool ningunoSeleccionado = true;
+                    foreach (TreeNode tnc in e.Node.Parent.Nodes)
+                    {
+                        if (tnc.Checked)
+                        {
+                            ningunoSeleccionado = false;
+                            break;
+                        }
+                    }
+                    if (ningunoSeleccionado && e.Node.Parent.Checked)
+                        try 
+                        {
+                            e.Node.Parent.Checked = false; 
+                        }
+                        catch { throw; }
+                }
+            }
         }
 
         private void btnSeleccionarTodos_Click(object sender, EventArgs e)
@@ -193,32 +222,6 @@ namespace ControlHoras
 
         private void tvWinForms_Controls_AfterCheck(object sender, TreeViewEventArgs e)
         {
-            if (e.Node.Text.StartsWith("Pantalla:"))
-            {
-                foreach (TreeNode tn in e.Node.Nodes)
-                {
-                    tn.Checked = e.Node.Checked;
-                }
-            }
-            else if (e.Node.Text.StartsWith("Control:"))
-            {
-                if (e.Node.Checked && !e.Node.Parent.Checked)
-                    e.Node.Parent.Checked = true;
-                else if (!e.Node.Checked)
-                {
-                    bool ningunoSeleccionado = true;
-                    foreach (TreeNode tnc in e.Node.Parent.Nodes)
-                    {
-                        if (tnc.Checked)
-                        {
-                            ningunoSeleccionado = false;
-                            break;
-                        }
-                    }
-                    if (ningunoSeleccionado)
-                        e.Node.Parent.Checked = false;
-                }
-            }
         }
     }
 }

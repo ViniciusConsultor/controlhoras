@@ -34,7 +34,7 @@ namespace ControlHoras
         {
             try
             {
-                ucTreeClientesServicios.cargarDatos();
+                ucTreeClientesServicios.cargarDatos(true);
             }
             catch (Exception ex)
             {

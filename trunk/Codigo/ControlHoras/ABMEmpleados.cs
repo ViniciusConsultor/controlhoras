@@ -268,6 +268,7 @@ namespace ControlHoras
         }
 
 
+        // Utilizado por el btnCancelar.PerformClick()
         private void limpiarForm()
         {
             cmbNivelEducativo.SelectedIndex = 0;
@@ -312,102 +313,104 @@ namespace ControlHoras
             }
         }
 
-        private void limpiarForm2()
-        {
-            cmbNivelEducativo.SelectedIndex = 0;
-            rbAntecedentes_NO.Checked = true;
-            lblEstadoEmpleado.Visible = false;
+        // 2011-04-19: Se deshabilita y se utiliza el btnCancelar.PerformClick() guardando el valor del campo que interesa antes de ejecutarlo
+        //private void limpiarForm2()
+        //{
+        //    cmbNivelEducativo.SelectedIndex = 0;
+        //    rbAntecedentes_NO.Checked = true;
+        //    lblEstadoEmpleado.Visible = false;
 
-            foreach (TabPage tp in tcEmpleado.TabPages)
-            {
-                foreach (Control c in tp.Controls)
-                {
-                    string tipoDelControl;
-                    tipoDelControl = c.GetType().ToString();
-                    if (tipoDelControl == "ControlHoras.TextBoxKeyDown" || tipoDelControl == "ControlHoras.MaskedTextBoxKeyDown")
-                    {
-                        if (c.Name != "mtNumeroEmpleado" && c.Name != "mtNumeroDocumento")
-                            c.Text = "";
-                    }
-                    else if (tipoDelControl == "System.Windows.Forms.CheckBox")
-                        ((CheckBox)c).Checked = false;
-                    else if (tipoDelControl == "System.Windows.Forms.GroupBox")
-                    {
-                        foreach (Control cgb in c.Controls)
-                        {
-                            if (cgb.GetType().ToString() == "ControlHoras.TextBoxKeyDown" || cgb.GetType().ToString() == "ControlHoras.MaskedTextBoxKeyDown")
-                            {
-                                if (cgb.Name != "mtNumeroEmpleado" && cgb.Name != "mtNumeroDocumento")
-                                    cgb.Text = "";
-                            }
-                            else if (cgb.GetType().ToString() == "ControlHoras.ComboBoxKeyDown")
-                            {
-                                if (((ComboBox)cgb).Items.Count > 0)
-                                    ((ComboBox)cgb).SelectedIndex = 0;
-                            }
-                            else if (cgb.GetType().ToString() == "System.Windows.Forms.CheckBox")
-                                ((CheckBox)cgb).Checked = false;
-                        }
-                    }
+        //    foreach (TabPage tp in tcEmpleado.TabPages)
+        //    {
+        //        foreach (Control c in tp.Controls)
+        //        {
+        //            string tipoDelControl;
+        //            tipoDelControl = c.GetType().ToString();
+        //            if (tipoDelControl == "ControlHoras.TextBoxKeyDown" || tipoDelControl == "ControlHoras.MaskedTextBoxKeyDown")
+        //            {
+        //                if (c.Name != "mtNumeroEmpleado" && c.Name != "mtNumeroDocumento")
+        //                    c.Text = "";
+        //            }
+        //            else if (tipoDelControl == "System.Windows.Forms.CheckBox")
+        //                ((CheckBox)c).Checked = false;
+        //            else if (tipoDelControl == "System.Windows.Forms.GroupBox")
+        //            {
+        //                foreach (Control cgb in c.Controls)
+        //                {
+        //                    if (cgb.GetType().ToString() == "ControlHoras.TextBoxKeyDown" || cgb.GetType().ToString() == "ControlHoras.MaskedTextBoxKeyDown")
+        //                    {
+        //                        if (cgb.Name != "mtNumeroEmpleado" && cgb.Name != "mtNumeroDocumento")
+        //                            cgb.Text = "";
+        //                    }
+        //                    else if (cgb.GetType().ToString() == "ControlHoras.ComboBoxKeyDown")
+        //                    {
+        //                        if (((ComboBox)cgb).Items.Count > 0)
+        //                            ((ComboBox)cgb).SelectedIndex = 0;
+        //                    }
+        //                    else if (cgb.GetType().ToString() == "System.Windows.Forms.CheckBox")
+        //                        ((CheckBox)cgb).Checked = false;
+        //                }
+        //            }
 
-                    else if (tipoDelControl == "System.Windows.Forms.PictureBox")
-                    {
-                        ((PictureBox)c).Image = null;
-                    }
+        //            else if (tipoDelControl == "System.Windows.Forms.PictureBox")
+        //            {
+        //                ((PictureBox)c).Image = null;
+        //            }
 
-                    lblEmpleadoCargado.Text = "";
-                    lblEdad.Text = "";
-                }
-            }
-        }
+        //            lblEmpleadoCargado.Text = "";
+        //            lblEdad.Text = "";
+        //        }
+        //    }
+        //}
 
-        private void limpiarForm3()
-        {
-            cmbNivelEducativo.SelectedIndex = 0;
-            rbAntecedentes_NO.Checked = true;
-            lblEstadoEmpleado.Visible = false;
-            lblEmpleadoCargado.Text = "";
-            lblEdad.Text = "";
+        // 2011-04-19: Se deshabilita y se utiliza el btnCancelar.PerformClick() guardando el valor del campo que interesa antes de ejecutarlo 
+        //private void limpiarForm3()
+        //{
+        //    cmbNivelEducativo.SelectedIndex = 0;
+        //    rbAntecedentes_NO.Checked = true;
+        //    lblEstadoEmpleado.Visible = false;
+        //    lblEmpleadoCargado.Text = "";
+        //    lblEdad.Text = "";
 
-            foreach (TabPage tp in tcEmpleado.TabPages)
-            {
-                foreach (Control c in tp.Controls)
-                {
-                    string tipoDelControl;
-                    tipoDelControl = c.GetType().ToString();
-                    if (tipoDelControl == "ControlHoras.TextBoxKeyDown" || tipoDelControl == "ControlHoras.MaskedTextBoxKeyDown")
-                    {
-                        if (c.Name != "mtNumeroDocumento")
-                            c.Text = "";
-                    }
-                    else if (tipoDelControl == "System.Windows.Forms.CheckBox")
-                        ((CheckBox)c).Checked = false;
-                    else if (tipoDelControl == "System.Windows.Forms.GroupBox")
-                    {
-                        foreach (Control cgb in c.Controls)
-                        {
-                            if (cgb.GetType().ToString() == "ControlHoras.TextBoxKeyDown" || cgb.GetType().ToString() == "ControlHoras.MaskedTextBoxKeyDown")
-                            {
-                                if (cgb.Name != "mtNumeroDocumento")
-                                    cgb.Text = "";
-                            }
-                            else if (cgb.GetType().ToString() == "ControlHoras.ComboBoxKeyDown")
-                            {
-                                if (((ComboBox)cgb).Items.Count > 0)
-                                    ((ComboBox)cgb).SelectedIndex = 0;
-                            }
-                            else if (cgb.GetType().ToString() == "System.Windows.Forms.CheckBox")
-                                ((CheckBox)cgb).Checked = false;
-                        }
-                    }
+        //    foreach (TabPage tp in tcEmpleado.TabPages)
+        //    {
+        //        foreach (Control c in tp.Controls)
+        //        {
+        //            string tipoDelControl;
+        //            tipoDelControl = c.GetType().ToString();
+        //            if (tipoDelControl == "ControlHoras.TextBoxKeyDown" || tipoDelControl == "ControlHoras.MaskedTextBoxKeyDown")
+        //            {
+        //                if (c.Name != "mtNumeroDocumento")
+        //                    c.Text = "";
+        //            }
+        //            else if (tipoDelControl == "System.Windows.Forms.CheckBox")
+        //                ((CheckBox)c).Checked = false;
+        //            else if (tipoDelControl == "System.Windows.Forms.GroupBox")
+        //            {
+        //                foreach (Control cgb in c.Controls)
+        //                {
+        //                    if (cgb.GetType().ToString() == "ControlHoras.TextBoxKeyDown" || cgb.GetType().ToString() == "ControlHoras.MaskedTextBoxKeyDown")
+        //                    {
+        //                        if (cgb.Name != "mtNumeroDocumento")
+        //                            cgb.Text = "";
+        //                    }
+        //                    else if (cgb.GetType().ToString() == "ControlHoras.ComboBoxKeyDown")
+        //                    {
+        //                        if (((ComboBox)cgb).Items.Count > 0)
+        //                            ((ComboBox)cgb).SelectedIndex = 0;
+        //                    }
+        //                    else if (cgb.GetType().ToString() == "System.Windows.Forms.CheckBox")
+        //                        ((CheckBox)cgb).Checked = false;
+        //                }
+        //            }
 
-                    else if (tipoDelControl == "System.Windows.Forms.PictureBox")
-                    {
-                        ((PictureBox)c).Image = null;
-                    }
-                }
-            }
-        }
+        //            else if (tipoDelControl == "System.Windows.Forms.PictureBox")
+        //            {
+        //                ((PictureBox)c).Image = null;
+        //            }
+        //        }
+        //    }
+        //}
 
         private void mtNumeroEmpleado_KeyDown(object sender, KeyEventArgs e)
         {
@@ -418,10 +421,14 @@ namespace ControlHoras
 
                 try
                 {
+                    string nroemp = mtNumeroEmpleado.Text;
+                    btnCancelar.PerformClick();
+                    mtNumeroEmpleado.Text = nroemp;
                     if (sistema.existeEmpleado(int.Parse(mtNumeroEmpleado.Text)))
                     {
                         empleado = datos.obtenerEmpleado(int.Parse(mtNumeroEmpleado.Text));
-                        limpiarForm();
+                        //limpiarForm();
+                        
                         if (empleado.Activo == 1)
                         {
                             habilitarPermisosEmpleado(true);
@@ -434,7 +441,7 @@ namespace ControlHoras
                     }
                     else
                     {
-                        limpiarForm2();
+                        //limpiarForm2();
                         btnAgregar.Enabled = true;
                         btnGuardar.Enabled = false;
                         btnExtrasAgregar.Enabled = false;
@@ -2904,7 +2911,10 @@ namespace ControlHoras
 
                 try
                 {
-                    limpiarForm3();
+                    string ci = mtNumeroDocumento.Text;
+                    //limpiarForm3();
+                    btnCancelar.PerformClick();
+                    mtNumeroDocumento.Text = ci;
                     if (datos.existeEmpleadoListaNegra(mtNumeroDocumento.Text, out sujeto))
                     {
                         ListaNegra sear = new ListaNegra(sujeto);
@@ -2926,14 +2936,6 @@ namespace ControlHoras
 
                             mtNumeroDocumento.Focus();
                             SendKeys.Send("{ENTER}");
-
-
-
-                            //System.Threading.Thread.Sleep(3000);
-
-
-
-
                         }
                         else
                             btnCancelar.PerformClick();
