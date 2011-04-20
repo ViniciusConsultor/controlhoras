@@ -444,7 +444,7 @@ namespace Datos
                 foreach (int idPant in listaWinForm)
                 {
                     List<int> listaControles = (from pant in database.PerMisOs
-                                                where pant.WinFormOrcOntrol == "C" && pant.UsuarioOrgRupo == "U"
+                                                where pant.WinFormOrcOntrol == "C" && pant.UsuarioOrgRupo == "U" && pant.IDPermiso==idUsuario
                                                 orderby pant.IDControl
                                                 select pant.IDControl).ToList();
                     listaRetornar.Add(idPant, listaControles);
