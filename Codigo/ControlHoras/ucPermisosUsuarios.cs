@@ -35,16 +35,17 @@ namespace ControlHoras
                 throw;
             }
 
-            List<PantAllAwInForm> listaPantallasCargadas = datos.obtenerPantallasWinForms(true);
+            List<PantAllAwInForm> listaPantallasCargadas = datos.obtenerPantallasWinForms(true).OrderBy(x=>x.IDPantallaWinForm).ToList();
             pantallasCargadas = new Dictionary<int,PantAllAwInForm>();
             TreeNode tnParent;
             TreeNode tnChild;
+
             tvWinForms_Controls.BeginUpdate();
             tvWinForms_Controls.Nodes.Clear();
             foreach (PantAllAwInForm pant in listaPantallasCargadas)
             {
                 tnParent = new TreeNode("Pantalla:"+pant.IDPantallaWinForm+" | "+ pant.Nombre);
-                foreach (PerMisOControl pc in pant.PerMisOControl)
+                foreach (PerMisOControl pc in pant.PerMisOControl.OrderBy(p=>p.IDPermisoControl))
                 {
                     tnChild = new TreeNode("Control:"+pc.IDPermisoControl+" | " + pc.NombreVisual);
                     tnParent.Nodes.Add(tnChild);
