@@ -31,8 +31,27 @@ namespace Datos
         //List<Cliente> busquedaClientePorNombre(string nom);
         bool existeCliente(int numCliente);
         ClientEs obtenerCliente(int idcliente);
+
+        /// <summary>
+        /// Devuelve todos los clientes Activos e Inactivos, o solo los Activos dependiendo del valor pasado.
+        /// </summary>
+        /// <param name="soloActivos">True: Devuelve solo los clientes activos. False: Devuelve todos.</param>
+        /// <returns></returns>
         List<ClientEs> obtenerClientes(bool soloActivos);
-        List<ClientEs> buscarClientes(string Nombre);
+
+        /// <summary>
+        /// Devuelve los clientes para Facturacion. Son los clientes activos mas los dados de baja en el mes de Facturacion.
+        /// </summary>
+        /// <param name="mesFacturacion">Mes correspondiente a la facturacion</param>
+        /// <returns></returns>
+        List<ClientEs> obtenerClientesParaFacturacion(DateTime mesFacturacion);
+        
+        /// <summary>
+        /// Devuelve la lista de clientes que el nombre coincide con el patron pasado por parametro
+        /// </summary>
+        /// <param name="patronNombre"></param>
+        /// <returns></returns>
+        List<ClientEs> buscarClientes(string patronNombre);
         #endregion
 
         #region Operaciones_De_Servicios

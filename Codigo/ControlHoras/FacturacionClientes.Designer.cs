@@ -63,6 +63,7 @@
             this.dtpMesFacturacion.Name = "dtpMesFacturacion";
             this.dtpMesFacturacion.Size = new System.Drawing.Size(107, 20);
             this.dtpMesFacturacion.TabIndex = 4;
+            this.dtpMesFacturacion.ValueChanged += new System.EventHandler(this.dtpMesFacturacion_ValueChanged);
             // 
             // label2
             // 

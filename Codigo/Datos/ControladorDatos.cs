@@ -24,19 +24,21 @@ namespace Datos
         private static IDatos instance = null;
         private static MySqlConnection conexion = null;
         private int? IdUsuarioLogueado = null;
-        
+        private static bool Cache = true;
+
         private ControladorDatos()
         {
-            database = getContext();
+            try
+            {
+                if (ConfigurationManager.AppSettings.AllKeys.Contains("ContextDeferredLoadingEnabled"))
+                    bool.TryParse(ConfigurationManager.AppSettings["ContextDeferredLoadingEnabled"], out Cache);
+                database = getContext();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
-
-        //internal static TrustDb getContext()
-        //{
-        //  //  if (database == null)
-                
-        //    return database;
-        //}
-
 
         public static IDatos getInstance()//(string StringConnection)
         {
@@ -52,8 +54,7 @@ namespace Datos
                 database = createContext();
             }
             catch (Exception e)
-            {
-                
+            {    
                 throw e;
             }
       
@@ -67,27 +68,9 @@ namespace Datos
                 ConnectionStringSettingsCollection conections = ConfigurationManager.ConnectionStrings;
 
                 var builder = new MySqlConnectionStringBuilder(conections["TrustDbConnectionString"].ToString());
-                //{
-                //    //Server = "192.168.1.103",
-                //    Server = ConfigurationManager.AppSettings["Servidor"].ToString(),
-                //    //Port = 3306,
-                //    Port = uint.Parse(ConfigurationManager.AppSettings["Puerto"].ToString()),
-                //    //UserID = "usrtrust",
-                //    UserID = ConfigurationManager.AppSettings["Usuario"].ToString(),
-                //    //Password = "usrtrust",
-                //    Password = ConfigurationManager.AppSettings["Password"].ToString(),
-                //    //Database = "trustdb",
-                //    Database = ConfigurationManager.AppSettings["Base"].ToString(),
-                //    Pooling = false,
-                //    ConnectionLifeTime = 0,
-                //    AllowUserVariables = true
-                //};
-
-
                 MySqlConnection conn = new MySqlConnection(builder.ToString());
                 
                 return conn;
-            
             }
             catch (Exception ex)
             {
@@ -111,7 +94,10 @@ namespace Datos
         {
             
             TrustDb context = new TrustDb(getConexion(), new DbLinq.MySql.MySqlVendor());
-            //context.Log = new StreamWriter("C:\\dblinq.log"); 
+            context.ObjectTrackingEnabled = true;
+            context.QueryCacheEnabled = false;
+            context.DeferredLoadingEnabled = Cache;
+            
             return context;
         }
 
@@ -195,6 +181,51 @@ namespace Datos
                            select reg).ToList<ClientEs>();
                 return result;
 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<ClientEs> obtenerClientesParaFacturacion(DateTime mesFacturacion)
+        {
+            try
+            {
+                DateTime inicioMes = new DateTime(mesFacturacion.Year,mesFacturacion.Month,1);
+                DateTime finMes = new DateTime(mesFacturacion.Year,mesFacturacion.Month,1).AddMonths(1).AddDays(-1);
+                List<ClientEs> retornar = obtenerClientes(true);
+                List<ClientEs> inactivosBajaEnMes = (from cli in database.ClientEs
+                                                    where cli.Activo == 0 && cli.FechaBaja >= inicioMes && cli.FechaBaja <= finMes
+                                                    select cli).ToList<ClientEs>();
+                retornar.AddRange(inactivosBajaEnMes);
+                // Eliminamos los servicios inactivos que no hayan sido dados de baja en el mismo mes que el cliente.
+                foreach (ClientEs c in retornar)
+                {
+                    for (int i=0; c.SERVicIoS.Count-1 > i; i++ )
+                    {
+                        // Eliminamos los servicios dados de baja que no fueron dados de baja en el mes de facturacion.
+                        if (c.SERVicIoS[i].Activo == 0 && (c.SERVicIoS[i].FechaBaja < inicioMes || c.SERVicIoS[i].FechaBaja > finMes))
+                        {
+                            c.SERVicIoS.RemoveAt(i);
+                        }
+                    }
+                }
+                //List<ClientEs>.Enumerator enumerator = retornar.GetEnumerator();
+                //while (enumerator.MoveNext())
+                //{
+                //    IEnumerator<SERVicIoS> moveServs = enumerator.Current.SERVicIoS.GetEnumerator();
+                //    while (moveServs.MoveNext())
+                //    {
+                //        // Eliminamos los servicios dados de baja que no fueron dados de baja en el mes de facturacion.
+                //        if (moveServs.Current.Activo == 0 && (moveServs.Current.FechaBaja < inicioMes || moveServs.Current.FechaBaja > finMes))
+                //        {
+                //            cliReturn[cliReturn.IndexOf(enumerator.Current)].SERVicIoS.Remove(moveServs.Current);
+                //        }
+                //    }
+                //}
+                IOrderedEnumerable<ClientEs> retOrder = retornar.OrderBy(x => x.NumeroCliente);
+                return retOrder.ToList();
             }
             catch (Exception ex)
             {
@@ -3002,8 +3033,7 @@ namespace Datos
                         throw new Exception("Control en Datos.dll: la hora Salida no puede ser menor a la Hora Entrada");
                     hs.HoraSalida = Horanueva;
                 }
-                
-                //mtcd.IDHorasGeneradasEscalafon = IdHorasGeneragasEscalafon;                
+                              
                 mtcd.FechaCorresponde = hs.FechaCorrespondiente;
                 mtcd.FechaCambio = DateTime.Now;
                 database.MotIVOsCamBiosDiARioS.InsertOnSubmit(mtcd);
@@ -3013,6 +3043,7 @@ namespace Datos
             }
             catch (Exception e)
             {
+                //database.
                 throw e;
             }
         }
@@ -3603,12 +3634,13 @@ namespace Datos
         {
             try
             {
+                recargarContexto();
                 Table<HoRaSGeneraDaSEScalaFOn> tabla = database.HoRaSGeneraDaSEScalaFOn;
                 //motivoCambio.HoRaSGeneraDaSEScalaFOn = horaGeneradaEscalafon;
                 motivoCambio.FechaCorresponde = horaGeneradaEscalafon.FechaCorrespondiente;
                 motivoCambio.FechaCambio = DateTime.Now;
                 tabla.InsertOnSubmit(horaGeneradaEscalafon);
-               // database.MotIVOsCamBiosDiARioS.InsertOnSubmit(motivoCambio);
+                database.MotIVOsCamBiosDiARioS.InsertOnSubmit(motivoCambio);
 
                 database.SubmitChanges();
 

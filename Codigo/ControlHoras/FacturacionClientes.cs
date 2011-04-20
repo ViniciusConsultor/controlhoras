@@ -22,19 +22,20 @@ namespace ControlHoras
         string exefile = null;
         FileInfo Info = null;
         string dirbase = null;
-        string dirRelativaDocs = null;                      
+        string dirRelativaDocs = null;
+        DateTime fechaSeleccionada;
 
         public FacturacionClientes()
         {
             InitializeComponent();
             try
             {
-                tcClientesServicios.cargarDatos();
                 datos = Datos.ControladorDatos.getInstance();
                 missing = System.Reflection.Missing.Value;
                 exefile = Application.ExecutablePath;
                 Info = new FileInfo(exefile);
-                
+                fechaSeleccionada = dtpMesFacturacion.Value;
+                cargarClientesServicios();
                 dirbase = Info.DirectoryName;
                 dirRelativaDocs = ConfigurationManager.AppSettings["DirectorioRelativoDocs"].ToString();
         
@@ -42,6 +43,20 @@ namespace ControlHoras
             catch
             {
                 throw;
+            }
+        }
+
+        private void cargarClientesServicios()
+        {
+            try
+            {
+                List<ClientEs> clientesParaFact = datos.obtenerClientesParaFacturacion(fechaSeleccionada);
+                
+                tcClientesServicios.cargarDatos(clientesParaFact);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -62,6 +77,7 @@ namespace ControlHoras
                         Dictionary<int, List<int>>.Enumerator iter = cliServsSeleccionados.GetEnumerator();
                         progressBar.Minimum = 0;
                         progressBar.Maximum = cliServsSeleccionados.Count;
+                        progressBar.Value = progressBar.Minimum;
                         while (iter.MoveNext())
                         {
                             progressBar.Increment(1);
@@ -205,6 +221,15 @@ namespace ControlHoras
             else
             {
                 throw new NoExisteException("No existe el archivo template: " + fileName);
+            }
+        }
+
+        private void dtpMesFacturacion_ValueChanged(object sender, EventArgs e)
+        {
+            if (!(fechaSeleccionada.Year == dtpMesFacturacion.Value.Year && fechaSeleccionada.Month == dtpMesFacturacion.Value.Month))
+            {
+                fechaSeleccionada = dtpMesFacturacion.Value;
+                cargarClientesServicios();
             }
         }
     }
