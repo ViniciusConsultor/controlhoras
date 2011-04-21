@@ -3635,6 +3635,8 @@ namespace Datos
             try
             {
                 recargarContexto();
+                if (horaGeneradaEscalafon.HoraSalida <= horaGeneradaEscalafon.HoraEntrada)
+                    throw new Exception("Datos: agregarEmpleadoHoraGeneradaEscalafon: La HoraSalida no puede ser menor a la HoraEntrada");
                 Table<HoRaSGeneraDaSEScalaFOn> tabla = database.HoRaSGeneraDaSEScalaFOn;
                 //motivoCambio.HoRaSGeneraDaSEScalaFOn = horaGeneradaEscalafon;
                 motivoCambio.FechaCorresponde = horaGeneradaEscalafon.FechaCorrespondiente;

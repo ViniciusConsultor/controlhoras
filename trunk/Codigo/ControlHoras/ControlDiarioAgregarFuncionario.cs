@@ -129,7 +129,7 @@ namespace ControlHoras
                                 if (dr == DialogResult.OK)
                                 {
                                     MotivoCambio = mcdf.motivoCambio;
-                                    HoraFin.AddDays(1);
+                                    HoraFin = HoraFin.AddDays(1);
                                     this.Close();
                                 }
                             }
@@ -144,7 +144,7 @@ namespace ControlHoras
                             if (dr == DialogResult.OK)
                             {
                                 MotivoCambio = mcdf.motivoCambio;
-                                HoraFin.AddDays(1);
+                                //HoraFin.AddDays(1);
                                 this.Close();
                             }
                             else
