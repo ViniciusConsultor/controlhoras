@@ -2864,23 +2864,26 @@ namespace ControlHoras
         private void BtnReactivar_Click(object sender, EventArgs e)
         {
             //string nroViejo = lblEmpleadoCargado.Text.Split('-').ElementAt(0);
-            string nroViejo = mtNumeroEmpleado.Text;
-            int nroNuevo = datos.obtenerMaxIdEmpleado() + 1;
-            DialogResult res = MessageBox.Show("Seguro que quiere reingresar el Empleado: " + txtNombre.Text + " " + txtApellido.Text + "?\nNúmero viejo: " + mtNumeroEmpleado.Text + "     Número nuevo: " + nroNuevo.ToString(), "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (res == DialogResult.Yes)
+            try
             {
-                try
+                string nroViejo = mtNumeroEmpleado.Text;
+                int nroNuevo = datos.obtenerMaxIdEmpleado() + 1;
+                DialogResult res = MessageBox.Show("Seguro que quiere reingresar el Empleado: " + txtNombre.Text + " " + txtApellido.Text + "?\nNúmero viejo: " + mtNumeroEmpleado.Text + "     Número nuevo: " + nroNuevo.ToString(), "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (res == DialogResult.Yes)
                 {
                     datos.cambiarNumeroEmpleado(int.Parse(mtNumeroEmpleado.Text), nroNuevo);
 
                     mtNumeroEmpleado.Text = nroNuevo.ToString();
                     lblEstadoEmpleado.Text = "Activo";
                     lblEstadoEmpleado.ForeColor = Color.LimeGreen;
-                    string fechaIngreso, fechaBaja, motivo;
+                    
+                    string fechaIngreso, fechaBaja, motivo, fechapago;
                     fechaIngreso = dtpFechaIngreso.Text;
                     fechaBaja = dtpFechaBaja.Text;
                     motivo = txtMotivoBaja.Text;
+                    fechapago = mtFechaPagoEfectuado.Text;
                     txtObservaciones.Text = txtObservaciones.Text + "\r\n" + "INGRESÓ: " + fechaIngreso + " con Nro: " + nroViejo + "\r\nBAJA: " + fechaBaja + "    MOTIVO: " + motivo;
+                    txtObservaciones.Text += "\nFECHA PAGO DEL EGRESO: " + fechapago; 
                     dtpFechaIngreso.Text = DateTime.Now.ToString();
                     dtpFechaAltaBPS.Text = DateTime.Now.ToString();
                     cbNoActivo.Checked = false;
@@ -2891,12 +2894,11 @@ namespace ControlHoras
                     btnGuardar.Enabled = true;
                     btnGuardar.PerformClick();
                     BtnReactivar.Visible = false;
-
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error el cambiar el NumeroEmpleado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error el cambiar el NumeroEmpleado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

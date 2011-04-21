@@ -630,7 +630,7 @@ namespace Logica
 
         private bool HorariosSolapados(DateTime HoraInicio1, DateTime HoraFin1, DateTime HoraInicio2, DateTime HoraFin2)
         {
-            if (HoraInicio2 < HoraFin1 && HoraFin2 > HoraInicio1) //- Con este IF se controla solo un caso
+            if (HoraInicio2 < HoraFin1 && HoraFin2 > HoraInicio1)
                 return true;
             else
                 return false;
