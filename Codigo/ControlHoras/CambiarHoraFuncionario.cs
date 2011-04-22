@@ -85,6 +85,11 @@ namespace ControlHoras
                     {
                         throw new Exception("La diferencia de Fecha/Hora de Salida con la Fecha/Hora de Entrada no puede ser negativa o tener mas de un dia.\nLa Fecha/Hora de Entrada Actual es " + HoraEntradaActual.ToString("dd/MM/yyyy HH:mm"));
                     }
+
+                    if (HoraNueva.Minute % 30 != 0)
+                    {
+                        throw new Exception("La Hora nueva debe ser con 0 o 30 minutos.");
+                    }
                     cerrar = true;
                 }
                 else
