@@ -926,12 +926,27 @@ namespace ControlHoras
                              }
                              else
                              {
-                                 CargarHorarioCelda(j, oldvalor, dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString());
-                                 //if (PisaHorario(dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[0].Value.ToString(), LastCellChanged.RowIndex, dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString()))
-                                 //    MessageBox.Show("El empleado " + dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[0].Value.ToString() + " ya trabaja dentro de ese horario en este cliente", "Solapamiento de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                 //TimeSpan aux = ObtenerHoraString(dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString());
-                                 //hporCubrir[j - 4] = hporCubrir[j - 4] - aux;
-                                 //CargarHporCubrir();
+                                 DateTime dti, dtf;
+
+                                 dti = DateTime.ParseExact(LastCellChanged.Value.ToString().Substring(0, 5), @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+                                 dtf = DateTime.ParseExact(LastCellChanged.Value.ToString().Substring(8, 5), @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+                                 if(dti.Minute % 30 != 0 || dtf.Minute % 30 != 0)
+                                 {
+                                    dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value = oldvalor;
+                                    dgEscalafon.Focus();
+                                    dgEscalafon.CurrentCell = dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j];
+                                    dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Selected = true;
+                                    MessageBox.Show(this, "Las Horas deben ser con 0 o 30 minutos.", "Error Horario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                 }
+                                 else
+                                 {
+                                     CargarHorarioCelda(j, oldvalor, dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString());
+                                     //if (PisaHorario(dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[0].Value.ToString(), LastCellChanged.RowIndex, dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString()))
+                                     //    MessageBox.Show("El empleado " + dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[0].Value.ToString() + " ya trabaja dentro de ese horario en este cliente", "Solapamiento de Horarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                     //TimeSpan aux = ObtenerHoraString(dgEscalafon.Rows[LastCellChanged.RowIndex].Cells[j].Value.ToString());
+                                     //hporCubrir[j - 4] = hporCubrir[j - 4] - aux;
+                                     //CargarHporCubrir();
+                                 }
                              }
 
                          }

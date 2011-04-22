@@ -1,0 +1,2 @@
+-- Agrandamos el campo Query de consultasclientes a 3000 caracteres. Por Issue 50.
+ALTER TABLE consultasclientes change column Query Query varchar(3000) NOT NULL;
