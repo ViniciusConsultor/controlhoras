@@ -588,6 +588,32 @@ namespace Logica
         }
 
 
+        private bool EsDescansoSolapado(int IdEscalafon, int nroEmpleado, string dia)
+        {
+            int nrocliente, nroservicio;
+            try
+            {
+                List<HoRaRioEScalaFOn> horarios = datos.getHorariosEmpleadoDia(nroEmpleado, dia, IdEscalafon);
+
+                foreach (HoRaRioEScalaFOn h in horarios)
+                {
+                    nrocliente = ObtenerNroCliente(h.IDEscalafon);
+                    nroservicio = ObtenerNroServicio(h.IDEscalafon);
+
+                    if (datos.esServicioActivo(nrocliente, nroservicio))
+                    {
+                        if (h.TipoDia == 0)
+                            return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public bool EsHorarioSolapado(int IdEscalafon, int NroEmpleado, string dia, string HoraIni, string HoraFin)
         {
             int  nrocliente, nroservicio;
@@ -850,6 +876,8 @@ namespace Logica
                             if (he.TipOsDiAs.NoMbRe.Equals("Descanso", StringComparison.OrdinalIgnoreCase))
                             {
                                 tieneDescanso = true;
+                                if (EsDescansoSolapado((int)he.IDEscalafon, nroEmpleado, he.DiA))
+                                    listaErrores.Add(nroEmpleado + " tiene mal un descanso el día: "  + he.DiA);
                             }
                             else
                             {
@@ -876,6 +904,8 @@ namespace Logica
                 throw;
             }
         }
+
+        
 
         #region GeneracionHorasDiarias
         public void iniciarGeneracionHoras()
@@ -936,19 +966,20 @@ namespace Logica
                     HoRaSGeneraDaSEScalaFOn hge;
                     foreach(EScalaFOneMpLeadO esc in escalafon.EScalaFOneMpLeadO)
                     {
-                        // Chequeamos que el empleado no este durante ningun evente en el EventoHistorialEmpleado en esta fecha
+                        // Chequeamos que el empleado no este durante ningun evento en el EventoHistorialEmpleado en esta fecha
                         if (datos.empleadoTieneEventosHistorialEnFecha((int)esc.NroEmpleado, Fecha))
                             throw new GenerarHorasDiaException("El empleado " + esc.NroEmpleado + " tiene eventos en el Historial en la Ficha del empleado para la Fecha: " + Fecha.ToShortDateString());
 
                         hge = new HoRaSGeneraDaSEScalaFOn();
                         hge.FechaCorrespondiente = Fecha;
                         int i=0;
-                        while (! nombreDiasInglesAEspanol(Fecha.DayOfWeek.ToString()).Equals(esc.HoRaRioEScalaFOn[i].DiA))
+                        while (!nombreDiasInglesAEspanol(Fecha.DayOfWeek.ToString()).Equals(esc.HoRaRioEScalaFOn[i].DiA))
                         {
                             i++;
                         }
                         if (esc.HoRaRioEScalaFOn[i].TipoDia == 0)  // Si el dia es Laborable
                         {
+                            hge.Descanso = 0;
                             hge.HoraEntrada = DateTime.Parse(Fecha.ToShortDateString() + " " + esc.HoRaRioEScalaFOn[i].HoRaInI);
                             hge.HoraSalida = DateTime.Parse(Fecha.ToShortDateString() + " " + esc.HoRaRioEScalaFOn[i].HoRaFIn);
                             if (hge.HoraSalida < hge.HoraEntrada)
@@ -959,6 +990,15 @@ namespace Logica
                             hge.DiaHoraLlamadaAntesHoraEntrada = hge.HoraEntrada.AddHours(-(double)esc.HsLlamadaAntesHoraInicio);
                             listaHorasGeneradas.Add(hge);
                         }
+                        else
+                            if (esc.HoRaRioEScalaFOn[i].TipoDia == 2)
+                            {
+                                hge.Descanso = 1;
+                                hge.NroEmpleado = esc.NroEmpleado;
+                                hge.NumeroCliente = escalafon.NumeroCliente;
+                                hge.NumeroServicio = escalafon.NumeroServicio;
+                                listaHorasGeneradas.Add(hge);
+                            }
                     }
                 }
             }

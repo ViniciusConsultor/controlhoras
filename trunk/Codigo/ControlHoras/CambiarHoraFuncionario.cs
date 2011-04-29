@@ -27,9 +27,9 @@ namespace ControlHoras
             mtFuncionarioActual.Text = idFunc.ToString();
             txtNombreFuncionarioActual.Text = nomApell;
             if (ChangeEntrada)
-                mtHoraActual.Text = HoraEntradaActual.ToString();
+                mtHoraActual.Text = HoraEntradaActual.ToString(@"dd/MM/yyyy HH:mm");
             else
-                mtHoraActual.Text = horaFinActual.ToString();
+                mtHoraActual.Text = horaFinActual.ToString(@"dd/MM/yyyy HH:mm");
             dtpFechaNueva.Value = DateTime.Parse(mtHoraActual.Text);
             btnAceptar.Enabled = false;
         }

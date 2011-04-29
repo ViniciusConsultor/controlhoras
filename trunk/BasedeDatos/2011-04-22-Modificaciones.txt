@@ -1,2 +1,6 @@
 -- Agrandamos el campo Query de consultasclientes a 3000 caracteres. Por Issue 50.
 ALTER TABLE consultasclientes change column Query Query varchar(3000) NOT NULL;
+
+-- Agregamos el campo Descanso a HorasGeneradasEscalafon
+ALTER TABLE `trustdb`.`horasgeneradasescalafon` ADD COLUMN `Descanso` TINYINT(1) NOT NULL DEFAULT '0'  AFTER `DiaHoraLlamadaAntesHoraEntrada`;
+

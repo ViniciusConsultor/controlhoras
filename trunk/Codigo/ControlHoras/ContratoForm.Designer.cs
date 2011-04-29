@@ -78,10 +78,9 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(654, 144);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(872, 177);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.Size = new System.Drawing.Size(44, 17);
             this.label5.TabIndex = 3;
             this.label5.Text = "Inicio:";
             // 
@@ -92,7 +91,7 @@
             this.GuardarBTN});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(995, 36);
+            this.toolStrip1.Size = new System.Drawing.Size(1313, 40);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -102,7 +101,7 @@
             this.CancelarBTN.Image = ((System.Drawing.Image)(resources.GetObject("CancelarBTN.Image")));
             this.CancelarBTN.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CancelarBTN.Name = "CancelarBTN";
-            this.CancelarBTN.Size = new System.Drawing.Size(53, 33);
+            this.CancelarBTN.Size = new System.Drawing.Size(64, 37);
             this.CancelarBTN.Text = "Cancelar";
             this.CancelarBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.CancelarBTN.Click += new System.EventHandler(this.CancelarBTN_Click);
@@ -113,7 +112,7 @@
             this.GuardarBTN.Image = ((System.Drawing.Image)(resources.GetObject("GuardarBTN.Image")));
             this.GuardarBTN.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GuardarBTN.Name = "GuardarBTN";
-            this.GuardarBTN.Size = new System.Drawing.Size(50, 33);
+            this.GuardarBTN.Size = new System.Drawing.Size(61, 37);
             this.GuardarBTN.Text = "Guardar";
             this.GuardarBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.GuardarBTN.Click += new System.EventHandler(this.GuardarBTN_Click);
@@ -121,20 +120,18 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 163);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(24, 201);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 13);
+            this.label2.Size = new System.Drawing.Size(101, 17);
             this.label2.TabIndex = 9;
             this.label2.Text = "Carga Horaria:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(66, 388);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(88, 478);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 13);
+            this.label3.Size = new System.Drawing.Size(48, 17);
             this.label3.TabIndex = 10;
             this.label3.Text = "Costo ";
             // 
@@ -144,20 +141,19 @@
             this.CostoCB.Items.AddRange(new object[] {
             "Variable",
             "Fijo"});
-            this.CostoCB.Location = new System.Drawing.Point(107, 384);
-            this.CostoCB.Margin = new System.Windows.Forms.Padding(2);
+            this.CostoCB.Location = new System.Drawing.Point(143, 473);
+            this.CostoCB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CostoCB.Name = "CostoCB";
-            this.CostoCB.Size = new System.Drawing.Size(80, 21);
+            this.CostoCB.Size = new System.Drawing.Size(105, 24);
             this.CostoCB.TabIndex = 6;
             this.CostoCB.SelectedValueChanged += new System.EventHandler(this.CostoCB_SelectedValueChanged);
             // 
             // MontoLBL
             // 
             this.MontoLBL.AutoSize = true;
-            this.MontoLBL.Location = new System.Drawing.Point(66, 411);
-            this.MontoLBL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.MontoLBL.Location = new System.Drawing.Point(88, 506);
             this.MontoLBL.Name = "MontoLBL";
-            this.MontoLBL.Size = new System.Drawing.Size(43, 13);
+            this.MontoLBL.Size = new System.Drawing.Size(55, 17);
             this.MontoLBL.TabIndex = 12;
             this.MontoLBL.Text = "Monto: ";
             this.MontoLBL.Visible = false;
@@ -165,10 +161,10 @@
             // HorasExtrasCHK
             // 
             this.HorasExtrasCHK.AutoSize = true;
-            this.HorasExtrasCHK.Location = new System.Drawing.Point(68, 437);
-            this.HorasExtrasCHK.Margin = new System.Windows.Forms.Padding(2);
+            this.HorasExtrasCHK.Location = new System.Drawing.Point(91, 538);
+            this.HorasExtrasCHK.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.HorasExtrasCHK.Name = "HorasExtrasCHK";
-            this.HorasExtrasCHK.Size = new System.Drawing.Size(86, 17);
+            this.HorasExtrasCHK.Size = new System.Drawing.Size(108, 21);
             this.HorasExtrasCHK.TabIndex = 8;
             this.HorasExtrasCHK.Text = "Horas Extras";
             this.HorasExtrasCHK.UseVisualStyleBackColor = true;
@@ -176,20 +172,18 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(287, 388);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(383, 478);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(39, 13);
+            this.label6.Size = new System.Drawing.Size(51, 17);
             this.label6.TabIndex = 15;
             this.label6.Text = "Ajuste:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(245, 411);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(327, 506);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(81, 13);
+            this.label7.Size = new System.Drawing.Size(107, 17);
             this.label7.TabIndex = 18;
             this.label7.Text = "Observaciones:";
             // 
@@ -198,9 +192,11 @@
             this.ClienteGB.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClienteGB.Controls.Add(this.bcUC);
             this.ClienteGB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClienteGB.Location = new System.Drawing.Point(12, 41);
+            this.ClienteGB.Location = new System.Drawing.Point(16, 50);
+            this.ClienteGB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ClienteGB.Name = "ClienteGB";
-            this.ClienteGB.Size = new System.Drawing.Size(619, 60);
+            this.ClienteGB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ClienteGB.Size = new System.Drawing.Size(825, 74);
             this.ClienteGB.TabIndex = 0;
             this.ClienteGB.TabStop = false;
             this.ClienteGB.Text = "Cliente";
@@ -208,10 +204,10 @@
             // bcUC
             // 
             this.bcUC.ClienteNRO = "";
-            this.bcUC.Location = new System.Drawing.Point(39, 14);
-            this.bcUC.Margin = new System.Windows.Forms.Padding(2);
+            this.bcUC.Location = new System.Drawing.Point(52, 17);
+            this.bcUC.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bcUC.Name = "bcUC";
-            this.bcUC.Size = new System.Drawing.Size(480, 41);
+            this.bcUC.Size = new System.Drawing.Size(640, 50);
             this.bcUC.TabIndex = 0;
             // 
             // ServicioGB
@@ -222,9 +218,11 @@
             this.ServicioGB.Controls.Add(this.NroMTB);
             this.ServicioGB.Controls.Add(this.label9);
             this.ServicioGB.Enabled = false;
-            this.ServicioGB.Location = new System.Drawing.Point(12, 107);
+            this.ServicioGB.Location = new System.Drawing.Point(16, 132);
+            this.ServicioGB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ServicioGB.Name = "ServicioGB";
-            this.ServicioGB.Size = new System.Drawing.Size(619, 53);
+            this.ServicioGB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ServicioGB.Size = new System.Drawing.Size(825, 65);
             this.ServicioGB.TabIndex = 1;
             this.ServicioGB.TabStop = false;
             this.ServicioGB.Text = "Servicio";
@@ -233,9 +231,10 @@
             // 
             this.PosteriorBTN.AutoSize = true;
             this.PosteriorBTN.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.PosteriorBTN.Location = new System.Drawing.Point(572, 19);
+            this.PosteriorBTN.Location = new System.Drawing.Point(763, 23);
+            this.PosteriorBTN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PosteriorBTN.Name = "PosteriorBTN";
-            this.PosteriorBTN.Size = new System.Drawing.Size(29, 23);
+            this.PosteriorBTN.Size = new System.Drawing.Size(34, 27);
             this.PosteriorBTN.TabIndex = 1;
             this.PosteriorBTN.Text = ">>";
             this.PosteriorBTN.UseVisualStyleBackColor = true;
@@ -246,9 +245,10 @@
             // 
             this.AnteriorBTN.AutoSize = true;
             this.AnteriorBTN.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.AnteriorBTN.Location = new System.Drawing.Point(541, 19);
+            this.AnteriorBTN.Location = new System.Drawing.Point(721, 23);
+            this.AnteriorBTN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AnteriorBTN.Name = "AnteriorBTN";
-            this.AnteriorBTN.Size = new System.Drawing.Size(29, 23);
+            this.AnteriorBTN.Size = new System.Drawing.Size(34, 27);
             this.AnteriorBTN.TabIndex = 0;
             this.AnteriorBTN.Text = "<<";
             this.AnteriorBTN.UseVisualStyleBackColor = true;
@@ -259,19 +259,21 @@
             // 
             this.NombreTB.BackColor = System.Drawing.SystemColors.Window;
             this.NombreTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NombreTB.Location = new System.Drawing.Point(95, 19);
+            this.NombreTB.Location = new System.Drawing.Point(127, 23);
+            this.NombreTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NombreTB.Name = "NombreTB";
             this.NombreTB.ReadOnly = true;
-            this.NombreTB.Size = new System.Drawing.Size(426, 22);
+            this.NombreTB.Size = new System.Drawing.Size(567, 25);
             this.NombreTB.TabIndex = 8;
             // 
             // NroMTB
             // 
             this.NroMTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NroMTB.Location = new System.Drawing.Point(39, 19);
+            this.NroMTB.Location = new System.Drawing.Point(52, 23);
+            this.NroMTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NroMTB.Mask = "9990";
             this.NroMTB.Name = "NroMTB";
-            this.NroMTB.Size = new System.Drawing.Size(44, 22);
+            this.NroMTB.Size = new System.Drawing.Size(57, 25);
             this.NroMTB.TabIndex = 6;
             this.NroMTB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NroMTB_KeyDown);
             // 
@@ -279,18 +281,20 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(6, 22);
+            this.label9.Location = new System.Drawing.Point(8, 27);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(27, 13);
+            this.label9.Size = new System.Drawing.Size(35, 17);
             this.label9.TabIndex = 7;
             this.label9.Text = "Nro:";
             // 
             // FinCKB
             // 
             this.FinCKB.AutoSize = true;
-            this.FinCKB.Location = new System.Drawing.Point(804, 142);
+            this.FinCKB.Location = new System.Drawing.Point(1072, 175);
+            this.FinCKB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.FinCKB.Name = "FinCKB";
-            this.FinCKB.Size = new System.Drawing.Size(43, 17);
+            this.FinCKB.Size = new System.Drawing.Size(50, 21);
             this.FinCKB.TabIndex = 3;
             this.FinCKB.Text = "Fin:";
             this.FinCKB.UseVisualStyleBackColor = true;
@@ -304,32 +308,32 @@
             this.toolStripSeparator1,
             this.marcarNTToolStripMenuItem});
             this.CargaHorariaCMS.Name = "contextMenuStrip1";
-            this.CargaHorariaCMS.Size = new System.Drawing.Size(142, 76);
-            this.CargaHorariaCMS.Text = "Menú";
+            this.CargaHorariaCMS.Size = new System.Drawing.Size(162, 76);
+            this.CargaHorariaCMS.Text = "Menú";            
             // 
             // copiarToolStripMenuItem
             // 
             this.copiarToolStripMenuItem.Name = "copiarToolStripMenuItem";
-            this.copiarToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.copiarToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.copiarToolStripMenuItem.Text = "Copiar";
             this.copiarToolStripMenuItem.Click += new System.EventHandler(this.copiarToolStripMenuItem_Click);
             // 
             // pegarToolStripMenuItem
             // 
             this.pegarToolStripMenuItem.Name = "pegarToolStripMenuItem";
-            this.pegarToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.pegarToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.pegarToolStripMenuItem.Text = "Pegar";
             this.pegarToolStripMenuItem.Click += new System.EventHandler(this.pegarToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(138, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(158, 6);
             // 
             // marcarNTToolStripMenuItem
             // 
             this.marcarNTToolStripMenuItem.Name = "marcarNTToolStripMenuItem";
-            this.marcarNTToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.marcarNTToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.marcarNTToolStripMenuItem.Text = "Marcar N/T ";
             this.marcarNTToolStripMenuItem.Click += new System.EventHandler(this.marcarNTToolStripMenuItem_Click);
             // 
@@ -340,22 +344,22 @@
             // FFinMTB
             // 
             this.FFinMTB.Enabled = false;
-            this.FFinMTB.Location = new System.Drawing.Point(852, 140);
-            this.FFinMTB.Margin = new System.Windows.Forms.Padding(2);
+            this.FFinMTB.Location = new System.Drawing.Point(1136, 172);
+            this.FFinMTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.FFinMTB.Mask = "00/00/0000";
             this.FFinMTB.Name = "FFinMTB";
-            this.FFinMTB.Size = new System.Drawing.Size(76, 20);
+            this.FFinMTB.Size = new System.Drawing.Size(100, 22);
             this.FFinMTB.TabIndex = 4;
             this.FFinMTB.Validating += new System.ComponentModel.CancelEventHandler(this.FFinMTB_Validating);
             this.FFinMTB.Validated += new System.EventHandler(this.FFinMTB_Validated);
             // 
             // FIniMTB
             // 
-            this.FIniMTB.Location = new System.Drawing.Point(691, 140);
-            this.FIniMTB.Margin = new System.Windows.Forms.Padding(2);
+            this.FIniMTB.Location = new System.Drawing.Point(921, 172);
+            this.FIniMTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.FIniMTB.Mask = "00/00/0000";
             this.FIniMTB.Name = "FIniMTB";
-            this.FIniMTB.Size = new System.Drawing.Size(76, 20);
+            this.FIniMTB.Size = new System.Drawing.Size(100, 22);
             this.FIniMTB.TabIndex = 2;
             this.FIniMTB.Validating += new System.ComponentModel.CancelEventHandler(this.FIniMTB_Validating);
             this.FIniMTB.Validated += new System.EventHandler(this.FIniMTB_Validated);
@@ -363,22 +367,22 @@
             // 
             // ObsTB
             // 
-            this.ObsTB.Location = new System.Drawing.Point(328, 411);
-            this.ObsTB.Margin = new System.Windows.Forms.Padding(2);
+            this.ObsTB.Location = new System.Drawing.Point(437, 506);
+            this.ObsTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ObsTB.MaxLength = 255;
             this.ObsTB.Multiline = true;
             this.ObsTB.Name = "ObsTB";
-            this.ObsTB.Size = new System.Drawing.Size(525, 36);
+            this.ObsTB.Size = new System.Drawing.Size(699, 43);
             this.ObsTB.TabIndex = 10;
             // 
             // AjusteTB
             // 
-            this.AjusteTB.Location = new System.Drawing.Point(328, 384);
-            this.AjusteTB.Margin = new System.Windows.Forms.Padding(2);
+            this.AjusteTB.Location = new System.Drawing.Point(437, 473);
+            this.AjusteTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AjusteTB.MaxLength = 255;
             this.AjusteTB.Multiline = true;
             this.AjusteTB.Name = "AjusteTB";
-            this.AjusteTB.Size = new System.Drawing.Size(525, 21);
+            this.AjusteTB.Size = new System.Drawing.Size(699, 25);
             this.AjusteTB.TabIndex = 9;
             // 
             // CargaHorariaDGV
@@ -391,14 +395,14 @@
             this.CargaHorariaDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Puesto,
             this.Armado});
-            this.CargaHorariaDGV.Location = new System.Drawing.Point(9, 179);
-            this.CargaHorariaDGV.Margin = new System.Windows.Forms.Padding(2);
+            this.CargaHorariaDGV.Location = new System.Drawing.Point(12, 220);
+            this.CargaHorariaDGV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CargaHorariaDGV.Name = "CargaHorariaDGV";
             this.CargaHorariaDGV.RowHeadersVisible = false;
             this.CargaHorariaDGV.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.CargaHorariaDGV.RowTemplate.Height = 24;
             this.CargaHorariaDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.CargaHorariaDGV.Size = new System.Drawing.Size(976, 195);
+            this.CargaHorariaDGV.Size = new System.Drawing.Size(1301, 240);
             this.CargaHorariaDGV.TabIndex = 5;
             this.CargaHorariaDGV.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CargaHorariaDGV_CellMouseClick);
             // 
@@ -416,14 +420,14 @@
             this.Armado.IndeterminateValue = "0";
             this.Armado.Name = "Armado";
             this.Armado.TrueValue = "1";
-            this.Armado.Width = 49;
+            this.Armado.Width = 63;
             // 
             // MontoTB
             // 
-            this.MontoTB.Location = new System.Drawing.Point(107, 407);
-            this.MontoTB.Margin = new System.Windows.Forms.Padding(2);
+            this.MontoTB.Location = new System.Drawing.Point(143, 501);
+            this.MontoTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MontoTB.Name = "MontoTB";
-            this.MontoTB.Size = new System.Drawing.Size(80, 20);
+            this.MontoTB.Size = new System.Drawing.Size(105, 22);
             this.MontoTB.TabIndex = 7;
             this.MontoTB.Visible = false;
             // 
@@ -449,10 +453,10 @@
             // 
             // ContratoForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(995, 465);
+            this.ClientSize = new System.Drawing.Size(1284, 572);
             this.Controls.Add(this.FFinMTB);
             this.Controls.Add(this.ServicioGB);
             this.Controls.Add(this.FIniMTB);
@@ -471,7 +475,7 @@
             this.Controls.Add(this.MontoLBL);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.label5);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ContratoForm";
             this.Text = "ContratoForm";
             this.Shown += new System.EventHandler(this.ContratoForm_Shown);

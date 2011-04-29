@@ -2839,7 +2839,7 @@ namespace Datos
                 tabla = database.GetTable<HoRaSGeneraDaSEScalaFOn>();                
                 
                 result = (from reg in tabla
-                          where reg.NumeroCliente == NumeroCliente && reg.NumeroServicio==NumeroServicio && reg.FechaCorrespondiente==fecha
+                          where reg.NumeroCliente == NumeroCliente && reg.NumeroServicio==NumeroServicio && reg.FechaCorrespondiente==fecha && reg.Descanso==0
                           select reg).ToList<HoRaSGeneraDaSEScalaFOn>();
 
                 return result;
@@ -3804,7 +3804,7 @@ namespace Datos
 
                 string sql = "INSERT INTO liquidacionempleados (Fecha, NroEmpleado, NroServicio, NroCliente, Horas)" +
                              "SELECT hg.FechaCorrespondiente, hg.NroEmpleado, hg.NumeroServicio, hg.NumeroCliente, addtime('2011-01-01 0:0:0', sec_to_time(sum(time_to_sec(time(hg.HoraSalida)) - time_to_sec(time(hg.HoraEntrada)))))" +
-                             "FROM horasgeneradasescalafon hg WHERE hg.FechaCorrespondiente BETWEEN '" + string.Format("{0:yyyy-MM-dd}", inicio) + "' AND '" + string.Format("{0:yyyy-MM-dd}", fin) + "'" +
+                             "FROM horasgeneradasescalafon hg WHERE hg.Descanso=0 AND hg.FechaCorrespondiente BETWEEN '" + string.Format("{0:yyyy-MM-dd}", inicio) + "' AND '" + string.Format("{0:yyyy-MM-dd}", fin) + "'" +
                              "GROUP BY hg.FechaCorrespondiente, hg.NroEmpleado, hg.NumeroServicio, hg.NumeroCliente";
 
                 database.ExecuteCommand(sql, null);
@@ -4080,7 +4080,7 @@ namespace Datos
 
                 string sql = "SELECT FechaCorrespondiente, SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(HoraSalida,HoraEntrada)))) " +
                                  "FROM horasgeneradasescalafon " +
-                                 "WHERE (NumeroCliente = " + NumeroCliente + ") AND (NumeroServicio = "+NroServicio+") AND (FechaCorrespondiente BETWEEN '"+string.Format("{0:yyyy-MM-dd}", DiaInicioFacturacion)+"' AND '"+string.Format("{0:yyyy-MM-dd}", DiaFinFacturacion)+"') " +
+                                 "WHERE (Descanso = 0) AND (NumeroCliente = " + NumeroCliente + ") AND (NumeroServicio = "+NroServicio+") AND (FechaCorrespondiente BETWEEN '"+string.Format("{0:yyyy-MM-dd}", DiaInicioFacturacion)+"' AND '"+string.Format("{0:yyyy-MM-dd}", DiaFinFacturacion)+"') " +
                                  "GROUP BY FechaCorrespondiente";
 
                 conexion2 = createNewConnection();
@@ -4337,6 +4337,24 @@ namespace Datos
             }
         }
 
+
+        public List<HoRaSGeneraDaSEScalaFOn> obtenerDescansos(int NroEmpleado, DateTime Mes)
+        {
+            List<HoRaSGeneraDaSEScalaFOn> result;            
+            try
+            {
+                result = (from reg in database.GetTable<HoRaSGeneraDaSEScalaFOn>()
+                          where reg.NroEmpleado == NroEmpleado && reg.Descanso == 1 && reg.FechaCorrespondiente.Year == Mes.Year && reg.FechaCorrespondiente.Month == Mes.Month
+                          select reg).ToList<HoRaSGeneraDaSEScalaFOn>();
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 
