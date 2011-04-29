@@ -24,7 +24,7 @@ namespace ControlHoras
         int[] numerosSer;
 
         private IDatos datos;
-        private string fechaMask = @"  /  /";
+        //private string fechaMask = @"  /  /";
 
         //Controlador controller;
         Color ColorOriginalFila = Color.White;
@@ -32,9 +32,7 @@ namespace ControlHoras
         Color ColorSalidaFila = Color.Yellow;
 
         private ControlDiario()
-        {
-            
-            
+        {            
             ind = 0;
             cant = 0;
             
@@ -412,6 +410,7 @@ namespace ControlHoras
                     hgeNew.NumeroCliente = cliente.NumeroCliente;
                     hgeNew.NumeroServicio = servicio.NumeroServicio;
                     hgeNew.DiaHoraLlamadaAntesHoraEntrada = hgeNew.HoraEntrada.Subtract(TimeSpan.FromHours(2));
+                    //hgeNew.Descanso = 0;
 
                     // Chequeamos que no se solapen hs.
                     //sistema.aplicarControlesAltaHoraGeneradaEscalafon(fechaCorresponde, hgeNew);

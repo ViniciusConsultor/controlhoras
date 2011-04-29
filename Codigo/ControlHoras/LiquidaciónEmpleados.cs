@@ -306,6 +306,8 @@ namespace ControlHoras
         {
             string pathdoc = Path.Combine(dirbase, dirRelativaDocs);
             string fileName = Path.Combine(pathdoc, "LiquiEmpleado.xls");
+            string bufer;
+
             if (File.Exists(fileName))
             {
                 object readOnly = true;
@@ -315,6 +317,7 @@ namespace ControlHoras
                 Excel.Application ExApp;
                 Excel._Workbook oWBook;
                 Excel._Worksheet oSheet;
+                Excel.Range ran;
 
                 CultureInfo CultOriginal = System.Threading.Thread.CurrentThread.CurrentCulture;
 
@@ -353,6 +356,7 @@ namespace ControlHoras
                     if (EventosTB.Text != "")
                         oSheet.Cells[7, 7] = EventosTB.Text;
 
+                    //Los días del mes
                     auxdt = new DateTime(mesAct.Year, mesAct.Month, 1);
                     for (int i = 0; i < DateTime.DaysInMonth(mesAct.Year, mesAct.Month); i++)
                     {
@@ -360,29 +364,45 @@ namespace ControlHoras
                         auxdt = auxdt.AddDays(1);
                     }
 
+                    
+
                     int auxInt, nroEmp = int.Parse(empleados.Rows[ind].ItemArray[0].ToString());
                     string st;
                     List<MotIVOsCamBiosDiARioS> obs;
+                    List<HoRaSGeneraDaSEScalaFOn> des;
 
+                    //Descansos
+                    des = datos.obtenerDescansos(nroEmp, mesAct);
+                    foreach (HoRaSGeneraDaSEScalaFOn d in des)
+                    {
+                        oSheet.Cells[7 + d.FechaCorrespondiente.Day, 7] = "DESCANSO - ";
+                    }
+
+                    //Horas Trabajadas
                     for (int i = 0; i < LiquidacionDGV.Rows.Count; i++)
                     {
                         auxInt = int.Parse(LiquidacionDGV.Rows[i].Cells[0].Value.ToString());
-                        auxdt = auxdt = new DateTime(mesAct.Year, mesAct.Month, auxInt);
+                        
                         oSheet.Cells[7 + auxInt, 3] = (LiquidacionDGV.Rows[i].Cells[1].Value ?? "00:00").ToString();
                         oSheet.Cells[7 + auxInt, 4] = (LiquidacionDGV.Rows[i].Cells[2].Value ?? "00:00").ToString();
                         oSheet.Cells[7 + auxInt, 5] = (LiquidacionDGV.Rows[i].Cells[3].Value ?? "00:00").ToString();
                         oSheet.Cells[7 + auxInt, 6] = (LiquidacionDGV.Rows[i].Cells[4].Value ?? "00:00").ToString();
 
+                        
+                        //Observaciones
+                        auxdt = new DateTime(mesAct.Year, mesAct.Month, auxInt);
                         obs = datos.obtenerMotivosCambiosDiarios2(nroEmp, auxdt);
                         if (obs.Count > 0)
                         {
                             st = "";
                             foreach (MotIVOsCamBiosDiARioS m in obs)
                                 st = st + "*" + m.Observaciones + "* ";
-                            oSheet.Cells[7 + auxInt, 7] = st;
+                            bufer = oSheet.get_Range(oSheet.Cells[7 + auxInt, 7], oSheet.Cells[7 + auxInt, 7]).get_Value(missing).ToString();
+                            oSheet.Cells[7 + auxInt, 7] = bufer + st;                            
                         }
+                    }                   
+ 
 
-                    }
 
                     //EXTRAS LIQUIDACION
                     if (ExtraLiquidaciónLB.Items.Count > 0)

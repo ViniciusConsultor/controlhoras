@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2011-03-25 02:17:20Z
+#region Auto-generated classes for trustdb database on 2011-04-27 12:21:37Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2011-03-25 02:17:20Z
+// Auto-generated from trustdb on 2011-04-27 12:21:37Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -1238,7 +1238,7 @@ namespace Datos
 
 		private string _query;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_query", Name = "Query", DbType = "varchar(1500)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		[Column(Storage = "_query", Name = "Query", DbType = "varchar(3000)", AutoSync = AutoSync.Never, CanBeNull = false)]
 		public string Query
 		{
 			get
@@ -6533,7 +6533,7 @@ namespace Datos
 		#region Parents
 
 		private EntityRef<LineAshOrAs> _lineAshOrAs;
-		[Association(Storage = "_lineAshOrAs", OtherKey = "IDContrato,NroLinea", ThisKey = "IDContrato,NroLinea", Name = "FK_IdContratoNroLinea", IsForeignKey = true)]
+		[Association(Storage = "_lineAshOrAs", OtherKey = "NroLinea,IDContrato", ThisKey = "NroLinea,IDContrato", Name = "FK_IdContratoNroLinea", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public LineAshOrAs LineAshOrAs
 		{
@@ -6555,13 +6555,13 @@ namespace Datos
 					if (value != null)
 					{
 						value.HoRaRioDiA.Add(this);
-						_idcOntrato = value.IDContrato;
 						_nroLinea = value.NroLinea;
+						_idcOntrato = value.IDContrato;
 					}
 					else
 					{
-						_idcOntrato = default(uint);
 						_nroLinea = default(sbyte);
+						_idcOntrato = default(uint);
 					}
 				}
 			}
@@ -7003,6 +7003,8 @@ namespace Datos
 		#region Extensibility Method Definitions
 
 		partial void OnCreated();
+		partial void OnDescansoChanged();
+		partial void OnDescansoChanging(sbyte value);
 		partial void OnDiaHoraLlamadaAntesHoraEntradaChanged();
 		partial void OnDiaHoraLlamadaAntesHoraEntradaChanging(DateTime value);
 		partial void OnFechaCorrespondienteChanged();
@@ -7019,6 +7021,32 @@ namespace Datos
 		partial void OnNumeroClienteChanging(uint value);
 		partial void OnNumeroServicioChanged();
 		partial void OnNumeroServicioChanging(uint value);
+
+		#endregion
+
+		#region sbyte Descanso
+
+		private sbyte _descanso;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_descanso", Name = "Descanso", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public sbyte Descanso
+		{
+			get
+			{
+				return _descanso;
+			}
+			set
+			{
+				if (value != _descanso)
+				{
+					OnDescansoChanging(value);
+					SendPropertyChanging();
+					_descanso = value;
+					SendPropertyChanged("Descanso");
+					OnDescansoChanged();
+				}
+			}
+		}
 
 		#endregion
 
@@ -7593,7 +7621,7 @@ namespace Datos
 		#region Children
 
 		private EntitySet<HoRaRioDiA> _hoRaRioDiA;
-		[Association(Storage = "_hoRaRioDiA", OtherKey = "IDContrato,NroLinea", ThisKey = "IDContrato,NroLinea", Name = "FK_IdContratoNroLinea")]
+		[Association(Storage = "_hoRaRioDiA", OtherKey = "NroLinea,IDContrato", ThisKey = "NroLinea,IDContrato", Name = "FK_IdContratoNroLinea")]
 		[DebuggerNonUserCode]
 		public EntitySet<HoRaRioDiA> HoRaRioDiA
 		{

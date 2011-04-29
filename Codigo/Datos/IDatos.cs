@@ -422,5 +422,7 @@ namespace Datos
         List<int> obtenerObsCambios(int NroEmpleado, DateTime Mes);
 
         DataEventosHE obtenerEventosHistEmpleado(int NroEmpleado, DateTime Mes);
+
+        List<HoRaSGeneraDaSEScalaFOn> obtenerDescansos(int NroEmpleado, DateTime Mes);
     }
 }

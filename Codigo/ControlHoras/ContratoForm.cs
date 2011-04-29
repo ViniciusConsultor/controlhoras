@@ -704,6 +704,7 @@ namespace ControlHoras
                     llenarForm(numCli, ser);
             }
             
-        }    
+        }
+        
     }
 }
