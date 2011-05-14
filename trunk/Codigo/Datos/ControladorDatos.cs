@@ -112,7 +112,10 @@ namespace Datos
         #region ABM_Cliente
         public void altaCliente(int num, string nom, string nomFant, string rut, string email, string dir, string dirCobro, string telefono, string fax, bool activo, DateTime? fecAlta, DateTime? fecBaja, string motivo, string referencia, string diaHoraCobro, string contactoCobro, string telefonosCobro, int diaInicioFacturacion, int diaFinFacturacion)
         {
+            recargarContexto();
+
             ClientEs cliente = null;
+            
             DbLinq.Data.Linq.Table<ClientEs> tablaCliente;
             try
             {
@@ -125,6 +128,7 @@ namespace Datos
 
             try
             {
+                
                 cliente = new ClientEs();
                 cliente.NumeroCliente = (uint)num;
                 cliente.Nombre = nom;
@@ -2602,7 +2606,7 @@ namespace Datos
                     conexion.Open();
                 System.Data.Common.DbTransaction tran = conexion.BeginTransaction();
                 database.Transaction = tran;
-                                
+
                 foreach (LineAshOrAs lh in Lineas)
                 {
                     tempsql = sqlLineasHoras;
@@ -2641,7 +2645,7 @@ namespace Datos
                 database.Transaction.Commit();
                 if (conexion.State == System.Data.ConnectionState.Open)
                     conexion.Close();
-                recargarContexto();
+
                 //database.SubmitChanges();
             }
             catch (MySqlException ex)
@@ -2649,7 +2653,6 @@ namespace Datos
                 //database.Refresh(System.Data.Linq.RefreshMode.KeepCurrentValues);
                 // database.Connection.Close();
                 database.Transaction.Rollback();
-                recargarContexto();
                 if (conexion.State == System.Data.ConnectionState.Open)
                     conexion.Close();
                 if (ex.Number == 1062)
@@ -2666,6 +2669,10 @@ namespace Datos
                 if (conexion.State == System.Data.ConnectionState.Open)
                     conexion.Close();
                 throw ex;
+            }
+            finally
+            {
+                recargarContexto();
             }
         }
         #endregion
@@ -2998,6 +3005,7 @@ namespace Datos
         {            
             try
             {
+                recargarContexto();
                 HoRaSGeneraDaSEScalaFOn hs = database.HoRaSGeneraDaSEScalaFOn.Single(p => p.IDHorasGeneradasEscalafon == IdHorasGeneragasEscalafon);
                 //EmPleadOs emp = database.EmPleadOs.Single(e => e.NroEmpleado == NroEmpleadoNuevo);
 
@@ -3005,10 +3013,10 @@ namespace Datos
                 hs.NroEmpleado = (uint) NroEmpleadoNuevo;
                 
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
-                recargarContexto();
             }
             catch (Exception e)
             {
+                recargarContexto();
                 throw new Exception(e.Message, e);
             }
         }
@@ -3044,6 +3052,7 @@ namespace Datos
             catch (Exception e)
             {
                 //database.
+                recargarContexto();
                 throw e;
             }
         }
@@ -3062,6 +3071,7 @@ namespace Datos
             }
             catch (Exception e)
             {
+                recargarContexto();
                 throw e;
             }
         }
@@ -3160,7 +3170,7 @@ namespace Datos
                         st += columna + ") ";
                     else
                         st += columna + ", ";
-                }                
+                }
                 st += " VALUES(";
                 st += escalafon.Cubierto + ", ";
                 st += escalafon.IDContrato.ToString() + ", ";
@@ -3198,7 +3208,7 @@ namespace Datos
                     tempsql += lh.IDEscalafon.ToString() + ", ";
                     tempsql += lh.IDEscalafonEmpleado.ToString() + ", ";
                     tempsql += lh.NroEmpleado.ToString() + ")";
-                    
+
                     database.ExecuteCommand(tempsql, null);
                     nombreTabla = database.Connection.Database + ".horarioescalafon";
                     campos = obtenerColumnasDeTabla(nombreTabla);
@@ -3229,7 +3239,7 @@ namespace Datos
                 database.Transaction.Commit();
                 if (conexion.State == System.Data.ConnectionState.Open)
                     conexion.Close();
-                recargarContexto();
+                
                 //database.SubmitChanges();
             }
             catch (MySqlException ex)
@@ -3253,7 +3263,11 @@ namespace Datos
                 if (conexion.State == System.Data.ConnectionState.Open)
                     conexion.Close();
                 throw ex;
-            } 
+            }
+            finally
+            {
+                recargarContexto();
+            }
         }
 
         public string getNombreEmpleado(int nroEmpleado)
@@ -3621,13 +3635,14 @@ namespace Datos
                 
                 database.SubmitChanges();
 
-                recargarContexto();
+                //recargarContexto();
             }
             catch (Exception ex)
             {
-                
+                recargarContexto();
                 throw ex;
             }
+
         }
 
         public long agregarEmpleadoHoraGeneradaEscalafon(HoRaSGeneraDaSEScalaFOn horaGeneradaEscalafon, MotIVOsCamBiosDiARioS motivoCambio)
@@ -3650,6 +3665,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                recargarContexto();
                 throw ex;
             }
             
@@ -3670,6 +3686,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                recargarContexto();
                 throw ex;
             }
         }
@@ -3743,11 +3760,11 @@ namespace Datos
 
                 database.SubmitChanges();
 
-                recargarContexto();
+                //recargarContexto();
             }
             catch (Exception ex)
             {
-
+                recargarContexto();
                 throw ex;
             }
         }
@@ -3791,8 +3808,8 @@ namespace Datos
         {
             System.Data.Common.DbConnection conexion = database.Connection;
             try
-            {                
-                string nombreTabla = database.Connection.Database + ".liquidacionempleados";                
+            {
+                string nombreTabla = database.Connection.Database + ".liquidacionempleados";
                 string st = "TRUNCATE " + nombreTabla;
                 //st += "'" + string.Format("{0:yyyy-MM-dd}", Contrato.FechaFin) + "', ";
 
@@ -3838,6 +3855,10 @@ namespace Datos
                 if (conexion.State == System.Data.ConnectionState.Open)
                     conexion.Close();
                 throw ex;
+            }
+            finally
+            {
+                recargarContexto();
             }
         }
 
