@@ -196,5 +196,30 @@ namespace Utilidades
 
         }
 
+        public static string nombreDiasInglesAEspanol(string nomDiaIngles)
+        {
+            switch (nomDiaIngles)
+            {
+                case "Monday":
+                    return "Lunes";
+
+                case "Tuesday":
+                    return "Martes";
+
+                case "Wednesday":
+                    return "Miercoles";
+                case "Thursday":
+                    return "Jueves";
+                case "Friday":
+                    return "Viernes";
+                case "Saturday":
+                    return "Sabado";
+                case "Sunday":
+                    return "Domingo";
+
+            }
+            throw new Exception(nomDiaIngles + " No es un dia en ingles reconocido");
+        }
+
     }
 }
