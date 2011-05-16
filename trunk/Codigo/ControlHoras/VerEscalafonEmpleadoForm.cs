@@ -13,6 +13,10 @@ namespace ControlHoras
     public partial class VerEscalafonEmpleadoForm : Form
     {
         IDatos datos;
+        private enum MOSTRAR_DATOS {ESCALAFON,CONTROLDIARIO};
+        MOSTRAR_DATOS funcionalidad;
+        DateTime fechaCorrespondiente;
+        int NroFuncionario;
 
         public VerEscalafonEmpleadoForm()
         {
@@ -20,6 +24,7 @@ namespace ControlHoras
             try
             {
                 datos = ControladorDatos.getInstance();
+                
             }
             catch
             {
@@ -31,6 +36,19 @@ namespace ControlHoras
         {
             mtFuncionario.Text = NroFuncionario.ToString();
             mtFuncionario_KeyDown(this, new KeyEventArgs(Keys.Enter));
+            this.NroFuncionario = NroFuncionario;
+        }
+
+        public void setFechaCorrespondiente(DateTime fecha)
+        {
+            this.fechaCorrespondiente = fecha;
+            mtFechaCorrespondiente.Text = fecha.ToShortDateString();
+        }
+
+        public void setFechaNroFuncionario(DateTime fecha, int NroFuncionario)
+        {
+            setFechaCorrespondiente(fecha);
+            setNroFuncionario(NroFuncionario);
         }
 
         private void mtFuncionario_KeyDown(object sender, KeyEventArgs e)
@@ -43,8 +61,15 @@ namespace ControlHoras
                     dgvEscalafonEmpleado.Rows.Clear();
                     EmPleadOs Funcionario = datos.obtenerEmpleado(int.Parse(mtFuncionario.Text));
                     mtFuncionario.Text = Funcionario.NroEmpleado.ToString();
+                    NroFuncionario = (int)Funcionario.NroEmpleado;
                     txtNombreFuncionario.Text = Funcionario.Nombre + " " + Funcionario.Apellido;
-                    cargarGrilla(Funcionario);
+                    if (funcionalidad == MOSTRAR_DATOS.ESCALAFON)
+                        cargarGrillaEscalafon(Funcionario);
+                    else if (funcionalidad == MOSTRAR_DATOS.CONTROLDIARIO)
+                    {
+                        fechaCorrespondiente = DateTime.Parse(mtFechaCorrespondiente.Text);
+                        cargarGrillaControlDiario(Funcionario);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -53,28 +78,47 @@ namespace ControlHoras
             }
             if (e.KeyCode == Keys.F2)
             {
-                // Muestro ventana de busqueda de empleados. La misma que en ABMEmpleados
-                BuscarEmpleados busquedaEmps = new BuscarEmpleados();
-                DialogResult res = busquedaEmps.ShowDialog(this);
-                if (res == DialogResult.OK)
-                {
-                    try
-                    {
-                        EmPleadOs Funcionario = datos.obtenerEmpleado(busquedaEmps.idEmpleadoSeleccionado);
-                        mtFuncionario.Text = Funcionario.NroEmpleado.ToString();
-                        txtNombreFuncionario.Text = Funcionario.Nombre + " " + Funcionario.Apellido;
-                        SendKeys.Send("{ENTER}");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+                btnBuscarFuncionario.PerformClick();
             }
 
         }
 
-        private void cargarGrilla(EmPleadOs Funcionario)
+        private void cargarGrillaControlDiario(EmPleadOs Funcionario)
+        {
+            int n = -10;
+            try
+            {
+                List<HoRaSGeneraDaSEScalaFOn> listaHs = datos.obtenerHorasGeneradasEscalafonEmpleado((uint)Funcionario.NroEmpleado,fechaCorrespondiente);
+                ClientEs cli;
+                foreach (DataGridViewColumn Col in dgvEscalafonEmpleado.Columns)
+                {
+                    if (Col.Index > 1)
+                        Col.Visible = false;
+                }
+                dgvEscalafonEmpleado.Update();
+                foreach (HoRaSGeneraDaSEScalaFOn l in listaHs)
+                {
+                    n = dgvEscalafonEmpleado.Rows.Add();
+                    cli = datos.obtenerCliente((int)l.NumeroCliente);
+                    dgvEscalafonEmpleado.Rows[n].Cells["ClienteServicio"].Value = cli.NumeroCliente + " - "+ cli.Nombre;
+                    dgvEscalafonEmpleado.Rows[n].Cells["Servicio"].Value = l.NumeroServicio.ToString();
+                    dgvEscalafonEmpleado.Columns[Utilidades.ControladorUtilidades.nombreDiasInglesAEspanol(fechaCorrespondiente.DayOfWeek.ToString())].Visible = true;
+                    dgvEscalafonEmpleado.Rows[n].Cells[Utilidades.ControladorUtilidades.nombreDiasInglesAEspanol(fechaCorrespondiente.DayOfWeek.ToString())].Value = l.HoraEntrada.ToString("dd/MM/yyyy HH:mm") + " a " + l.HoraSalida.ToString("dd/MM/yyyy HH:mm");
+                    n = -10;
+                }
+                dgvEscalafonEmpleado.Update();
+            }
+            catch (Exception ex)
+            {
+                if (n != -10)
+                    dgvEscalafonEmpleado.Rows.RemoveAt(n);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            dgvEscalafonEmpleado.ClearSelection();
+        }
+
+        private void cargarGrillaEscalafon(EmPleadOs Funcionario)
         {
             int n = -10;
             try
@@ -118,6 +162,42 @@ namespace ControlHoras
             }
 
             dgvEscalafonEmpleado.ClearSelection();
+        }
+
+        private void VerEscalafonEmpleadoForm_Load(object sender, EventArgs e)
+        {
+            if (this.Owner.GetType().Equals(typeof(EscalafonForm)))
+            {
+                funcionalidad = MOSTRAR_DATOS.ESCALAFON;
+                panelFecha.Visible = false;
+            }
+            else if (this.Owner.GetType().Equals(typeof(ControlDiario)))
+            {
+                funcionalidad = MOSTRAR_DATOS.CONTROLDIARIO;
+                panelFecha.Visible = true;
+            }
+            
+        }
+
+        private void btnBuscarFuncionario_Click(object sender, EventArgs e)
+        {
+            // Muestro ventana de busqueda de empleados. La misma que en ABMEmpleados
+            BuscarEmpleados busquedaEmps = new BuscarEmpleados();
+            DialogResult res = busquedaEmps.ShowDialog(this);
+            if (res == DialogResult.OK)
+            {
+                try
+                {
+                    EmPleadOs Funcionario = datos.obtenerEmpleado(busquedaEmps.idEmpleadoSeleccionado);
+                    mtFuncionario.Text = Funcionario.NroEmpleado.ToString();
+                    txtNombreFuncionario.Text = Funcionario.Nombre + " " + Funcionario.Apellido;
+                    SendKeys.Send("{ENTER}");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }       
     }
 }

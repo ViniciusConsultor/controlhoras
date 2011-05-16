@@ -35,6 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlDiario));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -53,20 +54,21 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.agregarFuncionario = new System.Windows.Forms.ToolStripMenuItem();
             this.quitarFuncionarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mtFecha = new System.Windows.Forms.MaskedTextBox();
-            this.btnDiaSiguiente = new System.Windows.Forms.Button();
-            this.btnDiaAnterior = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnBuscarCliente = new System.Windows.Forms.ToolStripButton();
+            this.tsVerHorasFuncionario = new System.Windows.Forms.ToolStripButton();
             this.maskedTextBoxColumn1 = new ControlHoras.MaskedTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maskedTextBoxColumn2 = new ControlHoras.MaskedTextBoxColumn();
             this.maskedTextBoxColumn3 = new ControlHoras.MaskedTextBoxColumn();
             this.mtServicio = new ControlHoras.MaskedTextBoxKeyDown();
             this.ucCliente = new ControlHoras.BúsquedaCliente();
-            this.lblDia = new System.Windows.Forms.Label();
             this.PosteriorBTN = new System.Windows.Forms.Button();
             this.AnteriorBTN = new System.Windows.Forms.Button();
+            this.lblDia = new System.Windows.Forms.Label();
+            this.mtFecha = new System.Windows.Forms.MaskedTextBox();
+            this.btnDiaAnterior = new System.Windows.Forms.Button();
+            this.btnDiaSiguiente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHoras)).BeginInit();
             this.menuStripdgvHoras.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -76,7 +78,7 @@
             // 
             this.txtServicio.BackColor = System.Drawing.SystemColors.Window;
             this.txtServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtServicio.Location = new System.Drawing.Point(62, 77);
+            this.txtServicio.Location = new System.Drawing.Point(62, 108);
             this.txtServicio.Name = "txtServicio";
             this.txtServicio.ReadOnly = true;
             this.txtServicio.Size = new System.Drawing.Size(362, 22);
@@ -115,7 +117,7 @@
             this.dgvHoras.RowTemplate.Height = 24;
             this.dgvHoras.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvHoras.Size = new System.Drawing.Size(563, 239);
-            this.dgvHoras.TabIndex = 0;
+            this.dgvHoras.TabIndex = 3;
             this.dgvHoras.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvHoras_CellMouseDown);
             // 
             // IdHorasGeneradasEscalafon
@@ -246,41 +248,11 @@
             this.quitarFuncionarioToolStripMenuItem.Text = "Quitar Funcionario";
             this.quitarFuncionarioToolStripMenuItem.Click += new System.EventHandler(this.quitarFuncionarioToolStripMenuItem_Click);
             // 
-            // mtFecha
-            // 
-            this.mtFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtFecha.Location = new System.Drawing.Point(12, 110);
-            this.mtFecha.Mask = "00/00/0000";
-            this.mtFecha.Name = "mtFecha";
-            this.mtFecha.Size = new System.Drawing.Size(70, 22);
-            this.mtFecha.TabIndex = 2;
-            this.mtFecha.ValidatingType = typeof(System.DateTime);
-            this.mtFecha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtFecha_KeyDown);
-            // 
-            // btnDiaSiguiente
-            // 
-            this.btnDiaSiguiente.Location = new System.Drawing.Point(122, 110);
-            this.btnDiaSiguiente.Name = "btnDiaSiguiente";
-            this.btnDiaSiguiente.Size = new System.Drawing.Size(28, 24);
-            this.btnDiaSiguiente.TabIndex = 4;
-            this.btnDiaSiguiente.Text = ">";
-            this.btnDiaSiguiente.UseVisualStyleBackColor = true;
-            this.btnDiaSiguiente.Click += new System.EventHandler(this.btnDiaSiguiente_Click);
-            // 
-            // btnDiaAnterior
-            // 
-            this.btnDiaAnterior.Location = new System.Drawing.Point(88, 110);
-            this.btnDiaAnterior.Name = "btnDiaAnterior";
-            this.btnDiaAnterior.Size = new System.Drawing.Size(28, 24);
-            this.btnDiaAnterior.TabIndex = 3;
-            this.btnDiaAnterior.Text = "<";
-            this.btnDiaAnterior.UseVisualStyleBackColor = true;
-            this.btnDiaAnterior.Click += new System.EventHandler(this.btnDiaAnterior_Click);
-            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnBuscarCliente});
+            this.btnBuscarCliente,
+            this.tsVerHorasFuncionario});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(587, 36);
@@ -296,6 +268,16 @@
             this.btnBuscarCliente.Text = "Buscar Cliente";
             this.btnBuscarCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnBuscarCliente.Click += new System.EventHandler(this.btnBuscarCliente_Click);
+            // 
+            // tsVerHorasFuncionario
+            // 
+            this.tsVerHorasFuncionario.Image = ((System.Drawing.Image)(resources.GetObject("tsVerHorasFuncionario.Image")));
+            this.tsVerHorasFuncionario.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsVerHorasFuncionario.Name = "tsVerHorasFuncionario";
+            this.tsVerHorasFuncionario.Size = new System.Drawing.Size(100, 33);
+            this.tsVerHorasFuncionario.Text = "Ver Hs Funcionario";
+            this.tsVerHorasFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsVerHorasFuncionario.Click += new System.EventHandler(this.tsVerHorasFuncionario_Click);
             // 
             // maskedTextBoxColumn1
             // 
@@ -355,37 +337,28 @@
             // 
             this.mtServicio.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludePrompt;
             this.mtServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtServicio.Location = new System.Drawing.Point(12, 77);
+            this.mtServicio.Location = new System.Drawing.Point(12, 108);
             this.mtServicio.Mask = "9990";
             this.mtServicio.Name = "mtServicio";
             this.mtServicio.Size = new System.Drawing.Size(44, 22);
-            this.mtServicio.TabIndex = 1;
+            this.mtServicio.TabIndex = 2;
             this.mtServicio.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.mtServicio.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtServicio_KeyDown);
             // 
             // ucCliente
             // 
             this.ucCliente.ClienteNRO = "";
-            this.ucCliente.Location = new System.Drawing.Point(12, 34);
+            this.ucCliente.Location = new System.Drawing.Point(12, 65);
             this.ucCliente.Margin = new System.Windows.Forms.Padding(2);
             this.ucCliente.Name = "ucCliente";
             this.ucCliente.Size = new System.Drawing.Size(418, 40);
-            this.ucCliente.TabIndex = 0;
-            // 
-            // lblDia
-            // 
-            this.lblDia.AutoSize = true;
-            this.lblDia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDia.Location = new System.Drawing.Point(168, 115);
-            this.lblDia.Name = "lblDia";
-            this.lblDia.Size = new System.Drawing.Size(0, 16);
-            this.lblDia.TabIndex = 7;
+            this.ucCliente.TabIndex = 1;
             // 
             // PosteriorBTN
             // 
             this.PosteriorBTN.AutoSize = true;
             this.PosteriorBTN.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.PosteriorBTN.Location = new System.Drawing.Point(468, 77);
+            this.PosteriorBTN.Location = new System.Drawing.Point(468, 108);
             this.PosteriorBTN.Name = "PosteriorBTN";
             this.PosteriorBTN.Size = new System.Drawing.Size(29, 23);
             this.PosteriorBTN.TabIndex = 14;
@@ -398,7 +371,7 @@
             // 
             this.AnteriorBTN.AutoSize = true;
             this.AnteriorBTN.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.AnteriorBTN.Location = new System.Drawing.Point(433, 77);
+            this.AnteriorBTN.Location = new System.Drawing.Point(433, 108);
             this.AnteriorBTN.Name = "AnteriorBTN";
             this.AnteriorBTN.Size = new System.Drawing.Size(29, 23);
             this.AnteriorBTN.TabIndex = 13;
@@ -407,25 +380,66 @@
             this.AnteriorBTN.Visible = false;
             this.AnteriorBTN.Click += new System.EventHandler(this.AnteriorBTN_Click);
             // 
+            // lblDia
+            // 
+            this.lblDia.AutoSize = true;
+            this.lblDia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDia.Location = new System.Drawing.Point(168, 49);
+            this.lblDia.Name = "lblDia";
+            this.lblDia.Size = new System.Drawing.Size(0, 16);
+            this.lblDia.TabIndex = 18;
+            // 
+            // mtFecha
+            // 
+            this.mtFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mtFecha.Location = new System.Drawing.Point(12, 44);
+            this.mtFecha.Mask = "00/00/0000";
+            this.mtFecha.Name = "mtFecha";
+            this.mtFecha.Size = new System.Drawing.Size(70, 22);
+            this.mtFecha.TabIndex = 0;
+            this.mtFecha.ValidatingType = typeof(System.DateTime);
+            this.mtFecha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtFecha_KeyDown);
+            // 
+            // btnDiaAnterior
+            // 
+            this.btnDiaAnterior.Location = new System.Drawing.Point(88, 44);
+            this.btnDiaAnterior.Name = "btnDiaAnterior";
+            this.btnDiaAnterior.Size = new System.Drawing.Size(28, 24);
+            this.btnDiaAnterior.TabIndex = 16;
+            this.btnDiaAnterior.Text = "<";
+            this.btnDiaAnterior.UseVisualStyleBackColor = true;
+            this.btnDiaAnterior.Click += new System.EventHandler(this.btnDiaAnterior_Click);
+            // 
+            // btnDiaSiguiente
+            // 
+            this.btnDiaSiguiente.Location = new System.Drawing.Point(122, 44);
+            this.btnDiaSiguiente.Name = "btnDiaSiguiente";
+            this.btnDiaSiguiente.Size = new System.Drawing.Size(28, 24);
+            this.btnDiaSiguiente.TabIndex = 17;
+            this.btnDiaSiguiente.Text = ">";
+            this.btnDiaSiguiente.UseVisualStyleBackColor = true;
+            this.btnDiaSiguiente.Click += new System.EventHandler(this.btnDiaSiguiente_Click);
+            // 
             // ControlDiario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(587, 389);
+            this.Controls.Add(this.lblDia);
+            this.Controls.Add(this.mtFecha);
+            this.Controls.Add(this.btnDiaAnterior);
+            this.Controls.Add(this.btnDiaSiguiente);
             this.Controls.Add(this.PosteriorBTN);
             this.Controls.Add(this.AnteriorBTN);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.lblDia);
             this.Controls.Add(this.mtServicio);
-            this.Controls.Add(this.mtFecha);
             this.Controls.Add(this.ucCliente);
-            this.Controls.Add(this.btnDiaAnterior);
-            this.Controls.Add(this.btnDiaSiguiente);
             this.Controls.Add(this.dgvHoras);
             this.Controls.Add(this.txtServicio);
             this.Name = "ControlDiario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ControlDiario";
+            this.Load += new System.EventHandler(this.ControlDiario_Load);
             this.Shown += new System.EventHandler(this.ControlDiario_Shown);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ControlDiario_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHoras)).EndInit();
@@ -446,9 +460,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem cambiarHoraEntrada;
         private System.Windows.Forms.ToolStripMenuItem cambiarHoraSalida;
-        private System.Windows.Forms.MaskedTextBox mtFecha;
-        private System.Windows.Forms.Button btnDiaSiguiente;
-        private System.Windows.Forms.Button btnDiaAnterior;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private MaskedTextBoxKeyDown mtServicio;
         private BúsquedaCliente ucCliente;
@@ -462,11 +473,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Funcionario;
         private MaskedTextBoxColumn HoraEntrada;
         private MaskedTextBoxColumn HoraSalida;
-        private System.Windows.Forms.Label lblDia;
         private System.Windows.Forms.ToolStripButton btnBuscarCliente;
         private System.Windows.Forms.Button PosteriorBTN;
         private System.Windows.Forms.Button AnteriorBTN;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem quitarFuncionarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton tsVerHorasFuncionario;
+        private System.Windows.Forms.Label lblDia;
+        private System.Windows.Forms.MaskedTextBox mtFecha;
+        private System.Windows.Forms.Button btnDiaAnterior;
+        private System.Windows.Forms.Button btnDiaSiguiente;
     }
 }

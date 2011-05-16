@@ -16,6 +16,7 @@ namespace ControlHoras
         private static ControlDiario ventana = null;
         private ClientEs cliente;
         private SERVicIoS servicio;
+        private DateTime FechaSeleccionada;
         private Dictionary<long, HoRaSGeneraDaSEScalaFOn> listaFuncsCargados = null;
 
         IClientesServicios sistema;
@@ -32,10 +33,7 @@ namespace ControlHoras
         Color ColorSalidaFila = Color.Yellow;
 
         private ControlDiario()
-        {            
-            ind = 0;
-            cant = 0;
-            
+        {
             InitializeComponent();
             listaFuncsCargados = new Dictionary<long, HoRaSGeneraDaSEScalaFOn>();
             try
@@ -43,6 +41,8 @@ namespace ControlHoras
                 sistema = ControladorClientesServicios.getInstance();
                 datos = ControladorDatos.getInstance();
                 datos.recargarContexto();
+                ind = 0;
+                cant = 0;
             }
             catch (Exception ex)
             {
@@ -69,9 +69,7 @@ namespace ControlHoras
                         servicio = datos.obtenerServicioCliente(int.Parse(ucCliente.ClienteNRO), int.Parse(mtServicio.Text));
                         txtServicio.Text = servicio.Nombre;
                         cliente = datos.obtenerCliente(int.Parse(ucCliente.ClienteNRO));
-                        mtFecha.Focus();
-                        MessageBox.Show(DateTime.Now.ToShortDateString());
-                        mtFecha.Text = DateTime.Now.ToShortDateString();
+                        cargarDatos();
                         SendKeys.Send("{ENTER}");
                     }
                     else
@@ -117,17 +115,17 @@ namespace ControlHoras
                             numerosSer[i] = ser.getNumero();
                             i++;
                         }
-
+                        ind = 0;
                         servicio = datos.obtenerServicioCliente(numCli, numerosSer[ind]);
                         mtServicio.Text = numerosSer[ind].ToString();
                         txtServicio.Text = servicio.Nombre;
 
-                        mtFecha.Focus();
+                        //mtFecha.Focus();
                         //MessageBox.Show(DateTime.Now.ToShortDateString());
                         //tmpFecha.Kind = DateTimeKind.Local;
                         //MessageBox.Show(tmpFecha.ToShortDateString());
-                        string temp = DateTime.Now.ToShortDateString();
-                        mtFecha.Text = temp;
+                        //string temp = DateTime.Now.ToShortDateString();
+                        //mtFecha.Text = temp;
                         SendKeys.Send("{ENTER}");
 
                         if (cant > 1)
@@ -158,18 +156,9 @@ namespace ControlHoras
             {
                 try
                 {
-                    int numFila = dgvHoras.Rows.Count;
-                    while (numFila > 0)
-                    {
-                        numFila--;
-                        dgvHoras.Rows.RemoveAt(numFila);
-
-                    }
-                    dgvHoras.Refresh();
-                    DateTime fecha = DateTime.Parse(mtFecha.Text);
-                    lblDia.Text = nombreDiasInglesAEspanol(fecha.DayOfWeek.ToString());
-                    List<HoRaSGeneraDaSEScalaFOn> listFunc = datos.obtenerHorasGeneradasServicio((int)servicio.NumeroCliente, (int)servicio.NumeroServicio, fecha);
-                    rellenarDatosDgvHoras(listFunc);
+                    FechaSeleccionada = DateTime.Parse(mtFecha.Text);
+                    lblDia.Text = Utilidades.ControladorUtilidades.nombreDiasInglesAEspanol(FechaSeleccionada.DayOfWeek.ToString());
+                    SendKeys.Send("{TAB}");
                 }
                 catch (Exception ex)
                 {
@@ -180,29 +169,18 @@ namespace ControlHoras
             
         }
 
-        private string nombreDiasInglesAEspanol(string nomDiaIngles)
+        private void cargarDatos()
         {
-            switch (nomDiaIngles)
+            int numFila = dgvHoras.Rows.Count;
+            while (numFila > 0)
             {
-                case "Monday":
-                    return "Lunes";
-
-                case "Tuesday":
-                    return "Martes";
-
-                case "Wednesday":
-                    return "Miercoles";
-                case "Thursday":
-                    return "Jueves";
-                case "Friday":
-                    return "Viernes";
-                case "Saturday":
-                    return "Sabado";
-                case "Sunday":
-                    return "Domingo";
+                numFila--;
+                dgvHoras.Rows.RemoveAt(numFila);
 
             }
-            return null;
+            dgvHoras.Refresh();
+            List<HoRaSGeneraDaSEScalaFOn> listFunc = datos.obtenerHorasGeneradasServicio((int)servicio.NumeroCliente, (int)servicio.NumeroServicio, FechaSeleccionada);
+            rellenarDatosDgvHoras(listFunc);
         }
 
         private void rellenarDatosDgvHoras(List<HoRaSGeneraDaSEScalaFOn> funcControlDiario)
@@ -490,8 +468,9 @@ namespace ControlHoras
             mtServicio.Text = numerosSer[ind].ToString();
             txtServicio.Text = servicio.Nombre;
 
-            mtFecha.Focus();
+            //mtFecha.Focus();
             //mtFecha.Text = DateTime.Now.ToShortDateString();
+            mtServicio.Focus();
             SendKeys.Send("{ENTER}");
         }
 
@@ -504,8 +483,8 @@ namespace ControlHoras
             mtServicio.Text = numerosSer[ind].ToString();
             txtServicio.Text = servicio.Nombre;
 
-            mtFecha.Focus();
-            //mtFecha.Text = DateTime.Now.ToShortDateString();
+            //mtFecha.Focus();
+            mtServicio.Focus();
             SendKeys.Send("{ENTER}");
         }
 
@@ -550,6 +529,28 @@ namespace ControlHoras
             {
                 MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void tsVerHorasFuncionario_Click(object sender, EventArgs e)
+        {
+            VerEscalafonEmpleadoForm veef = new VerEscalafonEmpleadoForm();
+            veef.setFechaCorrespondiente(FechaSeleccionada);
+            try
+            {
+                veef.setFechaCorrespondiente(FechaSeleccionada);
+                veef.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ControlDiario_Load(object sender, EventArgs e)
+        {
+            mtFecha.Text = DateTime.Today.ToString("dd/MM/yyyy");
+            mtFecha.Focus();
+            SendKeys.Send("{ENTER}");
         }    
        
     }
