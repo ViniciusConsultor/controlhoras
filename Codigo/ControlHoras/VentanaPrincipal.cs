@@ -12,6 +12,9 @@ namespace ControlHoras
     public partial class VentanaPrincipal : Form
     {
         List<string> listaControles;
+        public String userName { get; set; }
+        public int idUsuarioLogueado { get; set; }
+
         public VentanaPrincipal()
         {
             InitializeComponent();
@@ -81,6 +84,8 @@ namespace ControlHoras
                 DialogResult res = login.ShowDialog(this);
                 if (res == DialogResult.OK)
                 {
+                    userName = login.username;
+                    idUsuarioLogueado = login.idUsuarioLogueado;
                     tsslUsuario.Text = login.username;
                     tsslIdUsuarioLogueado.Text = login.idUsuarioLogueado.ToString();
                     cargarPermisos(tsslUsuario.Text);
@@ -98,7 +103,6 @@ namespace ControlHoras
         {
             try
             {
-                
                 List<Datos.PerMisOControl> listapermisos = Datos.DatosABMTipos.getInstance().obtenerListaPermisosUsuarioPantalla(UserName,this.Name);
                 listaControles = new List<string>();
                 bool encontrado;

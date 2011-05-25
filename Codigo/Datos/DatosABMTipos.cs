@@ -461,22 +461,30 @@ namespace Datos
         {
             try
             {
+                ControladorDatos.getInstance().recargarContexto();
                 int idUsuario = (from user in database.UsUarIoS
                                  where user.UserName == UserName
                                  select user.IDUsuario).Single();
-                int idPantalla = (from pant in database.PantAllAwInForm
+                var idPantalla = from pant in database.PantAllAwInForm
                                   where pant.Nombre == NombrePantalla
-                                  select pant.IDPantallaWinForm).Single();
-                List<PerMisOControl> listaWinForm = (from perm in database.PerMisOs
-                                                     where perm.IDPermiso == idUsuario 
-                                    && perm.UsuarioOrgRupo == "U" && perm.WinFormOrcOntrol == "C"
-                                    join pc in database.PerMisOControl on perm.IDControl equals pc.IDPermisoControl
-                                    select pc).ToList();
-
-
-                if (listaWinForm.Count() > 0)
+                                  select pant.IDPantallaWinForm;
+                if (idPantalla.Count() > 0)
                 {
-                    return listaWinForm;
+                    int i = idPantalla.Single();
+                    List<PerMisOControl> listaWinForm = (from perm in database.PerMisOs
+                                                         where perm.IDPermiso == idUsuario
+                                        && perm.UsuarioOrgRupo == "U" && perm.WinFormOrcOntrol == "C"
+                                                         join pc in database.PerMisOControl on perm.IDControl equals pc.IDPermisoControl
+                                                         where pc.IDPantallaWinForm == i
+                                                         select pc).ToList();
+
+
+                    if (listaWinForm.Count() > 0)
+                    {
+                        return listaWinForm;
+                    }
+                    else
+                        return new List<PerMisOControl>();
                 }
                 else
                     return new List<PerMisOControl>();

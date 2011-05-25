@@ -48,6 +48,9 @@ namespace ControlHoras
         // NroFuncionarioPivot default.
         private int nroFuncPivot = -1;
 
+        // Lista de Controles que se tiene permisos.
+        List<Control> listaControlesConPermiso;
+
 
         static ABMEmpleados ventana = null;
         public static ABMEmpleados getVentana()
@@ -83,7 +86,7 @@ namespace ControlHoras
                 Info = new FileInfo(exefile);
                 //dirbase = Info.Directory.Parent.Parent.FullName;
                 dirbase = Info.DirectoryName;//System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
-
+                listaControlesConPermiso = new List<Control>();
                 try
                 {
                     dirRelativaDocs = ConfigurationManager.AppSettings["DirectorioRelativoDocs"].ToString();
@@ -215,11 +218,84 @@ namespace ControlHoras
 
             #endregion
 
+            cargarPermisos();
+
             //  btnCancelar.PerformClick();
             mtNumeroDocumento.ContextMenu = new ContextMenu();
 
             mtNumeroDocumento.Focus();
         }
+
+        private void cargarPermisos()
+        {
+            try
+            {
+                String username = ((VentanaPrincipal)this.Owner).userName;
+                List<Datos.PerMisOControl> listapermisos = Datos.DatosABMTipos.getInstance().obtenerListaPermisosUsuarioPantalla(username,this.Name);
+                
+                
+                Control.ControlCollection controls = this.Controls;
+                
+                foreach(Datos.PerMisOControl pc in listapermisos)
+                {
+                    Control c = this.Controls.Find(pc.Nombre, true)[0];
+                    if (c.GetType().ToString() == pc.NettYpe)
+                    {
+                        c.Enabled = true;
+                        listaControlesConPermiso.Add(c);
+                        break;
+                    }
+                }
+                //    foreach (ToolStripItem c in menuBotones.Items)
+                //    {
+                //        if (c.GetType().ToString() == pc.NettYpe && c.Name == pc.Nombre)
+                //        {
+                //            c.Enabled = true;
+                //            encontrado = true;
+                //            break;
+                //        }
+                //        //else
+                //        //    c.Enabled = false;
+                //    }
+                //    if (!encontrado)
+                //        foreach (ToolStripItem c in menuStripSuperior.Items)
+                //        {
+                //            if (c.GetType().ToString() == pc.NettYpe && c.Name == pc.Nombre)
+                //            {
+                //                encontrado = true;
+                //                c.Enabled = true;
+                //                break;
+                //            }
+                //            if (!encontrado)
+                //            {
+                //                if (c.GetType() == typeof(ToolStripMenuItem))
+                //                    foreach (ToolStripItem cc in ((ToolStripMenuItem)c).DropDownItems)
+                //                    {
+                //                        if (cc.GetType().ToString() == pc.NettYpe && cc.Name == pc.Nombre)
+                //                        {
+                //                            encontrado = true;
+                //                            cc.Enabled = true;
+                //                            break;
+                //                        }
+
+                //                    }
+                //            }
+                           
+                //        }
+
+                
+                
+                
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+        
+
 
         private void CargarCombo(ComboBox cmb, Dictionary<int, string> docs)
         {
@@ -255,9 +331,6 @@ namespace ControlHoras
             btnAgregarHistorial.Enabled = false;
             btnGuardarHistorial.Enabled = false;
             btnEliminarHistorial.Enabled = false;
-            btnExtrasAgregar.Enabled = false;
-            btnExtrasEliminar.Enabled = false;
-            btnExtrasGuardar.Enabled = false;
             ImprimirTSB.Enabled = false;
             btnVerEnEstalafon.Enabled = false;
             dtpFechaIngreso.Text = DateTime.Now.ToString();
@@ -444,7 +517,6 @@ namespace ControlHoras
                         //limpiarForm2();
                         btnAgregar.Enabled = true;
                         btnGuardar.Enabled = false;
-                        btnExtrasAgregar.Enabled = false;
                         btnAgregarHistorial.Enabled = false;
                     }
                 }
@@ -465,7 +537,6 @@ namespace ControlHoras
                 //limpiarForm2();
                 btnAgregar.Enabled = true;
                 btnGuardar.Enabled = false;
-                btnExtrasAgregar.Enabled = false;
                 btnAgregarHistorial.Enabled = false;
                 //txtApellido.Focus();
             }
@@ -1532,9 +1603,6 @@ namespace ControlHoras
             mtExtrasValor.Text = "";
             mtExtrasCantCuotas.Text = "";
             cmbExtrasSigno.SelectedIndex = 0;
-            btnExtrasAgregar.Enabled = true;
-            btnExtrasGuardar.Enabled = false;
-            btnExtrasEliminar.Enabled = false;
         }
 
         private void btnExtrasGuardar_Click(object sender, EventArgs e)
@@ -1670,9 +1738,7 @@ namespace ControlHoras
                 cmbExtrasSigno.SelectedItem = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["Signo"].Value.ToString();
                 mtExtrasValor.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["Valor"].Value.ToString();
                 mtExtrasCantCuotas.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["CantidadCuotas"].Value.ToString();
-                btnExtrasAgregar.Enabled = false;
-                //  btnExtrasGuardar.Enabled = true;
-                btnExtrasEliminar.Enabled = true;
+                
             }
             catch (Exception ex)
             {
@@ -2972,10 +3038,14 @@ namespace ControlHoras
                 btnAgregar.Enabled = false;
                 btnGuardar.Enabled = true;
                 BtnReactivar.Visible = false;
-                btnExtrasAgregar.Enabled = true;
+                //btnExtrasAgregar.Enabled = true;
                 btnAgregarHistorial.Enabled = true;
                 ImprimirTSB.Enabled = true;
                 btnVerEnEstalafon.Enabled = true;
+                foreach (Control c in listaControlesConPermiso)
+                {
+                    c.Enabled = true;
+                }
             }
             else
             {
@@ -2984,10 +3054,14 @@ namespace ControlHoras
                 btnAgregar.Enabled = false;
                 btnGuardar.Enabled = true;
                 BtnReactivar.Visible = true;
-                btnExtrasAgregar.Enabled = false;
+                //btnExtrasAgregar.Enabled = false;
                 btnAgregarHistorial.Enabled = false;
                 ImprimirTSB.Enabled = true;
                 btnVerEnEstalafon.Enabled = true;
+                foreach (Control c in listaControlesConPermiso)
+                {
+                    c.Enabled = true;
+                }
             }
         }
 
