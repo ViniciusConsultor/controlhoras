@@ -233,60 +233,17 @@ namespace ControlHoras
                 String username = ((VentanaPrincipal)this.Owner).userName;
                 List<Datos.PerMisOControl> listapermisos = Datos.DatosABMTipos.getInstance().obtenerListaPermisosUsuarioPantalla(username,this.Name);
                 
-                
                 Control.ControlCollection controls = this.Controls;
                 
                 foreach(Datos.PerMisOControl pc in listapermisos)
                 {
-                    Control c = this.Controls.Find(pc.Nombre, true)[0];
+                    Control c = controls.Find(pc.Nombre, true)[0];
                     if (c.GetType().ToString() == pc.NettYpe)
                     {
                         c.Enabled = true;
                         listaControlesConPermiso.Add(c);
-                        break;
                     }
                 }
-                //    foreach (ToolStripItem c in menuBotones.Items)
-                //    {
-                //        if (c.GetType().ToString() == pc.NettYpe && c.Name == pc.Nombre)
-                //        {
-                //            c.Enabled = true;
-                //            encontrado = true;
-                //            break;
-                //        }
-                //        //else
-                //        //    c.Enabled = false;
-                //    }
-                //    if (!encontrado)
-                //        foreach (ToolStripItem c in menuStripSuperior.Items)
-                //        {
-                //            if (c.GetType().ToString() == pc.NettYpe && c.Name == pc.Nombre)
-                //            {
-                //                encontrado = true;
-                //                c.Enabled = true;
-                //                break;
-                //            }
-                //            if (!encontrado)
-                //            {
-                //                if (c.GetType() == typeof(ToolStripMenuItem))
-                //                    foreach (ToolStripItem cc in ((ToolStripMenuItem)c).DropDownItems)
-                //                    {
-                //                        if (cc.GetType().ToString() == pc.NettYpe && cc.Name == pc.Nombre)
-                //                        {
-                //                            encontrado = true;
-                //                            cc.Enabled = true;
-                //                            break;
-                //                        }
-
-                //                    }
-                //            }
-                           
-                //        }
-
-                
-                
-                
-                
             }
             catch (Exception ex)
             {
