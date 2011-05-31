@@ -43,16 +43,19 @@
             this.panelConsolidacion = new System.Windows.Forms.Panel();
             this.lblConsolidando = new System.Windows.Forms.Label();
             this.ConsolidandoPicBox = new System.Windows.Forms.PictureBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.ucTreeClientesServicios = new ControlHoras.TreeClientesServicios();
             this.mtFechaHasta = new ControlHoras.MaskedTextBoxKeyDown();
             this.mtFechaDesde = new ControlHoras.MaskedTextBoxKeyDown();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ucTreeClientesServicios = new ControlHoras.TreeClientesServicios();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsbCerrarEscalafon = new System.Windows.Forms.ToolStripButton();
             this.groupBox1.SuspendLayout();
             this.panelGeneracion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.generandoPicBox)).BeginInit();
             this.panelConsolidacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConsolidandoPicBox)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGenerar
@@ -67,7 +70,7 @@
             // 
             // RichTextBoxMensaje
             // 
-            this.RichTextBoxMensaje.Location = new System.Drawing.Point(13, 12);
+            this.RichTextBoxMensaje.Location = new System.Drawing.Point(13, 45);
             this.RichTextBoxMensaje.Name = "RichTextBoxMensaje";
             this.RichTextBoxMensaje.ReadOnly = true;
             this.RichTextBoxMensaje.Size = new System.Drawing.Size(885, 46);
@@ -120,7 +123,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.210526F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(437, 67);
+            this.groupBox1.Location = new System.Drawing.Point(440, 96);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -195,27 +198,6 @@
             this.ConsolidandoPicBox.TabIndex = 0;
             this.ConsolidandoPicBox.TabStop = false;
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.ucTreeClientesServicios);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.210526F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(13, 67);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(409, 377);
-            this.groupBox2.TabIndex = 16;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "1";
-            // 
-            // ucTreeClientesServicios
-            // 
-            this.ucTreeClientesServicios.Location = new System.Drawing.Point(2, 17);
-            this.ucTreeClientesServicios.Margin = new System.Windows.Forms.Padding(4);
-            this.ucTreeClientesServicios.Name = "ucTreeClientesServicios";
-            this.ucTreeClientesServicios.Size = new System.Drawing.Size(400, 353);
-            this.ucTreeClientesServicios.TabIndex = 0;
-            // 
             // mtFechaHasta
             // 
             this.mtFechaHasta.Location = new System.Drawing.Point(240, 18);
@@ -232,11 +214,53 @@
             this.mtFechaDesde.Size = new System.Drawing.Size(70, 20);
             this.mtFechaDesde.TabIndex = 13;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.ucTreeClientesServicios);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.210526F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(13, 96);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Size = new System.Drawing.Size(409, 377);
+            this.groupBox2.TabIndex = 16;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "1";
+            // 
+            // ucTreeClientesServicios
+            // 
+            this.ucTreeClientesServicios.Location = new System.Drawing.Point(2, 17);
+            this.ucTreeClientesServicios.Margin = new System.Windows.Forms.Padding(4);
+            this.ucTreeClientesServicios.Name = "ucTreeClientesServicios";
+            this.ucTreeClientesServicios.Size = new System.Drawing.Size(400, 353);
+            this.ucTreeClientesServicios.TabIndex = 0;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbCerrarEscalafon});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(907, 36);
+            this.toolStrip1.TabIndex = 17;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // tsbCerrarEscalafon
+            // 
+            this.tsbCerrarEscalafon.Image = global::ControlHoras.Imagenes.CerrarEscalafon_48x48;
+            this.tsbCerrarEscalafon.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbCerrarEscalafon.Name = "tsbCerrarEscalafon";
+            this.tsbCerrarEscalafon.Size = new System.Drawing.Size(91, 33);
+            this.tsbCerrarEscalafon.Text = "Cerrar Escalafon";
+            this.tsbCerrarEscalafon.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbCerrarEscalafon.Click += new System.EventHandler(this.tsbCerrarEscalafon_Click);
+            // 
             // GenerarHorasDiariasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(907, 454);
+            this.ClientSize = new System.Drawing.Size(907, 480);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblFecha);
@@ -254,6 +278,8 @@
             this.panelConsolidacion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConsolidandoPicBox)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,6 +305,8 @@
         private System.Windows.Forms.Panel panelConsolidacion;
         private System.Windows.Forms.Label lblConsolidando;
         private System.Windows.Forms.PictureBox ConsolidandoPicBox;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton tsbCerrarEscalafon;
 
     }
 }

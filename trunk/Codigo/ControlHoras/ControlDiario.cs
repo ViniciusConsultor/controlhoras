@@ -157,6 +157,10 @@ namespace ControlHoras
                 try
                 {
                     FechaSeleccionada = DateTime.Parse(mtFecha.Text);
+                    if (!datos.tieneEscalafonCerrado(FechaSeleccionada))
+                        lblEstadoEscalafon.Visible = true;
+                    else
+                        lblEstadoEscalafon.Visible = false;
                     lblDia.Text = Utilidades.ControladorUtilidades.nombreDiasInglesAEspanol(FechaSeleccionada.DayOfWeek.ToString());
                     SendKeys.Send("{TAB}");
                 }

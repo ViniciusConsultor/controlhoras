@@ -2346,7 +2346,7 @@ namespace Datos
         {
             try
             {  
-                ContraToS con = (from conreg in database.GetTable<ContraToS>()
+                ContraToS con = (from conreg in database.ContraToS
                                  where conreg.IDContratos == numeroContrato
                                  select conreg).Single<ContraToS>();
                 con.FechaIni = FechaInicial;
@@ -2587,6 +2587,7 @@ namespace Datos
             System.Data.Common.DbConnection conexion = database.Connection;
             try
             {
+                
                 string nombreTabla = database.Connection.Database + ".lineashoras";
                 string sqlLineasHoras = "INSERT INTO " + nombreTabla + " (";
                 List<string> campos = obtenerColumnasDeTabla(nombreTabla);
@@ -3524,6 +3525,95 @@ namespace Datos
 
         }
 
+        public void cerrarEscalafones(DateTime fechaDesde, DateTime fechaHasta)
+        {
+            // El cierre de Escalafon consiste en generar los registros correspondientes
+            // en la tabla fechaescalafoncerrado.
+            try
+            {
+                recargarContexto();
+
+                FeCHaEScalaFOncerRadO fechacerrada;
+                
+                DateTime dtAux;
+                dtAux = fechaDesde;
+                while (dtAux <= fechaHasta)
+                {
+                    fechacerrada = new FeCHaEScalaFOncerRadO();
+                    fechacerrada.FeCHaCeRrAda = dtAux;
+                    database.FeCHaEScalaFOncerRadO.InsertOnSubmit(fechacerrada);
+                    dtAux = dtAux.AddDays(1);
+                }
+                database.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                recargarContexto();
+                throw ex;
+            }
+        }
+
+        public bool tieneEscalafonCerrado(DateTime fecha)
+        {
+            // El cierre de Escalafon consiste en generar los registros correspondientes
+            // en la tabla fechaescalafoncerrado.
+            try
+            {
+                recargarContexto();
+
+                int cerrado = database.FeCHaEScalaFOncerRadO.Where(cer => cer.FeCHaCeRrAda == fecha).Count();
+                // Si es == 1 entonces esta cerrado, sino no.
+                return cerrado == 1;
+            }
+            catch (Exception ex)
+            {
+                recargarContexto();
+                throw ex;
+            }
+        }
+
+        public int obtenerCantidadFuncionariosActivosSinAsignar(DateTime Fecha)
+        {
+            System.Data.Common.DbConnection conn;
+            System.Data.Common.DbCommand cmd;
+            conn = database.Connection;
+            try
+            {
+                string SQL = "select count(*) from empleados emp, TiposCargos tc where emp.Activo=1 and emp.IdCargo = tc.IdCargo ";
+                SQL += " and tc.TipoFacturacion='JORNALERO' and emp.NroEmpleado not in (select distinct(NroEmpleado) from horarioescalafon he where lower(he.dia) = DAYNAME(@fecha) and he.tipoDia!=1)";
+                SQL += " and emp.NroEmpleado not in (select distinct(IdEmpleado) from eventoshistorialempleado ehe where @fecha between ehe.FechaInicio and ehe.FechaFin and ehe.borrado=0) order by emp.NroEmpleado";
+                cmd = conn.CreateCommand();
+                cmd.CommandText = SQL;
+                conn.Open();
+                cmd.Prepare();
+                System.Data.Common.DbParameter parameter = cmd.CreateParameter();
+                parameter.ParameterName = "@fecha";
+                parameter.DbType = DbType.Date;
+                parameter.Value = Fecha;
+                cmd.Parameters.Add(parameter);
+                
+                System.Data.Common.DbDataReader print = cmd.ExecuteReader();
+                bool read = print.Read();
+                if (read)
+                {
+                    return print.GetInt32(0);
+                }
+                throw new Exception("Error el ejecutar la consulta en Datos.obtenerCantidadFuncionariosActivosSinAsignar.");
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex2)
+            {
+                throw ex2;
+            }
+            finally
+            {
+                if (conn.State != ConnectionState.Closed)
+                    conn.Close();
+                }
+        }
         public List<EScalaFOneMpLeadO> getHorariosEmpleado(int NroEmpleado)
         {
             try
@@ -3724,7 +3814,38 @@ namespace Datos
             {
                 throw myex;
             }
-        }       
+        }
+
+        public bool tieneEscalafonGenerado(int NumeroCliente, int NumeroServicio, DateTime Fecha)
+        {
+            try
+            {
+                /* Un cliente/servicio tiene generado el escalafon si:
+                 * - El servicio no trabaja para esa fecha.
+                 * o
+                 * - Tiene HorasGeneradas
+                 */
+                recargarContexto();
+                // Obtenemos el contrato y vemos si trabaja esa fecha
+                int nroContrato = NumeroCliente * 1000 + NumeroServicio;
+                string dayname = Thread.CurrentThread.CurrentCulture.DateTimeFormat.GetDayName(Fecha.DayOfWeek).ToLower();
+                
+                bool trabaja = database.HoRaRioDiA.Any(hd => hd.Dia.ToLower() == dayname && hd.IDContrato== nroContrato);
+                    
+                if (trabaja)
+                {
+                    bool cantHsGeneradas = database.HoRaSGeneraDaSEScalaFOn.Any(reg => reg.NumeroCliente == NumeroCliente && reg.NumeroServicio == NumeroServicio && reg.FechaCorrespondiente==Fecha);
+                    return cantHsGeneradas;
+                }
+                else
+                    // Si no trabaja igual se retorna true.
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
   
 
         public List<HoRaRioEScalaFOn> getHorEmpleado(int NroEmpleado, string dia, int IdEscalafon)
@@ -4012,20 +4133,9 @@ namespace Datos
                            where varcli.NroEmpleado == (uint)nroEmp
                            group varcli by varcli.Fecha;
 
-                
-                            //select varcli).GroupBy(LiquidAcIonEmPleadOs => LiquidAcIonEmPleadOs.Fecha);
-
                 Dictionary<DateTime, TimeSpan> liqui = new Dictionary<DateTime, TimeSpan>();
                 DateTime fecha;
                 TimeSpan horas;
-                //foreach (var dia in hors)
-                //{
-                //    fecha = dia.Key;                    
-                //    horas = new TimeSpan(0);
-                //    foreach (LiquidAcIonEmPleadOs l in dia)
-                //        horas = horas + l.Horas.TimeOfDay;                  
-                //    liqui.Add(fecha, horas);
-                //}
 
                 foreach (var dia in hors)
                 {
@@ -4164,8 +4274,7 @@ namespace Datos
             {
                 foreach (HoRaRioDiA hd in lh.HoRaRioDiA)
                 {
-                    
-                    if (hd.Dia.ToLower()==Thread.CurrentThread.CurrentCulture.DateTimeFormat.GetDayName(dia.DayOfWeek))
+                    if (hd.Dia.ToLower()==Thread.CurrentThread.CurrentCulture.DateTimeFormat.GetDayName(dia.DayOfWeek).ToLower())
                     {
                         hini = TimeSpan.Parse(hd.HoraIni);
                         hfin = TimeSpan.Parse(hd.HoraFin);
@@ -4176,7 +4285,6 @@ namespace Datos
                     }
                 }
             }
-           
             return ret;
         }
 
@@ -4306,7 +4414,6 @@ namespace Datos
 
             MySqlConnection conexion2 = null;
             MySqlDataReader mydata = null;
-
 
             try
             {

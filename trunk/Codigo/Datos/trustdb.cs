@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2011-04-27 12:21:37Z
+#region Auto-generated classes for trustdb database on 2011-05-26 23:17:52Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2011-04-27 12:21:37Z
+// Auto-generated from trustdb on 2011-05-26 23:17:52Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -96,6 +96,7 @@ namespace Datos
 		public Table<EventOsHistOrIalEmPleadO> EventOsHistOrIalEmPleadO { get { return GetTable<EventOsHistOrIalEmPleadO>(); } }
 		public Table<ExtrasLiquidAcIon> ExtrasLiquidAcIon { get { return GetTable<ExtrasLiquidAcIon>(); } }
 		public Table<ExtrasLiquidAcIonEmPleadO> ExtrasLiquidAcIonEmPleadO { get { return GetTable<ExtrasLiquidAcIonEmPleadO>(); } }
+		public Table<FeCHaEScalaFOncerRadO> FeCHaEScalaFOncerRadO { get { return GetTable<FeCHaEScalaFOncerRadO>(); } }
 		public Table<FeRiAdoS> FeRiAdoS { get { return GetTable<FeRiAdoS>(); } }
 		public Table<GRuPOs> GRuPOs { get { return GetTable<GRuPOs>(); } }
 		public Table<HoRaRioDiA> HoRaRioDiA { get { return GetTable<HoRaRioDiA>(); } }
@@ -6038,6 +6039,111 @@ namespace Datos
 		#region ctor
 
 		public ExtrasLiquidAcIonEmPleadO()
+		{
+			OnCreated();
+		}
+
+		#endregion
+
+	}
+
+	[Table(Name = "trustdb.fechaescalafoncerrado")]
+	public partial class FeCHaEScalaFOncerRadO : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		#region INotifyPropertyChanging handling
+
+		public event PropertyChangingEventHandler PropertyChanging;
+
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs("");
+		protected virtual void SendPropertyChanging()
+		{
+			if (PropertyChanging != null)
+			{
+				PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+
+		#endregion
+
+		#region INotifyPropertyChanged handling
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected virtual void SendPropertyChanged(string propertyName)
+		{
+			if (PropertyChanged != null)
+			{
+				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		#endregion
+
+		#region Extensibility Method Definitions
+
+		partial void OnCreated();
+		partial void OnFeCHaCeRrAdaChanged();
+		partial void OnFeCHaCeRrAdaChanging(DateTime? value);
+		partial void OnIDFeCHaEScalaFOncerRadOChanged();
+		partial void OnIDFeCHaEScalaFOncerRadOChanging(int value);
+
+		#endregion
+
+		#region DateTime? FeCHaCeRrAda
+
+		private DateTime? _feChACeRrAda;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_feChACeRrAda", Name = "fechacerrada", DbType = "date", AutoSync = AutoSync.Never)]
+		public DateTime? FeCHaCeRrAda
+		{
+			get
+			{
+				return _feChACeRrAda;
+			}
+			set
+			{
+				if (value != _feChACeRrAda)
+				{
+					OnFeCHaCeRrAdaChanging(value);
+					SendPropertyChanging();
+					_feChACeRrAda = value;
+					SendPropertyChanged("FeCHaCeRrAda");
+					OnFeCHaCeRrAdaChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region int IDFeCHaEScalaFOncerRadO
+
+		private int _idfEChAEsCalaFoNcerRadO;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_idfEChAEsCalaFoNcerRadO", Name = "idfechaescalafoncerrado", DbType = "int", IsPrimaryKey = true, IsDbGenerated = true, AutoSync = AutoSync.Never, CanBeNull = false)]
+		public int IDFeCHaEScalaFOncerRadO
+		{
+			get
+			{
+				return _idfEChAEsCalaFoNcerRadO;
+			}
+			set
+			{
+				if (value != _idfEChAEsCalaFoNcerRadO)
+				{
+					OnIDFeCHaEScalaFOncerRadOChanging(value);
+					SendPropertyChanging();
+					_idfEChAEsCalaFoNcerRadO = value;
+					SendPropertyChanged("IDFeCHaEScalaFOncerRadO");
+					OnIDFeCHaEScalaFOncerRadOChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region ctor
+
+		public FeCHaEScalaFOncerRadO()
 		{
 			OnCreated();
 		}
