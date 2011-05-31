@@ -275,7 +275,6 @@ namespace Datos
         
         #endregion
 
-
         #region ClientesServicios
         
         bool existeClienteServicio(int NumeroCliente, int NumeroServicio);
@@ -332,19 +331,55 @@ namespace Datos
         void altaMotivosCambiosDiarios(MotIVOsCamBiosDiARioS t);
         void modificacionMotivosCambiosDiarios(MotIVOsCamBiosDiARioS t);
         #endregion
-        
-        bool existeEscalafon(int nroCon);
-
-        void altaEscalafon(EScalaFOn esc, List<EScalaFOneMpLeadO> lhs);
 
         string getNombreEmpleado(int NroEmpleado);
 
+        #region Escalafon
+
+        /// <summary>
+        /// Devuelve True si existe el escalafon para el Nro de Contrato dado.
+        /// </summary>
+        /// <param name="NumeroContrato">Numero del Contrato a chequear si tiene el escalafon</param>
+        /// <returns>True si existe el escalafon. False en caso contrario</returns>
+        bool existeEscalafon(int NumeroContrato);
+        
+        
+        void altaEscalafon(EScalaFOn esc, List<EScalaFOneMpLeadO> lhs);
         EScalaFOn obtenerEscalafon(int NroEscalafon);
-
         void eliminarLineasEscalafon(int NroEscalafon);
-
         void guardarLineasEscalafon(List<EScalaFOneMpLeadO> lineas);
         void modificarEscalafon(EScalaFOn escal);
+
+        /// <summary>
+        /// Devuelve la cantidad de Funcionarios Activos que no estan asignados a ningun servicio para la fecha dad
+        /// </summary>
+        /// <param name="Fecha"></param>
+        /// <returns></returns>
+        int obtenerCantidadFuncionariosActivosSinAsignar(DateTime Fecha);
+        
+        /// <summary>
+        /// Cierra los escalafones de todas las fechas del rango de fecha dado.
+        /// </summary>
+        /// <param name="fechaDesde">Primer fecha a cerrar</param>
+        /// <param name="fechaHasta">Ultima fecha a cerrar</param>
+        void cerrarEscalafones(DateTime fechaDesde, DateTime fechaHasta);
+
+        /// <summary>
+        /// Devuelve True si ya esta cerrado el escalafon para la fecha
+        /// </summary>
+        /// <param name="fecha">Fecha a consultar</param>
+        /// <returns></returns>
+        bool tieneEscalafonCerrado(DateTime fecha);
+
+        /// <summary>
+        /// Devuelve true si el servicio tiene generado el escalafon para la fecha dada.
+        /// </summary>
+        /// <param name="NumeroCliente">Numero de Cliente</param>
+        /// <param name="NumeroServicio">Numero del Servicio del Cliente</param>
+        /// <param name="Fecha">Fecha a chequear si existen horasgeneradas</param>
+        /// <returns>True si tiene el escalafon generado, False en caso contrario</returns>
+        bool tieneEscalafonGenerado(int NumeroCliente, int NumeroServicio, DateTime Fecha);
+        #endregion
 
         /// <summary>
         /// Recarga el Contexto del ORM
@@ -424,5 +459,7 @@ namespace Datos
         DataEventosHE obtenerEventosHistEmpleado(int NroEmpleado, DateTime Mes);
 
         List<HoRaSGeneraDaSEScalaFOn> obtenerDescansos(int NroEmpleado, DateTime Mes);
+
+        
     }
 }

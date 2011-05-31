@@ -1,0 +1,18 @@
+-- Creamos tabla FECHAESCALAFONCERRADO. Issue 59
+create table fechaescalafoncerrado(idfechaescalafoncerrado int not null auto_increment primary key, fechacerrada date);
+
+-- Creamos indice sobre la fecha.
+create index ix_fechacierre on fechaescalafoncerrado(fechacerrada);
+
+-- Agregamos el campo dia al indice Contrato_HD 
+drop index Contrato_HD on horariodia;
+create index ixContratoDia on HorarioDia(IdContrato,Dia);
+
+-- Agrandamo el campo Query de varchar(1000) a varchar(1500)
+alter table consultasempleado change column Query Query varchar(1500);
+
+-- Issue 60. Consulta de Actividad de un funcionario en un rango de dias.
+INSERT INTO CONSULTASEMPLEADOS VALUES (0,"ACTIVIDAD DE UN FUNCIONARIO EN DIAS","Devuelve la actividad del funcionario en todos los dias dentro del rango dado.","select FechaCorrespondiente as Fecha, CAST( concat_ws(',',emp.NroEmpleado, emp.Apellido, emp.Nombre) as CHAR) as empleado, 'ESCALAFON',CAST(if(hge.Descanso=0,concat(NumeroCliente,'-', NumeroServicio),'Descanso') as CHAR) as observacion from horasgeneradasescalafon hge, empleados emp where hge.FechaCorrespondiente between 'FECHADESDE' and 'FECHAHASTA' and hge.NroEmpleado=NROEMPLEADO and hge.NroEmpleado=emp.NroEmpleado UNION select FechaInicio as Fecha, CAST(concat_ws(' ',emp.NroEmpleado, emp.Apellido, emp.Nombre) as CHAR) as empleado,'HISTORIAL FUNCIONARIO', CAST(concat(ehe.FechaInicio,' a ',ehe.FechaFin,': ', ehe.Descripcion) as CHAR) as observacion from EventosHistorialEmpleado ehe, Empleados emp, TiposEventoHistorial teh where ehe.IdEmpleado=emp.NroEmpleado and ehe.IdTipoEvento = teh.IdTipoEventoHistorial and ( ehe.FechaInicio <= 'FECHAHASTA' and ehe.FechaFin >= 'FECHADESDE') and IdEmpleado=NROEMPLEADO UNION select FechaCorresponde as Fecha, CAST(concat_ws(' ',emp.NroEmpleado, emp.Apellido, emp.Nombre) as CHAR) as empleado,'MOTIVO CAMBIO DIARIO', CAST(mcd.Observaciones as CHAR) as observacion from motivoscambiosdiarios mcd, empleados emp where mcd.FechaCorresponde between 'FECHADESDE' and 'FECHAHASTA' and mcd.NroEmpleado=NROEMPLEADO and mcd.NroEmpleado=emp.NroEmpleado ORDER BY 1",1);
+ 
+-- Se corrige consulta  PERSONAL ACTIVO NO ASIGNADO PARA LA FECHA agregando que el tipoDia sea diferente a 1 (En otro servicio)
+update consultasclientes set Query="select  @rownum:=@rownum+1 AS Nro,emp.NroEmpleado, emp.Nombre, emp.Apellido from (SELECT @rownum:=0) r, empleados emp, TiposCargos tc  where emp.Activo=1 and emp.IdCargo = tc.IdCargo and tc.TipoFacturacion='JORNALERO' and emp.NroEmpleado not in (select distinct(NroEmpleado) from horarioescalafon he where lower(he.dia) = DAYNAME('FECHASOLA') and he.tipoDia!=1) and emp.NroEmpleado not in (select distinct(IdEmpleado) from eventoshistorialempleado ehe where 'FECHASOLA' between ehe.FechaInicio and ehe.FechaFin and ehe.borrado=0) order by emp.NroEmpleado" where IdConsultaCliente=7 and Nombre="PERSONAL ACTIVO NO ASIGNADO PARA LA FECHA";

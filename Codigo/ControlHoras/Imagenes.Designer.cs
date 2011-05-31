@@ -193,6 +193,13 @@ namespace ControlHoras {
             }
         }
         
+        internal static System.Drawing.Bitmap CerrarEscalafon_48x48 {
+            get {
+                object obj = ResourceManager.GetObject("CerrarEscalafon_48x48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap check_error {
             get {
                 object obj = ResourceManager.GetObject("check_error", resourceCulture);

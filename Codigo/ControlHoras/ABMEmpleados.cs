@@ -112,118 +112,125 @@ namespace ControlHoras
 
         private void ABMEmpleados_Load(object sender, EventArgs e)
         {
-            #region CargaCombos
-
-            // Combo Departamentos
             try
             {
-                updateListOfDepartamentos();
-            }
-            //catch (MySql.Data.MySqlClient.MySQLException mex)
-            //{
-            //}
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                #region CargaCombos
 
-            // Combo Ciudades
-            try
-            {
-                updateListOfCiudades();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            // Combo Barrios
-            try
-            {
-                updateListOfBarrios();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            // Combo EmergenciaMedica
-            try
-            {
-                updateListOfEmergenciaMedica();
-
-                //cmbEmergenciaMedica.BeginUpdate();                
-                //foreach (int key in docs.Keys)
-                //{
-                //    ComboBoxValue cbval = new ComboBoxValue(docs[key], key);
-                //    cmbEmergenciaMedica.Items.Add(cbval);
-                //}
-                //cmbEmergenciaMedica.EndUpdate();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            // Combo Mutualistas
-            try
-            {
-                updateListOfMutualistas();
-                //cmbMutualista.ValueMember = "Value";
-                //cmbMutualista.DisplayMember = "Display";
-                //cmbMutualista.BeginUpdate();
-                //foreach (int key in docs.Keys)
-                //{
-                //    ComboBoxValue cbval = new ComboBoxValue(docs[key], key);
-                //    cmbMutualista.Items.Add(cbval);
-                //}
-                //cmbMutualista.EndUpdate();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            // Combo TipoEventosHistorial
-            try
-            {
-                updateListOfTiposEventoHistorialCombo();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            // Cargar TiposCargos
-            try
-            {
-                cargos = datosTipos.obtenerTiposCargosList(true);
-                updateListOfCargos();
-
-
-                /*cmbTiposCargos.ValueMember = "Value";
-                cmbTiposCargos.DisplayMember = "Display";
-                cmbTiposCargos.BeginUpdate();
-                foreach (TipOscarGoS tipo in cargos)
+                // Combo Departamentos
+                try
                 {
-                    ComboBoxValue cbval = new ComboBoxValue(tipo.Nombre, (int)tipo.IDCargo);
-                    cmbTiposCargos.Items.Add(cbval);
+                    updateListOfDepartamentos();
                 }
-                cmbTiposCargos.EndUpdate();*/
+                //catch (MySql.Data.MySqlClient.MySQLException mex)
+                //{
+                //}
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                // Combo Ciudades
+                try
+                {
+                    updateListOfCiudades();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                // Combo Barrios
+                try
+                {
+                    updateListOfBarrios();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                // Combo EmergenciaMedica
+                try
+                {
+                    updateListOfEmergenciaMedica();
+
+                    //cmbEmergenciaMedica.BeginUpdate();                
+                    //foreach (int key in docs.Keys)
+                    //{
+                    //    ComboBoxValue cbval = new ComboBoxValue(docs[key], key);
+                    //    cmbEmergenciaMedica.Items.Add(cbval);
+                    //}
+                    //cmbEmergenciaMedica.EndUpdate();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                // Combo Mutualistas
+                try
+                {
+                    updateListOfMutualistas();
+                    //cmbMutualista.ValueMember = "Value";
+                    //cmbMutualista.DisplayMember = "Display";
+                    //cmbMutualista.BeginUpdate();
+                    //foreach (int key in docs.Keys)
+                    //{
+                    //    ComboBoxValue cbval = new ComboBoxValue(docs[key], key);
+                    //    cmbMutualista.Items.Add(cbval);
+                    //}
+                    //cmbMutualista.EndUpdate();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                // Combo TipoEventosHistorial
+                try
+                {
+                    updateListOfTiposEventoHistorialCombo();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                // Cargar TiposCargos
+                try
+                {
+                    cargos = datosTipos.obtenerTiposCargosList(true);
+                    updateListOfCargos();
+
+
+                    /*cmbTiposCargos.ValueMember = "Value";
+                    cmbTiposCargos.DisplayMember = "Display";
+                    cmbTiposCargos.BeginUpdate();
+                    foreach (TipOscarGoS tipo in cargos)
+                    {
+                        ComboBoxValue cbval = new ComboBoxValue(tipo.Nombre, (int)tipo.IDCargo);
+                        cmbTiposCargos.Items.Add(cbval);
+                    }
+                    cmbTiposCargos.EndUpdate();*/
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, "Error Cargando las Cargos. " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                #endregion
+                cargarPermisos();
+
+                //  btnCancelar.PerformClick();
+                mtNumeroDocumento.ContextMenu = new ContextMenu();
+
+                mtNumeroDocumento.Focus();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, "Error Cargando las Cargos. " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.DialogResult = DialogResult.Cancel;
+                throw new Exception("Error al cargar la ventana. Mensaje: "+ex.Message);
             }
-
-            #endregion
-
-            cargarPermisos();
-
-            //  btnCancelar.PerformClick();
-            mtNumeroDocumento.ContextMenu = new ContextMenu();
-
-            mtNumeroDocumento.Focus();
         }
 
         private void cargarPermisos()
@@ -247,7 +254,7 @@ namespace ControlHoras
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw ex;
             }
 
         }

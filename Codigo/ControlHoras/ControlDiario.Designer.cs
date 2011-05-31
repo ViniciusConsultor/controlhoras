@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlDiario));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtServicio = new System.Windows.Forms.TextBox();
             this.dgvHoras = new System.Windows.Forms.DataGridView();
             this.IdHorasGeneradasEscalafon = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,6 +69,7 @@
             this.mtFecha = new System.Windows.Forms.MaskedTextBox();
             this.btnDiaAnterior = new System.Windows.Forms.Button();
             this.btnDiaSiguiente = new System.Windows.Forms.Button();
+            this.lblEstadoEscalafon = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHoras)).BeginInit();
             this.menuStripdgvHoras.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -91,14 +92,14 @@
             this.dgvHoras.AllowUserToDeleteRows = false;
             this.dgvHoras.AllowUserToResizeColumns = false;
             this.dgvHoras.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvHoras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvHoras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
             this.dgvHoras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHoras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdHorasGeneradasEscalafon,
@@ -112,8 +113,8 @@
             this.dgvHoras.Name = "dgvHoras";
             this.dgvHoras.ReadOnly = true;
             this.dgvHoras.RowHeadersVisible = false;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvHoras.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvHoras.RowsDefaultCellStyle = dataGridViewCellStyle36;
             this.dgvHoras.RowTemplate.Height = 24;
             this.dgvHoras.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvHoras.Size = new System.Drawing.Size(563, 239);
@@ -130,8 +131,8 @@
             // 
             // NroEmpleado
             // 
-            dataGridViewCellStyle2.Format = "0000";
-            this.NroEmpleado.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle32.Format = "0000";
+            this.NroEmpleado.DefaultCellStyle = dataGridViewCellStyle32;
             this.NroEmpleado.Frozen = true;
             this.NroEmpleado.HeaderText = "Nro Empleado";
             this.NroEmpleado.IncludeLiterals = false;
@@ -147,8 +148,8 @@
             // 
             // Funcionario
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Funcionario.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Funcionario.DefaultCellStyle = dataGridViewCellStyle33;
             this.Funcionario.Frozen = true;
             this.Funcionario.HeaderText = "Funcionario";
             this.Funcionario.Name = "Funcionario";
@@ -157,9 +158,9 @@
             // 
             // HoraEntrada
             // 
-            dataGridViewCellStyle4.Format = "00:00";
-            dataGridViewCellStyle4.NullValue = null;
-            this.HoraEntrada.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle34.Format = "00:00";
+            dataGridViewCellStyle34.NullValue = null;
+            this.HoraEntrada.DefaultCellStyle = dataGridViewCellStyle34;
             this.HoraEntrada.Frozen = true;
             this.HoraEntrada.HeaderText = "Hora Entrada";
             this.HoraEntrada.IncludeLiterals = false;
@@ -174,8 +175,8 @@
             // 
             // HoraSalida
             // 
-            dataGridViewCellStyle5.Format = "00:00";
-            this.HoraSalida.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle35.Format = "00:00";
+            this.HoraSalida.DefaultCellStyle = dataGridViewCellStyle35;
             this.HoraSalida.Frozen = true;
             this.HoraSalida.HeaderText = "Hora Salida";
             this.HoraSalida.IncludeLiterals = false;
@@ -281,8 +282,8 @@
             // 
             // maskedTextBoxColumn1
             // 
-            dataGridViewCellStyle7.Format = "0000";
-            this.maskedTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle24.Format = "0000";
+            this.maskedTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle24;
             this.maskedTextBoxColumn1.Frozen = true;
             this.maskedTextBoxColumn1.HeaderText = "Nro Empleado";
             this.maskedTextBoxColumn1.IncludeLiterals = false;
@@ -304,9 +305,9 @@
             // 
             // maskedTextBoxColumn2
             // 
-            dataGridViewCellStyle8.Format = "00:00";
-            dataGridViewCellStyle8.NullValue = null;
-            this.maskedTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle29.Format = "00:00";
+            dataGridViewCellStyle29.NullValue = null;
+            this.maskedTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle29;
             this.maskedTextBoxColumn2.Frozen = true;
             this.maskedTextBoxColumn2.HeaderText = "Hora Entrada";
             this.maskedTextBoxColumn2.IncludeLiterals = false;
@@ -320,8 +321,8 @@
             // 
             // maskedTextBoxColumn3
             // 
-            dataGridViewCellStyle9.Format = "00:00";
-            this.maskedTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle37.Format = "00:00";
+            this.maskedTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle37;
             this.maskedTextBoxColumn3.Frozen = true;
             this.maskedTextBoxColumn3.HeaderText = "Hora Salida";
             this.maskedTextBoxColumn3.IncludeLiterals = false;
@@ -420,11 +421,24 @@
             this.btnDiaSiguiente.UseVisualStyleBackColor = true;
             this.btnDiaSiguiente.Click += new System.EventHandler(this.btnDiaSiguiente_Click);
             // 
+            // lblEstadoEscalafon
+            // 
+            this.lblEstadoEscalafon.AutoSize = true;
+            this.lblEstadoEscalafon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstadoEscalafon.ForeColor = System.Drawing.Color.Red;
+            this.lblEstadoEscalafon.Location = new System.Drawing.Point(299, 48);
+            this.lblEstadoEscalafon.Name = "lblEstadoEscalafon";
+            this.lblEstadoEscalafon.Size = new System.Drawing.Size(254, 16);
+            this.lblEstadoEscalafon.TabIndex = 19;
+            this.lblEstadoEscalafon.Text = "No esta cerrado el escalafón de este día.";
+            this.lblEstadoEscalafon.Visible = false;
+            // 
             // ControlDiario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(587, 389);
+            this.Controls.Add(this.lblEstadoEscalafon);
             this.Controls.Add(this.lblDia);
             this.Controls.Add(this.mtFecha);
             this.Controls.Add(this.btnDiaAnterior);
@@ -483,5 +497,6 @@
         private System.Windows.Forms.MaskedTextBox mtFecha;
         private System.Windows.Forms.Button btnDiaAnterior;
         private System.Windows.Forms.Button btnDiaSiguiente;
+        private System.Windows.Forms.Label lblEstadoEscalafon;
     }
 }

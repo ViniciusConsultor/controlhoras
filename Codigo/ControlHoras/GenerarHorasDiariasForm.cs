@@ -227,7 +227,7 @@ namespace ControlHoras
             DateTime fechaHasta;
             bool errorConsolidacion = false;
             //List<string> listaErrores = new List<string>();
-            
+
             if (DateTime.TryParse(mtFechaDesde.Text, out fechaDesde))
             {
                 if (DateTime.TryParse(mtFechaHasta.Text, out fechaHasta))
@@ -238,81 +238,117 @@ namespace ControlHoras
 
                         if (dg == DialogResult.Yes)
                         {
-                            panelConsolidacion.Visible = false;
-                            panelGeneracion.Visible = false;
-
-                            ucTreeClientesServicios.Enabled = false;
-                            Dictionary<string, List<string>> listaErrores;
                             try
                             {
-                                // Primero consolidamos
-                                panelConsolidacion.Visible = true;
-                                progressBar.Visible = true;
-                                listaErrores = consolidar();
-                                if (listaErrores.Count > 0)
+                                // Aplicamos controles previos
+                                aplicarControlesGeneracionEscalafon(fechaDesde, fechaHasta);
+
+                                // Pasaron los controles.
+                                panelConsolidacion.Visible = false;
+                                panelGeneracion.Visible = false;
+
+                                ucTreeClientesServicios.Enabled = false;
+                                Dictionary<string, List<string>> listaErrores;
+                                try
                                 {
-                                    // Si la consolidacion da errores
-                                    // Despliego el conjunto de errores.
-                                    setConsolidacionImageError();
-                                    errorConsolidacion = true;
-                                    MessageBox.Show(this, "Generacion Cancelada.", "Error al Generar", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    AbroWordConErrores(listaErrores);
-                                }
-                                else
-                                {
-                                    // Si la consolidacion estuvo OK, GENERAMOS
-                                    setConsolidacionImageOK();
-                                    setGeneracionImageProcesando();
-                                    panelGeneracion.Visible = true;
-                                    listaErrores=generarHoras(fechaDesde, fechaHasta);
+                                    // Primero consolidamos
+                                    panelConsolidacion.Visible = true;
+                                    progressBar.Visible = true;
+                                    // Consolidamos
+                                    listaErrores = consolidar();
                                     if (listaErrores.Count > 0)
                                     {
-                                        setGeneracionImageError();
+                                        // Si la consolidacion da errores
+                                        // Despliego el conjunto de errores.
+                                        setConsolidacionImageError();
+                                        errorConsolidacion = true;
+                                        MessageBox.Show(this, "Generacion Cancelada.", "Error al Generar", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         AbroWordConErrores(listaErrores);
                                     }
                                     else
                                     {
-                                        setGeneracionImageOK();
-                                        setLabelGeneracion("Generacion Terminada Correctamente.");
-                                        MessageBox.Show(this, "Proceso Finalizado Correctamente.", "Generacion Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        // Si la consolidacion estuvo OK, GENERAMOS
+                                        setConsolidacionImageOK();
+                                        setGeneracionImageProcesando();
+                                        panelGeneracion.Visible = true;
+                                        listaErrores = generarHoras(fechaDesde, fechaHasta);
+                                        if (listaErrores.Count > 0)
+                                        {
+                                            setGeneracionImageError();
+                                            AbroWordConErrores(listaErrores);
+                                        }
+                                        else
+                                        {
+                                            setGeneracionImageOK();
+                                            setLabelGeneracion("Generacion Terminada Correctamente.");
+                                            MessageBox.Show(this, "Proceso Finalizado Correctamente.", "Generacion Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        }
                                     }
                                 }
-                            }
-                            catch (Exception exx)
-                            {
-                                if (errorConsolidacion)
+                                catch (Exception exx)
                                 {
-                                    setConsolidacionImageError();
-                                    MessageBox.Show(this, "Consolidacion Finalizada Con Errores.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                                else
-                                {
-                                    setGeneracionImageError();
-                                    MessageBox.Show(this, exx.Message, "Error en la Generacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    if (errorConsolidacion)
+                                    {
+                                        setConsolidacionImageError();
+                                        MessageBox.Show(this, "Consolidacion Finalizada Con Errores.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                    else
+                                    {
+                                        setGeneracionImageError();
+                                        MessageBox.Show(this, exx.Message, "Error en la Generacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                                    }
                                 }
+                                finally
+                                {
+                                    ucTreeClientesServicios.Enabled = true;
+                                }
+
                             }
-                            finally
+                            catch (Exception exControles)
                             {
-                                ucTreeClientesServicios.Enabled = true;
+                                MessageBox.Show(exControles.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, "FechaHasta debe ser mayor o igual a FechaDesde.", "Datos Incorrectos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
-                    {
-                            MessageBox.Show(this, "FechaHasta debe ser mayor o igual a FechaDesde.", "Datos Incorrectos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                 }     
-                 else
-                       MessageBox.Show(this, "El formato de la fecha Hasta ingresada no es correcto.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(this, "El formato de la fecha Hasta ingresada no es correcto.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                    MessageBox.Show(this, "El formato de la fecha Desde ingresada no es correcto.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
-            else
-                MessageBox.Show(this, "El formato de la fecha Desde ingresada no es correcto.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        
-        
             
         }
 
+
+        
+
+        private void aplicarControlesGeneracionEscalafon(DateTime fechaDesde,DateTime fechaHasta)
+        {
+            try
+            {
+                DateTime dtAux;
+                bool cerrada;
+                dtAux = fechaDesde;
+                while (dtAux <= fechaHasta)
+                {
+                    cerrada = datos.tieneEscalafonCerrado(dtAux);
+                    if (cerrada)
+                        throw new Exception("La fecha " + dtAux.Date.ToShortDateString() + " ya tiene el escalafon cerrado. No se puede generar.");
+                    
+                    dtAux = dtAux.AddDays(1);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        } 
 
         private List<string> concatenar(List<string> l1, List<string> l2)
         {
@@ -394,8 +430,29 @@ namespace ControlHoras
 
         private void AbroWordConErrores(Dictionary<string, List<string>> listaErrores)
         {
-            Prueba_2 p = new Prueba_2(listaErrores);
-            p.Show();
+            try
+            {
+                Prueba_2 p = new Prueba_2(listaErrores);
+                p.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tsbCerrarEscalafon_Click(object sender, EventArgs e)
+        {
+            
+            try
+            {
+                CerrarEscalafonForm crf = new CerrarEscalafonForm();
+                crf.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
     }
