@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2011-05-26 23:17:52Z
+#region Auto-generated classes for trustdb database on 2011-06-07 00:46:44Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2011-05-26 23:17:52Z
+// Auto-generated from trustdb on 2011-06-07 00:46:44Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -1428,7 +1428,7 @@ namespace Datos
 
 		private string _query;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_query", Name = "Query", DbType = "varchar(1000)", AutoSync = AutoSync.Never)]
+		[Column(Storage = "_query", Name = "Query", DbType = "varchar(1500)", AutoSync = AutoSync.Never)]
 		public string Query
 		{
 			get
@@ -6082,10 +6082,38 @@ namespace Datos
 		#region Extensibility Method Definitions
 
 		partial void OnCreated();
+		partial void OnControlDiarioCerradoChanged();
+		partial void OnControlDiarioCerradoChanging(short value);
 		partial void OnFeCHaCeRrAdaChanged();
 		partial void OnFeCHaCeRrAdaChanging(DateTime? value);
 		partial void OnIDFeCHaEScalaFOncerRadOChanged();
 		partial void OnIDFeCHaEScalaFOncerRadOChanging(int value);
+
+		#endregion
+
+		#region short ControlDiarioCerrado
+
+		private short _controlDiarioCerrado;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_controlDiarioCerrado", Name = "ControlDiarioCerrado", DbType = "smallint(6)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public short ControlDiarioCerrado
+		{
+			get
+			{
+				return _controlDiarioCerrado;
+			}
+			set
+			{
+				if (value != _controlDiarioCerrado)
+				{
+					OnControlDiarioCerradoChanging(value);
+					SendPropertyChanging();
+					_controlDiarioCerrado = value;
+					SendPropertyChanged("ControlDiarioCerrado");
+					OnControlDiarioCerradoChanged();
+				}
+			}
+		}
 
 		#endregion
 
@@ -6639,7 +6667,7 @@ namespace Datos
 		#region Parents
 
 		private EntityRef<LineAshOrAs> _lineAshOrAs;
-		[Association(Storage = "_lineAshOrAs", OtherKey = "NroLinea,IDContrato", ThisKey = "NroLinea,IDContrato", Name = "FK_IdContratoNroLinea", IsForeignKey = true)]
+		[Association(Storage = "_lineAshOrAs", OtherKey = "IDContrato,NroLinea", ThisKey = "IDContrato,NroLinea", Name = "FK_IdContratoNroLinea", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public LineAshOrAs LineAshOrAs
 		{
@@ -6661,13 +6689,13 @@ namespace Datos
 					if (value != null)
 					{
 						value.HoRaRioDiA.Add(this);
-						_nroLinea = value.NroLinea;
 						_idcOntrato = value.IDContrato;
+						_nroLinea = value.NroLinea;
 					}
 					else
 					{
-						_nroLinea = default(sbyte);
 						_idcOntrato = default(uint);
+						_nroLinea = default(sbyte);
 					}
 				}
 			}
@@ -7727,7 +7755,7 @@ namespace Datos
 		#region Children
 
 		private EntitySet<HoRaRioDiA> _hoRaRioDiA;
-		[Association(Storage = "_hoRaRioDiA", OtherKey = "NroLinea,IDContrato", ThisKey = "NroLinea,IDContrato", Name = "FK_IdContratoNroLinea")]
+		[Association(Storage = "_hoRaRioDiA", OtherKey = "IDContrato,NroLinea", ThisKey = "IDContrato,NroLinea", Name = "FK_IdContratoNroLinea")]
 		[DebuggerNonUserCode]
 		public EntitySet<HoRaRioDiA> HoRaRioDiA
 		{

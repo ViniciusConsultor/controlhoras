@@ -18,6 +18,8 @@ namespace ControlHoras
         private SERVicIoS servicio;
         private DateTime FechaSeleccionada;
         private Dictionary<long, HoRaSGeneraDaSEScalaFOn> listaFuncsCargados = null;
+        // Lista de Controles que se tiene permisos.
+        List<Component> listaControlesConPermiso;
 
         IClientesServicios sistema;
         int ind;
@@ -32,6 +34,8 @@ namespace ControlHoras
         Color ColorEntradaFila = Color.SlateGray;
         Color ColorSalidaFila = Color.Yellow;
 
+        private bool PermitirModificacionesADiaCerrado = false;
+
         private ControlDiario()
         {
             InitializeComponent();
@@ -43,6 +47,7 @@ namespace ControlHoras
                 datos.recargarContexto();
                 ind = 0;
                 cant = 0;
+                listaControlesConPermiso = new List<Component>();
             }
             catch (Exception ex)
             {
@@ -55,7 +60,64 @@ namespace ControlHoras
             if (ventana == null)
                 ventana = new ControlDiario();
             return ventana;
-        }       
+        }
+
+         private void cargarPermisos()
+         {
+             try
+             {
+                 String username = ((VentanaPrincipal)this.Owner).userName;
+                 List<Datos.PerMisOControl> listapermisos = Datos.DatosABMTipos.getInstance().obtenerListaPermisosUsuarioPantalla(username, this.Name);
+
+                 Control.ControlCollection controls = this.Controls;
+                 
+                 foreach (Datos.PerMisOControl pc in listapermisos)
+                 {
+                     if (controls.ContainsKey(pc.Nombre))
+                     {
+                         controls[pc.Nombre].Enabled=true;
+                         listaControlesConPermiso.Add(controls[pc.Nombre]);
+                     }
+                     else
+                        foreach(Control con in controls)
+                        {
+                            if (con.GetType().Equals(typeof(ToolStrip)))
+                            {
+                                
+                                ToolStrip c = (ToolStrip) con;
+                                if (c.Items.ContainsKey(pc.Nombre))
+                                {
+                                    ToolStripItem b = c.Items[pc.Nombre];
+                                    if (b.GetType().ToString() == pc.NettYpe)
+                                    {
+                                        b.Enabled = true;
+                                        listaControlesConPermiso.Add(b);
+                                        break;
+                                    }
+                                    
+                                }
+                            }
+                            else if (con.Controls.ContainsKey(pc.Nombre))
+                            {
+                                Control b = con.Controls[pc.Nombre];
+                                if (b.GetType().ToString() == pc.NettYpe)
+                                {
+                                    b.Enabled = true;
+                                    listaControlesConPermiso.Add(b);
+                                    break;
+                                }
+                            }
+                        }
+                 }
+             }
+             catch (Exception ex)
+             {
+                 throw ex;
+             }
+
+         
+         }
+
 
         private void mtServicio_KeyDown(object sender, KeyEventArgs e)
         {
@@ -162,6 +224,8 @@ namespace ControlHoras
                     else
                         lblEstadoEscalafon.Visible = false;
                     lblDia.Text = Utilidades.ControladorUtilidades.nombreDiasInglesAEspanol(FechaSeleccionada.DayOfWeek.ToString());
+                    habilitarMenuStripDgvHoras();
+                    
                     SendKeys.Send("{TAB}");
                 }
                 catch (Exception ex)
@@ -173,16 +237,72 @@ namespace ControlHoras
             
         }
 
-        private void cargarDatos()
+        private void habilitarMenuStripDgvHoras()
         {
-            int numFila = dgvHoras.Rows.Count;
+            // Chequeamos si tiene el dia cerrado
+            bool diaCerrado = datos.diaCerradoControlDiario(FechaSeleccionada);
+            if (diaCerrado)
+            {
+                menuStripdgvHoras.Enabled = false;
+                foreach (Component c in listaControlesConPermiso)
+                {
+                    string tipoToolStrip = typeof(ToolStripItem).ToString();
+                    switch (c.GetType().Name)
+                    {
+                        case "ToolStripButton":
+                            ((ToolStripButton)c).Enabled = true;
+                            break;
+                        default:
+                            ((Control)c).Enabled = true;
+                            break;
+                    }
+                }
+                btnCerrarDia.Enabled = false;
+                lblDiaCerrado.Visible = true;
+                if (PermitirModificacionesADiaCerrado)
+                {
+                    lblPermitirModificaciones.Visible = true;
+                    menuStripdgvHoras.Enabled = true;
+                }
+            }
+            else
+            {
+                lblDiaCerrado.Visible = false;
+                lblPermitirModificaciones.Visible = false;
+                menuStripdgvHoras.Enabled = true;
+                foreach (Component c in listaControlesConPermiso)
+                {
+                    string tipoToolStrip = typeof(ToolStripItem).ToString();
+                    switch (c.GetType().Name)
+                    {
+                        case "ToolStripButton":
+                            ((ToolStripItem)c).Enabled = true;
+                            break;
+                        default:
+                            ((Control)c).Enabled = true;
+                            break;
+                    }
+                }
+                btnPermitirModificaciones.Enabled = false;
+            }
+            
+        }
+
+        private void clearDataGridView(DataGridView dgv)
+        {
+            int numFila = dgv.Rows.Count;
             while (numFila > 0)
             {
                 numFila--;
-                dgvHoras.Rows.RemoveAt(numFila);
+                dgv.Rows.RemoveAt(numFila);
 
             }
-            dgvHoras.Refresh();
+            dgv.Refresh();
+        }
+
+        private void cargarDatos()
+        {
+            clearDataGridView(dgvHoras);
             List<HoRaSGeneraDaSEScalaFOn> listFunc = datos.obtenerHorasGeneradasServicio((int)servicio.NumeroCliente, (int)servicio.NumeroServicio, FechaSeleccionada);
             rellenarDatosDgvHoras(listFunc);
         }
@@ -273,6 +393,7 @@ namespace ControlHoras
                 mtFecha.Text = DateTime.Parse(mtFecha.Text).AddDays(1).ToShortDateString();
                 mtFecha.Focus();
                 SendKeys.Send("{ENTER}");
+                clearDataGridView(dgvHoras);
             }
             catch (Exception ex)
             {
@@ -286,6 +407,7 @@ namespace ControlHoras
                 mtFecha.Text = DateTime.Parse(mtFecha.Text).AddDays(-1).ToShortDateString();
                 mtFecha.Focus();
                 SendKeys.Send("{ENTER}");
+                clearDataGridView(dgvHoras);
             }
             catch (Exception ex)
             {
@@ -554,7 +676,42 @@ namespace ControlHoras
         {
             mtFecha.Text = DateTime.Today.ToString("dd/MM/yyyy");
             mtFecha.Focus();
+            cargarPermisos();
             SendKeys.Send("{ENTER}");
+        }
+
+        private void menuStripdgvHoras_Opening(object sender, CancelEventArgs e)
+        {
+            if (mtServicio.Text.Length == 0)
+            {
+                MessageBox.Show("Debe ingresar Numero de Cliente y Servicio.", "Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                e.Cancel = true;
+            }
+        }
+
+        private void tsCerrarDia_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Seguro que quiere cerrar el dia completo?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                try
+                {
+
+                    datos.cerrarControlDiario(FechaSeleccionada);
+                    MessageBox.Show("Dia cerrado correctamente.", "Cierre", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    habilitarMenuStripDgvHoras();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnPermitirModificaciones_Click(object sender, EventArgs e)
+        {
+            PermitirModificacionesADiaCerrado = true;
+            habilitarMenuStripDgvHoras();
         }    
        
     }

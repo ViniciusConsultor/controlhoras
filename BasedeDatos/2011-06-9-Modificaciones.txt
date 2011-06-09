@@ -1,0 +1,7 @@
+-- Agregamos campo de Control Diario Cerrado
+alter table fechaescalafoncerrado add column ControlDiarioCerrado smallint not null default 0;
+
+-- Permisos
+insert into pantallawinform values (0,"ControlDiario","Ventana de Control Diario",1);
+insert into permisocontrol values(0,"System.Windows.Forms.ToolStripButton","btnCerrarDia",3,"Boton Cerrar Dia");
+insert into permisocontrol values(0,"System.Windows.Forms.ToolStripButton","btnPermitirModificaciones",3,"Boton Permitir Modificaciones");

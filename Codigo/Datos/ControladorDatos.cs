@@ -989,46 +989,33 @@ namespace Datos
             try
             {
                 
-                List<EmPleadOs> emps;
-                
+                //List<EmPleadOs> emps;
+                IQueryable<EmPleadOs> emps = database.EmPleadOs;
                 uint estado = 1;
-                if (incluirInactivos)
-                    estado = 0;
+                if (!incluirInactivos)
+                    emps = emps.Where(e => e.Activo == 1);
+                
                 switch (CampoBusqueda)
                 {
                     case "Nombre":
-                        emps = (from varemp in database.GetTable<EmPleadOs>()
-                                where varemp.Nombre.Contains(patronBusqueda) && varemp.Activo == estado
-                                select varemp).ToList<EmPleadOs>();
+                        emps = emps.Where(e => e.Nombre.Contains(patronBusqueda));
                         break;
                     case "Apellido":
-                        emps = (from varemp in database.GetTable<EmPleadOs>()
-                                where varemp.Apellido.Contains(patronBusqueda) && varemp.Activo == estado
-                                select varemp).ToList<EmPleadOs>();
+                        emps = emps.Where(e => e.Apellido.Contains(patronBusqueda));
                         break;
                     case "Direccion":
-                        emps = (from varemp in database.GetTable<EmPleadOs>()
-                                where varemp.Direccion.Contains(patronBusqueda) && varemp.Activo == estado
-                                select varemp).ToList<EmPleadOs>();
+                        emps = emps.Where(e => e.Direccion.Contains(patronBusqueda));
                         break;
                     case "Telefono":
-                        emps = (from varemp in database.GetTable<EmPleadOs>()
-                                where varemp.Telefonos.Contains(patronBusqueda) && varemp.Activo == estado
-                                select varemp).ToList<EmPleadOs>();
+                        emps = emps.Where(e => e.Telefonos.Contains(patronBusqueda));
                         break;
                     case "Documento":
-                        emps = (from varemp in database.GetTable<EmPleadOs>()
-                                where varemp.NumeroDocumento.Contains(patronBusqueda) && varemp.Activo == estado
-                                select varemp).ToList<EmPleadOs>();
+                        emps = emps.Where(e => e.NumeroDocumento.Contains(patronBusqueda));
                         break;
                     default:
                         throw new NoExisteException("No existe el Campo de Busqueda " + CampoBusqueda);
-                        
-
                 }
-                
-                        
-                return emps;
+                return emps.ToList();
             }
             catch (Exception ex)
             {
@@ -3076,6 +3063,44 @@ namespace Datos
                 throw e;
             }
         }
+
+        public bool diaCerradoControlDiario(DateTime fecha)
+        {
+            try
+            {
+                recargarContexto();
+                int cerrado = database.FeCHaEScalaFOncerRadO.Where(cer => cer.FeCHaCeRrAda == fecha && cer.ControlDiarioCerrado==1).Count();
+                // Si es == 1 entonces esta cerrado, sino no.
+                return cerrado == 1;
+            }
+            catch (Exception ex)
+            {
+                recargarContexto();
+                throw ex;
+            }
+        }
+
+        public void cerrarControlDiario(DateTime fecha)
+        {
+            try
+            {
+                if (!tieneEscalafonCerrado(fecha))
+                    throw new Exception("El escalafon debe estar Cerrado para la fecha, y no lo esta.");
+                recargarContexto();
+                FeCHaEScalaFOncerRadO fec = database.FeCHaEScalaFOncerRadO.Where(reg => reg.FeCHaCeRrAda == fecha).Single();
+                if (fec.ControlDiarioCerrado == 1)
+                    throw new Exception("El Control Dario ya se encuentra Cerrado para la fecha: " + fecha);
+
+                fec.ControlDiarioCerrado = 1;
+                database.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                recargarContexto();
+                throw ex;
+            }
+        }
+        
         #endregion
 
         #region Usuarios

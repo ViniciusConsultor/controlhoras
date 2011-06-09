@@ -245,7 +245,8 @@ namespace Datos
         void quitarFuncionarioControlDiario(long IdHorasGeneragasEscalafon, MotIVOsCamBiosDiARioS mtcd);
         void cambiarFuncionarioControlDiario(long IdHorasGeneragasEscalafon,int NroEmpleado, MotIVOsCamBiosDiARioS mtcd);
         void cambiarHoraFuncionarioControlDiario(long IdHorasGeneragasEscalafon,int NroEmpleado, DateTime horanueva, bool Entrada, MotIVOsCamBiosDiARioS mtcd);
-        
+        bool diaCerradoControlDiario(DateTime fecha);
+        void cerrarControlDiario(DateTime fecha);
         #endregion
 
         #region HorasGeneradasEscalafon

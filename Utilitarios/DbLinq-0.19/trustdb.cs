@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2011-03-16 01:24:36Z
+#region Auto-generated classes for trustdb database on 2011-06-07 00:46:44Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2011-03-16 01:24:36Z
+// Auto-generated from trustdb on 2011-06-07 00:46:44Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -96,6 +96,7 @@ namespace Datos
 		public Table<EventOsHistOrIalEmPleadO> EventOsHistOrIalEmPleadO { get { return GetTable<EventOsHistOrIalEmPleadO>(); } }
 		public Table<ExtrasLiquidAcIon> ExtrasLiquidAcIon { get { return GetTable<ExtrasLiquidAcIon>(); } }
 		public Table<ExtrasLiquidAcIonEmPleadO> ExtrasLiquidAcIonEmPleadO { get { return GetTable<ExtrasLiquidAcIonEmPleadO>(); } }
+		public Table<FeCHaEScalaFOncerRadO> FeCHaEScalaFOncerRadO { get { return GetTable<FeCHaEScalaFOncerRadO>(); } }
 		public Table<FeRiAdoS> FeRiAdoS { get { return GetTable<FeRiAdoS>(); } }
 		public Table<GRuPOs> GRuPOs { get { return GetTable<GRuPOs>(); } }
 		public Table<HoRaRioDiA> HoRaRioDiA { get { return GetTable<HoRaRioDiA>(); } }
@@ -1238,7 +1239,7 @@ namespace Datos
 
 		private string _query;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_query", Name = "Query", DbType = "varchar(1500)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		[Column(Storage = "_query", Name = "Query", DbType = "varchar(3000)", AutoSync = AutoSync.Never, CanBeNull = false)]
 		public string Query
 		{
 			get
@@ -1427,7 +1428,7 @@ namespace Datos
 
 		private string _query;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_query", Name = "Query", DbType = "varchar(1000)", AutoSync = AutoSync.Never)]
+		[Column(Storage = "_query", Name = "Query", DbType = "varchar(1500)", AutoSync = AutoSync.Never)]
 		public string Query
 		{
 			get
@@ -6046,6 +6047,139 @@ namespace Datos
 
 	}
 
+	[Table(Name = "trustdb.fechaescalafoncerrado")]
+	public partial class FeCHaEScalaFOncerRadO : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		#region INotifyPropertyChanging handling
+
+		public event PropertyChangingEventHandler PropertyChanging;
+
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs("");
+		protected virtual void SendPropertyChanging()
+		{
+			if (PropertyChanging != null)
+			{
+				PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+
+		#endregion
+
+		#region INotifyPropertyChanged handling
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected virtual void SendPropertyChanged(string propertyName)
+		{
+			if (PropertyChanged != null)
+			{
+				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		#endregion
+
+		#region Extensibility Method Definitions
+
+		partial void OnCreated();
+		partial void OnControlDiarioCerradoChanged();
+		partial void OnControlDiarioCerradoChanging(short value);
+		partial void OnFeCHaCeRrAdaChanged();
+		partial void OnFeCHaCeRrAdaChanging(DateTime? value);
+		partial void OnIDFeCHaEScalaFOncerRadOChanged();
+		partial void OnIDFeCHaEScalaFOncerRadOChanging(int value);
+
+		#endregion
+
+		#region short ControlDiarioCerrado
+
+		private short _controlDiarioCerrado;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_controlDiarioCerrado", Name = "ControlDiarioCerrado", DbType = "smallint(6)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public short ControlDiarioCerrado
+		{
+			get
+			{
+				return _controlDiarioCerrado;
+			}
+			set
+			{
+				if (value != _controlDiarioCerrado)
+				{
+					OnControlDiarioCerradoChanging(value);
+					SendPropertyChanging();
+					_controlDiarioCerrado = value;
+					SendPropertyChanged("ControlDiarioCerrado");
+					OnControlDiarioCerradoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region DateTime? FeCHaCeRrAda
+
+		private DateTime? _feChACeRrAda;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_feChACeRrAda", Name = "fechacerrada", DbType = "date", AutoSync = AutoSync.Never)]
+		public DateTime? FeCHaCeRrAda
+		{
+			get
+			{
+				return _feChACeRrAda;
+			}
+			set
+			{
+				if (value != _feChACeRrAda)
+				{
+					OnFeCHaCeRrAdaChanging(value);
+					SendPropertyChanging();
+					_feChACeRrAda = value;
+					SendPropertyChanged("FeCHaCeRrAda");
+					OnFeCHaCeRrAdaChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region int IDFeCHaEScalaFOncerRadO
+
+		private int _idfEChAEsCalaFoNcerRadO;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_idfEChAEsCalaFoNcerRadO", Name = "idfechaescalafoncerrado", DbType = "int", IsPrimaryKey = true, IsDbGenerated = true, AutoSync = AutoSync.Never, CanBeNull = false)]
+		public int IDFeCHaEScalaFOncerRadO
+		{
+			get
+			{
+				return _idfEChAEsCalaFoNcerRadO;
+			}
+			set
+			{
+				if (value != _idfEChAEsCalaFoNcerRadO)
+				{
+					OnIDFeCHaEScalaFOncerRadOChanging(value);
+					SendPropertyChanging();
+					_idfEChAEsCalaFoNcerRadO = value;
+					SendPropertyChanged("IDFeCHaEScalaFOncerRadO");
+					OnIDFeCHaEScalaFOncerRadOChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region ctor
+
+		public FeCHaEScalaFOncerRadO()
+		{
+			OnCreated();
+		}
+
+		#endregion
+
+	}
+
 	[Table(Name = "trustdb.feriados")]
 	public partial class FeRiAdoS : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -7003,6 +7137,10 @@ namespace Datos
 		#region Extensibility Method Definitions
 
 		partial void OnCreated();
+		partial void OnDescansoChanged();
+		partial void OnDescansoChanging(sbyte value);
+		partial void OnDiaHoraLlamadaAntesHoraEntradaChanged();
+		partial void OnDiaHoraLlamadaAntesHoraEntradaChanging(DateTime value);
 		partial void OnFechaCorrespondienteChanged();
 		partial void OnFechaCorrespondienteChanging(DateTime value);
 		partial void OnHoraEntradaChanged();
@@ -7017,6 +7155,58 @@ namespace Datos
 		partial void OnNumeroClienteChanging(uint value);
 		partial void OnNumeroServicioChanged();
 		partial void OnNumeroServicioChanging(uint value);
+
+		#endregion
+
+		#region sbyte Descanso
+
+		private sbyte _descanso;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_descanso", Name = "Descanso", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public sbyte Descanso
+		{
+			get
+			{
+				return _descanso;
+			}
+			set
+			{
+				if (value != _descanso)
+				{
+					OnDescansoChanging(value);
+					SendPropertyChanging();
+					_descanso = value;
+					SendPropertyChanged("Descanso");
+					OnDescansoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region DateTime DiaHoraLlamadaAntesHoraEntrada
+
+		private DateTime _diaHoraLlamadaAntesHoraEntrada;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_diaHoraLlamadaAntesHoraEntrada", Name = "DiaHoraLlamadaAntesHoraEntrada", DbType = "datetime", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public DateTime DiaHoraLlamadaAntesHoraEntrada
+		{
+			get
+			{
+				return _diaHoraLlamadaAntesHoraEntrada;
+			}
+			set
+			{
+				if (value != _diaHoraLlamadaAntesHoraEntrada)
+				{
+					OnDiaHoraLlamadaAntesHoraEntradaChanging(value);
+					SendPropertyChanging();
+					_diaHoraLlamadaAntesHoraEntrada = value;
+					SendPropertyChanged("DiaHoraLlamadaAntesHoraEntrada");
+					OnDiaHoraLlamadaAntesHoraEntradaChanged();
+				}
+			}
+		}
 
 		#endregion
 
