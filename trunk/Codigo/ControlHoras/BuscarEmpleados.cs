@@ -18,8 +18,16 @@ namespace ControlHoras
         public BuscarEmpleados()
         {
             InitializeComponent();
-            datos = ControladorDatos.getInstance();
+            try
+            {
+                datos = ControladorDatos.getInstance();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
             cmbCampoBusqueda.SelectedIndex = 1;
+            
         }
 
         private void txtBusqueda_KeyDown(object sender, KeyEventArgs e)
@@ -42,8 +50,7 @@ namespace ControlHoras
                 dgvResultado.Rows[n].Cells["Nombre"].Value = res[iter].Nombre;
                 dgvResultado.Rows[n].Cells["Apellido"].Value = res[iter].Apellido;
                 dgvResultado.Rows[n].Cells["Documento"].Value = res[iter].NumeroDocumento;
-                dgvResultado.Rows[n].Cells["Direccion"].Value = res[iter].Direccion;
-                dgvResultado.Rows[n].Cells["Telefono"].Value = res[iter].Telefonos;
+                dgvResultado.Rows[n].Cells["CelularPersonal"].Value = res[iter].Celular;
                 iter++;
             }
         }
@@ -66,13 +73,30 @@ namespace ControlHoras
         {
             if (e.RowIndex < 0)
                 return;
-            btnAceptar.PerformClick();
+            if (dgvResultado.SelectedRows.Count > 0)
+                idEmpleadoSeleccionado = int.Parse(dgvResultado.SelectedRows[0].Cells["idEmpleado"].Value.ToString());
+            if (this.Owner.GetType().Equals(typeof(ABMEmpleados)))
+            {
+                ((ABMEmpleados)this.Owner).setNroEmpleado(idEmpleadoSeleccionado);
+            }
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (dgvResultado.SelectedRows.Count > 0)
-                idEmpleadoSeleccionado = int.Parse(dgvResultado.SelectedRows[0].Cells["idEmpleado"].Value.ToString());
+            this.Close();
+        }
+
+        private void BuscarEmpleados_Load(object sender, EventArgs e)
+        {
+            //if (this.Owner.GetType().Equals(typeof(ABMEmpleados)))
+            //{
+            //    this.DialogResult = DialogResult.None;
+            //}
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }        
 
     }

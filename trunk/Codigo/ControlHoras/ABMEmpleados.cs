@@ -300,10 +300,8 @@ namespace ControlHoras
             dtpFechaIngreso.Text = DateTime.Now.ToString();
             dtpFechaAltaBPS.Text = DateTime.Now.ToString();
             tcEmpleado.SelectedIndex = 0;
-            
             mtNumeroDocumento.Focus();
         }
-
 
         // Utilizado por el btnCancelar.PerformClick()
         private void limpiarForm()
@@ -1859,24 +1857,25 @@ namespace ControlHoras
         private void btnBuscarEmpleado_Click(object sender, EventArgs e)
         {
             BuscarEmpleados busquedaEmps = new BuscarEmpleados();
-            DialogResult res = busquedaEmps.ShowDialog(this);
-            if (res == DialogResult.OK)
-            {
-                try
-                {
+            busquedaEmps.Show(this);
+            //if (res == DialogResult.OK)
+            //{
+            //    try
+            //    {
                     //int i;
                     //i = tcEmpleado.SelectedIndex;
-                    tcEmpleado.SelectedIndex = 0;
-                    mtNumeroEmpleado.Text = busquedaEmps.idEmpleadoSeleccionado.ToString();
-                    mtNumeroEmpleado.Focus();
-                    SendKeys.Send("{ENTER}");
+                    //tcEmpleado.SelectedIndex = 0;
+                    //if(busquedaEmps.idEmpleadoSeleccionado != null)
+                    //    mtNumeroEmpleado.Text = busquedaEmps.idEmpleadoSeleccionado.ToString();
+                    //mtNumeroEmpleado.Focus();
+              //      SendKeys.Send("{ENTER}");
                     //tcEmpleado.SelectedIndex = i;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+                //}
+                //catch (Exception ex)
+               // {
+                 //   MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
+            //}
         }
 
         private void txtNombre_Leave(object sender, EventArgs e)
@@ -3209,7 +3208,12 @@ namespace ControlHoras
         }
 
 
-
+        public void setNroEmpleado(int NroEmpleado)
+        {
+            mtNumeroEmpleado.Text = NroEmpleado.ToString();
+            mtNumeroEmpleado.Focus();
+            SendKeys.Send("{ENTER}");
+        }
 
 
     }
