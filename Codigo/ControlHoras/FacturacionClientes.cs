@@ -169,7 +169,8 @@ namespace ControlHoras
                     oSheet.Cells[1, 5] = dtpMesFacturacion.Value.Month + "/" + dtpMesFacturacion.Value.Year;
                     oSheet.Cells[2, 3] = facturacion.NroCliente + "/" + datos.getNombreCliente(facturacion.NroCliente);
                     // Nombre
-                    oSheet.Cells[3, 3] = facturacion.NroServicio;
+                    string nomServicio = nombreArchivo.Substring(nombreArchivo.LastIndexOf('-') + 1);
+                    oSheet.Cells[3, 3] = nomServicio;
 
                     int i = 0;
                     foreach (DataDiaFacturacion ddf in facturacion.ListaDiaFacturacion) 

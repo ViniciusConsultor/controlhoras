@@ -67,6 +67,7 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PagaDescansoCKBX = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             this.ClienteGB.SuspendLayout();
             this.ServicioGB.SuspendLayout();
@@ -193,9 +194,9 @@
             this.ClienteGB.Controls.Add(this.bcUC);
             this.ClienteGB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ClienteGB.Location = new System.Drawing.Point(16, 50);
-            this.ClienteGB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ClienteGB.Margin = new System.Windows.Forms.Padding(4);
             this.ClienteGB.Name = "ClienteGB";
-            this.ClienteGB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ClienteGB.Padding = new System.Windows.Forms.Padding(4);
             this.ClienteGB.Size = new System.Drawing.Size(825, 74);
             this.ClienteGB.TabIndex = 0;
             this.ClienteGB.TabStop = false;
@@ -219,9 +220,9 @@
             this.ServicioGB.Controls.Add(this.label9);
             this.ServicioGB.Enabled = false;
             this.ServicioGB.Location = new System.Drawing.Point(16, 132);
-            this.ServicioGB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ServicioGB.Margin = new System.Windows.Forms.Padding(4);
             this.ServicioGB.Name = "ServicioGB";
-            this.ServicioGB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ServicioGB.Padding = new System.Windows.Forms.Padding(4);
             this.ServicioGB.Size = new System.Drawing.Size(825, 65);
             this.ServicioGB.TabIndex = 1;
             this.ServicioGB.TabStop = false;
@@ -232,7 +233,7 @@
             this.PosteriorBTN.AutoSize = true;
             this.PosteriorBTN.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.PosteriorBTN.Location = new System.Drawing.Point(763, 23);
-            this.PosteriorBTN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PosteriorBTN.Margin = new System.Windows.Forms.Padding(4);
             this.PosteriorBTN.Name = "PosteriorBTN";
             this.PosteriorBTN.Size = new System.Drawing.Size(34, 27);
             this.PosteriorBTN.TabIndex = 1;
@@ -246,7 +247,7 @@
             this.AnteriorBTN.AutoSize = true;
             this.AnteriorBTN.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AnteriorBTN.Location = new System.Drawing.Point(721, 23);
-            this.AnteriorBTN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AnteriorBTN.Margin = new System.Windows.Forms.Padding(4);
             this.AnteriorBTN.Name = "AnteriorBTN";
             this.AnteriorBTN.Size = new System.Drawing.Size(34, 27);
             this.AnteriorBTN.TabIndex = 0;
@@ -260,7 +261,7 @@
             this.NombreTB.BackColor = System.Drawing.SystemColors.Window;
             this.NombreTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NombreTB.Location = new System.Drawing.Point(127, 23);
-            this.NombreTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NombreTB.Margin = new System.Windows.Forms.Padding(4);
             this.NombreTB.Name = "NombreTB";
             this.NombreTB.ReadOnly = true;
             this.NombreTB.Size = new System.Drawing.Size(567, 25);
@@ -270,7 +271,7 @@
             // 
             this.NroMTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NroMTB.Location = new System.Drawing.Point(52, 23);
-            this.NroMTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NroMTB.Margin = new System.Windows.Forms.Padding(4);
             this.NroMTB.Mask = "9990";
             this.NroMTB.Name = "NroMTB";
             this.NroMTB.Size = new System.Drawing.Size(57, 25);
@@ -292,7 +293,7 @@
             // 
             this.FinCKB.AutoSize = true;
             this.FinCKB.Location = new System.Drawing.Point(1072, 175);
-            this.FinCKB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FinCKB.Margin = new System.Windows.Forms.Padding(4);
             this.FinCKB.Name = "FinCKB";
             this.FinCKB.Size = new System.Drawing.Size(50, 21);
             this.FinCKB.TabIndex = 3;
@@ -309,7 +310,7 @@
             this.marcarNTToolStripMenuItem});
             this.CargaHorariaCMS.Name = "contextMenuStrip1";
             this.CargaHorariaCMS.Size = new System.Drawing.Size(162, 76);
-            this.CargaHorariaCMS.Text = "Menú";            
+            this.CargaHorariaCMS.Text = "Menú";
             // 
             // copiarToolStripMenuItem
             // 
@@ -451,12 +452,24 @@
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // PagaDescansoCKBX
+            // 
+            this.PagaDescansoCKBX.AutoSize = true;
+            this.PagaDescansoCKBX.Location = new System.Drawing.Point(250, 538);
+            this.PagaDescansoCKBX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PagaDescansoCKBX.Name = "PagaDescansoCKBX";
+            this.PagaDescansoCKBX.Size = new System.Drawing.Size(128, 21);
+            this.PagaDescansoCKBX.TabIndex = 19;
+            this.PagaDescansoCKBX.Text = "1/2 H Descanso";
+            this.PagaDescansoCKBX.UseVisualStyleBackColor = true;
+            // 
             // ContratoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1284, 572);
+            this.Controls.Add(this.PagaDescansoCKBX);
             this.Controls.Add(this.FFinMTB);
             this.Controls.Add(this.ServicioGB);
             this.Controls.Add(this.FIniMTB);
@@ -531,5 +544,6 @@
         private BúsquedaCliente bcUC;
         private System.Windows.Forms.DataGridViewTextBoxColumn Puesto;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Armado;
+        private System.Windows.Forms.CheckBox PagaDescansoCKBX;
     }
 }

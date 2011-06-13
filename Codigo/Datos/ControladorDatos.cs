@@ -2329,7 +2329,7 @@ namespace Datos
                 throw me;
             }
         }
-        public void modificarContrato(int numeroContrato, DateTime FechaInicial, DateTime? FechaFinal, bool Costo, bool HorasExtras, string Ajuste, string Observaciones, float Monto)
+        public void modificarContrato(int numeroContrato, DateTime FechaInicial, DateTime? FechaFinal, bool Costo, bool HorasExtras, bool PagaDescanso, string Ajuste, string Observaciones, float Monto)
         {
             try
             {  
@@ -2346,6 +2346,10 @@ namespace Datos
                     con.HorasExtras = 1;
                 else
                     con.HorasExtras = 0;
+                if (PagaDescanso)
+                    con.PagaDescanso = 1;
+                else
+                    con.PagaDescanso = 0;
                 con.Ajuste = Ajuste;
                 con.Observaciones = Observaciones;
                 con.Costo = Monto;
@@ -2398,6 +2402,7 @@ namespace Datos
                 st += Contrato.HorasExtras.ToString() + ", ";
                 st += Contrato.IDContratos.ToString() + ", ";
                 st += "'" + Contrato.Observaciones.ToString() + "', ";
+                st += Contrato.PagaDescanso.ToString() + ", ";
                 st += "NULL, ";
                 st += "NULL, ";
                 st += Contrato.TipodeContrato.ToString() + ", ";
@@ -4509,9 +4514,36 @@ namespace Datos
             }
         }
 
+
+        public void CalcularDescansos()
+        {
+            ContraToS con;
+            try
+            {
+                List<LiquidAcIonEmPleadOs> horsdia = (from reg in database.GetTable<LiquidAcIonEmPleadOs>()
+                                                      where reg.Horas.Hour >= 8
+                                                      select reg).ToList<LiquidAcIonEmPleadOs>();
+
+                foreach (LiquidAcIonEmPleadOs l in horsdia)
+                {
+                    con = obtenerContrato((int)l.NroCliente, (int)l.NroServicio);
+                    if (con.PagaDescanso == 1)
+                        l.Horas = l.Horas.AddMinutes(30);
+                }
+
+                database.SubmitChanges();
+                recargarContexto();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+        }
     }
 
 }
 
         
+ 
  

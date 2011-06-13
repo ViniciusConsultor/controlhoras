@@ -256,6 +256,8 @@ namespace ControlHoras
                         CostoCB.SelectedIndex = 0;
                     if (con.getHorasExtras())
                         HorasExtrasCHK.Checked = true;
+                    if (con.getPagaDescanso())
+                        PagaDescansoCKBX.Checked = true;
                     AjusteTB.Text = con.getAjuste();
                     ObsTB.Text = con.getObservaciones();
                     MontoTB.Text = con.getMonto().ToString();
@@ -418,12 +420,13 @@ namespace ControlHoras
                         dtf = DateTime.ParseExact(FFinMTB.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
                     bool costo = (CostoCB.SelectedItem.ToString() == "Fijo");
                     bool hx = HorasExtrasCHK.Checked;
+                    bool pd = PagaDescansoCKBX.Checked;
                     float monto = 0;
                     if (MontoTB.Text != "")
                         monto = int.Parse(MontoTB.Text);
                     int nroCon = CalcNroContrato(numCli, numSer);
 
-                    ConSeguridadFisica con = new ConSeguridadFisica(hx, 0, 0, 0, dti, dtf, AjusteTB.Text, ObsTB.Text, costo, monto);
+                    ConSeguridadFisica con = new ConSeguridadFisica(pd, hx, 0, 0, 0, dti, dtf, AjusteTB.Text, ObsTB.Text, costo, monto);
 
                     // ACA GUARDO TODOS LOS DATOS DEL DATAGRIDVIEW
 
@@ -680,6 +683,7 @@ namespace ControlHoras
             FFinMTB.Text = "";
             CostoCB.SelectedIndex = 0;
             HorasExtrasCHK.Checked = false;
+            PagaDescansoCKBX.Checked = false;
             AjusteTB.Text = "";
             ObsTB.Text = "";
             MontoTB.Text = "";

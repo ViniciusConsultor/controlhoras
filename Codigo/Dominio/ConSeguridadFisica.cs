@@ -7,15 +7,17 @@ namespace Logica
 {
     public class ConSeguridadFisica: Contrato
     {
+        private bool PagaDescanso;
         private bool PagaHorasExtra;
         private int TotalHorasNormales;
         private int TotalHorasExtras;
         private int TotalVigilantes; //no me acuerdo que es esto
         private List<LineaDeHoras> Lineas;
 
-        public ConSeguridadFisica(bool horasext, int tothnormales, int tothextras, int totvigilantes, DateTime fechaini, DateTime? fechafin, string ajuste, string obs, bool fijo, float costo)
+        public ConSeguridadFisica(bool pDescanso, bool horasext, int tothnormales, int tothextras, int totvigilantes, DateTime fechaini, DateTime? fechafin, string ajuste, string obs, bool fijo, float costo)
             : base(fechaini, fechafin, ajuste, obs, fijo, costo)
         {
+            PagaDescanso = pDescanso;
             PagaHorasExtra = horasext;
             TotalHorasNormales = tothnormales;
             TotalHorasExtras = tothextras;
@@ -57,6 +59,11 @@ namespace Logica
         public bool getHorasExtras()
         {
             return PagaHorasExtra;
+        }
+
+        public bool getPagaDescanso()
+        {
+            return PagaDescanso;
         }
 
         public int getHorasNormales()

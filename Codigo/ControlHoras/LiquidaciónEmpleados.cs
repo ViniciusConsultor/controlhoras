@@ -74,6 +74,8 @@ namespace ControlHoras
             {
                 datos.LiquidarEmpleados(inicio, fin);
                 datos.empleadosLiquidados(out empleados);
+                datos.CalcularDescansos();
+                
 
                 splitContainer2.Visible = true;
                 mesAct = MesDTP.Value;
@@ -583,8 +585,7 @@ namespace ControlHoras
                 
             } 
 
-        }
-               
+        }               
         
     }
 }
