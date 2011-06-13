@@ -279,6 +279,12 @@ namespace Logica
                 con.HorasExtras = 1;
             else
                 con.HorasExtras = 0;
+
+            if (cont.getPagaDescanso())
+                con.PagaDescanso = 1;
+            else
+                con.PagaDescanso = 0;
+                
             con.Ajuste = cont.getAjuste();
             con.Observaciones = cont.getObservaciones();
             con.Costo = cont.getMonto();
@@ -322,7 +328,7 @@ namespace Logica
         {
             ContraToS con = datos.obtenerContrato(NumeroContrato);
 
-            ConSeguridadFisica aux = new ConSeguridadFisica((con.HorasExtras == (sbyte)1) ? true : false, 0, 0, 0, con.FechaIni.Value, con.FechaFin, con.Ajuste, con.Observaciones, (con.CostoFijo == (sbyte)1) ? true : false, con.Costo.Value);
+            ConSeguridadFisica aux = new ConSeguridadFisica((con.PagaDescanso  == (sbyte)1) ? true : false, (con.HorasExtras == (sbyte)1) ? true : false, 0, 0, 0, con.FechaIni.Value, con.FechaFin, con.Ajuste, con.Observaciones, (con.CostoFijo == (sbyte)1) ? true : false, con.Costo.Value);
 
             LineaDeHoras lhs = null;
             HorarioXDia hor = null;
@@ -349,7 +355,7 @@ namespace Logica
         {
             try
             {
-                datos.modificarContrato(NumeroContrato, Contrato.getFechaIni(), Contrato.getFechaFin(), Contrato.GetCostoFijo(), Contrato.getHorasExtras(), Contrato.getAjuste(), Contrato.getObservaciones(), Contrato.getMonto());
+                datos.modificarContrato(NumeroContrato, Contrato.getFechaIni(), Contrato.getFechaFin(), Contrato.GetCostoFijo(), Contrato.getHorasExtras(), Contrato.getPagaDescanso(), Contrato.getAjuste(), Contrato.getObservaciones(), Contrato.getMonto());
 
                 datos.eliminarLineasContrato(NumeroContrato);
 

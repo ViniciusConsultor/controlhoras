@@ -1,0 +1,2 @@
+-- Agregamos el campo PagaDescanso para cumplir con el Issue 65
+ALTER TABLE `trustdb`.`contratos` ADD COLUMN `PagaDescanso` TINYINT(1) NOT NULL DEFAULT 0  AFTER `DescPerfil`;
