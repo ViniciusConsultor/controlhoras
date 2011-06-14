@@ -4241,7 +4241,7 @@ namespace Datos
 
                 string sql = "SELECT FechaCorrespondiente, SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(HoraSalida,HoraEntrada)))) " +
                                  "FROM horasgeneradasescalafon " +
-                                 "WHERE (Descanso = 0) AND (NumeroCliente = " + NumeroCliente + ") AND (NumeroServicio = "+NroServicio+") AND (FechaCorrespondiente BETWEEN '"+string.Format("{0:yyyy-MM-dd}", DiaInicioFacturacion)+"' AND '"+string.Format("{0:yyyy-MM-dd}", DiaFinFacturacion)+"') " +
+                                 "WHERE (ACargoDeLaEmpresa = 0) AND (Descanso = 0) AND (NumeroCliente = " + NumeroCliente + ") AND (NumeroServicio = "+NroServicio+") AND (FechaCorrespondiente BETWEEN '"+string.Format("{0:yyyy-MM-dd}", DiaInicioFacturacion)+"' AND '"+string.Format("{0:yyyy-MM-dd}", DiaFinFacturacion)+"') " +
                                  "GROUP BY FechaCorrespondiente";
 
                 conexion2 = createNewConnection();

@@ -994,6 +994,9 @@ namespace Logica
                             hge.NumeroCliente = escalafon.NumeroCliente;
                             hge.NumeroServicio = escalafon.NumeroServicio;
                             hge.DiaHoraLlamadaAntesHoraEntrada = hge.HoraEntrada.AddHours(-(double)esc.HsLlamadaAntesHoraInicio);
+                            if (esc.AcArgoDe == "Empresa")
+                                hge.AcArgoDeLaEmpresa = 1;                            
+
                             listaHorasGeneradas.Add(hge);
                         }
                         else
