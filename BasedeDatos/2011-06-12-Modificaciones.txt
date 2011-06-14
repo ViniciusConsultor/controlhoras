@@ -1,2 +1,6 @@
--- Agregamos el campo PagaDescanso para cumplir con el Issue 65
-ALTER TABLE `trustdb`.`contratos` ADD COLUMN `PagaDescanso` TINYINT(1) NOT NULL DEFAULT 0  AFTER `DescPerfil`;
+-- Agregamos el campo 'PagaDescanso' para cumplir con el Issue 65
+ALTER TABLE `trustdb`.`contratos` ADD COLUMN `PagaDescanso` TINYINT(1) NOT NULL DEFAULT 0  AFTER `DescPerfil`;
+
+-- Agregamos el campo 'ACargoDeLaEmpresa' para no cargar a los clientes con personal a cargo de la empresa
+ALTER TABLE `trustdb`.`horasgeneradasescalafon` ADD COLUMN `ACargoDeLaEmpresa` TINYINT(1) NOT NULL DEFAULT 0  AFTER `Descanso` ;
+

@@ -154,6 +154,7 @@ namespace ControlHoras
                         {
                             try
                             {
+
                                 controladorClientes.generarHorasDiaServicio(nroCliente, nroServicio, dateAux, sobrescribirHorasGeneradas);
                             }
                             catch (YaExistenHorasGeneradasParaLaFechaException)

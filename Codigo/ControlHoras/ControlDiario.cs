@@ -696,7 +696,6 @@ namespace ControlHoras
             {
                 try
                 {
-
                     datos.cerrarControlDiario(FechaSeleccionada);
                     MessageBox.Show("Dia cerrado correctamente.", "Cierre", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     habilitarMenuStripDgvHoras();
