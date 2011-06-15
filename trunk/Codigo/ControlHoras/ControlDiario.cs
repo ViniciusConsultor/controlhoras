@@ -505,11 +505,14 @@ namespace ControlHoras
                     DateTime fechaCorresponde = DateTime.Parse(mtFecha.Text);
                     DateTime horaInicio = cdaf.HoraInicio;
                     DateTime horaFin = cdaf.HoraFin;
+                    string ACargoDe = cdaf.ACargoDe;
                     // Genero una nueva HoraGeneradasEscalafon
                     HoRaSGeneraDaSEScalaFOn hgeNew = new HoRaSGeneraDaSEScalaFOn();
                     hgeNew.FechaCorrespondiente = fechaCorresponde;
                     hgeNew.HoraEntrada = horaInicio;
                     hgeNew.HoraSalida = horaFin;
+                    if (ACargoDe == "Empresa")
+                        hgeNew.AcArgoDeLaEmpresa = 1;
                     hgeNew.NroEmpleado = emp.NroEmpleado;
                     hgeNew.NumeroCliente = cliente.NumeroCliente;
                     hgeNew.NumeroServicio = servicio.NumeroServicio;

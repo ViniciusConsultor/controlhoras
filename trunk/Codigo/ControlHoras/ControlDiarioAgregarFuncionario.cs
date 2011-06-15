@@ -17,15 +17,29 @@ namespace ControlHoras
         public EmPleadOs funcionario { get; private set; }
         public DateTime HoraInicio { get; private set; }
         public DateTime HoraFin { get; private set; }
+        public String ACargoDe { get; private set; }
         public DateTime FechaCorresponde { get; set; }
         public MotIVOsCamBiosDiARioS MotivoCambio { get; private set; }
 
         public ControlDiarioAgregarFuncionario(DateTime fecha)
         {
             InitializeComponent();
-            FechaCorresponde = fecha;
-            controller = Datos.ControladorDatos.getInstance();
+            FechaCorresponde = fecha;            
             btnAceptar.Enabled = false;
+            ACargoCB.Items.Add("Cliente");
+            ACargoCB.Items.Add("Empresa");
+            //ACargoCB.SelectedValue = "Cliente";
+            ACargoCB.SelectedIndex = 0;
+
+            try
+            {
+                controller = Datos.ControladorDatos.getInstance();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         private void mtFuncionario_KeyDown(object sender, KeyEventArgs e)
@@ -108,6 +122,8 @@ namespace ControlHoras
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            ACargoDe = ACargoCB.SelectedItem.ToString();
+
             if (mtFuncionario.Text != "" && mtHoraFin.MaskCompleted && mtHoraInicio.MaskCompleted)
             {
                 DateTime aux;
