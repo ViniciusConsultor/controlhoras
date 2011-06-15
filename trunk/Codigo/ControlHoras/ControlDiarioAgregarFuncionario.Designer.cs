@@ -45,8 +45,8 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(335, 106);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelar.Location = new System.Drawing.Point(693, 114);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 28);
             this.btnCancelar.TabIndex = 5;
@@ -56,8 +56,8 @@
             // btnAceptar
             // 
             this.btnAceptar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnAceptar.Location = new System.Drawing.Point(175, 106);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAceptar.Location = new System.Drawing.Point(561, 114);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(100, 28);
             this.btnAceptar.TabIndex = 4;
@@ -70,7 +70,7 @@
             this.mtFuncionario.BackColor = System.Drawing.SystemColors.Window;
             this.mtFuncionario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mtFuncionario.Location = new System.Drawing.Point(15, 42);
-            this.mtFuncionario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mtFuncionario.Margin = new System.Windows.Forms.Padding(4);
             this.mtFuncionario.Mask = "9990";
             this.mtFuncionario.Name = "mtFuncionario";
             this.mtFuncionario.Size = new System.Drawing.Size(57, 25);
@@ -82,7 +82,7 @@
             this.txtNombreFuncionarioNuevo.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtNombreFuncionarioNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombreFuncionarioNuevo.Location = new System.Drawing.Point(81, 42);
-            this.txtNombreFuncionarioNuevo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNombreFuncionarioNuevo.Margin = new System.Windows.Forms.Padding(4);
             this.txtNombreFuncionarioNuevo.Name = "txtNombreFuncionarioNuevo";
             this.txtNombreFuncionarioNuevo.ReadOnly = true;
             this.txtNombreFuncionarioNuevo.Size = new System.Drawing.Size(385, 25);
@@ -93,7 +93,7 @@
             // 
             this.mtHoraInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mtHoraInicio.Location = new System.Drawing.Point(487, 42);
-            this.mtHoraInicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mtHoraInicio.Margin = new System.Windows.Forms.Padding(4);
             this.mtHoraInicio.Mask = "00:00";
             this.mtHoraInicio.Name = "mtHoraInicio";
             this.mtHoraInicio.Size = new System.Drawing.Size(48, 25);
@@ -104,7 +104,7 @@
             // 
             this.mtHoraFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mtHoraFin.Location = new System.Drawing.Point(564, 42);
-            this.mtHoraFin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mtHoraFin.Margin = new System.Windows.Forms.Padding(4);
             this.mtHoraFin.Mask = "00:00";
             this.mtHoraFin.Name = "mtHoraFin";
             this.mtHoraFin.Size = new System.Drawing.Size(48, 25);
@@ -175,7 +175,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(811, 153);
+            this.ClientSize = new System.Drawing.Size(815, 175);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.ACargoCB);
             this.Controls.Add(this.label4);
@@ -188,7 +188,7 @@
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.mtFuncionario);
             this.Controls.Add(this.txtNombreFuncionarioNuevo);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ControlDiarioAgregarFuncionario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ControlDiarioAgregarFuncionario";
