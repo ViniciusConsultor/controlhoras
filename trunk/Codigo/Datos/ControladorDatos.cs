@@ -4253,7 +4253,6 @@ namespace Datos
                 DateTime FechaCorresponde;
                 TimeSpan HoraEnt;
                 TimeSpan HoraSal;
-				int cantidadFuncionarios;
                 while(mydata.Read())
                 {
                     FechaCorresponde = mydata.GetDateTime(0);
@@ -4262,8 +4261,7 @@ namespace Datos
                     if (pagaExtras)
                     {
                         // OBTENER EL DIA DE LA LINEAHORA DEL CONTRATO Y COMPARAR CON EL DIA DE V.
-                        tempComunes = getCantHsContrato(con, FechaCorresponde, out cantidadFuncionarios);
-                        tempComunes = TimeSpan.FromTicks(tempComunes.Ticks * cantidadFuncionarios);
+                        tempComunes = getCantHsContrato(con, FechaCorresponde);
                         tempHsTotales = HoraEnt;
                         tempComunes = (tempHsTotales > tempComunes ? tempComunes : tempHsTotales);
                         tempExtras = tempHsTotales - tempComunes;
@@ -4296,20 +4294,18 @@ namespace Datos
             }
         }
 
-        private TimeSpan getCantHsContrato(ContraToS con, DateTime dia, out int cantidadFuncionarios)//, bool Comunes)
+        private TimeSpan getCantHsContrato(ContraToS con, DateTime dia)//, bool Comunes)
         {
             TimeSpan ret = new TimeSpan(0);
             TimeSpan hini;
             TimeSpan hfin;
-
-            cantidadFuncionarios = 0;            
+            
             foreach (LineAshOrAs lh in con.LineAshOrAs)
             {
                 foreach (HoRaRioDiA hd in lh.HoRaRioDiA)
                 {
-                    if (hd.Dia.ToLower() == Thread.CurrentThread.CurrentCulture.DateTimeFormat.GetDayName(dia.DayOfWeek).ToLower().Replace('é', 'e').Replace('á', 'a'))
+                    if (hd.Dia.ToLower()==Thread.CurrentThread.CurrentCulture.DateTimeFormat.GetDayName(dia.DayOfWeek).ToLower())
                     {
-                        cantidadFuncionarios = lh.Cantidad;
                         hini = TimeSpan.Parse(hd.HoraIni);
                         hfin = TimeSpan.Parse(hd.HoraFin);
                         if (hfin <= hini)
