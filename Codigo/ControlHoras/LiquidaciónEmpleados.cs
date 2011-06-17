@@ -399,7 +399,7 @@ namespace ControlHoras
                             st = "";
                             foreach (MotIVOsCamBiosDiARioS m in obs)
                                 st = st + "*" + m.Observaciones + "* ";
-                            bufer = oSheet.get_Range(oSheet.Cells[7 + auxInt, 7], oSheet.Cells[7 + auxInt, 7]).get_Value(missing).ToString();
+                            bufer = (oSheet.get_Range(oSheet.Cells[7 + auxInt, 7], oSheet.Cells[7 + auxInt, 7]).get_Value(missing) ?? "").ToString();
                             oSheet.Cells[7 + auxInt, 7] = bufer + st;                            
                         }
                     }                   
