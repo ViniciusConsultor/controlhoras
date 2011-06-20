@@ -3,4 +3,23 @@ ALTER TABLE `trustdb`.`contratos` ADD COLUMN `PagaDescanso` TINYINT(1) NOT NULL 
 
 -- Agregamos el campo 'ACargoDeLaEmpresa' para no cargar a los clientes con personal a cargo de la empresa
 ALTER TABLE `trustdb`.`horasgeneradasescalafon` ADD COLUMN `ACargoDeLaEmpresa` TINYINT(1) NOT NULL DEFAULT 0  AFTER `Descanso` ;
-
+-- Agregamos el campo PagarExtrasDespuesDeHs que contiene la cantidad de Hs desde a partir de cual el cliente paga hs extras.
+alter table Contratos add column PagarExtrasDespuesDeHs smallint default null after HorasExtras;
+
+-- Creacion de tabla tipoextraliquidacion
+create table tipoextraliquidacion (IdTipoExtraLiquidacion tinyint(2) unsigned not null auto_increment, Nombre varchar(50),Activo tinyint(1) not null default 1, llevaHs tinyint(1) not null default 0, Primary Key (IdTipoExtraLiquidacion));
+
+-- Agregar el usuario que ingreso el extraliquidacion. ***** VER EL DEFAULT VALUE *****
+alter table extrasliquidacion add column IdUsuario int(11) not null default 0;
+alter table extrasliquidacion add column IdTipoExtraLiquidacion tinyint(2) unsigned not null default 1;
+alter table extrasliquidacion change column CantidadCuotas CantidadCuotas tinyint(3) unsigned not null default 1;
+alter table extrasliquidacion add foreign key FK_Usuarios (IdUsuario) references usuarios(IdUsuario);
+alter table extrasliquidacion add foreign key FK_TipoExtraLiquidacion (IdTipoExtraLiquidacion) references tipoextraliquidacion(IdTipoExtraLiquidacion);
+alter table extrasliquidacion add column CantHs_TipoExtraLlevaHs float;
+
+-- Agregar Campo CheckBox para clickear si el empleado esta asociado al sindicato.
+alter table empleados add column EnSindicato tinyint(1) not null default 0;
+
+
+-- Cambiar Consulta - 30 | EXTRAS LIQUIDACION - DESCUENTOS Y BONOS
+update consultasempleados set Query="select user.UserName as UsuarioIngreso, emp.NroEmpleado, emp.Apellido, emp.Nombre, (select Fecha from cuotasextrasliquidacion tmpcuota where tmpcuota.IdExtraLiquidacion = extra.IdExtraLiquidacion and tmpcuota.NumeroCuota=1) as Fecha, tel.Nombre as TipoExtra, extra.Descripcion, if(extra.signo=0,'-','+') as Signo, cuotas.ValorCuota, extra.CantHs_TipoExtraLlevaHs as CantHsComoComunes, cuotas.NumeroCuota,extra.CantidadCuotas from CuotasExtrasLiquidacion cuotas, Empleados emp, ExtrasLiquidacion extra, TipoExtraLiquidacion tel, Usuarios user where user.IdUsuario=extra.IdUsuario and tel.IdTipoExtraLiquidacion = extra.IdTipoExtraLiquidacion and extra.IdEmpleado =emp.NroEmpleado and extra.IdExtraLiquidacion = cuotas.IdExtraLiquidacion and cuotas.Fecha between 'FECHADESDE' and 'FECHAHASTA' IFNROEMPLEADO order by emp.NroEmpleado" where idConsultaEmpleado=30 and Nombre="EXTRAS LIQUIDACION - DESCUENTOS Y BONOS";
