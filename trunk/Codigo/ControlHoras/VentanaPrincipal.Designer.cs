@@ -75,6 +75,7 @@
             this.tsslIdUsuarioLogueado = new System.Windows.Forms.ToolStripStatusLabel();
             this.ofdCargarArchivoImportacionConsultas = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tspTipoExtraLiquidacion = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBotones.SuspendLayout();
             this.menuStripSuperior.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -254,6 +255,7 @@
             this.tiposDeEventosToolStripMenuItem,
             this.cargosToolStripMenuItem,
             this.tiposMotivosCambioDiarioToolStripMenuItem,
+            this.tspTipoExtraLiquidacion,
             this.toolStripSeparator4,
             this.consultasToolStripMenuItem});
             this.codiguerasToolStripMenuItem.Enabled = false;
@@ -418,14 +420,14 @@
             // clientesToolStripMenuItem1
             // 
             this.clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
-            this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(136, 22);
             this.clientesToolStripMenuItem1.Text = "Clientes";
             this.clientesToolStripMenuItem1.Click += new System.EventHandler(this.clientesToolStripMenuItem1_Click);
             // 
             // empleadosToolStripMenuItem1
             // 
             this.empleadosToolStripMenuItem1.Name = "empleadosToolStripMenuItem1";
-            this.empleadosToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.empleadosToolStripMenuItem1.Size = new System.Drawing.Size(136, 22);
             this.empleadosToolStripMenuItem1.Text = "Empleados";
             this.empleadosToolStripMenuItem1.Click += new System.EventHandler(this.empleadosToolStripMenuItem1_Click);
             // 
@@ -472,6 +474,13 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            // 
+            // tspTipoExtraLiquidacion
+            // 
+            this.tspTipoExtraLiquidacion.Name = "tspTipoExtraLiquidacion";
+            this.tspTipoExtraLiquidacion.Size = new System.Drawing.Size(218, 22);
+            this.tspTipoExtraLiquidacion.Text = "Tipos Extra Liquidacion";
+            this.tspTipoExtraLiquidacion.Click += new System.EventHandler(this.tspTipoExtraLiquidacion_Click);
             // 
             // VentanaPrincipal
             // 
@@ -547,5 +556,6 @@
         private System.Windows.Forms.ToolStripMenuItem liquidacionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem empleadosToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tspTipoExtraLiquidacion;
     }
 }

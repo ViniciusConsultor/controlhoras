@@ -255,7 +255,10 @@ namespace ControlHoras
                     else
                         CostoCB.SelectedIndex = 0;
                     if (con.getHorasExtras())
+                    {
                         HorasExtrasCHK.Checked = true;
+                        cmbDespuesDeHs.SelectedValue = con.getPagarExtrasDespuesDeHs();
+                    }
                     if (con.getPagaDescanso())
                         PagaDescansoCKBX.Checked = true;
                     AjusteTB.Text = con.getAjuste();
@@ -425,8 +428,13 @@ namespace ControlHoras
                     if (MontoTB.Text != "")
                         monto = int.Parse(MontoTB.Text);
                     int nroCon = CalcNroContrato(numCli, numSer);
+                    int? PagarExtrasLuegoDeHs;
+                    if (hx)
+                        PagarExtrasLuegoDeHs = int.Parse(cmbDespuesDeHs.SelectedItem.ToString());
+                    else
+                        PagarExtrasLuegoDeHs = null;
 
-                    ConSeguridadFisica con = new ConSeguridadFisica(pd, hx, 0, 0, 0, dti, dtf, AjusteTB.Text, ObsTB.Text, costo, monto);
+                    ConSeguridadFisica con = new ConSeguridadFisica(pd, hx, 0, 0, 0, dti, dtf, AjusteTB.Text, ObsTB.Text, costo, monto, PagarExtrasLuegoDeHs);
 
                     // ACA GUARDO TODOS LOS DATOS DEL DATAGRIDVIEW
 
@@ -708,6 +716,16 @@ namespace ControlHoras
                     llenarForm(numCli, ser);
             }
             
+        }
+
+        private void HorasExtrasCHK_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbDespuesDeHs.Enabled = HorasExtrasCHK.Checked;
+        }
+
+        private void ContratoForm_Load(object sender, EventArgs e)
+        {
+            cmbDespuesDeHs.SelectedIndex = 0;
         }
         
     }

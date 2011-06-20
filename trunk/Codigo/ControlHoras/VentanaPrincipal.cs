@@ -172,6 +172,7 @@ namespace ControlHoras
             try
             {
                 ABMEmpleados empls = ABMEmpleados.getVentana();
+                
                 if (empls.Visible == false)
                     empls.Show(this);
                 else
@@ -385,7 +386,7 @@ namespace ControlHoras
         {
             try
             {
-                ABMCiudades depa = ABMCiudades.getVentana();
+                ABMTipoExtraLiquidacion depa = ABMTipoExtraLiquidacion.getVentana();
                 if (depa.Visible == false)
                     depa.Show(this);
                 else
@@ -556,6 +557,22 @@ namespace ControlHoras
             {
                 FacturacionClientes cef = new FacturacionClientes();
                 cef.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tspTipoExtraLiquidacion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ABMTipoExtraLiquidacion ventana = ABMTipoExtraLiquidacion.getVentana();
+                if (ventana.Visible == false)
+                    ventana.Show(this);
+                else
+                    ventana.Focus();
             }
             catch (Exception ex)
             {

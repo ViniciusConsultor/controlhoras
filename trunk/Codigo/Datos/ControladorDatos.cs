@@ -558,7 +558,7 @@ namespace Datos
         #endregion
 
         #region ABM_Empleados
-        public void altaEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, char sexo, DateTime? fechaPsicologo, DateTime? fechaNacimiento, int edad, DateTime? fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadMenoresACargo, byte[] foto, float valorHora, bool activo, DateTime? fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, int ciudad, int barrio, string codigoPostal, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime? fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime? fechaAltaBPS, bool bajaBPS, DateTime? fechaBajaBPS, string numeroCAJ, DateTime? fechaEmisionCAJ, DateTime? fechaEntregaCAJ, bool antecedentesEmpleado, string observacionesAntecedentesEmpleado, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime? fechaIngresoAntecedete, DateTime? fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime? vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica, bool capacitadoPorteArma, bool enservicioArmado, string observacionesEmpleado, string nivelEducativo, int idCargo, DateTime? fechaPagoEfectuado, DateTime? fechaPrevistaPago, String servicioActual, string turno, bool ConstanciaDomicilio, DateTime? FechaEntregaCelular)
+        public void altaEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, char sexo, DateTime? fechaPsicologo, DateTime? fechaNacimiento, int edad, DateTime? fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadMenoresACargo, byte[] foto, float valorHora, bool activo, DateTime? fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, int ciudad, int barrio, string codigoPostal, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime? fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime? fechaAltaBPS, bool bajaBPS, DateTime? fechaBajaBPS, string numeroCAJ, DateTime? fechaEmisionCAJ, DateTime? fechaEntregaCAJ, bool antecedentesEmpleado, string observacionesAntecedentesEmpleado, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime? fechaIngresoAntecedete, DateTime? fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime? vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica, bool capacitadoPorteArma, bool enservicioArmado, string observacionesEmpleado, string nivelEducativo, int idCargo, DateTime? fechaPagoEfectuado, DateTime? fechaPrevistaPago, String servicioActual, string turno, bool ConstanciaDomicilio, DateTime? FechaEntregaCelular, bool PerteneceASindicato)
         {
             Table<EmPleadOs> tablaEmpleados;
             try
@@ -684,7 +684,10 @@ namespace Datos
                 else
                     emp.ConstanciaDomicilio = 0;
                 emp.FechaEntregaCelular = FechaEntregaCelular;
-                
+                if (PerteneceASindicato)
+                    emp.EnSindicato = 1;
+                else
+                    emp.EnSindicato = 0;
 
                 tablaEmpleados.InsertOnSubmit(emp);
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
@@ -697,7 +700,7 @@ namespace Datos
 
         }
         //public void modificarEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, string nacionalidad, char sexo, DateTime fechaPsicologo, DateTime fechaNacimiento, DateTime fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadHijos, byte[] foto, int idBanco, string numeroCuenta, float sueldo, bool activo, DateTime fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, string ciudad, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime fechaAltaBPS, DateTime fechaBajaBPS, string numeroCAJ, DateTime fechaEmisionCAJ, DateTime fechaEntregaCAJ, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime fechaIngresoAntecedete, DateTime fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica)
-        public void modificarEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, char sexo, DateTime? fechaPsicologo, DateTime? fechaNacimiento, int edad, DateTime? fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadMenoresACargo, byte[] foto, float valorHora, bool activo, DateTime? fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, int ciudad, int barrio, string codigoPostal, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime? fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime? fechaAltaBPS, bool bajaBPS, DateTime? fechaBajaBPS, string numeroCAJ, DateTime? fechaEmisionCAJ, DateTime? fechaEntregaCAJ, bool antecedentesEmpleado, string observacionesAntecedentesEmpleado, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime? fechaIngresoAntecedete, DateTime? fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime? vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica, bool capacitadoPorteArma, bool enservicioArmado, string observacionesEmpleado, string nivelEducativo, int idCargo, DateTime? fechaPagoEfectuado, DateTime? fechaPrevistaPago, String servicioActual, string turno, bool ConstanciaDomicilio, DateTime? FechaEntregaCelular)
+        public void modificarEmpleado(int idEmpleado, string nombre, string apellido, int idTipoDocumento, string documento, string lugarNacimiento, char sexo, DateTime? fechaPsicologo, DateTime? fechaNacimiento, int edad, DateTime? fechaIngreso, string telefono, string celular, string celularConvenio, string email, string estadoCivil, int cantidadMenoresACargo, byte[] foto, float valorHora, bool activo, DateTime? fechaBaja, string motivoBaja, /* Segundo Tab */ int idDepartamento, int ciudad, int barrio, string codigoPostal, string direccion, string entreCalles, string puntoEncuentro, string numeroAsuntoRENAEMSE, DateTime? fechaIngresoRENAEMSE, int acumulacionLaboralBPS, DateTime? fechaAltaBPS, bool bajaBPS, DateTime? fechaBajaBPS, string numeroCAJ, DateTime? fechaEmisionCAJ, DateTime? fechaEntregaCAJ, bool antecedentesEmpleado, string observacionesAntecedentesEmpleado, bool antecedentesPolicialesOMilitares, string PolicialOMilitar, DateTime? fechaIngresoAntecedete, DateTime? fechaEgresoAntecedente, string subEscalafon, bool combatiente, string talleCamisa, string tallePantalon, string talleZapatos, string talleCampera, DateTime? vencimientoCarneSalud, int idMutualista, int idEmergenciaMedica, bool capacitadoPorteArma, bool enservicioArmado, string observacionesEmpleado, string nivelEducativo, int idCargo, DateTime? fechaPagoEfectuado, DateTime? fechaPrevistaPago, String servicioActual, string turno, bool ConstanciaDomicilio, DateTime? FechaEntregaCelular, bool PerteneceASindicato)
         {
             Table<EmPleadOs> tablaEmpleados;
             try
@@ -825,7 +828,11 @@ namespace Datos
                 else
                     emp.ConstanciaDomicilio = 0;
                 emp.FechaEntregaCelular = FechaEntregaCelular;
-                
+                if (PerteneceASindicato)
+                    emp.EnSindicato = 1;
+                else
+                    emp.EnSindicato = 0;
+
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
             }
             catch (Exception ex)
@@ -1395,7 +1402,7 @@ namespace Datos
         //    }
         //}
 
-        public int agregarExtraLiquidacionEmpleado(int idEmpleado, DateTime fecha, string descripcion, bool signoPositivo, float valor, int cantidadCuotas)
+        public int agregarExtraLiquidacionEmpleado(int idEmpleado, DateTime fecha, string descripcion, bool signoPositivo, float valor, int cantidadCuotas, string userName, int idTipoExtraLiquidacion, float cantHs_LlevaHs)
         {
             Table<ExtrasLiquidAcIon> tablaExtrasLiquidacion =  null;
             Table<CuOtAsExtrasLiquidAcIon> tablaCuotas;
@@ -1405,6 +1412,10 @@ namespace Datos
             int estado = 0;
             try
             {
+                int idUsuario = (from user in database.UsUarIoS
+                                 where user.UserName == userName
+                                 select user.IDUsuario).Single();
+
                 tablaExtrasLiquidacion = database.GetTable<ExtrasLiquidAcIon>();
                 tablaCuotas = database.GetTable<CuOtAsExtrasLiquidAcIon>();
                 DateTime mesCorrespondiente = fecha;
@@ -1418,7 +1429,9 @@ namespace Datos
                     el.Signo = 0;
                 el.CuotaActual = 1;
                 el.CantidadCuotas = (byte)cantidadCuotas;
-
+                el.IDUsuario = idUsuario;
+                el.IDTipoExtraLiquidacion = (byte)idTipoExtraLiquidacion;
+                el.CantHsTipoExtraLlevaHs = cantHs_LlevaHs;
                 tablaExtrasLiquidacion.InsertOnSubmit(el);
                  
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
@@ -2329,7 +2342,7 @@ namespace Datos
                 throw me;
             }
         }
-        public void modificarContrato(int numeroContrato, DateTime FechaInicial, DateTime? FechaFinal, bool Costo, bool HorasExtras, bool PagaDescanso, string Ajuste, string Observaciones, float Monto)
+        public void modificarContrato(int numeroContrato, DateTime FechaInicial, DateTime? FechaFinal, bool Costo, bool HorasExtras, bool PagaDescanso, string Ajuste, string Observaciones, float Monto, int? PagarExtrasDespuesDeHs)
         {
             try
             {  
@@ -2338,6 +2351,7 @@ namespace Datos
                                  select conreg).Single<ContraToS>();
                 con.FechaIni = FechaInicial;
                 con.FechaFin = FechaFinal;
+                
                 if (Costo)
                     con.CostoFijo = 1;
                 else
@@ -2353,10 +2367,11 @@ namespace Datos
                 con.Ajuste = Ajuste;
                 con.Observaciones = Observaciones;
                 con.Costo = Monto;
-                
+                if (PagarExtrasDespuesDeHs != null)
+                    con.PagarExtrasDespuesDeHs = (short)PagarExtrasDespuesDeHs;
+                else
+                    con.PagarExtrasDespuesDeHs = null;
                 database.SubmitChanges();
-
-                
             }
             catch (Exception e)
             {
@@ -2400,6 +2415,7 @@ namespace Datos
                 
                 st += "'" + string.Format("{0:yyyy-MM-dd}", Contrato.FechaIni) + "', ";
                 st += Contrato.HorasExtras.ToString() + ", ";
+                st += Contrato.PagarExtrasDespuesDeHs + ", ";
                 st += Contrato.IDContratos.ToString() + ", ";
                 st += "'" + Contrato.Observaciones.ToString() + "', ";
                 st += Contrato.PagaDescanso.ToString() + ", ";
@@ -4228,57 +4244,79 @@ namespace Datos
 
                 ContraToS con = obtenerContrato(NumeroCliente, NroServicio);
                 bool pagaExtras = (con.HorasExtras == 1);
+                TimeSpan cantidadHsAPartirDeDondePagaExtras = new TimeSpan(0);
+                if (pagaExtras && con.PagarExtrasDespuesDeHs == null)
+                {
+                    throw new Exception("No esta seteada la cantidad de Hs a partir de donde se pagan hs extras.");
+                }
+                else if (pagaExtras)
+                {
+                    cantidadHsAPartirDeDondePagaExtras = new TimeSpan((int)con.PagarExtrasDespuesDeHs, 0, 0);
+                }
                 List<DataDiaFacturacion> listaDias = new List<DataDiaFacturacion>();
 
                 TimeSpan totalHsComunes = new TimeSpan(0);
                 TimeSpan totalHsExtras = new TimeSpan(0);
-                TimeSpan tempComunes;
-                TimeSpan tempExtras;
-                TimeSpan tempHsTotales;
-
+                TimeSpan tempComunes = new TimeSpan(0);
+                TimeSpan tempExtras = new TimeSpan(0);
+                TimeSpan HsComunesCargo;
                 DataDiaFacturacion diafact;
-
-
-                string sql = "SELECT FechaCorrespondiente, SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(HoraSalida,HoraEntrada)))) " +
-                                 "FROM horasgeneradasescalafon " +
-                                 "WHERE (ACargoDeLaEmpresa = 0) AND (Descanso = 0) AND (NumeroCliente = " + NumeroCliente + ") AND (NumeroServicio = "+NroServicio+") AND (FechaCorrespondiente BETWEEN '"+string.Format("{0:yyyy-MM-dd}", DiaInicioFacturacion)+"' AND '"+string.Format("{0:yyyy-MM-dd}", DiaFinFacturacion)+"') " +
-                                 "GROUP BY FechaCorrespondiente";
-
-                conexion2 = createNewConnection();
-                conexion2.Open();               
-                MySqlDataAdapter mysqlAdapter = new MySqlDataAdapter(sql, conexion2);
-                mydata = mysqlAdapter.SelectCommand.ExecuteReader(CommandBehavior.Default);
-
-               
                 DateTime FechaCorresponde;
-                TimeSpan HoraEnt;
-                TimeSpan HoraSal;
-				int cantidadFuncionarios;
-                while(mydata.Read())
+                
+                
+                Dictionary<uint,TimeSpan> CantHsPorEmpleado;
+                FechaCorresponde = DiaInicioFacturacion;
+                while (FechaCorresponde <= DiaFinFacturacion)
                 {
-                    FechaCorresponde = mydata.GetDateTime(0);
-                    HoraEnt = mydata.GetTimeSpan(1);
-
-                    if (pagaExtras)
+                    totalHsComunes = new TimeSpan(0);
+                    totalHsExtras = new TimeSpan(0);
+                    // Obtenemos todos los HorasGeneradasEscalafon para el cliente/Servicio y el rango de fechas de facturacion
+                    var listahge = from i in (from hge in database.HoRaSGeneraDaSEScalaFOn
+                                                where hge.AcArgoDeLaEmpresa == 0 && hge.Descanso == 0 && hge.NumeroCliente == NumeroCliente && hge.NumeroServicio == NroServicio && hge.FechaCorrespondiente == FechaCorresponde
+                                                select hge)
+                                            group i by new { i.NroEmpleado, i.HoraEntrada,i.HoraSalida } into g
+                                            select new { g.Key.NroEmpleado, g.Key.HoraEntrada,g.Key.HoraSalida};
+                    CantHsPorEmpleado = new Dictionary<uint,TimeSpan>();
+                    foreach (var hge in listahge)
                     {
-                        // OBTENER EL DIA DE LA LINEAHORA DEL CONTRATO Y COMPARAR CON EL DIA DE V.
-                        tempComunes = getCantHsContrato(con, FechaCorresponde, out cantidadFuncionarios);
-                        tempComunes = TimeSpan.FromTicks(tempComunes.Ticks * cantidadFuncionarios);
-                        tempHsTotales = HoraEnt;
-                        tempComunes = (tempHsTotales > tempComunes ? tempComunes : tempHsTotales);
-                        tempExtras = tempHsTotales - tempComunes;
-
-                        diafact = new DataDiaFacturacion(FechaCorresponde, tempComunes, tempExtras);
+                        if(CantHsPorEmpleado.ContainsKey(hge.NroEmpleado))
+                        {
+                            CantHsPorEmpleado[hge.NroEmpleado] = CantHsPorEmpleado[hge.NroEmpleado] + (TimeSpan.FromTicks(hge.HoraSalida.Ticks) - TimeSpan.FromTicks(hge.HoraEntrada.Ticks));
+                        }else
+                        {
+                            CantHsPorEmpleado.Add(hge.NroEmpleado,TimeSpan.FromTicks(hge.HoraSalida.Ticks) - TimeSpan.FromTicks(hge.HoraEntrada.Ticks));
+                        }
                     }
-                    else
+                    // OBTENER EL DIA DE LA LINEAHORA DEL CONTRATO Y COMPARAR CON EL DIA DE V.
+                    //HsContrato = getCantHsContrato(con, FechaCorresponde, out cantidadFuncionarios);
+                    foreach (var hge in CantHsPorEmpleado)
                     {
-                        tempExtras = new TimeSpan(0);
-                        tempComunes = HoraEnt;
-                        diafact = new DataDiaFacturacion(FechaCorresponde, tempComunes, tempExtras);
+                        // Obtengo la cant de Hs comunes del cargo del empleado;
+                        int cantHsComunesCargo = (from emp in database.EmPleadOs
+                                                  join cargo in database.TipOscarGoS on (uint)emp.IDCargo equals cargo.IDCargo
+                                                  where emp.NroEmpleado == hge.Key
+                                                  select cargo.CantidadHsComunes).Single();
+                        HsComunesCargo = new TimeSpan(cantHsComunesCargo, 0, 0);              
+                        if (pagaExtras)
+                        {
+                            tempComunes = (CantHsPorEmpleado[hge.Key] > cantidadHsAPartirDeDondePagaExtras ? cantidadHsAPartirDeDondePagaExtras : CantHsPorEmpleado[hge.Key]);
+                            //tempComunes = TimeSpan.FromTicks(tempComunes.Ticks * cantidadFuncionarios);
+                            //tempHsTotales = HoraEnt;
+                            //tempComunes = (tempHsTotales > HsComunesCargo ? tempComunes : tempHsTotales);
+                            tempExtras = CantHsPorEmpleado[hge.Key] - tempComunes;
+                        }
+                        else
+                        {
+                            tempExtras = new TimeSpan(0);
+                            tempComunes = CantHsPorEmpleado[hge.Key];
+                        }
+                        
+                        totalHsComunes += tempComunes;
+                        totalHsExtras += tempExtras;
                     }
+                    diafact = new DataDiaFacturacion(FechaCorresponde, totalHsComunes, totalHsExtras);
                     listaDias.Add(diafact);
-                    totalHsComunes += tempComunes;
-                    totalHsExtras += tempExtras;
+                    FechaCorresponde = FechaCorresponde.AddDays(1);
                 }
                 DataFacturacion df = new DataFacturacion(NumeroCliente,NroServicio,listaDias,totalHsComunes,totalHsExtras);
                 return df;

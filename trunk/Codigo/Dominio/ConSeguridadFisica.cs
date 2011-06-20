@@ -12,6 +12,7 @@ namespace Logica
         private int TotalHorasNormales;
         private int TotalHorasExtras;
         private int TotalVigilantes; //no me acuerdo que es esto
+        private int? PagarExtrasDespuesDeHs;
         private List<LineaDeHoras> Lineas;
 
         public ConSeguridadFisica(bool pDescanso, bool horasext, int tothnormales, int tothextras, int totvigilantes, DateTime fechaini, DateTime? fechafin, string ajuste, string obs, bool fijo, float costo)
@@ -22,7 +23,19 @@ namespace Logica
             TotalHorasNormales = tothnormales;
             TotalHorasExtras = tothextras;
             TotalVigilantes = totvigilantes;
+            PagarExtrasDespuesDeHs = null;
+            Lineas = new List<LineaDeHoras>();
+        }
 
+        public ConSeguridadFisica(bool pDescanso, bool horasext, int tothnormales, int tothextras, int totvigilantes, DateTime fechaini, DateTime? fechafin, string ajuste, string obs, bool fijo, float costo, int? pagarExtrasDespuesDe)
+            : base(fechaini, fechafin, ajuste, obs, fijo, costo)
+        {
+            PagaDescanso = pDescanso;
+            PagaHorasExtra = horasext;
+            TotalHorasNormales = tothnormales;
+            TotalHorasExtras = tothextras;
+            TotalVigilantes = totvigilantes;
+            PagarExtrasDespuesDeHs = pagarExtrasDespuesDe;
             Lineas = new List<LineaDeHoras>();
         }
 
@@ -89,6 +102,16 @@ namespace Logica
         public void addLinea(LineaDeHoras linea)
         {
             Lineas.Add(linea);
+        }
+
+        public int? getPagarExtrasDespuesDeHs()
+        {
+            return PagarExtrasDespuesDeHs;
+        }
+
+        public void setPagarExtrasDespuesDeHs(int? cantHs)
+        {
+            PagarExtrasDespuesDeHs = cantHs;
         }
 
         public TimeSpan[] getTotalesHoras()

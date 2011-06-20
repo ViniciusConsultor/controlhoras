@@ -99,5 +99,11 @@ namespace Datos
         List<GRuPOs> obtenerListaGrupos(bool soloactivos);
 
         #endregion
+
+        #region ABM_TipoExtraLiquidacion
+        int altaTipoExtraLiquidacion(string nombreTipoExtra, bool activo, bool llevaHs);
+        void modificarTipoExtraLiquidacion(TipOExtraLiquidAcIon tipoExtra);
+        List<TipOExtraLiquidAcIon> obtenerTipoExtraLiquidacion(bool activos);
+        #endregion
     }
 }
