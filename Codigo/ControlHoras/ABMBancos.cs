@@ -46,32 +46,39 @@ namespace ControlHoras
             btnAgregar.Enabled = true;
             btnGuardar.Enabled = false;
 
-            Dictionary<int,string> bancos = tipos.obtenerBancos(false);
-            foreach (int iter in bancos.Keys)
+            try
             {
-                int n = -10;
-                try
+                Dictionary<int, string> bancos = tipos.obtenerBancos(false);
+                foreach (int iter in bancos.Keys)
                 {
-                    n = dgvBancos.Rows.Add();
-                    dgvBancos.Rows[n].Cells["idBanco"].Value = iter;
-                    dgvBancos.Rows[n].Cells["Nombre"].Value = bancos[iter];
-                   // dgvBancos.Rows[n].Cells["Activa"].Value = cat[3];
+                    int n = -10;
+                    try
+                    {
+                        n = dgvBancos.Rows.Add();
+                        dgvBancos.Rows[n].Cells["idBanco"].Value = iter;
+                        dgvBancos.Rows[n].Cells["Nombre"].Value = bancos[iter];
+                        // dgvBancos.Rows[n].Cells["Activa"].Value = cat[3];
 
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, "Error Cargando las Bancos. " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (n > -10)
+                            try
+                            {
+                                dgvBancos.Rows.RemoveAt(n);
+                            }
+                            catch (Exception ex1)
+                            {
+                                MessageBox.Show(this, ex1.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(this, "Error Cargando las Bancos. " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    if (n > -10)
-                        try
-                        {
-                            dgvBancos.Rows.RemoveAt(n);
-                        }
-                        catch (Exception ex1)
-                        {
-                            MessageBox.Show(this, ex1.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                }
-            } 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)

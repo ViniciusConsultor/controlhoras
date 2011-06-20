@@ -33,6 +33,7 @@ namespace ControlHoras
 
         // Lista de datos que se mantienen para su posterior consulta
         private List<TipOsEventOHistOrIal> listaTiposEventos;
+        private List<TipOExtraLiquidAcIon> listaTiposExtras;
         private List<TipOscarGoS> cargos;
 
         private string LlenarCamposObligatorios = "Debe llenar todos los campos obligatorios.";
@@ -153,14 +154,6 @@ namespace ControlHoras
                 try
                 {
                     updateListOfEmergenciaMedica();
-
-                    //cmbEmergenciaMedica.BeginUpdate();                
-                    //foreach (int key in docs.Keys)
-                    //{
-                    //    ComboBoxValue cbval = new ComboBoxValue(docs[key], key);
-                    //    cmbEmergenciaMedica.Items.Add(cbval);
-                    //}
-                    //cmbEmergenciaMedica.EndUpdate();
                 }
                 catch (Exception ex)
                 {
@@ -171,15 +164,6 @@ namespace ControlHoras
                 try
                 {
                     updateListOfMutualistas();
-                    //cmbMutualista.ValueMember = "Value";
-                    //cmbMutualista.DisplayMember = "Display";
-                    //cmbMutualista.BeginUpdate();
-                    //foreach (int key in docs.Keys)
-                    //{
-                    //    ComboBoxValue cbval = new ComboBoxValue(docs[key], key);
-                    //    cmbMutualista.Items.Add(cbval);
-                    //}
-                    //cmbMutualista.EndUpdate();
                 }
                 catch (Exception ex)
                 {
@@ -201,23 +185,20 @@ namespace ControlHoras
                 {
                     cargos = datosTipos.obtenerTiposCargosList(true);
                     updateListOfCargos();
-
-
-                    /*cmbTiposCargos.ValueMember = "Value";
-                    cmbTiposCargos.DisplayMember = "Display";
-                    cmbTiposCargos.BeginUpdate();
-                    foreach (TipOscarGoS tipo in cargos)
-                    {
-                        ComboBoxValue cbval = new ComboBoxValue(tipo.Nombre, (int)tipo.IDCargo);
-                        cmbTiposCargos.Items.Add(cbval);
-                    }
-                    cmbTiposCargos.EndUpdate();*/
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(this, "Error Cargando las Cargos. " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
+                // Combo TipoExtraLiquidacion
+                try
+                {
+                    updateListOfTipoExtraLiquidacionCombo();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 #endregion
                 cargarPermisos();
 
@@ -343,7 +324,8 @@ namespace ControlHoras
 
                     lblEmpleadoCargado.Text = "";
                     lblEdad.Text = "";
-
+                    mtExtrasLlevaHs.Text = "";
+                    this.Text = "ABMEmpleados";
                 }
             }
         }
@@ -913,7 +895,9 @@ namespace ControlHoras
 
             if (empleado.FechaNacimiento != null)
                 lblEdad.Text = calcularEdad(DateTime.ParseExact(dtpFechaNacimiento.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo)).ToString();
-
+            cbPerteneceASindicato.Checked = false;
+            if (empleado.EnSindicato == 1)
+                cbPerteneceASindicato.Checked = true;
             //try
             //{
             //    if (empleado.FechaPagoFinal != null)
@@ -923,9 +907,10 @@ namespace ControlHoras
             //    }
             //}
             //catch (Exception e) { }
-
+            lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
             cargarHistorialEmpleado((int)empleado.NroEmpleado);
             dtpExtrasFecha.Value = DateTime.Today;
+            mtExtrasCantCuotas.Text = "1";
             cargarGrillaExtraLiquidacionEmpleado();
         }
 
@@ -1172,7 +1157,7 @@ namespace ControlHoras
 
                 if (agregar)
                 {
-                    datos.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, valorHora, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, idciudad, idbarrio, txtCodigoPostal.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, cbBajadoBPS.Checked, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTallePantalon.Text, txtTalleCamisa.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, cmbNivelEducativo.SelectedItem.ToString(), idcargo, dtpFechaPagoEfectuado, dtpFechaPagoPrevisto, ServicioActual, Turno, cbConstanciaDomicilio.Checked, dtpFechaEnCelu);
+                    datos.altaEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, valorHora, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, idciudad, idbarrio, txtCodigoPostal.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, cbBajadoBPS.Checked, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTallePantalon.Text, txtTalleCamisa.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, cmbNivelEducativo.SelectedItem.ToString(), idcargo, dtpFechaPagoEfectuado, dtpFechaPagoPrevisto, ServicioActual, Turno, cbConstanciaDomicilio.Checked, dtpFechaEnCelu, cbPerteneceASindicato.Checked);
                     MessageBox.Show("Empleado agregado Correctamente.", "Alta Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     habilitarPermisosEmpleado(true);
                 }
@@ -1181,7 +1166,7 @@ namespace ControlHoras
                     string nivEdu = "";
                     if (cmbNivelEducativo.SelectedItem != null)
                         nivEdu = cmbNivelEducativo.SelectedItem.ToString();
-                    datos.modificarEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, valorHora, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, idciudad, idbarrio, txtCodigoPostal.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, cbBajadoBPS.Checked, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTallePantalon.Text, txtTalleCamisa.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, cmbNivelEducativo.SelectedItem.ToString(), idcargo, dtpFechaPagoEfectuado, dtpFechaPagoPrevisto, ServicioActual, Turno, cbConstanciaDomicilio.Checked, dtpFechaEnCelu);
+                    datos.modificarEmpleado(int.Parse(mtNumeroEmpleado.Text), TranfaTitulo(txtNombre.Text), txtApellido.Text, idtipodocumento, mtNumeroDocumento.Text, txtLugarNacimiento.Text, sexo, dtpsicologo, dtpFechaNac, edad, dtpFechaIng, txtTelefono.Text, txtCelular.Text, txtCelularConvenio.Text, txtEmail.Text, estadoCivil, cantMenoresACargo, foto, valorHora, activo, dtpBaja, txtMotivoBaja.Text, iddepartamento, idciudad, idbarrio, txtCodigoPostal.Text, txtDireccion.Text, txtEntreCalles.Text, txtPuntoEncuentro.Text, txtNumAsuntoRenaemse.Text, dtpFechaIngRen, acumulacionLaboral, dtpFechaAlBPS, cbBajadoBPS.Checked, dtpFechaBaBPS, txtNumeroCAJ.Text, dtpFechaEmCAJ, dtpFechaEnCAJ, antecedentesEmpleado, txtObservacionesAntecedentes.Text, antecedentesPolicialesOMilitares, cmbPolicialMilitar.Text, dtpFechaIngPolMil, dtpFechaEgrPolMil, txtPolicialSubEscalafon.Text, combatiente, txtTallePantalon.Text, txtTalleCamisa.Text, mtTalleZapatos.Text, txtTalleCampera.Text, dtpFechaVenCarSal, idmutualista, idemergenciamovil, capacitadoPortarArma, enServicioArmado, txtObservaciones.Text, cmbNivelEducativo.SelectedItem.ToString(), idcargo, dtpFechaPagoEfectuado, dtpFechaPagoPrevisto, ServicioActual, Turno, cbConstanciaDomicilio.Checked, dtpFechaEnCelu, cbPerteneceASindicato.Checked);
                     MessageBox.Show("Datos guardados correctamente.", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 // JG. Se comenta para que al guardar permanezca cargado el funcionario.
@@ -1501,7 +1486,7 @@ namespace ControlHoras
                 dtpFechaInicioHistorial.Text = dgvHistorialEmpleado.Rows[e.RowIndex].Cells["FechaInicio"].Value.ToString();
                 dtpFechaFinHistorial.Text = dgvHistorialEmpleado.Rows[e.RowIndex].Cells["FechaFin"].Value.ToString();
                 txtDescripcionHistorial.Text = dgvHistorialEmpleado.Rows[e.RowIndex].Cells["Descripcion"].Value.ToString();
-                int numIndice = 0;
+                //int numIndice = 0;
                 foreach (ComboBoxValue v in cmbTipoEventoHistorial.Items)
                 {
                     if (v.Value == int.Parse(dgvHistorialEmpleado.Rows[e.RowIndex].Cells["IdTipoEvento"].Value.ToString()))
@@ -1509,7 +1494,7 @@ namespace ControlHoras
                         cmbTipoEventoHistorial.SelectedIndex = cmbTipoEventoHistorial.Items.IndexOf(v);
                         break;
                     }
-                    numIndice++;
+                //    numIndice++;
                 }
 
                 //cmbTipoEventoHistorial.SelectedIndex = numIndice;
@@ -1532,7 +1517,7 @@ namespace ControlHoras
 
         private void btnExtrasAgregar_Click(object sender, EventArgs e)
         {
-            if (txtExtrasDescripcion.Text != "" && mtExtrasValor.Text != "" && cmbExtrasSigno.SelectedIndex >= 0 && mtExtrasCantCuotas.Text != "")
+            if (txtExtrasDescripcion.Text != "" && ((mtExtrasValor.Enabled && mtExtrasValor.Text != "") || (mtExtrasLlevaHs.Enabled && mtExtrasLlevaHs.Text != "")) && cmbExtrasSigno.SelectedIndex >= 0 && mtExtrasCantCuotas.Text != "")
             {
                 try
                 {
@@ -1542,7 +1527,16 @@ namespace ControlHoras
                         signoPositivo = true;
                     mtExtrasValor.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
                     mtExtrasCantCuotas.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-                    int numNuevoExtra = datos.agregarExtraLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), dtpExtrasFecha.Value, txtExtrasDescripcion.Text, signoPositivo, float.Parse(mtExtrasValor.Text), int.Parse(mtExtrasCantCuotas.Text));
+
+                    float valorExtras = 0;
+                    if (mtExtrasValor.Enabled)
+                        valorExtras = float.Parse(mtExtrasValor.Text);
+                    float cantHs_LlevaHs = 0;
+                    if (mtExtrasLlevaHs.Enabled)
+                        cantHs_LlevaHs = float.Parse(mtExtrasLlevaHs.Text);
+                    string username = ((VentanaPrincipal)this.Owner).userName;
+                    int idTipoExtraLiquidacionSelected = ((ComboBoxValue)cmbTipoExtraLiquidacion.Items[cmbTipoExtraLiquidacion.SelectedIndex]).Value;
+                    int numNuevoExtra = datos.agregarExtraLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), dtpExtrasFecha.Value, txtExtrasDescripcion.Text, signoPositivo, valorExtras, int.Parse(mtExtrasCantCuotas.Text), username, idTipoExtraLiquidacionSelected, cantHs_LlevaHs);
                     limpiarTabExtrasLiquidacion();
                     cargarGrillaExtraLiquidacionEmpleado();
                 }
@@ -1563,7 +1557,7 @@ namespace ControlHoras
             dtpExtrasFecha.Value = DateTime.Today;
             txtExtrasDescripcion.Text = "";
             mtExtrasValor.Text = "";
-            mtExtrasCantCuotas.Text = "";
+            mtExtrasCantCuotas.Text = "1";
             cmbExtrasSigno.SelectedIndex = 0;
         }
 
@@ -1586,7 +1580,7 @@ namespace ControlHoras
                     {
                         datos.modificarExtraLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), int.Parse(lblIdExtraLiquidacion.Text), dtpExtrasFecha.Value, txtExtrasDescripcion.Text, signoPositivo, float.Parse(mtExtrasValor.Text), int.Parse(mtExtrasCantCuotas.Text));
                         dgvExtrasLiquidacion.Rows[numFila].Cells["DescripcionEvento"].Value = txtExtrasDescripcion.Text;
-                        if (cmbExtrasSigno.SelectedItem == "+")
+                        if (signoPositivo)
                             dgvExtrasLiquidacion.Rows[numFila].Cells["Signo"].Value = "+";
                         else
                             dgvExtrasLiquidacion.Rows[numFila].Cells["Signo"].Value = "-";
@@ -1607,7 +1601,7 @@ namespace ControlHoras
 
         private void btnExtrasEliminar_Click(object sender, EventArgs e)
         {
-            if (txtExtrasDescripcion.Text != "" && mtExtrasValor.Text != "" && cmbExtrasSigno.SelectedIndex >= 0 && mtExtrasCantCuotas.Text != "")
+            if (txtExtrasDescripcion.Text != "" && ((mtExtrasValor.Enabled && mtExtrasValor.Text != "") || (mtExtrasLlevaHs.Enabled && mtExtrasLlevaHs.Text != "")) && cmbExtrasSigno.SelectedIndex >= 0 && mtExtrasCantCuotas.Text != "")
             {
                 char signo = cmbExtrasSigno.Text.ToCharArray()[0];
                 DialogResult dr = MessageBox.Show("Seguro que desea eliminar el Extra Liquidación?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -1647,9 +1641,7 @@ namespace ControlHoras
                 // Vacio la grilla
                 dgvExtrasLiquidacion.Rows.Clear();
 
-
                 // llenado de la grilla con estos datos
-
 
                 foreach (CuOtAsExtrasLiquidAcIon cel in listaCuotas)
                 {
@@ -1668,7 +1660,9 @@ namespace ControlHoras
                         dgvExtrasLiquidacion.Rows[n].Cells["Liquidado"].Value = "Si";
                     else
                         dgvExtrasLiquidacion.Rows[n].Cells["Liquidado"].Value = "No";
-
+                    dgvExtrasLiquidacion.Rows[n].Cells["Usuario"].Value = cel.ExtrasLiquidAcIon.UsUarIoS.UserName;
+                    dgvExtrasLiquidacion.Rows[n].Cells["TipoExtra"].Value = cel.ExtrasLiquidAcIon.TipOExtraLiquidAcIon.Nombre;
+                    dgvExtrasLiquidacion.Rows[n].Cells["CantHs"].Value = cel.ExtrasLiquidAcIon.CantHsTipoExtraLlevaHs;
                 }
             }
             catch (Exception ex)
@@ -1700,7 +1694,16 @@ namespace ControlHoras
                 cmbExtrasSigno.SelectedItem = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["Signo"].Value.ToString();
                 mtExtrasValor.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["Valor"].Value.ToString();
                 mtExtrasCantCuotas.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["CantidadCuotas"].Value.ToString();
-                
+                if (dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["CantHs"].Value != null)
+                mtExtrasLlevaHs.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["CantHs"].Value.ToString();
+                foreach (ComboBoxValue v in cmbTipoExtraLiquidacion.Items)
+                {
+                    if (v.Display == dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["TipoExtra"].Value.ToString())
+                    {
+                        cmbTipoExtraLiquidacion.SelectedIndex = cmbTipoExtraLiquidacion.Items.IndexOf(v);
+                        break;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1767,6 +1770,21 @@ namespace ControlHoras
             cmbTipoEventoHistorial.EndUpdate();
         }
 
+        private void updateListOfTipoExtraLiquidacionCombo()
+        {
+            List<TipOExtraLiquidAcIon> tiposextras = datosTipos.obtenerTipoExtraLiquidacion(true);
+            listaTiposExtras = tiposextras;
+            cmbTipoExtraLiquidacion.Items.Clear();
+            cmbTipoExtraLiquidacion.ValueMember = "Value";
+            cmbTipoExtraLiquidacion.DisplayMember = "Display";
+            cmbTipoExtraLiquidacion.BeginUpdate();
+            foreach (TipOExtraLiquidAcIon tipo in tiposextras)
+            {
+                ComboBoxValue cbval = new ComboBoxValue(tipo.Nombre, tipo.IDTipoExtraLiquidacion);
+                cmbTipoExtraLiquidacion.Items.Add(cbval);
+            }
+            cmbTipoExtraLiquidacion.EndUpdate();
+        }
         private void btnAddTipoEvento_Click(object sender, EventArgs e)
         {
             ABMTipoEventoHistorial abmtiposeventos = ABMTipoEventoHistorial.getVentana();
@@ -2996,8 +3014,7 @@ namespace ControlHoras
         {
             if (activo)
             {
-                lblEstadoEmpleado.Visible = true;
-                lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
+                lblEstadoEmpleado.Visible = true;                
                 btnAgregar.Enabled = false;
                 btnGuardar.Enabled = true;
                 BtnReactivar.Visible = false;
@@ -3013,7 +3030,6 @@ namespace ControlHoras
             else
             {
                 lblEstadoEmpleado.Visible = true;
-                lblEmpleadoCargado.Text = mtNumeroEmpleado.Text + " - " + txtNombre.Text + " " + txtApellido.Text;
                 btnAgregar.Enabled = false;
                 btnGuardar.Enabled = true;
                 BtnReactivar.Visible = true;
@@ -3032,7 +3048,7 @@ namespace ControlHoras
         {
             try
             {
-                Dictionary<int, string> docs = tipos.obtenerDepartamentos(false);
+                Dictionary<int, string> docs = tipos.obtenerDepartamentos(true);
                 CargarCombo(cmbDepartamento, docs);
             }
             catch (Exception ex)
@@ -3045,7 +3061,7 @@ namespace ControlHoras
         {
             try
             {
-                Dictionary<int, string> docs = tipos.obtenerCiudades(false);
+                Dictionary<int, string> docs = tipos.obtenerCiudades(true);
                 CargarCombo(cmbCiudades, docs);
             }
             catch (Exception ex)
@@ -3058,7 +3074,7 @@ namespace ControlHoras
         {
             try
             {
-                Dictionary<int, string> docs = tipos.obtenerBarrios(false);
+                Dictionary<int, string> docs = tipos.obtenerBarrios(true);
                 CargarCombo(cmbBarrios, docs);
             }
             catch (Exception ex)
@@ -3085,7 +3101,7 @@ namespace ControlHoras
         {
             try
             {
-                ABMCiudades dptos = ABMCiudades.getVentana();
+                ABMTipoExtraLiquidacion dptos = ABMTipoExtraLiquidacion.getVentana();
                 dptos.ShowDialog(this);
                 updateListOfCiudades();
             }
@@ -3214,6 +3230,55 @@ namespace ControlHoras
             mtNumeroEmpleado.Focus();
             SendKeys.Send("{ENTER}");
         }
+
+        private void lblEmpleadoCargado_TextChanged(object sender, EventArgs e)
+        {
+            lblEmpleadoAltasYBajas.Text = lblEmpleadoCargado.Text;
+            lblEmpleadoHistorial.Text = lblEmpleadoCargado.Text;
+            lblEmpleadoExtras.Text = lblEmpleadoCargado.Text;
+            this.Text = "ABMEmpleados | " + lblEmpleadoCargado.Text;
+        }
+
+        private void cmbTipoExtraLiquidacion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idTipoExtraLiquidacionSelected = ((ComboBoxValue)cmbTipoExtraLiquidacion.Items[cmbTipoExtraLiquidacion.SelectedIndex]).Value;
+            foreach (TipOExtraLiquidAcIon te in listaTiposExtras)
+            {
+                if ((int)te.IDTipoExtraLiquidacion == idTipoExtraLiquidacionSelected)
+                {
+                    if (te.LlevaHs == 1)
+                    {
+                        mtExtrasLlevaHs.Enabled = true;
+                        mtExtrasValor.Enabled = false;
+                        mtExtrasValor.Text = "";
+                    }
+                    else
+                    {
+                        mtExtrasLlevaHs.Enabled = false;
+                        mtExtrasLlevaHs.Text = "";
+                        mtExtrasValor.Enabled = true;
+                    }
+                    break;
+                }
+            }
+        }
+
+        private void btnUpdateComboTipoExtraLiquidacion_Click(object sender, EventArgs e)
+        {
+           
+            try
+            {
+                ABMTipoExtraLiquidacion extras = ABMTipoExtraLiquidacion.getVentana();
+                extras.ShowDialog(this);
+                updateListOfTipoExtraLiquidacionCombo();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+   
 
 
     }

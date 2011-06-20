@@ -355,7 +355,7 @@ namespace Logica
         {
             try
             {
-                datos.modificarContrato(NumeroContrato, Contrato.getFechaIni(), Contrato.getFechaFin(), Contrato.GetCostoFijo(), Contrato.getHorasExtras(), Contrato.getPagaDescanso(), Contrato.getAjuste(), Contrato.getObservaciones(), Contrato.getMonto());
+                datos.modificarContrato(NumeroContrato, Contrato.getFechaIni(), Contrato.getFechaFin(), Contrato.GetCostoFijo(), Contrato.getHorasExtras(), Contrato.getPagaDescanso(), Contrato.getAjuste(), Contrato.getObservaciones(), Contrato.getMonto(), Contrato.getPagarExtrasDespuesDeHs());
 
                 datos.eliminarLineasContrato(NumeroContrato);
 

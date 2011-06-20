@@ -170,6 +170,12 @@
     <Compile Include="ABMMutualistas.designer.cs">
       <DependentUpon>ABMMutualistas.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABMTipoExtraLiquidacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMTipoExtraLiquidacion.designer.cs">
+      <DependentUpon>ABMTipoExtraLiquidacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABMTiposDocumento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -452,6 +458,9 @@
     <EmbeddedResource Include="ABMMutualistas.resx">
       <DependentUpon>ABMMutualistas.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMTipoExtraLiquidacion.resx">
+      <DependentUpon>ABMTipoExtraLiquidacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABMTiposDocumento.resx">
       <DependentUpon>ABMTiposDocumento.cs</DependentUpon>

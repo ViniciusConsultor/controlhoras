@@ -262,7 +262,6 @@ namespace Datos
         #endregion
 
         #region TipoEventoHistorial
-
         public int altaTipoEventoHistorial(string descripcion, bool activo)
         {
             try
@@ -290,7 +289,6 @@ namespace Datos
 
 
         }
-
         public void modificarTipoEventoHistorial(int idTipoEventoHistorial, string descripcion, bool activo)
         {
             try
@@ -314,7 +312,6 @@ namespace Datos
                 throw ex;
             }
         }
-
         public List<TipOsEventOHistOrIal> obtenerTiposEventoHistorial(bool soloactivos)
         {
             try
@@ -659,6 +656,74 @@ namespace Datos
         }
         
 
+        #endregion
+
+        #region ABM_TipoExtraLiquidacion
+        public int altaTipoExtraLiquidacion(string nombreTipoExtra, bool activo, bool llevaHs)
+        {
+            try
+            {
+                TipOExtraLiquidAcIon tipoExtra = new TipOExtraLiquidAcIon();
+
+                tipoExtra.Nombre = nombreTipoExtra;
+                if (activo)
+                    tipoExtra.Activo = 1;
+                else
+                    tipoExtra.Activo = 0;
+                if (llevaHs)
+                    tipoExtra.LlevaHs = 1;
+                else
+                    tipoExtra.LlevaHs = 0;
+                database.TipOExtraLiquidAcIon.InsertOnSubmit(tipoExtra);
+                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+
+                return tipoExtra.IDTipoExtraLiquidacion;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void modificarTipoExtraLiquidacion(TipOExtraLiquidAcIon tipoExtra)
+        {
+            try
+            {
+                TipOExtraLiquidAcIon tipoEvento = (from reg in database.TipOExtraLiquidAcIon
+                                                   where reg.IDTipoExtraLiquidacion == tipoExtra.IDTipoExtraLiquidacion
+                                                   select reg).Single<TipOExtraLiquidAcIon>();
+                tipoEvento.Nombre = tipoExtra.Nombre;
+                tipoEvento.Activo = tipoExtra.Activo;
+                tipoEvento.LlevaHs = tipoExtra.LlevaHs;
+                
+
+                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<TipOExtraLiquidAcIon> obtenerTipoExtraLiquidacion(bool soloactivos)
+        {
+            try
+            {
+                List<TipOExtraLiquidAcIon> tipoEvento;
+                if (soloactivos)
+                    tipoEvento = (from reg in database.TipOExtraLiquidAcIon
+                                  where reg.Activo == 1
+                                  select reg).ToList<TipOExtraLiquidAcIon>();
+                else
+                    tipoEvento = (from reg in database.TipOExtraLiquidAcIon
+                                  select reg).ToList<TipOExtraLiquidAcIon>();
+                return tipoEvento;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         #endregion
     }
 }
