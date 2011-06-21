@@ -4168,7 +4168,7 @@ namespace Datos
             }
         }
 
-        public Dictionary<DateTime, TimeSpan> LiquidarunEmpleado(int nroEmp)
+        public List<DataDiaFacturacion> LiquidarunEmpleado(EmPleadOs emp, TipOscarGoS tc)
         {
             Table<LiquidAcIonEmPleadOs> tabla;
             try
@@ -4176,26 +4176,48 @@ namespace Datos
                 tabla = database.GetTable<LiquidAcIonEmPleadOs>();
 
                 var hors = from varcli in tabla
-                           where varcli.NroEmpleado == (uint)nroEmp
+                           where varcli.NroEmpleado == emp.NroEmpleado
                            group varcli by varcli.Fecha;
+                                
+                TimeSpan HscomoComunes = new TimeSpan((int)tc.CantidadHsComunes, 0, 0);
 
-                Dictionary<DateTime, TimeSpan> liqui = new Dictionary<DateTime, TimeSpan>();
+                List<DataDiaFacturacion> TotLiqui = new List<DataDiaFacturacion>();
+                DataDiaFacturacion diaLiqui;
                 DateTime fecha;
-                TimeSpan horas;
+                TimeSpan HsComunes, HsExtras, auxts;
+                ContraToS con;
 
                 foreach (var dia in hors)
                 {
                     fecha = dia.Key;
-                    horas = new TimeSpan(0);
+                    HsComunes = new TimeSpan(0);
+                    HsExtras = new TimeSpan(0);
+                    auxts = new TimeSpan(0);
                     List<LiquidAcIonEmPleadOs> horsdia = (from reg in tabla
-                                                          where reg.NroEmpleado == (uint)nroEmp && reg.Fecha == fecha
+                                                          where reg.NroEmpleado == emp.NroEmpleado && reg.Fecha == fecha
                                                           select reg).ToList<LiquidAcIonEmPleadOs>();
                     foreach (LiquidAcIonEmPleadOs l in horsdia)
-                        horas = horas + l.Horas.TimeOfDay;
-                    liqui.Add(fecha, horas);
+                    {
+                        con = obtenerContrato((int)l.NroCliente, (int)l.NroServicio);
+                        if (con.PagaDescanso == 1 && l.Horas.Hour >= 8)
+                            auxts = auxts + new TimeSpan(0, 30, 0);
+
+                        HsComunes = HsComunes + l.Horas.TimeOfDay;
+                    }
+
+                    if (tc.CobraHsExtras == 1 && HsComunes > HscomoComunes)
+                    {
+                        HsExtras = HsComunes - HscomoComunes;
+                        HsComunes = HscomoComunes;
+                    }
+
+                    HsComunes = HsComunes + auxts;
+
+                    diaLiqui = new DataDiaFacturacion(fecha, HsComunes, HsExtras);
+                    TotLiqui.Add(diaLiqui);
                 }
 
-                return liqui;
+                return TotLiqui;
 
             }
             catch (Exception ex)
