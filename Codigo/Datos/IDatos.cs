@@ -450,7 +450,7 @@ namespace Datos
 
         List<DateTime> ObtenerFeriados();
 
-        Dictionary<DateTime, TimeSpan> LiquidarunEmpleado(int nroEmp);
+        List<DataDiaFacturacion> LiquidarunEmpleado(EmPleadOs empleado, TipOscarGoS tc);
 
         bool existeEmpleadoLiquidado(int NroEmpleado);
 

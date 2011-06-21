@@ -3,7 +3,8 @@ ALTER TABLE `trustdb`.`contratos` ADD COLUMN `PagaDescanso` TINYINT(1) NOT NULL 
 
 -- Agregamos el campo 'ACargoDeLaEmpresa' para no cargar a los clientes con personal a cargo de la empresa
 ALTER TABLE `trustdb`.`horasgeneradasescalafon` ADD COLUMN `ACargoDeLaEmpresa` TINYINT(1) NOT NULL DEFAULT 0  AFTER `Descanso` ;
--- Agregamos el campo PagarExtrasDespuesDeHs que contiene la cantidad de Hs desde a partir de cual el cliente paga hs extras.
+
+-- Agregamos el campo PagarExtrasDespuesDeHs que contiene la cantidad de Hs desde a partir de cual el cliente paga hs extras.
 alter table Contratos add column PagarExtrasDespuesDeHs smallint default null after HorasExtras;
 
 -- Creacion de tabla tipoextraliquidacion

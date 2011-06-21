@@ -227,6 +227,11 @@ namespace ControlHoras
                     habilitarMenuStripDgvHoras();
                     
                     SendKeys.Send("{TAB}");
+                    //if (mtServicio.Text != "")
+                    //{
+                    //    mtServicio.Focus();
+                    //    SendKeys.Send("{ENTER}");
+                    //}
                 }
                 catch (Exception ex)
                 {

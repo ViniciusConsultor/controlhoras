@@ -74,7 +74,7 @@ namespace ControlHoras
             {
                 datos.LiquidarEmpleados(inicio, fin);
                 datos.empleadosLiquidados(out empleados);
-                datos.CalcularDescansos();
+                //datos.CalcularDescansos();
                 
 
                 splitContainer2.Visible = true;
@@ -106,10 +106,8 @@ namespace ControlHoras
 
         private void CargarEmpleado()
         {
-            int nroEmp, numf, sep = 0;
-            TimeSpan hc, he;
-            DateTime auxdt = DateTime.Today;
-            DateTime aux2;
+            int nroEmp, numf, sep = 0;            
+            DateTime auxdt = DateTime.Today;           
 
             LiquidacionDGV.Rows.Clear();
 
@@ -128,25 +126,24 @@ namespace ControlHoras
 
                 bool cobraextra = (tc.CobraHsExtras == 1);
 
-                Dictionary<DateTime, TimeSpan> liq = datos.LiquidarunEmpleado(nroEmp);
-                Dictionary<DateTime, TimeSpan>.Enumerator iter = liq.GetEnumerator();
+                List<DataDiaFacturacion> liq = datos.LiquidarunEmpleado(emp, tc);                
 
                 List<int> obs = datos.obtenerObsCambios(nroEmp, mesAct);                
 
-                while (iter.MoveNext())
+                foreach (DataDiaFacturacion dia in liq)
                 {
-                    numf = LiquidacionDGV.Rows.Add();
-                    aux2 = new DateTime(2000, iter.Current.Key.Month, iter.Current.Key.Day);
-                    if (feriados.Contains(aux2))
+                    numf = LiquidacionDGV.Rows.Add();                    
+                    
+                    if (feriados.Contains(dia.Dia))
                         sep = 2;
                     else
                         sep = 0;
                     //sep = (feriados.Contains(iter.Current.Key))?2:0;
-                    CalcularHsExtras(cobraextra, (int)tc.CantidadHsComunes, iter.Current.Value, out hc, out he);
-                    LiquidacionDGV.Rows[numf].Cells[0].Value = iter.Current.Key.Day.ToString();
-                    LiquidacionDGV.Rows[numf].Cells[1 + sep].Value = (auxdt + hc).ToString("HH:mm");
-                    LiquidacionDGV.Rows[numf].Cells[2 + sep].Value = (auxdt + he).ToString("HH:mm");
-                    if (obs.Contains(iter.Current.Key.Day))
+
+                    LiquidacionDGV.Rows[numf].Cells[0].Value = dia.Dia.Day.ToString();
+                    LiquidacionDGV.Rows[numf].Cells[1 + sep].Value = (auxdt + dia.HsComunes).ToString("HH:mm");
+                    LiquidacionDGV.Rows[numf].Cells[2 + sep].Value = (auxdt + dia.HsExtras).ToString("HH:mm");
+                    if (obs.Contains(dia.Dia.Day))
                         LiquidacionDGV.Rows[numf].Cells[5].Value = "*";
                 }
 
@@ -244,6 +241,148 @@ namespace ControlHoras
             }
 
         }
+
+
+        //private void CargarEmpleado2()
+        //{
+        //    int nroEmp, numf, sep = 0;
+        //    TimeSpan hc, he;
+        //    DateTime auxdt = DateTime.Today;
+        //    DateTime aux2;
+
+        //    LiquidacionDGV.Rows.Clear();
+
+        //    //DataGridViewButtonColumn
+
+        //    nroEmp = int.Parse(empleados.Rows[ind].ItemArray[0].ToString());
+        //    mtNumeroEmpleado.Text = nroEmp.ToString();
+
+        //    try
+        //    {
+        //        EmPleadOs emp = datos.obtenerEmpleado(nroEmp);
+        //        TipOscarGoS tc = datos.obtenerCargo((int)emp.IDCargo);
+
+        //        EmpleadoLBL.Text = emp.NroEmpleado.ToString() + " - " + emp.Apellido + ", " + emp.Nombre;
+        //        CargoLBL.Text = tc.Nombre;
+
+        //        bool cobraextra = (tc.CobraHsExtras == 1);
+
+        //        Dictionary<DateTime, TimeSpan> liq = datos.LiquidarunEmpleado(nroEmp);
+        //        Dictionary<DateTime, TimeSpan>.Enumerator iter = liq.GetEnumerator();
+
+        //        List<int> obs = datos.obtenerObsCambios(nroEmp, mesAct);
+
+        //        while (iter.MoveNext())
+        //        {
+        //            numf = LiquidacionDGV.Rows.Add();
+        //            aux2 = new DateTime(2000, iter.Current.Key.Month, iter.Current.Key.Day);
+        //            if (feriados.Contains(aux2))
+        //                sep = 2;
+        //            else
+        //                sep = 0;
+        //            //sep = (feriados.Contains(iter.Current.Key))?2:0;
+        //            CalcularHsExtras(cobraextra, (int)tc.CantidadHsComunes, iter.Current.Value, out hc, out he);
+        //            LiquidacionDGV.Rows[numf].Cells[0].Value = iter.Current.Key.Day.ToString();
+        //            LiquidacionDGV.Rows[numf].Cells[1 + sep].Value = (auxdt + hc).ToString("HH:mm");
+        //            LiquidacionDGV.Rows[numf].Cells[2 + sep].Value = (auxdt + he).ToString("HH:mm");
+        //            if (obs.Contains(iter.Current.Key.Day))
+        //                LiquidacionDGV.Rows[numf].Cells[5].Value = "*";
+        //        }
+
+        //        CalcularTotales();
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //    }
+
+        //    //EXTRAS LIQUIDACIÓN
+
+        //    ExtraLiquiGB.Visible = false;
+        //    ExtraLiquidaciónLB.DataSource = null;
+        //    ExtraLiquidaciónLB.Items.Clear();
+
+
+        //    DataEmpleadoExLiquidacion exLiqui = null;
+
+        //    try
+        //    {
+        //        exLiqui = datos.obtenerExLiquidacionEmpleado(nroEmp, mesAct);
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //    }
+
+        //    if (exLiqui.listaExLiqui.Count > 0)
+        //    {
+        //        ExtraLiquiGB.Visible = true;
+
+        //        Dictionary<int, string> exsliqs = new Dictionary<int, string>();
+        //        int i = 0;
+        //        foreach (DataExtraLiquidacion el in exLiqui.listaExLiqui)
+        //        {
+
+        //            exsliqs.Add(i, @"$U " + el.valor.ToString() + " (" + el.descripcion + " " + el.cuota + ")");
+        //            i++;
+        //        }
+
+        //        BindingSource bs = new BindingSource();
+        //        bs.DataSource = exsliqs;
+
+        //        ExtraLiquidaciónLB.ValueMember = "Key";
+        //        ExtraLiquidaciónLB.DisplayMember = "Value";
+
+        //        if (ExtraLiquidaciónLB.DataSource != null)
+        //        {
+        //            //cmb.BindingContext[cmb.DataSource].SuspendBinding();
+        //            ExtraLiquidaciónLB.DataSource = exsliqs;
+        //            ExtraLiquidaciónLB.BeginUpdate();
+        //            ExtraLiquidaciónLB.EndUpdate();
+        //            //cmb.BindingContext[cmb.DataSource].ResumeBinding();
+        //        }
+        //        else
+        //            ExtraLiquidaciónLB.DataSource = bs;
+
+        //        ExtraLiquidaciónLB.SelectedIndex = -1;
+
+        //        ExLiquiTotTB.Text = "$U " + exLiqui.total.ToString();
+        //    }
+
+
+        //    //EVENTOS
+
+        //    EventosGB.Visible = false;
+        //    EventosTB.Text = "";
+
+        //    DataEventosHE eventos = null;
+
+        //    try
+        //    {
+        //        eventos = datos.obtenerEventosHistEmpleado(nroEmp, mesAct);
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //    }
+
+        //    if (eventos.listaEventos.Count > 0)
+        //    {
+        //        EventosGB.Visible = true;
+
+        //        string aux = "";
+        //        foreach (DataEventoHistEmpleado e in eventos.listaEventos)
+        //        {
+        //            aux = aux + "* " + e.inicio.ToString(@"dd/MM/yyyy") + " a " + e.fin.ToString(@"dd/MM/yyyy") + " - " + e.tipo + " (" + e.desc + ")" + "\n";
+        //        }
+
+        //        EventosTB.Text = aux;
+        //    }
+
+        //}
 
         private void CalcularTotales()
         {
