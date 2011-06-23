@@ -4311,6 +4311,7 @@ namespace Datos
                     }
                     // OBTENER EL DIA DE LA LINEAHORA DEL CONTRATO Y COMPARAR CON EL DIA DE V.
                     //HsContrato = getCantHsContrato(con, FechaCorresponde, out cantidadFuncionarios);
+
                     foreach (var hge in CantHsPorEmpleado)
                     {
                         // Obtengo la cant de Hs comunes del cargo del empleado;

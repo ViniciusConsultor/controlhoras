@@ -67,6 +67,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cbPerteneceASindicato = new System.Windows.Forms.CheckBox();
             this.btnAgregarCargo = new System.Windows.Forms.Button();
             this.lblTipoFacturacion = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
@@ -164,6 +165,7 @@
             this.dgvHistorialEmpleado = new System.Windows.Forms.DataGridView();
             this.ExtrasLiquidacion = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.btnUpdateComboTipoExtraLiquidacion = new System.Windows.Forms.Button();
             this.label26 = new System.Windows.Forms.Label();
             this.cmbTipoExtraLiquidacion = new System.Windows.Forms.ComboBox();
             this.label25 = new System.Windows.Forms.Label();
@@ -181,8 +183,6 @@
             this.ofdFoto = new System.Windows.Forms.OpenFileDialog();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.saveFileEmpleados = new System.Windows.Forms.SaveFileDialog();
-            this.btnUpdateComboTipoExtraLiquidacion = new System.Windows.Forms.Button();
-            this.cbPerteneceASindicato = new System.Windows.Forms.CheckBox();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -710,6 +710,17 @@
             this.groupBox3.Size = new System.Drawing.Size(222, 277);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
+            // 
+            // cbPerteneceASindicato
+            // 
+            this.cbPerteneceASindicato.AutoSize = true;
+            this.cbPerteneceASindicato.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cbPerteneceASindicato.Location = new System.Drawing.Point(2, 252);
+            this.cbPerteneceASindicato.Name = "cbPerteneceASindicato";
+            this.cbPerteneceASindicato.Size = new System.Drawing.Size(139, 17);
+            this.cbPerteneceASindicato.TabIndex = 122;
+            this.cbPerteneceASindicato.Text = "Pertenece al Sindicato?";
+            this.cbPerteneceASindicato.UseVisualStyleBackColor = true;
             // 
             // btnAgregarCargo
             // 
@@ -1818,6 +1829,17 @@
             this.splitContainer2.SplitterDistance = 129;
             this.splitContainer2.TabIndex = 0;
             // 
+            // btnUpdateComboTipoExtraLiquidacion
+            // 
+            this.btnUpdateComboTipoExtraLiquidacion.Location = new System.Drawing.Point(420, 29);
+            this.btnUpdateComboTipoExtraLiquidacion.Name = "btnUpdateComboTipoExtraLiquidacion";
+            this.btnUpdateComboTipoExtraLiquidacion.Size = new System.Drawing.Size(20, 21);
+            this.btnUpdateComboTipoExtraLiquidacion.TabIndex = 123;
+            this.btnUpdateComboTipoExtraLiquidacion.TabStop = false;
+            this.btnUpdateComboTipoExtraLiquidacion.Text = "+";
+            this.btnUpdateComboTipoExtraLiquidacion.UseVisualStyleBackColor = true;
+            this.btnUpdateComboTipoExtraLiquidacion.Click += new System.EventHandler(this.btnUpdateComboTipoExtraLiquidacion_Click);
+            // 
             // label26
             // 
             this.label26.AutoSize = true;
@@ -1988,28 +2010,6 @@
             // 
             this.saveFileEmpleados.Filter = "\"Microsoft Office Word | *.doc|Microsoft Office Excel|*.xls\"";
             this.saveFileEmpleados.Title = "Guardar archivo...";
-            // 
-            // btnUpdateComboTipoExtraLiquidacion
-            // 
-            this.btnUpdateComboTipoExtraLiquidacion.Location = new System.Drawing.Point(420, 29);
-            this.btnUpdateComboTipoExtraLiquidacion.Name = "btnUpdateComboTipoExtraLiquidacion";
-            this.btnUpdateComboTipoExtraLiquidacion.Size = new System.Drawing.Size(20, 21);
-            this.btnUpdateComboTipoExtraLiquidacion.TabIndex = 123;
-            this.btnUpdateComboTipoExtraLiquidacion.TabStop = false;
-            this.btnUpdateComboTipoExtraLiquidacion.Text = "+";
-            this.btnUpdateComboTipoExtraLiquidacion.UseVisualStyleBackColor = true;
-            this.btnUpdateComboTipoExtraLiquidacion.Click += new System.EventHandler(this.btnUpdateComboTipoExtraLiquidacion_Click);
-            // 
-            // cbPerteneceASindicato
-            // 
-            this.cbPerteneceASindicato.AutoSize = true;
-            this.cbPerteneceASindicato.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cbPerteneceASindicato.Location = new System.Drawing.Point(2, 252);
-            this.cbPerteneceASindicato.Name = "cbPerteneceASindicato";
-            this.cbPerteneceASindicato.Size = new System.Drawing.Size(139, 17);
-            this.cbPerteneceASindicato.TabIndex = 122;
-            this.cbPerteneceASindicato.Text = "Pertenece al Sindicato?";
-            this.cbPerteneceASindicato.UseVisualStyleBackColor = true;
             // 
             // dataGridViewTextBoxColumn1
             // 
