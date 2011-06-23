@@ -41,9 +41,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.ClienteGB = new System.Windows.Forms.GroupBox();
+            this.bcUC = new ControlHoras.BúsquedaCliente();
             this.ServicioGB = new System.Windows.Forms.GroupBox();
             this.PosteriorBTN = new System.Windows.Forms.Button();
             this.AnteriorBTN = new System.Windows.Forms.Button();
+            this.NombreTB = new ControlHoras.TextBoxKeyDown();
             this.NroMTB = new System.Windows.Forms.MaskedTextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.FinCKB = new System.Windows.Forms.CheckBox();
@@ -56,12 +58,10 @@
             this.PagaDescansoCKBX = new System.Windows.Forms.CheckBox();
             this.HorasExtrasCHK = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbDespuesDeHs = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.NombreTB = new ControlHoras.TextBoxKeyDown();
+            this.cmbDespuesDeHs = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.FFinMTB = new ControlHoras.MaskedTextBoxKeyDown();
-            this.bcUC = new ControlHoras.BúsquedaCliente();
             this.FIniMTB = new ControlHoras.MaskedTextBoxKeyDown();
             this.ObsTB = new ControlHoras.TextBoxKeyDown();
             this.AjusteTB = new ControlHoras.TextBoxKeyDown();
@@ -151,7 +151,7 @@
             "Variable",
             "Fijo"});
             this.CostoCB.Location = new System.Drawing.Point(81, 384);
-            this.CostoCB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CostoCB.Margin = new System.Windows.Forms.Padding(2);
             this.CostoCB.Name = "CostoCB";
             this.CostoCB.Size = new System.Drawing.Size(80, 21);
             this.CostoCB.TabIndex = 6;
@@ -200,6 +200,15 @@
             this.ClienteGB.TabStop = false;
             this.ClienteGB.Text = "Cliente";
             // 
+            // bcUC
+            // 
+            this.bcUC.ClienteNRO = "";
+            this.bcUC.Location = new System.Drawing.Point(39, 14);
+            this.bcUC.Margin = new System.Windows.Forms.Padding(2);
+            this.bcUC.Name = "bcUC";
+            this.bcUC.Size = new System.Drawing.Size(480, 41);
+            this.bcUC.TabIndex = 0;
+            // 
             // ServicioGB
             // 
             this.ServicioGB.Controls.Add(this.PosteriorBTN);
@@ -240,6 +249,16 @@
             this.AnteriorBTN.UseVisualStyleBackColor = true;
             this.AnteriorBTN.Visible = false;
             this.AnteriorBTN.Click += new System.EventHandler(this.AnteriorBTN_Click);
+            // 
+            // NombreTB
+            // 
+            this.NombreTB.BackColor = System.Drawing.SystemColors.Window;
+            this.NombreTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NombreTB.Location = new System.Drawing.Point(95, 16);
+            this.NombreTB.Name = "NombreTB";
+            this.NombreTB.ReadOnly = true;
+            this.NombreTB.Size = new System.Drawing.Size(426, 22);
+            this.NombreTB.TabIndex = 8;
             // 
             // NroMTB
             // 
@@ -317,7 +336,7 @@
             // 
             this.PagaDescansoCKBX.AutoSize = true;
             this.PagaDescansoCKBX.Location = new System.Drawing.Point(43, 437);
-            this.PagaDescansoCKBX.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PagaDescansoCKBX.Margin = new System.Windows.Forms.Padding(2);
             this.PagaDescansoCKBX.Name = "PagaDescansoCKBX";
             this.PagaDescansoCKBX.Size = new System.Drawing.Size(105, 17);
             this.PagaDescansoCKBX.TabIndex = 19;
@@ -347,17 +366,18 @@
             this.panel1.Size = new System.Drawing.Size(175, 57);
             this.panel1.TabIndex = 22;
             // 
-            // label1
+            // label4
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 13);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "Extras despues de";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(150, 35);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(20, 13);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "Hs";
             // 
             // cmbDespuesDeHs
             // 
+            this.cmbDespuesDeHs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDespuesDeHs.Enabled = false;
             this.cmbDespuesDeHs.FormattingEnabled = true;
             this.cmbDespuesDeHs.Items.AddRange(new object[] {
@@ -368,24 +388,14 @@
             this.cmbDespuesDeHs.Size = new System.Drawing.Size(42, 21);
             this.cmbDespuesDeHs.TabIndex = 22;
             // 
-            // label4
+            // label1
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(150, 35);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(20, 13);
-            this.label4.TabIndex = 23;
-            this.label4.Text = "Hs";
-            // 
-            // NombreTB
-            // 
-            this.NombreTB.BackColor = System.Drawing.SystemColors.Window;
-            this.NombreTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NombreTB.Location = new System.Drawing.Point(95, 16);
-            this.NombreTB.Name = "NombreTB";
-            this.NombreTB.ReadOnly = true;
-            this.NombreTB.Size = new System.Drawing.Size(426, 22);
-            this.NombreTB.TabIndex = 8;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(94, 13);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Extras despues de";
             // 
             // FFinMTB
             // 
@@ -398,15 +408,6 @@
             this.FFinMTB.TabIndex = 4;
             this.FFinMTB.Validating += new System.ComponentModel.CancelEventHandler(this.FFinMTB_Validating);
             this.FFinMTB.Validated += new System.EventHandler(this.FFinMTB_Validated);
-            // 
-            // bcUC
-            // 
-            this.bcUC.ClienteNRO = "";
-            this.bcUC.Location = new System.Drawing.Point(39, 14);
-            this.bcUC.Margin = new System.Windows.Forms.Padding(2);
-            this.bcUC.Name = "bcUC";
-            this.bcUC.Size = new System.Drawing.Size(480, 41);
-            this.bcUC.TabIndex = 0;
             // 
             // FIniMTB
             // 
@@ -531,7 +532,7 @@
             this.Controls.Add(this.MontoLBL);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.label5);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ContratoForm";
             this.Text = "ContratoForm";
             this.Load += new System.EventHandler(this.ContratoForm_Load);

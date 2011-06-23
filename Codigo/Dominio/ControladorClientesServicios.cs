@@ -328,7 +328,7 @@ namespace Logica
         {
             ContraToS con = datos.obtenerContrato(NumeroContrato);
 
-            ConSeguridadFisica aux = new ConSeguridadFisica((con.PagaDescanso  == (sbyte)1) ? true : false, (con.HorasExtras == (sbyte)1) ? true : false, 0, 0, 0, con.FechaIni.Value, con.FechaFin, con.Ajuste, con.Observaciones, (con.CostoFijo == (sbyte)1) ? true : false, con.Costo.Value);
+            ConSeguridadFisica aux = new ConSeguridadFisica((con.PagaDescanso  == (sbyte)1) ? true : false, (con.HorasExtras == (sbyte)1) ? true : false, 0, 0, 0, con.FechaIni.Value, con.FechaFin, con.Ajuste, con.Observaciones, (con.CostoFijo == (sbyte)1) ? true : false, con.Costo.Value,con.PagarExtrasDespuesDeHs);
 
             LineaDeHoras lhs = null;
             HorarioXDia hor = null;

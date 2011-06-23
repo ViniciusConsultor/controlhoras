@@ -257,7 +257,10 @@ namespace ControlHoras
                     if (con.getHorasExtras())
                     {
                         HorasExtrasCHK.Checked = true;
-                        cmbDespuesDeHs.SelectedValue = con.getPagarExtrasDespuesDeHs();
+                        if (con.getPagarExtrasDespuesDeHs() != null)
+                        {
+                            cmbDespuesDeHs.SelectedIndex = cmbDespuesDeHs.Items.IndexOf(con.getPagarExtrasDespuesDeHs().Value.ToString());
+                        }
                     }
                     if (con.getPagaDescanso())
                         PagaDescansoCKBX.Checked = true;
