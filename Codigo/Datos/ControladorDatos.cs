@@ -25,20 +25,68 @@ namespace Datos
         private static MySqlConnection conexion = null;
         private int? IdUsuarioLogueado = null;
         private static bool Cache = true;
-
+        private bool LogEnabled = false;
+        private StreamWriter swLog;
+        private String LogFilePath="C:\\trustsofware.log";
+        
         private ControladorDatos()
         {
             try
             {
                 if (ConfigurationManager.AppSettings.AllKeys.Contains("ContextDeferredLoadingEnabled"))
                     bool.TryParse(ConfigurationManager.AppSettings["ContextDeferredLoadingEnabled"], out Cache);
+                if (ConfigurationManager.AppSettings.AllKeys.Contains("LogEnabled"))
+                    bool.TryParse(ConfigurationManager.AppSettings["LogEnabled"], out LogEnabled);
                 database = getContext();
+                if (LogEnabled)
+                {
+                    if (ConfigurationManager.AppSettings.AllKeys.Contains("LogFilePath"))
+                        LogFilePath=ConfigurationManager.AppSettings["LogFilePath"];
+                    swLog = new StreamWriter(LogFilePath, true);
+                }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                throw ex;
             }
         }
+
+        // LOG FILE
+        private void WriteErrorLog(Exception  objException)
+        {
+            if (LogEnabled)
+            {
+                string strException = string.Empty;
+                try
+                {
+                    //StreamWriter sw = new StreamWriter("C:\trustsoftware.log",true);
+                    swLog.WriteLine("Source        : " +
+                            objException.Source.ToString().Trim());
+                    swLog.WriteLine("Method        : " +
+                            objException.TargetSite.Name.ToString());
+                    swLog.WriteLine("Date        : " +
+                            DateTime.Now.ToLongTimeString());
+                    swLog.WriteLine("Time        : " +
+                            DateTime.Now.ToShortDateString());
+                    swLog.WriteLine("Error        : " +
+                            objException.Message.ToString().Trim());
+                    swLog.WriteLine("Stack Trace    : " +
+                            objException.StackTrace.ToString().Trim());
+                    swLog.WriteLine("-------------------------------------------------------------------");
+                    swLog.Flush();
+                    swLog.Close();
+                }
+                catch (Exception)
+                {
+             
+                }
+             
+            }
+        }
+
+
+
+
 
         public static IDatos getInstance()//(string StringConnection)
         {
@@ -53,9 +101,10 @@ namespace Datos
             {
                 database = createContext();
             }
-            catch (Exception e)
-            {    
-                throw e;
+            catch (Exception ex)
+            {
+                WriteErrorLog(ex);
+                throw ex;
             }
       
         }
@@ -123,6 +172,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
 
@@ -188,6 +238,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -233,6 +284,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -262,6 +314,7 @@ namespace Datos
             }
             catch (Exception me)
             {
+                WriteErrorLog(me);
                 throw me;
             }
         }
@@ -281,6 +334,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
                 // MySQLException = Access Denied  Codigo = 1045
             }
@@ -296,6 +350,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
 
             }
@@ -334,9 +389,10 @@ namespace Datos
                     cli.Activo = 0;
                 database.SubmitChanges();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                WriteErrorLog(ex);
+                throw ex;
             }
 
         }
@@ -448,6 +504,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
                 // MySQLException = Access Denied  Codigo = 1045
             }
@@ -465,6 +522,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
 
             }
@@ -483,6 +541,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
 
             }
@@ -548,6 +607,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
                 // MySQLException = Access Denied  Codigo = 1045
             }
@@ -694,6 +754,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
 
@@ -837,6 +898,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -857,6 +919,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
                 // MySQLException = Access Denied  Codigo = 1045
             }
@@ -881,9 +944,10 @@ namespace Datos
 
                 return maxId;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                WriteErrorLog(ex);
+                throw ex;
             }
         }
         public EmPleadOs obtenerEmpleado(int idEmpleado)
@@ -910,6 +974,7 @@ namespace Datos
             }
             catch (Exception me)
             {
+                WriteErrorLog(me);
                 throw me;
             }
         }
@@ -925,6 +990,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
 
@@ -942,6 +1008,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
 
@@ -988,6 +1055,7 @@ namespace Datos
             {
                 if (com != null && com.Connection.State != ConnectionState.Closed)
                     com.Connection.Close();
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -1026,6 +1094,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -1049,6 +1118,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
 
@@ -1061,17 +1131,14 @@ namespace Datos
 
             try
             {
-                sbyte activos = 0;
+                lista = database.ConsultAsClientEs.ToList();
                 if (soloactivos)
-                    activos = 1;
-
-                lista = (from reg in database.GetTable<ConsultAsClientEs>()
-                         where reg.Activo == activos   //&&reg.Activo == 0
-                         select reg).ToList();
+                    lista = lista.Where(reg => reg.Activo == 1).ToList();
                 return lista;
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
 
@@ -1103,6 +1170,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
             finally
@@ -1186,7 +1254,11 @@ namespace Datos
 
                 }
                 else
-                    throw new Exception("No se obtuvieron los parametros necesarios NROEMPLEADO para ejecutar la consulta");
+                {
+                    Exception ex = new Exception("No se obtuvieron los parametros necesarios NROEMPLEADO para ejecutar la consulta");
+                    WriteErrorLog(ex);
+                    throw ex;
+                }
             }
             return sql;
         }
@@ -1217,6 +1289,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
             finally
@@ -1247,6 +1320,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -1273,6 +1347,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -1297,6 +1372,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -1314,6 +1390,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
 
@@ -1328,6 +1405,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -1478,6 +1556,7 @@ namespace Datos
                     database.SubmitChanges();
 
                 }
+                WriteErrorLog(ex);
                 throw new Exception("Error al ingresar los extras. " + ex.Message); 
             }
             
@@ -1546,6 +1625,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }        
@@ -1588,6 +1668,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -1613,6 +1694,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -1634,6 +1716,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
 
@@ -1654,6 +1737,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -1683,6 +1767,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -1707,6 +1792,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
 
@@ -1727,6 +1813,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -1756,6 +1843,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -1780,6 +1868,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
 
@@ -1800,6 +1889,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -1829,6 +1919,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -1853,6 +1944,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -1872,6 +1964,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -1902,6 +1995,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -1925,6 +2019,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -1944,6 +2039,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -1973,6 +2069,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -1996,6 +2093,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -2015,6 +2113,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -2044,6 +2143,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -2067,6 +2167,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -2086,6 +2187,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -2114,6 +2216,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
 
@@ -2140,6 +2243,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -2174,6 +2278,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -2201,6 +2306,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -2235,11 +2341,9 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
-
-
-
         }
 
         #endregion
@@ -2312,6 +2416,7 @@ namespace Datos
             }
             catch (Exception me)
             {
+                WriteErrorLog(me);
                 throw me;
             }
         }
@@ -2339,6 +2444,7 @@ namespace Datos
             }
             catch (Exception me)
             {
+                WriteErrorLog(me);
                 throw me;
             }
         }
@@ -2375,6 +2481,7 @@ namespace Datos
             }
             catch (Exception e)
             {
+                WriteErrorLog(e);
                 throw e;
             }
         }        
@@ -2507,6 +2614,7 @@ namespace Datos
                 database.Transaction.Rollback();
                 if (conexion.State == System.Data.ConnectionState.Open)
                     conexion.Close();
+                WriteErrorLog(ex);
                 throw ex;
             } 
         }
@@ -2553,6 +2661,7 @@ namespace Datos
                 database.Transaction.Rollback();
                 if (conexion.State == System.Data.ConnectionState.Open)
                     conexion.Close();
+                WriteErrorLog(ex);
                 throw ex;
             }
             
@@ -2677,6 +2786,7 @@ namespace Datos
                 database.Transaction.Rollback();
                 if (conexion.State == System.Data.ConnectionState.Open)
                     conexion.Close();
+                WriteErrorLog(ex);
                 throw ex;
             }
             finally
@@ -2702,6 +2812,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
                 // MySQLException = Access Denied  Codigo = 1045
             }
@@ -2730,6 +2841,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
 
@@ -2754,6 +2866,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -2775,6 +2888,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
                 // MySQLException = Access Denied  Codigo = 1045
             }
@@ -2798,6 +2912,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
 
@@ -2827,6 +2942,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -2842,6 +2958,7 @@ namespace Datos
             }
             catch (Exception e)
             {
+                WriteErrorLog(e);
                 throw e;
             }
         }
@@ -2863,6 +2980,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -2879,6 +2997,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -2891,6 +3010,7 @@ namespace Datos
             }
             catch (Exception e)
             {
+                WriteErrorLog(e);
                 throw e;
             }
 
@@ -3566,6 +3686,7 @@ namespace Datos
 
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
 
@@ -3594,6 +3715,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 recargarContexto();
                 throw ex;
             }
@@ -3613,6 +3735,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 recargarContexto();
                 throw ex;
             }
@@ -3652,6 +3775,7 @@ namespace Datos
             }
             catch (Exception ex2)
             {
+                WriteErrorLog(ex2);
                 throw ex2;
             }
             finally
@@ -3671,6 +3795,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
 
             }
@@ -3700,6 +3825,7 @@ namespace Datos
             }
             catch (Exception me)
             {
+                WriteErrorLog(me);
                 throw me;
             }
         }
@@ -3728,6 +3854,7 @@ namespace Datos
             }
             catch (Exception me)
             {
+                WriteErrorLog(me);
                 throw me;
             }
         }
@@ -3750,7 +3877,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
-                
+                WriteErrorLog(ex);   
                 throw ex;
             }
         }
@@ -3775,6 +3902,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 recargarContexto();
                 throw ex;
             }
@@ -3801,6 +3929,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 recargarContexto();
                 throw ex;
             }
@@ -3822,6 +3951,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 recargarContexto();
                 throw ex;
             }
@@ -3889,6 +4019,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -3905,6 +4036,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
 
             }
@@ -3931,6 +4063,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 recargarContexto();
                 throw ex;
             }
@@ -3947,6 +4080,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
 
             }
@@ -3966,6 +4100,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -4018,6 +4153,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 database.Transaction.Rollback();
                 if (conexion.State == System.Data.ConnectionState.Open)
                     conexion.Close();
@@ -4049,6 +4185,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
             finally
@@ -4105,6 +4242,7 @@ namespace Datos
             }
             catch (Exception me)
             {
+                WriteErrorLog(me);
                 throw me;
             }
             
@@ -4131,6 +4269,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
             
@@ -4160,6 +4299,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
             finally
@@ -4222,6 +4362,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
 
             }
@@ -4245,6 +4386,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
                 // MySQLException = Access Denied  Codigo = 1045
             }
@@ -4346,6 +4488,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
             finally
@@ -4440,6 +4583,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
             finally
@@ -4469,6 +4613,7 @@ namespace Datos
             }
             catch (Exception e)
             {
+                WriteErrorLog(e);
                 throw e;
             }
         }
@@ -4496,6 +4641,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -4550,6 +4696,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
             finally
@@ -4576,6 +4723,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
             }
         }
@@ -4602,6 +4750,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
+                WriteErrorLog(ex);
                 throw ex;
 
             }
