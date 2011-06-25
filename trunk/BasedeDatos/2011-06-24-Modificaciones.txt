@@ -1,0 +1,2 @@
+-- Agrandamos el campo Query de consultasempleados para la consulta del listado al estudio
+ALTER TABLE consultasempleados change Query Query varchar(4000);

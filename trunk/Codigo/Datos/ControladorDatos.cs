@@ -42,7 +42,7 @@ namespace Datos
                 {
                     if (ConfigurationManager.AppSettings.AllKeys.Contains("LogFilePath"))
                         LogFilePath=ConfigurationManager.AppSettings["LogFilePath"];
-                    swLog = new StreamWriter(LogFilePath, true);
+                    
                 }
             }
             catch (Exception ex)
@@ -59,7 +59,7 @@ namespace Datos
                 string strException = string.Empty;
                 try
                 {
-                    //StreamWriter sw = new StreamWriter("C:\trustsoftware.log",true);
+                    swLog = new StreamWriter(LogFilePath, true);
                     swLog.WriteLine("Source        : " +
                             objException.Source.ToString().Trim());
                     swLog.WriteLine("Method        : " +
@@ -4091,6 +4091,7 @@ namespace Datos
             Table<SERVicIoS> tabla;
             try
             {
+                recargarContexto();
                 tabla = database.GetTable<SERVicIoS>();
                 var ser = (from serreg in tabla
                            where serreg.NumeroServicio == nroServicio && serreg.NumeroCliente == nroCliente
@@ -4101,6 +4102,7 @@ namespace Datos
             catch (Exception ex)
             {
                 WriteErrorLog(ex);
+                recargarContexto();
                 throw ex;
             }
         }
