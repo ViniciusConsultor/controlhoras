@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2011-06-19 14:01:23Z
+#region Auto-generated classes for trustdb database on 2011-06-25 15:48:01Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2011-06-19 14:01:23Z
+// Auto-generated from trustdb on 2011-06-25 15:48:01Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -95,6 +95,7 @@ namespace Datos
 		public Table<EScalaFOneMpLeadO> EScalaFOneMpLeadO { get { return GetTable<EScalaFOneMpLeadO>(); } }
 		public Table<EventOsHistOrIalEmPleadO> EventOsHistOrIalEmPleadO { get { return GetTable<EventOsHistOrIalEmPleadO>(); } }
 		public Table<ExtrasLiquidAcIon> ExtrasLiquidAcIon { get { return GetTable<ExtrasLiquidAcIon>(); } }
+		public Table<ExtrasLiquidAcIonEmPleadO> ExtrasLiquidAcIonEmPleadO { get { return GetTable<ExtrasLiquidAcIonEmPleadO>(); } }
 		public Table<FeCHaEScalaFOncerRadO> FeCHaEScalaFOncerRadO { get { return GetTable<FeCHaEScalaFOncerRadO>(); } }
 		public Table<FeRiAdoS> FeRiAdoS { get { return GetTable<FeRiAdoS>(); } }
 		public Table<GRuPOs> GRuPOs { get { return GetTable<GRuPOs>(); } }
@@ -1428,7 +1429,7 @@ namespace Datos
 
 		private string _query;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_query", Name = "Query", DbType = "varchar(1500)", AutoSync = AutoSync.Never)]
+		[Column(Storage = "_query", Name = "QUERY", DbType = "varchar(4000)", AutoSync = AutoSync.Never)]
 		public string Query
 		{
 			get
@@ -2638,6 +2639,8 @@ namespace Datos
 		partial void OnNivelEducativoChanging(string value);
 		partial void OnNoHabilitadoParaServicioChanged();
 		partial void OnNoHabilitadoParaServicioChanging(sbyte value);
+		partial void OnNoLlevaTicketsAlimentacionChanged();
+		partial void OnNoLlevaTicketsAlimentacionChanging(sbyte value);
 		partial void OnNombreChanged();
 		partial void OnNombreChanging(string value);
 		partial void OnNroEmpleadoChanged();
@@ -3971,6 +3974,32 @@ namespace Datos
 					_noHabilitadoParaServicio = value;
 					SendPropertyChanged("NoHabilitadoParaServicio");
 					OnNoHabilitadoParaServicioChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region sbyte NoLlevaTicketsAlimentacion
+
+		private sbyte _noLlevaTicketsAlimentacion;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_noLlevaTicketsAlimentacion", Name = "NoLlevaTicketsAlimentacion", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public sbyte NoLlevaTicketsAlimentacion
+		{
+			get
+			{
+				return _noLlevaTicketsAlimentacion;
+			}
+			set
+			{
+				if (value != _noLlevaTicketsAlimentacion)
+				{
+					OnNoLlevaTicketsAlimentacionChanging(value);
+					SendPropertyChanging();
+					_noLlevaTicketsAlimentacion = value;
+					SendPropertyChanged("NoLlevaTicketsAlimentacion");
+					OnNoLlevaTicketsAlimentacionChanged();
 				}
 			}
 		}
@@ -5975,6 +6004,307 @@ namespace Datos
 			_emPleadOs = new EntityRef<EmPleadOs>();
 			_usUarIoS = new EntityRef<UsUarIoS>();
 			_tipOeXtraLiquidAcIon = new EntityRef<TipOExtraLiquidAcIon>();
+			OnCreated();
+		}
+
+		#endregion
+
+	}
+
+	[Table(Name = "trustdb.extrasliquidacionempleado")]
+	public partial class ExtrasLiquidAcIonEmPleadO : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		#region INotifyPropertyChanging handling
+
+		public event PropertyChangingEventHandler PropertyChanging;
+
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs("");
+		protected virtual void SendPropertyChanging()
+		{
+			if (PropertyChanging != null)
+			{
+				PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+
+		#endregion
+
+		#region INotifyPropertyChanged handling
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected virtual void SendPropertyChanged(string propertyName)
+		{
+			if (PropertyChanged != null)
+			{
+				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		#endregion
+
+		#region Extensibility Method Definitions
+
+		partial void OnCreated();
+		partial void OnCantidadCuotasChanged();
+		partial void OnCantidadCuotasChanging(sbyte value);
+		partial void OnCuotaActualChanged();
+		partial void OnCuotaActualChanging(sbyte value);
+		partial void OnDescripcionChanged();
+		partial void OnDescripcionChanging(string value);
+		partial void OnFechaChanged();
+		partial void OnFechaChanging(DateTime value);
+		partial void OnIDEmpleadoChanged();
+		partial void OnIDEmpleadoChanging(uint value);
+		partial void OnIDExtrasLiquidacionEmpleadoChanged();
+		partial void OnIDExtrasLiquidacionEmpleadoChanging(uint value);
+		partial void OnLiquidadoChanged();
+		partial void OnLiquidadoChanging(sbyte value);
+		partial void OnSignoChanged();
+		partial void OnSignoChanging(int value);
+		partial void OnValorChanged();
+		partial void OnValorChanging(float value);
+
+		#endregion
+
+		#region sbyte CantidadCuotas
+
+		private sbyte _cantidadCuotas;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_cantidadCuotas", Name = "CantidadCuotas", DbType = "tinyint(2)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public sbyte CantidadCuotas
+		{
+			get
+			{
+				return _cantidadCuotas;
+			}
+			set
+			{
+				if (value != _cantidadCuotas)
+				{
+					OnCantidadCuotasChanging(value);
+					SendPropertyChanging();
+					_cantidadCuotas = value;
+					SendPropertyChanged("CantidadCuotas");
+					OnCantidadCuotasChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region sbyte CuotaActual
+
+		private sbyte _cuotaActual;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_cuotaActual", Name = "CuotaActual", DbType = "tinyint(2)", IsPrimaryKey = true, AutoSync = AutoSync.Never, CanBeNull = false)]
+		public sbyte CuotaActual
+		{
+			get
+			{
+				return _cuotaActual;
+			}
+			set
+			{
+				if (value != _cuotaActual)
+				{
+					OnCuotaActualChanging(value);
+					SendPropertyChanging();
+					_cuotaActual = value;
+					SendPropertyChanged("CuotaActual");
+					OnCuotaActualChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string Descripcion
+
+		private string _descripcion;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_descripcion", Name = "Descripcion", DbType = "varchar(255)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string Descripcion
+		{
+			get
+			{
+				return _descripcion;
+			}
+			set
+			{
+				if (value != _descripcion)
+				{
+					OnDescripcionChanging(value);
+					SendPropertyChanging();
+					_descripcion = value;
+					SendPropertyChanged("Descripcion");
+					OnDescripcionChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region DateTime Fecha
+
+		private DateTime _fecha;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_fecha", Name = "Fecha", DbType = "date", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public DateTime Fecha
+		{
+			get
+			{
+				return _fecha;
+			}
+			set
+			{
+				if (value != _fecha)
+				{
+					OnFechaChanging(value);
+					SendPropertyChanging();
+					_fecha = value;
+					SendPropertyChanged("Fecha");
+					OnFechaChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region uint IDEmpleado
+
+		private uint _ideMpleado;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_ideMpleado", Name = "IdEmpleado", DbType = "mediumint unsigned", IsPrimaryKey = true, AutoSync = AutoSync.Never, CanBeNull = false)]
+		public uint IDEmpleado
+		{
+			get
+			{
+				return _ideMpleado;
+			}
+			set
+			{
+				if (value != _ideMpleado)
+				{
+					OnIDEmpleadoChanging(value);
+					SendPropertyChanging();
+					_ideMpleado = value;
+					SendPropertyChanged("IDEmpleado");
+					OnIDEmpleadoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region uint IDExtrasLiquidacionEmpleado
+
+		private uint _ideXtrasLiquidacionEmpleado;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_ideXtrasLiquidacionEmpleado", Name = "idExtrasLiquidacionEmpleado", DbType = "int unsigned", IsPrimaryKey = true, AutoSync = AutoSync.Never, CanBeNull = false)]
+		public uint IDExtrasLiquidacionEmpleado
+		{
+			get
+			{
+				return _ideXtrasLiquidacionEmpleado;
+			}
+			set
+			{
+				if (value != _ideXtrasLiquidacionEmpleado)
+				{
+					OnIDExtrasLiquidacionEmpleadoChanging(value);
+					SendPropertyChanging();
+					_ideXtrasLiquidacionEmpleado = value;
+					SendPropertyChanged("IDExtrasLiquidacionEmpleado");
+					OnIDExtrasLiquidacionEmpleadoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region sbyte Liquidado
+
+		private sbyte _liquidado;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_liquidado", Name = "Liquidado", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public sbyte Liquidado
+		{
+			get
+			{
+				return _liquidado;
+			}
+			set
+			{
+				if (value != _liquidado)
+				{
+					OnLiquidadoChanging(value);
+					SendPropertyChanging();
+					_liquidado = value;
+					SendPropertyChanged("Liquidado");
+					OnLiquidadoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region int Signo
+
+		private int _signo;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_signo", Name = "Signo", DbType = "mediumint(9)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public int Signo
+		{
+			get
+			{
+				return _signo;
+			}
+			set
+			{
+				if (value != _signo)
+				{
+					OnSignoChanging(value);
+					SendPropertyChanging();
+					_signo = value;
+					SendPropertyChanged("Signo");
+					OnSignoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region float Valor
+
+		private float _valor;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_valor", Name = "Valor", DbType = "float", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public float Valor
+		{
+			get
+			{
+				return _valor;
+			}
+			set
+			{
+				if (value != _valor)
+				{
+					OnValorChanging(value);
+					SendPropertyChanging();
+					_valor = value;
+					SendPropertyChanged("Valor");
+					OnValorChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region ctor
+
+		public ExtrasLiquidAcIonEmPleadO()
+		{
 			OnCreated();
 		}
 

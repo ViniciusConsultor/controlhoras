@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2011-06-07 00:46:44Z
+#region Auto-generated classes for trustdb database on 2011-06-25 15:48:01Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2011-06-07 00:46:44Z
+// Auto-generated from trustdb on 2011-06-25 15:48:01Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -113,6 +113,7 @@ namespace Datos
 		public Table<SERVicIoS> SERVicIoS { get { return GetTable<SERVicIoS>(); } }
 		public Table<TipOContraToS> TipOContraToS { get { return GetTable<TipOContraToS>(); } }
 		public Table<TipOeMpLeadO> TipOeMpLeadO { get { return GetTable<TipOeMpLeadO>(); } }
+		public Table<TipOExtraLiquidAcIon> TipOExtraLiquidAcIon { get { return GetTable<TipOExtraLiquidAcIon>(); } }
 		public Table<TipOscarGoS> TipOscarGoS { get { return GetTable<TipOscarGoS>(); } }
 		public Table<TipOsDiAs> TipOsDiAs { get { return GetTable<TipOsDiAs>(); } }
 		public Table<TipOsDocumentO> TipOsDocumentO { get { return GetTable<TipOsDocumentO>(); } }
@@ -1428,7 +1429,7 @@ namespace Datos
 
 		private string _query;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_query", Name = "Query", DbType = "varchar(1500)", AutoSync = AutoSync.Never)]
+		[Column(Storage = "_query", Name = "QUERY", DbType = "varchar(4000)", AutoSync = AutoSync.Never)]
 		public string Query
 		{
 			get
@@ -1514,6 +1515,10 @@ namespace Datos
 		partial void OnIDContratosChanging(uint value);
 		partial void OnObservacionesChanged();
 		partial void OnObservacionesChanging(string value);
+		partial void OnPagaDescansoChanged();
+		partial void OnPagaDescansoChanging(sbyte value);
+		partial void OnPagarExtrasDespuesDeHsChanged();
+		partial void OnPagarExtrasDespuesDeHsChanging(short? value);
 		partial void OnPlanillaTrustChanged();
 		partial void OnPlanillaTrustChanging(sbyte? value);
 		partial void OnPuntualChanged();
@@ -1757,6 +1762,58 @@ namespace Datos
 					_observaciones = value;
 					SendPropertyChanged("Observaciones");
 					OnObservacionesChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region sbyte PagaDescanso
+
+		private sbyte _pagaDescanso;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_pagaDescanso", Name = "PagaDescanso", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public sbyte PagaDescanso
+		{
+			get
+			{
+				return _pagaDescanso;
+			}
+			set
+			{
+				if (value != _pagaDescanso)
+				{
+					OnPagaDescansoChanging(value);
+					SendPropertyChanging();
+					_pagaDescanso = value;
+					SendPropertyChanged("PagaDescanso");
+					OnPagaDescansoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region short? PagarExtrasDespuesDeHs
+
+		private short? _pagarExtrasDespuesDeHs;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_pagarExtrasDespuesDeHs", Name = "PagarExtrasDespuesDeHs", DbType = "smallint(6)", AutoSync = AutoSync.Never)]
+		public short? PagarExtrasDespuesDeHs
+		{
+			get
+			{
+				return _pagarExtrasDespuesDeHs;
+			}
+			set
+			{
+				if (value != _pagarExtrasDespuesDeHs)
+				{
+					OnPagarExtrasDespuesDeHsChanging(value);
+					SendPropertyChanging();
+					_pagarExtrasDespuesDeHs = value;
+					SendPropertyChanged("PagarExtrasDespuesDeHs");
+					OnPagarExtrasDespuesDeHsChanged();
 				}
 			}
 		}
@@ -2532,6 +2589,8 @@ namespace Datos
 		partial void OnEmailChanging(string value);
 		partial void OnEnServicioArmadoChanged();
 		partial void OnEnServicioArmadoChanging(sbyte? value);
+		partial void OnEnSindicatoChanged();
+		partial void OnEnSindicatoChanging(sbyte value);
 		partial void OnEntreCallesChanged();
 		partial void OnEntreCallesChanging(string value);
 		partial void OnEstadoCivilChanged();
@@ -2580,6 +2639,8 @@ namespace Datos
 		partial void OnNivelEducativoChanging(string value);
 		partial void OnNoHabilitadoParaServicioChanged();
 		partial void OnNoHabilitadoParaServicioChanging(sbyte value);
+		partial void OnNoLlevaTicketsAlimentacionChanged();
+		partial void OnNoLlevaTicketsAlimentacionChanging(sbyte value);
 		partial void OnNombreChanged();
 		partial void OnNombreChanging(string value);
 		partial void OnNroEmpleadoChanged();
@@ -3269,6 +3330,32 @@ namespace Datos
 
 		#endregion
 
+		#region sbyte EnSindicato
+
+		private sbyte _enSindicato;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_enSindicato", Name = "EnSindicato", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public sbyte EnSindicato
+		{
+			get
+			{
+				return _enSindicato;
+			}
+			set
+			{
+				if (value != _enSindicato)
+				{
+					OnEnSindicatoChanging(value);
+					SendPropertyChanging();
+					_enSindicato = value;
+					SendPropertyChanged("EnSindicato");
+					OnEnSindicatoChanged();
+				}
+			}
+		}
+
+		#endregion
+
 		#region string EntreCalles
 
 		private string _entreCalles;
@@ -3887,6 +3974,32 @@ namespace Datos
 					_noHabilitadoParaServicio = value;
 					SendPropertyChanged("NoHabilitadoParaServicio");
 					OnNoHabilitadoParaServicioChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region sbyte NoLlevaTicketsAlimentacion
+
+		private sbyte _noLlevaTicketsAlimentacion;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_noLlevaTicketsAlimentacion", Name = "NoLlevaTicketsAlimentacion", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public sbyte NoLlevaTicketsAlimentacion
+		{
+			get
+			{
+				return _noLlevaTicketsAlimentacion;
+			}
+			set
+			{
+				if (value != _noLlevaTicketsAlimentacion)
+				{
+					OnNoLlevaTicketsAlimentacionChanging(value);
+					SendPropertyChanging();
+					_noLlevaTicketsAlimentacion = value;
+					SendPropertyChanged("NoLlevaTicketsAlimentacion");
+					OnNoLlevaTicketsAlimentacionChanged();
 				}
 			}
 		}
@@ -5489,6 +5602,8 @@ namespace Datos
 		#region Extensibility Method Definitions
 
 		partial void OnCreated();
+		partial void OnCantHsTipoExtraLlevaHsChanged();
+		partial void OnCantHsTipoExtraLlevaHsChanging(float? value);
 		partial void OnCantidadCuotasChanged();
 		partial void OnCantidadCuotasChanging(byte value);
 		partial void OnCuotaActualChanged();
@@ -5499,8 +5614,38 @@ namespace Datos
 		partial void OnIDEmpleadoChanging(uint value);
 		partial void OnIDExtraLiquidacionChanged();
 		partial void OnIDExtraLiquidacionChanging(uint value);
+		partial void OnIDTipoExtraLiquidacionChanged();
+		partial void OnIDTipoExtraLiquidacionChanging(byte value);
+		partial void OnIDUsuarioChanged();
+		partial void OnIDUsuarioChanging(int value);
 		partial void OnSignoChanged();
 		partial void OnSignoChanging(int value);
+
+		#endregion
+
+		#region float? CantHsTipoExtraLlevaHs
+
+		private float? _cantHsTipoExtraLlevaHs;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_cantHsTipoExtraLlevaHs", Name = "CantHs_TipoExtraLlevaHs", DbType = "float", AutoSync = AutoSync.Never)]
+		public float? CantHsTipoExtraLlevaHs
+		{
+			get
+			{
+				return _cantHsTipoExtraLlevaHs;
+			}
+			set
+			{
+				if (value != _cantHsTipoExtraLlevaHs)
+				{
+					OnCantHsTipoExtraLlevaHsChanging(value);
+					SendPropertyChanging();
+					_cantHsTipoExtraLlevaHs = value;
+					SendPropertyChanged("CantHsTipoExtraLlevaHs");
+					OnCantHsTipoExtraLlevaHsChanged();
+				}
+			}
+		}
 
 		#endregion
 
@@ -5634,6 +5779,58 @@ namespace Datos
 
 		#endregion
 
+		#region byte IDTipoExtraLiquidacion
+
+		private byte _idtIpoExtraLiquidacion;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_idtIpoExtraLiquidacion", Name = "IdTipoExtraLiquidacion", DbType = "tinyint(2) unsigned", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public byte IDTipoExtraLiquidacion
+		{
+			get
+			{
+				return _idtIpoExtraLiquidacion;
+			}
+			set
+			{
+				if (value != _idtIpoExtraLiquidacion)
+				{
+					OnIDTipoExtraLiquidacionChanging(value);
+					SendPropertyChanging();
+					_idtIpoExtraLiquidacion = value;
+					SendPropertyChanged("IDTipoExtraLiquidacion");
+					OnIDTipoExtraLiquidacionChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region int IDUsuario
+
+		private int _iduSuario;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_iduSuario", Name = "IdUsuario", DbType = "int", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public int IDUsuario
+		{
+			get
+			{
+				return _iduSuario;
+			}
+			set
+			{
+				if (value != _iduSuario)
+				{
+					OnIDUsuarioChanging(value);
+					SendPropertyChanging();
+					_iduSuario = value;
+					SendPropertyChanged("IDUsuario");
+					OnIDUsuarioChanged();
+				}
+			}
+		}
+
+		#endregion
+
 		#region int Signo
 
 		private int _signo;
@@ -5715,6 +5912,72 @@ namespace Datos
 			}
 		}
 
+		private EntityRef<UsUarIoS> _usUarIoS;
+		[Association(Storage = "_usUarIoS", OtherKey = "IDUsuario", ThisKey = "IDUsuario", Name = "extrasliquidacion_ibfk_2", IsForeignKey = true)]
+		[DebuggerNonUserCode]
+		public UsUarIoS UsUarIoS
+		{
+			get
+			{
+				return _usUarIoS.Entity;
+			}
+			set
+			{
+				if (value != _usUarIoS.Entity)
+				{
+					if (_usUarIoS.Entity != null)
+					{
+						var previousUsUarIoS = _usUarIoS.Entity;
+						_usUarIoS.Entity = null;
+						previousUsUarIoS.ExtrasLiquidAcIon.Remove(this);
+					}
+					_usUarIoS.Entity = value;
+					if (value != null)
+					{
+						value.ExtrasLiquidAcIon.Add(this);
+						_iduSuario = value.IDUsuario;
+					}
+					else
+					{
+						_iduSuario = default(int);
+					}
+				}
+			}
+		}
+
+		private EntityRef<TipOExtraLiquidAcIon> _tipOeXtraLiquidAcIon;
+		[Association(Storage = "_tipOeXtraLiquidAcIon", OtherKey = "IDTipoExtraLiquidacion", ThisKey = "IDTipoExtraLiquidacion", Name = "extrasliquidacion_ibfk_3", IsForeignKey = true)]
+		[DebuggerNonUserCode]
+		public TipOExtraLiquidAcIon TipOExtraLiquidAcIon
+		{
+			get
+			{
+				return _tipOeXtraLiquidAcIon.Entity;
+			}
+			set
+			{
+				if (value != _tipOeXtraLiquidAcIon.Entity)
+				{
+					if (_tipOeXtraLiquidAcIon.Entity != null)
+					{
+						var previousTipOExtraLiquidAcIon = _tipOeXtraLiquidAcIon.Entity;
+						_tipOeXtraLiquidAcIon.Entity = null;
+						previousTipOExtraLiquidAcIon.ExtrasLiquidAcIon.Remove(this);
+					}
+					_tipOeXtraLiquidAcIon.Entity = value;
+					if (value != null)
+					{
+						value.ExtrasLiquidAcIon.Add(this);
+						_idtIpoExtraLiquidacion = value.IDTipoExtraLiquidacion;
+					}
+					else
+					{
+						_idtIpoExtraLiquidacion = default(byte);
+					}
+				}
+			}
+		}
+
 
 		#endregion
 
@@ -5739,6 +6002,8 @@ namespace Datos
 		{
 			_cuOtAsExtrasLiquidAcIon = new EntitySet<CuOtAsExtrasLiquidAcIon>(CuOtAsExtrasLiquidAcIon_Attach, CuOtAsExtrasLiquidAcIon_Detach);
 			_emPleadOs = new EntityRef<EmPleadOs>();
+			_usUarIoS = new EntityRef<UsUarIoS>();
+			_tipOeXtraLiquidAcIon = new EntityRef<TipOExtraLiquidAcIon>();
 			OnCreated();
 		}
 
@@ -7137,6 +7402,8 @@ namespace Datos
 		#region Extensibility Method Definitions
 
 		partial void OnCreated();
+		partial void OnAcArgoDeLaEmpresaChanged();
+		partial void OnAcArgoDeLaEmpresaChanging(sbyte value);
 		partial void OnDescansoChanged();
 		partial void OnDescansoChanging(sbyte value);
 		partial void OnDiaHoraLlamadaAntesHoraEntradaChanged();
@@ -7155,6 +7422,32 @@ namespace Datos
 		partial void OnNumeroClienteChanging(uint value);
 		partial void OnNumeroServicioChanged();
 		partial void OnNumeroServicioChanging(uint value);
+
+		#endregion
+
+		#region sbyte AcArgoDeLaEmpresa
+
+		private sbyte _acArgoDeLaEmpresa;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_acArgoDeLaEmpresa", Name = "ACargoDeLaEmpresa", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public sbyte AcArgoDeLaEmpresa
+		{
+			get
+			{
+				return _acArgoDeLaEmpresa;
+			}
+			set
+			{
+				if (value != _acArgoDeLaEmpresa)
+				{
+					OnAcArgoDeLaEmpresaChanging(value);
+					SendPropertyChanging();
+					_acArgoDeLaEmpresa = value;
+					SendPropertyChanged("AcArgoDeLaEmpresa");
+					OnAcArgoDeLaEmpresaChanged();
+				}
+			}
+		}
 
 		#endregion
 
@@ -7407,7 +7700,7 @@ namespace Datos
 		#region Parents
 
 		private EntityRef<SERVicIoS> _servIcIoS;
-		[Association(Storage = "_servIcIoS", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "horasgeneradasescalafon_ibfk_2", IsForeignKey = true)]
+		[Association(Storage = "_servIcIoS", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "horasgeneradasescalafon_ibfk_2", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public SERVicIoS SERVicIoS
 		{
@@ -7429,13 +7722,13 @@ namespace Datos
 					if (value != null)
 					{
 						value.HoRaSGeneraDaSEScalaFOn.Add(this);
-						_numeroCliente = value.NumeroCliente;
 						_numeroServicio = value.NumeroServicio;
+						_numeroCliente = value.NumeroCliente;
 					}
 					else
 					{
-						_numeroCliente = default(uint);
 						_numeroServicio = default(uint);
+						_numeroCliente = default(uint);
 					}
 				}
 			}
@@ -9906,7 +10199,7 @@ namespace Datos
 		#region Children
 
 		private EntitySet<HoRaSGeneraDaSEScalaFOn> _hoRaSgEneraDaSesCalaFoN;
-		[Association(Storage = "_hoRaSgEneraDaSesCalaFoN", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "horasgeneradasescalafon_ibfk_2")]
+		[Association(Storage = "_hoRaSgEneraDaSesCalaFoN", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "horasgeneradasescalafon_ibfk_2")]
 		[DebuggerNonUserCode]
 		public EntitySet<HoRaSGeneraDaSEScalaFOn> HoRaSGeneraDaSEScalaFOn
 		{
@@ -10404,6 +10697,203 @@ namespace Datos
 
 		public TipOeMpLeadO()
 		{
+			OnCreated();
+		}
+
+		#endregion
+
+	}
+
+	[Table(Name = "trustdb.tipoextraliquidacion")]
+	public partial class TipOExtraLiquidAcIon : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		#region INotifyPropertyChanging handling
+
+		public event PropertyChangingEventHandler PropertyChanging;
+
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs("");
+		protected virtual void SendPropertyChanging()
+		{
+			if (PropertyChanging != null)
+			{
+				PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+
+		#endregion
+
+		#region INotifyPropertyChanged handling
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected virtual void SendPropertyChanged(string propertyName)
+		{
+			if (PropertyChanged != null)
+			{
+				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		#endregion
+
+		#region Extensibility Method Definitions
+
+		partial void OnCreated();
+		partial void OnActivoChanged();
+		partial void OnActivoChanging(sbyte value);
+		partial void OnIDTipoExtraLiquidacionChanged();
+		partial void OnIDTipoExtraLiquidacionChanging(byte value);
+		partial void OnLlevaHsChanged();
+		partial void OnLlevaHsChanging(sbyte value);
+		partial void OnNombreChanged();
+		partial void OnNombreChanging(string value);
+
+		#endregion
+
+		#region sbyte Activo
+
+		private sbyte _activo;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_activo", Name = "Activo", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public sbyte Activo
+		{
+			get
+			{
+				return _activo;
+			}
+			set
+			{
+				if (value != _activo)
+				{
+					OnActivoChanging(value);
+					SendPropertyChanging();
+					_activo = value;
+					SendPropertyChanged("Activo");
+					OnActivoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region byte IDTipoExtraLiquidacion
+
+		private byte _idtIpoExtraLiquidacion;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_idtIpoExtraLiquidacion", Name = "IdTipoExtraLiquidacion", DbType = "tinyint(2) unsigned", IsPrimaryKey = true, IsDbGenerated = true, AutoSync = AutoSync.Never, CanBeNull = false)]
+		public byte IDTipoExtraLiquidacion
+		{
+			get
+			{
+				return _idtIpoExtraLiquidacion;
+			}
+			set
+			{
+				if (value != _idtIpoExtraLiquidacion)
+				{
+					OnIDTipoExtraLiquidacionChanging(value);
+					SendPropertyChanging();
+					_idtIpoExtraLiquidacion = value;
+					SendPropertyChanged("IDTipoExtraLiquidacion");
+					OnIDTipoExtraLiquidacionChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region sbyte LlevaHs
+
+		private sbyte _llevaHs;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_llevaHs", Name = "llevaHs", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public sbyte LlevaHs
+		{
+			get
+			{
+				return _llevaHs;
+			}
+			set
+			{
+				if (value != _llevaHs)
+				{
+					OnLlevaHsChanging(value);
+					SendPropertyChanging();
+					_llevaHs = value;
+					SendPropertyChanged("LlevaHs");
+					OnLlevaHsChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string Nombre
+
+		private string _nombre;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_nombre", Name = "Nombre", DbType = "varchar(50)", AutoSync = AutoSync.Never)]
+		public string Nombre
+		{
+			get
+			{
+				return _nombre;
+			}
+			set
+			{
+				if (value != _nombre)
+				{
+					OnNombreChanging(value);
+					SendPropertyChanging();
+					_nombre = value;
+					SendPropertyChanged("Nombre");
+					OnNombreChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region Children
+
+		private EntitySet<ExtrasLiquidAcIon> _extrasLiquidAcIon;
+		[Association(Storage = "_extrasLiquidAcIon", OtherKey = "IDTipoExtraLiquidacion", ThisKey = "IDTipoExtraLiquidacion", Name = "extrasliquidacion_ibfk_3")]
+		[DebuggerNonUserCode]
+		public EntitySet<ExtrasLiquidAcIon> ExtrasLiquidAcIon
+		{
+			get
+			{
+				return _extrasLiquidAcIon;
+			}
+			set
+			{
+				_extrasLiquidAcIon = value;
+			}
+		}
+
+
+		#endregion
+
+		#region Attachement handlers
+
+		private void ExtrasLiquidAcIon_Attach(ExtrasLiquidAcIon entity)
+		{
+			entity.TipOExtraLiquidAcIon = this;
+		}
+
+		private void ExtrasLiquidAcIon_Detach(ExtrasLiquidAcIon entity)
+		{
+			entity.TipOExtraLiquidAcIon = null;
+		}
+
+
+		#endregion
+
+		#region ctor
+
+		public TipOExtraLiquidAcIon()
+		{
+			_extrasLiquidAcIon = new EntitySet<ExtrasLiquidAcIon>(ExtrasLiquidAcIon_Attach, ExtrasLiquidAcIon_Detach);
 			OnCreated();
 		}
 
@@ -11496,6 +11986,21 @@ namespace Datos
 
 		#region Children
 
+		private EntitySet<ExtrasLiquidAcIon> _extrasLiquidAcIon;
+		[Association(Storage = "_extrasLiquidAcIon", OtherKey = "IDUsuario", ThisKey = "IDUsuario", Name = "extrasliquidacion_ibfk_2")]
+		[DebuggerNonUserCode]
+		public EntitySet<ExtrasLiquidAcIon> ExtrasLiquidAcIon
+		{
+			get
+			{
+				return _extrasLiquidAcIon;
+			}
+			set
+			{
+				_extrasLiquidAcIon = value;
+			}
+		}
+
 		private EntitySet<UsUarIoSGRuPOs> _usUarIoSgrUPoS;
 		[Association(Storage = "_usUarIoSgrUPoS", OtherKey = "IDUsuario", ThisKey = "IDUsuario", Name = "FK_Usuarios")]
 		[DebuggerNonUserCode]
@@ -11516,6 +12021,16 @@ namespace Datos
 
 		#region Attachement handlers
 
+		private void ExtrasLiquidAcIon_Attach(ExtrasLiquidAcIon entity)
+		{
+			entity.UsUarIoS = this;
+		}
+
+		private void ExtrasLiquidAcIon_Detach(ExtrasLiquidAcIon entity)
+		{
+			entity.UsUarIoS = null;
+		}
+
 		private void UsUarIoSGRuPOs_Attach(UsUarIoSGRuPOs entity)
 		{
 			entity.UsUarIoS = this;
@@ -11533,6 +12048,7 @@ namespace Datos
 
 		public UsUarIoS()
 		{
+			_extrasLiquidAcIon = new EntitySet<ExtrasLiquidAcIon>(ExtrasLiquidAcIon_Attach, ExtrasLiquidAcIon_Detach);
 			_usUarIoSgrUPoS = new EntitySet<UsUarIoSGRuPOs>(UsUarIoSGRuPOs_Attach, UsUarIoSGRuPOs_Detach);
 			OnCreated();
 		}

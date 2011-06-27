@@ -56,6 +56,7 @@
             this.tiposDeEventosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cargosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tiposMotivosCambioDiarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tspTipoExtraLiquidacion = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.consultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarNumeroEmpleadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,7 +76,6 @@
             this.tsslIdUsuarioLogueado = new System.Windows.Forms.ToolStripStatusLabel();
             this.ofdCargarArchivoImportacionConsultas = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.tspTipoExtraLiquidacion = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBotones.SuspendLayout();
             this.menuStripSuperior.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -334,6 +334,14 @@
             this.tiposMotivosCambioDiarioToolStripMenuItem.Text = "Tipos Motivos Cambio Diario";
             this.tiposMotivosCambioDiarioToolStripMenuItem.Click += new System.EventHandler(this.tiposMotivosCambioDiarioToolStripMenuItem_Click);
             // 
+            // tspTipoExtraLiquidacion
+            // 
+            this.tspTipoExtraLiquidacion.Name = "tspTipoExtraLiquidacion";
+            this.tspTipoExtraLiquidacion.Size = new System.Drawing.Size(218, 22);
+            this.tspTipoExtraLiquidacion.Text = "Tipos Extra Liquidacion";
+            this.tspTipoExtraLiquidacion.Visible = false;
+            this.tspTipoExtraLiquidacion.Click += new System.EventHandler(this.tspTipoExtraLiquidacion_Click);
+            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
@@ -474,13 +482,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            // 
-            // tspTipoExtraLiquidacion
-            // 
-            this.tspTipoExtraLiquidacion.Name = "tspTipoExtraLiquidacion";
-            this.tspTipoExtraLiquidacion.Size = new System.Drawing.Size(218, 22);
-            this.tspTipoExtraLiquidacion.Text = "Tipos Extra Liquidacion";
-            this.tspTipoExtraLiquidacion.Click += new System.EventHandler(this.tspTipoExtraLiquidacion_Click);
             // 
             // VentanaPrincipal
             // 
