@@ -578,6 +578,7 @@ namespace ControlHoras
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+             
         }
     }
 }

@@ -1,2 +1,21 @@
 -- Agrandamos el campo Query de consultasempleados para la consulta del listado al estudio
-ALTER TABLE consultasempleados change Query Query varchar(4000);
+ALTER TABLE consultasempleados change Query Query varchar(11000);
+
+-- Issue 75
+alter table empleados add column NoLlevaTicketsAlimentacion tinyint(1) not null default 0;
+
+
+-- Issue 50:
+update Consultasclientes set Query="SELECT emp.NroEmpleado, emp.Nombre, emp.Apellido, emp.FechaIngreso, emp.FechaBaja,
+ /* NO FERIADOS */ /*HS COMUNES*/ CAST(sec_to_time(SUM(time_to_sec(IF(MAKEDATE(2000,DAYOFYEAR(HorasTmp.FechaCorrespondiente)) not in (SELECT fecha FROM feriados), IF (cargo.CobraHsExtras=1, /*EXTRAS*/CASE WHEN TIMEDIFF(HorasTmp.Horas,MAKETIME(cargo.CantidadHsComunes,0,0)) <0 THEN HorasTmp.Horas WHEN TIMEDIFF(HorasTmp.Horas,MAKETIME(cargo.CantidadHsComunes,0,0)) >= 0 THEN MAKETIME(cargo.CantidadHsComunes,0,0) END, HorasTmp.Horas),MAKETIME(0,0,0))))) AS CHAR) AS SENCILLAS_X1, /*HS EXTRAS (X2)*/ CAST(sec_to_time(SUM(time_to_sec(IF(MAKEDATE(2000,DAYOFYEAR(HorasTmp.FechaCorrespondiente)) not in (SELECT fecha FROM feriados), IF(cargo.CobraHsExtras=1,CASE WHEN TIMEDIFF(HorasTmp.Horas,MAKETIME(cargo.CantidadHsComunes,0,0)) < 0 THEN MAKETIME(0,0,0) ELSE TIMEDIFF(HorasTmp.Horas,MAKETIME(cargo.CantidadHsComunes,0,0)) END,MAKETIME(0,0,0)),MAKETIME(0,0,0))))) AS CHAR) AS EXTRAS_X2, /* FERIADOS */ CAST(sec_to_time(SUM(time_to_sec(IF(MAKEDATE(2000,DAYOFYEAR(HorasTmp.FechaCorrespondiente)) in (SELECT fecha FROM feriados), /*HS COMUNES FERIADOS (X2)*/ IF (cargo.CobraHsExtras=1, /*EXTRAS*/CASE WHEN TIMEDIFF(HorasTmp.Horas,MAKETIME(cargo.CantidadHsComunes,0,0)) <0 THEN HorasTmp.Horas WHEN TIMEDIFF(HorasTmp.Horas,MAKETIME(cargo.CantidadHsComunes,0,0)) >= 0 THEN MAKETIME(cargo.CantidadHsComunes,0,0) END, HorasTmp.Horas),MAKETIME(0,0,0))))) AS CHAR) AS FERIADO_TRABAJADO_X2, /*HS EXTRAS FERIADOS (X2_5)*/ CAST(sec_to_time(SUM(time_to_sec(IF(MAKEDATE(2000,DAYOFYEAR(HorasTmp.FechaCorrespondiente)) in (SELECT fecha FROM feriados),IF (cargo.CobraHsExtras=1,CASE WHEN TIMEDIFF(HorasTmp.Horas,MAKETIME(cargo.CantidadHsComunes,0,0)) < 0 THEN MAKETIME(0,0,0) ELSE TIMEDIFF(HorasTmp.Horas,MAKETIME(cargo.CantidadHsComunes,0,0)) END,MAKETIME(0,0,0)),MAKETIME(0,0,0))))) AS CHAR) AS FERIADO_TRABAJADO_EXTRAS_X2_5
+FROM 
+(SELECT hgeaux.NroEmpleado,hgeaux.FechaCorrespondiente, sec_to_time(SUM(time_to_sec(TIMEDIFF(hgeaux.HoraSalida,hgeaux.HoraEntrada)))) as Horas from horasgeneradasescalafon hgeaux WHERE hgeaux.FechaCorrespondiente between 'FECHADESDE' and 'FECHAHASTA' 
+AND hgeaux.NroEmpleado not in (9998,9999)
+AND hgeaux.Descanso=0
+group by hgeaux.NroEmpleado,hgeaux.FechaCorrespondiente) AS HorasTmp, 
+Empleados emp, TiposCargos cargo
+WHERE
+emp.NroEmpleado=HorasTmp.NroEmpleado
+and emp.IdCargo=cargo.IdCargo and cargo.TipoFacturacion='JORNALERO'
+GROUP BY emp.NroEmpleado, emp.Nombre, emp.Apellido" where idconsultacliente=12 and Nombre="TOTAL FUNCIONARIO DETALLADO POR MES";
+

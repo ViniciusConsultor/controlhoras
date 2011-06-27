@@ -386,11 +386,17 @@ namespace ControlHoras
         {
             DateTime dt;
             DateTimeStyles dts = new DateTimeStyles();
-
-            if (fecha == fechaMask)
-                return true;
-            else
-                return DateTime.TryParseExact(fecha, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo, dts, out dt);
+            try
+            {
+                if (fecha == fechaMask)
+                    return true;
+                else
+                    return DateTime.TryParseExact(fecha, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo, dts, out dt);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         private void mtConsultasEmpleadoFecha_Validating(object sender, CancelEventArgs e)
