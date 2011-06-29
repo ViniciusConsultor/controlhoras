@@ -1480,7 +1480,7 @@ namespace Datos
         //    }
         //}
 
-        public int agregarExtraLiquidacionEmpleado(int idEmpleado, DateTime fecha, string descripcion, bool signoPositivo, float valor, int cantidadCuotas, string userName, int idTipoExtraLiquidacion, string cantHs_LlevaHs)
+        public int agregarExtraLiquidacionEmpleado(int idEmpleado, DateTime fecha, string descripcion, bool signoPositivo, float valor, int cantidadCuotas, string userName, int idTipoExtraLiquidacion, TimeSpan cantHs_LlevaHs)
         {
             Table<ExtrasLiquidAcIon> tablaExtrasLiquidacion =  null;
             Table<CuOtAsExtrasLiquidAcIon> tablaCuotas;
@@ -1509,7 +1509,7 @@ namespace Datos
                 el.CantidadCuotas = (byte)cantidadCuotas;
                 el.IDUsuario = idUsuario;
                 el.IDTipoExtraLiquidacion = (byte)idTipoExtraLiquidacion;
-                el.CantHsTipoExtraLlevaHs = DateTime.Parse(cantHs_LlevaHs);
+                el.CantHsTipoExtraLlevaHsEnSegs = cantHs_LlevaHs.TotalSeconds;
                 tablaExtrasLiquidacion.InsertOnSubmit(el);
                  
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
