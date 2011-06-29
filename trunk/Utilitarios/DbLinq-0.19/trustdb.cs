@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2011-06-29 02:01:00Z
+#region Auto-generated classes for trustdb database on 2011-06-29 03:30:19Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2011-06-29 02:01:00Z
+// Auto-generated from trustdb on 2011-06-29 03:30:19Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -5602,8 +5602,8 @@ namespace Datos
 		#region Extensibility Method Definitions
 
 		partial void OnCreated();
-		partial void OnCantHsTipoExtraLlevaHsChanged();
-		partial void OnCantHsTipoExtraLlevaHsChanging(DateTime? value);
+		partial void OnCantHsTipoExtraLlevaHsEnSegsChanged();
+		partial void OnCantHsTipoExtraLlevaHsEnSegsChanging(double value);
 		partial void OnCantidadCuotasChanged();
 		partial void OnCantidadCuotasChanging(byte value);
 		partial void OnCuotaActualChanged();
@@ -5623,26 +5623,26 @@ namespace Datos
 
 		#endregion
 
-		#region DateTime? CantHsTipoExtraLlevaHs
+		#region double CantHsTipoExtraLlevaHsEnSegs
 
-		private DateTime? _cantHsTipoExtraLlevaHs;
+		private double _cantHsTipoExtraLlevaHsEnSegs;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_cantHsTipoExtraLlevaHs", Name = "CantHs_TipoExtraLlevaHs", DbType = "datetime", AutoSync = AutoSync.Never)]
-		public DateTime? CantHsTipoExtraLlevaHs
+		[Column(Storage = "_cantHsTipoExtraLlevaHsEnSegs", Name = "CantHs_TipoExtraLlevaHsEnSegs", DbType = "double", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public double CantHsTipoExtraLlevaHsEnSegs
 		{
 			get
 			{
-				return _cantHsTipoExtraLlevaHs;
+				return _cantHsTipoExtraLlevaHsEnSegs;
 			}
 			set
 			{
-				if (value != _cantHsTipoExtraLlevaHs)
+				if (value != _cantHsTipoExtraLlevaHsEnSegs)
 				{
-					OnCantHsTipoExtraLlevaHsChanging(value);
+					OnCantHsTipoExtraLlevaHsEnSegsChanging(value);
 					SendPropertyChanging();
-					_cantHsTipoExtraLlevaHs = value;
-					SendPropertyChanged("CantHsTipoExtraLlevaHs");
-					OnCantHsTipoExtraLlevaHsChanged();
+					_cantHsTipoExtraLlevaHsEnSegs = value;
+					SendPropertyChanged("CantHsTipoExtraLlevaHsEnSegs");
+					OnCantHsTipoExtraLlevaHsEnSegsChanged();
 				}
 			}
 		}

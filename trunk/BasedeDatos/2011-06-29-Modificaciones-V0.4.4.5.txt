@@ -1,2 +1,5 @@
 -- Cambio en CantHs_TipoExtraLlevaHs
-alter table extrasliquidacion change column CantHs_TipoExtraLlevaHs CantHs_TipoExtraLlevaHs TIME;
+alter table extrasliquidacion drop column CantHs_TipoExtraLlevaHs;
+alter table extrasliquidacion add column CantHs_TipoExtraLlevaHsEnSegs int not null default 0;
+
+alter table consultasempleados change column Query Query varchar(12500);

@@ -1526,7 +1526,6 @@ namespace ControlHoras
                     if (mtExtrasValor.Enabled)
                         valorExtras = float.Parse(mtExtrasValor.Text);
                     TimeSpan cantHs_LlevaHsTS = new TimeSpan(0,0,0);
-                    string cantHs_LlevaHs = "00:00";
                     if (mtExtrasLlevaHs.Enabled)
                     {
                         cantHs_LlevaHsTS = TimeSpan.Parse(mtExtrasLlevaHs.Text);
@@ -1534,12 +1533,11 @@ namespace ControlHoras
                         {
                             throw new Exception("La Hora nueva debe ser con 0 o 30 minutos.");
                         }
-                        cantHs_LlevaHs = cantHs_LlevaHsTS.ToString();
                         
                     }
                     string username = ((VentanaPrincipal)this.Owner).userName;
                     int idTipoExtraLiquidacionSelected = ((ComboBoxValue)cmbTipoExtraLiquidacion.Items[cmbTipoExtraLiquidacion.SelectedIndex]).Value;
-                    int numNuevoExtra = datos.agregarExtraLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), dtpExtrasFecha.Value, txtExtrasDescripcion.Text, signoPositivo, valorExtras, int.Parse(mtExtrasCantCuotas.Text), username, idTipoExtraLiquidacionSelected, cantHs_LlevaHs);
+                    int numNuevoExtra = datos.agregarExtraLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), dtpExtrasFecha.Value, txtExtrasDescripcion.Text, signoPositivo, valorExtras, int.Parse(mtExtrasCantCuotas.Text), username, idTipoExtraLiquidacionSelected, cantHs_LlevaHsTS);
                     limpiarTabExtrasLiquidacion();
                     cargarGrillaExtraLiquidacionEmpleado();
                 }
@@ -1666,8 +1664,7 @@ namespace ControlHoras
                         dgvExtrasLiquidacion.Rows[n].Cells["Liquidado"].Value = "No";
                     dgvExtrasLiquidacion.Rows[n].Cells["Usuario"].Value = cel.ExtrasLiquidAcIon.UsUarIoS.UserName;
                     dgvExtrasLiquidacion.Rows[n].Cells["TipoExtra"].Value = cel.ExtrasLiquidAcIon.TipOExtraLiquidAcIon.Nombre;
-                    if (cel.ExtrasLiquidAcIon.CantHsTipoExtraLlevaHs != null)
-                        dgvExtrasLiquidacion.Rows[n].Cells["CantHs"].Value = cel.ExtrasLiquidAcIon.CantHsTipoExtraLlevaHs.Value.ToShortTimeString().Substring(0,5);
+                    dgvExtrasLiquidacion.Rows[n].Cells["CantHs"].Value = TimeSpan.FromSeconds(cel.ExtrasLiquidAcIon.CantHsTipoExtraLlevaHsEnSegs).ToString();
                 }
             }
             catch (Exception ex)
