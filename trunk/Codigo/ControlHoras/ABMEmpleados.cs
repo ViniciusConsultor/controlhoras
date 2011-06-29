@@ -3243,22 +3243,29 @@ namespace ControlHoras
 
         private void cmbTipoExtraLiquidacion_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //txtExtrasDescripcion.Text = "";          
+            //mtExtrasCantCuotas.Text = "1";
+
             int idTipoExtraLiquidacionSelected = ((ComboBoxValue)cmbTipoExtraLiquidacion.Items[cmbTipoExtraLiquidacion.SelectedIndex]).Value;
             foreach (TipOExtraLiquidAcIon te in listaTiposExtras)
             {
                 if ((int)te.IDTipoExtraLiquidacion == idTipoExtraLiquidacionSelected)
                 {
                     if (te.LlevaHs == 1)
-                    {
-                        panelTipoExtraLiquidacionConHs.Visible = true;
+                    {                        
                         mtExtrasValor.Enabled = false;
                         mtExtrasValor.Text = "";
+                        panelTipoExtraLiquidacionConHs.Visible = true;
+                        mtExtrasLlevaHs.Enabled = true;
+                        mtExtrasLlevaHs.Text = "";
                     }
                     else
                     {
-                        panelTipoExtraLiquidacionConHs.Visible = false;
-                        mtExtrasLlevaHs.Text = "";
                         mtExtrasValor.Enabled = true;
+                        mtExtrasValor.Text = "";
+                        panelTipoExtraLiquidacionConHs.Visible = false;
+                        mtExtrasLlevaHs.Enabled = false;
+                        mtExtrasLlevaHs.Text = "";
                     }
                     break;
                 }
