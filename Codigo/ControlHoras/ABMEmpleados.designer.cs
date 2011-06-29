@@ -278,6 +278,8 @@
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panelTipoExtraLiquidacionConHs = new System.Windows.Forms.Panel();
+            this.label63 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.tcEmpleado.SuspendLayout();
             this.DatosDelEmpleado.SuspendLayout();
@@ -312,6 +314,7 @@
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExtrasLiquidacion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.panelTipoExtraLiquidacionConHs.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -2410,9 +2413,8 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.panelTipoExtraLiquidacionConHs);
             this.splitContainer2.Panel1.Controls.Add(this.btnUpdateComboTipoExtraLiquidacion);
-            this.splitContainer2.Panel1.Controls.Add(this.mtExtrasLlevaHs);
-            this.splitContainer2.Panel1.Controls.Add(this.label26);
             this.splitContainer2.Panel1.Controls.Add(this.cmbTipoExtraLiquidacion);
             this.splitContainer2.Panel1.Controls.Add(this.label25);
             this.splitContainer2.Panel1.Controls.Add(this.lblEmpleadoExtras);
@@ -2451,17 +2453,16 @@
             // 
             // mtExtrasLlevaHs
             // 
-            this.mtExtrasLlevaHs.Enabled = false;
-            this.mtExtrasLlevaHs.Location = new System.Drawing.Point(278, 102);
-            this.mtExtrasLlevaHs.Mask = "999";
+            this.mtExtrasLlevaHs.Location = new System.Drawing.Point(73, 2);
+            this.mtExtrasLlevaHs.Mask = "00:00";
             this.mtExtrasLlevaHs.Name = "mtExtrasLlevaHs";
-            this.mtExtrasLlevaHs.Size = new System.Drawing.Size(28, 20);
-            this.mtExtrasLlevaHs.TabIndex = 122;
+            this.mtExtrasLlevaHs.Size = new System.Drawing.Size(36, 20);
+            this.mtExtrasLlevaHs.TabIndex = 4;
             // 
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(207, 106);
+            this.label26.Location = new System.Drawing.Point(3, 5);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(65, 13);
             this.label26.TabIndex = 121;
@@ -2474,7 +2475,7 @@
             this.cmbTipoExtraLiquidacion.Location = new System.Drawing.Point(151, 29);
             this.cmbTipoExtraLiquidacion.Name = "cmbTipoExtraLiquidacion";
             this.cmbTipoExtraLiquidacion.Size = new System.Drawing.Size(263, 21);
-            this.cmbTipoExtraLiquidacion.TabIndex = 120;
+            this.cmbTipoExtraLiquidacion.TabIndex = 0;
             this.cmbTipoExtraLiquidacion.SelectedIndexChanged += new System.EventHandler(this.cmbTipoExtraLiquidacion_SelectedIndexChanged);
             // 
             // label25
@@ -2534,7 +2535,7 @@
             this.btnExtrasAgregar.Location = new System.Drawing.Point(540, 25);
             this.btnExtrasAgregar.Name = "btnExtrasAgregar";
             this.btnExtrasAgregar.Size = new System.Drawing.Size(54, 23);
-            this.btnExtrasAgregar.TabIndex = 5;
+            this.btnExtrasAgregar.TabIndex = 6;
             this.btnExtrasAgregar.Text = "Agregar";
             this.btnExtrasAgregar.UseVisualStyleBackColor = true;
             this.btnExtrasAgregar.Click += new System.EventHandler(this.btnExtrasAgregar_Click);
@@ -2548,7 +2549,7 @@
             this.mtExtrasCantCuotas.Name = "mtExtrasCantCuotas";
             this.mtExtrasCantCuotas.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.mtExtrasCantCuotas.Size = new System.Drawing.Size(22, 20);
-            this.mtExtrasCantCuotas.TabIndex = 4;
+            this.mtExtrasCantCuotas.TabIndex = 5;
             this.mtExtrasCantCuotas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtExtrasCantCuotas.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
@@ -2878,6 +2879,26 @@
             this.dataGridViewTextBoxColumn17.ReadOnly = true;
             this.dataGridViewTextBoxColumn17.Width = 84;
             // 
+            // panelTipoExtraLiquidacionConHs
+            // 
+            this.panelTipoExtraLiquidacionConHs.Controls.Add(this.label63);
+            this.panelTipoExtraLiquidacionConHs.Controls.Add(this.mtExtrasLlevaHs);
+            this.panelTipoExtraLiquidacionConHs.Controls.Add(this.label26);
+            this.panelTipoExtraLiquidacionConHs.Location = new System.Drawing.Point(205, 99);
+            this.panelTipoExtraLiquidacionConHs.Name = "panelTipoExtraLiquidacionConHs";
+            this.panelTipoExtraLiquidacionConHs.Size = new System.Drawing.Size(285, 25);
+            this.panelTipoExtraLiquidacionConHs.TabIndex = 124;
+            this.panelTipoExtraLiquidacionConHs.Visible = false;
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Location = new System.Drawing.Point(109, 5);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(177, 13);
+            this.label63.TabIndex = 122;
+            this.label63.Text = "Total de Hs Convertidas a Comunes";
+            // 
             // ABMEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2949,6 +2970,8 @@
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvExtrasLiquidacion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.panelTipoExtraLiquidacionConHs.ResumeLayout(false);
+            this.panelTipoExtraLiquidacionConHs.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3204,5 +3227,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
         private System.Windows.Forms.CheckBox cbPerteneceASindicato;
 		private System.Windows.Forms.CheckBox cbNoPagarTicketsAlimentacion;
+        private System.Windows.Forms.Panel panelTipoExtraLiquidacionConHs;
+        private System.Windows.Forms.Label label63;
     }
 }

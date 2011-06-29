@@ -1,0 +1,2 @@
+-- Cambio en CantHs_TipoExtraLlevaHs
+alter table extrasliquidacion change column CantHs_TipoExtraLlevaHs CantHs_TipoExtraLlevaHs TIME;

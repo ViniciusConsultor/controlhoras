@@ -1525,9 +1525,18 @@ namespace ControlHoras
                     float valorExtras = 0;
                     if (mtExtrasValor.Enabled)
                         valorExtras = float.Parse(mtExtrasValor.Text);
-                    float cantHs_LlevaHs = 0;
+                    TimeSpan cantHs_LlevaHsTS = new TimeSpan(0,0,0);
+                    string cantHs_LlevaHs = "00:00";
                     if (mtExtrasLlevaHs.Enabled)
-                        cantHs_LlevaHs = float.Parse(mtExtrasLlevaHs.Text);
+                    {
+                        cantHs_LlevaHsTS = TimeSpan.Parse(mtExtrasLlevaHs.Text);
+                        if (cantHs_LlevaHsTS.Minutes % 30 != 0)
+                        {
+                            throw new Exception("La Hora nueva debe ser con 0 o 30 minutos.");
+                        }
+                        cantHs_LlevaHs = cantHs_LlevaHsTS.ToString();
+                        
+                    }
                     string username = ((VentanaPrincipal)this.Owner).userName;
                     int idTipoExtraLiquidacionSelected = ((ComboBoxValue)cmbTipoExtraLiquidacion.Items[cmbTipoExtraLiquidacion.SelectedIndex]).Value;
                     int numNuevoExtra = datos.agregarExtraLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), dtpExtrasFecha.Value, txtExtrasDescripcion.Text, signoPositivo, valorExtras, int.Parse(mtExtrasCantCuotas.Text), username, idTipoExtraLiquidacionSelected, cantHs_LlevaHs);
@@ -1552,6 +1561,7 @@ namespace ControlHoras
             txtExtrasDescripcion.Text = "";
             mtExtrasValor.Text = "";
             mtExtrasCantCuotas.Text = "1";
+            mtExtrasLlevaHs.Text = "";
             cmbExtrasSigno.SelectedIndex = 0;
         }
 
@@ -1656,7 +1666,8 @@ namespace ControlHoras
                         dgvExtrasLiquidacion.Rows[n].Cells["Liquidado"].Value = "No";
                     dgvExtrasLiquidacion.Rows[n].Cells["Usuario"].Value = cel.ExtrasLiquidAcIon.UsUarIoS.UserName;
                     dgvExtrasLiquidacion.Rows[n].Cells["TipoExtra"].Value = cel.ExtrasLiquidAcIon.TipOExtraLiquidAcIon.Nombre;
-                    dgvExtrasLiquidacion.Rows[n].Cells["CantHs"].Value = cel.ExtrasLiquidAcIon.CantHsTipoExtraLlevaHs;
+                    if (cel.ExtrasLiquidAcIon.CantHsTipoExtraLlevaHs != null)
+                        dgvExtrasLiquidacion.Rows[n].Cells["CantHs"].Value = cel.ExtrasLiquidAcIon.CantHsTipoExtraLlevaHs.Value.ToShortTimeString().Substring(0,5);
                 }
             }
             catch (Exception ex)
@@ -3095,7 +3106,7 @@ namespace ControlHoras
         {
             try
             {
-                ABMTipoExtraLiquidacion dptos = ABMTipoExtraLiquidacion.getVentana();
+                ABMCiudades dptos = ABMCiudades.getVentana();
                 dptos.ShowDialog(this);
                 updateListOfCiudades();
             }
@@ -3242,13 +3253,13 @@ namespace ControlHoras
                 {
                     if (te.LlevaHs == 1)
                     {
-                        mtExtrasLlevaHs.Enabled = true;
+                        panelTipoExtraLiquidacionConHs.Visible = true;
                         mtExtrasValor.Enabled = false;
                         mtExtrasValor.Text = "";
                     }
                     else
                     {
-                        mtExtrasLlevaHs.Enabled = false;
+                        panelTipoExtraLiquidacionConHs.Visible = false;
                         mtExtrasLlevaHs.Text = "";
                         mtExtrasValor.Enabled = true;
                     }

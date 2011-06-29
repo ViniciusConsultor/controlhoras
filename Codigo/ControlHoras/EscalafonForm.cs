@@ -270,42 +270,52 @@ namespace ControlHoras
 
         private void mtServicio_KeyDown(object sender, KeyEventArgs e)
         {
-           if (mtCliente!= null && mtServicio.Text != "" && (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab))
+
+            if (mtCliente != null && mtServicio.Text != "" && (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab))
             {
-                // seteo el servicio.                
-                SERVicIoS servicio;
-
-                try
+                if (nroClienteCargado != null)
                 {
-                    int nroCliente=int.Parse(mtCliente.Text);
-                    if (datos.existeCliente(nroCliente))
-                    {
-                        int nroServicio=int.Parse(mtServicio.Text);
-                        limpiarForm();
-                        
-                        servicio = getServicioCliente(nroCliente,nroServicio);
-                        txtServicio.Text = servicio.Nombre;
-                        
-                        // TRAEMOS EL CONTRATO
-                        con = datos.obtenerContrato(nroCliente,nroServicio);
 
-                        cargarVentana(nroCliente, nroServicio);
-                    }
-                    else
+                    // seteo el servicio.                
+                    SERVicIoS servicio;
+
+                    try
                     {
-                        MessageBox.Show("No existe el cliente numero " + mtCliente.Text, "No existe cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        int nroCliente = int.Parse(mtCliente.Text);
+                        if (datos.existeCliente(nroCliente))
+                        {
+                            int nroServicio = int.Parse(mtServicio.Text);
+                            limpiarForm();
+
+                            servicio = getServicioCliente(nroCliente, nroServicio);
+                            txtServicio.Text = servicio.Nombre;
+
+                            // TRAEMOS EL CONTRATO
+                            con = datos.obtenerContrato(nroCliente, nroServicio);
+
+                            cargarVentana(nroCliente, nroServicio);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No existe el cliente numero " + mtCliente.Text, "No existe cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                }
-                catch (Exception ex)
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }else
                 {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Debe cargar el cliente primero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else if (e.KeyCode == Keys.F2)
             {
+                
                 // abro la ventana de busqueda de servicios.                
                 //btnBuscarServicios.PerformClick();
             }
+           
         }
 
         private SERVicIoS getServicioCliente(int nroCli, int nroServicio)
@@ -995,11 +1005,13 @@ namespace ControlHoras
              bool solapa;
              bool hubosolapa = false;
              dgEscalafon.EndEdit();
-
+           
              try
              {
+                 
                  if (ValidarEscalafon())
                  {
+                     
                      int numCli = nroClienteCargado.Value;
                      int numSer = int.Parse(mtServicio.Text);
                      int nroCon = CalcNroContrato(numCli, numSer);
@@ -1008,7 +1020,7 @@ namespace ControlHoras
                      es.ListaEscalafonEmpleados = new List<EscalafonEmpleado>();
 
                      // ACA GUARDO TODOS LOS DATOS DEL DATAGRIDVIEW
-
+                     
                      EscalafonEmpleado linea;
                      HorarioEscalafon hor = null;
                      DataGridViewCell cel = null;
@@ -1040,11 +1052,12 @@ namespace ControlHoras
                                      cel.Style.BackColor = Color.Red;//Rojo
                                  }
                                  else
+                                 {
                                      cel.Style.BackColor = Color.FromArgb(255, 255, 192);//Amarillito
+                                 }
                              }
                              linea.Horario.Add(hor);
                          }
-
                          es.ListaEscalafonEmpleados.Add(linea);
                      }
 
@@ -1056,18 +1069,22 @@ namespace ControlHoras
                      sistema.marcarSolapados(nroCon, es);
 
                      if (hubosolapa)
-                     {                         
+                     {
                          MessageBox.Show("Datos guardados correctamente.\nEn los horarios en rojo el empleado ya trabaja.", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                      }
                      else
                          MessageBox.Show("Datos guardados correctamente.", "Guardado de Datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                  }
                  else
+                 {
+                     Utilidades.ControladorUtilidades.writeToLog(new Exception("ValidacionEscalafon ERROR"));
                      MessageBox.Show(this, "Error en la celda seleccionada", "Línea no valida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 }
 
              }
              catch (Exception ex)
-             {                 
+             {
+                 Utilidades.ControladorUtilidades.writeToLog(ex);
                  MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
              }
          }
@@ -1221,6 +1238,11 @@ namespace ControlHoras
                     GuardarBTN.PerformClick();
                 }
             }
+        }
+
+        private void mtCliente_Leave(object sender, EventArgs e)
+        {
+           
         }
         
     }
