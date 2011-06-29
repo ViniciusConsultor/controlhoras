@@ -713,9 +713,11 @@ namespace Datos
                 if (soloactivos)
                     tipoEvento = (from reg in database.TipOExtraLiquidAcIon
                                   where reg.Activo == 1
+                                  orderby reg.Nombre ascending
                                   select reg).ToList<TipOExtraLiquidAcIon>();
                 else
                     tipoEvento = (from reg in database.TipOExtraLiquidAcIon
+                                  orderby reg.Nombre ascending
                                   select reg).ToList<TipOExtraLiquidAcIon>();
                 return tipoEvento;
             }

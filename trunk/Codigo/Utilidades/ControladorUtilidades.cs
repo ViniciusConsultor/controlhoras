@@ -8,11 +8,55 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Configuration;
 
 namespace Utilidades
 {
     public static class ControladorUtilidades
     {
+        private static bool LogEnabled = false;
+        private static string LogFilePath = "C:\\trustLogic.log";
+
+        public static void writeToLog(Exception objException)
+        {
+            if (ConfigurationSettings.AppSettings.AllKeys.Contains("LogEnabled"))
+                    bool.TryParse(ConfigurationSettings.AppSettings["LogEnabled"], out LogEnabled);
+            if (LogEnabled)
+            {
+                if (ConfigurationSettings.AppSettings.AllKeys.Contains("LogFilePath"))
+                    LogFilePath=ConfigurationSettings.AppSettings["LogFilePath"];
+            }
+
+            if (LogEnabled)
+            {
+                string strException = string.Empty;
+                try
+                {
+                    StreamWriter swLog = new StreamWriter(LogFilePath, true);
+                    swLog.WriteLine("Source        : " +
+                            objException.Source.ToString().Trim());
+                    swLog.WriteLine("Method        : " +
+                            objException.TargetSite.Name.ToString());
+                    swLog.WriteLine("Date        : " +
+                            DateTime.Now.ToLongTimeString());
+                    swLog.WriteLine("Time        : " +
+                            DateTime.Now.ToShortDateString());
+                    swLog.WriteLine("Error        : " +
+                            objException.Message.ToString().Trim());
+                    swLog.WriteLine("Stack Trace    : " +
+                            objException.StackTrace.ToString().Trim());
+                    swLog.WriteLine("-------------------------------------------------------------------");
+                    swLog.Flush();
+                    swLog.Close();
+                }
+                catch (Exception)
+                {
+             
+                }
+             
+            }
+        }
+
         public static string encriptarStringToMD5(string str)
         {
             string addclave = "6ytrdagwiskddywjankdhdyeuwabyd73jsknxgdyeje";

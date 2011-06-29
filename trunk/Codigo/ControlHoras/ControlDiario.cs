@@ -226,12 +226,12 @@ namespace ControlHoras
                     lblDia.Text = Utilidades.ControladorUtilidades.nombreDiasInglesAEspanol(FechaSeleccionada.DayOfWeek.ToString());
                     habilitarMenuStripDgvHoras();
                     
-                    SendKeys.Send("{TAB}");
-                    //if (mtServicio.Text != "")
-                    //{
-                    //    mtServicio.Focus();
-                    //    SendKeys.Send("{ENTER}");
-                    //}
+                    //SendKeys.Send("{TAB}");
+                    if (mtServicio.Text != "")
+                    {
+                        mtServicio.Focus();
+                        SendKeys.Send("{ENTER}");
+                    }
                 }
                 catch (Exception ex)
                 {

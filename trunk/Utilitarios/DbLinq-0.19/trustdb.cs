@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2011-06-25 15:48:01Z
+#region Auto-generated classes for trustdb database on 2011-06-29 02:01:00Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2011-06-25 15:48:01Z
+// Auto-generated from trustdb on 2011-06-29 02:01:00Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -1429,7 +1429,7 @@ namespace Datos
 
 		private string _query;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_query", Name = "QUERY", DbType = "varchar(4000)", AutoSync = AutoSync.Never)]
+		[Column(Storage = "_query", Name = "Query", DbType = "varchar(11000)", AutoSync = AutoSync.Never)]
 		public string Query
 		{
 			get
@@ -5603,7 +5603,7 @@ namespace Datos
 
 		partial void OnCreated();
 		partial void OnCantHsTipoExtraLlevaHsChanged();
-		partial void OnCantHsTipoExtraLlevaHsChanging(float? value);
+		partial void OnCantHsTipoExtraLlevaHsChanging(DateTime? value);
 		partial void OnCantidadCuotasChanged();
 		partial void OnCantidadCuotasChanging(byte value);
 		partial void OnCuotaActualChanged();
@@ -5623,12 +5623,12 @@ namespace Datos
 
 		#endregion
 
-		#region float? CantHsTipoExtraLlevaHs
+		#region DateTime? CantHsTipoExtraLlevaHs
 
-		private float? _cantHsTipoExtraLlevaHs;
+		private DateTime? _cantHsTipoExtraLlevaHs;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_cantHsTipoExtraLlevaHs", Name = "CantHs_TipoExtraLlevaHs", DbType = "float", AutoSync = AutoSync.Never)]
-		public float? CantHsTipoExtraLlevaHs
+		[Column(Storage = "_cantHsTipoExtraLlevaHs", Name = "CantHs_TipoExtraLlevaHs", DbType = "datetime", AutoSync = AutoSync.Never)]
+		public DateTime? CantHsTipoExtraLlevaHs
 		{
 			get
 			{
@@ -7700,7 +7700,7 @@ namespace Datos
 		#region Parents
 
 		private EntityRef<SERVicIoS> _servIcIoS;
-		[Association(Storage = "_servIcIoS", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "horasgeneradasescalafon_ibfk_2", IsForeignKey = true)]
+		[Association(Storage = "_servIcIoS", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "horasgeneradasescalafon_ibfk_2", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public SERVicIoS SERVicIoS
 		{
@@ -7722,13 +7722,13 @@ namespace Datos
 					if (value != null)
 					{
 						value.HoRaSGeneraDaSEScalaFOn.Add(this);
-						_numeroServicio = value.NumeroServicio;
 						_numeroCliente = value.NumeroCliente;
+						_numeroServicio = value.NumeroServicio;
 					}
 					else
 					{
-						_numeroServicio = default(uint);
 						_numeroCliente = default(uint);
+						_numeroServicio = default(uint);
 					}
 				}
 			}
@@ -10199,7 +10199,7 @@ namespace Datos
 		#region Children
 
 		private EntitySet<HoRaSGeneraDaSEScalaFOn> _hoRaSgEneraDaSesCalaFoN;
-		[Association(Storage = "_hoRaSgEneraDaSesCalaFoN", OtherKey = "NumeroServicio,NumeroCliente", ThisKey = "NumeroServicio,NumeroCliente", Name = "horasgeneradasescalafon_ibfk_2")]
+		[Association(Storage = "_hoRaSgEneraDaSesCalaFoN", OtherKey = "NumeroCliente,NumeroServicio", ThisKey = "NumeroCliente,NumeroServicio", Name = "horasgeneradasescalafon_ibfk_2")]
 		[DebuggerNonUserCode]
 		public EntitySet<HoRaSGeneraDaSEScalaFOn> HoRaSGeneraDaSEScalaFOn
 		{

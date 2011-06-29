@@ -6,12 +6,12 @@ using System.Text;
 using System.Globalization;
 using Datos;
 using System.Configuration;
+//using Utilidades;
 
 namespace Logica
 {
     public class ControladorClientesServicios : IClientesServicios
     {
-
         private static ControladorClientesServicios instancia = null;
         private IDatos datos;
         int nroFuncPivot = -1;
@@ -476,7 +476,7 @@ namespace Logica
             }
             catch (Exception ex)
             {
-                
+              
                 throw ex;
             }
         }
@@ -777,7 +777,6 @@ namespace Logica
             }
             catch (Exception ex)
             {
-                
                 throw ex;
             }      
         }    
