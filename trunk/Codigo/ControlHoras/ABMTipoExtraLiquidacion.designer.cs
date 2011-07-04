@@ -42,10 +42,12 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbLlevaHs = new System.Windows.Forms.CheckBox();
+            this.cbPorcentaje = new System.Windows.Forms.CheckBox();
             this.idTipoExtraLiquidacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Activa = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.LlevaHs = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.AceptaPorcentaje = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTipoExtrasLiquidacion)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -80,15 +82,16 @@
             this.idTipoExtraLiquidacion,
             this.Nombre,
             this.Activa,
-            this.LlevaHs});
-            this.dgvTipoExtrasLiquidacion.Location = new System.Drawing.Point(12, 122);
+            this.LlevaHs,
+            this.AceptaPorcentaje});
+            this.dgvTipoExtrasLiquidacion.Location = new System.Drawing.Point(12, 139);
             this.dgvTipoExtrasLiquidacion.MultiSelect = false;
             this.dgvTipoExtrasLiquidacion.Name = "dgvTipoExtrasLiquidacion";
             this.dgvTipoExtrasLiquidacion.ReadOnly = true;
             this.dgvTipoExtrasLiquidacion.RowHeadersVisible = false;
             this.dgvTipoExtrasLiquidacion.RowTemplate.Height = 24;
             this.dgvTipoExtrasLiquidacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTipoExtrasLiquidacion.Size = new System.Drawing.Size(261, 217);
+            this.dgvTipoExtrasLiquidacion.Size = new System.Drawing.Size(315, 220);
             this.dgvTipoExtrasLiquidacion.TabIndex = 4;
             this.dgvTipoExtrasLiquidacion.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvTipoExtrasLiquidacion_MouseDoubleClick);
             // 
@@ -100,7 +103,7 @@
             this.btnCancelar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(285, 36);
+            this.toolStrip1.Size = new System.Drawing.Size(339, 36);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -138,7 +141,7 @@
             // cbEstado
             // 
             this.cbEstado.AutoSize = true;
-            this.cbEstado.Location = new System.Drawing.Point(171, 55);
+            this.cbEstado.Location = new System.Drawing.Point(219, 38);
             this.cbEstado.Name = "cbEstado";
             this.cbEstado.Size = new System.Drawing.Size(90, 17);
             this.cbEstado.TabIndex = 7;
@@ -147,12 +150,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbPorcentaje);
             this.groupBox1.Controls.Add(this.cmbLlevaHs);
             this.groupBox1.Controls.Add(this.cbEstado);
             this.groupBox1.Controls.Add(this.lblIdTipoExtra);
             this.groupBox1.Location = new System.Drawing.Point(12, 38);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(261, 78);
+            this.groupBox1.Size = new System.Drawing.Size(315, 95);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             // 
@@ -191,12 +195,23 @@
             // 
             this.cmbLlevaHs.AutoSize = true;
             this.cmbLlevaHs.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmbLlevaHs.Location = new System.Drawing.Point(6, 38);
+            this.cmbLlevaHs.Location = new System.Drawing.Point(6, 49);
             this.cmbLlevaHs.Name = "cmbLlevaHs";
             this.cmbLlevaHs.Size = new System.Drawing.Size(116, 17);
             this.cmbLlevaHs.TabIndex = 8;
             this.cmbLlevaHs.Text = "Lleva Valor de Hs?";
             this.cmbLlevaHs.UseVisualStyleBackColor = true;
+            // 
+            // cbPorcentaje
+            // 
+            this.cbPorcentaje.AutoSize = true;
+            this.cbPorcentaje.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cbPorcentaje.Location = new System.Drawing.Point(51, 72);
+            this.cbPorcentaje.Name = "cbPorcentaje";
+            this.cbPorcentaje.Size = new System.Drawing.Size(71, 17);
+            this.cbPorcentaje.TabIndex = 9;
+            this.cbPorcentaje.Text = "Acepta %";
+            this.cbPorcentaje.UseVisualStyleBackColor = true;
             // 
             // idTipoExtraLiquidacion
             // 
@@ -207,13 +222,14 @@
             // 
             // Nombre
             // 
+            this.Nombre.FillWeight = 133.4679F;
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.Name = "Nombre";
             this.Nombre.ReadOnly = true;
             // 
             // Activa
             // 
-            this.Activa.FillWeight = 40F;
+            this.Activa.FillWeight = 53.38718F;
             this.Activa.HeaderText = "Activa";
             this.Activa.Name = "Activa";
             this.Activa.ReadOnly = true;
@@ -222,15 +238,23 @@
             // 
             // LlevaHs
             // 
+            this.LlevaHs.FillWeight = 84.10935F;
             this.LlevaHs.HeaderText = "Lleva Hs";
             this.LlevaHs.Name = "LlevaHs";
             this.LlevaHs.ReadOnly = true;
+            // 
+            // AceptaPorcentaje
+            // 
+            this.AceptaPorcentaje.FillWeight = 69.03553F;
+            this.AceptaPorcentaje.HeaderText = "Acepta %";
+            this.AceptaPorcentaje.Name = "AceptaPorcentaje";
+            this.AceptaPorcentaje.ReadOnly = true;
             // 
             // ABMTipoExtraLiquidacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(285, 351);
+            this.ClientSize = new System.Drawing.Size(339, 371);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dgvTipoExtrasLiquidacion);
             this.Controls.Add(this.txtNombre);
@@ -268,10 +292,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.CheckBox cmbLlevaHs;
         private System.Windows.Forms.DataGridViewTextBoxColumn idTipoExtraLiquidacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Activa;
         private System.Windows.Forms.DataGridViewCheckBoxColumn LlevaHs;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn AceptaPorcentaje;
+        private System.Windows.Forms.CheckBox cbPorcentaje;
+        private System.Windows.Forms.CheckBox cmbLlevaHs;
     }
 }

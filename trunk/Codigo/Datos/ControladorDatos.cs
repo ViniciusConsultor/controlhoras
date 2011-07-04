@@ -1480,7 +1480,7 @@ namespace Datos
         //    }
         //}
 
-        public int agregarExtraLiquidacionEmpleado(int idEmpleado, DateTime fecha, string descripcion, bool signoPositivo, float valor, int cantidadCuotas, string userName, int idTipoExtraLiquidacion, TimeSpan cantHs_LlevaHs)
+        public int agregarExtraLiquidacionEmpleado(int idEmpleado, DateTime fecha, string descripcion, bool signoPositivo, float valor, int cantidadCuotas, string userName, int idTipoExtraLiquidacion, TimeSpan cantHs_LlevaHs, float porcentaje)
         {
             Table<ExtrasLiquidAcIon> tablaExtrasLiquidacion =  null;
             Table<CuOtAsExtrasLiquidAcIon> tablaCuotas;
@@ -1501,15 +1501,14 @@ namespace Datos
                 el = new ExtrasLiquidAcIon();
                 el.IDEmpleado = (uint) idEmpleado;
                 el.Descripcion = descripcion;
-                if (signoPositivo)
-                    el.Signo = 1;
-                else
-                    el.Signo = 0;
+                el.Signo = (signoPositivo ? (sbyte)1 : (sbyte)0);
                 el.CuotaActual = 1;
                 el.CantidadCuotas = (byte)cantidadCuotas;
                 el.IDUsuario = idUsuario;
                 el.IDTipoExtraLiquidacion = (byte)idTipoExtraLiquidacion;
                 el.CantHsTipoExtraLlevaHsEnSegs = cantHs_LlevaHs.TotalSeconds;
+                el.Porcentaje = porcentaje;
+
                 tablaExtrasLiquidacion.InsertOnSubmit(el);
                  
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);

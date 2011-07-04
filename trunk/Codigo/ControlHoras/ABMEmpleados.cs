@@ -975,7 +975,7 @@ namespace ControlHoras
                     {
                         if (nroFuncPivot == -1)
                             throw new Exception("No se pudo sustituir el Escalafon del Funcionario Dado de baja debido a que no hay definido un Nro de Funcionario Pivot.");
-                        controllerClienteServicios.SustituirEmpleadoEnEscalafon(nroFuncPivot,int.Parse(mtNumeroEmpleado.Text));
+                        controllerClienteServicios.SustituirEmpleadoEnEscalafon(nroFuncPivot, int.Parse(mtNumeroEmpleado.Text));
                         MessageBox.Show(this, "Fue sustituido correctamente el funcionario dado de baja por el Nro de Funcionario Vacante (" + nroFuncPivot + ")", "Funcionario Sustituido en Escalafon", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
@@ -1511,7 +1511,7 @@ namespace ControlHoras
 
         private void btnExtrasAgregar_Click(object sender, EventArgs e)
         {
-            if (txtExtrasDescripcion.Text != "" && ((mtExtrasValor.Enabled && mtExtrasValor.Text != "") || (mtExtrasLlevaHs.Enabled && mtExtrasLlevaHs.Text != "")) && cmbExtrasSigno.SelectedIndex >= 0 && mtExtrasCantCuotas.Text != "")
+            if (txtExtrasDescripcion.Text != "" && ((mtExtrasValor.Enabled && (mtExtrasValor.Text != "" || mtPorcentaje.Text !="")) || (mtExtrasLlevaHs.Enabled && mtExtrasLlevaHs.Text != "")) && cmbExtrasSigno.SelectedIndex >= 0 && mtExtrasCantCuotas.Text != "")
             {
                 try
                 {
@@ -1522,13 +1522,20 @@ namespace ControlHoras
                     mtExtrasValor.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
                     mtExtrasCantCuotas.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
 
+                    mtPorcentaje.TextMaskFormat = MaskFormat.IncludeLiterals;
+                    float fporcentaje = 0;
+                    if (mtPorcentaje.MaskCompleted)
+                        fporcentaje = float.Parse(mtPorcentaje.Text);
+
                     float valorExtras = 0;
-                    if (mtExtrasValor.Enabled)
+                    if (mtExtrasValor.Enabled && mtExtrasValor.MaskCompleted)
                         valorExtras = float.Parse(mtExtrasValor.Text);
-                    TimeSpan cantHs_LlevaHsTS = new TimeSpan(0,0,0);
+                    TimeSpan cantHs_LlevaHsTS = new TimeSpan(0);
                     if (mtExtrasLlevaHs.Enabled)
                     {
-                        cantHs_LlevaHsTS = TimeSpan.Parse(mtExtrasLlevaHs.Text);
+                        int hours = int.Parse(mtExtrasLlevaHs.Text.Split(':')[0]);
+                        int mins = int.Parse(mtExtrasLlevaHs.Text.Split(':')[1]);
+                        cantHs_LlevaHsTS = new TimeSpan(hours,mins,0);
                         if (cantHs_LlevaHsTS.Minutes % 30 != 0)
                         {
                             throw new Exception("La Hora nueva debe ser con 0 o 30 minutos.");
@@ -1537,7 +1544,7 @@ namespace ControlHoras
                     }
                     string username = ((VentanaPrincipal)this.Owner).userName;
                     int idTipoExtraLiquidacionSelected = ((ComboBoxValue)cmbTipoExtraLiquidacion.Items[cmbTipoExtraLiquidacion.SelectedIndex]).Value;
-                    int numNuevoExtra = datos.agregarExtraLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), dtpExtrasFecha.Value, txtExtrasDescripcion.Text, signoPositivo, valorExtras, int.Parse(mtExtrasCantCuotas.Text), username, idTipoExtraLiquidacionSelected, cantHs_LlevaHsTS);
+                    int numNuevoExtra = datos.agregarExtraLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), dtpExtrasFecha.Value, txtExtrasDescripcion.Text, signoPositivo, valorExtras, int.Parse(mtExtrasCantCuotas.Text), username, idTipoExtraLiquidacionSelected, cantHs_LlevaHsTS,fporcentaje);
                     limpiarTabExtrasLiquidacion();
                     cargarGrillaExtraLiquidacionEmpleado();
                 }
@@ -1560,50 +1567,51 @@ namespace ControlHoras
             mtExtrasValor.Text = "";
             mtExtrasCantCuotas.Text = "1";
             mtExtrasLlevaHs.Text = "";
+            mtPorcentaje.Text = "";
             cmbExtrasSigno.SelectedIndex = 0;
         }
 
         private void btnExtrasGuardar_Click(object sender, EventArgs e)
         {
-            if (txtExtrasDescripcion.Text != "" && mtExtrasValor.Text != "" && cmbExtrasSigno.SelectedIndex >= 0 && mtExtrasCantCuotas.Text != "")
-            {
-                int numFila = 0;
-                while (dgvExtrasLiquidacion.RowCount > numFila && lblIdExtraLiquidacion.Text != dgvExtrasLiquidacion.Rows[numFila].Cells["IdExtraLiquidacion"].Value.ToString())
-                {
-                    numFila++;
-                }
-                if (numFila != dgvHistorialEmpleado.RowCount)
-                {
-                    char signo = cmbExtrasSigno.Text.ToCharArray()[0];
-                    bool signoPositivo = false;
-                    if (signo == '+')
-                        signoPositivo = true;
-                    try
-                    {
-                        datos.modificarExtraLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), int.Parse(lblIdExtraLiquidacion.Text), dtpExtrasFecha.Value, txtExtrasDescripcion.Text, signoPositivo, float.Parse(mtExtrasValor.Text), int.Parse(mtExtrasCantCuotas.Text));
-                        dgvExtrasLiquidacion.Rows[numFila].Cells["DescripcionEvento"].Value = txtExtrasDescripcion.Text;
-                        if (signoPositivo)
-                            dgvExtrasLiquidacion.Rows[numFila].Cells["Signo"].Value = "+";
-                        else
-                            dgvExtrasLiquidacion.Rows[numFila].Cells["Signo"].Value = "-";
-                        dgvExtrasLiquidacion.Rows[numFila].Cells["Valor"].Value = mtExtrasValor.Text;
-                        dgvExtrasLiquidacion.Rows[numFila].Cells["CantidadCuotas"].Value = mtExtrasCantCuotas.Text;
-                        limpiarTabExtrasLiquidacion();
+            //if (txtExtrasDescripcion.Text != "" && mtExtrasValor.Text != "" && cmbExtrasSigno.SelectedIndex >= 0 && mtExtrasCantCuotas.Text != "")
+            //{
+            //    int numFila = 0;
+            //    while (dgvExtrasLiquidacion.RowCount > numFila && lblIdExtraLiquidacion.Text != dgvExtrasLiquidacion.Rows[numFila].Cells["IdExtraLiquidacion"].Value.ToString())
+            //    {
+            //        numFila++;
+            //    }
+            //    if (numFila != dgvHistorialEmpleado.RowCount)
+            //    {
+            //        char signo = cmbExtrasSigno.Text.ToCharArray()[0];
+            //        bool signoPositivo = false;
+            //        if (signo == '+')
+            //            signoPositivo = true;
+            //        try
+            //        {
+            //            datos.modificarExtraLiquidacionEmpleado(int.Parse(mtNumeroEmpleado.Text), int.Parse(lblIdExtraLiquidacion.Text), dtpExtrasFecha.Value, txtExtrasDescripcion.Text, signoPositivo, float.Parse(mtExtrasValor.Text), int.Parse(mtExtrasCantCuotas.Text));
+            //            dgvExtrasLiquidacion.Rows[numFila].Cells["DescripcionEvento"].Value = txtExtrasDescripcion.Text;
+            //            if (signoPositivo)
+            //                dgvExtrasLiquidacion.Rows[numFila].Cells["Signo"].Value = "+";
+            //            else
+            //                dgvExtrasLiquidacion.Rows[numFila].Cells["Signo"].Value = "-";
+            //            dgvExtrasLiquidacion.Rows[numFila].Cells["Valor"].Value = mtExtrasValor.Text;
+            //            dgvExtrasLiquidacion.Rows[numFila].Cells["CantidadCuotas"].Value = mtExtrasCantCuotas.Text;
+            //            limpiarTabExtrasLiquidacion();
 
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            else
-                MessageBox.Show("Debe llenar todos los datos.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        }
+            //    }
+            //}
+            //else
+            //    MessageBox.Show("Debe llenar todos los datos.", "Faltan Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void btnExtrasEliminar_Click(object sender, EventArgs e)
         {
-            if (txtExtrasDescripcion.Text != "" && ((mtExtrasValor.Enabled && mtExtrasValor.Text != "") || (mtExtrasLlevaHs.Enabled && mtExtrasLlevaHs.Text != "")) && cmbExtrasSigno.SelectedIndex >= 0 && mtExtrasCantCuotas.Text != "")
+            if (txtExtrasDescripcion.Text != "" && ((mtExtrasValor.Enabled && (mtExtrasValor.Text != "" || mtPorcentaje.Text != "")) || (mtExtrasLlevaHs.Enabled && mtExtrasLlevaHs.Text != "")) && cmbExtrasSigno.SelectedIndex >= 0 && mtExtrasCantCuotas.Text != "")
             {
                 char signo = cmbExtrasSigno.Text.ToCharArray()[0];
                 DialogResult dr = MessageBox.Show("Seguro que desea eliminar el Extra Liquidación?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -1656,6 +1664,7 @@ namespace ControlHoras
                     else
                         dgvExtrasLiquidacion.Rows[n].Cells["Signo"].Value = "-";
                     dgvExtrasLiquidacion.Rows[n].Cells["Valor"].Value = cel.ValorCuota;
+                    dgvExtrasLiquidacion.Rows[n].Cells["ExtraPorcentaje"].Value = cel.ExtrasLiquidAcIon.Porcentaje;
                     dgvExtrasLiquidacion.Rows[n].Cells["CuotaActual"].Value = cel.NumeroCuota;
                     dgvExtrasLiquidacion.Rows[n].Cells["CantidadCuotas"].Value = cel.ExtrasLiquidAcIon.CantidadCuotas;
                     if (cel.Liquidado == 1)
@@ -1664,7 +1673,8 @@ namespace ControlHoras
                         dgvExtrasLiquidacion.Rows[n].Cells["Liquidado"].Value = "No";
                     dgvExtrasLiquidacion.Rows[n].Cells["Usuario"].Value = cel.ExtrasLiquidAcIon.UsUarIoS.UserName;
                     dgvExtrasLiquidacion.Rows[n].Cells["TipoExtra"].Value = cel.ExtrasLiquidAcIon.TipOExtraLiquidAcIon.Nombre;
-                    dgvExtrasLiquidacion.Rows[n].Cells["CantHs"].Value = TimeSpan.FromSeconds(cel.ExtrasLiquidAcIon.CantHsTipoExtraLlevaHsEnSegs).ToString();
+                    TimeSpan ts = TimeSpan.FromSeconds(cel.ExtrasLiquidAcIon.CantHsTipoExtraLlevaHsEnSegs);
+                    dgvExtrasLiquidacion.Rows[n].Cells["CantHs"].Value = String.Format("{0}:{1}", ts.Days * 24 + ts.Hours, ts.Minutes);
                 }
             }
             catch (Exception ex)
@@ -1691,13 +1701,6 @@ namespace ControlHoras
                 return;
             try
             {
-                lblIdExtraLiquidacion.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["IdExtraLiquidacion"].Value.ToString();
-                txtExtrasDescripcion.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["DescripcionEvento"].Value.ToString();
-                cmbExtrasSigno.SelectedItem = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["Signo"].Value.ToString();
-                mtExtrasValor.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["Valor"].Value.ToString();
-                mtExtrasCantCuotas.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["CantidadCuotas"].Value.ToString();
-                if (dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["CantHs"].Value != null)
-                mtExtrasLlevaHs.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["CantHs"].Value.ToString();
                 foreach (ComboBoxValue v in cmbTipoExtraLiquidacion.Items)
                 {
                     if (v.Display == dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["TipoExtra"].Value.ToString())
@@ -1706,6 +1709,15 @@ namespace ControlHoras
                         break;
                     }
                 }
+                lblIdExtraLiquidacion.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["IdExtraLiquidacion"].Value.ToString();
+                txtExtrasDescripcion.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["DescripcionEvento"].Value.ToString();
+                cmbExtrasSigno.SelectedItem = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["Signo"].Value.ToString();
+                mtExtrasValor.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["Valor"].Value.ToString();
+                mtPorcentaje.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["ExtraPorcentaje"].Value.ToString();
+                mtExtrasCantCuotas.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["CantidadCuotas"].Value.ToString();
+                if (dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["CantHs"].Value != null)
+                mtExtrasLlevaHs.Text = dgvExtrasLiquidacion.Rows[e.RowIndex].Cells["CantHs"].Value.ToString();
+                
             }
             catch (Exception ex)
             {
@@ -3266,6 +3278,15 @@ namespace ControlHoras
                         panelTipoExtraLiquidacionConHs.Visible = false;
                         mtExtrasLlevaHs.Enabled = false;
                         mtExtrasLlevaHs.Text = "";
+                    }
+                    if (te.AceptaPorcentaje == 1)
+                    {
+                        panelPorcentaje.Visible = true;
+                        mtPorcentaje.Text = "";
+                    }
+                    else
+                    {
+                        panelPorcentaje.Visible = false;
                     }
                     break;
                 }

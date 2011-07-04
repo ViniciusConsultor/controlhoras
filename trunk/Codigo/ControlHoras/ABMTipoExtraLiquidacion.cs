@@ -37,6 +37,7 @@ namespace ControlHoras
             txtNombre.Text = "";
             cbEstado.Checked = false;
             cmbLlevaHs.Checked = false;
+            cbPorcentaje.Checked = false;
         }
 
         private void ABMTipoExtraLiquidacion_Load(object sender, EventArgs e)
@@ -55,6 +56,7 @@ namespace ControlHoras
                     dgvTipoExtrasLiquidacion.Rows[n].Cells["Nombre"].Value = te.Nombre;
                     dgvTipoExtrasLiquidacion.Rows[n].Cells["Activa"].Value = te.Activo==1;
                     dgvTipoExtrasLiquidacion.Rows[n].Cells["LlevaHs"].Value = te.LlevaHs==1;
+                    dgvTipoExtrasLiquidacion.Rows[n].Cells["AceptaPorcentaje"].Value = te.AceptaPorcentaje==1;
                 }
                 catch (Exception ex)
                 {
@@ -91,12 +93,14 @@ namespace ControlHoras
                         te.Nombre = txtNombre.Text;
                         te.LlevaHs = (cmbLlevaHs.Checked ? (sbyte)1 : (sbyte)0);
                         te.Activo = (cbEstado.Checked ? (sbyte)0 : (sbyte)1);
+                        te.AceptaPorcentaje = (cbPorcentaje.Checked ? (sbyte)1 : (sbyte)0);
                         // Modifica el valor en la base de datos
                         tipos.modificarTipoExtraLiquidacion(te);
 
                         dgvTipoExtrasLiquidacion.Rows[numFila].Cells["Nombre"].Value = txtNombre.Text;
                         dgvTipoExtrasLiquidacion.Rows[numFila].Cells["Activa"].Value = !cbEstado.Checked;
                         dgvTipoExtrasLiquidacion.Rows[numFila].Cells["LlevaHs"].Value = cmbLlevaHs.Checked;
+                        dgvTipoExtrasLiquidacion.Rows[numFila].Cells["AceptaPorcentaje"].Value = cbPorcentaje.Checked;
                         btnAgregar.Enabled = true;
                         btnGuardar.Enabled = false;
                         limpiarForm();
@@ -119,14 +123,14 @@ namespace ControlHoras
                 try
                 {                    
                     // Doy de alta en la base de datos
-                    lblIdTipoExtra.Text = tipos.altaTipoExtraLiquidacion(txtNombre.Text,!cbEstado.Checked, cmbLlevaHs.Checked).ToString();
+                    lblIdTipoExtra.Text = tipos.altaTipoExtraLiquidacion(txtNombre.Text,!cbEstado.Checked, cmbLlevaHs.Checked,cbPorcentaje.Checked).ToString();
 
                     n = dgvTipoExtrasLiquidacion.Rows.Add();
                     dgvTipoExtrasLiquidacion.Rows[n].Cells["idTipoExtraLiquidacion"].Value = lblIdTipoExtra.Text;
                     dgvTipoExtrasLiquidacion.Rows[n].Cells["Nombre"].Value = txtNombre.Text;
                     dgvTipoExtrasLiquidacion.Rows[n].Cells["Activa"].Value = !cbEstado.Checked;
                     dgvTipoExtrasLiquidacion.Rows[n].Cells["LlevaHs"].Value = cmbLlevaHs.Checked;
-
+                    dgvTipoExtrasLiquidacion.Rows[n].Cells["AceptaPorcentaje"].Value = cbPorcentaje.Checked;
                     limpiarForm();
                 }
                 catch (Exception ex)
@@ -162,7 +166,7 @@ namespace ControlHoras
             }
             txtNombre.Text = dgvTipoExtrasLiquidacion.Rows[rowindex].Cells["Nombre"].Value.ToString();
             cbEstado.Checked = ! (bool)dgvTipoExtrasLiquidacion.Rows[rowindex].Cells["Activa"].Value;
-            
+            cbPorcentaje.Checked = (bool)dgvTipoExtrasLiquidacion.Rows[rowindex].Cells["AceptaPorcentaje"].Value;
             cmbLlevaHs.Checked = (bool)dgvTipoExtrasLiquidacion.Rows[rowindex].Cells["LlevaHs"].Value;
                 
             lblIdTipoExtra.Text = dgvTipoExtrasLiquidacion.Rows[rowindex].Cells["idTipoExtraLiquidacion"].Value.ToString();

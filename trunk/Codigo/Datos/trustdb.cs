@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2011-06-29 03:30:19Z
+#region Auto-generated classes for trustdb database on 2011-07-04 01:00:31Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2011-06-29 03:30:19Z
+// Auto-generated from trustdb on 2011-07-04 01:00:31Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -1429,7 +1429,7 @@ namespace Datos
 
 		private string _query;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_query", Name = "Query", DbType = "varchar(11000)", AutoSync = AutoSync.Never)]
+		[Column(Storage = "_query", Name = "Query", DbType = "varchar(12500)", AutoSync = AutoSync.Never)]
 		public string Query
 		{
 			get
@@ -5166,7 +5166,7 @@ namespace Datos
 		#region Children
 
 		private EntitySet<HoRaRioEScalaFOn> _hoRaRioEsCalaFoN;
-		[Association(Storage = "_hoRaRioEsCalaFoN", OtherKey = "IDEscalafon,IDEscalafonEmpleado", ThisKey = "IDEscalafon,IDEscalafonEmpleado", Name = "FK_horasEscalEmpleados")]
+		[Association(Storage = "_hoRaRioEsCalaFoN", OtherKey = "IDEscalafonEmpleado,IDEscalafon", ThisKey = "IDEscalafonEmpleado,IDEscalafon", Name = "FK_horasEscalEmpleados")]
 		[DebuggerNonUserCode]
 		public EntitySet<HoRaRioEScalaFOn> HoRaRioEScalaFOn
 		{
@@ -5618,6 +5618,8 @@ namespace Datos
 		partial void OnIDTipoExtraLiquidacionChanging(byte value);
 		partial void OnIDUsuarioChanged();
 		partial void OnIDUsuarioChanging(int value);
+		partial void OnPorcentajeChanged();
+		partial void OnPorcentajeChanging(float value);
 		partial void OnSignoChanged();
 		partial void OnSignoChanging(int value);
 
@@ -5825,6 +5827,32 @@ namespace Datos
 					_iduSuario = value;
 					SendPropertyChanged("IDUsuario");
 					OnIDUsuarioChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region float Porcentaje
+
+		private float _porcentaje;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_porcentaje", Name = "Porcentaje", DbType = "float", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public float Porcentaje
+		{
+			get
+			{
+				return _porcentaje;
+			}
+			set
+			{
+				if (value != _porcentaje)
+				{
+					OnPorcentajeChanging(value);
+					SendPropertyChanging();
+					_porcentaje = value;
+					SendPropertyChanged("Porcentaje");
+					OnPorcentajeChanged();
 				}
 			}
 		}
@@ -7250,7 +7278,7 @@ namespace Datos
 		#region Parents
 
 		private EntityRef<EScalaFOneMpLeadO> _esCalaFoNeMpLeadO;
-		[Association(Storage = "_esCalaFoNeMpLeadO", OtherKey = "IDEscalafon,IDEscalafonEmpleado", ThisKey = "IDEscalafon,IDEscalafonEmpleado", Name = "FK_horasEscalEmpleados", IsForeignKey = true)]
+		[Association(Storage = "_esCalaFoNeMpLeadO", OtherKey = "IDEscalafonEmpleado,IDEscalafon", ThisKey = "IDEscalafonEmpleado,IDEscalafon", Name = "FK_horasEscalEmpleados", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public EScalaFOneMpLeadO EScalaFOneMpLeadO
 		{
@@ -7272,13 +7300,13 @@ namespace Datos
 					if (value != null)
 					{
 						value.HoRaRioEScalaFOn.Add(this);
-						_ideScalafon = value.IDEscalafon;
 						_ideScalafonEmpleado = value.IDEscalafonEmpleado;
+						_ideScalafon = value.IDEscalafon;
 					}
 					else
 					{
-						_ideScalafon = default(uint);
 						_ideScalafonEmpleado = default(uint);
+						_ideScalafon = default(uint);
 					}
 				}
 			}
@@ -10739,6 +10767,8 @@ namespace Datos
 		#region Extensibility Method Definitions
 
 		partial void OnCreated();
+		partial void OnAceptaPorcentajeChanged();
+		partial void OnAceptaPorcentajeChanging(sbyte value);
 		partial void OnActivoChanged();
 		partial void OnActivoChanging(sbyte value);
 		partial void OnIDTipoExtraLiquidacionChanged();
@@ -10747,6 +10777,32 @@ namespace Datos
 		partial void OnLlevaHsChanging(sbyte value);
 		partial void OnNombreChanged();
 		partial void OnNombreChanging(string value);
+
+		#endregion
+
+		#region sbyte AceptaPorcentaje
+
+		private sbyte _aceptaPorcentaje;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_aceptaPorcentaje", Name = "AceptaPorcentaje", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public sbyte AceptaPorcentaje
+		{
+			get
+			{
+				return _aceptaPorcentaje;
+			}
+			set
+			{
+				if (value != _aceptaPorcentaje)
+				{
+					OnAceptaPorcentajeChanging(value);
+					SendPropertyChanging();
+					_aceptaPorcentaje = value;
+					SendPropertyChanged("AceptaPorcentaje");
+					OnAceptaPorcentajeChanged();
+				}
+			}
+		}
 
 		#endregion
 

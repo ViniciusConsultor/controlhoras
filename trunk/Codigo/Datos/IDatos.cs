@@ -128,7 +128,8 @@ namespace Datos
         /// <param name="UserName">UserName del Usuario que da de alta el ExtraLiquidacion</param>
         /// <param name="IdTipoExtraLiquidacion">Identificador del TipoExtraLiquidacion seleccionado</param>
         /// <param name="CantHs_LlevaHs">Cantidad de Hs representada en Comunes a agregar al empleado</param>
-        int agregarExtraLiquidacionEmpleado(int idEmpleado, DateTime fecha, string descripcion, bool signoPositivo, float valor, int cantidadCuotas, string UserName, int IdTipoExtraLiquidacion, TimeSpan CantHs_LlevaHs);
+        /// <param name="Porcentaje">Porcentaje del extra</param>
+        int agregarExtraLiquidacionEmpleado(int idEmpleado, DateTime fecha, string descripcion, bool signoPositivo, float valor, int cantidadCuotas, string UserName, int IdTipoExtraLiquidacion, TimeSpan CantHs_LlevaHs, float Porcentaje);
 
         /// <summary>
         /// Modifica un Extra de la liquidacion del empleado

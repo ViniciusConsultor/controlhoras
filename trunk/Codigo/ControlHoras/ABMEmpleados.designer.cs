@@ -186,6 +186,9 @@
             this.ofdFoto = new System.Windows.Forms.OpenFileDialog();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.saveFileEmpleados = new System.Windows.Forms.SaveFileDialog();
+            this.Porcentaje = new System.Windows.Forms.Label();
+            this.label64 = new System.Windows.Forms.Label();
+            this.panelPorcentaje = new System.Windows.Forms.Panel();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -264,6 +267,7 @@
             this.TipoEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdTipoEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mtPorcentaje = new ControlHoras.MaskedTextBoxKeyDown();
             this.mtExtrasLlevaHs = new ControlHoras.MaskedTextBoxKeyDown();
             this.mtExtrasCantCuotas = new ControlHoras.MaskedTextBoxKeyDown();
             this.mtExtrasValor = new ControlHoras.MaskedTextBoxKeyDown();
@@ -276,6 +280,7 @@
             this.TipoExtra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Signo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExtraPorcentaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CantHs = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CantidadCuotas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CuotaActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -315,6 +320,7 @@
             this.panelTipoExtraLiquidacionConHs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExtrasLiquidacion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.panelPorcentaje.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -1818,6 +1824,7 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.panelPorcentaje);
             this.splitContainer2.Panel1.Controls.Add(this.panelTipoExtraLiquidacionConHs);
             this.splitContainer2.Panel1.Controls.Add(this.btnUpdateComboTipoExtraLiquidacion);
             this.splitContainer2.Panel1.Controls.Add(this.cmbTipoExtraLiquidacion);
@@ -1849,7 +1856,7 @@
             this.panelTipoExtraLiquidacionConHs.Controls.Add(this.label63);
             this.panelTipoExtraLiquidacionConHs.Controls.Add(this.mtExtrasLlevaHs);
             this.panelTipoExtraLiquidacionConHs.Controls.Add(this.label26);
-            this.panelTipoExtraLiquidacionConHs.Location = new System.Drawing.Point(204, 99);
+            this.panelTipoExtraLiquidacionConHs.Location = new System.Drawing.Point(217, 101);
             this.panelTipoExtraLiquidacionConHs.Name = "panelTipoExtraLiquidacionConHs";
             this.panelTipoExtraLiquidacionConHs.Size = new System.Drawing.Size(292, 25);
             this.panelTipoExtraLiquidacionConHs.TabIndex = 124;
@@ -1868,7 +1875,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(3, 5);
+            this.label26.Location = new System.Drawing.Point(3, 6);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(65, 13);
             this.label26.TabIndex = 121;
@@ -1961,7 +1968,7 @@
             // label53
             // 
             this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(373, 83);
+            this.label53.Location = new System.Drawing.Point(60, 108);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(85, 13);
             this.label53.TabIndex = 4;
@@ -2019,6 +2026,7 @@
             this.TipoExtra,
             this.Signo,
             this.Valor,
+            this.ExtraPorcentaje,
             this.CantHs,
             this.CantidadCuotas,
             this.CuotaActual,
@@ -2047,6 +2055,35 @@
             // 
             this.saveFileEmpleados.Filter = "\"Microsoft Office Word | *.doc|Microsoft Office Excel|*.xls\"";
             this.saveFileEmpleados.Title = "Guardar archivo...";
+            // 
+            // Porcentaje
+            // 
+            this.Porcentaje.AutoSize = true;
+            this.Porcentaje.Location = new System.Drawing.Point(8, 7);
+            this.Porcentaje.Name = "Porcentaje";
+            this.Porcentaje.Size = new System.Drawing.Size(58, 13);
+            this.Porcentaje.TabIndex = 125;
+            this.Porcentaje.Text = "Porcentaje";
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Location = new System.Drawing.Point(118, 7);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(15, 13);
+            this.label64.TabIndex = 127;
+            this.label64.Text = "%";
+            // 
+            // panelPorcentaje
+            // 
+            this.panelPorcentaje.Controls.Add(this.Porcentaje);
+            this.panelPorcentaje.Controls.Add(this.label64);
+            this.panelPorcentaje.Controls.Add(this.mtPorcentaje);
+            this.panelPorcentaje.Location = new System.Drawing.Point(370, 75);
+            this.panelPorcentaje.Name = "panelPorcentaje";
+            this.panelPorcentaje.Size = new System.Drawing.Size(139, 27);
+            this.panelPorcentaje.TabIndex = 128;
+            this.panelPorcentaje.Visible = false;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -2767,6 +2804,19 @@
             this.Descripcion.ReadOnly = true;
             this.Descripcion.Width = 200;
             // 
+            // mtPorcentaje
+            // 
+            this.mtPorcentaje.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtPorcentaje.HidePromptOnLeave = true;
+            this.mtPorcentaje.Location = new System.Drawing.Point(72, 3);
+            this.mtPorcentaje.Mask = "00.00";
+            this.mtPorcentaje.Name = "mtPorcentaje";
+            this.mtPorcentaje.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.mtPorcentaje.Size = new System.Drawing.Size(40, 20);
+            this.mtPorcentaje.TabIndex = 126;
+            this.mtPorcentaje.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.mtPorcentaje.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
             // mtExtrasLlevaHs
             // 
             this.mtExtrasLlevaHs.Location = new System.Drawing.Point(73, 2);
@@ -2779,7 +2829,7 @@
             // 
             this.mtExtrasCantCuotas.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.mtExtrasCantCuotas.HidePromptOnLeave = true;
-            this.mtExtrasCantCuotas.Location = new System.Drawing.Point(467, 79);
+            this.mtExtrasCantCuotas.Location = new System.Drawing.Point(151, 105);
             this.mtExtrasCantCuotas.Mask = "09";
             this.mtExtrasCantCuotas.Name = "mtExtrasCantCuotas";
             this.mtExtrasCantCuotas.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -2871,6 +2921,13 @@
             this.Valor.Name = "Valor";
             this.Valor.ReadOnly = true;
             this.Valor.Width = 87;
+            // 
+            // ExtraPorcentaje
+            // 
+            this.ExtraPorcentaje.HeaderText = "%";
+            this.ExtraPorcentaje.Name = "ExtraPorcentaje";
+            this.ExtraPorcentaje.ReadOnly = true;
+            this.ExtraPorcentaje.Width = 40;
             // 
             // CantHs
             // 
@@ -2973,6 +3030,8 @@
             this.panelTipoExtraLiquidacionConHs.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExtrasLiquidacion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.panelPorcentaje.ResumeLayout(false);
+            this.panelPorcentaje.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3211,17 +3270,6 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.ComboBox cmbTipoExtraLiquidacion;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idExtraLiquidacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DescripcionEvento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Usuario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TipoExtra;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Signo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantHs;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadCuotas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CuotaActual;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Liquidado;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
         private System.Windows.Forms.Button btnUpdateComboTipoExtraLiquidacion;
@@ -3230,5 +3278,21 @@
 		private System.Windows.Forms.CheckBox cbNoPagarTicketsAlimentacion;
         private System.Windows.Forms.Panel panelTipoExtraLiquidacionConHs;
         private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.Panel panelPorcentaje;
+        private System.Windows.Forms.Label Porcentaje;
+        private System.Windows.Forms.Label label64;
+        private MaskedTextBoxKeyDown mtPorcentaje;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idExtraLiquidacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescripcionEvento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Usuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoExtra;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Signo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ExtraPorcentaje;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CantHs;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadCuotas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CuotaActual;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Liquidado;
     }
 }
