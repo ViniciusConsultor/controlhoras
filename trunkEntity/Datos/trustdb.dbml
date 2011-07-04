@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<Database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="trustdb" Class="TrustDb" BaseType="DbLinq.Data.Linq.DataContext" Provider="MySQL" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="trustdb.bancos" Member="BanCos">
+    <Type Name="BanCos">
+      <Column Name="IdBanco" Member="IDBanco" Storage="_idbAnco" Type="System.Byte" DbType="tinyint(2) unsigned" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Member="Nombre" Storage="_nombre" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="trustdb.barrios" Member="BarrioS">
+    <Type Name="BarrioS">
+      <Column Name="IdBarrio" Member="IDBarrio" Storage="_idbArrio" Type="System.UInt16" DbType="smallint(5) unsigned" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Member="Nombre" Storage="_nombre" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="trustdb.clientes" Member="ClientEs">
+    <Type Name="ClientEs">
+      <Association Name="fk_NumeroCliente_Clientes_NumeroCliente" Member="SERVicIoS" Storage="_servIcIoS" Type="SERVicIoS" ThisKey="NumeroCliente" OtherKey="NumeroCliente" Cardinality="One" DeleteRule="NO ACTION" />
+      <Column Name="Activo" Member="Activo" Storage="_activo" Type="System.SByte" DbType="tinyint(1)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Direccion" Member="Direccion" Storage="_direccion" Type="System.String" DbType="varchar(100)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="DireccionDeCobro" Member="DireccionDeCobro" Storage="_direccionDeCobro" Type="System.String" DbType="varchar(100)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Email" Member="Email" Storage="_email" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Fax" Member="Fax" Storage="_fax" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="FechaAlta" Member="FechaAlta" Storage="_fechaAlta" Type="System.DateTime" DbType="date" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="FechaBaja" Member="FechaBaja" Storage="_fechaBaja" Type="System.DateTime" DbType="date" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="MotivoBaja" Member="MotivoBaja" Storage="_motivoBaja" Type="System.String" DbType="varchar(255)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Nombre" Member="Nombre" Storage="_nombre" Type="System.String" DbType="varchar(100)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="NombreFantasia" Member="NombreFantasia" Storage="_nombreFantasia" Type="System.String" DbType="varchar(100)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="NumeroCliente" Member="NumeroCliente" Storage="_numeroCliente" Type="System.UInt32" DbType="mediumint unsigned" IsPrimaryKey="true" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="RUT" Member="Rut" Storage="_rut" Type="System.String" DbType="varchar(12)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Telefonos" Member="Telefonos" Storage="_telefonos" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="trustdb.departamentos" Member="DepartAmenToS">
+    <Type Name="DepartAmenToS">
+      <Column Name="IdDepartamento" Member="IDDepartamento" Storage="_iddEpartamento" Type="System.Byte" DbType="tinyint(2) unsigned" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Member="Nombre" Storage="_nombre" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="trustdb.emergenciasmedica" Member="EmergeNcIasMedicA">
+    <Type Name="EmergeNcIasMedicA">
+      <Column Name="IdEmergenciaMedica" Member="IDEmergenciaMedica" Storage="_ideMergenciaMedica" Type="System.Byte" DbType="tinyint(2) unsigned" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Member="Nombre" Storage="_nombre" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="trustdb.empleados" Member="EmPleadOs">
+    <Type Name="EmPleadOs">
+      <Association Name="fk_IdEmpleado_Empleados_IdEmpleado" Member="ExtrasLiquidAcIonEmPleadO" Storage="_extrasLiquidAcIonEmPleadO" Type="ExtrasLiquidAcIonEmPleadO" ThisKey="IDEmpleado" OtherKey="IDEmpleado" Cardinality="One" DeleteRule="NO ACTION" />
+      <Column Name="Antecedentes" Member="Antecedentes" Storage="_antecedentes" Type="System.SByte" DbType="tinyint(1)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="AntecedentesPolicialesoMilitares" Member="AntecedentesPolicialesoMilitares" Storage="_antecedentesPolicialesoMilitares" Type="System.SByte" DbType="tinyint(1)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Apellido" Member="Apellido" Storage="_apellido" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="BPS_AcumulacionLaboral" Member="BpsaCumulacionLaboral" Storage="_bpsaCumulacionLaboral" Type="System.Byte" DbType="tinyint(2) unsigned" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="BPS_FechaAlta" Member="BpsfEchaAlta" Storage="_bpsfEchaAlta" Type="System.DateTime" DbType="date" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="BPS_FechaBaja" Member="BpsfEchaBaja" Storage="_bpsfEchaBaja" Type="System.DateTime" DbType="date" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="CAJ_FechaEmision" Member="CajfEchaEmision" Storage="_cajfEchaEmision" Type="System.DateTime" DbType="date" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="CAJ_FechaEntrega" Member="CajfEchaEntrega" Storage="_cajfEchaEntrega" Type="System.DateTime" DbType="date" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="CAJ_Numero" Member="CajnUmero" Storage="_cajnUmero" Type="System.String" DbType="varchar(20)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="CantidadHijos" Member="CantidadHijos" Storage="_cantidadHijos" Type="System.SByte" DbType="tinyint(2)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="CapacitadoPortarArma" Member="CapacitadoPortarArma" Storage="_capacitadoPortarArma" Type="System.SByte" DbType="tinyint(1)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Celular" Member="Celular" Storage="_celular" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="CelularenConvenio" Member="CelularenConvenio" Storage="_celularenConvenio" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Ciudad" Member="Ciudad" Storage="_ciudad" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="CombatienteMilitar" Member="CombatienteMilitar" Storage="_combatienteMilitar" Type="System.SByte" DbType="tinyint(1)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Direccion" Member="Direccion" Storage="_direccion" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="DireccionDeEncuentro" Member="DireccionDeEncuentro" Storage="_direccionDeEncuentro" Type="System.String" DbType="varchar(100)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Edad" Member="Edad" Storage="_edad" Type="System.SByte" DbType="tinyint(2)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Email" Member="Email" Storage="_email" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="EnServicioArmado" Member="EnServicioArmado" Storage="_enServicioArmado" Type="System.SByte" DbType="tinyint(1)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="EntreCalles" Member="EntreCalles" Storage="_entreCalles" Type="System.String" DbType="varchar(100)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="EstadoCivil" Member="EstadoCivil" Storage="_estadoCivil" Type="enum CASADO, SOLTERO, DIVORCIADO, VIUDO" DbType="enum('CASADO','SOLTERO','DIVORCIADO','VIUDO')" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="FechaEgreso" Member="FechaEgreso" Storage="_fechaEgreso" Type="System.DateTime" DbType="date" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="FechaEgresoPolicialoMilitar" Member="FechaEgresoPolicialoMilitar" Storage="_fechaEgresoPolicialoMilitar" Type="System.DateTime" DbType="date" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="FechaIngreso" Member="FechaIngreso" Storage="_fechaIngreso" Type="System.DateTime" DbType="date" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="FechaIngresoPolicialoMilitar" Member="FechaIngresoPolicialoMilitar" Storage="_fechaIngresoPolicialoMilitar" Type="System.DateTime" DbType="date" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="FechaNacimiento" Member="FechaNacimiento" Storage="_fechaNacimiento" Type="System.DateTime" DbType="date" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="FechaTestPsicologico" Member="FechaTestPsicologico" Storage="_fechaTestPsicologico" Type="System.DateTime" DbType="date" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="FechaVencimientoCarneDeSalud" Member="FechaVencimientoCarneDeSalud" Storage="_fechaVencimientoCarneDeSalud" Type="System.DateTime" DbType="date" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Foto" Member="Foto" Storage="_foto" Type="System.Byte[]" DbType="tinyblob" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="IdBanco" Member="IDBanco" Storage="_idbAnco" Type="System.Byte" DbType="tinyint(2) unsigned" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="IdBarrio" Member="IDBarrio" Storage="_idbArrio" Type="System.UInt16" DbType="smallint(5) unsigned" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="IdDepartamento" Member="IDDepartamento" Storage="_iddEpartamento" Type="System.SByte" DbType="tinyint(2)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="IdEmergenciaMedica" Member="IDEmergenciaMedica" Storage="_ideMergenciaMedica" Type="System.Byte" DbType="tinyint(2) unsigned" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="IdEmpleado" Member="IDEmpleado" Storage="_ideMpleado" Type="System.UInt32" DbType="mediumint unsigned" IsPrimaryKey="true" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="IdMutualista" Member="IDMutualista" Storage="_idmUtualista" Type="System.Byte" DbType="tinyint(2) unsigned" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="IdTipoDocumento" Member="IDTipoDocumento" Storage="_idtIpoDocumento" Type="System.SByte" DbType="tinyint(4)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="LugarDeNacimiento" Member="LugarDeNacimiento" Storage="_lugarDeNacimiento" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="MotivoEgreso" Member="MotivoEgreso" Storage="_motivoEgreso" Type="System.String" DbType="varchar(100)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Nacionalidad" Member="Nacionalidad" Storage="_nacionalidad" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Nombre" Member="Nombre" Storage="_nombre" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="NumeroCuenta" Member="NumeroCuenta" Storage="_numeroCuenta" Type="System.String" DbType="varchar(20)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="NumeroDocumento" Member="NumeroDocumento" Storage="_numeroDocumento" Type="System.String" DbType="varchar(30)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="Observaciones" Member="Observaciones" Storage="_observaciones" Type="System.String" DbType="varchar(255)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="ObservacionesAntecedentes" Member="ObservacionesAntecedentes" Storage="_observacionesAntecedentes" Type="System.String" DbType="varchar(255)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="RENAEMSE_FechaIngreso" Member="RenaemsefEchaIngreso" Storage="_renaemsefEchaIngreso" Type="System.DateTime" DbType="date" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="RENAEMSE_NumeroAsunto" Member="RenaemsenUmeroAsunto" Storage="_renaemsenUmeroAsunto" Type="System.DateTime" DbType="date" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Sexo" Member="Sexo" Storage="_sexo" Type="System.SByte" DbType="tinyint(1)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="SubEscalafonPolicial" Member="SubEscalafonPolicial" Storage="_subEscalafonPolicial" Type="System.String" DbType="varchar(30)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="SueldoActual" Member="SueldoActual" Storage="_sueldoActual" Type="System.Decimal" DbType="decimal(8,2)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="TalleCamisa" Member="TalleCamisa" Storage="_talleCamisa" Type="System.Single" DbType="float" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="TalleCampera" Member="TalleCampera" Storage="_talleCampera" Type="System.Single" DbType="float" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="TallePantalon" Member="TallePantalon" Storage="_tallePantalon" Type="System.Single" DbType="float" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="TalleZapatos" Member="TalleZapatos" Storage="_talleZapatos" Type="System.Single" DbType="float" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Telefonos" Member="Telefonos" Storage="_telefonos" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="trustdb.eventoshistorialempleado" Member="EventOsHistOrIalEmPleadO">
+    <Type Name="EventOsHistOrIalEmPleadO">
+      <Column Name="Descripcion" Member="Descripcion" Storage="_descripcion" Type="System.String" DbType="varchar(255)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="FechaFin" Member="FechaFin" Storage="_fechaFin" Type="System.DateTime" DbType="date" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="FechaInicio" Member="FechaInicio" Storage="_fechaInicio" Type="System.DateTime" DbType="date" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="IdEmpleado" Member="IDEmpleado" Storage="_ideMpleado" Type="System.UInt32" DbType="mediumint unsigned" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="IdEventoHistorialEmpleado" Member="IDEventoHistorialEmpleado" Storage="_ideVentoHistorialEmpleado" Type="System.UInt32" DbType="int unsigned" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdTipoEvento" Member="IDTipoEvento" Storage="_idtIpoEvento" Type="System.Int32" DbType="int" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="trustdb.extrasliquidacionempleado" Member="ExtrasLiquidAcIonEmPleadO">
+    <Type Name="ExtrasLiquidAcIonEmPleadO">
+      <Association Name="fk_IdEmpleado_Empleados_IdEmpleado" Member="EmPleadOs" Storage="_emPleadOs" Type="EmPleadOs" ThisKey="IDEmpleado" OtherKey="IDEmpleado" IsForeignKey="true" Cardinality="Many" />
+      <Column Name="CantidadCuotas" Member="CantidadCuotas" Storage="_cantidadCuotas" Type="System.Byte" DbType="tinyint(2) unsigned" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="CuotaActual" Member="CuotaActual" Storage="_cuotaActual" Type="System.Byte" DbType="tinyint(2) unsigned" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Descripcion" Member="Descripcion" Storage="_descripcion" Type="System.String" DbType="varchar(255)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="Fecha" Member="Fecha" Storage="_fecha" Type="System.DateTime" DbType="date" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="IdEmpleado" Member="IDEmpleado" Storage="_ideMpleado" Type="System.UInt32" DbType="mediumint unsigned" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="IdExtrasLiquidacionEmpleado" Member="IDExtrasLiquidacionEmpleado" Storage="_ideXtrasLiquidacionEmpleado" Type="System.UInt32" DbType="int unsigned" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Liquidado" Member="Liquidado" Storage="_liquidado" Type="System.SByte" DbType="tinyint(1)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Signo" Member="Signo" Storage="_signo" Type="enum SUMA, RESTA" DbType="enum('SUMA','RESTA')" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="Valor" Member="Valor" Storage="_valor" Type="System.Single" DbType="float" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="trustdb.mutualistas" Member="MutualIsTAs">
+    <Type Name="MutualIsTAs">
+      <Column Name="IdMutualista" Member="IDMutualista" Storage="_idmUtualista" Type="System.Byte" DbType="tinyint(2) unsigned" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Member="Nombre" Storage="_nombre" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="trustdb.servicios" Member="SERVicIoS">
+    <Type Name="SERVicIoS">
+      <Association Name="fk_NumeroCliente_Clientes_NumeroCliente" Member="ClientEs" Storage="_clientEs" Type="ClientEs" ThisKey="NumeroCliente" OtherKey="NumeroCliente" IsForeignKey="true" Cardinality="Many" />
+      <Column Name="Activo" Member="Activo" Storage="_activo" Type="System.SByte" DbType="tinyint(1)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Celular" Member="Celular" Storage="_celular" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="CelularTrust" Member="CelularTrust" Storage="_celularTrust" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Direccion" Member="Direccion" Storage="_direccion" Type="System.String" DbType="varchar(100)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Email" Member="Email" Storage="_email" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="FechaAlta" Member="FechaAlta" Storage="_fechaAlta" Type="System.DateTime" DbType="date" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="FechaBaja" Member="FechaBaja" Storage="_fechaBaja" Type="System.DateTime" DbType="date" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="MotivoBaja" Member="MotivoBaja" Storage="_motivoBaja" Type="System.String" DbType="varchar(255)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Nombre" Member="Nombre" Storage="_nombre" Type="System.String" DbType="varchar(100)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="NumeroCliente" Member="NumeroCliente" Storage="_numeroCliente" Type="System.UInt32" DbType="mediumint unsigned" IsPrimaryKey="true" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="NumeroServicio" Member="NumeroServicio" Storage="_numeroServicio" Type="System.UInt32" DbType="mediumint unsigned" IsPrimaryKey="true" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="PersonaContacto" Member="PersonaContacto" Storage="_personaContacto" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="TareasAsignadas" Member="TareasAsignadas" Storage="_tareasAsignadas" Type="System.String" DbType="varchar(255)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Telefonos" Member="Telefonos" Storage="_telefonos" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="trustdb.tipoempleado" Member="TipOeMpLeadO">
+    <Type Name="TipOeMpLeadO">
+      <Column Name="CantidadHsComunes" Member="CantidadHsComunes" Storage="_cantidadHsComunes" Type="System.Single" DbType="float" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="CobraHsExtras" Member="CobraHsExtras" Storage="_cobraHsExtras" Type="System.SByte" DbType="tinyint(1)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Descripcion" Member="Descripcion" Storage="_descripcion" Type="System.String" DbType="varchar(255)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="Fulltime" Member="Fulltime" Storage="_fulltime" Type="System.SByte" DbType="tinyint(1)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" />
+      <Column Name="IdTipoEmpleado" Member="IDTipoEmpleado" Storage="_idtIpoEmpleado" Type="System.SByte" DbType="tinyint(4)" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NombreTipo" Member="NombreTipo" Storage="_nombreTipo" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="Tipo" Member="Tipo" Storage="_tipo" Type="enum MENSUAL, JORNALERO" DbType="enum('MENSUAL','JORNALERO')" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="trustdb.tiposdocumento" Member="TipOsDocumentO">
+    <Type Name="TipOsDocumentO">
+      <Column Name="IdTipoDocumento" Member="IDTipoDocumento" Storage="_idtIpoDocumento" Type="System.Byte" DbType="tinyint(1) unsigned" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Member="Nombre" Storage="_nombre" Type="System.String" DbType="varchar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

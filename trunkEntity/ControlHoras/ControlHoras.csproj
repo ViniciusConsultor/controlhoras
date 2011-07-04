@@ -1,0 +1,918 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FC8B86E8-A818-4987-B135-16FD6B039E53}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ControlHoras</RootNamespace>
+    <AssemblyName>ControlHoras</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>ControlHoras.Program</StartupObject>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+    <SignAssembly>false</SignAssembly>
+    <TargetZone>LocalIntranet</TargetZone>
+    <GenerateManifests>true</GenerateManifests>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DbLinq, Version=0.19.0.0, Culture=neutral, PublicKeyToken=61e015a67077348b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\DbLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.0.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=10.0.4504.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=10.0.4504.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Microsoft.Office.Interop.Word.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Services, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\WINDOWS\assembly\GAC_MSIL\System.Web.Services\2.0.0.0__b03f5f7f11d50a3a\System.Web.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ABMBancos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMBancos.Designer.cs">
+      <DependentUpon>ABMBancos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMBarrios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMBarrios.Designer.cs">
+      <DependentUpon>ABMBarrios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMCiudades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMCiudades.Designer.cs">
+      <DependentUpon>ABMCiudades.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMGrupos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMGrupos.Designer.cs">
+      <DependentUpon>ABMGrupos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMLNegra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMLNegra.Designer.cs">
+      <DependentUpon>ABMLNegra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMTipoEventoHistorial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMTipoEventoHistorial.designer.cs">
+      <DependentUpon>ABMTipoEventoHistorial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMCargos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMCargos.designer.cs">
+      <DependentUpon>ABMCargos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMClientes.designer.cs">
+      <DependentUpon>ABMClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMDepartamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMDepartamentos.designer.cs">
+      <DependentUpon>ABMDepartamentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMEmergenciasMedica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMEmergenciasMedica.designer.cs">
+      <DependentUpon>ABMEmergenciasMedica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMEmpleados.designer.cs">
+      <DependentUpon>ABMEmpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMMutualistas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMMutualistas.designer.cs">
+      <DependentUpon>ABMMutualistas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMTipoExtraLiquidacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMTipoExtraLiquidacion.designer.cs">
+      <DependentUpon>ABMTipoExtraLiquidacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMTiposDocumento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMTiposDocumento.designer.cs">
+      <DependentUpon>ABMTiposDocumento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMUsuarios.Designer.cs">
+      <DependentUpon>ABMUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BuscarEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuscarEmpleados.Designer.cs">
+      <DependentUpon>BuscarEmpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BúsquedaCliente.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BúsquedaCliente.Designer.cs">
+      <DependentUpon>BúsquedaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CerrarEscalafonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CerrarEscalafonForm.Designer.cs">
+      <DependentUpon>CerrarEscalafonForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlDiarioCambiarFuncionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlDiarioCambiarFuncionario.Designer.cs">
+      <DependentUpon>ControlDiarioCambiarFuncionario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CambiarHoraFuncionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CambiarHoraFuncionario.Designer.cs">
+      <DependentUpon>CambiarHoraFuncionario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CambiarNumeroEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CambiarNumeroEmpleado.Designer.cs">
+      <DependentUpon>CambiarNumeroEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CambiarPasswordUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CambiarPasswordUsuario.designer.cs">
+      <DependentUpon>CambiarPasswordUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComboBoxKeyDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ComboBoxKeyDown.Designer.cs">
+      <DependentUpon>ComboBoxKeyDown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComboBoxValue.cs" />
+    <Compile Include="ConsolidarEscalafonesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsolidarEscalafonesForm.Designer.cs">
+      <DependentUpon>ConsolidarEscalafonesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ContratoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ContratoForm.Designer.cs">
+      <DependentUpon>ContratoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ContratoHoras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ContratoHoras.Designer.cs">
+      <DependentUpon>ContratoHoras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlDiario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlDiario.Designer.cs">
+      <DependentUpon>ControlDiario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMTiposMotivoCambioDiario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMTiposMotivoCambioDiario.Designer.cs">
+      <DependentUpon>ABMTiposMotivoCambioDiario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlDiarioAgregarFuncionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlDiarioAgregarFuncionario.Designer.cs">
+      <DependentUpon>ControlDiarioAgregarFuncionario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataGridTAB.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataGridTAB.Designer.cs">
+      <DependentUpon>DataGridTAB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DateTimePickerKeyDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DateTimePickerKeyDown.Designer.cs">
+      <DependentUpon>DateTimePickerKeyDown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EscalafonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EscalafonForm.Designer.cs">
+      <DependentUpon>EscalafonForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExportToExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportToExcel.Designer.cs">
+      <DependentUpon>ExportToExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FacturacionClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FacturacionClientes.Designer.cs">
+      <DependentUpon>FacturacionClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarHorasDiariasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarHorasDiariasForm.Designer.cs">
+      <DependentUpon>GenerarHorasDiariasForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Imagenes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Imagenes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LiquidaciónEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LiquidaciónEmpleados.Designer.cs">
+      <DependentUpon>LiquidaciónEmpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListaNegra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListaNegra.Designer.cs">
+      <DependentUpon>ListaNegra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MaskedTextBoxKeyDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MaskedTextBoxKeyDown.Designer.cs">
+      <DependentUpon>MaskedTextBoxKeyDown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BuscarClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuscarClientes.Designer.cs">
+      <DependentUpon>BuscarClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MotivoCambioDiarioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MotivoCambioDiarioForm.Designer.cs">
+      <DependentUpon>MotivoCambioDiarioForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PermisosUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PermisosUsuario.Designer.cs">
+      <DependentUpon>PermisosUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProgressBarShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgressBarShow.Designer.cs">
+      <DependentUpon>ProgressBarShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerErroresGeneracionEnPantalla.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerErroresGeneracionEnPantalla.Designer.cs">
+      <DependentUpon>VerErroresGeneracionEnPantalla.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServicioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServicioForm.designer.cs">
+      <DependentUpon>ServicioForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShowContrato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowContrato.Designer.cs">
+      <DependentUpon>ShowContrato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SustituirFuncionarioEsc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SustituirFuncionarioEsc.Designer.cs">
+      <DependentUpon>SustituirFuncionarioEsc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TextBoxKeyDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TextBoxKeyDown.Designer.cs">
+      <DependentUpon>TextBoxKeyDown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoClientes.designer.cs">
+      <DependentUpon>ListadoClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MaskedTextBoxCell.cs" />
+    <Compile Include="MaskedTextBoxColumn.cs" />
+    <Compile Include="MaskedTextBoxEditingControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Planificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Planificacion.Designer.cs">
+      <DependentUpon>Planificacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ABMBancos.resx">
+      <DependentUpon>ABMBancos.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMBarrios.resx">
+      <DependentUpon>ABMBarrios.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMCiudades.resx">
+      <DependentUpon>ABMCiudades.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMGrupos.resx">
+      <DependentUpon>ABMGrupos.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMLNegra.resx">
+      <DependentUpon>ABMLNegra.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMTipoEventoHistorial.resx">
+      <DependentUpon>ABMTipoEventoHistorial.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMCargos.resx">
+      <DependentUpon>ABMCargos.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMClientes.resx">
+      <DependentUpon>ABMClientes.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMDepartamentos.resx">
+      <DependentUpon>ABMDepartamentos.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMEmergenciasMedica.resx">
+      <DependentUpon>ABMEmergenciasMedica.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMEmpleados.resx">
+      <DependentUpon>ABMEmpleados.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMMutualistas.resx">
+      <DependentUpon>ABMMutualistas.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMTipoExtraLiquidacion.resx">
+      <DependentUpon>ABMTipoExtraLiquidacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMTiposDocumento.resx">
+      <DependentUpon>ABMTiposDocumento.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMUsuarios.resx">
+      <DependentUpon>ABMUsuarios.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuscarEmpleados.resx">
+      <DependentUpon>BuscarEmpleados.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BúsquedaCliente.resx">
+      <DependentUpon>BúsquedaCliente.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CerrarEscalafonForm.resx">
+      <DependentUpon>CerrarEscalafonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlDiarioCambiarFuncionario.resx">
+      <DependentUpon>ControlDiarioCambiarFuncionario.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CambiarHoraFuncionario.resx">
+      <DependentUpon>CambiarHoraFuncionario.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CambiarNumeroEmpleado.resx">
+      <DependentUpon>CambiarNumeroEmpleado.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CambiarPasswordUsuario.resx">
+      <DependentUpon>CambiarPasswordUsuario.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsolidarEscalafonesForm.resx">
+      <DependentUpon>ConsolidarEscalafonesForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContratoForm.resx">
+      <DependentUpon>ContratoForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContratoHoras.resx">
+      <DependentUpon>ContratoHoras.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlDiario.resx">
+      <DependentUpon>ControlDiario.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlDiarioAgregarFuncionario.resx">
+      <DependentUpon>ControlDiarioAgregarFuncionario.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EscalafonForm.resx">
+      <DependentUpon>EscalafonForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMTiposMotivoCambioDiario.resx">
+      <DependentUpon>ABMTiposMotivoCambioDiario.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportToExcel.resx">
+      <DependentUpon>ExportToExcel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacturacionClientes.resx">
+      <DependentUpon>FacturacionClientes.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarHorasDiariasForm.resx">
+      <DependentUpon>GenerarHorasDiariasForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Imagenes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Imagenes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LiquidaciónEmpleados.resx">
+      <DependentUpon>LiquidaciónEmpleados.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaNegra.resx">
+      <DependentUpon>ListaNegra.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuscarClientes.resx">
+      <DependentUpon>BuscarClientes.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MotivoCambioDiarioForm.resx">
+      <DependentUpon>MotivoCambioDiarioForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermisosUsuario.resx">
+      <DependentUpon>PermisosUsuario.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgressBarShow.resx">
+      <DependentUpon>ProgressBarShow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerErroresGeneracionEnPantalla.resx">
+      <DependentUpon>VerErroresGeneracionEnPantalla.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServicioForm.resx">
+      <DependentUpon>ServicioForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowContrato.resx">
+      <DependentUpon>ShowContrato.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SustituirFuncionarioEsc.resx">
+      <DependentUpon>SustituirFuncionarioEsc.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextBoxKeyDown.resx">
+      <DependentUpon>TextBoxKeyDown.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoClientes.resx">
+      <DependentUpon>ListadoClientes.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Planificacion.resx">
+      <DependentUpon>Planificacion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Selección de Recurso.resx">
+      <DependentUpon>Selección de Recurso.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreeClientesServicios.resx">
+      <DependentUpon>TreeClientesServicios.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucPermisosUsuarios.resx">
+      <DependentUpon>ucPermisosUsuarios.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsuariosGruposForm.resx">
+      <DependentUpon>UsuariosGruposForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VentanaPrincipal.resx">
+      <DependentUpon>VentanaPrincipal.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerEscalafonEmpleadoForm.resx">
+      <DependentUpon>VerEscalafonEmpleadoForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerObservaciones.resx">
+      <DependentUpon>VerObservaciones.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Selección de Recurso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Selección de Recurso.Designer.cs">
+      <DependentUpon>Selección de Recurso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TreeClientesServicios.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TreeClientesServicios.Designer.cs">
+      <DependentUpon>TreeClientesServicios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucPermisosUsuarios.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucPermisosUsuarios.Designer.cs">
+      <DependentUpon>ucPermisosUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UsuariosGruposForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UsuariosGruposForm.Designer.cs">
+      <DependentUpon>UsuariosGruposForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VentanaPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VentanaPrincipal.Designer.cs">
+      <DependentUpon>VentanaPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerEscalafonEmpleadoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerEscalafonEmpleadoForm.Designer.cs">
+      <DependentUpon>VerEscalafonEmpleadoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerObservaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerObservaciones.Designer.cs">
+      <DependentUpon>VerObservaciones.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Datos\Datos.csproj">
+      <Project>{3BBD3DD3-954B-48C1-93D6-6D32309233E2}</Project>
+      <Name>Datos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dominio\Logica.csproj">
+      <Project>{AFC517DD-78C0-4139-ADFE-84AFB3320F61}</Project>
+      <Name>Logica</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilidades\Utilidades.csproj">
+      <Project>{74EBE032-537C-43B3-AF31-07C5174CB3E2}</Project>
+      <Name>Utilidades</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2downarrow16px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2downarrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2uparrow16px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2uparrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1254703516_userconfig.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1254704047_User.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1259423074_emblem-money.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1259646445_reload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1259646560_reload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1259646614_Home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1259646625_Xcode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1259651257_invoice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1259651268_invoice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\client.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filesave.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list_remove_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\preferences_desktop_user_password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_group_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Forward_Arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Arrow_forward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Arrow_back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imagen-no-disponible.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-vnd.ms-excel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dialog-question.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Docs\Contrato.doc" />
+    <None Include="Docs\Diploma.doc" />
+    <None Include="Docs\Movistar.doc" />
+    <None Include="Resources\imagen_no_disponible.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Search_Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ClientsSearch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Escalafon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UserSearch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ClientsSearch42x42.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search-user_48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\companies.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon-query-reporting.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_icon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\app.manifest" />
+    <None Include="Resources\report_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\procesando_2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check_error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blacklist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-contact-list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login Manager.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pgp-signature.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\system-login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Groups.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CerrarEscalafon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CerrarEscalafon_48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
