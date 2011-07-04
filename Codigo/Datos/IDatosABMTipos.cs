@@ -101,7 +101,7 @@ namespace Datos
         #endregion
 
         #region ABM_TipoExtraLiquidacion
-        int altaTipoExtraLiquidacion(string nombreTipoExtra, bool activo, bool llevaHs);
+        int altaTipoExtraLiquidacion(string nombreTipoExtra, bool activo, bool llevaHs, bool aceptaPorcetaje);
         void modificarTipoExtraLiquidacion(TipOExtraLiquidAcIon tipoExtra);
         List<TipOExtraLiquidAcIon> obtenerTipoExtraLiquidacion(bool activos);
         #endregion

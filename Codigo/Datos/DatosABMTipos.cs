@@ -659,21 +659,18 @@ namespace Datos
         #endregion
 
         #region ABM_TipoExtraLiquidacion
-        public int altaTipoExtraLiquidacion(string nombreTipoExtra, bool activo, bool llevaHs)
+        public int altaTipoExtraLiquidacion(string nombreTipoExtra, bool activo, bool llevaHs, bool AceptaPorcentaje)
         {
             try
             {
                 TipOExtraLiquidAcIon tipoExtra = new TipOExtraLiquidAcIon();
 
                 tipoExtra.Nombre = nombreTipoExtra;
-                if (activo)
-                    tipoExtra.Activo = 1;
-                else
-                    tipoExtra.Activo = 0;
-                if (llevaHs)
-                    tipoExtra.LlevaHs = 1;
-                else
-                    tipoExtra.LlevaHs = 0;
+                tipoExtra.Activo = (activo ? (sbyte)1:(sbyte)0);
+                tipoExtra.LlevaHs = (llevaHs ? (sbyte)1 : (sbyte)0);
+                tipoExtra.AceptaPorcentaje = (AceptaPorcentaje ? (sbyte)1 : (sbyte)0);
+                
+                    
                 database.TipOExtraLiquidAcIon.InsertOnSubmit(tipoExtra);
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
 
@@ -695,7 +692,7 @@ namespace Datos
                 tipoEvento.Nombre = tipoExtra.Nombre;
                 tipoEvento.Activo = tipoExtra.Activo;
                 tipoEvento.LlevaHs = tipoExtra.LlevaHs;
-                
+                tipoEvento.AceptaPorcentaje = tipoExtra.AceptaPorcentaje;
 
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
 
