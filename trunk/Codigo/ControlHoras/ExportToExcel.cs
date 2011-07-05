@@ -9,6 +9,9 @@ using System.Windows.Forms;
 using Datos;
 using Utilidades;
 using System.Globalization;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Runtime.InteropServices;
+using System.Configuration;
 
 
 namespace ControlHoras
@@ -21,6 +24,7 @@ namespace ControlHoras
         private List<ConsultAsEmPleadOs> consultasEmpleados;
         private List<ConsultAsClientEs> consultasClientes;
         private string fechaMask = @"  /  /";
+        private bool nuevoFormatoExportToExcel = true;
 
         private ExportToExcel()
         {
@@ -80,6 +84,8 @@ namespace ControlHoras
                 cmbClientesConsultas.SelectedIndex = 0;
 
                 tcConsultas.SelectedIndex = 1;
+                if(ConfigurationManager.AppSettings.AllKeys.Contains("ConsultasExportToExcel_FormatoNuevo"))
+                    nuevoFormatoExportToExcel = bool.Parse(ConfigurationManager.AppSettings["ConsultasExportToExcel_FormatoNuevo"].ToString());
             }
             catch (Exception ex)
             {
@@ -257,7 +263,13 @@ namespace ControlHoras
                 DialogResult result = saveExcelFileDialog.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    if (ControladorUtilidades.exportToExcel(dgvResultados, saveExcelFileDialog.FileName))
+                    string TituloListado = getListadoEnEjecucion();
+                    bool resB;
+                    if (nuevoFormatoExportToExcel)
+                        resB = ControladorUtilidades.exportToExcel(dgvResultados, saveExcelFileDialog.FileName, TituloListado, ((VentanaPrincipal)this.Owner).userName);
+                    else
+                        resB = ControladorUtilidades.exportToExcel_old(dgvResultados,saveExcelFileDialog.FileName);
+                    if (resB)
                     {
                         DialogResult res = MessageBox.Show("Archivo Exportado correctamente. Desea abrir ahora el archivo exportado?", "Exportacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (res == DialogResult.Yes)
@@ -280,6 +292,23 @@ namespace ControlHoras
             {
                 MessageBox.Show(ex.Message, "Exportacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private string getListadoEnEjecucion()
+        {
+            if (tcConsultas.SelectedTab == tbClientes)
+            {
+               return ((ConsultAsClientEs)cmbClientesConsultas.SelectedItem).Nombre;
+            }
+            else if (tcConsultas.SelectedTab == tbEmpleados)
+            {
+                return ((ConsultAsEmPleadOs)cmbEmpleadosConsultas.SelectedItem).Nombre;
+            }
+            else if (tcConsultas.SelectedTab == tbPorTablas)
+            {
+                return cmbTablas.SelectedText;
+            }
+            return "";
         }
 
         private void ExportToExcel_FormClosed(object sender, FormClosedEventArgs e)
@@ -594,5 +623,7 @@ namespace ControlHoras
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+       
     }
 }
