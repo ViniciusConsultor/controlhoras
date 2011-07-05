@@ -1,0 +1,3 @@
+-- Cambio en TipoExtraLiquidacion
+alter table tipoextraliquidacion add column AceptaPorcentaje tinyint(1) not null default 0;
+alter table extrasliquidacion add column Porcentaje float not null default 0;
