@@ -2520,11 +2520,11 @@ namespace Datos
 
                 
                 st += "'" + string.Format("{0:yyyy-MM-dd}", Contrato.FechaIni) + "', ";
-                st += Contrato.HorasExtras.ToString() + ", ";
-                st += Contrato.PagarExtrasDespuesDeHs + ", ";
+                st += Contrato.HorasExtras.ToString() + ", ";                
                 st += Contrato.IDContratos.ToString() + ", ";
                 st += "'" + Contrato.Observaciones.ToString() + "', ";
                 st += Contrato.PagaDescanso.ToString() + ", ";
+                st += (Contrato.PagarExtrasDespuesDeHs == null ? "NULL" : Contrato.PagarExtrasDespuesDeHs.ToString()) + ", ";
                 st += "NULL, ";
                 st += "NULL, ";
                 st += Contrato.TipodeContrato.ToString() + ", ";
