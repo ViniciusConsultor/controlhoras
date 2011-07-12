@@ -672,12 +672,15 @@ namespace Logica
             DateTime dti1, dtf1, dti2, dtf2;
 
             dti1 = DateTime.ParseExact(hi1, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
-            dtf1 = DateTime.ParseExact(hf1, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
+            dtf1 = DateTime.ParseExact(hf1, @"HH:mm", DateTimeFormatInfo.InvariantInfo);            
+            if (dtf1 < dti1)
+                dtf1 = dtf1.AddDays(1);
             dti2 = DateTime.ParseExact(hi2, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
-            dtf2 = DateTime.ParseExact(hf2, @"HH:mm", DateTimeFormatInfo.InvariantInfo);
-
-            if (dti2 < dtf1 && dtf2 > dti1) //- Con este IF se controla solo un caso
-            //if ((dti1 < dtf1 && dti2 < dtf2) && (dti2 > dtf1 || dtf2 < dti1)) // Asi se controlan los dos casos.
+            dtf2 = DateTime.ParseExact(hf2, @"HH:mm", DateTimeFormatInfo.InvariantInfo);            
+            if (dtf2 < dti2)
+                dtf2 = dtf2.AddDays(1);
+            
+            if (dti2 < dtf1 && dtf2 > dti1)
                 return true;
             else
                 return false;
