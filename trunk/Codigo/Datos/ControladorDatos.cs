@@ -1199,7 +1199,22 @@ namespace Datos
                 if (parametrosConsulta.ContainsKey("NROCLIENTE"))
                 {
                     sql = sql.Replace("NROCLIENTE", parametrosConsulta["NROCLIENTE"]);
-                    if (sql.Contains("NROSERVICIO"))
+
+                    if (sql.Contains("IFNROSERVICIO"))
+                    {
+                        if (parametrosConsulta.ContainsKey("NROSERVICIO"))
+                        {
+                            // Reemplazamos el IFNROSERVICIO por el and NumeroServicio-
+                            string paraReemp = " and NumeroServicio =" + parametrosConsulta["NROSERVICIO"];
+                            sql = sql.Replace("IFNROSERVICIO", paraReemp);
+                        }
+                        else
+                        {
+                            // Reemplazamos el IFNROSERVICIO por vacio.
+                            sql = sql.Replace("IFNROSERVICIO", "");
+                        }
+                    }
+                    else
                     {
                         if (parametrosConsulta.ContainsKey("NROSERVICIO"))
                         {
@@ -4514,7 +4529,8 @@ namespace Datos
                 {
                     if (hd.Dia.ToLower() == Thread.CurrentThread.CurrentCulture.DateTimeFormat.GetDayName(dia.DayOfWeek).ToLower().Replace('é', 'e').Replace('á', 'a'))
                     {
-                        cantidadFuncionarios = lh.Cantidad;
+                        cantidadFuncionarios += lh.Cantidad;
+                        
                         hini = TimeSpan.Parse(hd.HoraIni);
                         hfin = TimeSpan.Parse(hd.HoraFin);
                         if (hfin <= hini)

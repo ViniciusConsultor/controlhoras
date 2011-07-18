@@ -62,6 +62,7 @@ namespace ControlHoras
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            DialogResult dr;
             try
             {
                 if (mtHoraNueva.MaskFull)
@@ -73,17 +74,27 @@ namespace ControlHoras
                     {
                         throw new Exception("La Fecha/Hora de Entrada no puede ser mayor o igual a la Fecha/Hora de Salida.\nLa Fecha/Hora de Salida Actual es " + HoraSalidaActual.ToString("dd/MM/yyyy HH:mm"));
                     }
-                    else if (ChangeEntrada && (HoraSalidaActual.Subtract(HoraNueva).Days > 1 || HoraSalidaActual.Subtract(HoraNueva).Days < 0))
+                    else if (ChangeEntrada && (HoraSalidaActual.Subtract(HoraNueva).Days >= 1 ))//|| HoraSalidaActual.Subtract(HoraNueva).Days < 0))
                     {
-                        throw new Exception("La diferencia de Fecha/Hora de Entrada con la Fecha/Hora de Salida no puede ser negativa o tener mas de un dia.\nLa Fecha/Hora de Salida Actual es " + HoraSalidaActual.ToString("dd/MM/yyyy HH:mm"));
+                        //throw new Exception("La diferencia de Fecha/Hora de Entrada con la Fecha/Hora de Salida no puede ser negativa o tener mas de un dia.\nLa Fecha/Hora de Salida Actual es " + HoraSalidaActual.ToString("dd/MM/yyyy HH:mm"));
+                        dr = MessageBox.Show("La hora de Entrada ingresada asigna mas de 24 hs al funcionario. Esta seguro de realizar este cambio?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dr != DialogResult.Yes)
+                        {
+                            throw new Exception("Se cancela el cambio.");
+                        }
                     }
                     else if (!ChangeEntrada && HoraNueva <= HoraEntradaActual)
                     {
                         throw new Exception("La Fecha/Hora de Salida no puede ser mayor o igual a la Fecha/Hora de Entrada.\nLa Fecha/Hora de Entrada Actual es " + HoraEntradaActual.ToString("dd/MM/yyyy HH:mm"));
                     }
-                    else if (!ChangeEntrada && (HoraNueva.Subtract(HoraEntradaActual).Days > 1 || HoraNueva.Subtract(HoraEntradaActual).Days < 0))
+                    else if (!ChangeEntrada && (HoraNueva.Subtract(HoraEntradaActual).Days >= 1)) //|| HoraNueva.Subtract(HoraEntradaActual).Days < 0))
                     {
-                        throw new Exception("La diferencia de Fecha/Hora de Salida con la Fecha/Hora de Entrada no puede ser negativa o tener mas de un dia.\nLa Fecha/Hora de Entrada Actual es " + HoraEntradaActual.ToString("dd/MM/yyyy HH:mm"));
+                        //throw new Exception("La diferencia de Fecha/Hora de Salida con la Fecha/Hora de Entrada no puede ser negativa o tener mas de un dia.\nLa Fecha/Hora de Entrada Actual es " + HoraEntradaActual.ToString("dd/MM/yyyy HH:mm"));
+                        dr = MessageBox.Show("La hora de Salida ingresada se asigna mas de 24 hs al funcionario. Esta seguro de realizar este cambio?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dr != DialogResult.Yes)
+                        {
+                            throw new Exception("Se cancela el cambio.");
+                        }
                     }
 
                     if (HoraNueva.Minute % 30 != 0)

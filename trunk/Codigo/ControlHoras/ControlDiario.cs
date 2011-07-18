@@ -327,13 +327,21 @@ namespace ControlHoras
                     dgvHoras.Rows[num].Cells["Funcionario"].Value = e.Nombre + " " + e.Apellido;
                     dgvHoras.Rows[num].Cells["HoraEntrada"].Value = f.HoraEntrada.ToString("HH:mm");
                     dgvHoras.Rows[num].Cells["HoraSalida"].Value = f.HoraSalida.ToString("HH:mm");
+                    TimeSpan ts = new TimeSpan(f.HoraSalida.Ticks - f.HoraEntrada.Ticks);
+                    dgvHoras.Rows[num].Cells["TotalHs"].Value = impHora(ts);
                     listaFuncsCargados.Add(f.IDHorasGeneradasEscalafon, f);
+                    aplicarFormatoCeldaHora(num, f.HoraEntrada, f.HoraSalida);
                 }
             }
             catch
             {
                 throw;
             }
+        }
+
+        private string impHora(TimeSpan h)
+        {
+            return System.Math.Abs(System.Math.Truncate(h.TotalHours)).ToString() + ":" + System.Math.Abs(h.Minutes).ToString();
         }
 
         private void cambiarFuncionario_Click(object sender, EventArgs e)
@@ -473,6 +481,9 @@ namespace ControlHoras
                             listaFuncsCargados[idhge].HoraSalida = FechaHoraNueva;
                             dgvHoras.Rows[numFila].Cells["HoraSalida"].Value = FechaHoraNueva.ToString("HH:mm");
                         }
+                        TimeSpan ts = new TimeSpan(listaFuncsCargados[idhge].HoraSalida.Ticks - listaFuncsCargados[idhge].HoraEntrada.Ticks);
+                        dgvHoras.Rows[numFila].Cells["TotalHs"].Value = impHora(ts);
+                        aplicarFormatoCeldaHora(numFila, listaFuncsCargados[idhge].HoraEntrada, listaFuncsCargados[idhge].HoraSalida);
                     }
                 }
                 catch (Exception ex)
@@ -481,6 +492,24 @@ namespace ControlHoras
                 }
 
             }
+        }
+
+        private void aplicarFormatoCeldaHora(int numFila, DateTime HoraEntrada, DateTime HoraSalida)
+        {
+            if (HoraEntrada.DayOfYear < FechaSeleccionada.DayOfYear)
+                // Si el dia de entrada es menor al seleccionado, mostrar celda en color X
+                dgvHoras.Rows[numFila].Cells["HoraEntrada"].Style.BackColor = ColorEntradaFila;
+            else
+                // Sino blanco.
+                dgvHoras.Rows[numFila].Cells["HoraEntrada"].Style.BackColor = ColorOriginalFila;
+
+            if (FechaSeleccionada.DayOfYear < HoraSalida.DayOfYear)
+                // Si el dia de salida es mayor al seleccionado mostrar celda en color Y
+                dgvHoras.Rows[numFila].Cells["HoraSalida"].Style.BackColor = ColorSalidaFila;
+            else
+                // Sino blanco.
+                dgvHoras.Rows[numFila].Cells["HoraSalida"].Style.BackColor = ColorOriginalFila;
+
         }
 
         private void cambiarHoraEntrada_Click(object sender, EventArgs e)
@@ -683,6 +712,8 @@ namespace ControlHoras
         private void ControlDiario_Load(object sender, EventArgs e)
         {
             mtFecha.Text = DateTime.Today.ToString("dd/MM/yyyy");
+            lblColorDiaAnterior.BackColor = ColorEntradaFila;
+            lblColorDiaPosterior.BackColor = ColorSalidaFila;
             mtFecha.Focus();
             cargarPermisos();
             SendKeys.Send("{ENTER}");

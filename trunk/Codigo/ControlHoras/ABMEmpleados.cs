@@ -2526,15 +2526,29 @@ namespace ControlHoras
                 if (dtpFechaIngreso.Text != fechaMask)
                 {
                     DateTime FI = DateTime.ParseExact(dtpFechaIngreso.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-
-                    mark = "fechaIni";
-                    wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-                    wrdRng.Text = FI.AddDays(-2).Day.ToString();
+                    DateTime dtAux;
 
                     mark = "fechaFin";
                     wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-                    wrdRng.Text = FI.AddDays(-1).Day.ToString();
+                    dtAux = FI.AddDays(-1);
+                    if (dtAux.DayOfWeek == DayOfWeek.Sunday)
+                        dtAux = dtAux.AddDays(-2);
+                    else if (dtAux.DayOfWeek == DayOfWeek.Saturday)
+                        dtAux = dtAux.AddDays(-1);
+                    wrdRng.Text = dtAux.Day.ToString();
+                    
+                    mark = "fechaIni";
+                    wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
+                    dtAux = dtAux.AddDays(-1);
+                    if (dtAux.DayOfWeek == DayOfWeek.Sunday)
+                        dtAux = dtAux.AddDays(-2);
+                    else if (dtAux.DayOfWeek == DayOfWeek.Saturday)
+                        dtAux = dtAux.AddDays(-1);
+                    wrdRng.Text = dtAux.Day.ToString();
 
+                    
+
+                    // Pasa que si es domingo queda en el mismo dia. Arreglar!!!!
 
                     mark = "mes";
                     wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;

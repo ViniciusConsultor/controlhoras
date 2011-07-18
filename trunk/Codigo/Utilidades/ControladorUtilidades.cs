@@ -300,7 +300,8 @@ namespace Utilidades
                     }
                     else if (dgv[columna - 1, 0].ValueType == typeof(Boolean))
                     {
-                        oRng.NumberFormat = "Sí;Sí;No";
+                        //oRng.NumberFormat = "Sí;Sí;No";
+                        oRng.NumberFormat = "@";
                         oRng.Cells.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
 
                     }
