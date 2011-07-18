@@ -93,15 +93,6 @@ namespace ControlHoras
             }
         }
 
-        //private void CargarCombo(ComboBox cmb, Dictionary<int, string> docs)
-        //{
-        //    BindingSource bs = new BindingSource();
-        //    bs.DataSource = docs;
-        //    cmb.DataSource = bs;
-        //    cmb.ValueMember = "Key";
-        //    cmb.DisplayMember = "Value";
-        //}
-
         private void cargaGrillaResultados()
         {
             try
@@ -362,7 +353,7 @@ namespace ControlHoras
             if (query.Contains("NROCLIENTE"))
             {
                 panelCliente.Visible = true;
-                if (query.Contains("NROSERVICIO"))
+                if (query.Contains("NROSERVICIO") || query.Contains("IFNROSERVICIO"))
                     panelServicio.Visible = true;
                 else
                     panelServicio.Visible = false;
@@ -548,7 +539,20 @@ namespace ControlHoras
                             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
 
-                        if (cquery.Contains("NROSERVICIO"))
+                        if (cquery.Contains("IFNROSERVICIO"))
+                        {
+                            try
+                            {
+                                if (mtNroServicio.Text != "")
+                                    parametrosQuery.Add("NROSERVICIO", mtNroServicio.Text);
+                            }
+                            catch (Exception ex)
+                            {
+                                error = true;
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else if (cquery.Contains("NROSERVICIO"))
                         {
                             mtNroServicio.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
                             if (mtNroServicio.Text == "")
@@ -622,6 +626,43 @@ namespace ControlHoras
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void mtNumeroEmpleado_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (mtNumeroEmpleado.Text != "")
+            {
+                if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
+                {
+                    EmPleadOs emp = datos.obtenerEmpleado(int.Parse(mtNumeroEmpleado.Text));
+                    lblEmpleado.Text = emp.Apellido + " " + emp.Nombre;
+                }
+            }
+        }
+
+        private void mtNroCliente_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (mtNroCliente.Text != "")
+            {
+                if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
+                {
+                    ClientEs cli = datos.obtenerCliente(int.Parse(mtNroCliente.Text));
+                    lblCliente.Text = cli.Nombre;
+                }
+            }
+        }
+
+        private void mtNroServicio_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (mtNroServicio.Text != "")
+            {
+                if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
+                {
+                    SERVicIoS serv = datos.obtenerServicioCliente(int.Parse(mtNroCliente.Text),int.Parse(mtNroServicio.Text));
+                    lblServicio.Text = serv.Nombre;
+                }
+            }
+        
         }
 
        
