@@ -58,7 +58,7 @@ namespace ControlHoras
         {
             try
             {
-                List<EmPleadOs> listEmps = datos.buscarEmpleaos(cmbCampoBusqueda.SelectedItem.ToString(), txtBusqueda.Text,cbInactivos.Checked);
+                List<EmPleadOs> listEmps = datos.buscarEmpleados(cmbCampoBusqueda.SelectedItem.ToString(), txtBusqueda.Text,cbInactivos.Checked);
                 cargarGrillaResultados(listEmps);
                 if (listEmps.Count == 0)
                     MessageBox.Show(this,"No se han encontrado datos con estos filtros.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);

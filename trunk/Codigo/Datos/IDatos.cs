@@ -178,11 +178,11 @@ namespace Datos
         /// <summary>
         /// Busca todos los empleados que cumplan con el patronBusqueda en el dato CampoBusqueda
         /// </summary>
-        /// <param name="CampoBusqueda">Define el atributo del Empleado por el cual buscar. Valores Posibles: Nombre, Apellido, Documento, Telefono y Direccion</param>
+        /// <param name="CampoBusqueda">Define el atributo del Empleado por el cual buscar. Valores Posibles: TODOS, Nombre, Apellido, Documento, Telefono y Direccion</param>
         /// <param name="patronBusqueda">Define el patron de busqueda</param>
         /// <param name="incluirIncativos">True para incluir los inactivos en la busqueda.</param>
         /// <returns>Devuelve una lista de los empleados que matchean con el patron en el campo especificado.</returns>
-        List<EmPleadOs> buscarEmpleaos(string CampoBusqueda, string patronBusqueda, bool incluirIncativos);
+        List<EmPleadOs> buscarEmpleados(string CampoBusqueda, string patronBusqueda, bool incluirIncativos);
 
         /// <summary>
         /// Cambia el Numero del Empleado identificado por el NumeroActual por el Numero NumeroEmpleadoNuevo
@@ -332,7 +332,7 @@ namespace Datos
         /// <param name="numeroServicio">Numero del Empleado</param>
         /// <param name="fecha">Fecha del dia que se quiere obtener los motivos de cambios. Si es null se obtienen todos.</param>
         /// <returns>Lista de MotivosCambiosDiarios</returns>
-        List<MotIVOsCamBiosDiARioS> obtenerMotivosCambiosDiarios(int numeroCliente, int numeroServicio, int nroEmpleado, DateTime fecha);
+        List<MotIVOsCamBiosDiARioS> obtenerMotivosCambiosDiarios(int? numeroCliente, int? numeroServicio, int? nroEmpleado, DateTime fecha);
         void altaMotivosCambiosDiarios(MotIVOsCamBiosDiARioS t);
         void modificacionMotivosCambiosDiarios(MotIVOsCamBiosDiARioS t);
         #endregion
@@ -443,21 +443,36 @@ namespace Datos
         
         #endregion
 
+        #region LiquidacionEmpleados
         void LiquidarEmpleados(DateTime inicio, DateTime fin);
 
         void empleadosLiquidados(out DataTable empleados);
 
+        /// <summary>
+        /// Guarda los Clientes y Empleados seleccionados a los que se agregara Hs Comunes adicionales.
+        /// </summary>
+        /// <param name="lista">Lista de HsComunesAdicionalesLiquidacionEmpleado a guardar.</param>
+        void guardarHsComunesAdicionalesLiquidacionEmpleados(List<HsComUnEsAdICIonAleSLiquidAcIonEmPleadO> lista);
+
+        /// <summary>
+        /// Devuelve la lista de Clientes y/o empleados con HsAdicionalesComunes seleccionados. Si los valores pasados son null, devuelve todos, sino devuelve los que cumplan con los valores pasados.
+        /// </summary>
+        /// <param name="ClienteOEmpleado">Valores posibles "CLIENTE", "EMPLEADO" o null. Si es null se devuelven todos.</param>
+        /// <param name="ValorClienteEmpleado">Valores posibles "NroCliente - NroServicio" si es CLIENTE, "NroEmpleado" si es EMPLEADO o null. Si es null se devuelven todos.</param>
+        /// <returns>Una lista de un elemento o vacia para el caso de parametros no null. Lista de elemenos para null, null</returns>
+        List<HsComUnEsAdICIonAleSLiquidAcIonEmPleadO> obtenerHsComunesAdicionalesLiquidacionEmpleados(String ClienteOEmpleado, String ValorClienteEmpleado);
+        #endregion
         TipOscarGoS obtenerCargo(int idCargo);
 
         List<DateTime> ObtenerFeriados();
 
-        List<DataDiaFacturacion> LiquidarunEmpleado(EmPleadOs empleado, TipOscarGoS tc);
+        List<DataDiaFacturacion> LiquidarUnEmpleado(EmPleadOs empleado, TipOscarGoS tc);
 
         bool existeEmpleadoLiquidado(int NroEmpleado);
 
         DataEmpleadoExLiquidacion obtenerExLiquidacionEmpleado(int NroEmpleado, DateTime Mes);
 
-        List<MotIVOsCamBiosDiARioS> obtenerMotivosCambiosDiarios2(int NroEmpleado, DateTime Fecha);
+        //List<MotIVOsCamBiosDiARioS> obtenerMotivosCambiosDiarios2(int NroEmpleado, DateTime Fecha);
 
         List<int> obtenerObsCambios(int NroEmpleado, DateTime Mes);
 

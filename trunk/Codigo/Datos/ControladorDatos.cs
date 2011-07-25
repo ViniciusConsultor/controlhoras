@@ -13,6 +13,7 @@ using System.Globalization;
 using System.IO;
 using Utilidades;
 using System.Threading;
+using System.Data.Common;
 
 
 
@@ -733,7 +734,7 @@ namespace Datos
                 emp.RenaemsefEchaIngreso = fechaIngresoRENAEMSE;
                 emp.RenaemsenUmeroAsunto = numeroAsuntoRENAEMSE;
                 emp.NivelEducativo = nivelEducativo;
-                emp.IDCargo = (short)idCargo;
+                emp.IDCargo = (uint)idCargo;
                 //emp.FechaPagoFinal = fechaEgreso;
                 if (activo)
                     emp.Activo = 1;
@@ -883,7 +884,7 @@ namespace Datos
                 else
                     emp.Activo = 0;
 
-                emp.IDCargo = (short)idCargo;
+                emp.IDCargo = (uint)idCargo;
                 if (ConstanciaDomicilio)
                     emp.ConstanciaDomicilio = 1;
                 else
@@ -1059,7 +1060,7 @@ namespace Datos
                 throw ex;
             }
         }
-        public List<EmPleadOs> buscarEmpleaos(string CampoBusqueda, string patronBusqueda, bool incluirInactivos)
+        public List<EmPleadOs> buscarEmpleados(string CampoBusqueda, string patronBusqueda, bool incluirInactivos)
         {
             try
             {
@@ -1086,6 +1087,8 @@ namespace Datos
                         break;
                     case "Documento":
                         emps = emps.Where(e => e.NumeroDocumento.Contains(patronBusqueda));
+                        break;
+                    case "TODOS":
                         break;
                     default:
                         throw new NoExisteException("No existe el Campo de Busqueda " + CampoBusqueda);
@@ -1521,7 +1524,7 @@ namespace Datos
                 el.CantidadCuotas = (byte)cantidadCuotas;
                 el.IDUsuario = idUsuario;
                 el.IDTipoExtraLiquidacion = (byte)idTipoExtraLiquidacion;
-                el.CantHsTipoExtraLlevaHsEnSegs = cantHs_LlevaHs.TotalSeconds;
+                el.CantHsTipoExtraLlevaHsEnSegs = (int)cantHs_LlevaHs.TotalSeconds;
                 el.Porcentaje = porcentaje;
 
                 tablaExtrasLiquidacion.InsertOnSubmit(el);
@@ -3077,31 +3080,95 @@ namespace Datos
         #endregion
 
         #region MotivosCambioDiario
-        public List<MotIVOsCamBiosDiARioS> obtenerMotivosCambiosDiarios(int numeroCliente, int numeroServicio, int nroEmpleado, DateTime fecha)
+        public List<MotIVOsCamBiosDiARioS> obtenerMotivosCambiosDiarios(int? numeroCliente, int? numeroServicio, int? nroEmpleado, DateTime fecha)
         {
             try
             {
                 List<MotIVOsCamBiosDiARioS> motivosServicio = null;
-                if (fecha == null)
+                if (numeroCliente != null && numeroServicio != null && nroEmpleado != null)
+                {
+                    if (fecha == null)
+                    {
+                        motivosServicio = (from reg in database.MotIVOsCamBiosDiARioS
+                                           where reg.NumeroCliente == numeroCliente & reg.NumeroServicio == numeroServicio & reg.NroEmpleado == nroEmpleado
+                                           select reg).ToList<MotIVOsCamBiosDiARioS>();
+                    }
+                    else
+                    {
+                        motivosServicio = (from reg in database.MotIVOsCamBiosDiARioS
+                                           where reg.NumeroCliente == numeroCliente & reg.NumeroServicio == numeroServicio & reg.FechaCambio == fecha & reg.NroEmpleado == nroEmpleado
+                                           select reg).ToList<MotIVOsCamBiosDiARioS>();
+                    }
+                }
+                else if (nroEmpleado != null)
                 {
                     motivosServicio = (from reg in database.MotIVOsCamBiosDiARioS
-                                                                   where reg.NumeroCliente == numeroCliente & reg.NumeroServicio == numeroServicio & reg.NroEmpleado == nroEmpleado
-                                                                   select reg).ToList<MotIVOsCamBiosDiARioS>();
+                                       where reg.FechaCorresponde == fecha & reg.NroEmpleado == nroEmpleado
+                                       select reg).ToList<MotIVOsCamBiosDiARioS>();
+
                 }
                 else
-                {
-                    motivosServicio = (from reg in database.MotIVOsCamBiosDiARioS
-                                                                   where reg.NumeroCliente == numeroCliente & reg.NumeroServicio == numeroServicio & reg.FechaCambio == fecha & reg.NroEmpleado == nroEmpleado
-                                                                   select reg).ToList<MotIVOsCamBiosDiARioS>();
-                }
+                    throw new Exception("No se ejecuto ninguna consulta. No se obtuvieron los valores necesarios");
+
                 return motivosServicio;
                 
             }
             catch (Exception e)
             {
+                WriteErrorLog(e);
                 throw e;
             }
         }
+
+        //public List<MotIVOsCamBiosDiARioS> obtenerMotivosCambiosDiarios2(int NroEmpleado, DateTime Fecha)
+        //{
+        //    try
+        //    {
+        //        List<MotIVOsCamBiosDiARioS> motivosServicio = null;
+
+        //        motivosServicio = (from reg in database.MotIVOsCamBiosDiARioS
+        //                           where reg.FechaCorresponde == Fecha & reg.NroEmpleado == NroEmpleado
+        //                           select reg).ToList<MotIVOsCamBiosDiARioS>();
+
+        //        return motivosServicio;
+
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        WriteErrorLog(e);
+        //        throw e;
+        //    }
+        //}
+
+        public List<int> obtenerObsCambios(int nroEmp, DateTime Mes)
+        {
+            DateTime inicio, fin, aux;
+
+            inicio = new DateTime(Mes.Year, Mes.Month, 1);
+            aux = new DateTime(Mes.Year, Mes.AddMonths(1).Month, 1);
+            fin = aux.AddDays(-1);
+
+            List<DateTime> fechas = null;
+            List<int> dias = new List<int>();
+            try
+            {
+                fechas = (from reg in database.MotIVOsCamBiosDiARioS
+                          where reg.NroEmpleado == (uint)nroEmp && reg.FechaCorresponde >= inicio && reg.FechaCorresponde <= fin
+                          select reg.FechaCorresponde).ToList<DateTime>();
+
+                foreach (DateTime d in fechas)
+                    dias.Add(d.Day);
+
+                return dias;
+            }
+            catch (Exception ex)
+            {
+                WriteErrorLog(ex);
+                throw ex;
+            }
+        }
+
+
         public void altaMotivosCambiosDiarios(MotIVOsCamBiosDiARioS t)
         {
             try
@@ -4121,7 +4188,7 @@ namespace Datos
             }
         }
 
-
+        #region Liquidacion_Empleados
         public void LiquidarEmpleados(DateTime inicio, DateTime fin)
         {
             System.Data.Common.DbConnection conexion = database.Connection;
@@ -4210,7 +4277,59 @@ namespace Datos
             }
 
         }
+        
+        public void guardarHsComunesAdicionalesLiquidacionEmpleados(List<HsComUnEsAdICIonAleSLiquidAcIonEmPleadO> lista)
+        {
+            try
+            {
+                recargarContexto();
+                // Eliminamos todos los registros existentes
+                database.HsComUnEsAdICIonAleSLiquidAcIonEmPleadO.DeleteAllOnSubmit(database.HsComUnEsAdICIonAleSLiquidAcIonEmPleadO);
+                // Agregamos todos los nuevos registros
+                database.HsComUnEsAdICIonAleSLiquidAcIonEmPleadO.InsertAllOnSubmit(lista);
+                database.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                recargarContexto();
+            }
 
+        }
+
+        /// <summary>
+        /// Devuelve la lista de Clientes y/o empleados con HsAdicionalesComunes seleccionados. Si los valores pasados son null, devuelve todos, sino devuelve los que cumplan con los valores pasados.
+        /// </summary>
+        /// <param name="ClienteOEmpleado">Valores posibles "CLIENTE", "EMPLEADO" o null. Si es null se devuelven todos.</param>
+        /// <param name="ValorClienteEmpleado">Valores posibles "NroCliente - NroServicio" si es CLIENTE, "NroEmpleado" si es EMPLEADO o null. Si es null se devuelven todos.</param>
+        /// <returns></returns>
+        public List<HsComUnEsAdICIonAleSLiquidAcIonEmPleadO> obtenerHsComunesAdicionalesLiquidacionEmpleados(String ClienteOEmpleado, String ValorClienteEmpleado)
+        {
+            List<HsComUnEsAdICIonAleSLiquidAcIonEmPleadO> listaRet;
+            
+            try
+            {
+                recargarContexto();
+                if (ClienteOEmpleado != null && ValorClienteEmpleado != null)
+                    listaRet = (from reg in database.HsComUnEsAdICIonAleSLiquidAcIonEmPleadO
+                                where reg.ClienteEmpleadoCorrespondiente == ValorClienteEmpleado && reg.ClienteOeMpleado == ClienteOEmpleado
+                                select reg).ToList();
+                else
+                    listaRet = (from reg in database.HsComUnEsAdICIonAleSLiquidAcIonEmPleadO
+                                select reg).ToList();
+                return listaRet;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        #endregion  
 
         #region PermisosUsuarios_PantallasWinForms_PermisoControl
 
@@ -4324,11 +4443,12 @@ namespace Datos
             }
         }
 
-        public List<DataDiaFacturacion> LiquidarunEmpleado(EmPleadOs emp, TipOscarGoS tc)
+        public List<DataDiaFacturacion> LiquidarUnEmpleado(EmPleadOs emp, TipOscarGoS tc)
         {
             Table<LiquidAcIonEmPleadOs> tabla;
             try
             {
+                recargarContexto();
                 tabla = database.GetTable<LiquidAcIonEmPleadOs>();
 
                 var hors = from varcli in tabla
@@ -4342,7 +4462,31 @@ namespace Datos
                 DateTime fecha;
                 TimeSpan HsComunes, HsExtras, auxts;
                 ContraToS con;
-
+                
+                // Obtenemos si el Empleado esta seleccionado para cobrar hs adicionales como comunes.
+                var segs = (from reg in database.HsComUnEsAdICIonAleSLiquidAcIonEmPleadO
+                             where reg.ClienteOeMpleado == "EMPLEADO" & reg.ClienteEmpleadoCorrespondiente == emp.NroEmpleado.ToString()
+                             select reg.HsAdicionalesEnSegs);
+                TimeSpan HsComunesAdicionales;
+                bool cobraHsAdicionalesComoComunes;
+                if (segs.Count()==0)
+                {
+                    HsComunesAdicionales = new TimeSpan(0);
+                    cobraHsAdicionalesComoComunes = false;
+                }
+                else
+                {
+                    HsComunesAdicionales = new TimeSpan(0, 0, (int)segs.Single());
+                    cobraHsAdicionalesComoComunes = true;
+                }
+                List<String> ListaServiciosPagan = new List<string>();
+                // Si esta seleccionado, obtenemos la lista de servicios habilitados.
+                if (cobraHsAdicionalesComoComunes)
+                {
+                    ListaServiciosPagan = (from reg in database.HsComUnEsAdICIonAleSLiquidAcIonEmPleadO
+                                           where reg.ClienteOeMpleado == "CLIENTE"
+                                           select reg.ClienteEmpleadoCorrespondiente).ToList();
+                }
                 foreach (var dia in hors)
                 {
                     fecha = dia.Key;
@@ -4352,6 +4496,8 @@ namespace Datos
                     List<LiquidAcIonEmPleadOs> horsdia = (from reg in tabla
                                                           where reg.NroEmpleado == emp.NroEmpleado && reg.Fecha == fecha
                                                           select reg).ToList<LiquidAcIonEmPleadOs>();
+                    
+                    
                     foreach (LiquidAcIonEmPleadOs l in horsdia)
                     {
                         con = obtenerContrato((int)l.NroCliente, (int)l.NroServicio);
@@ -4359,6 +4505,15 @@ namespace Datos
                             auxts = auxts + new TimeSpan(0, 30, 0);
 
                         HsComunes = HsComunes + l.Horas.TimeOfDay;
+
+                        // Por Issue 98. Sumar Hs Como Comunes a Funcionarios determinados en servicios seleccionados.
+                        // HsComunesAdicionalesLiquidacionEmpleado
+                        if (cobraHsAdicionalesComoComunes)
+                        {
+                            if (ListaServiciosPagan.Contains(l.NroCliente + " - " + l.NroServicio))
+                                auxts = auxts + HsComunesAdicionales;
+                        }
+                        
                     }
 
                     if (tc.CobraHsExtras == 1 && HsComunes > HscomoComunes)
@@ -4612,55 +4767,6 @@ namespace Datos
             }
 
             
-        }
-
-
-        public List<MotIVOsCamBiosDiARioS> obtenerMotivosCambiosDiarios2(int NroEmpleado, DateTime Fecha)
-        {
-            try
-            {
-                List<MotIVOsCamBiosDiARioS> motivosServicio = null;
-                
-                motivosServicio = (from reg in database.MotIVOsCamBiosDiARioS
-                                   where reg.FechaCorresponde == Fecha & reg.NroEmpleado == NroEmpleado
-                                   select reg).ToList<MotIVOsCamBiosDiARioS>();
-                            
-                return motivosServicio;
-
-            }
-            catch (Exception e)
-            {
-                WriteErrorLog(e);
-                throw e;
-            }
-        }
-
-        public List<int> obtenerObsCambios(int nroEmp, DateTime Mes)
-        {
-            DateTime inicio, fin, aux;
-
-            inicio = new DateTime(Mes.Year, Mes.Month, 1);
-            aux = new DateTime(Mes.Year, Mes.AddMonths(1).Month, 1);
-            fin = aux.AddDays(-1);
-
-            List<DateTime> fechas = null;
-            List<int> dias = new List<int>();
-            try
-            {                
-                fechas = (from reg in database.MotIVOsCamBiosDiARioS
-                           where reg.NroEmpleado == (uint)nroEmp && reg.FechaCorresponde >= inicio && reg.FechaCorresponde <= fin
-                           select reg.FechaCorresponde).ToList<DateTime>();
-
-                foreach (DateTime d in fechas)
-                    dias.Add(d.Day);
-
-                return dias;                
-            }
-            catch (Exception ex)
-            {
-                WriteErrorLog(ex);
-                throw ex;
-            }
         }
 
         public DataEventosHE obtenerEventosHistEmpleado(int NroEmpleado, DateTime Mes)

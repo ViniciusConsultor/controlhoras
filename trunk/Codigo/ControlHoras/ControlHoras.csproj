@@ -356,6 +356,12 @@
     <Compile Include="ProgressBarShow.Designer.cs">
       <DependentUpon>ProgressBarShow.cs</DependentUpon>
     </Compile>
+    <Compile Include="ServiciosFuncionariosSumarHsComunes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServiciosFuncionariosSumarHsComunes.Designer.cs">
+      <DependentUpon>ServiciosFuncionariosSumarHsComunes.cs</DependentUpon>
+    </Compile>
     <Compile Include="VerErroresGeneracionEnPantalla.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -565,6 +571,9 @@
     <EmbeddedResource Include="ProgressBarShow.resx">
       <DependentUpon>ProgressBarShow.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiciosFuncionariosSumarHsComunes.resx">
+      <DependentUpon>ServiciosFuncionariosSumarHsComunes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VerErroresGeneracionEnPantalla.resx">
       <DependentUpon>VerErroresGeneracionEnPantalla.cs</DependentUpon>
@@ -903,6 +912,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CerrarEscalafon_48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_hours.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />

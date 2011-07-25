@@ -1,0 +1,9 @@
+
+/* Por issue 98 */
+-- Agregar FK de Empleados a Cargos, por IdCargo.
+alter table empleados change column IdCargo IdCargo mediumint(8) unsigned not null;
+alter table empleados add foreign key (IdCargo) references TiposCargos(IdCargo);
+
+-- Creamos tabla HsComunesAdicionalesLiquidacionEmpleado
+CREATE TABLE `hscomunesadicionalesliquidacionempleado` (`IdHsComunesAdicionalesLiquidacionEmpelado` int(11) NOT NULL AUTO_INCREMENT, `ClienteEmpleadoCorrespondiente` varchar(20) NOT NULL, `ClienteOEmpleado` varchar(8) NOT NULL,  `HsAdicionalesEnSegs` long, PRIMARY KEY (`IdHsComunesAdicionalesLiquidacionEmpelado`));
+create index IX_CLIENTEEMPLEADO on HsComunesAdicionalesLiquidacionEmpleado(ClienteOEmpleado,ClienteEmpleadoCorrespondiente);

@@ -237,23 +237,7 @@ namespace Utilidades
                 oRng.Cells.Font.FontStyle = FontStyle.Bold; 
                 oRng.Cells.Font.Size = 14;
 
-                // UserName
-                oRng = oSheet.get_Range(oSheet.Cells[2, 1], oSheet.Cells[2, 4]);
-                oRng.Interior.Color = ColorTranslator.ToOle(Color.Beige);
-                oRng.Cells.Font.Bold = true;
-                oRng.Cells.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                oRng.Cells.MergeCells = true;
-                oRng.Cells.Value2 = "Usuario: " + userName;
-
-                // Mostramos el usuario y la fecha de generacion, linea 1
-                oRng = oSheet.get_Range(oSheet.Cells[2, 7], oSheet.Cells[2, 10]);
-                oRng.Cells.MergeCells = true;
-                oRng.Interior.Color = ColorTranslator.ToOle(Color.Beige);
-                oRng.Cells.Font.Bold = true;
-                oRng.Cells.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                oRng.Cells.Value2 = "Fecha: "+DateTime.Now.ToString("dd/MM/yyyy HH:mm");
-                
-                int fila_offset = 4;
+                int fila_offset = 3;
 
                 // Primero cargo todas las columnas permitiendo hacerle algun formato diferente.
                 foreach (DataGridViewColumn col in dgv.Columns)
@@ -325,6 +309,26 @@ namespace Utilidades
 
                 }
 
+                fila++;
+
+                // Mostramos el usuario y la fecha de generacion despues de los datos.
+                // UserName
+                oRng = oSheet.get_Range(oSheet.Cells[fila, 1], oSheet.Cells[fila, 2]);
+                oRng.Interior.Color = ColorTranslator.ToOle(Color.Beige);
+                oRng.Cells.Font.Bold = true;
+                oRng.Cells.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                oRng.Cells.MergeCells = true;
+                oRng.Cells.Value2 = "Usuario: " + userName;
+
+                fila++;
+                // Fecha
+                oRng = oSheet.get_Range(oSheet.Cells[fila, 1], oSheet.Cells[fila, 2]);
+                oRng.Cells.MergeCells = true;
+                oRng.Interior.Color = ColorTranslator.ToOle(Color.Beige);
+                oRng.Cells.Font.Bold = true;
+                oRng.Cells.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                oRng.Cells.Value2 = "Fecha: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+                
 
                 ExApp.Visible = false;
                 //oWBook.SaveAs(fileName, missing, missing, missing, missing, missing, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missing, missing, missing, true);

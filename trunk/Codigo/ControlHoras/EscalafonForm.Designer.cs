@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EscalafonForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -48,6 +47,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EscalafonForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.GraficosPL = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
@@ -67,12 +67,8 @@
             this.txtServicio = new System.Windows.Forms.TextBox();
             this.txtCliente = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.GuardarBTN = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnBuscarClientes = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnVerEscalafonFuncionario = new System.Windows.Forms.ToolStripButton();
-            this.btnCancelar = new System.Windows.Forms.ToolStripButton();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.btnEliminarLineaEscalafon = new System.Windows.Forms.Button();
             this.btnAgregarLineaEscalafon = new System.Windows.Forms.Button();
@@ -104,6 +100,11 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GuardarBTN = new System.Windows.Forms.ToolStripButton();
+            this.btnBuscarClientes = new System.Windows.Forms.ToolStripButton();
+            this.btnVerEscalafonFuncionario = new System.Windows.Forms.ToolStripButton();
+            this.btnCancelar = new System.Windows.Forms.ToolStripButton();
+            this.btnMediasHoras = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -229,7 +230,7 @@
             this.cubiertoTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.cubiertoTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.cubiertoTB.Location = new System.Drawing.Point(197, 9);
-            this.cubiertoTB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cubiertoTB.Margin = new System.Windows.Forms.Padding(2);
             this.cubiertoTB.Name = "cubiertoTB";
             this.cubiertoTB.ReadOnly = true;
             this.cubiertoTB.Size = new System.Drawing.Size(34, 20);
@@ -274,7 +275,7 @@
             this.VerContratoBTN.AutoSize = true;
             this.VerContratoBTN.Enabled = false;
             this.VerContratoBTN.Location = new System.Drawing.Point(550, 65);
-            this.VerContratoBTN.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.VerContratoBTN.Margin = new System.Windows.Forms.Padding(2);
             this.VerContratoBTN.Name = "VerContratoBTN";
             this.VerContratoBTN.Size = new System.Drawing.Size(98, 27);
             this.VerContratoBTN.TabIndex = 4;
@@ -336,65 +337,23 @@
             this.btnBuscarClientes,
             this.toolStripSeparator3,
             this.btnVerEscalafonFuncionario,
-            this.btnCancelar});
+            this.btnCancelar,
+            this.btnMediasHoras});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(963, 36);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // GuardarBTN
-            // 
-            this.GuardarBTN.Enabled = false;
-            this.GuardarBTN.Image = global::ControlHoras.Properties.Resources.filesave;
-            this.GuardarBTN.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.GuardarBTN.Name = "GuardarBTN";
-            this.GuardarBTN.Size = new System.Drawing.Size(50, 33);
-            this.GuardarBTN.Text = "Guardar";
-            this.GuardarBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.GuardarBTN.Click += new System.EventHandler(this.GuardarBTN_Click);
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 36);
             // 
-            // btnBuscarClientes
-            // 
-            this.btnBuscarClientes.Image = global::ControlHoras.Imagenes.ClientsSearch42x42;
-            this.btnBuscarClientes.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnBuscarClientes.Name = "btnBuscarClientes";
-            this.btnBuscarClientes.Size = new System.Drawing.Size(79, 33);
-            this.btnBuscarClientes.Text = "Buscar Cliente";
-            this.btnBuscarClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnBuscarClientes.Click += new System.EventHandler(this.btnBuscarClientes_Click);
-            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 36);
-            // 
-            // btnVerEscalafonFuncionario
-            // 
-            this.btnVerEscalafonFuncionario.Image = ((System.Drawing.Image)(resources.GetObject("btnVerEscalafonFuncionario.Image")));
-            this.btnVerEscalafonFuncionario.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnVerEscalafonFuncionario.Name = "btnVerEscalafonFuncionario";
-            this.btnVerEscalafonFuncionario.Size = new System.Drawing.Size(115, 33);
-            this.btnVerEscalafonFuncionario.Text = "Escalafon Funcionario";
-            this.btnVerEscalafonFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnVerEscalafonFuncionario.Click += new System.EventHandler(this.btnVerEscalafonFuncionario_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btnCancelar.Image = global::ControlHoras.Imagenes.button_cancel;
-            this.btnCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(53, 33);
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnCancelar.ToolTipText = "Limpia la pantalla";
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // splitContainer2
             // 
@@ -786,6 +745,59 @@
             this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn7.Width = 75;
             // 
+            // GuardarBTN
+            // 
+            this.GuardarBTN.Enabled = false;
+            this.GuardarBTN.Image = global::ControlHoras.Properties.Resources.filesave;
+            this.GuardarBTN.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.GuardarBTN.Name = "GuardarBTN";
+            this.GuardarBTN.Size = new System.Drawing.Size(50, 33);
+            this.GuardarBTN.Text = "Guardar";
+            this.GuardarBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.GuardarBTN.Click += new System.EventHandler(this.GuardarBTN_Click);
+            // 
+            // btnBuscarClientes
+            // 
+            this.btnBuscarClientes.Image = global::ControlHoras.Imagenes.ClientsSearch42x42;
+            this.btnBuscarClientes.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnBuscarClientes.Name = "btnBuscarClientes";
+            this.btnBuscarClientes.Size = new System.Drawing.Size(79, 33);
+            this.btnBuscarClientes.Text = "Buscar Cliente";
+            this.btnBuscarClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnBuscarClientes.Click += new System.EventHandler(this.btnBuscarClientes_Click);
+            // 
+            // btnVerEscalafonFuncionario
+            // 
+            this.btnVerEscalafonFuncionario.Image = ((System.Drawing.Image)(resources.GetObject("btnVerEscalafonFuncionario.Image")));
+            this.btnVerEscalafonFuncionario.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnVerEscalafonFuncionario.Name = "btnVerEscalafonFuncionario";
+            this.btnVerEscalafonFuncionario.Size = new System.Drawing.Size(115, 33);
+            this.btnVerEscalafonFuncionario.Text = "Escalafon Funcionario";
+            this.btnVerEscalafonFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnVerEscalafonFuncionario.Click += new System.EventHandler(this.btnVerEscalafonFuncionario_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnCancelar.Image = global::ControlHoras.Imagenes.button_cancel;
+            this.btnCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(53, 33);
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCancelar.ToolTipText = "Limpia la pantalla";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnMediasHoras
+            // 
+            this.btnMediasHoras.Image = global::ControlHoras.Imagenes.icon_hours;
+            this.btnMediasHoras.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnMediasHoras.Name = "btnMediasHoras";
+            this.btnMediasHoras.Size = new System.Drawing.Size(82, 33);
+            this.btnMediasHoras.Text = "Hs  Adicionales";
+            this.btnMediasHoras.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnMediasHoras.Click += new System.EventHandler(this.btnMediasHoras_Click);
+            // 
             // EscalafonForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -876,5 +888,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton btnVerEscalafonFuncionario;
         private System.Windows.Forms.ToolStripButton btnCancelar;
+        private System.Windows.Forms.ToolStripButton btnMediasHoras;
     }
 }

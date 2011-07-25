@@ -30,8 +30,8 @@
         {
             this.tvClientesServicios = new System.Windows.Forms.TreeView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.btnSeleccionarTodos = new System.Windows.Forms.Button();
             this.btnDeseleccionarTodos = new System.Windows.Forms.Button();
+            this.btnSeleccionarTodos = new System.Windows.Forms.Button();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -46,7 +46,9 @@
             this.tvClientesServicios.Name = "tvClientesServicios";
             this.tvClientesServicios.Size = new System.Drawing.Size(333, 270);
             this.tvClientesServicios.TabIndex = 0;
+            this.tvClientesServicios.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvClientesServicios_AfterCheck);
             this.tvClientesServicios.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvClientesServicios_NodeMouseClick);
+            this.tvClientesServicios.BeforeCheck += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvClientesServicios_BeforeCheck);
             // 
             // splitContainer1
             // 
@@ -67,18 +69,6 @@
             this.splitContainer1.SplitterDistance = 270;
             this.splitContainer1.TabIndex = 1;
             // 
-            // btnSeleccionarTodos
-            // 
-            this.btnSeleccionarTodos.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.btnSeleccionarTodos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSeleccionarTodos.Location = new System.Drawing.Point(41, 2);
-            this.btnSeleccionarTodos.Name = "btnSeleccionarTodos";
-            this.btnSeleccionarTodos.Size = new System.Drawing.Size(117, 23);
-            this.btnSeleccionarTodos.TabIndex = 0;
-            this.btnSeleccionarTodos.Text = "Seleccionar Todos";
-            this.btnSeleccionarTodos.UseVisualStyleBackColor = false;
-            this.btnSeleccionarTodos.Click += new System.EventHandler(this.btnSeleccionarTodos_Click);
-            // 
             // btnDeseleccionarTodos
             // 
             this.btnDeseleccionarTodos.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
@@ -90,6 +80,18 @@
             this.btnDeseleccionarTodos.Text = "Deseleccionar Todos";
             this.btnDeseleccionarTodos.UseVisualStyleBackColor = false;
             this.btnDeseleccionarTodos.Click += new System.EventHandler(this.btnDeseleccionarTodos_Click);
+            // 
+            // btnSeleccionarTodos
+            // 
+            this.btnSeleccionarTodos.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.btnSeleccionarTodos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSeleccionarTodos.Location = new System.Drawing.Point(41, 2);
+            this.btnSeleccionarTodos.Name = "btnSeleccionarTodos";
+            this.btnSeleccionarTodos.Size = new System.Drawing.Size(117, 23);
+            this.btnSeleccionarTodos.TabIndex = 0;
+            this.btnSeleccionarTodos.Text = "Seleccionar Todos";
+            this.btnSeleccionarTodos.UseVisualStyleBackColor = false;
+            this.btnSeleccionarTodos.Click += new System.EventHandler(this.btnSeleccionarTodos_Click);
             // 
             // TreeClientesServicios
             // 
