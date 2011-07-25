@@ -154,16 +154,16 @@ namespace ControlHoras
                 Excel._Workbook oWBook;
                 Excel._Worksheet oSheet;
                 bool tieneFeriados = false;
+                // Iniciar Excel y obtener el objeto Aplicacion.
+                ExApp = new Excel.Application();
                 try
                 {
-                    // Iniciar Excel y obtener el objeto Aplicacion.
-                    ExApp = new Excel.Application();
 
                     //Get a new workbook.
                     //oWB = (Excel._Workbook)(oXL.Workbooks.Add(Missing.Value));
                     oWBook = ExApp.Workbooks.Open(fileName, missing, readOnly, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing, missing);
                     oSheet = (Excel._Worksheet)oWBook.ActiveSheet;
-                   
+
 
                     // Mes
                     oSheet.Cells[1, 5] = dtpMesFacturacion.Value.Month + "/" + dtpMesFacturacion.Value.Year;
@@ -171,26 +171,27 @@ namespace ControlHoras
                     // Nombre
                     string nomServicio = nombreArchivo.Substring(nombreArchivo.LastIndexOf('-') + 1);
                     oSheet.Cells[3, 3] = nomServicio;
-
+                    Excel.Range MyRange;
                     int i = 0;
-                    foreach (DataDiaFacturacion ddf in facturacion.ListaDiaFacturacion) 
+                    foreach (DataDiaFacturacion ddf in facturacion.ListaDiaFacturacion)
                     {
                         oSheet.Cells[6 + i, 2] = ddf.Dia.ToString(@"dd/MM/yyyy");
-                        oSheet.Cells[6 + i, 3] = String.Format("{0}:{1}",ddf.HsComunes.Days*24+ddf.HsComunes.Hours,ddf.HsComunes.Minutes);
+                        oSheet.Cells[6 + i, 3] = String.Format("{0}:{1}", ddf.HsComunes.Days * 24 + ddf.HsComunes.Hours, ddf.HsComunes.Minutes);
                         oSheet.Cells[6 + i, 4] = String.Format("{0}:{1}", ddf.HsExtras.Days * 24 + ddf.HsExtras.Hours, ddf.HsExtras.Minutes); ;
                         if (esFeriado(ddf.Dia))
                         {
-                            Excel.Range MyRange;
                             MyRange = (Excel.Range)oSheet.get_Range(
-                                oSheet.Cells[6 + i,2], oSheet.Cells[6+i,4]);
+                                oSheet.Cells[6 + i, 2], oSheet.Cells[6 + i, 4]);
                             MyRange.Interior.Color = System.Drawing.Color.YellowGreen.ToArgb();
                             tieneFeriados = true;
                         }
                         i++;
                     }
 
-                    oSheet.Cells[31 + 6, 3] = String.Format("{0}:{1}:{2}", facturacion.TotalHsComunes.Days*24+facturacion.TotalHsComunes.Hours, facturacion.TotalHsComunes.Minutes, facturacion.TotalHsComunes.Seconds);
-                    oSheet.Cells[31 + 6, 4] = String.Format("{0}:{1}:{2}", facturacion.TotalHsExtras.Days * 24 + facturacion.TotalHsExtras.Hours, facturacion.TotalHsExtras.Minutes, facturacion.TotalHsExtras.Seconds);
+                    //MyRange = oSheet.get_Range(oSheet.Cells[31+6, 3], oSheet.Cells[31+6, 4]);
+                    //MyRange.Cells.NumberFormat = "[h]:mm";
+                    //oSheet.Cells[31 + 6, 3] = String.Format("{0}:{1}:{2}", facturacion.TotalHsComunes.Days*24+facturacion.TotalHsComunes.Hours, facturacion.TotalHsComunes.Minutes, facturacion.TotalHsComunes.Seconds);
+                    //oSheet.Cells[31 + 6, 4] = String.Format("{0}:{1}:{2}", facturacion.TotalHsExtras.Days * 24 + facturacion.TotalHsExtras.Hours, facturacion.TotalHsExtras.Minutes, facturacion.TotalHsExtras.Seconds);
 
                     if (tieneFeriados)
                     {
@@ -204,7 +205,6 @@ namespace ControlHoras
                     {
                         ExApp.Visible = false;
                         oWBook.SaveAs(a, missing, missing, missing, missing, missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Microsoft.Office.Interop.Excel.XlSaveConflictResolution.xlLocalSessionChanges, missing, missing, missing, true);
-                        ExApp.Quit();
                     }
                     else
                         ExApp.Visible = true;
@@ -217,6 +217,13 @@ namespace ControlHoras
                     errorMessage = String.Concat(errorMessage, " Line: ");
                     errorMessage = String.Concat(errorMessage, theException.Source);
                     throw theException;
+                }
+                finally
+                {
+                    if (!abrirExcel)
+                    {
+                        ExApp.Quit();
+                    }
                 }
             }
             else

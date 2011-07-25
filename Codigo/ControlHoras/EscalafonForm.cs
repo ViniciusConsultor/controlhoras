@@ -1244,6 +1244,20 @@ namespace ControlHoras
         {
            
         }
+
+        private void btnMediasHoras_Click(object sender, EventArgs e)
+        {
+            ServiciosFuncionariosSumarHsComunes sfshc = new ServiciosFuncionariosSumarHsComunes();
+            try
+            {
+                sfshc.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
         
     }
 }

@@ -126,7 +126,7 @@ namespace ControlHoras
 
                 bool cobraextra = (tc.CobraHsExtras == 1);
 
-                List<DataDiaFacturacion> liq = datos.LiquidarunEmpleado(emp, tc);                
+                List<DataDiaFacturacion> liq = datos.LiquidarUnEmpleado(emp, tc);                
 
                 List<int> obs = datos.obtenerObsCambios(nroEmp, mesAct);                
 
@@ -532,7 +532,7 @@ namespace ControlHoras
                         
                         //Observaciones
                         auxdt = new DateTime(mesAct.Year, mesAct.Month, auxInt);
-                        obs = datos.obtenerMotivosCambiosDiarios2(nroEmp, auxdt);
+                        obs = datos.obtenerMotivosCambiosDiarios(null,null,nroEmp, auxdt);
                         if (obs.Count > 0)
                         {
                             st = "";
@@ -708,7 +708,7 @@ namespace ControlHoras
                 string nroEmp = EmpleadoLBL.Text.Substring(0,EmpleadoLBL.Text.IndexOf('-')-1);
                 try
                 {
-                    List<MotIVOsCamBiosDiARioS> mot = datos.obtenerMotivosCambiosDiarios2(int.Parse(nroEmp), fecha);
+                    List<MotIVOsCamBiosDiARioS> mot = datos.obtenerMotivosCambiosDiarios(null,null,int.Parse(nroEmp), fecha);
 
                     if (mot.Count > 0)
                     {

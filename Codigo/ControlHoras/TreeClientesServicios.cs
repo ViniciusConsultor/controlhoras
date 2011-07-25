@@ -13,17 +13,18 @@ namespace ControlHoras
     public partial class TreeClientesServicios : UserControl
     {
         private IDatos datos;
-        
+        private bool byHand;
+        //private bool nodeParentPrevStates;
+        private TreeViewAction action;
 
         public TreeClientesServicios()
         {
             InitializeComponent();
-            
         }
 
         private void TreeClientesServicios_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         /// <summary>
@@ -144,35 +145,58 @@ namespace ControlHoras
 
         private void tvClientesServicios_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (e.Node.Text.StartsWith("Cliente:"))
+            //seleccionarNodo(e.Node);
+        }
+
+        private void seleccionarNodo(TreeNode nodo)
+        {
+            bool byHand_prev;
+            if ((action == TreeViewAction.ByMouse || action == TreeViewAction.ByKeyboard) || byHand)
             {
-                foreach (TreeNode tn in e.Node.Nodes)
+                if (nodo.Text.StartsWith("Cliente:"))
                 {
-                    tn.Checked = e.Node.Checked;
-                }
-            }
-            else if (e.Node.Text.StartsWith("Servicio:"))
-            {
-                if (e.Node.Checked && !e.Node.Parent.Checked)
-                    e.Node.Parent.Checked = true;
-                else if (!e.Node.Checked)
-                {
-                    bool ningunoSeleccionado = true;
-                    foreach (TreeNode tnc in e.Node.Parent.Nodes)
+                    byHand_prev = byHand;
+                    byHand = false;
+                    foreach (TreeNode tn in nodo.Nodes)
                     {
-                        if (tnc.Checked)
+                        tn.Checked = nodo.Checked;
+                    }
+                    byHand = byHand_prev;
+                }
+                else if (nodo.Text.StartsWith("Servicio:"))
+                {
+                    if (nodo.Checked && !nodo.Parent.Checked)
+                    {
+                        byHand_prev = byHand;
+                        byHand = false;
+                        nodo.Parent.Checked = true;
+                        byHand = byHand_prev;
+                    }
+                    else if (!nodo.Checked)
+                    {
+                        bool ningunoSeleccionado = true;
+                        foreach (TreeNode tnc in nodo.Parent.Nodes)
                         {
-                            ningunoSeleccionado = false;
-                            break;
+                            if (tnc.Checked)
+                            {
+                                ningunoSeleccionado = false;
+                                break;
+                            }
+                        }
+                        if (ningunoSeleccionado)
+                        {
+                            byHand_prev = byHand;
+                            byHand = false;
+                            nodo.Parent.Checked = false;
+                            byHand = byHand_prev;
                         }
                     }
-                    if (ningunoSeleccionado)
-                        e.Node.Parent.Checked = false;
                 }
-            }
-            
 
+            }
         }
+
+
 
         private void btnSeleccionarTodos_Click(object sender, EventArgs e)
         {
@@ -222,5 +246,71 @@ namespace ControlHoras
 
         }
 
+
+        public void marcarClienteServicio(int NroCliente, int NroServicio, bool chequeado)
+        {
+            try
+            {
+                byHand = true;
+                bool encontrado = false;
+                foreach (TreeNode tn in tvClientesServicios.Nodes)
+                {
+                    if (tn.Text.StartsWith("Cliente:") && tn.Text.Contains(" " + NroCliente.ToString() + " |"))
+                    {
+                        foreach (TreeNode hijo in tn.Nodes)
+                        {
+                            if (hijo.Text.StartsWith("Servicio:") && hijo.Text.Contains(NroServicio.ToString()))
+                            {
+                                hijo.Checked = true;
+                                encontrado = true;
+                                //seleccionarNodo(hijo);
+                                break;
+                            }
+                        }
+                        if (encontrado)
+                            break;
+                    }
+                }
+                tvClientesServicios.Update();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                byHand = false;
+            }
+        }
+
+
+        public void seleccionarCliente(int NroCliente, bool chequeado)
+        {
+            try
+            {
+                foreach (TreeNode tn in tvClientesServicios.Nodes)
+                {
+                    if (tn.Text.StartsWith("Cliente:") && tn.Text.Contains(" " + NroCliente.ToString() + "|"))
+                    {
+                        tn.Checked = chequeado;
+                        break;                  
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void tvClientesServicios_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            seleccionarNodo(e.Node);
+        }
+
+        private void tvClientesServicios_BeforeCheck(object sender, TreeViewCancelEventArgs e)
+        {
+            action = e.Action;
+        }
     }
 }
