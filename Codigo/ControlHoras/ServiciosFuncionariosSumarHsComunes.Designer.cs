@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnGuardar = new System.Windows.Forms.ToolStripButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtFiltro = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnFiltrarFuncionarios = new System.Windows.Forms.Button();
             this.lbFuncionarios = new System.Windows.Forms.CheckedListBox();
-            this.btnClearFiltro = new System.Windows.Forms.Button();
             this.cbSeleccionados = new System.Windows.Forms.CheckBox();
+            this.btnClearFiltro = new System.Windows.Forms.Button();
+            this.btnFiltrarFuncionarios = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.ToolStripButton();
             this.tcClientesServicios = new ControlHoras.TreeClientesServicios();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -51,16 +51,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(738, 36);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Image = global::ControlHoras.Imagenes.filesave;
-            this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(50, 33);
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // label1
             // 
@@ -97,34 +87,15 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Filtro";
             // 
-            // btnFiltrarFuncionarios
-            // 
-            this.btnFiltrarFuncionarios.Image = global::ControlHoras.Imagenes.check_ok;
-            this.btnFiltrarFuncionarios.Location = new System.Drawing.Point(651, 62);
-            this.btnFiltrarFuncionarios.Name = "btnFiltrarFuncionarios";
-            this.btnFiltrarFuncionarios.Size = new System.Drawing.Size(29, 22);
-            this.btnFiltrarFuncionarios.TabIndex = 7;
-            this.btnFiltrarFuncionarios.UseVisualStyleBackColor = true;
-            this.btnFiltrarFuncionarios.Click += new System.EventHandler(this.btnFiltrarFuncionarios_Click);
-            // 
             // lbFuncionarios
             // 
+            this.lbFuncionarios.CheckOnClick = true;
             this.lbFuncionarios.FormattingEnabled = true;
             this.lbFuncionarios.Location = new System.Drawing.Point(373, 108);
             this.lbFuncionarios.Name = "lbFuncionarios";
             this.lbFuncionarios.Size = new System.Drawing.Size(353, 289);
             this.lbFuncionarios.TabIndex = 8;
             this.lbFuncionarios.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.lbFuncionarios_ItemCheck);
-            // 
-            // btnClearFiltro
-            // 
-            this.btnClearFiltro.Image = global::ControlHoras.Imagenes.check_error;
-            this.btnClearFiltro.Location = new System.Drawing.Point(682, 62);
-            this.btnClearFiltro.Name = "btnClearFiltro";
-            this.btnClearFiltro.Size = new System.Drawing.Size(29, 22);
-            this.btnClearFiltro.TabIndex = 10;
-            this.btnClearFiltro.UseVisualStyleBackColor = true;
-            this.btnClearFiltro.Click += new System.EventHandler(this.btnClearFiltro_Click);
             // 
             // cbSeleccionados
             // 
@@ -137,6 +108,36 @@
             this.cbSeleccionados.Text = "Solo Seleccionados";
             this.cbSeleccionados.UseVisualStyleBackColor = true;
             this.cbSeleccionados.CheckedChanged += new System.EventHandler(this.cbSeleccionados_CheckedChanged);
+            // 
+            // btnClearFiltro
+            // 
+            this.btnClearFiltro.Image = global::ControlHoras.Imagenes.check_error;
+            this.btnClearFiltro.Location = new System.Drawing.Point(682, 62);
+            this.btnClearFiltro.Name = "btnClearFiltro";
+            this.btnClearFiltro.Size = new System.Drawing.Size(29, 22);
+            this.btnClearFiltro.TabIndex = 10;
+            this.btnClearFiltro.UseVisualStyleBackColor = true;
+            this.btnClearFiltro.Click += new System.EventHandler(this.btnClearFiltro_Click);
+            // 
+            // btnFiltrarFuncionarios
+            // 
+            this.btnFiltrarFuncionarios.Image = global::ControlHoras.Imagenes.check_ok;
+            this.btnFiltrarFuncionarios.Location = new System.Drawing.Point(651, 62);
+            this.btnFiltrarFuncionarios.Name = "btnFiltrarFuncionarios";
+            this.btnFiltrarFuncionarios.Size = new System.Drawing.Size(29, 22);
+            this.btnFiltrarFuncionarios.TabIndex = 7;
+            this.btnFiltrarFuncionarios.UseVisualStyleBackColor = true;
+            this.btnFiltrarFuncionarios.Click += new System.EventHandler(this.btnFiltrarFuncionarios_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Image = global::ControlHoras.Imagenes.filesave;
+            this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(50, 33);
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // tcClientesServicios
             // 
