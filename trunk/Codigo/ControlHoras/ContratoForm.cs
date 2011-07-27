@@ -261,6 +261,9 @@ namespace ControlHoras
                         {
                             cmbDespuesDeHs.SelectedIndex = cmbDespuesDeHs.Items.IndexOf(con.getPagarExtrasDespuesDeHs().Value.ToString());
                         }
+                        if (con.getCantidadDeHorasComunes() != null)
+                            HsComunesMTB.Text = con.getCantidadDeHorasComunes().Value.ToString();
+
                     }
                     if (con.getPagaDescanso())
                         PagaDescansoCKBX.Checked = true;
@@ -432,12 +435,24 @@ namespace ControlHoras
                         monto = int.Parse(MontoTB.Text);
                     int nroCon = CalcNroContrato(numCli, numSer);
                     int? PagarExtrasLuegoDeHs;
+                    int? CantidadHsComunes;
                     if (hx)
+                    {
                         PagarExtrasLuegoDeHs = int.Parse(cmbDespuesDeHs.SelectedItem.ToString());
-                    else
-                        PagarExtrasLuegoDeHs = null;
+                        if (HsComunesMTB.Text == "")
+                            CantidadHsComunes = 0;
+                        else
+                            CantidadHsComunes = int.Parse(HsComunesMTB.Text);
+                    }
 
-                    ConSeguridadFisica con = new ConSeguridadFisica(pd, hx, 0, 0, 0, dti, dtf, AjusteTB.Text, ObsTB.Text, costo, monto, PagarExtrasLuegoDeHs);
+                    else
+                    {
+                        PagarExtrasLuegoDeHs = null;
+                        CantidadHsComunes = null;
+                    }
+
+
+                    ConSeguridadFisica con = new ConSeguridadFisica(pd, hx, 0, 0, 0, dti, dtf, AjusteTB.Text, ObsTB.Text, costo, monto, PagarExtrasLuegoDeHs, CantidadHsComunes);
 
                     // ACA GUARDO TODOS LOS DATOS DEL DATAGRIDVIEW
 
@@ -467,8 +482,7 @@ namespace ControlHoras
                     }
 
                     if (datos.existeContrato(nroCon))
-                        sistema.modificarContrato(nroCon, con);
-                       
+                        sistema.modificarContrato(nroCon, con);                       
                     else
                         sistema.altaContrato(nroCon, con);
 
@@ -698,6 +712,7 @@ namespace ControlHoras
             AjusteTB.Text = "";
             ObsTB.Text = "";
             MontoTB.Text = "";
+            HsComunesMTB.Text = "";
 
             CargaHorariaDGV.Rows.Clear();
         }
@@ -724,11 +739,13 @@ namespace ControlHoras
         private void HorasExtrasCHK_CheckedChanged(object sender, EventArgs e)
         {
             cmbDespuesDeHs.Enabled = HorasExtrasCHK.Checked;
+            HsComunesMTB.Enabled = HorasExtrasCHK.Checked;
         }
 
         private void ContratoForm_Load(object sender, EventArgs e)
         {
             cmbDespuesDeHs.SelectedIndex = 0;
+            HsComunesMTB.Text = "";
         }
         
     }
