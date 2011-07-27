@@ -7,3 +7,8 @@ alter table empleados add foreign key (IdCargo) references TiposCargos(IdCargo);
 -- Creamos tabla HsComunesAdicionalesLiquidacionEmpleado
 CREATE TABLE `hscomunesadicionalesliquidacionempleado` (`IdHsComunesAdicionalesLiquidacionEmpelado` int(11) NOT NULL AUTO_INCREMENT, `ClienteEmpleadoCorrespondiente` varchar(20) NOT NULL, `ClienteOEmpleado` varchar(8) NOT NULL,  `HsAdicionalesEnSegs` long, PRIMARY KEY (`IdHsComunesAdicionalesLiquidacionEmpelado`));
 create index IX_CLIENTEEMPLEADO on HsComunesAdicionalesLiquidacionEmpleado(ClienteOEmpleado,ClienteEmpleadoCorrespondiente);
+
+/* issue 93*/
+-- Agregamos el campo que determina la cant de hs comunes que paga el cliente
+ALTER TABLE `trustdb`.`contratos` ADD COLUMN `CantHsComunes` SMALLINT(6) NULL DEFAULT NULL  AFTER `PagarExtrasDespuesDeHs` ;
+
