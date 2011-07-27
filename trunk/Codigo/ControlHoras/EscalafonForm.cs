@@ -17,9 +17,9 @@ namespace ControlHoras
     {
         IClientesServicios sistema;// = ControladorClientesServicios.getInstance();
         IEmpleados sistemaEmp;// = ControladorEmpleados.getInstance();
-        IDatos datos;
-        ClientEs cliente = null;
+        IDatos datos;       
         int? nroClienteCargado = null;
+        int? nroServicioCargado = null;
         ContraToS con;
         ConSeguridadFisica contrato = null;
 
@@ -237,6 +237,9 @@ namespace ControlHoras
                         GuardarBTN.Enabled = false;
                         VerContratoBTN.Enabled = false;
                         splitContainer1.Panel2.Enabled = false;
+
+                        nroClienteCargado = null;
+                        nroServicioCargado = null;
                         
                         MessageBox.Show("No existe el cliente numero " + mtCliente.Text, "No existe cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -275,19 +278,22 @@ namespace ControlHoras
             {
                 if (nroClienteCargado != null)
                 {
-
                     // seteo el servicio.                
                     SERVicIoS servicio;
 
                     try
                     {
-                        int nroCliente = int.Parse(mtCliente.Text);
-                        if (datos.existeCliente(nroCliente))
-                        {
-                            int nroServicio = int.Parse(mtServicio.Text);
-                            limpiarForm();
+                        int nroCliente = nroClienteCargado.Value;                        
+                        int nroServicio = int.Parse(mtServicio.Text);
+                        limpiarForm();
+                        LimpiarHporCubrir();
 
-                            servicio = getServicioCliente(nroCliente, nroServicio);
+                        //servicio = getServicioCliente(nroCliente, nroServicio);
+
+                        if (datos.existeClienteServicio(nroCliente, nroServicio))
+                        {
+                            servicio = datos.obtenerServicioCliente(nroCliente, nroServicio);
+                            nroServicioCargado = nroServicio;
                             txtServicio.Text = servicio.Nombre;
 
                             // TRAEMOS EL CONTRATO
@@ -297,8 +303,13 @@ namespace ControlHoras
                         }
                         else
                         {
-                            MessageBox.Show("No existe el cliente numero " + mtCliente.Text, "No existe cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            GuardarBTN.Enabled = false;
+                            VerContratoBTN.Enabled = false;
+                            GraficosPL.Visible = false;
+                            splitContainer1.Panel2.Enabled = false;                            
+                            MessageBox.Show("No existe el servicio número " + nroServicio + " en el cliente " + nroCliente);
                         }
+                        
                     }
                     catch (Exception ex)
                     {
@@ -318,6 +329,7 @@ namespace ControlHoras
            
         }
 
+        //Este procedimiento no esta siendo usado
         private SERVicIoS getServicioCliente(int nroCli, int nroServicio)
         {
             try
@@ -337,8 +349,10 @@ namespace ControlHoras
 
         private void AnteriorBTN_Click(object sender, EventArgs e)
         {
-            int numCli = int.Parse(mtCliente.Text);
-            ind = numerosSer.IndexOf(int.Parse(mtServicio.Text));
+            //int numCli = int.Parse(mtCliente.Text);
+            int numCli = nroClienteCargado.Value;
+            //ind = numerosSer.IndexOf(int.Parse(mtServicio.Text));
+            ind = numerosSer.IndexOf(nroServicioCargado.Value);
             if ((ind - 1) < 0)
                 ind = cant - 1;
             else
@@ -351,8 +365,10 @@ namespace ControlHoras
 
         private void PosteriorBTN_Click(object sender, EventArgs e)
         {
-            int numCli = int.Parse(mtCliente.Text);
-            ind = numerosSer.IndexOf(int.Parse(mtServicio.Text));
+            //int numCli = int.Parse(mtCliente.Text);
+            int numCli = nroClienteCargado.Value;
+            //ind = numerosSer.IndexOf(int.Parse(mtServicio.Text));
+            ind = numerosSer.IndexOf(nroServicioCargado.Value);
             ind = (ind + 1) % cant;
 
             limpiarForm();           
@@ -368,8 +384,9 @@ namespace ControlHoras
                 //Servicio serv = sistema.obtenerServicioCliente(numCli, numerosSer[ind]);
                 Servicio serv = sistema.obtenerServicioCliente(numCli, numSer);
 
+                nroServicioCargado = serv.getNumero();
                 mtServicio.Text = serv.getNumero().ToString();
-                txtServicio.Text = serv.getNombre();
+                txtServicio.Text = serv.getNombre();                
 
                 int nroCon = CalcNroContrato(numCli, numSer);
                 if (!datos.existeContrato(nroCon))
@@ -386,10 +403,7 @@ namespace ControlHoras
                 }
                 else
                 {
-                    GraficosPL.Visible = true;
-                    //ConLBL.Visible = true;
-                    //cubiertoTB.Visible = true;
-                    //CubiertoLBL.Visible = true;                    
+                    GraficosPL.Visible = true;                                        
                     GuardarBTN.Enabled = true;
                     splitContainer1.Panel2.Enabled = true;
                     VerContratoBTN.Enabled = true;
@@ -1010,10 +1024,10 @@ namespace ControlHoras
              {
                  
                  if (ValidarEscalafon())
-                 {
-                     
+                 {                     
                      int numCli = nroClienteCargado.Value;
-                     int numSer = int.Parse(mtServicio.Text);
+                     //int numSer = int.Parse(mtServicio.Text);
+                     int numSer = nroServicioCargado.Value;
                      int nroCon = CalcNroContrato(numCli, numSer);
                      Escalafon es = new Escalafon();
                      es.Cubierto = ContCubierto;
@@ -1209,7 +1223,8 @@ namespace ControlHoras
 
         private void ResetearForm()
         {
-            if (mtCliente.Text != "" && mtServicio.Text != "" && dgEscalafon.Rows.Count > 0)
+            //if (mtCliente.Text != "" && mtServicio.Text != "" && dgEscalafon.Rows.Count > 0)
+            if (nroClienteCargado != null && nroServicioCargado != null) 
             {
                 DialogResult dg = MessageBox.Show(this, "Guardar antes de cancelar?", "Guardar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dg == DialogResult.Yes)
@@ -1219,6 +1234,7 @@ namespace ControlHoras
             }
             
             nroClienteCargado = null;
+            nroServicioCargado = null;
             GuardarBTN.Enabled = false;
 
             mtCliente.Text = "";
@@ -1226,11 +1242,13 @@ namespace ControlHoras
             mtServicio.Text = "";
             txtServicio.Text = "";
             dgEscalafon.Rows.Clear();
+            LimpiarHporCubrir();
         }
 
         private void EscalafonForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (mtCliente.Text != "" && mtServicio.Text != "" && dgEscalafon.Rows.Count > 0)
+            //if (mtCliente.Text != "" && mtServicio.Text != "" && dgEscalafon.Rows.Count > 0)
+            if (nroClienteCargado != null && nroServicioCargado != null)
             {
                 DialogResult dg = MessageBox.Show(this, "Desea Guardar antes de salir?","Guardar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dg == DialogResult.Yes)
@@ -1238,7 +1256,7 @@ namespace ControlHoras
                     GuardarBTN.PerformClick();
                 }
             }
-        }
+        }       
 
         private void mtCliente_Leave(object sender, EventArgs e)
         {
