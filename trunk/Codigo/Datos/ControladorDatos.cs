@@ -2465,7 +2465,7 @@ namespace Datos
                 throw me;
             }
         }
-        public void modificarContrato(int numeroContrato, DateTime FechaInicial, DateTime? FechaFinal, bool Costo, bool HorasExtras, bool PagaDescanso, string Ajuste, string Observaciones, float Monto, int? PagarExtrasDespuesDeHs)
+        public void modificarContrato(int numeroContrato, DateTime FechaInicial, DateTime? FechaFinal, bool Costo, bool HorasExtras, bool PagaDescanso, string Ajuste, string Observaciones, float Monto, int? PagarExtrasDespuesDeHs, int? CantidadDeHorasComunes)
         {
             try
             {  
@@ -2494,6 +2494,11 @@ namespace Datos
                     con.PagarExtrasDespuesDeHs = (short)PagarExtrasDespuesDeHs;
                 else
                     con.PagarExtrasDespuesDeHs = null;
+                if (CantidadDeHorasComunes != null)
+                    con.CantHsComunes = (short)CantidadDeHorasComunes;
+                else
+                    con.CantHsComunes = null;
+
                 database.SubmitChanges();
             }
             catch (Exception e)
@@ -2528,6 +2533,7 @@ namespace Datos
                 }
                 st += " VALUES(";
                 st += "'" + Contrato.Ajuste.ToString() + "', ";
+                st += Contrato.CantHsComunes.ToString() + ", ";
                 st += Contrato.Costo.ToString() + ", ";
                 st += Contrato.CostoFijo.ToString() + ", ";
                 st += "NULL, ";
@@ -4475,8 +4481,8 @@ namespace Datos
                     cobraHsAdicionalesComoComunes = false;
                 }
                 else
-                {
-                    HsComunesAdicionales = new TimeSpan(0, 0, (int)segs.Single());
+                {                    
+                    HsComunesAdicionales = new TimeSpan(0, 0, int.Parse(segs.Single().ToString()));
                     cobraHsAdicionalesComoComunes = true;
                 }
                 List<String> ListaServiciosPagan = new List<string>();
