@@ -2465,7 +2465,7 @@ namespace Datos
                 throw me;
             }
         }
-        public void modificarContrato(int numeroContrato, DateTime FechaInicial, DateTime? FechaFinal, bool Costo, bool HorasExtras, bool PagaDescanso, string Ajuste, string Observaciones, float Monto, int? PagarExtrasDespuesDeHs, int? CantidadDeHorasComunes)
+        public void modificarContrato(int numeroContrato, DateTime FechaInicial, DateTime? FechaFinal, bool Costo, bool HorasExtras, bool PagaDescanso, string Ajuste, string Observaciones, float Monto, int? PagarExtrasDespuesDeHs)
         {
             try
             {  
@@ -2493,11 +2493,7 @@ namespace Datos
                 if (PagarExtrasDespuesDeHs != null)
                     con.PagarExtrasDespuesDeHs = (short)PagarExtrasDespuesDeHs;
                 else
-                    con.PagarExtrasDespuesDeHs = null;
-                if (CantidadDeHorasComunes != null)
-                    con.CantHsComunes = (short)CantidadDeHorasComunes;
-                else
-                    con.CantHsComunes = null;
+                    con.PagarExtrasDespuesDeHs = null;                
 
                 database.SubmitChanges();
             }
@@ -2532,8 +2528,7 @@ namespace Datos
                         st += columna + ", ";
                 }
                 st += " VALUES(";
-                st += "'" + Contrato.Ajuste.ToString() + "', ";
-                st += Contrato.CantHsComunes.ToString() + ", ";
+                st += "'" + Contrato.Ajuste.ToString() + "', ";                
                 st += Contrato.Costo.ToString() + ", ";
                 st += Contrato.CostoFijo.ToString() + ", ";
                 st += "NULL, ";

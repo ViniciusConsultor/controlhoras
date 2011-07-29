@@ -278,8 +278,7 @@ namespace Logica
             if (cont.getHorasExtras())
             {
                 con.HorasExtras = 1;
-                con.PagarExtrasDespuesDeHs = (short)cont.getPagarExtrasDespuesDeHs().Value;
-                con.CantHsComunes = (short)cont.getCantidadDeHorasComunes().Value;
+                con.PagarExtrasDespuesDeHs = (short)cont.getPagarExtrasDespuesDeHs().Value;                
             }
             else
                 con.HorasExtras = 0;
@@ -332,7 +331,7 @@ namespace Logica
         {
             ContraToS con = datos.obtenerContrato(NumeroContrato);
 
-            ConSeguridadFisica aux = new ConSeguridadFisica((con.PagaDescanso  == (sbyte)1) ? true : false, (con.HorasExtras == (sbyte)1) ? true : false, 0, 0, 0, con.FechaIni.Value, con.FechaFin, con.Ajuste, con.Observaciones, (con.CostoFijo == (sbyte)1) ? true : false, con.Costo.Value,con.PagarExtrasDespuesDeHs, con.CantHsComunes);
+            ConSeguridadFisica aux = new ConSeguridadFisica((con.PagaDescanso  == (sbyte)1) ? true : false, (con.HorasExtras == (sbyte)1) ? true : false, 0, 0, 0, con.FechaIni.Value, con.FechaFin, con.Ajuste, con.Observaciones, (con.CostoFijo == (sbyte)1) ? true : false, con.Costo.Value,con.PagarExtrasDespuesDeHs);
 
             LineaDeHoras lhs = null;
             HorarioXDia hor = null;
@@ -359,7 +358,7 @@ namespace Logica
         {
             try
             {
-                datos.modificarContrato(NumeroContrato, Contrato.getFechaIni(), Contrato.getFechaFin(), Contrato.GetCostoFijo(), Contrato.getHorasExtras(), Contrato.getPagaDescanso(), Contrato.getAjuste(), Contrato.getObservaciones(), Contrato.getMonto(), Contrato.getPagarExtrasDespuesDeHs(), Contrato.getCantidadDeHorasComunes());
+                datos.modificarContrato(NumeroContrato, Contrato.getFechaIni(), Contrato.getFechaFin(), Contrato.GetCostoFijo(), Contrato.getHorasExtras(), Contrato.getPagaDescanso(), Contrato.getAjuste(), Contrato.getObservaciones(), Contrato.getMonto(), Contrato.getPagarExtrasDespuesDeHs());
 
                 datos.eliminarLineasContrato(NumeroContrato);
 
