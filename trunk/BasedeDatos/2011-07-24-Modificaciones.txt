@@ -12,3 +12,8 @@ create index IX_CLIENTEEMPLEADO on HsComunesAdicionalesLiquidacionEmpleado(Clien
 -- Agregamos el campo que determina la cant de hs comunes que paga el cliente
 ALTER TABLE `trustdb`.`contratos` ADD COLUMN `CantHsComunes` SMALLINT(6) NULL DEFAULT NULL  AFTER `PagarExtrasDespuesDeHs` ;
 
+
+/* issue 69*/
+-- Agregamos la consulta de empleados que cumple con esta issue
+INSERT INTO CONSULTASEMPLEADOS VALUES (0,"FUNCIONARIOS QUE TRABAJARON EN DESCANSO", "Devuelve el número de empleado, apellido, nombre, cargo y fecha de los empleados que trabajaron en sus descansos dentro de un período determinado.", "SELECT CAST( concat_ws(',',emp.NroEmpleado, emp.Apellido, emp.Nombre) as CHAR) as Empleado, c.Nombre as Cargo, h.fechacorrespondiente as Fecha FROM empleados emp, TiposCargos c, horasgeneradasescalafon h WHERE h.FechaCorrespondiente between 'FECHADESDE' and 'FECHAHASTA' and h.nroempleado != 9998 and h.nroempleado != 9999 and emp.nroempleado=h.nroempleado GROUP BY h.nroempleado, h.fechacorrespondiente HAVING count(distinct(h.descanso))>1 ORDER BY h.nroempleado",1);
+
