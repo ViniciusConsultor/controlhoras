@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2011-07-24 23:54:04Z
+#region Auto-generated classes for trustdb database on 2011-07-29 16:08:27Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2011-07-24 23:54:04Z
+// Auto-generated from trustdb on 2011-07-29 16:08:27Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -5206,7 +5206,7 @@ namespace Datos
 		#region Children
 
 		private EntitySet<HoRaRioEScalaFOn> _hoRaRioEsCalaFoN;
-		[Association(Storage = "_hoRaRioEsCalaFoN", OtherKey = "IDEscalafon,IDEscalafonEmpleado", ThisKey = "IDEscalafon,IDEscalafonEmpleado", Name = "FK_horasEscalEmpleados")]
+		[Association(Storage = "_hoRaRioEsCalaFoN", OtherKey = "IDEscalafonEmpleado,IDEscalafon", ThisKey = "IDEscalafonEmpleado,IDEscalafon", Name = "FK_horasEscalEmpleados")]
 		[DebuggerNonUserCode]
 		public EntitySet<HoRaRioEScalaFOn> HoRaRioEScalaFOn
 		{
@@ -7318,7 +7318,7 @@ namespace Datos
 		#region Parents
 
 		private EntityRef<EScalaFOneMpLeadO> _esCalaFoNeMpLeadO;
-		[Association(Storage = "_esCalaFoNeMpLeadO", OtherKey = "IDEscalafon,IDEscalafonEmpleado", ThisKey = "IDEscalafon,IDEscalafonEmpleado", Name = "FK_horasEscalEmpleados", IsForeignKey = true)]
+		[Association(Storage = "_esCalaFoNeMpLeadO", OtherKey = "IDEscalafonEmpleado,IDEscalafon", ThisKey = "IDEscalafonEmpleado,IDEscalafon", Name = "FK_horasEscalEmpleados", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public EScalaFOneMpLeadO EScalaFOneMpLeadO
 		{
@@ -7340,13 +7340,13 @@ namespace Datos
 					if (value != null)
 					{
 						value.HoRaRioEScalaFOn.Add(this);
-						_ideScalafon = value.IDEscalafon;
 						_ideScalafonEmpleado = value.IDEscalafonEmpleado;
+						_ideScalafon = value.IDEscalafon;
 					}
 					else
 					{
-						_ideScalafon = default(uint);
 						_ideScalafonEmpleado = default(uint);
+						_ideScalafon = default(uint);
 					}
 				}
 			}
@@ -7891,7 +7891,7 @@ namespace Datos
 		partial void OnClienteOeMpleadoChanged();
 		partial void OnClienteOeMpleadoChanging(string value);
 		partial void OnHsAdicionalesEnSegsChanged();
-		partial void OnHsAdicionalesEnSegsChanging(int? value);
+		partial void OnHsAdicionalesEnSegsChanging(string value);
 		partial void OnIDHsComunesAdicionalesLiquidacionEmpeladoChanged();
 		partial void OnIDHsComunesAdicionalesLiquidacionEmpeladoChanging(int value);
 
@@ -7949,12 +7949,12 @@ namespace Datos
 
 		#endregion
 
-		#region int? HsAdicionalesEnSegs
+		#region string HsAdicionalesEnSegs
 
-		private int? _hsAdicionalesEnSegs;
+		private string _hsAdicionalesEnSegs;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_hsAdicionalesEnSegs", Name = "HsAdicionalesEnSegs", DbType = "int", AutoSync = AutoSync.Never)]
-		public int? HsAdicionalesEnSegs
+		[Column(Storage = "_hsAdicionalesEnSegs", Name = "HsAdicionalesEnSegs", DbType = "mediumtext", AutoSync = AutoSync.Never)]
+		public string HsAdicionalesEnSegs
 		{
 			get
 			{
