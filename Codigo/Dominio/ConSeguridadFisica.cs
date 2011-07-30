@@ -9,6 +9,8 @@ namespace Logica
     {
         private bool PagaDescanso;
         private bool PagaHorasExtra;
+        private bool HorasExtrasDeterminadas;
+        private string[] HsExtrasPorDia;  
         private int TotalHorasNormales;
         private int TotalHorasExtras;
         private int TotalVigilantes; //no me acuerdo que es esto
@@ -27,7 +29,7 @@ namespace Logica
         //    Lineas = new List<LineaDeHoras>();
         //}
 
-        public ConSeguridadFisica(bool pDescanso, bool horasext, int tothnormales, int tothextras, int totvigilantes, DateTime fechaini, DateTime? fechafin, string ajuste, string obs, bool fijo, float costo, int? pagarExtrasDespuesDe)
+        public ConSeguridadFisica(bool pDescanso, bool horasext, int tothnormales, int tothextras, int totvigilantes, DateTime fechaini, DateTime? fechafin, string ajuste, string obs, bool fijo, float costo, int? pagarExtrasDespuesDe, bool HsExtrasDet, string[] HsExtXDia)
             : base(fechaini, fechafin, ajuste, obs, fijo, costo)
         {
             PagaDescanso = pDescanso;
@@ -37,6 +39,8 @@ namespace Logica
             TotalVigilantes = totvigilantes;
             PagarExtrasDespuesDeHs = pagarExtrasDespuesDe;            
             Lineas = new List<LineaDeHoras>();
+            HorasExtrasDeterminadas = HsExtrasDet;
+            HsExtrasPorDia = HsExtXDia; 
         }
 
         public DateTime getFechaIni()
@@ -148,6 +152,16 @@ namespace Logica
                     return 6;
             }
             return -1;            
+        }
+
+        public bool getHorasExtrasDeterminadas()
+        {
+            return HorasExtrasDeterminadas;
+        }
+
+        public string[] getHorasExPorDia()
+        {
+            return HsExtrasPorDia;
         }
     }
 }

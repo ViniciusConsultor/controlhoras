@@ -297,8 +297,8 @@ namespace Datos
         bool existeContrato(int NumeroContrato);
         ContraToS obtenerContrato(int NumeroContrato);
         ContraToS obtenerContrato(int NumeroCliente, int NumeroServicio);
-        void modificarContrato(int numeroContrato, DateTime FechaInicial, DateTime? FechaFinal, bool Costo, bool HorasExtras, bool PagaDescanso, string Ajuste, string Observaciones, float Monto, int? PagarExtrasDespuesDeHs);
-        void altaContrato(ContraToS Contrato, List<LineAshOrAs> Lineas);
+        void modificarContrato(int numeroContrato, DateTime FechaInicial, DateTime? FechaFinal, bool Costo, bool HorasExtras, bool PagaDescanso, string Ajuste, string Observaciones, float Monto, int? PagarExtrasDespuesDeHs, bool HsExtrasDet, string[] HsExtrasPorDia);
+        void altaContrato(ContraToS Contrato, List<LineAshOrAs> Lineas, HoRaSExtrasContraToS HorasExtrasPorDia);
         void eliminarLineasContrato(int NumeroContrato);
         void guardarLineasContrato(List<LineAshOrAs> Lineas);
         
@@ -481,5 +481,7 @@ namespace Datos
         List<HoRaSGeneraDaSEScalaFOn> obtenerDescansos(int NroEmpleado, DateTime Mes);
 
         void CalcularDescansos();
+
+        HoRaSExtrasContraToS obtenerHorasExtrasContrato(uint IdContrato);
     }
 }
