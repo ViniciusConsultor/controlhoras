@@ -324,31 +324,70 @@ namespace Logica
                 i++;
             }
 
-            datos.altaContrato(con, lhs);
+            HoRaSExtrasContraToS HsExt = null;
+            con.HorasExtrasDeterminadas = (cont.getHorasExtrasDeterminadas()) ? (sbyte)1 : (sbyte)0;
+            if (cont.getHorasExtrasDeterminadas())
+            {
+                string[] heXdia = cont.getHorasExPorDia();
+
+                HsExt = new HoRaSExtrasContraToS();
+                HsExt.IDContraToS = (uint)NumeroContrato;
+                HsExt.Lunes = heXdia[0];
+                HsExt.Martes = heXdia[1];
+                HsExt.Miercoles = heXdia[2];
+                HsExt.Jueves = heXdia[3];
+                HsExt.Viernes = heXdia[4];
+                HsExt.Sabado = heXdia[5];
+                HsExt.Domingo = heXdia[6];
+            }
+            datos.altaContrato(con, lhs, HsExt);
         }
 
         public ConSeguridadFisica getContrato(int NumeroContrato)
         {
-            ContraToS con = datos.obtenerContrato(NumeroContrato);
-
-            ConSeguridadFisica aux = new ConSeguridadFisica((con.PagaDescanso  == (sbyte)1) ? true : false, (con.HorasExtras == (sbyte)1) ? true : false, 0, 0, 0, con.FechaIni.Value, con.FechaFin, con.Ajuste, con.Observaciones, (con.CostoFijo == (sbyte)1) ? true : false, con.Costo.Value,con.PagarExtrasDespuesDeHs);
-
-            LineaDeHoras lhs = null;
-            HorarioXDia hor = null;
-
-            foreach (LineAshOrAs lh in con.LineAshOrAs)
+            ConSeguridadFisica aux = null;
+            try
             {
-                lhs = new LineaDeHoras(lh.Puesto, (lh.Armado == (sbyte)1) ? true : false, lh.PrecioXhOra.Value, (int)(lh.Cantidad), 0, 0);
+                ContraToS con = datos.obtenerContrato(NumeroContrato);
 
-                foreach (HoRaRioDiA h in lh.HoRaRioDiA)
+                string[] HsExtXDia = null;
+                if (con.HorasExtrasDeterminadas == 1)
                 {
-                    if (h.IDContrato == lh.IDContrato && h.NroLinea == lh.NroLinea)
-                    {
-                        hor = new HorarioXDia(h.Dia, h.HoraIni, h.HoraFin);
-                        lhs.addDia(hor);
-                    }
+                    HoRaSExtrasContraToS hec = datos.obtenerHorasExtrasContrato(con.IDContratos);
+                    HsExtXDia = new string[7];
+                    HsExtXDia[0] = hec.Lunes;
+                    HsExtXDia[1] = hec.Martes;
+                    HsExtXDia[2] = hec.Miercoles;
+                    HsExtXDia[3] = hec.Jueves;
+                    HsExtXDia[4] = hec.Viernes;
+                    HsExtXDia[5] = hec.Sabado;
+                    HsExtXDia[6] = hec.Domingo;
                 }
-                aux.addLinea(lhs);
+
+                aux = new ConSeguridadFisica((con.PagaDescanso == (sbyte)1) ? true : false, (con.HorasExtras == (sbyte)1) ? true : false, 0, 0, 0, con.FechaIni.Value, con.FechaFin, con.Ajuste, con.Observaciones, (con.CostoFijo == (sbyte)1) ? true : false, con.Costo.Value, con.PagarExtrasDespuesDeHs, (con.HorasExtrasDeterminadas == 1) ? true : false, HsExtXDia);
+
+                LineaDeHoras lhs = null;
+                HorarioXDia hor = null;
+
+                foreach (LineAshOrAs lh in con.LineAshOrAs)
+                {
+                    lhs = new LineaDeHoras(lh.Puesto, (lh.Armado == (sbyte)1) ? true : false, lh.PrecioXhOra.Value, (int)(lh.Cantidad), 0, 0);
+
+                    foreach (HoRaRioDiA h in lh.HoRaRioDiA)
+                    {
+                        if (h.IDContrato == lh.IDContrato && h.NroLinea == lh.NroLinea)
+                        {
+                            hor = new HorarioXDia(h.Dia, h.HoraIni, h.HoraFin);
+                            lhs.addDia(hor);
+                        }
+                    }
+                    aux.addLinea(lhs);
+                }
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
             }
 
             return aux;
@@ -358,7 +397,7 @@ namespace Logica
         {
             try
             {
-                datos.modificarContrato(NumeroContrato, Contrato.getFechaIni(), Contrato.getFechaFin(), Contrato.GetCostoFijo(), Contrato.getHorasExtras(), Contrato.getPagaDescanso(), Contrato.getAjuste(), Contrato.getObservaciones(), Contrato.getMonto(), Contrato.getPagarExtrasDespuesDeHs());
+                datos.modificarContrato(NumeroContrato, Contrato.getFechaIni(), Contrato.getFechaFin(), Contrato.GetCostoFijo(), Contrato.getHorasExtras(), Contrato.getPagaDescanso(), Contrato.getAjuste(), Contrato.getObservaciones(), Contrato.getMonto(), Contrato.getPagarExtrasDespuesDeHs(), Contrato.getHorasExtrasDeterminadas(), Contrato.getHorasExPorDia());
 
                 datos.eliminarLineasContrato(NumeroContrato);
 

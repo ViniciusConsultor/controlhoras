@@ -2465,7 +2465,7 @@ namespace Datos
                 throw me;
             }
         }
-        public void modificarContrato(int numeroContrato, DateTime FechaInicial, DateTime? FechaFinal, bool Costo, bool HorasExtras, bool PagaDescanso, string Ajuste, string Observaciones, float Monto, int? PagarExtrasDespuesDeHs)
+        public void modificarContrato(int numeroContrato, DateTime FechaInicial, DateTime? FechaFinal, bool Costo, bool HorasExtras, bool PagaDescanso, string Ajuste, string Observaciones, float Monto, int? PagarExtrasDespuesDeHs, bool HsExtrasDet, string[] HsExtXDia)
         {
             try
             {  
@@ -2493,7 +2493,18 @@ namespace Datos
                 if (PagarExtrasDespuesDeHs != null)
                     con.PagarExtrasDespuesDeHs = (short)PagarExtrasDespuesDeHs;
                 else
-                    con.PagarExtrasDespuesDeHs = null;                
+                    con.PagarExtrasDespuesDeHs = null;
+                
+                if (con.HorasExtrasDeterminadas == 1)
+                    EliminarHorasExtrasContrato(numeroContrato);
+
+                if (HsExtrasDet)
+                    InsertarHorasExtrasContrato(numeroContrato, HsExtXDia);
+
+                if (HsExtrasDet)
+                    con.HorasExtrasDeterminadas = 1;
+                else
+                    con.HorasExtrasDeterminadas = 0;
 
                 database.SubmitChanges();
             }
@@ -2502,8 +2513,59 @@ namespace Datos
                 WriteErrorLog(e);
                 throw e;
             }
-        }        
-        public void altaContrato(ContraToS Contrato, List<LineAshOrAs> Lineas)
+        }
+
+        private void InsertarHorasExtrasContrato(int numeroContrato, string[] HsExtXDia)
+        {
+            try
+            {
+                Table<HoRaSExtrasContraToS> tabla = database.GetTable<HoRaSExtrasContraToS>();
+                HoRaSExtrasContraToS HsExt = new HoRaSExtrasContraToS();
+
+                HsExt.IDContraToS = (uint)numeroContrato;
+                HsExt.Lunes = HsExtXDia[0];
+                HsExt.Martes = HsExtXDia[1];
+                HsExt.Miercoles = HsExtXDia[2];
+                HsExt.Jueves = HsExtXDia[3];
+                HsExt.Viernes = HsExtXDia[4];
+                HsExt.Sabado = HsExtXDia[5];
+                HsExt.Domingo = HsExtXDia[6];
+
+                tabla.InsertOnSubmit(HsExt);
+                database.SubmitChanges();                
+            }
+            catch (Exception ex)
+            {
+                WriteErrorLog(ex);
+                throw ex;
+            }
+        }
+
+        private void EliminarHorasExtrasContrato(int numeroContrato)
+        {
+            try
+            {
+                Table<HoRaSExtrasContraToS> tabla = database.GetTable<HoRaSExtrasContraToS>();
+                var HsExtCont = (from reg in tabla
+                                 where reg.IDContraToS == numeroContrato
+                                 select reg).Single<HoRaSExtrasContraToS>();
+
+                if (HsExtCont == null)
+                    throw new NoExisteException("No existe la HoraExtraContrato con Id " + numeroContrato.ToString());
+                //El Borrado Logico en el historial del empleado no tiene mucho sentido. 
+                //eventHist.BoRrAdo = 1;
+                database.HoRaSExtrasContraToS.DeleteOnSubmit(HsExtCont);
+                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+
+            }
+            catch (Exception ex)
+            {
+                WriteErrorLog(ex);
+                throw ex;
+            }
+        }
+
+        public void altaContrato(ContraToS Contrato, List<LineAshOrAs> Lineas, HoRaSExtrasContraToS HorasExtrasPorDia)
         {
             System.Data.Common.DbConnection conexion = database.Connection;
             try
@@ -2539,7 +2601,8 @@ namespace Datos
 
                 
                 st += "'" + string.Format("{0:yyyy-MM-dd}", Contrato.FechaIni) + "', ";
-                st += Contrato.HorasExtras.ToString() + ", ";                
+                st += Contrato.HorasExtras.ToString() + ", ";
+                st += Contrato.HorasExtrasDeterminadas.ToString() + ", ";
                 st += Contrato.IDContratos.ToString() + ", ";
                 st += "'" + Contrato.Observaciones.ToString() + "', ";
                 st += Contrato.PagaDescanso.ToString() + ", ";
@@ -2604,9 +2667,36 @@ namespace Datos
                         tempsql += dh.IDContrato.ToString() + ", ";
                         tempsql += dh.NroLinea.ToString() + ")";
                         database.ExecuteCommand(tempsql, null);
-                    }
-                    
+                    }                    
                 }
+
+                if (HorasExtrasPorDia != null)
+                {
+                    HoRaSExtrasContraToS hepd = HorasExtrasPorDia;
+                    nombreTabla = database.Connection.Database + ".horasextrascontratos";
+                    sqlLineasHoras = "INSERT INTO " + nombreTabla + " (";
+                    campos = obtenerColumnasDeTabla(nombreTabla);
+
+                    foreach (string columna in campos)
+                    {
+                        if (campos.Last<string>().Equals(columna))
+                            sqlLineasHoras += columna + ") ";
+                        else
+                            sqlLineasHoras += columna + ", ";
+                    }
+                    sqlLineasHoras += " VALUES(";
+                    sqlLineasHoras += "'" + hepd.Domingo.ToString() + "', ";
+                    sqlLineasHoras += "'" + hepd.IDContraToS.ToString() + "', ";
+                    sqlLineasHoras += "'" + hepd.Jueves.ToString() + "', ";
+                    sqlLineasHoras += "'" + hepd.Lunes.ToString() + "', ";
+                    sqlLineasHoras += "'" + hepd.Martes.ToString() + "', ";
+                    sqlLineasHoras += "'" + hepd.Miercoles.ToString() + "', ";
+                    sqlLineasHoras += "'" + hepd.Sabado.ToString() + "', ";
+                    sqlLineasHoras += "'" + hepd.Viernes.ToString() + "')";
+
+                    database.ExecuteCommand(sqlLineasHoras, null);
+                }
+
                 database.Transaction.Commit();
                 if (conexion.State == System.Data.ConnectionState.Open)
                     conexion.Close();
@@ -4877,6 +4967,34 @@ namespace Datos
                 WriteErrorLog(ex);
                 throw ex;
 
+            }
+        }
+
+        public HoRaSExtrasContraToS obtenerHorasExtrasContrato(uint IdContrato)
+        {
+            try
+            {
+                Table<HoRaSExtrasContraToS> tabla = database.GetTable<HoRaSExtrasContraToS>();
+                var hec = (from reg in tabla
+                           where reg.IDContraToS == IdContrato
+                           select reg);
+                if (hec.Count<HoRaSExtrasContraToS>() == 0)
+                    throw new NoExisteException("No existe la HoraExtraContrato con IdContrato " + IdContrato);
+
+                return hec.Single<HoRaSExtrasContraToS>();
+            }
+            catch (ArgumentNullException anex)
+            {
+                throw new NoExisteException(anex.Message, anex.InnerException);
+            }
+            catch (InvalidOperationException ioex)
+            {
+                throw ioex;
+            }
+            catch (Exception me)
+            {
+                WriteErrorLog(me);
+                throw me;
             }
         }
     }
