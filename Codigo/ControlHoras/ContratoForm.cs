@@ -47,7 +47,7 @@ namespace ControlHoras
             InitializeComponent();
 
             InicializarCargaHorariaDGV();
-            InicializarHorasExtrasDGV();
+            InicializarHorasComunesDGV();
             CostoCB.SelectedIndex = 0;
             ind = 0;
             cant = 0;
@@ -157,7 +157,7 @@ namespace ControlHoras
             //CargaHorariaDGV.EditMode = DataGridViewEditMode.EditOnEnter;
         }
 
-        private void InicializarHorasExtrasDGV()
+        private void InicializarHorasComunesDGV()
         {
             MaskedTextBoxColumn mtbc;
                         
@@ -168,7 +168,7 @@ namespace ControlHoras
             mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            this.HorasExtrasDGV.Columns.Add(mtbc);
+            this.HorasComunesDGV.Columns.Add(mtbc);
 
             mtbc = new MaskedTextBoxColumn();
             mtbc.Name = "Martes";
@@ -177,7 +177,7 @@ namespace ControlHoras
             mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            this.HorasExtrasDGV.Columns.Add(mtbc);
+            this.HorasComunesDGV.Columns.Add(mtbc);
 
             mtbc = new MaskedTextBoxColumn();
             mtbc.Name = "Miercoles";
@@ -186,7 +186,7 @@ namespace ControlHoras
             mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            this.HorasExtrasDGV.Columns.Add(mtbc);
+            this.HorasComunesDGV.Columns.Add(mtbc);
 
             mtbc = new MaskedTextBoxColumn();
             mtbc.Name = "Jueves";
@@ -195,7 +195,7 @@ namespace ControlHoras
             mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            this.HorasExtrasDGV.Columns.Add(mtbc);
+            this.HorasComunesDGV.Columns.Add(mtbc);
 
             mtbc = new MaskedTextBoxColumn();
             mtbc.Name = "Viernes";
@@ -204,7 +204,7 @@ namespace ControlHoras
             mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            this.HorasExtrasDGV.Columns.Add(mtbc);
+            this.HorasComunesDGV.Columns.Add(mtbc);
 
             mtbc = new MaskedTextBoxColumn();
             mtbc.Name = "Sabado";
@@ -213,7 +213,7 @@ namespace ControlHoras
             mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            this.HorasExtrasDGV.Columns.Add(mtbc);
+            this.HorasComunesDGV.Columns.Add(mtbc);
 
             mtbc = new MaskedTextBoxColumn();
             mtbc.Name = "Domingo";
@@ -222,7 +222,7 @@ namespace ControlHoras
             mtbc.Width = 86;
             //mtbc.ReadOnly = false;
             //mtbc.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            this.HorasExtrasDGV.Columns.Add(mtbc);            
+            this.HorasComunesDGV.Columns.Add(mtbc);            
         }
 
         private void CostoCB_SelectedValueChanged(object sender, EventArgs e)
@@ -366,11 +366,13 @@ namespace ControlHoras
                     }
                     if (con.getHorasComunesDeterminadas())
                     {
-                        DetHorasExtrasCB.Checked = true;
+                        DetHorasComunesCB.Checked = true;
                         string[] hsex = con.getHorasExPorDia();
                         for (int j = 0; j < 7; j++)
-                            HorasExtrasDGV.Rows[0].Cells[j].Value = hsex[j];                         
+                            HorasComunesDGV.Rows[0].Cells[j].Value = hsex[j];                         
                     }
+                    HorasComunesDGV.Visible = DetHorasComunesCB.Checked;
+                    
                     /*
                     con = datos.obtenerContrato(CalcNroContrato(numCli, numSer));
                     FIniMTB.Text=con.FechaIni.ToString();
@@ -512,15 +514,15 @@ namespace ControlHoras
                         PagarExtrasLuegoDeHs = int.Parse(cmbDespuesDeHs.SelectedItem.ToString());
                     else
                         PagarExtrasLuegoDeHs = null;
-                    bool HsExtrasDet = DetHorasExtrasCB.Checked;
+                    bool HsExtrasDet = DetHorasComunesCB.Checked;
                     string[] HsExtXDia = null;
                     if (HsExtrasDet)
                     {
-                        ValidarHorasExtrasDGV();
+                        ValidarHorasComunesDGV();
                         HsExtXDia = new string[7];
                         for (int i = 0; i < 7; i++)
                         {
-                            HsExtXDia[i] = HorasExtrasDGV.Rows[0].Cells[i].Value.ToString();
+                            HsExtXDia[i] = HorasComunesDGV.Rows[0].Cells[i].Value.ToString();
                         }
                     }
 
@@ -787,14 +789,14 @@ namespace ControlHoras
 
             CargaHorariaDGV.Rows.Clear();
 
-            DetHorasExtrasCB.Checked = false;
+            DetHorasComunesCB.Checked = false;
             limpiarHsExtDGV();
         }
 
         private void limpiarHsExtDGV()
         {
             for (int i = 0; i < 7; i++)
-                HorasExtrasDGV.Rows[0].Cells[i].Value = null;
+                HorasComunesDGV.Rows[0].Cells[i].Value = null;
         }
 
         private void FIniMTB_Leave(object sender, EventArgs e)
@@ -825,26 +827,26 @@ namespace ControlHoras
         {
             cmbDespuesDeHs.SelectedIndex = 0;
 
-            int numR = HorasExtrasDGV.Rows.Add();
-            HorasExtrasDGV.Rows[numR].HeaderCell.Value = "Horas : Minutos";// "Hs Faltan Cubrir";
+            int numR = HorasComunesDGV.Rows.Add();
+            HorasComunesDGV.Rows[numR].HeaderCell.Value = "Horas : Minutos";// "Hs Faltan Cubrir";
 
-            HorasExtrasDGV.ClearSelection();
+            HorasComunesDGV.ClearSelection();
         }
 
         private void DetHorasExtrasCB_CheckedChanged(object sender, EventArgs e)
         {
-           // HorasExtrasPL.Visible = DetHorasExtrasCB.Checked;
-            //HorasExtrasDGV.Refresh();
+            HorasComunesDGV.Visible = DetHorasComunesCB.Checked;
+            HorasComunesDGV.Refresh();
         }
 
-        private void ValidarHorasExtrasDGV()
+        private void ValidarHorasComunesDGV()
         {
             for (int i = 0; i < 7; i++)
             {
-                if (HorasExtrasDGV.Rows[0].Cells[i].Value == null || HorasExtrasDGV.Rows[0].Cells[i].Value.ToString() == "" || HorasExtrasDGV.Rows[0].Cells[i].Value.ToString() == ":")
-                    HorasExtrasDGV.Rows[0].Cells[i].Value = "0:0";
+                if (HorasComunesDGV.Rows[0].Cells[i].Value == null || HorasComunesDGV.Rows[0].Cells[i].Value.ToString() == "" || HorasComunesDGV.Rows[0].Cells[i].Value.ToString() == ":")
+                    HorasComunesDGV.Rows[0].Cells[i].Value = "0:0";
                 else
-                    HorasExtrasDGV.Rows[0].Cells[i].Value = quitarEspacios(HorasExtrasDGV.Rows[0].Cells[i].Value.ToString());
+                    HorasComunesDGV.Rows[0].Cells[i].Value = quitarEspacios(HorasComunesDGV.Rows[0].Cells[i].Value.ToString());
             }
         }
 

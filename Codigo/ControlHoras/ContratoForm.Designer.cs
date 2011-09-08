@@ -41,11 +41,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.ClienteGB = new System.Windows.Forms.GroupBox();
-            this.bcUC = new ControlHoras.BúsquedaCliente();
             this.ServicioGB = new System.Windows.Forms.GroupBox();
             this.PosteriorBTN = new System.Windows.Forms.Button();
             this.AnteriorBTN = new System.Windows.Forms.Button();
-            this.NombreTB = new ControlHoras.TextBoxKeyDown();
             this.NroMTB = new System.Windows.Forms.MaskedTextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.FinCKB = new System.Windows.Forms.CheckBox();
@@ -58,12 +56,15 @@
             this.PagaDescansoCKBX = new System.Windows.Forms.CheckBox();
             this.HorasExtrasCHK = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.HorasComunesDGV = new System.Windows.Forms.DataGridView();
+            this.label8 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cmbDespuesDeHs = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.DetHorasExtrasCB = new System.Windows.Forms.CheckBox();
-            this.HorasExtrasDGV = new System.Windows.Forms.DataGridView();
+            this.DetHorasComunesCB = new System.Windows.Forms.CheckBox();
+            this.NombreTB = new ControlHoras.TextBoxKeyDown();
             this.FFinMTB = new ControlHoras.MaskedTextBoxKeyDown();
+            this.bcUC = new ControlHoras.BúsquedaCliente();
             this.FIniMTB = new ControlHoras.MaskedTextBoxKeyDown();
             this.ObsTB = new ControlHoras.TextBoxKeyDown();
             this.AjusteTB = new ControlHoras.TextBoxKeyDown();
@@ -74,14 +75,13 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label8 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.ClienteGB.SuspendLayout();
             this.ServicioGB.SuspendLayout();
             this.CargaHorariaCMS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.HorasExtrasDGV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HorasComunesDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CargaHorariaDGV)).BeginInit();
             this.SuspendLayout();
             // 
@@ -204,15 +204,6 @@
             this.ClienteGB.TabStop = false;
             this.ClienteGB.Text = "Cliente";
             // 
-            // bcUC
-            // 
-            this.bcUC.ClienteNRO = "";
-            this.bcUC.Location = new System.Drawing.Point(39, 14);
-            this.bcUC.Margin = new System.Windows.Forms.Padding(2);
-            this.bcUC.Name = "bcUC";
-            this.bcUC.Size = new System.Drawing.Size(480, 41);
-            this.bcUC.TabIndex = 0;
-            // 
             // ServicioGB
             // 
             this.ServicioGB.Controls.Add(this.PosteriorBTN);
@@ -253,16 +244,6 @@
             this.AnteriorBTN.UseVisualStyleBackColor = true;
             this.AnteriorBTN.Visible = false;
             this.AnteriorBTN.Click += new System.EventHandler(this.AnteriorBTN_Click);
-            // 
-            // NombreTB
-            // 
-            this.NombreTB.BackColor = System.Drawing.SystemColors.Window;
-            this.NombreTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NombreTB.Location = new System.Drawing.Point(95, 16);
-            this.NombreTB.Name = "NombreTB";
-            this.NombreTB.ReadOnly = true;
-            this.NombreTB.Size = new System.Drawing.Size(426, 22);
-            this.NombreTB.TabIndex = 8;
             // 
             // NroMTB
             // 
@@ -361,17 +342,40 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.HorasExtrasDGV);
+            this.panel1.Controls.Add(this.HorasComunesDGV);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.cmbDespuesDeHs);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.HorasExtrasCHK);
-            this.panel1.Controls.Add(this.DetHorasExtrasCB);
+            this.panel1.Controls.Add(this.DetHorasComunesCB);
             this.panel1.Location = new System.Drawing.Point(8, 376);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(977, 98);
             this.panel1.TabIndex = 22;
+            // 
+            // HorasComunesDGV
+            // 
+            this.HorasComunesDGV.AllowUserToAddRows = false;
+            this.HorasComunesDGV.AllowUserToDeleteRows = false;
+            this.HorasComunesDGV.AllowUserToResizeColumns = false;
+            this.HorasComunesDGV.AllowUserToResizeRows = false;
+            this.HorasComunesDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.HorasComunesDGV.Location = new System.Drawing.Point(180, 31);
+            this.HorasComunesDGV.Name = "HorasComunesDGV";
+            this.HorasComunesDGV.RowHeadersWidth = 145;
+            this.HorasComunesDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.HorasComunesDGV.Size = new System.Drawing.Size(793, 61);
+            this.HorasComunesDGV.TabIndex = 0;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(70, 27);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(13, 13);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "o";
             // 
             // label4
             // 
@@ -404,30 +408,26 @@
             this.label1.TabIndex = 21;
             this.label1.Text = "Extras despues de";
             // 
-            // DetHorasExtrasCB
+            // DetHorasComunesCB
             // 
-            this.DetHorasExtrasCB.Location = new System.Drawing.Point(6, 45);
-            this.DetHorasExtrasCB.Name = "DetHorasExtrasCB";
-            this.DetHorasExtrasCB.Size = new System.Drawing.Size(140, 38);
-            this.DetHorasExtrasCB.TabIndex = 23;
-            this.DetHorasExtrasCB.Text = "Determinar Cantidad Horas Comunes Por Dia";
-            this.DetHorasExtrasCB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.DetHorasExtrasCB.UseVisualStyleBackColor = true;
-            this.DetHorasExtrasCB.CheckedChanged += new System.EventHandler(this.DetHorasExtrasCB_CheckedChanged);
+            this.DetHorasComunesCB.Location = new System.Drawing.Point(6, 45);
+            this.DetHorasComunesCB.Name = "DetHorasComunesCB";
+            this.DetHorasComunesCB.Size = new System.Drawing.Size(140, 38);
+            this.DetHorasComunesCB.TabIndex = 23;
+            this.DetHorasComunesCB.Text = "Determinar Cantidad Horas Comunes Por Dia";
+            this.DetHorasComunesCB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.DetHorasComunesCB.UseVisualStyleBackColor = true;
+            this.DetHorasComunesCB.CheckedChanged += new System.EventHandler(this.DetHorasExtrasCB_CheckedChanged);
             // 
-            // HorasExtrasDGV
+            // NombreTB
             // 
-            this.HorasExtrasDGV.AllowUserToAddRows = false;
-            this.HorasExtrasDGV.AllowUserToDeleteRows = false;
-            this.HorasExtrasDGV.AllowUserToResizeColumns = false;
-            this.HorasExtrasDGV.AllowUserToResizeRows = false;
-            this.HorasExtrasDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.HorasExtrasDGV.Location = new System.Drawing.Point(180, 31);
-            this.HorasExtrasDGV.Name = "HorasExtrasDGV";
-            this.HorasExtrasDGV.RowHeadersWidth = 145;
-            this.HorasExtrasDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.HorasExtrasDGV.Size = new System.Drawing.Size(793, 61);
-            this.HorasExtrasDGV.TabIndex = 0;
+            this.NombreTB.BackColor = System.Drawing.SystemColors.Window;
+            this.NombreTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NombreTB.Location = new System.Drawing.Point(95, 16);
+            this.NombreTB.Name = "NombreTB";
+            this.NombreTB.ReadOnly = true;
+            this.NombreTB.Size = new System.Drawing.Size(426, 22);
+            this.NombreTB.TabIndex = 8;
             // 
             // FFinMTB
             // 
@@ -440,6 +440,15 @@
             this.FFinMTB.TabIndex = 4;
             this.FFinMTB.Validating += new System.ComponentModel.CancelEventHandler(this.FFinMTB_Validating);
             this.FFinMTB.Validated += new System.EventHandler(this.FFinMTB_Validated);
+            // 
+            // bcUC
+            // 
+            this.bcUC.ClienteNRO = "";
+            this.bcUC.Location = new System.Drawing.Point(39, 14);
+            this.bcUC.Margin = new System.Windows.Forms.Padding(2);
+            this.bcUC.Name = "bcUC";
+            this.bcUC.Size = new System.Drawing.Size(480, 41);
+            this.bcUC.TabIndex = 0;
             // 
             // FIniMTB
             // 
@@ -539,15 +548,6 @@
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(70, 27);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(13, 13);
-            this.label8.TabIndex = 24;
-            this.label8.Text = "o";
-            // 
             // ContratoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -587,7 +587,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.HorasExtrasDGV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HorasComunesDGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CargaHorariaDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -638,8 +638,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmbDespuesDeHs;
-        private System.Windows.Forms.CheckBox DetHorasExtrasCB;
-        private System.Windows.Forms.DataGridView HorasExtrasDGV;
+        private System.Windows.Forms.CheckBox DetHorasComunesCB;
+        private System.Windows.Forms.DataGridView HorasComunesDGV;
         private System.Windows.Forms.Label label8;
     }
 }
