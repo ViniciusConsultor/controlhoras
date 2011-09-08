@@ -2527,17 +2527,20 @@ namespace ControlHoras
                 if (dtpFechaIngreso.Text != fechaMask)
                 {
                     DateTime FI = DateTime.ParseExact(dtpFechaIngreso.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-                    DateTime dtAux;
+                    //DateTime dtAux;
 
-                    mark = "fechaFin";
+                    mark = "dia";
                     wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
-                    dtAux = FI.AddDays(-1);
+                    /* Por Issue 107
+                     * dtAux = FI.AddDays(-1);
                     if (dtAux.DayOfWeek == DayOfWeek.Sunday)
                         dtAux = dtAux.AddDays(-2);
                     else if (dtAux.DayOfWeek == DayOfWeek.Saturday)
                         dtAux = dtAux.AddDays(-1);
-                    wrdRng.Text = dtAux.Day.ToString();
+                     */
+                    wrdRng.Text = FI.Day.ToString();
                     
+                    /* Por Issue 107
                     mark = "fechaIni";
                     wrdRng = oDoc.Bookmarks.get_Item(ref mark).Range;
                     dtAux = dtAux.AddDays(-1);
@@ -2546,7 +2549,7 @@ namespace ControlHoras
                     else if (dtAux.DayOfWeek == DayOfWeek.Saturday)
                         dtAux = dtAux.AddDays(-1);
                     wrdRng.Text = dtAux.Day.ToString();
-
+                    */
                     
 
                     // Pasa que si es domingo queda en el mismo dia. Arreglar!!!!
