@@ -70,9 +70,8 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.generarHorasDiariasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.liquidacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clientesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.empleadosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.liquidacionEmpleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.liquidacionClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslUsuario = new System.Windows.Forms.ToolStripStatusLabel();
@@ -279,8 +278,8 @@
             this.tiposDeEventosToolStripMenuItem,
             this.cargosToolStripMenuItem,
             this.tiposMotivosCambioDiarioToolStripMenuItem,
-            this.tspTipoExtraLiquidacion,
             this.toolStripSeparator4,
+            this.tspTipoExtraLiquidacion,
             this.consultasToolStripMenuItem});
             this.codiguerasToolStripMenuItem.Enabled = false;
             this.codiguerasToolStripMenuItem.Name = "codiguerasToolStripMenuItem";
@@ -363,7 +362,6 @@
             this.tspTipoExtraLiquidacion.Name = "tspTipoExtraLiquidacion";
             this.tspTipoExtraLiquidacion.Size = new System.Drawing.Size(218, 22);
             this.tspTipoExtraLiquidacion.Text = "Tipos Extra Liquidacion";
-            this.tspTipoExtraLiquidacion.Visible = false;
             this.tspTipoExtraLiquidacion.Click += new System.EventHandler(this.tspTipoExtraLiquidacion_Click);
             // 
             // toolStripSeparator4
@@ -408,7 +406,8 @@
             this.toolStripSeparator2,
             this.generarHorasDiariasToolStripMenuItem,
             this.toolStripSeparator5,
-            this.liquidacionToolStripMenuItem});
+            this.liquidacionEmpleadosToolStripMenuItem,
+            this.liquidacionClientesToolStripMenuItem});
             this.administracionToolStripMenuItem.Name = "administracionToolStripMenuItem";
             this.administracionToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
             this.administracionToolStripMenuItem.Text = "Administracion";
@@ -417,51 +416,43 @@
             // 
             this.sustituirEnEscalafonToolStripMenuItem.Enabled = false;
             this.sustituirEnEscalafonToolStripMenuItem.Name = "sustituirEnEscalafonToolStripMenuItem";
-            this.sustituirEnEscalafonToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.sustituirEnEscalafonToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.sustituirEnEscalafonToolStripMenuItem.Text = "Sustituir en Escalafon";
             this.sustituirEnEscalafonToolStripMenuItem.Click += new System.EventHandler(this.sustituirEnEscalafonToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(187, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(188, 6);
             // 
             // generarHorasDiariasToolStripMenuItem
             // 
             this.generarHorasDiariasToolStripMenuItem.Enabled = false;
             this.generarHorasDiariasToolStripMenuItem.Name = "generarHorasDiariasToolStripMenuItem";
-            this.generarHorasDiariasToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.generarHorasDiariasToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.generarHorasDiariasToolStripMenuItem.Text = "Generar Horas Diarias";
             this.generarHorasDiariasToolStripMenuItem.Click += new System.EventHandler(this.generarHorasDiariasToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(187, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(188, 6);
             // 
-            // liquidacionToolStripMenuItem
+            // liquidacionEmpleadosToolStripMenuItem
             // 
-            this.liquidacionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clientesToolStripMenuItem1,
-            this.empleadosToolStripMenuItem1});
-            this.liquidacionToolStripMenuItem.Enabled = false;
-            this.liquidacionToolStripMenuItem.Name = "liquidacionToolStripMenuItem";
-            this.liquidacionToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.liquidacionToolStripMenuItem.Text = "Liquidación";
+            this.liquidacionEmpleadosToolStripMenuItem.Enabled = false;
+            this.liquidacionEmpleadosToolStripMenuItem.Name = "liquidacionEmpleadosToolStripMenuItem";
+            this.liquidacionEmpleadosToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.liquidacionEmpleadosToolStripMenuItem.Text = "Liquidacion Empleados";
+            this.liquidacionEmpleadosToolStripMenuItem.Click += new System.EventHandler(this.empleadosToolStripMenuItem1_Click);
             // 
-            // clientesToolStripMenuItem1
+            // liquidacionClientesToolStripMenuItem
             // 
-            this.clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
-            this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(136, 22);
-            this.clientesToolStripMenuItem1.Text = "Clientes";
-            this.clientesToolStripMenuItem1.Click += new System.EventHandler(this.clientesToolStripMenuItem1_Click);
-            // 
-            // empleadosToolStripMenuItem1
-            // 
-            this.empleadosToolStripMenuItem1.Name = "empleadosToolStripMenuItem1";
-            this.empleadosToolStripMenuItem1.Size = new System.Drawing.Size(136, 22);
-            this.empleadosToolStripMenuItem1.Text = "Empleados";
-            this.empleadosToolStripMenuItem1.Click += new System.EventHandler(this.empleadosToolStripMenuItem1_Click);
+            this.liquidacionClientesToolStripMenuItem.Enabled = false;
+            this.liquidacionClientesToolStripMenuItem.Name = "liquidacionClientesToolStripMenuItem";
+            this.liquidacionClientesToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.liquidacionClientesToolStripMenuItem.Text = "Liquidacion Clientes";
+            this.liquidacionClientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem1_Click);
             // 
             // statusStrip1
             // 
@@ -578,12 +569,11 @@
         private System.Windows.Forms.ToolStripMenuItem consultasToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog ofdCargarArchivoImportacionConsultas;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripMenuItem liquidacionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem empleadosToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem tspTipoExtraLiquidacion;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem acercaDeToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem liquidacionEmpleadosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem liquidacionClientesToolStripMenuItem;
     }
 }

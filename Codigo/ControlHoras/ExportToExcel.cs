@@ -25,6 +25,7 @@ namespace ControlHoras
         private List<ConsultAsClientEs> consultasClientes;
         private string fechaMask = @"  /  /";
         private bool nuevoFormatoExportToExcel = true;
+        private bool cerrando = false;
 
         private ExportToExcel()
         {
@@ -54,7 +55,7 @@ namespace ControlHoras
                 //cargaTabTablas();
                 List<string> schema = datos.obtenerNombreTablas();
                 List<string> tablasOcultas = new List<string> { "horariodia", "lineashoras" };
-
+                cerrando = false;
                 string dbname = datos.obtenerNombreBaseDatos();
                 string tmpNombre;
                 cmbTablas.BeginUpdate();
@@ -663,6 +664,11 @@ namespace ControlHoras
                 }
             }
         
+        }
+
+        private void ExportToExcel_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            cerrando = true;
         }
 
        

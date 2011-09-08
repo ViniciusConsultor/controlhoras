@@ -1523,10 +1523,11 @@ namespace ControlHoras
                     mtExtrasCantCuotas.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
 
                     mtPorcentaje.TextMaskFormat = MaskFormat.IncludeLiterals;
-                    float fporcentaje = 0;
+                    decimal fporcentaje = 0;
                     if (mtPorcentaje.MaskCompleted)
-                        fporcentaje = float.Parse(mtPorcentaje.Text);
-
+                        fporcentaje = decimal.Parse(mtPorcentaje.Text);
+                    if (mtPorcentaje.Text != "  ," && !mtPorcentaje.MaskCompleted)
+                        throw new Exception("Ingrese el porcenaje completo, los 4 numeros");
                     float valorExtras = 0;
                     if (mtExtrasValor.Enabled && mtExtrasValor.MaskCompleted)
                         valorExtras = float.Parse(mtExtrasValor.Text);
@@ -1664,7 +1665,7 @@ namespace ControlHoras
                     else
                         dgvExtrasLiquidacion.Rows[n].Cells["Signo"].Value = "-";
                     dgvExtrasLiquidacion.Rows[n].Cells["Valor"].Value = cel.ValorCuota;
-                    dgvExtrasLiquidacion.Rows[n].Cells["ExtraPorcentaje"].Value = cel.ExtrasLiquidAcIon.Porcentaje;
+                    dgvExtrasLiquidacion.Rows[n].Cells["ExtraPorcentaje"].Value = cel.ExtrasLiquidAcIon.Porcentaje.ToString();
                     dgvExtrasLiquidacion.Rows[n].Cells["CuotaActual"].Value = cel.NumeroCuota;
                     dgvExtrasLiquidacion.Rows[n].Cells["CantidadCuotas"].Value = cel.ExtrasLiquidAcIon.CantidadCuotas;
                     if (cel.Liquidado == 1)
@@ -2606,13 +2607,17 @@ namespace ControlHoras
                 //Intersección
                 oSheet.Cells[23, 7] = txtEntreCalles.Text;
 
+                //Telefono
+                oSheet.Cells[25, 3] = txtTelefono.Text;
+
                 // Nivel Educacional
+                int offset = 28;
                 if (cmbNivelEducativo.Text == "Primario")
-                    oSheet.Cells[26, 3] = "X";
+                    oSheet.Cells[offset, 3] = "X";
                 else if (cmbNivelEducativo.Text == "Secundario")
-                    oSheet.Cells[26, 5] = "X";
+                    oSheet.Cells[offset, 5] = "X";
                 else
-                    oSheet.Cells[26, 7] = "X";
+                    oSheet.Cells[offset, 7] = "X";
 
 
                 // Antecedentes Policiales o Militares
@@ -2621,12 +2626,12 @@ namespace ControlHoras
                     int fila;
                     if (cmbPolicialMilitar.Text == "Policia")
                     {
-                        fila = 31;
+                        fila = offset+5;
                         oSheet.Cells[fila, 10] = txtPolicialSubEscalafon.Text;
                     }
                     else
                     {
-                        fila = 32;
+                        fila = offset+6;
                         oSheet.Cells[fila, 9] = "Combatiente: " + txtPolicialSubEscalafon.Text;
                     }
 
@@ -2649,19 +2654,19 @@ namespace ControlHoras
                 }
 
                 // Nro CAJ
-                oSheet.Cells[34, 6] = txtNumeroCAJ.Text;
+                oSheet.Cells[offset+8, 6] = txtNumeroCAJ.Text;
 
                 // Fecha Emisión CAJ
-                oSheet.Cells[35, 3] = dtpFechaEmisionCAJ.Text;
+                oSheet.Cells[offset+9, 3] = dtpFechaEmisionCAJ.Text;
 
                 // Fecha Entrega CAJ
-                oSheet.Cells[35, 7] = dtpFechaEntregaCAJ.Text;
+                oSheet.Cells[offset+9, 7] = dtpFechaEntregaCAJ.Text;
 
                 // Fecha Prueba de Capacitación
                 if (dtpFechaIngreso.Text != fechaMask)
                 {
                     DateTime aux = DateTime.ParseExact(dtpFechaIngreso.Text, @"dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
-                    oSheet.Cells[37, 6] = aux.AddDays(-2).ToString();
+                    oSheet.Cells[offset+11, 6] = aux.AddDays(-2).ToString();
                 }
 
                 // Con o Sin Arma
@@ -2670,10 +2675,10 @@ namespace ControlHoras
                     col = 3;
                 else
                     col = 7;
-                oSheet.Cells[39, col] = "X";
+                oSheet.Cells[offset+13, col] = "X";
 
                 // Fecha Test Sicológico
-                oSheet.Cells[40, 6] = dtpPsicologo.Text;
+                oSheet.Cells[offset+14, 6] = dtpPsicologo.Text;
             }
             catch (Exception theException)
             {

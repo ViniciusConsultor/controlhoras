@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace ControlHoras
 {
@@ -89,6 +90,7 @@ namespace ControlHoras
                     tsslUsuario.Text = login.username;
                     tsslIdUsuarioLogueado.Text = login.idUsuarioLogueado.ToString();
                     cargarPermisos(tsslUsuario.Text);
+                    cargarMenuesFromConfiguracion();
                 }
                 else
                     Application.Exit();
@@ -97,6 +99,16 @@ namespace ControlHoras
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void cargarMenuesFromConfiguracion()
+        {
+            // Codiguera TipoExtraLiquidacion
+            bool menuTipoExtraLiquidacion = false;
+            if (ConfigurationSettings.AppSettings.AllKeys.Contains("Codiguera_TipoExtraLiquidacion"))
+                bool.TryParse(ConfigurationSettings.AppSettings["Codiguera_TipoExtraLiquidacion"], out menuTipoExtraLiquidacion);
+            tspTipoExtraLiquidacion.Enabled = menuTipoExtraLiquidacion;
+            
         }
 
         private void cargarPermisos(string UserName)

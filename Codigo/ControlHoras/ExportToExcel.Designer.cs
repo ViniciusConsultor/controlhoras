@@ -37,48 +37,33 @@
             this.panelFiltros = new System.Windows.Forms.Panel();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.panelNroEmpleadoDesdeHasta = new System.Windows.Forms.Panel();
-            this.maskedTextBoxKeyDown1 = new ControlHoras.MaskedTextBoxKeyDown();
-            this.mtEmpleadosDesde = new ControlHoras.MaskedTextBoxKeyDown();
             this.label10 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panelFechaDesdeHasta = new System.Windows.Forms.Panel();
-            this.mtFechaHasta = new ControlHoras.MaskedTextBoxKeyDown();
             this.label13 = new System.Windows.Forms.Label();
-            this.mtFechaDesde = new ControlHoras.MaskedTextBoxKeyDown();
             this.label12 = new System.Windows.Forms.Label();
             this.panelEmpleado = new System.Windows.Forms.Panel();
             this.lblEmpleado = new System.Windows.Forms.Label();
-            this.mtNumeroEmpleado = new ControlHoras.MaskedTextBoxKeyDown();
             this.label11 = new System.Windows.Forms.Label();
             this.panelFecha = new System.Windows.Forms.Panel();
-            this.mtFecha = new ControlHoras.MaskedTextBoxKeyDown();
             this.lblmtFecha = new System.Windows.Forms.Label();
             this.panelServicio = new System.Windows.Forms.Panel();
             this.lblServicio = new System.Windows.Forms.Label();
-            this.mtNroServicio = new ControlHoras.MaskedTextBoxKeyDown();
             this.label5 = new System.Windows.Forms.Label();
             this.panelCliente = new System.Windows.Forms.Panel();
             this.lblCliente = new System.Windows.Forms.Label();
-            this.mtNroCliente = new ControlHoras.MaskedTextBoxKeyDown();
             this.label6 = new System.Windows.Forms.Label();
             this.tcConsultas = new System.Windows.Forms.TabControl();
             this.tbPorTablas = new System.Windows.Forms.TabPage();
-            this.cmbTablas = new ControlHoras.ComboBoxKeyDown();
             this.tbEmpleados = new System.Windows.Forms.TabPage();
             this.btnEmpleadosConsultar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtConsultasEmpleadosDescripcion = new ControlHoras.TextBoxKeyDown();
-            this.cmbEmpleadosConsultas = new ControlHoras.ComboBoxKeyDown();
             this.tbClientes = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtClientesDescripcionConsulta = new ControlHoras.TextBoxKeyDown();
-            this.cmbClientesConsultas = new ControlHoras.ComboBoxKeyDown();
             this.panelPorTablas = new System.Windows.Forms.Panel();
             this.lblOrdenResultado = new System.Windows.Forms.Label();
             this.gbPorTablasFiltros = new System.Windows.Forms.GroupBox();
-            this.maskedTextBoxKeyDown5 = new ControlHoras.MaskedTextBoxKeyDown();
-            this.maskedTextBoxKeyDown4 = new ControlHoras.MaskedTextBoxKeyDown();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lblPorTablaNombre = new System.Windows.Forms.Label();
@@ -88,6 +73,21 @@
             this.cbPorTablasInactivos = new System.Windows.Forms.CheckBox();
             this.btnCargar = new System.Windows.Forms.Button();
             this.dgvResultados = new System.Windows.Forms.DataGridView();
+            this.maskedTextBoxKeyDown1 = new ControlHoras.MaskedTextBoxKeyDown();
+            this.mtEmpleadosDesde = new ControlHoras.MaskedTextBoxKeyDown();
+            this.mtFechaHasta = new ControlHoras.MaskedTextBoxKeyDown();
+            this.mtFechaDesde = new ControlHoras.MaskedTextBoxKeyDown();
+            this.mtNumeroEmpleado = new ControlHoras.MaskedTextBoxKeyDown();
+            this.mtFecha = new ControlHoras.MaskedTextBoxKeyDown();
+            this.mtNroServicio = new ControlHoras.MaskedTextBoxKeyDown();
+            this.mtNroCliente = new ControlHoras.MaskedTextBoxKeyDown();
+            this.cmbTablas = new ControlHoras.ComboBoxKeyDown();
+            this.txtConsultasEmpleadosDescripcion = new ControlHoras.TextBoxKeyDown();
+            this.cmbEmpleadosConsultas = new ControlHoras.ComboBoxKeyDown();
+            this.txtClientesDescripcionConsulta = new ControlHoras.TextBoxKeyDown();
+            this.cmbClientesConsultas = new ControlHoras.ComboBoxKeyDown();
+            this.maskedTextBoxKeyDown5 = new ControlHoras.MaskedTextBoxKeyDown();
+            this.maskedTextBoxKeyDown4 = new ControlHoras.MaskedTextBoxKeyDown();
             this.toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -203,34 +203,6 @@
             this.panelNroEmpleadoDesdeHasta.TabIndex = 11;
             this.panelNroEmpleadoDesdeHasta.Visible = false;
             // 
-            // maskedTextBoxKeyDown1
-            // 
-            this.maskedTextBoxKeyDown1.BackColor = System.Drawing.Color.White;
-            this.maskedTextBoxKeyDown1.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.maskedTextBoxKeyDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBoxKeyDown1.HidePromptOnLeave = true;
-            this.maskedTextBoxKeyDown1.Location = new System.Drawing.Point(230, 4);
-            this.maskedTextBoxKeyDown1.Mask = "0999";
-            this.maskedTextBoxKeyDown1.Name = "maskedTextBoxKeyDown1";
-            this.maskedTextBoxKeyDown1.Size = new System.Drawing.Size(44, 21);
-            this.maskedTextBoxKeyDown1.TabIndex = 14;
-            this.maskedTextBoxKeyDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.maskedTextBoxKeyDown1.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            // 
-            // mtEmpleadosDesde
-            // 
-            this.mtEmpleadosDesde.BackColor = System.Drawing.Color.White;
-            this.mtEmpleadosDesde.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.mtEmpleadosDesde.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtEmpleadosDesde.HidePromptOnLeave = true;
-            this.mtEmpleadosDesde.Location = new System.Drawing.Point(134, 4);
-            this.mtEmpleadosDesde.Mask = "0999";
-            this.mtEmpleadosDesde.Name = "mtEmpleadosDesde";
-            this.mtEmpleadosDesde.Size = new System.Drawing.Size(44, 21);
-            this.mtEmpleadosDesde.TabIndex = 13;
-            this.mtEmpleadosDesde.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.mtEmpleadosDesde.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            // 
             // label10
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -273,15 +245,6 @@
             this.panelFechaDesdeHasta.TabIndex = 2;
             this.panelFechaDesdeHasta.Visible = false;
             // 
-            // mtFechaHasta
-            // 
-            this.mtFechaHasta.Location = new System.Drawing.Point(244, 5);
-            this.mtFechaHasta.Margin = new System.Windows.Forms.Padding(2);
-            this.mtFechaHasta.Mask = "00/00/0000";
-            this.mtFechaHasta.Name = "mtFechaHasta";
-            this.mtFechaHasta.Size = new System.Drawing.Size(76, 20);
-            this.mtFechaHasta.TabIndex = 2;
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -290,16 +253,6 @@
             this.label13.Size = new System.Drawing.Size(68, 13);
             this.label13.TabIndex = 1;
             this.label13.Text = "Fecha Hasta";
-            // 
-            // mtFechaDesde
-            // 
-            this.mtFechaDesde.Location = new System.Drawing.Point(80, 5);
-            this.mtFechaDesde.Margin = new System.Windows.Forms.Padding(2);
-            this.mtFechaDesde.Mask = "00/00/0000";
-            this.mtFechaDesde.Name = "mtFechaDesde";
-            this.mtFechaDesde.Size = new System.Drawing.Size(76, 20);
-            this.mtFechaDesde.TabIndex = 0;
-            this.mtFechaDesde.Validating += new System.ComponentModel.CancelEventHandler(this.mtConsultasEmpleadoFecha_Validating);
             // 
             // label12
             // 
@@ -330,21 +283,6 @@
             this.lblEmpleado.Size = new System.Drawing.Size(0, 13);
             this.lblEmpleado.TabIndex = 3;
             // 
-            // mtNumeroEmpleado
-            // 
-            this.mtNumeroEmpleado.BackColor = System.Drawing.Color.White;
-            this.mtNumeroEmpleado.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.mtNumeroEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtNumeroEmpleado.HidePromptOnLeave = true;
-            this.mtNumeroEmpleado.Location = new System.Drawing.Point(81, 4);
-            this.mtNumeroEmpleado.Mask = "0999";
-            this.mtNumeroEmpleado.Name = "mtNumeroEmpleado";
-            this.mtNumeroEmpleado.Size = new System.Drawing.Size(44, 21);
-            this.mtNumeroEmpleado.TabIndex = 2;
-            this.mtNumeroEmpleado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.mtNumeroEmpleado.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.mtNumeroEmpleado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtNumeroEmpleado_KeyDown);
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -363,16 +301,6 @@
             this.panelFecha.Size = new System.Drawing.Size(183, 30);
             this.panelFecha.TabIndex = 1;
             this.panelFecha.Visible = false;
-            // 
-            // mtFecha
-            // 
-            this.mtFecha.Location = new System.Drawing.Point(95, 5);
-            this.mtFecha.Margin = new System.Windows.Forms.Padding(2);
-            this.mtFecha.Mask = "00/00/0000";
-            this.mtFecha.Name = "mtFecha";
-            this.mtFecha.Size = new System.Drawing.Size(76, 20);
-            this.mtFecha.TabIndex = 0;
-            this.mtFecha.Validating += new System.ComponentModel.CancelEventHandler(this.mtConsultasEmpleadoFecha_Validating);
             // 
             // lblmtFecha
             // 
@@ -404,16 +332,6 @@
             this.lblServicio.Size = new System.Drawing.Size(0, 13);
             this.lblServicio.TabIndex = 6;
             // 
-            // mtNroServicio
-            // 
-            this.mtNroServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.mtNroServicio.Location = new System.Drawing.Point(78, 4);
-            this.mtNroServicio.Mask = "9990";
-            this.mtNroServicio.Name = "mtNroServicio";
-            this.mtNroServicio.Size = new System.Drawing.Size(44, 22);
-            this.mtNroServicio.TabIndex = 5;
-            this.mtNroServicio.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtNroServicio_KeyDown);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -442,16 +360,6 @@
             this.lblCliente.Name = "lblCliente";
             this.lblCliente.Size = new System.Drawing.Size(0, 13);
             this.lblCliente.TabIndex = 5;
-            // 
-            // mtNroCliente
-            // 
-            this.mtNroCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.mtNroCliente.Location = new System.Drawing.Point(79, 4);
-            this.mtNroCliente.Mask = "9990";
-            this.mtNroCliente.Name = "mtNroCliente";
-            this.mtNroCliente.Size = new System.Drawing.Size(44, 22);
-            this.mtNroCliente.TabIndex = 4;
-            this.mtNroCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtNroCliente_KeyDown);
             // 
             // label6
             // 
@@ -487,16 +395,6 @@
             this.tbPorTablas.Text = "Por Tablas";
             this.tbPorTablas.UseVisualStyleBackColor = true;
             // 
-            // cmbTablas
-            // 
-            this.cmbTablas.BackColor = System.Drawing.Color.White;
-            this.cmbTablas.FormattingEnabled = true;
-            this.cmbTablas.Location = new System.Drawing.Point(235, 4);
-            this.cmbTablas.Name = "cmbTablas";
-            this.cmbTablas.Size = new System.Drawing.Size(174, 21);
-            this.cmbTablas.TabIndex = 6;
-            this.cmbTablas.SelectedIndexChanged += new System.EventHandler(this.cmbTablas_SelectedIndexChanged);
-            // 
             // tbEmpleados
             // 
             this.tbEmpleados.Controls.Add(this.btnEmpleadosConsultar);
@@ -531,25 +429,6 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Consultas Empleados";
             // 
-            // txtConsultasEmpleadosDescripcion
-            // 
-            this.txtConsultasEmpleadosDescripcion.Location = new System.Drawing.Point(298, 8);
-            this.txtConsultasEmpleadosDescripcion.Multiline = true;
-            this.txtConsultasEmpleadosDescripcion.Name = "txtConsultasEmpleadosDescripcion";
-            this.txtConsultasEmpleadosDescripcion.Size = new System.Drawing.Size(341, 48);
-            this.txtConsultasEmpleadosDescripcion.TabIndex = 6;
-            // 
-            // cmbEmpleadosConsultas
-            // 
-            this.cmbEmpleadosConsultas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.cmbEmpleadosConsultas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEmpleadosConsultas.FormattingEnabled = true;
-            this.cmbEmpleadosConsultas.Location = new System.Drawing.Point(8, 27);
-            this.cmbEmpleadosConsultas.Name = "cmbEmpleadosConsultas";
-            this.cmbEmpleadosConsultas.Size = new System.Drawing.Size(284, 21);
-            this.cmbEmpleadosConsultas.TabIndex = 4;
-            this.cmbEmpleadosConsultas.SelectedIndexChanged += new System.EventHandler(this.cmbEmpleadosConsultas_SelectedIndexChanged);
-            // 
             // tbClientes
             // 
             this.tbClientes.Controls.Add(this.label4);
@@ -572,26 +451,6 @@
             this.label4.Size = new System.Drawing.Size(111, 13);
             this.label4.TabIndex = 1;
             this.label4.Text = "Consultas Clientes";
-            // 
-            // txtClientesDescripcionConsulta
-            // 
-            this.txtClientesDescripcionConsulta.Location = new System.Drawing.Point(290, 7);
-            this.txtClientesDescripcionConsulta.Multiline = true;
-            this.txtClientesDescripcionConsulta.Name = "txtClientesDescripcionConsulta";
-            this.txtClientesDescripcionConsulta.ReadOnly = true;
-            this.txtClientesDescripcionConsulta.Size = new System.Drawing.Size(350, 48);
-            this.txtClientesDescripcionConsulta.TabIndex = 2;
-            // 
-            // cmbClientesConsultas
-            // 
-            this.cmbClientesConsultas.BackColor = System.Drawing.Color.White;
-            this.cmbClientesConsultas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbClientesConsultas.FormattingEnabled = true;
-            this.cmbClientesConsultas.Location = new System.Drawing.Point(8, 28);
-            this.cmbClientesConsultas.Name = "cmbClientesConsultas";
-            this.cmbClientesConsultas.Size = new System.Drawing.Size(272, 21);
-            this.cmbClientesConsultas.TabIndex = 0;
-            this.cmbClientesConsultas.SelectedIndexChanged += new System.EventHandler(this.cmbClientesConsultas_SelectedIndexChanged);
             // 
             // panelPorTablas
             // 
@@ -629,20 +488,6 @@
             this.gbPorTablasFiltros.TabIndex = 17;
             this.gbPorTablasFiltros.TabStop = false;
             this.gbPorTablasFiltros.Visible = false;
-            // 
-            // maskedTextBoxKeyDown5
-            // 
-            this.maskedTextBoxKeyDown5.Location = new System.Drawing.Point(314, 12);
-            this.maskedTextBoxKeyDown5.Name = "maskedTextBoxKeyDown5";
-            this.maskedTextBoxKeyDown5.Size = new System.Drawing.Size(61, 20);
-            this.maskedTextBoxKeyDown5.TabIndex = 22;
-            // 
-            // maskedTextBoxKeyDown4
-            // 
-            this.maskedTextBoxKeyDown4.Location = new System.Drawing.Point(198, 12);
-            this.maskedTextBoxKeyDown4.Name = "maskedTextBoxKeyDown4";
-            this.maskedTextBoxKeyDown4.Size = new System.Drawing.Size(62, 20);
-            this.maskedTextBoxKeyDown4.TabIndex = 21;
             // 
             // label8
             // 
@@ -741,10 +586,166 @@
             this.dgvResultados.Size = new System.Drawing.Size(656, 255);
             this.dgvResultados.TabIndex = 1;
             // 
+            // maskedTextBoxKeyDown1
+            // 
+            this.maskedTextBoxKeyDown1.BackColor = System.Drawing.Color.White;
+            this.maskedTextBoxKeyDown1.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.maskedTextBoxKeyDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBoxKeyDown1.HidePromptOnLeave = true;
+            this.maskedTextBoxKeyDown1.Location = new System.Drawing.Point(230, 4);
+            this.maskedTextBoxKeyDown1.Mask = "0999";
+            this.maskedTextBoxKeyDown1.Name = "maskedTextBoxKeyDown1";
+            this.maskedTextBoxKeyDown1.Size = new System.Drawing.Size(44, 21);
+            this.maskedTextBoxKeyDown1.TabIndex = 14;
+            this.maskedTextBoxKeyDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.maskedTextBoxKeyDown1.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
+            // mtEmpleadosDesde
+            // 
+            this.mtEmpleadosDesde.BackColor = System.Drawing.Color.White;
+            this.mtEmpleadosDesde.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtEmpleadosDesde.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mtEmpleadosDesde.HidePromptOnLeave = true;
+            this.mtEmpleadosDesde.Location = new System.Drawing.Point(134, 4);
+            this.mtEmpleadosDesde.Mask = "0999";
+            this.mtEmpleadosDesde.Name = "mtEmpleadosDesde";
+            this.mtEmpleadosDesde.Size = new System.Drawing.Size(44, 21);
+            this.mtEmpleadosDesde.TabIndex = 13;
+            this.mtEmpleadosDesde.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.mtEmpleadosDesde.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
+            // mtFechaHasta
+            // 
+            this.mtFechaHasta.Location = new System.Drawing.Point(244, 5);
+            this.mtFechaHasta.Margin = new System.Windows.Forms.Padding(2);
+            this.mtFechaHasta.Mask = "00/00/0000";
+            this.mtFechaHasta.Name = "mtFechaHasta";
+            this.mtFechaHasta.Size = new System.Drawing.Size(76, 20);
+            this.mtFechaHasta.TabIndex = 2;
+            // 
+            // mtFechaDesde
+            // 
+            this.mtFechaDesde.Location = new System.Drawing.Point(80, 5);
+            this.mtFechaDesde.Margin = new System.Windows.Forms.Padding(2);
+            this.mtFechaDesde.Mask = "00/00/0000";
+            this.mtFechaDesde.Name = "mtFechaDesde";
+            this.mtFechaDesde.Size = new System.Drawing.Size(76, 20);
+            this.mtFechaDesde.TabIndex = 0;
+            this.mtFechaDesde.Validating += new System.ComponentModel.CancelEventHandler(this.mtConsultasEmpleadoFecha_Validating);
+            // 
+            // mtNumeroEmpleado
+            // 
+            this.mtNumeroEmpleado.BackColor = System.Drawing.Color.White;
+            this.mtNumeroEmpleado.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtNumeroEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mtNumeroEmpleado.HidePromptOnLeave = true;
+            this.mtNumeroEmpleado.Location = new System.Drawing.Point(81, 4);
+            this.mtNumeroEmpleado.Mask = "0999";
+            this.mtNumeroEmpleado.Name = "mtNumeroEmpleado";
+            this.mtNumeroEmpleado.Size = new System.Drawing.Size(44, 21);
+            this.mtNumeroEmpleado.TabIndex = 2;
+            this.mtNumeroEmpleado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.mtNumeroEmpleado.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtNumeroEmpleado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtNumeroEmpleado_KeyDown);
+            // 
+            // mtFecha
+            // 
+            this.mtFecha.Location = new System.Drawing.Point(95, 5);
+            this.mtFecha.Margin = new System.Windows.Forms.Padding(2);
+            this.mtFecha.Mask = "00/00/0000";
+            this.mtFecha.Name = "mtFecha";
+            this.mtFecha.Size = new System.Drawing.Size(76, 20);
+            this.mtFecha.TabIndex = 0;
+            this.mtFecha.Validating += new System.ComponentModel.CancelEventHandler(this.mtConsultasEmpleadoFecha_Validating);
+            // 
+            // mtNroServicio
+            // 
+            this.mtNroServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.mtNroServicio.Location = new System.Drawing.Point(78, 4);
+            this.mtNroServicio.Mask = "9990";
+            this.mtNroServicio.Name = "mtNroServicio";
+            this.mtNroServicio.Size = new System.Drawing.Size(44, 22);
+            this.mtNroServicio.TabIndex = 5;
+            this.mtNroServicio.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtNroServicio_KeyDown);
+            // 
+            // mtNroCliente
+            // 
+            this.mtNroCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.mtNroCliente.Location = new System.Drawing.Point(79, 4);
+            this.mtNroCliente.Mask = "9990";
+            this.mtNroCliente.Name = "mtNroCliente";
+            this.mtNroCliente.Size = new System.Drawing.Size(44, 22);
+            this.mtNroCliente.TabIndex = 4;
+            this.mtNroCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mtNroCliente_KeyDown);
+            // 
+            // cmbTablas
+            // 
+            this.cmbTablas.BackColor = System.Drawing.Color.White;
+            this.cmbTablas.FormattingEnabled = true;
+            this.cmbTablas.Location = new System.Drawing.Point(235, 4);
+            this.cmbTablas.Name = "cmbTablas";
+            this.cmbTablas.Size = new System.Drawing.Size(174, 21);
+            this.cmbTablas.TabIndex = 6;
+            this.cmbTablas.SelectedIndexChanged += new System.EventHandler(this.cmbTablas_SelectedIndexChanged);
+            // 
+            // txtConsultasEmpleadosDescripcion
+            // 
+            this.txtConsultasEmpleadosDescripcion.Location = new System.Drawing.Point(298, 8);
+            this.txtConsultasEmpleadosDescripcion.Multiline = true;
+            this.txtConsultasEmpleadosDescripcion.Name = "txtConsultasEmpleadosDescripcion";
+            this.txtConsultasEmpleadosDescripcion.Size = new System.Drawing.Size(341, 48);
+            this.txtConsultasEmpleadosDescripcion.TabIndex = 6;
+            // 
+            // cmbEmpleadosConsultas
+            // 
+            this.cmbEmpleadosConsultas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.cmbEmpleadosConsultas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEmpleadosConsultas.FormattingEnabled = true;
+            this.cmbEmpleadosConsultas.Location = new System.Drawing.Point(8, 27);
+            this.cmbEmpleadosConsultas.Name = "cmbEmpleadosConsultas";
+            this.cmbEmpleadosConsultas.Size = new System.Drawing.Size(284, 21);
+            this.cmbEmpleadosConsultas.TabIndex = 4;
+            this.cmbEmpleadosConsultas.SelectedIndexChanged += new System.EventHandler(this.cmbEmpleadosConsultas_SelectedIndexChanged);
+            // 
+            // txtClientesDescripcionConsulta
+            // 
+            this.txtClientesDescripcionConsulta.Location = new System.Drawing.Point(290, 7);
+            this.txtClientesDescripcionConsulta.Multiline = true;
+            this.txtClientesDescripcionConsulta.Name = "txtClientesDescripcionConsulta";
+            this.txtClientesDescripcionConsulta.ReadOnly = true;
+            this.txtClientesDescripcionConsulta.Size = new System.Drawing.Size(350, 48);
+            this.txtClientesDescripcionConsulta.TabIndex = 2;
+            // 
+            // cmbClientesConsultas
+            // 
+            this.cmbClientesConsultas.BackColor = System.Drawing.Color.White;
+            this.cmbClientesConsultas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbClientesConsultas.FormattingEnabled = true;
+            this.cmbClientesConsultas.Location = new System.Drawing.Point(8, 28);
+            this.cmbClientesConsultas.Name = "cmbClientesConsultas";
+            this.cmbClientesConsultas.Size = new System.Drawing.Size(272, 21);
+            this.cmbClientesConsultas.TabIndex = 0;
+            this.cmbClientesConsultas.SelectedIndexChanged += new System.EventHandler(this.cmbClientesConsultas_SelectedIndexChanged);
+            // 
+            // maskedTextBoxKeyDown5
+            // 
+            this.maskedTextBoxKeyDown5.Location = new System.Drawing.Point(314, 12);
+            this.maskedTextBoxKeyDown5.Name = "maskedTextBoxKeyDown5";
+            this.maskedTextBoxKeyDown5.Size = new System.Drawing.Size(61, 20);
+            this.maskedTextBoxKeyDown5.TabIndex = 22;
+            // 
+            // maskedTextBoxKeyDown4
+            // 
+            this.maskedTextBoxKeyDown4.Location = new System.Drawing.Point(198, 12);
+            this.maskedTextBoxKeyDown4.Name = "maskedTextBoxKeyDown4";
+            this.maskedTextBoxKeyDown4.Size = new System.Drawing.Size(62, 20);
+            this.maskedTextBoxKeyDown4.TabIndex = 21;
+            // 
             // ExportToExcel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(656, 568);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
@@ -752,6 +753,7 @@
             this.Text = "ExportToExcel";
             this.Load += new System.EventHandler(this.ExportToExcel_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ExportToExcel_FormClosed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ExportToExcel_FormClosing);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);

@@ -1498,7 +1498,7 @@ namespace Datos
         //    }
         //}
 
-        public int agregarExtraLiquidacionEmpleado(int idEmpleado, DateTime fecha, string descripcion, bool signoPositivo, float valor, int cantidadCuotas, string userName, int idTipoExtraLiquidacion, TimeSpan cantHs_LlevaHs, float porcentaje)
+        public int agregarExtraLiquidacionEmpleado(int idEmpleado, DateTime fecha, string descripcion, bool signoPositivo, float valor, int cantidadCuotas, string userName, int idTipoExtraLiquidacion, TimeSpan cantHs_LlevaHs, decimal porcentaje)
         {
             Table<ExtrasLiquidAcIon> tablaExtrasLiquidacion =  null;
             Table<CuOtAsExtrasLiquidAcIon> tablaCuotas;
@@ -2495,16 +2495,16 @@ namespace Datos
                 else
                     con.PagarExtrasDespuesDeHs = null;
                 
-                if (con.HorasExtrasDeterminadas == 1)
-                    EliminarHorasExtrasContrato(numeroContrato);
+                if (con.HorasComunesDeterminadas == 1)
+                    EliminarHorasComunesContrato(numeroContrato);
 
                 if (HsExtrasDet)
-                    InsertarHorasExtrasContrato(numeroContrato, HsExtXDia);
+                    InsertarHorasComunesContrato(numeroContrato, HsExtXDia);
 
                 if (HsExtrasDet)
-                    con.HorasExtrasDeterminadas = 1;
+                    con.HorasComunesDeterminadas = 1;
                 else
-                    con.HorasExtrasDeterminadas = 0;
+                    con.HorasComunesDeterminadas = 0;
 
                 database.SubmitChanges();
             }
@@ -2515,12 +2515,12 @@ namespace Datos
             }
         }
 
-        private void InsertarHorasExtrasContrato(int numeroContrato, string[] HsExtXDia)
+        private void InsertarHorasComunesContrato(int numeroContrato, string[] HsExtXDia)
         {
             try
             {
-                Table<HoRaSExtrasContraToS> tabla = database.GetTable<HoRaSExtrasContraToS>();
-                HoRaSExtrasContraToS HsExt = new HoRaSExtrasContraToS();
+                Table<HoRaSComUnescoNtRatOs> tabla = database.GetTable<HoRaSComUnescoNtRatOs>();
+                HoRaSComUnescoNtRatOs HsExt = new HoRaSComUnescoNtRatOs();
 
                 HsExt.IDContraToS = (uint)numeroContrato;
                 HsExt.Lunes = HsExtXDia[0];
@@ -2541,20 +2541,20 @@ namespace Datos
             }
         }
 
-        private void EliminarHorasExtrasContrato(int numeroContrato)
+        private void EliminarHorasComunesContrato(int numeroContrato)
         {
             try
             {
-                Table<HoRaSExtrasContraToS> tabla = database.GetTable<HoRaSExtrasContraToS>();
+                Table<HoRaSComUnescoNtRatOs> tabla = database.GetTable<HoRaSComUnescoNtRatOs>();
                 var HsExtCont = (from reg in tabla
                                  where reg.IDContraToS == numeroContrato
-                                 select reg).Single<HoRaSExtrasContraToS>();
+                                 select reg).Single<HoRaSComUnescoNtRatOs>();
 
                 if (HsExtCont == null)
                     throw new NoExisteException("No existe la HoraExtraContrato con Id " + numeroContrato.ToString());
                 //El Borrado Logico en el historial del empleado no tiene mucho sentido. 
                 //eventHist.BoRrAdo = 1;
-                database.HoRaSExtrasContraToS.DeleteOnSubmit(HsExtCont);
+                database.HoRaSComUnescoNtRatOs.DeleteOnSubmit(HsExtCont);
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
 
             }
@@ -2565,7 +2565,7 @@ namespace Datos
             }
         }
 
-        public void altaContrato(ContraToS Contrato, List<LineAshOrAs> Lineas, HoRaSExtrasContraToS HorasExtrasPorDia)
+        public void altaContrato(ContraToS Contrato, List<LineAshOrAs> Lineas, HoRaSComUnescoNtRatOs HorasComunesPorDia)
         {
             System.Data.Common.DbConnection conexion = database.Connection;
             try
@@ -2602,7 +2602,7 @@ namespace Datos
                 
                 st += "'" + string.Format("{0:yyyy-MM-dd}", Contrato.FechaIni) + "', ";
                 st += Contrato.HorasExtras.ToString() + ", ";
-                st += Contrato.HorasExtrasDeterminadas.ToString() + ", ";
+                st += Contrato.HorasComunesDeterminadas.ToString() + ", ";
                 st += Contrato.IDContratos.ToString() + ", ";
                 st += "'" + Contrato.Observaciones.ToString() + "', ";
                 st += Contrato.PagaDescanso.ToString() + ", ";
@@ -2670,9 +2670,9 @@ namespace Datos
                     }                    
                 }
 
-                if (HorasExtrasPorDia != null)
+                if (HorasComunesPorDia != null)
                 {
-                    HoRaSExtrasContraToS hepd = HorasExtrasPorDia;
+                    HoRaSComUnescoNtRatOs hepd = HorasComunesPorDia;
                     nombreTabla = database.Connection.Database + ".horasextrascontratos";
                     sqlLineasHoras = "INSERT INTO " + nombreTabla + " (";
                     campos = obtenerColumnasDeTabla(nombreTabla);
@@ -4670,14 +4670,23 @@ namespace Datos
 
                 ContraToS con = obtenerContrato(NumeroCliente, NroServicio);
                 bool pagaExtras = (con.HorasExtras == 1);
+                bool cantHsComunesDefinidas = (con.HorasComunesDeterminadas == 1);
                 TimeSpan cantidadHsAPartirDeDondePagaExtras = new TimeSpan(0);
+                List<HoRaSComUnescoNtRatOs> listaHsComunes = null;
                 if (pagaExtras && con.PagarExtrasDespuesDeHs == null)
                 {
                     throw new Exception("No esta seteada la cantidad de Hs a partir de donde se pagan hs extras.");
                 }
                 else if (pagaExtras)
                 {
-                    cantidadHsAPartirDeDondePagaExtras = new TimeSpan((int)con.PagarExtrasDespuesDeHs, 0, 0);
+                    if (cantHsComunesDefinidas)
+                    {
+                        listaHsComunes = con.HoRaSComUnescoNtRatOs.ToList();
+                    }
+                    else
+                    {
+                        cantidadHsAPartirDeDondePagaExtras = new TimeSpan((int)con.PagarExtrasDespuesDeHs, 0, 0);
+                    }
                 }
                 List<DataDiaFacturacion> listaDias = new List<DataDiaFacturacion>();
 
@@ -4685,7 +4694,7 @@ namespace Datos
                 TimeSpan totalHsExtras = new TimeSpan(0);
                 TimeSpan tempComunes = new TimeSpan(0);
                 TimeSpan tempExtras = new TimeSpan(0);
-                TimeSpan HsComunesCargo;
+                //TimeSpan HsComunesCargo;
                 DataDiaFacturacion diafact;
                 DateTime FechaCorresponde;
                 
@@ -4696,13 +4705,15 @@ namespace Datos
                 {
                     totalHsComunes = new TimeSpan(0);
                     totalHsExtras = new TimeSpan(0);
-                    // Obtenemos todos los HorasGeneradasEscalafon para el cliente/Servicio y el rango de fechas de facturacion
+                    // Obtenemos todos los HorasGeneradasEscalafon para el cliente/Servicio y la fecha correspondiente
                     var listahge = from i in (from hge in database.HoRaSGeneraDaSEScalaFOn
                                                 where hge.AcArgoDeLaEmpresa == 0 && hge.Descanso == 0 && hge.NumeroCliente == NumeroCliente && hge.NumeroServicio == NroServicio && hge.FechaCorrespondiente == FechaCorresponde
                                                 select hge)
                                             group i by new { i.NroEmpleado, i.HoraEntrada,i.HoraSalida } into g
                                             select new { g.Key.NroEmpleado, g.Key.HoraEntrada,g.Key.HoraSalida};
+                    
                     CantHsPorEmpleado = new Dictionary<uint,TimeSpan>();
+                    // Obtengo una lista con los empleados y el total de hs por empleado realizadas en el servicio.
                     foreach (var hge in listahge)
                     {
                         if(CantHsPorEmpleado.ContainsKey(hge.NroEmpleado))
@@ -4719,18 +4730,49 @@ namespace Datos
                     foreach (var hge in CantHsPorEmpleado)
                     {
                         // Obtengo la cant de Hs comunes del cargo del empleado;
-                        int cantHsComunesCargo = (from emp in database.EmPleadOs
-                                                  join cargo in database.TipOscarGoS on (uint)emp.IDCargo equals cargo.IDCargo
-                                                  where emp.NroEmpleado == hge.Key
-                                                  select cargo.CantidadHsComunes).Single();
-                        HsComunesCargo = new TimeSpan(cantHsComunesCargo, 0, 0);              
+                        //int cantHsComunesCargo = (from emp in database.EmPleadOs
+                        //                          join cargo in database.TipOscarGoS on (uint)emp.IDCargo equals cargo.IDCargo
+                        //                          where emp.NroEmpleado == hge.Key
+                        //                          select cargo.CantidadHsComunes).Single();
+                        //HsComunesCargo = new TimeSpan(cantHsComunesCargo, 0, 0);              
+
                         if (pagaExtras)
                         {
-                            tempComunes = (CantHsPorEmpleado[hge.Key] > cantidadHsAPartirDeDondePagaExtras ? cantidadHsAPartirDeDondePagaExtras : CantHsPorEmpleado[hge.Key]);
-                            //tempComunes = TimeSpan.FromTicks(tempComunes.Ticks * cantidadFuncionarios);
-                            //tempHsTotales = HoraEnt;
-                            //tempComunes = (tempHsTotales > HsComunesCargo ? tempComunes : tempHsTotales);
-                            tempExtras = CantHsPorEmpleado[hge.Key] - tempComunes;
+                            if (cantHsComunesDefinidas)
+                            {
+                                TimeSpan hsComunes = new TimeSpan(0);
+                                switch(ControladorUtilidades.nombreDiasInglesAEspanol(FechaCorresponde.DayOfWeek.ToString()))
+                                {
+
+                                    case "Lunes":
+                                        hsComunes = TimeSpan.Parse(listaHsComunes[0].Lunes);
+                                        break;
+                                    case "Martes":
+                                        hsComunes = TimeSpan.Parse(listaHsComunes[0].Martes);
+                                        break;
+                                    case "Miercoles":
+                                        hsComunes = TimeSpan.Parse(listaHsComunes[0].Miercoles);
+                                        break;
+                                    case "Jueves":
+                                        hsComunes = TimeSpan.Parse(listaHsComunes[0].Jueves);
+                                        break;
+                                    case "Viernes":
+                                        hsComunes = TimeSpan.Parse(listaHsComunes[0].Viernes);
+                                        break;
+                                    case "Sabado":
+                                        hsComunes = TimeSpan.Parse(listaHsComunes[0].Sabado);
+                                        break;
+                                    case "Domingo":
+                                        hsComunes = TimeSpan.Parse(listaHsComunes[0].Domingo);
+                                        break;
+                                }
+                                // ACA QUEDE
+                            }
+                            else
+                            {
+                                tempComunes = (CantHsPorEmpleado[hge.Key] > cantidadHsAPartirDeDondePagaExtras ? cantidadHsAPartirDeDondePagaExtras : CantHsPorEmpleado[hge.Key]);
+                                tempExtras = CantHsPorEmpleado[hge.Key] - tempComunes;
+                            }
                         }
                         else
                         {
@@ -4970,18 +5012,18 @@ namespace Datos
             }
         }
 
-        public HoRaSExtrasContraToS obtenerHorasExtrasContrato(uint IdContrato)
+        public HoRaSComUnescoNtRatOs obtenerHorasExtrasContrato(uint IdContrato)
         {
             try
             {
-                Table<HoRaSExtrasContraToS> tabla = database.GetTable<HoRaSExtrasContraToS>();
+                Table<HoRaSComUnescoNtRatOs> tabla = database.GetTable<HoRaSComUnescoNtRatOs>();
                 var hec = (from reg in tabla
                            where reg.IDContraToS == IdContrato
                            select reg);
-                if (hec.Count<HoRaSExtrasContraToS>() == 0)
+                if (hec.Count<HoRaSComUnescoNtRatOs>() == 0)
                     throw new NoExisteException("No existe la HoraExtraContrato con IdContrato " + IdContrato);
 
-                return hec.Single<HoRaSExtrasContraToS>();
+                return hec.Single<HoRaSComUnescoNtRatOs>();
             }
             catch (ArgumentNullException anex)
             {
