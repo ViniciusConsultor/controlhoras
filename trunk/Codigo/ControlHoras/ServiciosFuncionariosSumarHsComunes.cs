@@ -188,7 +188,7 @@ namespace ControlHoras
                         temp = new HsComUnEsAdICIonAleSLiquidAcIonEmPleadO();
                         temp.ClienteOeMpleado = "EMPLEADO";
                         temp.ClienteEmpleadoCorrespondiente = LineaEmp.Split('-')[0].Trim();
-                        temp.HsAdicionalesEnSegs = "1800"; // 30 min por defecto.
+                        temp.HsAdicionalesEnSegs = 1800; // 30 min por defecto.
                         listaAGuadar.Add(temp);
                     }
                 }

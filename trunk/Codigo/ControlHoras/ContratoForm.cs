@@ -364,7 +364,7 @@ namespace ControlHoras
                         i++;
 
                     }
-                    if (con.getHorasExtrasDeterminadas())
+                    if (con.getHorasComunesDeterminadas())
                     {
                         DetHorasExtrasCB.Checked = true;
                         string[] hsex = con.getHorasExPorDia();
@@ -833,7 +833,7 @@ namespace ControlHoras
 
         private void DetHorasExtrasCB_CheckedChanged(object sender, EventArgs e)
         {
-            HorasExtrasPL.Visible = DetHorasExtrasCB.Checked;
+           // HorasExtrasPL.Visible = DetHorasExtrasCB.Checked;
             //HorasExtrasDGV.Refresh();
         }
 

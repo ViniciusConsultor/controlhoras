@@ -15,24 +15,15 @@ INSERT INTO CONSULTASEMPLEADOS VALUES (0,"FUNCIONARIOS QUE TRABAJARON EN DESCANS
 
 /* issue 93*/
 -- Agregamos el campo que determina la cant de hs comunes que paga el cliente
-ALTER TABLE `trustdb`.`contratos` ADD COLUMN `CantHsComunes` SMALLINT(6) NULL DEFAULT NULL  AFTER `PagarExtrasDespuesDeHs` ;
-ALTER TABLE `trustdb`.`contratos` DROP COLUMN `CantHsComunes` ;
-ALTER TABLE `trustdb`.`contratos` ADD COLUMN `HorasExtrasDeterminadas` TINYINT(1) NOT NULL DEFAULT '0'  AFTER `TipodeContrato` ;
-CREATE  TABLE IF NOT EXISTS `trustdb`.`horasextrascontratos` (
-  `idcontratos` MEDIUMINT(8) UNSIGNED NOT NULL ,
-  `Lunes` VARCHAR(10) NOT NULL ,
-  `Martes` VARCHAR(10) NOT NULL ,
-  `Miercoles` VARCHAR(10) NOT NULL ,
-  `Jueves` VARCHAR(10) NOT NULL ,
-  `Viernes` VARCHAR(10) NOT NULL ,
-  `Sabado` VARCHAR(10) NOT NULL ,
-  `Domingo` VARCHAR(10) NOT NULL ,
-  PRIMARY KEY (`idcontratos`) ,
-  INDEX `FK_Contrato` (`idcontratos` ASC) ,
-  CONSTRAINT `FK_Contrato`
-    FOREIGN KEY (`idcontratos` )
-    REFERENCES `trustdb`.`contratos` (`idContratos` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+ALTER TABLE `trustdb`.`contratos` ADD COLUMN `HorasComunesDeterminadas` TINYINT(1) NOT NULL DEFAULT '0'  AFTER `TipodeContrato` ;
+CREATE  TABLE IF NOT EXISTS `trustdb`.`HorasComunesContratos` (  `idcontratos` MEDIUMINT(8) UNSIGNED NOT NULL ,  `Lunes` VARCHAR(10) NOT NULL ,  `Martes` VARCHAR(10) NOT NULL ,  `Miercoles` VARCHAR(10) NOT NULL ,  `Jueves` VARCHAR(10) NOT NULL ,  `Viernes` VARCHAR(10) NOT NULL ,  `Sabado` VARCHAR(10) NOT NULL ,  `Domingo` VARCHAR(10) NOT NULL ,  PRIMARY KEY (`idcontratos`) ,  INDEX `FK_Contrato` (`idcontratos` ASC) ,  CONSTRAINT `FK_Contrato`    FOREIGN KEY (`idcontratos` )    REFERENCES `trustdb`.`contratos` (`idContratos` )    ON DELETE NO ACTION    ON UPDATE NO ACTION);
+
+-- Por issue 103.
+delete from permisos where idControl=15; 	
+delete from permisocontrol where Nombre="liquidacionToolStripMenuItem" and idPantallaWinForm=1 and NombreVisual="Menu->Liquidacion";
+insert into permisocontrol values (0,"System.Windows.Forms.ToolStripMenuItem","liquidacionEmpleadosToolStripMenuItem",1,"Menu->Liquidacion Empleados");
+insert into permisocontrol values (0,"System.Windows.Forms.ToolStripMenuItem","liquidacionClientesToolStripMenuItem",1,"Menu->Liquidacion Clientes");
 
 
+-- Se cambia Tipo de Dato, float a Decimal en el campo Porcentaje de ExtrasLiquidacion
+alter table extrasliquidacion change column Porcentaje Porcentaje decimal(4,2) not null default 0.0;

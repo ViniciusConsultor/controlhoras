@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2011-07-24 23:54:04Z
+#region Auto-generated classes for trustdb database on 2011-08-26 17:24:34Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2011-07-24 23:54:04Z
+// Auto-generated from trustdb on 2011-08-26 17:24:34Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -101,6 +101,7 @@ namespace Datos
 		public Table<GRuPOs> GRuPOs { get { return GetTable<GRuPOs>(); } }
 		public Table<HoRaRioDiA> HoRaRioDiA { get { return GetTable<HoRaRioDiA>(); } }
 		public Table<HoRaRioEScalaFOn> HoRaRioEScalaFOn { get { return GetTable<HoRaRioEScalaFOn>(); } }
+		public Table<HoRaSComUnescoNtRatOs> HoRaSComUnescoNtRatOs { get { return GetTable<HoRaSComUnescoNtRatOs>(); } }
 		public Table<HoRaSGeneraDaSEScalaFOn> HoRaSGeneraDaSEScalaFOn { get { return GetTable<HoRaSGeneraDaSEScalaFOn>(); } }
 		public Table<HsComUnEsAdICIonAleSLiquidAcIonEmPleadO> HsComUnEsAdICIonAleSLiquidAcIonEmPleadO { get { return GetTable<HsComUnEsAdICIonAleSLiquidAcIonEmPleadO>(); } }
 		public Table<LineAshOrAs> LineAshOrAs { get { return GetTable<LineAshOrAs>(); } }
@@ -1510,6 +1511,8 @@ namespace Datos
 		partial void OnFechaFinChanging(DateTime? value);
 		partial void OnFechaIniChanged();
 		partial void OnFechaIniChanging(DateTime? value);
+		partial void OnHorasComunesDeterminadasChanged();
+		partial void OnHorasComunesDeterminadasChanging(sbyte value);
 		partial void OnHorasExtrasChanged();
 		partial void OnHorasExtrasChanging(sbyte value);
 		partial void OnIDContratosChanged();
@@ -1685,6 +1688,32 @@ namespace Datos
 					_fechaIni = value;
 					SendPropertyChanged("FechaIni");
 					OnFechaIniChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region sbyte HorasComunesDeterminadas
+
+		private sbyte _horasComunesDeterminadas;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_horasComunesDeterminadas", Name = "HorasComunesDeterminadas", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public sbyte HorasComunesDeterminadas
+		{
+			get
+			{
+				return _horasComunesDeterminadas;
+			}
+			set
+			{
+				if (value != _horasComunesDeterminadas)
+				{
+					OnHorasComunesDeterminadasChanging(value);
+					SendPropertyChanging();
+					_horasComunesDeterminadas = value;
+					SendPropertyChanged("HorasComunesDeterminadas");
+					OnHorasComunesDeterminadasChanged();
 				}
 			}
 		}
@@ -1983,6 +2012,21 @@ namespace Datos
 
 		#region Children
 
+		private EntitySet<HoRaSComUnescoNtRatOs> _hoRaScOmUnescoNtRatOs;
+		[Association(Storage = "_hoRaScOmUnescoNtRatOs", OtherKey = "IDContraToS", ThisKey = "IDContratos", Name = "FK_Contrato")]
+		[DebuggerNonUserCode]
+		public EntitySet<HoRaSComUnescoNtRatOs> HoRaSComUnescoNtRatOs
+		{
+			get
+			{
+				return _hoRaScOmUnescoNtRatOs;
+			}
+			set
+			{
+				_hoRaScOmUnescoNtRatOs = value;
+			}
+		}
+
 		private EntitySet<LineAshOrAs> _lineAshOrAs;
 		[Association(Storage = "_lineAshOrAs", OtherKey = "IDContrato", ThisKey = "IDContratos", Name = "FK_Contratos")]
 		[DebuggerNonUserCode]
@@ -2041,6 +2085,16 @@ namespace Datos
 
 		#region Attachement handlers
 
+		private void HoRaSComUnescoNtRatOs_Attach(HoRaSComUnescoNtRatOs entity)
+		{
+			entity.ContraToS = this;
+		}
+
+		private void HoRaSComUnescoNtRatOs_Detach(HoRaSComUnescoNtRatOs entity)
+		{
+			entity.ContraToS = null;
+		}
+
 		private void LineAshOrAs_Attach(LineAshOrAs entity)
 		{
 			entity.ContraToS = this;
@@ -2058,6 +2112,7 @@ namespace Datos
 
 		public ContraToS()
 		{
+			_hoRaScOmUnescoNtRatOs = new EntitySet<HoRaSComUnescoNtRatOs>(HoRaSComUnescoNtRatOs_Attach, HoRaSComUnescoNtRatOs_Detach);
 			_lineAshOrAs = new EntitySet<LineAshOrAs>(LineAshOrAs_Attach, LineAshOrAs_Detach);
 			_tipOcOntraToS = new EntityRef<TipOContraToS>();
 			OnCreated();
@@ -5659,7 +5714,7 @@ namespace Datos
 		partial void OnIDUsuarioChanged();
 		partial void OnIDUsuarioChanging(int value);
 		partial void OnPorcentajeChanged();
-		partial void OnPorcentajeChanging(float value);
+		partial void OnPorcentajeChanging(decimal value);
 		partial void OnSignoChanged();
 		partial void OnSignoChanging(int value);
 
@@ -5873,12 +5928,12 @@ namespace Datos
 
 		#endregion
 
-		#region float Porcentaje
+		#region decimal Porcentaje
 
-		private float _porcentaje;
+		private decimal _porcentaje;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_porcentaje", Name = "Porcentaje", DbType = "float", AutoSync = AutoSync.Never, CanBeNull = false)]
-		public float Porcentaje
+		[Column(Storage = "_porcentaje", Name = "Porcentaje", DbType = "decimal(2,2)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public decimal Porcentaje
 		{
 			get
 			{
@@ -7428,6 +7483,318 @@ namespace Datos
 			_esCalaFoNeMpLeadO = new EntityRef<EScalaFOneMpLeadO>();
 			_tipOsDiAs = new EntityRef<TipOsDiAs>();
 			_emPleadOs = new EntityRef<EmPleadOs>();
+			OnCreated();
+		}
+
+		#endregion
+
+	}
+
+	[Table(Name = "trustdb.horascomunescontratos")]
+	public partial class HoRaSComUnescoNtRatOs : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		#region INotifyPropertyChanging handling
+
+		public event PropertyChangingEventHandler PropertyChanging;
+
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs("");
+		protected virtual void SendPropertyChanging()
+		{
+			if (PropertyChanging != null)
+			{
+				PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+
+		#endregion
+
+		#region INotifyPropertyChanged handling
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected virtual void SendPropertyChanged(string propertyName)
+		{
+			if (PropertyChanged != null)
+			{
+				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		#endregion
+
+		#region Extensibility Method Definitions
+
+		partial void OnCreated();
+		partial void OnDomingoChanged();
+		partial void OnDomingoChanging(string value);
+		partial void OnIDContraToSChanged();
+		partial void OnIDContraToSChanging(uint value);
+		partial void OnJuevesChanged();
+		partial void OnJuevesChanging(string value);
+		partial void OnLunesChanged();
+		partial void OnLunesChanging(string value);
+		partial void OnMartesChanged();
+		partial void OnMartesChanging(string value);
+		partial void OnMiercolesChanged();
+		partial void OnMiercolesChanging(string value);
+		partial void OnSabadoChanged();
+		partial void OnSabadoChanging(string value);
+		partial void OnViernesChanged();
+		partial void OnViernesChanging(string value);
+
+		#endregion
+
+		#region string Domingo
+
+		private string _domingo;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_domingo", Name = "Domingo", DbType = "varchar(10)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string Domingo
+		{
+			get
+			{
+				return _domingo;
+			}
+			set
+			{
+				if (value != _domingo)
+				{
+					OnDomingoChanging(value);
+					SendPropertyChanging();
+					_domingo = value;
+					SendPropertyChanged("Domingo");
+					OnDomingoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region uint IDContraToS
+
+		private uint _idcOntraToS;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_idcOntraToS", Name = "idcontratos", DbType = "mediumint unsigned", IsPrimaryKey = true, AutoSync = AutoSync.Never, CanBeNull = false)]
+		public uint IDContraToS
+		{
+			get
+			{
+				return _idcOntraToS;
+			}
+			set
+			{
+				if (value != _idcOntraToS)
+				{
+					OnIDContraToSChanging(value);
+					SendPropertyChanging();
+					_idcOntraToS = value;
+					SendPropertyChanged("IDContraToS");
+					OnIDContraToSChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string Jueves
+
+		private string _jueves;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_jueves", Name = "Jueves", DbType = "varchar(10)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string Jueves
+		{
+			get
+			{
+				return _jueves;
+			}
+			set
+			{
+				if (value != _jueves)
+				{
+					OnJuevesChanging(value);
+					SendPropertyChanging();
+					_jueves = value;
+					SendPropertyChanged("Jueves");
+					OnJuevesChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string Lunes
+
+		private string _lunes;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_lunes", Name = "Lunes", DbType = "varchar(10)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string Lunes
+		{
+			get
+			{
+				return _lunes;
+			}
+			set
+			{
+				if (value != _lunes)
+				{
+					OnLunesChanging(value);
+					SendPropertyChanging();
+					_lunes = value;
+					SendPropertyChanged("Lunes");
+					OnLunesChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string Martes
+
+		private string _martes;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_martes", Name = "Martes", DbType = "varchar(10)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string Martes
+		{
+			get
+			{
+				return _martes;
+			}
+			set
+			{
+				if (value != _martes)
+				{
+					OnMartesChanging(value);
+					SendPropertyChanging();
+					_martes = value;
+					SendPropertyChanged("Martes");
+					OnMartesChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string Miercoles
+
+		private string _miercoles;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_miercoles", Name = "Miercoles", DbType = "varchar(10)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string Miercoles
+		{
+			get
+			{
+				return _miercoles;
+			}
+			set
+			{
+				if (value != _miercoles)
+				{
+					OnMiercolesChanging(value);
+					SendPropertyChanging();
+					_miercoles = value;
+					SendPropertyChanged("Miercoles");
+					OnMiercolesChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string Sabado
+
+		private string _sabado;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_sabado", Name = "Sabado", DbType = "varchar(10)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string Sabado
+		{
+			get
+			{
+				return _sabado;
+			}
+			set
+			{
+				if (value != _sabado)
+				{
+					OnSabadoChanging(value);
+					SendPropertyChanging();
+					_sabado = value;
+					SendPropertyChanged("Sabado");
+					OnSabadoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string Viernes
+
+		private string _viernes;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_viernes", Name = "Viernes", DbType = "varchar(10)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string Viernes
+		{
+			get
+			{
+				return _viernes;
+			}
+			set
+			{
+				if (value != _viernes)
+				{
+					OnViernesChanging(value);
+					SendPropertyChanging();
+					_viernes = value;
+					SendPropertyChanged("Viernes");
+					OnViernesChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region Parents
+
+		private EntityRef<ContraToS> _contraToS;
+		[Association(Storage = "_contraToS", OtherKey = "IDContratos", ThisKey = "IDContraToS", Name = "FK_Contrato", IsForeignKey = true)]
+		[DebuggerNonUserCode]
+		public ContraToS ContraToS
+		{
+			get
+			{
+				return _contraToS.Entity;
+			}
+			set
+			{
+				if (value != _contraToS.Entity)
+				{
+					if (_contraToS.Entity != null)
+					{
+						var previousContraToS = _contraToS.Entity;
+						_contraToS.Entity = null;
+						previousContraToS.HoRaSComUnescoNtRatOs.Remove(this);
+					}
+					_contraToS.Entity = value;
+					if (value != null)
+					{
+						value.HoRaSComUnescoNtRatOs.Add(this);
+						_idcOntraToS = value.IDContratos;
+					}
+					else
+					{
+						_idcOntraToS = default(uint);
+					}
+				}
+			}
+		}
+
+
+		#endregion
+
+		#region ctor
+
+		public HoRaSComUnescoNtRatOs()
+		{
+			_contraToS = new EntityRef<ContraToS>();
 			OnCreated();
 		}
 

@@ -9,7 +9,7 @@ namespace Logica
     {
         private bool PagaDescanso;
         private bool PagaHorasExtra;
-        private bool HorasExtrasDeterminadas;
+        private bool HorasComunesDeterminadas;
         private string[] HsExtrasPorDia;  
         private int TotalHorasNormales;
         private int TotalHorasExtras;
@@ -39,7 +39,7 @@ namespace Logica
             TotalVigilantes = totvigilantes;
             PagarExtrasDespuesDeHs = pagarExtrasDespuesDe;            
             Lineas = new List<LineaDeHoras>();
-            HorasExtrasDeterminadas = HsExtrasDet;
+            HorasComunesDeterminadas = HsExtrasDet;
             HsExtrasPorDia = HsExtXDia; 
         }
 
@@ -154,9 +154,9 @@ namespace Logica
             return -1;            
         }
 
-        public bool getHorasExtrasDeterminadas()
+        public bool getHorasComunesDeterminadas()
         {
-            return HorasExtrasDeterminadas;
+            return HorasComunesDeterminadas;
         }
 
         public string[] getHorasExPorDia()

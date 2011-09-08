@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2011-07-30 12:28:06Z
+#region Auto-generated classes for trustdb database on 2011-08-26 17:24:34Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2011-07-30 12:28:06Z
+// Auto-generated from trustdb on 2011-08-26 17:24:34Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -101,7 +101,7 @@ namespace Datos
 		public Table<GRuPOs> GRuPOs { get { return GetTable<GRuPOs>(); } }
 		public Table<HoRaRioDiA> HoRaRioDiA { get { return GetTable<HoRaRioDiA>(); } }
 		public Table<HoRaRioEScalaFOn> HoRaRioEScalaFOn { get { return GetTable<HoRaRioEScalaFOn>(); } }
-		public Table<HoRaSExtrasContraToS> HoRaSExtrasContraToS { get { return GetTable<HoRaSExtrasContraToS>(); } }
+		public Table<HoRaSComUnescoNtRatOs> HoRaSComUnescoNtRatOs { get { return GetTable<HoRaSComUnescoNtRatOs>(); } }
 		public Table<HoRaSGeneraDaSEScalaFOn> HoRaSGeneraDaSEScalaFOn { get { return GetTable<HoRaSGeneraDaSEScalaFOn>(); } }
 		public Table<HsComUnEsAdICIonAleSLiquidAcIonEmPleadO> HsComUnEsAdICIonAleSLiquidAcIonEmPleadO { get { return GetTable<HsComUnEsAdICIonAleSLiquidAcIonEmPleadO>(); } }
 		public Table<LineAshOrAs> LineAshOrAs { get { return GetTable<LineAshOrAs>(); } }
@@ -1511,10 +1511,10 @@ namespace Datos
 		partial void OnFechaFinChanging(DateTime? value);
 		partial void OnFechaIniChanged();
 		partial void OnFechaIniChanging(DateTime? value);
+		partial void OnHorasComunesDeterminadasChanged();
+		partial void OnHorasComunesDeterminadasChanging(sbyte value);
 		partial void OnHorasExtrasChanged();
 		partial void OnHorasExtrasChanging(sbyte value);
-		partial void OnHorasExtrasDeterminadasChanged();
-		partial void OnHorasExtrasDeterminadasChanging(sbyte value);
 		partial void OnIDContratosChanged();
 		partial void OnIDContratosChanging(uint value);
 		partial void OnObservacionesChanged();
@@ -1694,6 +1694,32 @@ namespace Datos
 
 		#endregion
 
+		#region sbyte HorasComunesDeterminadas
+
+		private sbyte _horasComunesDeterminadas;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_horasComunesDeterminadas", Name = "HorasComunesDeterminadas", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public sbyte HorasComunesDeterminadas
+		{
+			get
+			{
+				return _horasComunesDeterminadas;
+			}
+			set
+			{
+				if (value != _horasComunesDeterminadas)
+				{
+					OnHorasComunesDeterminadasChanging(value);
+					SendPropertyChanging();
+					_horasComunesDeterminadas = value;
+					SendPropertyChanged("HorasComunesDeterminadas");
+					OnHorasComunesDeterminadasChanged();
+				}
+			}
+		}
+
+		#endregion
+
 		#region sbyte HorasExtras
 
 		private sbyte _horasExtras;
@@ -1714,32 +1740,6 @@ namespace Datos
 					_horasExtras = value;
 					SendPropertyChanged("HorasExtras");
 					OnHorasExtrasChanged();
-				}
-			}
-		}
-
-		#endregion
-
-		#region sbyte HorasExtrasDeterminadas
-
-		private sbyte _horasExtrasDeterminadas;
-		[DebuggerNonUserCode]
-		[Column(Storage = "_horasExtrasDeterminadas", Name = "HorasExtrasDeterminadas", DbType = "tinyint(1)", AutoSync = AutoSync.Never, CanBeNull = false)]
-		public sbyte HorasExtrasDeterminadas
-		{
-			get
-			{
-				return _horasExtrasDeterminadas;
-			}
-			set
-			{
-				if (value != _horasExtrasDeterminadas)
-				{
-					OnHorasExtrasDeterminadasChanging(value);
-					SendPropertyChanging();
-					_horasExtrasDeterminadas = value;
-					SendPropertyChanged("HorasExtrasDeterminadas");
-					OnHorasExtrasDeterminadasChanged();
 				}
 			}
 		}
@@ -2012,18 +2012,18 @@ namespace Datos
 
 		#region Children
 
-		private EntitySet<HoRaSExtrasContraToS> _hoRaSeXtrasContraToS;
-		[Association(Storage = "_hoRaSeXtrasContraToS", OtherKey = "IDContraToS", ThisKey = "IDContratos", Name = "FK_Contrato")]
+		private EntitySet<HoRaSComUnescoNtRatOs> _hoRaScOmUnescoNtRatOs;
+		[Association(Storage = "_hoRaScOmUnescoNtRatOs", OtherKey = "IDContraToS", ThisKey = "IDContratos", Name = "FK_Contrato")]
 		[DebuggerNonUserCode]
-		public EntitySet<HoRaSExtrasContraToS> HoRaSExtrasContraToS
+		public EntitySet<HoRaSComUnescoNtRatOs> HoRaSComUnescoNtRatOs
 		{
 			get
 			{
-				return _hoRaSeXtrasContraToS;
+				return _hoRaScOmUnescoNtRatOs;
 			}
 			set
 			{
-				_hoRaSeXtrasContraToS = value;
+				_hoRaScOmUnescoNtRatOs = value;
 			}
 		}
 
@@ -2085,12 +2085,12 @@ namespace Datos
 
 		#region Attachement handlers
 
-		private void HoRaSExtrasContraToS_Attach(HoRaSExtrasContraToS entity)
+		private void HoRaSComUnescoNtRatOs_Attach(HoRaSComUnescoNtRatOs entity)
 		{
 			entity.ContraToS = this;
 		}
 
-		private void HoRaSExtrasContraToS_Detach(HoRaSExtrasContraToS entity)
+		private void HoRaSComUnescoNtRatOs_Detach(HoRaSComUnescoNtRatOs entity)
 		{
 			entity.ContraToS = null;
 		}
@@ -2112,7 +2112,7 @@ namespace Datos
 
 		public ContraToS()
 		{
-			_hoRaSeXtrasContraToS = new EntitySet<HoRaSExtrasContraToS>(HoRaSExtrasContraToS_Attach, HoRaSExtrasContraToS_Detach);
+			_hoRaScOmUnescoNtRatOs = new EntitySet<HoRaSComUnescoNtRatOs>(HoRaSComUnescoNtRatOs_Attach, HoRaSComUnescoNtRatOs_Detach);
 			_lineAshOrAs = new EntitySet<LineAshOrAs>(LineAshOrAs_Attach, LineAshOrAs_Detach);
 			_tipOcOntraToS = new EntityRef<TipOContraToS>();
 			OnCreated();
@@ -5714,7 +5714,7 @@ namespace Datos
 		partial void OnIDUsuarioChanged();
 		partial void OnIDUsuarioChanging(int value);
 		partial void OnPorcentajeChanged();
-		partial void OnPorcentajeChanging(float value);
+		partial void OnPorcentajeChanging(decimal value);
 		partial void OnSignoChanged();
 		partial void OnSignoChanging(int value);
 
@@ -5928,12 +5928,12 @@ namespace Datos
 
 		#endregion
 
-		#region float Porcentaje
+		#region decimal Porcentaje
 
-		private float _porcentaje;
+		private decimal _porcentaje;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_porcentaje", Name = "Porcentaje", DbType = "float", AutoSync = AutoSync.Never, CanBeNull = false)]
-		public float Porcentaje
+		[Column(Storage = "_porcentaje", Name = "Porcentaje", DbType = "decimal(2,2)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public decimal Porcentaje
 		{
 			get
 			{
@@ -7055,7 +7055,7 @@ namespace Datos
 		#region Parents
 
 		private EntityRef<LineAshOrAs> _lineAshOrAs;
-		[Association(Storage = "_lineAshOrAs", OtherKey = "NroLinea,IDContrato", ThisKey = "NroLinea,IDContrato", Name = "FK_IdContratoNroLinea", IsForeignKey = true)]
+		[Association(Storage = "_lineAshOrAs", OtherKey = "IDContrato,NroLinea", ThisKey = "IDContrato,NroLinea", Name = "FK_IdContratoNroLinea", IsForeignKey = true)]
 		[DebuggerNonUserCode]
 		public LineAshOrAs LineAshOrAs
 		{
@@ -7077,13 +7077,13 @@ namespace Datos
 					if (value != null)
 					{
 						value.HoRaRioDiA.Add(this);
-						_nroLinea = value.NroLinea;
 						_idcOntrato = value.IDContrato;
+						_nroLinea = value.NroLinea;
 					}
 					else
 					{
-						_nroLinea = default(sbyte);
 						_idcOntrato = default(uint);
+						_nroLinea = default(sbyte);
 					}
 				}
 			}
@@ -7490,8 +7490,8 @@ namespace Datos
 
 	}
 
-	[Table(Name = "trustdb.horasextrascontratos")]
-	public partial class HoRaSExtrasContraToS : INotifyPropertyChanging, INotifyPropertyChanged
+	[Table(Name = "trustdb.horascomunescontratos")]
+	public partial class HoRaSComUnescoNtRatOs : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		#region INotifyPropertyChanging handling
 
@@ -7771,12 +7771,12 @@ namespace Datos
 					{
 						var previousContraToS = _contraToS.Entity;
 						_contraToS.Entity = null;
-						previousContraToS.HoRaSExtrasContraToS.Remove(this);
+						previousContraToS.HoRaSComUnescoNtRatOs.Remove(this);
 					}
 					_contraToS.Entity = value;
 					if (value != null)
 					{
-						value.HoRaSExtrasContraToS.Add(this);
+						value.HoRaSComUnescoNtRatOs.Add(this);
 						_idcOntraToS = value.IDContratos;
 					}
 					else
@@ -7792,7 +7792,7 @@ namespace Datos
 
 		#region ctor
 
-		public HoRaSExtrasContraToS()
+		public HoRaSComUnescoNtRatOs()
 		{
 			_contraToS = new EntityRef<ContraToS>();
 			OnCreated();
@@ -8258,7 +8258,7 @@ namespace Datos
 		partial void OnClienteOeMpleadoChanged();
 		partial void OnClienteOeMpleadoChanging(string value);
 		partial void OnHsAdicionalesEnSegsChanged();
-		partial void OnHsAdicionalesEnSegsChanging(string value);
+		partial void OnHsAdicionalesEnSegsChanging(int? value);
 		partial void OnIDHsComunesAdicionalesLiquidacionEmpeladoChanged();
 		partial void OnIDHsComunesAdicionalesLiquidacionEmpeladoChanging(int value);
 
@@ -8316,12 +8316,12 @@ namespace Datos
 
 		#endregion
 
-		#region string HsAdicionalesEnSegs
+		#region int? HsAdicionalesEnSegs
 
-		private string _hsAdicionalesEnSegs;
+		private int? _hsAdicionalesEnSegs;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_hsAdicionalesEnSegs", Name = "HsAdicionalesEnSegs", DbType = "mediumtext", AutoSync = AutoSync.Never)]
-		public string HsAdicionalesEnSegs
+		[Column(Storage = "_hsAdicionalesEnSegs", Name = "HsAdicionalesEnSegs", DbType = "int", AutoSync = AutoSync.Never)]
+		public int? HsAdicionalesEnSegs
 		{
 			get
 			{
@@ -8644,7 +8644,7 @@ namespace Datos
 		#region Children
 
 		private EntitySet<HoRaRioDiA> _hoRaRioDiA;
-		[Association(Storage = "_hoRaRioDiA", OtherKey = "NroLinea,IDContrato", ThisKey = "NroLinea,IDContrato", Name = "FK_IdContratoNroLinea")]
+		[Association(Storage = "_hoRaRioDiA", OtherKey = "IDContrato,NroLinea", ThisKey = "IDContrato,NroLinea", Name = "FK_IdContratoNroLinea")]
 		[DebuggerNonUserCode]
 		public EntitySet<HoRaRioDiA> HoRaRioDiA
 		{

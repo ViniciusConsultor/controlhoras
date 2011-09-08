@@ -129,7 +129,7 @@ namespace Datos
         /// <param name="IdTipoExtraLiquidacion">Identificador del TipoExtraLiquidacion seleccionado</param>
         /// <param name="CantHs_LlevaHs">Cantidad de Hs representada en Comunes a agregar al empleado</param>
         /// <param name="Porcentaje">Porcentaje del extra</param>
-        int agregarExtraLiquidacionEmpleado(int idEmpleado, DateTime fecha, string descripcion, bool signoPositivo, float valor, int cantidadCuotas, string UserName, int IdTipoExtraLiquidacion, TimeSpan CantHs_LlevaHs, float Porcentaje);
+        int agregarExtraLiquidacionEmpleado(int idEmpleado, DateTime fecha, string descripcion, bool signoPositivo, float valor, int cantidadCuotas, string UserName, int IdTipoExtraLiquidacion, TimeSpan CantHs_LlevaHs, decimal Porcentaje);
 
         /// <summary>
         /// Modifica un Extra de la liquidacion del empleado
@@ -298,7 +298,7 @@ namespace Datos
         ContraToS obtenerContrato(int NumeroContrato);
         ContraToS obtenerContrato(int NumeroCliente, int NumeroServicio);
         void modificarContrato(int numeroContrato, DateTime FechaInicial, DateTime? FechaFinal, bool Costo, bool HorasExtras, bool PagaDescanso, string Ajuste, string Observaciones, float Monto, int? PagarExtrasDespuesDeHs, bool HsExtrasDet, string[] HsExtrasPorDia);
-        void altaContrato(ContraToS Contrato, List<LineAshOrAs> Lineas, HoRaSExtrasContraToS HorasExtrasPorDia);
+        void altaContrato(ContraToS Contrato, List<LineAshOrAs> Lineas, HoRaSComUnescoNtRatOs HorasComunesPorDia);
         void eliminarLineasContrato(int NumeroContrato);
         void guardarLineasContrato(List<LineAshOrAs> Lineas);
         
@@ -482,6 +482,6 @@ namespace Datos
 
         void CalcularDescansos();
 
-        HoRaSExtrasContraToS obtenerHorasExtrasContrato(uint IdContrato);
+        HoRaSComUnescoNtRatOs obtenerHorasExtrasContrato(uint IdContrato);
     }
 }
