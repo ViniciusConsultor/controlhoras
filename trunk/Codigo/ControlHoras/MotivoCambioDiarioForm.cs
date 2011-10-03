@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Datos;
+//using Utilidades;
 
 
 namespace ControlHoras
@@ -17,7 +18,7 @@ namespace ControlHoras
         private IDatos datos = null;
         public MotIVOsCamBiosDiARioS motivoCambio { set; get; }
         private DateTime FechaCorresponde;
-        private List<TipOsMotIVOCamBIoDiARio> listaTiposMotivos = null; 
+        private List<TipOsMotIVOCamBIoDiARio> listaTiposMotivos = null;
         
         public MotivoCambioDiarioForm(DateTime fechaCorresponde)
         {
@@ -44,13 +45,11 @@ namespace ControlHoras
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            
             motivoCambio = new MotIVOsCamBiosDiARioS();
             motivoCambio.FechaCambio = DateTime.Now;
             motivoCambio.FechaCorresponde = FechaCorresponde.Date;
             motivoCambio.Observaciones = txtObservaciones.Text;
-            motivoCambio.TipOsMotIVOCamBIoDiARio = ((TipOsMotIVOCamBIoDiARio)cmbMotivosCambio.SelectedValue);
-            
+            motivoCambio.TipOsMotIVOCamBIoDiARio = ((TipOsMotIVOCamBIoDiARio) cmbMotivosCambio.SelectedValue);
             //botonAceptar = true;
         }
 

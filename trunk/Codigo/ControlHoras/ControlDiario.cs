@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Datos;
 using Logica;
+using Utilidades;
 
 namespace ControlHoras
 {
@@ -18,6 +19,7 @@ namespace ControlHoras
         private SERVicIoS servicio;
         private DateTime FechaSeleccionada;
         private Dictionary<long, HoRaSGeneraDaSEScalaFOn> listaFuncsCargados = null;
+        
         // Lista de Controles que se tiene permisos.
         List<Component> listaControlesConPermiso;
 
@@ -33,6 +35,7 @@ namespace ControlHoras
         Color ColorOriginalFila = Color.White;
         Color ColorEntradaFila = Color.SlateGray;
         Color ColorSalidaFila = Color.Yellow;
+
 
         private bool PermitirModificacionesADiaCerrado = false;
 
@@ -348,15 +351,18 @@ namespace ControlHoras
         {   
             try
             {
+                ControladorUtilidades.writeToLog(this.Name, "cambiarFuncionario_Click", "Inicia metodo");
                 MotIVOsCamBiosDiARioS motivoCambio = null;
                 int idFuncSeleccionado = int.Parse(dgvHoras.SelectedRows[0].Cells["NroEmpleado"].Value.ToString() );
                 string nombreFunc = dgvHoras.SelectedRows[0].Cells["Funcionario"].Value.ToString();
                 DateTime fecha = DateTime.Parse(mtFecha.Text);
                 ControlDiarioCambiarFuncionario change = new ControlDiarioCambiarFuncionario(idFuncSeleccionado,nombreFunc, fecha);
+                ControladorUtilidades.writeToLog(this.Name, "cambiarFuncionario_Click", "Antes de ShowDialog ControlDiarioCambiarFuncionario");
                 DialogResult dg = change.ShowDialog(this);
 
                 if (dg == DialogResult.OK)
                 {
+                    ControladorUtilidades.writeToLog(this.Name, "cambiarFuncionario_Click", "DialogResult OK");
                     int numFila = dgvHoras.SelectedRows[0].Index;
                     long idhge = (long)dgvHoras.Rows[numFila].Cells["IdHorasGeneradasEscalafon"].Value;
                     
@@ -367,8 +373,9 @@ namespace ControlHoras
                     hstemp.HoraSalida = listaFuncsCargados[idhge].HoraSalida;
                     try
                     {
+                        ControladorUtilidades.writeToLog(this.Name, "cambiarFuncionario_Click", "Antes de sistema.AplicarControlesAltaHoraGeneradaEscalafon");
                         sistema.aplicarControlesAltaHoraGeneradaEscalafon(listaFuncsCargados[idhge].FechaCorrespondiente, hstemp);
-
+                        ControladorUtilidades.writeToLog(this.Name, "cambiarFuncionario_Click", "Despues de sistema.AplicarControlesAltaHoraGeneradaEscalafon");
                         //
                         MotivoCambioDiarioForm mcdf = new MotivoCambioDiarioForm(DateTime.Parse(mtFecha.Text));
                         dg = mcdf.ShowDialog(this);
@@ -392,6 +399,7 @@ namespace ControlHoras
                     {
                         throw ex;
                     }
+                    ControladorUtilidades.writeToLog(this.Name, "cambiarFuncionario_Click", "Fin.");
                 }
             }catch(Exception ex)
             {
@@ -429,6 +437,7 @@ namespace ControlHoras
 
         private void cambiarHora(bool cambiarEntrada, string texto)
         {
+            ControladorUtilidades.writeToLog(this.Name, "cambiarHora", "Iniciando...");
             long idhge = int.Parse(dgvHoras.SelectedRows[0].Cells["IDHorasGeneradasEscalafon"].Value.ToString());
             int idFuncSeleccionado = (int)listaFuncsCargados[idhge].NroEmpleado;
             string nombreFunc = dgvHoras.SelectedRows[0].Cells["Funcionario"].Value.ToString();
@@ -439,6 +448,7 @@ namespace ControlHoras
 
             if (dg == DialogResult.OK)
             {
+                ControladorUtilidades.writeToLog(this.Name, "cambiarHora", "DialogResult.OK");
                 // Chequeamos que no existan los horarios solapados.
                 HoRaSGeneraDaSEScalaFOn hstemp = new HoRaSGeneraDaSEScalaFOn();
                 hstemp.NroEmpleado = listaFuncsCargados[idhge].NroEmpleado;
@@ -454,23 +464,28 @@ namespace ControlHoras
                 }
                 try
                 {
+                    ControladorUtilidades.writeToLog(this.Name, "cambiarHora", "Antes sistema.aplicarControlesAltaHoraGeneradaEscalafon");
                     sistema.aplicarControlesAltaHoraGeneradaEscalafon(listaFuncsCargados[idhge].FechaCorrespondiente, idhge, hstemp);
-
+                    ControladorUtilidades.writeToLog(this.Name, "cambiarHora", "Despues de sistema.aplicarControlesAltaHoraGeneradaEscalafon");
                     MotivoCambioDiarioForm mcdf = new MotivoCambioDiarioForm(DateTime.Parse(mtFecha.Text));
                     dg = mcdf.ShowDialog(this);
+                    ControladorUtilidades.writeToLog(this.Name, "cambiarHora", "Despues de showDialog");
                     if (dg == DialogResult.OK)
                     {
                         int numFila = dgvHoras.SelectedRows[0].Index;
 
                         //long idhge = (long)dgvHoras.Rows[numFila].Cells["IdHorasGeneradasEscalafon"].Value;
                         //int nroEmp = (int)listaFuncsCargados[idhge].NroEmpleado;
+                        ControladorUtilidades.writeToLog(this.Name, "cambiarHora", "Antes de changeHourForm.getFechaHoraNueva()");
                         DateTime FechaHoraNueva = changeHourForm.getFechaHoraNueva();
                         mcdf.motivoCambio.NroEmpleado = listaFuncsCargados[idhge].NroEmpleado;
                         mcdf.motivoCambio.NumeroCliente = uint.Parse(ucCliente.ClienteNRO);
                         mcdf.motivoCambio.NumeroServicio = servicio.NumeroServicio;
+                        ControladorUtilidades.writeToLog(this.Name, "cambiarHora", "Despues de mcdf.motivoCambio.NumeroServicio = servicio.NumeroServicio;");
                         //DateTime DateNueva = DateTime.Parse(mtFecha.Text + " " + HoraNueva);
+                        ControladorUtilidades.writeToLog(this.Name, "cambiarHora", "Antes datos.cambiarHoraFuncionarioControlDiario");
                         datos.cambiarHoraFuncionarioControlDiario(idhge, (int)listaFuncsCargados[idhge].NroEmpleado, FechaHoraNueva, cambiarEntrada, mcdf.motivoCambio);
-
+                        ControladorUtilidades.writeToLog(this.Name, "cambiarHora", "Despues datos.cambiarHoraFuncionarioControlDiario");
                         if (cambiarEntrada)
                         {
                             listaFuncsCargados[idhge].HoraEntrada = FechaHoraNueva;
@@ -490,7 +505,7 @@ namespace ControlHoras
                 {
                     throw ex;
                 }
-
+                ControladorUtilidades.writeToLog(this.Name, "cambiarHora", "Fin.");
             }
         }
 
@@ -514,7 +529,6 @@ namespace ControlHoras
 
         private void cambiarHoraEntrada_Click(object sender, EventArgs e)
         {
-         
             try
             {
                 cambiarHora(true, "Cambio de Hora de Entrada");

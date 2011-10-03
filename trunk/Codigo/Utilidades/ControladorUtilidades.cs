@@ -16,7 +16,9 @@ namespace Utilidades
 {
     public static class ControladorUtilidades
     {
+        #region LOGGER
         private static bool LogEnabled = false;
+        private static string LogFileName = "trustLogic.log";
         private static string LogFilePath = "C:\\trustLogic.log";
 
         public static void writeToLog(Exception objException)
@@ -26,7 +28,10 @@ namespace Utilidades
             if (LogEnabled)
             {
                 if (ConfigurationSettings.AppSettings.AllKeys.Contains("LogFilePath"))
-                    LogFilePath=ConfigurationSettings.AppSettings["LogFilePath"];
+                {
+                    LogFilePath = ConfigurationSettings.AppSettings["LogFilePath"];
+                    LogFilePath = Path.Combine(LogFilePath, LogFileName);
+                }
             }
 
             if (LogEnabled)
@@ -58,6 +63,33 @@ namespace Utilidades
              
             }
         }
+
+        public static void writeToLog(string clase, string operacion, string message)
+        {
+            if (ConfigurationSettings.AppSettings.AllKeys.Contains("LogEnabled"))
+                bool.TryParse(ConfigurationSettings.AppSettings["LogEnabled"], out LogEnabled);
+            if (ConfigurationSettings.AppSettings.AllKeys.Contains("LogFilePath"))
+            {
+                LogFilePath = ConfigurationSettings.AppSettings["LogFilePath"];
+                LogFilePath = Path.Combine(LogFilePath, LogFileName);
+            }
+            if (LogEnabled)
+            {
+                try
+                {
+                    StreamWriter swLog = new StreamWriter(LogFilePath, true);
+                    swLog.WriteLine(DateTime.Now + " - " + clase + " - " + operacion + " - " + message);
+                    swLog.Flush();
+                    swLog.Close();
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+        }
+
+        #endregion
 
         public static string encriptarStringToMD5(string str)
         {
@@ -309,7 +341,8 @@ namespace Utilidades
 
                 }
 
-                fila++;
+                fila = fila + fila_offset + 1;
+                // fila++;
 
                 // Mostramos el usuario y la fecha de generacion despues de los datos.
                 // UserName
