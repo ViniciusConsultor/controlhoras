@@ -25,7 +25,7 @@ namespace Datos
         private static IDatos instance = null;
         private static MySqlConnection conexion = null;
         private int? IdUsuarioLogueado = null;
-        private static bool Cache = true;
+        private static bool Cache = false;
         private bool LogEnabled = false;
         private StreamWriter swLog;
         private String LogFilePath="C:\\trustsofware.log";
@@ -142,14 +142,20 @@ namespace Datos
 
         internal static TrustDb createContext()
         {
-            
+            return createContext(true);
+        }
+
+        internal static TrustDb createContext(bool deferredLoadingEnabled)
+        {
+
             TrustDb context = new TrustDb(getConexion(), new DbLinq.MySql.MySqlVendor());
             context.ObjectTrackingEnabled = true;
             context.QueryCacheEnabled = false;
-            context.DeferredLoadingEnabled = Cache;
+            context.DeferredLoadingEnabled = deferredLoadingEnabled;
             
             return context;
         }
+
 
         internal static TrustDb getContext()
         {
@@ -3098,6 +3104,7 @@ namespace Datos
         {
             try
             {
+                database = createContext(false);
                 if (soloactivos)
                     return database.TipOsMotIVOCamBIoDiARio.Where(t => t.Activo == 1).ToList();
                 else
@@ -3107,6 +3114,10 @@ namespace Datos
             {
                 WriteErrorLog(ex);
                 throw ex;
+            }
+            finally
+            {
+                recargarContexto();
             }
         }
         public void altaTipoMotivoCambioDiario(TipOsMotIVOCamBIoDiARio t)
