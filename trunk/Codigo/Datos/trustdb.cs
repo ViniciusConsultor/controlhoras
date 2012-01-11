@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2011-08-26 17:24:34Z
+#region Auto-generated classes for trustdb database on 2012-01-11 15:54:10Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2011-08-26 17:24:34Z
+// Auto-generated from trustdb on 2012-01-11 15:54:10Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -107,6 +107,7 @@ namespace Datos
 		public Table<LineAshOrAs> LineAshOrAs { get { return GetTable<LineAshOrAs>(); } }
 		public Table<LiquidAcIonEmPleadOs> LiquidAcIonEmPleadOs { get { return GetTable<LiquidAcIonEmPleadOs>(); } }
 		public Table<ListAnEGRa> ListAnEGRa { get { return GetTable<ListAnEGRa>(); } }
+		public Table<LogeVentO> LogeVentO { get { return GetTable<LogeVentO>(); } }
 		public Table<MotIVOsCamBiosDiARioS> MotIVOsCamBiosDiARioS { get { return GetTable<MotIVOsCamBiosDiARioS>(); } }
 		public Table<MutualIsTAs> MutualIsTAs { get { return GetTable<MutualIsTAs>(); } }
 		public Table<PantAllAwInForm> PantAllAwInForm { get { return GetTable<PantAllAwInForm>(); } }
@@ -5932,7 +5933,7 @@ namespace Datos
 
 		private decimal _porcentaje;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_porcentaje", Name = "Porcentaje", DbType = "decimal(2,2)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		[Column(Storage = "_porcentaje", Name = "Porcentaje", DbType = "decimal(4,2)", AutoSync = AutoSync.Never, CanBeNull = false)]
 		public decimal Porcentaje
 		{
 			get
@@ -8258,7 +8259,7 @@ namespace Datos
 		partial void OnClienteOeMpleadoChanged();
 		partial void OnClienteOeMpleadoChanging(string value);
 		partial void OnHsAdicionalesEnSegsChanged();
-		partial void OnHsAdicionalesEnSegsChanging(int? value);
+		partial void OnHsAdicionalesEnSegsChanging(string value);
 		partial void OnIDHsComunesAdicionalesLiquidacionEmpeladoChanged();
 		partial void OnIDHsComunesAdicionalesLiquidacionEmpeladoChanging(int value);
 
@@ -8316,12 +8317,12 @@ namespace Datos
 
 		#endregion
 
-		#region int? HsAdicionalesEnSegs
+		#region string HsAdicionalesEnSegs
 
-		private int? _hsAdicionalesEnSegs;
+		private string _hsAdicionalesEnSegs;
 		[DebuggerNonUserCode]
-		[Column(Storage = "_hsAdicionalesEnSegs", Name = "HsAdicionalesEnSegs", DbType = "int", AutoSync = AutoSync.Never)]
-		public int? HsAdicionalesEnSegs
+		[Column(Storage = "_hsAdicionalesEnSegs", Name = "HsAdicionalesEnSegs", DbType = "mediumtext", AutoSync = AutoSync.Never)]
+		public string HsAdicionalesEnSegs
 		{
 			get
 			{
@@ -9153,6 +9154,195 @@ namespace Datos
 		#region ctor
 
 		public ListAnEGRa()
+		{
+			OnCreated();
+		}
+
+		#endregion
+
+	}
+
+	[Table(Name = "trustdb.logevento")]
+	public partial class LogeVentO : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		#region INotifyPropertyChanging handling
+
+		public event PropertyChangingEventHandler PropertyChanging;
+
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs("");
+		protected virtual void SendPropertyChanging()
+		{
+			if (PropertyChanging != null)
+			{
+				PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+
+		#endregion
+
+		#region INotifyPropertyChanged handling
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected virtual void SendPropertyChanged(string propertyName)
+		{
+			if (PropertyChanged != null)
+			{
+				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		#endregion
+
+		#region Extensibility Method Definitions
+
+		partial void OnCreated();
+		partial void OnDescripcionChanged();
+		partial void OnDescripcionChanging(string value);
+		partial void OnEventoChanged();
+		partial void OnEventoChanging(string value);
+		partial void OnFechaChanged();
+		partial void OnFechaChanging(DateTime value);
+		partial void OnIDChanged();
+		partial void OnIDChanging(long value);
+		partial void OnUsernameChanged();
+		partial void OnUsernameChanging(string value);
+
+		#endregion
+
+		#region string Descripcion
+
+		private string _descripcion;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_descripcion", Name = "Descripcion", DbType = "varchar(1000)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string Descripcion
+		{
+			get
+			{
+				return _descripcion;
+			}
+			set
+			{
+				if (value != _descripcion)
+				{
+					OnDescripcionChanging(value);
+					SendPropertyChanging();
+					_descripcion = value;
+					SendPropertyChanged("Descripcion");
+					OnDescripcionChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string Evento
+
+		private string _evento;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_evento", Name = "Evento", DbType = "varchar(100)", AutoSync = AutoSync.Never)]
+		public string Evento
+		{
+			get
+			{
+				return _evento;
+			}
+			set
+			{
+				if (value != _evento)
+				{
+					OnEventoChanging(value);
+					SendPropertyChanging();
+					_evento = value;
+					SendPropertyChanged("Evento");
+					OnEventoChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region DateTime Fecha
+
+		private DateTime _fecha;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_fecha", Name = "Fecha", DbType = "datetime", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public DateTime Fecha
+		{
+			get
+			{
+				return _fecha;
+			}
+			set
+			{
+				if (value != _fecha)
+				{
+					OnFechaChanging(value);
+					SendPropertyChanging();
+					_fecha = value;
+					SendPropertyChanged("Fecha");
+					OnFechaChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region long ID
+
+		private long _id;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_id", Name = "Id", DbType = "bigint(20)", IsPrimaryKey = true, IsDbGenerated = true, AutoSync = AutoSync.Never, CanBeNull = false)]
+		public long ID
+		{
+			get
+			{
+				return _id;
+			}
+			set
+			{
+				if (value != _id)
+				{
+					OnIDChanging(value);
+					SendPropertyChanging();
+					_id = value;
+					SendPropertyChanged("ID");
+					OnIDChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string Username
+
+		private string _username;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_username", Name = "Username", DbType = "varchar(30)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string Username
+		{
+			get
+			{
+				return _username;
+			}
+			set
+			{
+				if (value != _username)
+				{
+					OnUsernameChanging(value);
+					SendPropertyChanging();
+					_username = value;
+					SendPropertyChanged("Username");
+					OnUsernameChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region ctor
+
+		public LogeVentO()
 		{
 			OnCreated();
 		}
