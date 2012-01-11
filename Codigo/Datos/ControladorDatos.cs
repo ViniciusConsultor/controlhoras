@@ -1645,6 +1645,8 @@ namespace Datos
                 database.CuOtAsExtrasLiquidAcIon.DeleteAllOnSubmit(extras.CuOtAsExtrasLiquidAcIon);
                 database.ExtrasLiquidAcIon.DeleteOnSubmit(extras);
                 database.SubmitChanges();
+				registrarEvento("Eliminacion Extra Liquidacion", "NroEmpleado:"+extras.IDEmpleado + " | " + "Descripcion Extra: "+extras.Descripcion + " | " + "TipoExtra: " + extras.TipOExtraLiquidAcIon.Nombre);
+
             }
             catch (Exception ex)
             {
@@ -1653,6 +1655,23 @@ namespace Datos
             }
         }        
 
+		private void registrarEvento(string evento, string descripcion)
+        {
+            try
+            {
+                LogeVentO le = new LogeVentO();
+                le.Evento = evento;
+                le.Fecha = DateTime.Now;
+                le.Descripcion = descripcion;
+                le.Username = GlobalData.UserNameLogged;
+                database.LogeVentO.InsertOnSubmit(le);
+                database.SubmitChanges();
+            }catch(Exception ex)
+            {
+                WriteErrorLog(ex);
+            }
+        }
+		
         //public List<ExtrasLiquidAcIonEmPleadO> obtenerExtrasLiquidacionEmpleado(int idEmpleado, DateTime mesCorrespondiente)
         //{
         //    try
@@ -3444,6 +3463,7 @@ namespace Datos
                 }
                 
                 IdUsuarioLogueado = user.Single().IDUsuario;
+				GlobalData.UserNameLogged = UserName;
                 return user.Single();
             }
             catch
