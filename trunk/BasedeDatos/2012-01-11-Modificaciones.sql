@@ -1,0 +1,1 @@
+create table LogEvento (Id bigint not null auto_increment primary key, Fecha DateTime not null, Username varchar(30) not null, Evento varchar(100), Descripcion varchar(1000) not null);
