@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{74EBE032-537C-43B3-AF31-07C5174CB3E2}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalData.cs" />
     <Compile Include="ControladorUtilidades.cs" />
     <Compile Include="DataEventoHistEmpleado.cs" />
     <Compile Include="DataExtraLiquidacion.cs" />
