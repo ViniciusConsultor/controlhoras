@@ -1378,10 +1378,11 @@ namespace Datos
 
         public void eliminarEventoHistorialEmpleado(int idEventoHistorialEmpleado, int idEmpleado)
         {
+            EventOsHistOrIalEmPleadO eventHist;
             try
             {
                 Table<EventOsHistOrIalEmPleadO> tabla = database.GetTable<EventOsHistOrIalEmPleadO>();
-                var eventHist = (from reg in tabla
+                eventHist = (from reg in tabla
                                  where reg.IDEventoHistorialEmpleado == idEventoHistorialEmpleado
                                  && reg.IDEmpleado == idEmpleado
                                  select reg).Single<EventOsHistOrIalEmPleadO>();
@@ -1392,13 +1393,25 @@ namespace Datos
                 //eventHist.BoRrAdo = 1;
                 database.EventOsHistOrIalEmPleadO.DeleteOnSubmit(eventHist);
                 database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
-
+              
             }
             catch (Exception ex)
             {
                 WriteErrorLog(ex);
                 throw ex;
             }
+            
+            // Se registra el evento.
+            try
+            { 
+                if (eventHist != null)
+                    registrarEvento("Eliminar Evento Historial Empleado","Eliminación Evento Historial Empleado: "+ "NroEmpleado: "+ eventHist.IDEmpleado + " - " + "FechaInicio: "+ eventHist.FechaInicio.ToShortDateString() + " - " + "FechaFin: " + eventHist.FechaFin.ToShortDateString() + " - " + "Descripcion: " +eventHist.Descripcion);
+            }
+            catch (Exception ex)
+            {
+                WriteErrorLog(ex);
+            }
+            
         }
 
         public List<EventOsHistOrIalEmPleadO> obtenerEventosHistorialEmpleado(int idEmpleado)
@@ -1629,6 +1642,7 @@ namespace Datos
         {
             //throw new NotImplementedException();
             // REstricciones: - NO se puede eliminar los extras que sean de mas de 1 cuota y tenga alguna cuota liquidada.
+            ExtrasLiquidAcIon extras;
             try
             {
                 // Verificamos si tiene alguna cuota paga.
@@ -1639,19 +1653,29 @@ namespace Datos
                     throw new Exception("No se puede eliminar un ExtraLiquidacion con Cuotas ya liquidadas.");
                 
                 // Si no tiene una cuota paga procedemos con la eliminacion.
-                ExtrasLiquidAcIon extras = (from reg in database.ExtrasLiquidAcIon
+                extras = (from reg in database.ExtrasLiquidAcIon
                                             where reg.IDExtraLiquidacion == idExtraLiquidacion
                                             select reg).Single();
                 database.CuOtAsExtrasLiquidAcIon.DeleteAllOnSubmit(extras.CuOtAsExtrasLiquidAcIon);
                 database.ExtrasLiquidAcIon.DeleteOnSubmit(extras);
                 database.SubmitChanges();
-				registrarEvento("Eliminacion Extra Liquidacion", "NroEmpleado:"+extras.IDEmpleado + " | " + "Descripcion Extra: "+extras.Descripcion + " | " + "TipoExtra: " + extras.TipOExtraLiquidAcIon.Nombre);
 
             }
             catch (Exception ex)
             {
                 WriteErrorLog(ex);
                 throw ex;
+            }
+
+            // Se registra el evento en un try/catch aparte para que sea independiente del código de lógica.
+            try
+            { 
+                if (extras != null)
+                    registrarEvento("Eliminar Extra Liquidacion", "NroEmpleado:"+extras.IDEmpleado + " | " + "Descripcion Extra: "+extras.Descripcion + " | " + "TipoExtra: " + extras.TipOExtraLiquidAcIon.Nombre);
+            }
+            catch (Exception ex)
+            {
+                WriteErrorLog(ex);
             }
         }        
 
@@ -1664,6 +1688,7 @@ namespace Datos
                 le.Fecha = DateTime.Now;
                 le.Descripcion = descripcion;
                 le.Username = GlobalData.UserNameLogged;
+                le.PchOstname = System.Net.Dns.GetHostName();
                 database.LogeVentO.InsertOnSubmit(le);
                 database.SubmitChanges();
             }catch(Exception ex)
@@ -3442,6 +3467,16 @@ namespace Datos
                 recargarContexto();
                 throw ex;
             }
+
+            // Se registra el evento en un try/catch aparte para que sea independiente del código de lógica.
+            try
+            {
+                registrarEvento("Cierre ControlDiario", "Se cierra el Control Diario de la fecha " + fecha.ToShortDateString());
+            }
+            catch (Exception ex)
+            {
+                WriteErrorLog(ex);
+            }
         }
         
         #endregion
@@ -3459,16 +3494,38 @@ namespace Datos
                                  select reg);
                 if (user.Count() == 0)
                 {
+                    registrarEvento("Login Fallido", "Usuario: " + UserName);
                     throw new Exception("Usuario o Password incorrecto");
                 }
                 
                 IdUsuarioLogueado = user.Single().IDUsuario;
 				GlobalData.UserNameLogged = UserName;
+                try
+                {
+                    registrarEvento("Login OK", "Login de Usuario: " + UserName);
+                }
+                catch (Exception ex)
+                {
+                    WriteErrorLog(ex);
+                }
                 return user.Single();
             }
             catch
             {
                 throw;
+            }    
+            
+        }
+
+        public void logout()
+        {
+            try
+            {
+                registrarEvento("Logout","Logout de Usuario: "+ Utilidades.GlobalData.UserNameLogged);
+            }
+            catch (Exception ex)
+            {
+                WriteErrorLog(ex);
             }
         }
 
@@ -3899,11 +3956,10 @@ namespace Datos
         {
             // El cierre de Escalafon consiste en generar los registros correspondientes
             // en la tabla fechaescalafoncerrado.
+            FeCHaEScalaFOncerRadO fechacerrada;
             try
             {
                 recargarContexto();
-
-                FeCHaEScalaFOncerRadO fechacerrada;
                 
                 DateTime dtAux;
                 dtAux = fechaDesde;
@@ -3922,6 +3978,17 @@ namespace Datos
                 recargarContexto();
                 throw ex;
             }
+
+            // Se registra el evento en un try/catch aparte para que sea independiente del código de lógica.
+            try
+            {
+                registrarEvento("Cierre Escalafon", "Se cierra el escalafon desde " + fechaDesde.ToShortDateString() + " hasta " + fechaHasta.ToShortDateString());
+            }
+            catch (Exception ex)
+            {
+                WriteErrorLog(ex);
+            }
+            
         }
 
         public bool tieneEscalafonCerrado(DateTime fecha)
