@@ -232,11 +232,11 @@ namespace ControlHoras
         {
             try
             {
-                ABMBancos banco = ABMBancos.getVentana();
-                if (banco.Visible == false)
-                    banco.Show(this);
+                ABMBancos lista = ABMBancos.getVentana();
+                if (lista.Visible == false)
+                    lista.Show(this);
                 else
-                    banco.Focus();
+                    lista.Focus();
             }
             catch (Exception ex)
             {
@@ -591,6 +591,20 @@ namespace ControlHoras
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
              
+        }
+
+        private void VentanaPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                Datos.ControladorDatos.getInstance().logout();
+            }
+            catch (Exception ex)
+            {
+                // No la mostramos en patalla, la imprimimos en el log.
+                Utilidades.ControladorUtilidades.writeToLog(ex);
+            } 
+
         }
     }
 }

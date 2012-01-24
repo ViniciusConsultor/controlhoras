@@ -1,4 +1,4 @@
-#region Auto-generated classes for trustdb database on 2012-01-11 15:54:10Z
+#region Auto-generated classes for trustdb database on 2012-01-23 11:03:36Z
 
 //
 //  ____  _     __  __      _        _
@@ -7,7 +7,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from trustdb on 2012-01-11 15:54:10Z
+// Auto-generated from trustdb on 2012-01-23 11:03:36Z
 // Please visit http://linq.to/db for more information
 
 #endregion
@@ -9205,6 +9205,8 @@ namespace Datos
 		partial void OnFechaChanging(DateTime value);
 		partial void OnIDChanged();
 		partial void OnIDChanging(long value);
+		partial void OnPchOstnameChanged();
+		partial void OnPchOstnameChanging(string value);
 		partial void OnUsernameChanged();
 		partial void OnUsernameChanging(string value);
 
@@ -9308,6 +9310,32 @@ namespace Datos
 					_id = value;
 					SendPropertyChanged("ID");
 					OnIDChanged();
+				}
+			}
+		}
+
+		#endregion
+
+		#region string PchOstname
+
+		private string _pchOstname;
+		[DebuggerNonUserCode]
+		[Column(Storage = "_pchOstname", Name = "PCHostname", DbType = "varchar(50)", AutoSync = AutoSync.Never, CanBeNull = false)]
+		public string PchOstname
+		{
+			get
+			{
+				return _pchOstname;
+			}
+			set
+			{
+				if (value != _pchOstname)
+				{
+					OnPchOstnameChanging(value);
+					SendPropertyChanging();
+					_pchOstname = value;
+					SendPropertyChanged("PchOstname");
+					OnPchOstnameChanged();
 				}
 			}
 		}

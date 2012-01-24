@@ -59,8 +59,8 @@
             this.tiposDeEventosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cargosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tiposMotivosCambioDiarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tspTipoExtraLiquidacion = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.tspTipoExtraLiquidacion = new System.Windows.Forms.ToolStripMenuItem();
             this.consultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarNumeroEmpleadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -357,17 +357,17 @@
             this.tiposMotivosCambioDiarioToolStripMenuItem.Text = "Tipos Motivos Cambio Diario";
             this.tiposMotivosCambioDiarioToolStripMenuItem.Click += new System.EventHandler(this.tiposMotivosCambioDiarioToolStripMenuItem_Click);
             // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(215, 6);
+            // 
             // tspTipoExtraLiquidacion
             // 
             this.tspTipoExtraLiquidacion.Name = "tspTipoExtraLiquidacion";
             this.tspTipoExtraLiquidacion.Size = new System.Drawing.Size(218, 22);
             this.tspTipoExtraLiquidacion.Text = "Tipos Extra Liquidacion";
             this.tspTipoExtraLiquidacion.Click += new System.EventHandler(this.tspTipoExtraLiquidacion_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(215, 6);
             // 
             // consultasToolStripMenuItem
             // 
@@ -512,6 +512,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VentanaPrincipal";
             this.Load += new System.EventHandler(this.VentanaPrincipal_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.VentanaPrincipal_FormClosing);
             this.menuBotones.ResumeLayout(false);
             this.menuBotones.PerformLayout();
             this.menuStripSuperior.ResumeLayout(false);

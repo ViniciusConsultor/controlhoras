@@ -418,6 +418,11 @@ namespace Datos
         UsUarIoS login(string UserName, string Password);
 
         /// <summary>
+        /// Realiza el logout del usuario logueado.
+        /// </summary>
+        void logout();
+
+        /// <summary>
         /// Devuelve el IdUsuario del Usuario Logueado. Si no hay ningun usuario logueado lanza una excepcion.
         /// </summary>
         /// <returns>IdUsuario del Usuario logueado.</returns>

@@ -28,15 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServicioForm));
             this.ClienteGB = new System.Windows.Forms.GroupBox();
             this.bcUC = new ControlHoras.BúsquedaCliente();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.AgregarBTN = new System.Windows.Forms.ToolStripButton();
-            this.GuardarBTN = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.ContratoBTN = new System.Windows.Forms.ToolStripButton();
-            this.CancelarBTN = new System.Windows.Forms.ToolStripButton();
             this.ServicioGB = new System.Windows.Forms.GroupBox();
             this.lblEstadoServicio = new System.Windows.Forms.Label();
             this.txtEntreCalles = new ControlHoras.TextBoxKeyDown();
@@ -69,6 +64,11 @@
             this.label13 = new System.Windows.Forms.Label();
             this.dtpFechaBaja = new ControlHoras.MaskedTextBoxKeyDown();
             this.cbNoActivo = new System.Windows.Forms.CheckBox();
+            this.AgregarBTN = new System.Windows.Forms.ToolStripButton();
+            this.GuardarBTN = new System.Windows.Forms.ToolStripButton();
+            this.ContratoBTN = new System.Windows.Forms.ToolStripButton();
+            this.CancelarBTN = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.ClienteGB.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.ServicioGB.SuspendLayout();
@@ -103,61 +103,18 @@
             this.GuardarBTN,
             this.toolStripSeparator1,
             this.ContratoBTN,
-            this.CancelarBTN});
+            this.CancelarBTN,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(557, 36);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // AgregarBTN
-            // 
-            this.AgregarBTN.Enabled = false;
-            this.AgregarBTN.Image = global::ControlHoras.Imagenes.document_new;
-            this.AgregarBTN.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.AgregarBTN.Name = "AgregarBTN";
-            this.AgregarBTN.Size = new System.Drawing.Size(50, 33);
-            this.AgregarBTN.Text = "Agregar";
-            this.AgregarBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.AgregarBTN.Click += new System.EventHandler(this.AgregarBTN_Click);
-            // 
-            // GuardarBTN
-            // 
-            this.GuardarBTN.Enabled = false;
-            this.GuardarBTN.Image = global::ControlHoras.Imagenes.filesave;
-            this.GuardarBTN.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.GuardarBTN.Name = "GuardarBTN";
-            this.GuardarBTN.Size = new System.Drawing.Size(50, 33);
-            this.GuardarBTN.Text = "Guardar";
-            this.GuardarBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.GuardarBTN.Click += new System.EventHandler(this.GuardarBTN_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 36);
-            // 
-            // ContratoBTN
-            // 
-            this.ContratoBTN.Enabled = false;
-            this.ContratoBTN.Image = ((System.Drawing.Image)(resources.GetObject("ContratoBTN.Image")));
-            this.ContratoBTN.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ContratoBTN.Name = "ContratoBTN";
-            this.ContratoBTN.Size = new System.Drawing.Size(54, 33);
-            this.ContratoBTN.Text = "Contrato";
-            this.ContratoBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.ContratoBTN.Click += new System.EventHandler(this.ContratoBTN_Click);
-            // 
-            // CancelarBTN
-            // 
-            this.CancelarBTN.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.CancelarBTN.Image = global::ControlHoras.Imagenes.button_cancel;
-            this.CancelarBTN.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CancelarBTN.Name = "CancelarBTN";
-            this.CancelarBTN.Size = new System.Drawing.Size(53, 33);
-            this.CancelarBTN.Text = "Cancelar";
-            this.CancelarBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.CancelarBTN.Click += new System.EventHandler(this.CancelarBTN_Click);
             // 
             // ServicioGB
             // 
@@ -517,6 +474,60 @@
             this.cbNoActivo.UseVisualStyleBackColor = true;
             this.cbNoActivo.CheckedChanged += new System.EventHandler(this.cbNoActivo_CheckedChanged);
             // 
+            // AgregarBTN
+            // 
+            this.AgregarBTN.Enabled = false;
+            this.AgregarBTN.Image = global::ControlHoras.Imagenes.document_new;
+            this.AgregarBTN.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.AgregarBTN.Name = "AgregarBTN";
+            this.AgregarBTN.Size = new System.Drawing.Size(50, 33);
+            this.AgregarBTN.Text = "Agregar";
+            this.AgregarBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.AgregarBTN.Click += new System.EventHandler(this.AgregarBTN_Click);
+            // 
+            // GuardarBTN
+            // 
+            this.GuardarBTN.Enabled = false;
+            this.GuardarBTN.Image = global::ControlHoras.Imagenes.filesave;
+            this.GuardarBTN.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.GuardarBTN.Name = "GuardarBTN";
+            this.GuardarBTN.Size = new System.Drawing.Size(50, 33);
+            this.GuardarBTN.Text = "Guardar";
+            this.GuardarBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.GuardarBTN.Click += new System.EventHandler(this.GuardarBTN_Click);
+            // 
+            // ContratoBTN
+            // 
+            this.ContratoBTN.Enabled = false;
+            this.ContratoBTN.Image = global::ControlHoras.Imagenes._1259651257_invoice;
+            this.ContratoBTN.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ContratoBTN.Name = "ContratoBTN";
+            this.ContratoBTN.Size = new System.Drawing.Size(54, 33);
+            this.ContratoBTN.Text = "Contrato";
+            this.ContratoBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ContratoBTN.Click += new System.EventHandler(this.ContratoBTN_Click);
+            // 
+            // CancelarBTN
+            // 
+            this.CancelarBTN.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.CancelarBTN.Image = global::ControlHoras.Imagenes.button_cancel;
+            this.CancelarBTN.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CancelarBTN.Name = "CancelarBTN";
+            this.CancelarBTN.Size = new System.Drawing.Size(53, 33);
+            this.CancelarBTN.Text = "Cancelar";
+            this.CancelarBTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.CancelarBTN.Click += new System.EventHandler(this.CancelarBTN_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Image = global::ControlHoras.Imagenes.blacklist;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(65, 33);
+            this.toolStripButton1.Text = "Lista Negra";
+            this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton1.Visible = false;
+            // 
             // ServicioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -583,5 +594,6 @@
         private MaskedTextBoxKeyDown dtpFechaBaja;
         private System.Windows.Forms.CheckBox cbNoActivo;
         private System.Windows.Forms.Label lblEstadoServicio;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
