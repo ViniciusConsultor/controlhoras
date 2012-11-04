@@ -94,6 +94,10 @@
       <Project>{3BBD3DD3-954B-48C1-93D6-6D32309233E2}</Project>
       <Name>Datos</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utilidades\Utilidades.csproj">
+      <Project>{74EBE032-537C-43B3-AF31-07C5174CB3E2}</Project>
+      <Name>Utilidades</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

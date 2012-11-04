@@ -10,6 +10,7 @@ using Datos;
 using DbLinq.Data.Linq;
 using System.Threading;
 using Logica;
+using Utilidades;
 
 namespace ControlHoras
 {
@@ -53,10 +54,11 @@ namespace ControlHoras
                 setConsolidacionImageProcesando();
                 
                 //List<string> listaErrores = new List<string>();
+                
                 Dictionary<int, List<int>> clientesServiciosSeleccionados = ucTreeClientesServicios.obtenerClientesServiciosSeleccionados();
+                
                 Dictionary<int, List<int>>.Enumerator iter = clientesServiciosSeleccionados.GetEnumerator();
                 progressBarReset(0, clientesServiciosSeleccionados.Count());
-                
                 List<string> listaAux;
                 while (iter.MoveNext())
                 {
@@ -87,6 +89,7 @@ namespace ControlHoras
 
                         try
                         {
+                            
                             listaAux = controladorClientes.ejecutarControlesEscalafonEmpleado(nroCliente, nroServicio);
                             errores = concatenar(errores, listaAux);
                        
@@ -111,7 +114,7 @@ namespace ControlHoras
             {
                 throw ex;
             }
-
+            
             return listaErroresConsolidacion;        
                                                         
         }
@@ -132,6 +135,7 @@ namespace ControlHoras
                 DateTime dateAux = fechaDesde;
                 
                 // Obtenemos la lista de clientes activos.
+                
                 Dictionary<int, List<int>> clientesServiciosSeleccionados = ucTreeClientesServicios.obtenerClientesServiciosSeleccionados();
                 Dictionary<int, List<int>>.Enumerator iter = clientesServiciosSeleccionados.GetEnumerator();
                 int nroCliente;
@@ -154,7 +158,6 @@ namespace ControlHoras
                         {
                             try
                             {
-
                                 controladorClientes.generarHorasDiaServicio(nroCliente, nroServicio, dateAux, sobrescribirHorasGeneradas);
                             }
                             catch (YaExistenHorasGeneradasParaLaFechaException)
@@ -168,7 +171,6 @@ namespace ControlHoras
                                         try
                                         {
                                             controladorClientes.generarHorasDiaServicio(nroCliente, nroServicio, dateAux, sobrescribirHorasGeneradas);
-
                                         }
                                         catch(Exception ex)
                                         {
@@ -195,7 +197,6 @@ namespace ControlHoras
                 if (!huboErrores)
                 {
                     controladorClientes.finalizarGeneracionHoras(true, sobrescribirHorasGeneradas);
-                    
                     return new Dictionary<string, List<string>>();
                 }
                 else
@@ -239,6 +240,7 @@ namespace ControlHoras
 
                         if (dg == DialogResult.Yes)
                         {
+                            btnGenerar.Enabled = false;
                             try
                             {
                                 // Aplicamos controles previos
@@ -310,6 +312,11 @@ namespace ControlHoras
                             {
                                 MessageBox.Show(exControles.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
+                            finally
+                            {
+                                btnGenerar.Enabled = true;
+                            }
+
                         }
                         else
                         {
@@ -427,6 +434,7 @@ namespace ControlHoras
         {
             progressBar.Value += 1;
             progressBar.Refresh();
+            Application.DoEvents();
         }
 
         private void AbroWordConErrores(Dictionary<string, List<string>> listaErrores)
