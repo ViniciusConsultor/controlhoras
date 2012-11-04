@@ -351,6 +351,13 @@ namespace Datos
         
         void altaEscalafon(EScalaFOn esc, List<EScalaFOneMpLeadO> lhs);
         EScalaFOn obtenerEscalafon(int NroEscalafon);
+        /// <summary>
+        /// Devuelve el escalafón con el identificador NroEscalafon
+        /// </summary>
+        /// <param name="NroEscalafon">Identificador del Escalafon a devolver</param>
+        /// <param name="conAsociaciones">True: Devuelve el Escalafon con sus asociaciones. False: Devuelve sin las asociaciones.</param>
+        /// <returns>Escalafon con el identificador NroEscalafon</returns>
+        EScalaFOn obtenerEscalafon(int NroEscalafon, bool conAsociaciones);
         void eliminarLineasEscalafon(int NroEscalafon);
         void guardarLineasEscalafon(List<EScalaFOneMpLeadO> lineas);
         void modificarEscalafon(EScalaFOn escal);
