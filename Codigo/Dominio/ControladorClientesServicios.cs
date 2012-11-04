@@ -6,7 +6,7 @@ using System.Text;
 using System.Globalization;
 using Datos;
 using System.Configuration;
-//using Utilidades;
+using Utilidades;
 
 namespace Logica
 {
@@ -908,7 +908,6 @@ namespace Logica
             {
                 List<string> listaErrores = new List<string>();
                 List<EScalaFOneMpLeadO> listaEscEmp = datos.getHorariosEmpleado(nroEmpleado);
-
                 bool tieneDescanso = false;
                 int cantDiasPlanificados = 0;
 
@@ -918,6 +917,8 @@ namespace Logica
                 {
                     nroCli = ObtenerNroCliente(escEmp.IDEscalafon);
                     nroSer = ObtenerNroServicio(escEmp.IDEscalafon);
+                    
+
                     if (datos.esServicioActivo(nroCli,nroSer))
                     {
                         // Hacemos chequeos sobre los tipos de dias y horarios.
@@ -1097,7 +1098,7 @@ namespace Logica
             try
             {
                 List<string> errores = new List<string>();
-                EScalaFOn escalafon = datos.obtenerEscalafon(CalcNroContrato(NumeroCliente, NumeroServicio));
+                EScalaFOn escalafon = datos.obtenerEscalafon(CalcNroContrato(NumeroCliente, NumeroServicio),false);
                 if (escalafon.Cubierto == 0)
                     errores.Add("El Contrato no esta Cubierto. No se cubren todas las horas contratadas.");
                 
@@ -1126,7 +1127,6 @@ namespace Logica
                         else
                         {
                             erroresControlEmpleado = controlarPlanificacionEscalafonEmpleado((int)escEmp.NroEmpleado);
-                            //errores.Concat(erroresControlEmpleado);
                             erroresControlEmpleado.Concat(errores);
                             errores = erroresControlEmpleado;
                         }
