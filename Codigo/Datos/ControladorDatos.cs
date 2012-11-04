@@ -1412,6 +1412,27 @@ namespace Datos
                 WriteErrorLog(ex);
             }
             
+            try
+            {
+                Table<EventOsHistOrIalEmPleadO> tabla = database.GetTable<EventOsHistOrIalEmPleadO>();
+                var eventHist = (from reg in tabla
+                                 where reg.IDEventoHistorialEmpleado == idEventoHistorialEmpleado
+                                 && reg.IDEmpleado == idEmpleado
+                                 select reg).Single<EventOsHistOrIalEmPleadO>();
+
+                if (eventHist == null)
+                    throw new NoExisteException("No existe el Evento en el Historial del Empleado " + idEmpleado.ToString());
+                //El Borrado Logico en el historial del empleado no tiene mucho sentido. 
+                //eventHist.BoRrAdo = 1;
+                database.EventOsHistOrIalEmPleadO.DeleteOnSubmit(eventHist);
+                database.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+
+            }
+            catch (Exception ex)
+            {
+                WriteErrorLog(ex);
+                throw ex;
+            }
         }
 
         public List<EventOsHistOrIalEmPleadO> obtenerEventosHistorialEmpleado(int idEmpleado)
@@ -1654,11 +1675,14 @@ namespace Datos
                 
                 // Si no tiene una cuota paga procedemos con la eliminacion.
                 extras = (from reg in database.ExtrasLiquidAcIon
+                ExtrasLiquidAcIon extras = (from reg in database.ExtrasLiquidAcIon
                                             where reg.IDExtraLiquidacion == idExtraLiquidacion
                                             select reg).Single();
                 database.CuOtAsExtrasLiquidAcIon.DeleteAllOnSubmit(extras.CuOtAsExtrasLiquidAcIon);
                 database.ExtrasLiquidAcIon.DeleteOnSubmit(extras);
                 database.SubmitChanges();
+
+                registrarEvento("Eliminacion Extra Liquidacion", "NroEmpleado:"+extras.IDEmpleado + " | " + "Descripcion Extra: "+extras.Descripcion + " | " + "TipoExtra: " + extras.TipOExtraLiquidAcIon.Nombre);
 
             }
             catch (Exception ex)
@@ -1679,6 +1703,8 @@ namespace Datos
             }
         }        
 
+        }
+
 		private void registrarEvento(string evento, string descripcion)
         {
             try
@@ -1697,6 +1723,23 @@ namespace Datos
             }
         }
 		
+        private void registrarEvento(string evento, string descripcion)
+        {
+            try
+            {
+                LogeVentO le = new LogeVentO();
+                le.Evento = evento;
+                le.Fecha = DateTime.Now;
+                le.Descripcion = descripcion;
+                le.Username = GlobalData.UserNameLogged;
+                database.LogeVentO.InsertOnSubmit(le);
+                database.SubmitChanges();
+            }catch(Exception ex)
+            {
+                WriteErrorLog(ex);
+            }
+        }
+
         //public List<ExtrasLiquidAcIonEmPleadO> obtenerExtrasLiquidacionEmpleado(int idEmpleado, DateTime mesCorrespondiente)
         //{
         //    try
@@ -3508,6 +3551,7 @@ namespace Datos
                 {
                     WriteErrorLog(ex);
                 }
+                GlobalData.UserNameLogged = UserName;
                 return user.Single();
             }
             catch
@@ -3783,6 +3827,45 @@ namespace Datos
                 throw me;
             }
         }
+
+        /// <summary>
+        /// Devuelve el escalafón con el identificador NroEscalafon
+        /// </summary>
+        /// <param name="NroEscalafon">Identificador del Escalafon a devolver</param>
+        /// <param name="conAsociaciones">True: Devuelve el Escalafon con sus asociaciones. False: Devuelve sin las asociaciones.</param>
+        /// <returns>Escalafon con el identificador NroEscalafon</returns>
+        public EScalaFOn obtenerEscalafon(int NroEscalafon, bool conAsociaciones)
+        {
+            try
+            {
+                database = createContext(conAsociaciones);
+                Table<EScalaFOn> tablaEscalafon = database.GetTable<EScalaFOn>();
+                var con = (from conreg in tablaEscalafon
+                           where conreg.IDEscalafon == NroEscalafon
+                           select conreg);
+                if (con.Count<EScalaFOn>() == 0)
+                    throw new NoExisteException("No existe el escalafón con número " + NroEscalafon);
+
+                return con.Single<EScalaFOn>();
+            }
+            catch (ArgumentNullException anex)
+            {
+                throw new NoExisteException(anex.Message, anex.InnerException);
+            }
+            catch (InvalidOperationException ioex)
+            {
+                throw ioex;
+            }
+            catch (Exception me)
+            {
+                throw me;
+            }
+            finally
+            {
+                recargarContexto();
+            }
+        }
+
 
         public void eliminarLineasEscalafon(int NroEscalafon)
         {
@@ -4361,7 +4444,7 @@ namespace Datos
             Table<SERVicIoS> tabla;
             try
             {
-                recargarContexto();
+                database = createContext(false);
                 tabla = database.GetTable<SERVicIoS>();
                 var ser = (from serreg in tabla
                            where serreg.NumeroServicio == nroServicio && serreg.NumeroCliente == nroCliente
@@ -4372,8 +4455,11 @@ namespace Datos
             catch (Exception ex)
             {
                 WriteErrorLog(ex);
-                recargarContexto();
                 throw ex;
+            }
+            finally
+            {
+                recargarContexto();
             }
         }
 
