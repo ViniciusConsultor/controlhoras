@@ -1,0 +1,1 @@
+El proyecto se basa en una aplicación para la planificación y el control de horas de determinado personal.
